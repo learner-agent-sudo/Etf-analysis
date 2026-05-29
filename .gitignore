@@ -1,0 +1,19 @@
+# Pasted/raw source documents — keep the repo about analysis, not bulk data.
+# Remove these lines if you DO want to version specific source files.
+*.pdf
+*.csv
+*.xlsx
+*.xls
+data/raw/
+
+# Scratch / personal
+scratch/
+*.tmp
+.DS_Store
+
+# Python (if/when automation is added)
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
