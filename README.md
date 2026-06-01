@@ -35,6 +35,27 @@ catch.
 > thematic** and **options** ETFs this repo focuses on, the fund house's choices
 > drive almost everything — so manager and strategy risk go *up*, not down.
 
+## The web app (interactive analysis)
+
+There's a small **dynamic web app** for doing the side-by-side analysis in the
+browser: a sortable / filterable comparison table per theme, with a click-to-open
+deep memo for each ETF (strategy, theme-purity holdings table, red flags,
+bull/bear, decision log).
+
+```bash
+python3 app/server.py          # then open http://127.0.0.1:8000
+```
+
+Zero dependencies — pure Python standard library (so it runs anywhere, including
+locked-down sandboxes where `pip install` is blocked). Ships with two themes:
+**Quantum Computing** and **Space**. See [`app/README.md`](app/README.md) for how
+it works and how to add a theme.
+
+> The app serves **pre-populated** data files (`app/data/*.json`); it does not
+> fetch live ETF data at runtime (the research environment blocks outbound
+> internet). Data is refreshed out-of-band via web search. The Markdown framework
+> below and the JSON app are two views of the same analysis.
+
 ## How to use this repo
 
 1. **Pick a theme** → create/open a folder under `themes/`.
@@ -53,6 +74,11 @@ catch.
 ```
 .
 ├── README.md                     ← you are here
+├── app/                          ← interactive web app
+│   ├── server.py                 ← zero-dependency Python backend + JSON API
+│   ├── data/                     ← theme data (quantum.json, space.json)
+│   ├── static/                   ← frontend (index.html, style.css, app.js)
+│   └── README.md
 ├── docs/
 │   ├── METHODOLOGY.md            ← the dimensions we score and why
 │   ├── DATA-SOURCES.md           ← where to get the data (and access notes)
@@ -62,7 +88,7 @@ catch.
 │   ├── comparison-scorecard-template.md
 │   └── red-flags-checklist.md
 └── themes/
-    └── space/                    ← worked pilot example
+    └── space/                    ← worked pilot example (Markdown)
         ├── README.md
         ├── comparison.md         ← ARKX vs UFO vs ROKT vs XAR
         └── memos/
