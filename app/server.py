@@ -22,8 +22,13 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(BASE_DIR, "data")
-STATIC_DIR = os.path.join(BASE_DIR, "static")
+REPO_ROOT = os.path.dirname(BASE_DIR)
+# Canonical app is the Vercel layout at repo-root: public/ (static) + public/data.
+# This local stdlib server now serves the SAME files so there's a single source
+# of truth. (The live /api/etf refresh only runs on Vercel; locally you get the
+# curated static data, which is the whole analysis.)
+DATA_DIR = os.path.join(REPO_ROOT, "public", "data")
+STATIC_DIR = os.path.join(REPO_ROOT, "public")
 
 CONTENT_TYPES = {
     ".html": "text/html; charset=utf-8",

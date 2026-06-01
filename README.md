@@ -35,26 +35,37 @@ catch.
 > thematic** and **options** ETFs this repo focuses on, the fund house's choices
 > drive almost everything — so manager and strategy risk go *up*, not down.
 
-## The web app (interactive analysis)
+## The web app (hosted, with live refresh)
 
-There's a small **dynamic web app** for doing the side-by-side analysis in the
-browser: a sortable / filterable comparison table per theme, with a click-to-open
-deep memo for each ETF (strategy, theme-purity holdings table, red flags,
+The main way to use this is a **mobile-friendly web app** meant to be deployed to
+**Vercel** so you get a public URL that opens on any device — no install, no
+download. Per theme you get a **sortable / filterable comparison table** (expense
+ratio, AUM, 1-yr & YTD performance, concentration, colored score dots) and a
+click-to-open **deep memo** per ETF (strategy, theme-purity holdings, red flags,
 bull/bear, decision log).
 
+It has **two layers**:
+- **Curated analysis** (`public/data/*.json`) — the judgment that no API makes:
+  theme-purity ratings, red flags, scores, memos. Always available.
+- **Live refresh** (`api/etf.js`, a Vercel serverless function) — the **↻**
+  buttons and the **"Look up" box** pull current expense ratio, AUM, holdings,
+  sectors and performance for any ticker, including **newly-launched ETFs you type
+  in**. Live values are marked with a ● dot.
+
+**Deploy it:** see [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) (≈5 min, from a
+browser). **Run it locally (static only):**
 ```bash
 python3 app/server.py          # then open http://127.0.0.1:8000
 ```
 
-Zero dependencies — pure Python standard library (so it runs anywhere, including
-locked-down sandboxes where `pip install` is blocked). Ships with two themes:
-**Quantum Computing** and **Space**. See [`app/README.md`](app/README.md) for how
-it works and how to add a theme.
+Ships with **Quantum Computing** (QTUM, WQTM, CHPX + SOXX benchmark) and **Space**
+(UFO, ARKX, ROKT + XAR, SHLD benchmarks). See [`app/README.md`](app/README.md) for
+architecture and how to add a theme.
 
-> The app serves **pre-populated** data files (`app/data/*.json`); it does not
-> fetch live ETF data at runtime (the research environment blocks outbound
-> internet). Data is refreshed out-of-band via web search. The Markdown framework
-> below and the JSON app are two views of the same analysis.
+> The static layer is a **dated snapshot** from public sources; the live layer
+> refreshes the numbers on demand. No free API reliably lists "every ETF in a
+> theme," so discovering the full universe stays a research task (ask me) — the
+> "Look up" box covers pulling any specific new ticker live.
 
 ## How to use this repo
 
@@ -74,13 +85,18 @@ it works and how to add a theme.
 ```
 .
 ├── README.md                     ← you are here
-├── app/                          ← interactive web app
-│   ├── server.py                 ← zero-dependency Python backend + JSON API
-│   ├── data/                     ← theme data (quantum.json, space.json)
-│   ├── static/                   ← frontend (index.html, style.css, app.js)
-│   └── README.md
+├── public/                       ← the web app (static site, deployed as-is)
+│   ├── index.html · style.css · app.js
+│   └── data/                     ← curated theme data (quantum.json, space.json)
+├── api/
+│   └── etf.js                    ← Vercel serverless fn: live data refresh
+├── vercel.json                   ← Vercel config (no build step)
+├── app/
+│   ├── server.py                 ← run the static site locally (stdlib only)
+│   └── README.md                 ← app architecture & how to add a theme
 ├── docs/
 │   ├── METHODOLOGY.md            ← the dimensions we score and why
+│   ├── DEPLOYMENT.md             ← get a public URL on Vercel
 │   ├── DATA-SOURCES.md           ← where to get the data (and access notes)
 │   └── GLOSSARY.md               ← plain-English definitions
 ├── templates/

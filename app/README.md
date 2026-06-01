@@ -1,76 +1,82 @@
 # ETF Analysis — web app
 
-A small **dynamic web app** for side-by-side ETF comparison and deep memos.
+A **hosted, mobile-friendly web app** for side-by-side ETF comparison with deep
+memos, plus **live data refresh**. Designed to be deployed to **Vercel** so you
+get a public URL that opens on any device — no install, no download.
 
-## Run it
+## Two layers (this is the key idea)
 
+1. **Curated analysis (static)** — `public/data/*.json`. The judgment calls that
+   no API can make: theme-purity ratings, red flags, bull/bear, decision logs,
+   scored dimensions. Always available, works offline, version-controlled.
+2. **Live hard facts (dynamic)** — `api/etf.js`, a Vercel serverless function.
+   Pulls current expense ratio, AUM, holdings, sectors and performance for any
+   ticker on demand (the ↻ buttons and the "Look up" box). Runs server-side so
+   the API key is never exposed to the browser.
+
+This split is deliberate: the page is useful instantly (static), and the numbers
+refresh themselves and can expand to **newly-launched ETFs you type in** (live).
+
+## Layout
+
+```
+public/                 ← static site (deployed as-is)
+├── index.html
+├── style.css
+├── app.js              ← loads /data/*.json; wires ↻ refresh + "Look up"
+└── data/
+    ├── quantum.json    ← QTUM, WQTM, CHPX + SOXX benchmark
+    └── space.json      ← UFO, ARKX, ROKT + XAR, SHLD benchmarks
+api/
+└── etf.js              ← GET /api/etf?ticker=XXX  (live refresh)
+vercel.json             ← Vercel config
+```
+
+## Run locally
+
+**Option A — static only (no live refresh), zero dependencies:**
 ```bash
-python3 app/server.py                 # http://127.0.0.1:8000
-python3 app/server.py --port 9000     # custom port
+python3 app/server.py            # http://127.0.0.1:8000
 ```
+Serves the same `public/` files. The ↻ button will say live refresh needs Vercel
+— expected; the full curated analysis still works.
 
-No installation, no dependencies — **Python standard library only**. This is a
-deliberate choice: the research environment blocks outbound internet, so
-`pip install` doesn't work. Stdlib `http.server` runs anywhere.
-
-## What you get
-
-- A **theme picker** (top right) — switch between Quantum, Space, …
-- A **sortable, filterable comparison table** — click any column header to sort
-  (cost, AUM, concentration, the colored score dots…); filter by ticker/name;
-  toggle "theme funds only" to hide the benchmark/reference funds.
-- A **memo drawer** — click any row to open the full one-pager: thesis,
-  strategy, a theme-purity holdings table (pure / partial / unrelated tags),
-  scored dimensions, red flags, bull-vs-bear, and a decision log.
-- **Key tensions** for the theme, and a benchmark note explaining why the
-  reference funds are included.
-
-## Architecture
-
+**Option B — full app with live refresh, using Vercel's dev server:**
+```bash
+npm i -g vercel
+vercel dev                       # runs public/ + api/ together
 ```
-app/
-├── server.py          stdlib HTTP server + JSON API (no deps)
-├── data/<theme>.json  one file per theme = the data layer
-└── static/            index.html · style.css · app.js (vanilla JS, no build)
-```
+(Needs the `ALPHAVANTAGE_KEY` env var — see deployment.)
 
-API:
-- `GET /api/themes` → list of themes (id, name, as-of, tagline, count)
-- `GET /api/theme/<id>` → one full theme (all ETFs + memos)
+## Deploy to Vercel (public URL)
 
-The frontend is plain HTML/CSS/JS — no framework, no build step, nothing to
-compile. The backend only reads the JSON files and serves static assets, with a
-path-traversal guard.
+See [`../docs/DEPLOYMENT.md`](../docs/DEPLOYMENT.md) for the step-by-step. Short
+version: connect the GitHub repo to Vercel (zero build config needed), add one
+environment variable `ALPHAVANTAGE_KEY` (free key from alphavantage.co), deploy.
+You get `https://<project>.vercel.app`.
 
-## ⚠️ Data is pre-populated, not live
+## What you can do on the page
 
-The backend does **not** fetch ETF data at runtime — outbound internet is blocked
-in this environment, so no framework could. Each `data/<theme>.json` is refreshed
-**out-of-band** (via web search) and committed. Every theme carries an `as_of`
-date; treat figures as a snapshot to **verify against issuer fact sheets / SEC
-filings** before deciding. See [`../docs/DATA-SOURCES.md`](../docs/DATA-SOURCES.md).
+- **Theme picker** — Quantum, Space, …
+- **Sortable, filterable table** — click any header (expense, AUM, 1-yr, YTD,
+  concentration, score dots) to sort; filter by ticker/name; "theme funds only".
+- **↻ per row / in each memo** — pull live expense ratio, AUM, holdings, sectors,
+  performance. Live values are marked with a ● dot.
+- **"Look up" box** — type any ETF ticker (e.g. a brand-new quantum fund) and it
+  fetches live and adds a clearly-marked, *uncurated* row. Ask for a full memo to
+  turn it into a curated entry.
+- **Memo drawer** — thesis, strategy, theme-purity holdings (live or curated),
+  scored dimensions, performance, red flags, bull/bear, decision log.
 
-## Add a new theme
+## Add / update a curated theme or fund
 
-1. Copy an existing file, e.g. `cp app/data/space.json app/data/income.json`.
-2. Edit the JSON: set `id`, `name`, `as_of`, `tagline`, `key_tensions`,
-   `benchmark_note`, and the `etfs` array.
-3. Each ETF needs the table fields (`ticker`, `name`, `is_theme_fund`,
-   `expense_ratio`, `aum_musd`/`aum_display`, `structure`, `holdings_count`,
-   `top10_weight_pct`/`top10_weight_display`), a `scores` block with all five
-   dimensions (`cost`, `purity`, `concentration`, `liquidity`, `track_record`,
-   each `{rating: green|yellow|red, note}`), and a `memo` block.
-4. Restart the server — the new theme appears in the picker automatically.
+1. Edit (or copy) a file in `public/data/`. Keep the field names — a fund needs
+   the table fields, a `performance` block, a `scores` block (all five
+   dimensions, each `{rating, note}`), and a `memo` block.
+2. Add the theme id to `THEME_FILES` in `public/app.js`.
+3. Commit. Vercel redeploys automatically; the live page updates in ~1 minute.
 
-> Tip: keep the same field names. The data contract is enforced by a check —
-> see the validation snippet in the repo history / commit that added the app.
-> A field the frontend expects but the data omits will show as "—" rather than
-> crash, but matching the shape keeps the UI complete.
-
-## Limits / next steps
-
-- No screenshot here (no headless browser installed, can't install one offline).
-  Verified instead via API tests + a data-contract check over both themes.
-- Future: a Markdown→JSON sync so the `themes/*.md` files and `app/data/*.json`
-  can't drift; optional charts; export a theme to a static HTML bundle for
-  GitHub Pages.
+> Live data refreshes the **numbers**; curated JSON holds the **judgment**. When
+> you ask me to "add fund X" or "refresh the data," I research public sources,
+> cross-check, and commit updated JSON — that's the reliable path for holdings
+> and brand-new funds the free API may not cover well.

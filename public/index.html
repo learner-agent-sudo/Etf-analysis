@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ETF Analysis</title>
+  <meta name="description" content="Compare thematic ETFs on expense ratio, holdings, concentration and performance." />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
@@ -24,17 +25,20 @@
     <section class="controls" id="controls" hidden>
       <input type="search" id="filterBox" placeholder="Filter by ticker or name…" />
       <label class="toggle">
-        <input type="checkbox" id="themeOnly" /> Theme funds only (hide benchmarks)
+        <input type="checkbox" id="themeOnly" /> Theme funds only
       </label>
-      <span class="hint">Click a column header to sort · click a row to open the memo</span>
+      <span class="addbox">
+        <input type="search" id="addTicker" maxlength="8" placeholder="Add ticker (e.g. QTUM)…" />
+        <button id="addBtn">＋ Look up</button>
+      </span>
+      <span class="hint">Click a header to sort · click a row for the memo · ↻ pulls live data</span>
     </section>
 
+    <section id="liveMsg" class="livemsg" hidden></section>
     <section id="tableWrap" class="table-wrap"></section>
-
     <section id="tensions" class="tensions"></section>
   </main>
 
-  <!-- Memo drawer -->
   <div id="overlay" class="overlay" hidden></div>
   <aside id="memoDrawer" class="drawer" hidden aria-label="ETF memo">
     <button id="closeMemo" class="close" aria-label="Close">×</button>
@@ -43,9 +47,10 @@
 
   <footer class="foot">
     <p>
-      Personal research aid — <strong>not investment advice</strong>. All figures
-      from public sources, may be stale; verify against the issuer fact sheet and
-      latest SEC filing before acting. Data shown carries an <em>as-of</em> date.
+      Personal research aid — <strong>not investment advice</strong>. Curated figures
+      are a dated snapshot from public sources; the ↻ button and "Look up" box pull
+      live data from a market-data provider. Always verify against the issuer fact
+      sheet and latest SEC filing before acting.
     </p>
   </footer>
 

@@ -3,12 +3,15 @@
   "name": "Quantum Computing",
   "as_of": "2026-06-01",
   "tagline": "A textbook binary-bet theme: a tiny pure-play universe, pre-profit names that swing 30%+ on a single milestone, and a flagship fund that's really 'quantum + machine learning'.",
+  "universe_note": "As of mid-2026 there are roughly 3-4 US-listed ETFs with a genuine quantum focus (QTUM, WQTM, and the AI+quantum hybrid CHPX), plus more in registration. New funds launch often — use the 'Add ticker' box on the page to pull any fund not listed here live.",
+  "live_refresh": true,
   "key_tensions": [
-    "Thin universe: really only TWO US-listed pure-play ETFs (QTUM, WQTM). Scarcity itself is the finding.",
+    "Thin universe: only a handful of US-listed quantum ETFs, and only TWO are arguably pure-play (QTUM, WQTM). Scarcity itself is the finding.",
     "QTUM's name says 'quantum' but its index is 'Quantum Computing AND Machine Learning' — heavily padded with IBM, NVIDIA, Alphabet, Amazon. Theme purity is diluted by design.",
     "WQTM is purer quantum but tiny (~$26M AUM) and brand new (Oct 2025) — real closure & no-track-record risk.",
+    "CHPX blends AI-semiconductors with quantum — even less of a pure quantum bet, more an 'AI compute' play.",
     "The underlying pure-plays (IONQ, RGTI, QBTS) are extremely volatile and mostly pre-profit — binary single-stock risk flows straight through to the ETF.",
-    "Data quality: aggregators reported QTUM top holdings at ~13% each, which contradicts its modified-equal-weight ~2% cap (per SEC NPORT + issuer). Cross-check before trusting."
+    "Data quality: aggregators reported QTUM top holdings at ~13% each, contradicting its modified-equal-weight ~2% cap (per SEC NPORT + issuer). Always cross-check."
   ],
   "benchmark_note": "SOXX (semiconductors) is included as a yardstick, NOT a quantum fund. Much quantum 'exposure' is really semis/AI; comparing shows how much pure-quantum you actually gain (and what you give up in liquidity).",
   "etfs": [
@@ -17,8 +20,8 @@
       "name": "Defiance Quantum ETF",
       "is_theme_fund": true,
       "expense_ratio": 0.40,
-      "aum_display": "~$5.0B",
-      "aum_musd": 5000,
+      "aum_display": "~$4.3-5.0B",
+      "aum_musd": 4500,
       "inception": "2018-09",
       "structure": "Passive — modified equal-weight",
       "index": "BlueStar Quantum Computing & Machine Learning",
@@ -27,18 +30,27 @@
       "top10_weight_pct": 18,
       "largest_position_display": "~2% (capped)",
       "derivatives": "No",
+      "performance": {
+        "ytd": "verify (tap Refresh)",
+        "y1": "~+80% (early 2026)",
+        "y2024": "+50.5%",
+        "y2025": "+36.7%",
+        "y3_annualized": "verify",
+        "as_of": "2026-early",
+        "note": "Strong but very volatile; beat the Nasdaq-100 in both 2024 and 2025. Returns are high-beta — the same swings cut both ways."
+      },
       "scores": {
         "cost":       {"rating": "green",  "note": "0.40% — cheapest in the theme and reasonable for a thematic fund."},
         "purity":     {"rating": "yellow", "note": "Index is 'Quantum AND Machine Learning'; big-tech (IBM/NVDA/GOOGL/AMZN) dilutes the pure-quantum bet."},
         "concentration": {"rating": "green", "note": "Modified equal-weight caps names near 2% across ~84 holdings — well spread."},
-        "liquidity":  {"rating": "green",  "note": "~$5.0B AUM, highly liquid; the established choice."},
-        "track_record": {"rating": "green", "note": "Live since 2018 — longest record in the theme."}
+        "liquidity":  {"rating": "green",  "note": "~$4.3-5B AUM, highly liquid; the established choice."},
+        "track_record": {"rating": "green", "note": "Live since 2018 — longest record in the theme; beat Nasdaq-100 in 2024 & 2025."}
       },
       "overall": "The liquid, diversified, big-tech-diluted way to play quantum.",
       "memo": {
         "thesis": "A diversified, liquid basket spanning the quantum + machine-learning supply chain. You get genuine pure-play exposure (IONQ, RGTI, D-Wave) but capped near 2% each, cushioned by mega-cap tech — lower volatility than the names themselves, at the cost of diluted 'purity'.",
-        "strategy": "Passively tracks the BlueStar Quantum Computing & Machine Learning Index using a MODIFIED EQUAL-WEIGHT method that caps single-name weights near 2% and rebalances semi-annually. No active manager; the index rulebook drives everything. Note the index explicitly includes machine-learning/enabling-tech names, not just quantum.",
-        "purity_verdict": {"rating": "yellow", "text": "Holds the real quantum pure-plays but surrounds them with IBM, NVIDIA, Intel, Alphabet, Amazon, Microsoft. You're buying 'quantum + AI infrastructure', not pure quantum. Know that going in."},
+        "strategy": "Passively tracks the BlueStar Quantum Computing & Machine Learning Index using a MODIFIED EQUAL-WEIGHT method that caps single-name weights near 2% and rebalances semi-annually. No active manager; the index rulebook drives everything. The index explicitly includes machine-learning/enabling-tech names, not just quantum.",
+        "purity_verdict": {"rating": "yellow", "text": "Holds the real quantum pure-plays but surrounds them with IBM, NVIDIA, Intel, Alphabet, Amazon, Microsoft. You're buying 'quantum + AI infrastructure', not pure quantum."},
         "holdings_illustrative": [
           {"name": "Quantum eMotion / rotating top name", "weight": "~2%", "playtype": "pure", "note": "equal-weight cap means the 'top' holding shifts at each rebalance"},
           {"name": "IonQ (IONQ)", "weight": "~2%", "playtype": "pure", "note": "trapped-ion quantum pure-play"},
@@ -49,17 +61,16 @@
         "concentration": "Low single-name risk by design (~2% cap, ~84 names). But the whole basket is high-beta: when IONQ/RGTI move 30% on a headline, the fund still feels it.",
         "sector_geo": "Tech-heavy (semis + software + mega-cap), mostly US with some international. Overlaps heavily with semiconductor and AI ETFs — watch for double-counting if you also hold SOXX/AI funds.",
         "cost_context": "0.40% is the cheapest quantum option and fair for a thematic ETF. You pay less than WQTM (0.45%) for far more liquidity.",
-        "track_record_note": "Since 2018, with a strong but very volatile 1-yr (+80-86% reported in early 2026). TODO: pull trailing 3/5-yr vs SOXX and max drawdown, with dates.",
+        "track_record_note": "Since 2018; +50.5% in 2024 and +36.7% in 2025, both ahead of the Nasdaq-100. Verify trailing 3/5-yr and max drawdown via Refresh.",
         "red_flags": [
           "⚠️ Theme purity: 'quantum' name, but index includes machine learning + mega-cap tech.",
           "⚠️ High beta: diversification within the theme doesn't remove the theme's own volatility.",
-          "❓ Data: aggregators showed ~13% top weights that contradict the ~2% cap — verify on issuer full-holdings + SEC NPORT.",
-          "❓ Overlap: significant semiconductor/AI overlap — may duplicate funds you already own."
+          "❓ Data: aggregators showed ~13% top weights that contradict the ~2% cap — verify on issuer full-holdings + SEC NPORT."
         ],
-        "bull": ["Cheapest + most liquid quantum vehicle", "Equal-weight cap avoids single-stock blowups", "Mega-cap ballast softens drawdowns", "Longest track record in theme"],
+        "bull": ["Cheapest + most liquid quantum vehicle", "Equal-weight cap avoids single-stock blowups", "Mega-cap ballast softens drawdowns", "Longest track record; beat Nasdaq-100 '24 & '25"],
         "bear": ["Not a pure quantum bet — heavy big-tech/ML dilution", "Whole basket still very high-beta", "Overlaps semis/AI ETFs you may own", "Equal-weight forces buying laggards too"],
         "decision_log": [
-          {"date": "2026-06-01", "action": "WATCH (example)", "text": "Demonstrates the method. Before acting: verify top-10 vs SEC NPORT (resolve the ~2% vs ~13% conflict), pull drawdown vs SOXX, and decide if you want pure quantum (→ WQTM) or diluted-but-liquid quantum (→ QTUM)."}
+          {"date": "2026-06-01", "action": "WATCH (example)", "text": "Before acting: verify top-10 vs SEC NPORT (resolve the ~2% vs ~13% conflict), pull drawdown, and decide if you want pure quantum (→ WQTM) or diluted-but-liquid quantum (→ QTUM)."}
         ]
       }
     },
@@ -78,6 +89,14 @@
       "top10_weight_pct": 40,
       "largest_position_display": "~6.4% (RGTI)",
       "derivatives": "No",
+      "performance": {
+        "ytd": "n/a",
+        "y1": "n/a (<1yr)",
+        "y3_annualized": "n/a",
+        "since_inception": "verify (tap Refresh)",
+        "as_of": "2026-02",
+        "note": "Launched Oct 2025 — under a year of history. No meaningful trailing returns yet; cannot judge execution."
+      },
       "scores": {
         "cost":       {"rating": "yellow", "note": "0.45% — slightly above QTUM for far less liquidity."},
         "purity":     {"rating": "green",  "note": "Purpose-built pure-play quantum index (Classiq collab); minimal big-tech dilution."},
@@ -87,7 +106,7 @@
       },
       "overall": "The purer but tiny, unproven quantum bet.",
       "memo": {
-        "thesis": "The closest thing to a PURE quantum-computing ETF in the US: a purpose-built index (built with quantum-software firm Classiq) that weights toward actual quantum hardware/software names with little mega-cap dilution. The price of purity is tiny AUM, no track record, and full exposure to pure-play volatility.",
+        "thesis": "The closest thing to a PURE quantum-computing ETF in the US: a purpose-built index (built with quantum-software firm Classiq) weighted toward actual quantum hardware/software names with little mega-cap dilution. The price of purity is tiny AUM, no track record, and full exposure to pure-play volatility.",
         "strategy": "Passively tracks the WisdomTree Classiq Quantum Computing Index — hardware, software, quantum services, enabling tech (quantum chips, post-quantum cryptography). Launched 2025-10-09. Heavier weighting to genuine quantum names than QTUM's equal-weight + big-tech mix.",
         "purity_verdict": {"rating": "green", "text": "Built specifically for quantum, vetted with a quantum-software firm. Top holdings are real pure-plays (RGTI, QBTS, IONQ), not mega-cap ballast. This is the bet 'quantum' implies."},
         "holdings_illustrative": [
@@ -100,17 +119,71 @@
         "concentration": "~57 holdings but the top names carry 5-6%+ each and they are the most volatile pure-plays — so effective risk is more concentrated than the count suggests.",
         "sector_geo": "Almost entirely quantum hardware/software + some enabling semis; international names included (e.g. SK Telecom). Less semis/AI overlap than QTUM.",
         "cost_context": "0.45% — a touch more than QTUM for dramatically less liquidity. You pay up for purity, not for scale.",
-        "track_record_note": "Launched Oct 2025 — under a year. No meaningful trailing returns or drawdown history yet. Cannot judge execution.",
+        "track_record_note": "Launched Oct 2025 — under a year. No meaningful trailing returns or drawdown history yet.",
         "red_flags": [
           "🚩 Tiny AUM (~$26M): material risk the fund is liquidated, forcing a sale + taxable event.",
           "🚩 No track record (<1 yr live).",
           "⚠️ Concentrated in the most volatile pre-profit pure-plays — binary single-stock risk flows through.",
-          "⚠️ Likely wider bid/ask spreads given low volume — a hidden trading cost."
+          "⚠️ Likely wider bid/ask spreads given low volume."
         ],
         "bull": ["Genuinely pure quantum exposure", "Purpose-built index with domain partner", "Captures pure-play upside undiluted", "Less semis/AI overlap than QTUM"],
         "bear": ["~$26M AUM = closure risk", "No track record to judge", "Full exposure to pre-profit volatility", "Wider spreads / thin liquidity"],
         "decision_log": [
-          {"date": "2026-06-01", "action": "WATCH (example)", "text": "The pure bet, but unproven and tiny. Before acting: confirm AUM trend (growing or shrinking?), check average spread, and size any position small given closure risk. Compare directly to holding IONQ/RGTI/QBTS yourself — is the 0.45% fee worth packaging?"}
+          {"date": "2026-06-01", "action": "WATCH (example)", "text": "The pure bet, but unproven and tiny. Before acting: confirm AUM trend, check average spread, size any position small. Compare to holding IONQ/RGTI/QBTS yourself."}
+        ]
+      }
+    },
+    {
+      "ticker": "CHPX",
+      "name": "Global X AI Semiconductor & Quantum ETF",
+      "is_theme_fund": true,
+      "expense_ratio": null,
+      "aum_display": "verify (tap Refresh)",
+      "aum_musd": null,
+      "inception": "2025-late",
+      "structure": "Passive — index",
+      "index": "Global X AI Semiconductor & Quantum",
+      "holdings_count": 35,
+      "top10_weight_display": "verify",
+      "top10_weight_pct": null,
+      "largest_position_display": "verify",
+      "derivatives": "No",
+      "performance": {
+        "ytd": "n/a",
+        "y1": "n/a (<1yr)",
+        "since_inception": "verify (tap Refresh)",
+        "as_of": "2026-06",
+        "note": "Launched late 2025 — under a year. Numbers here are partial; use Refresh to pull live expense ratio, AUM, holdings and performance."
+      },
+      "scores": {
+        "cost":       {"rating": "yellow", "note": "Expense ratio not yet verified — tap Refresh. Global X thematic funds are typically ~0.50%."},
+        "purity":     {"rating": "red",    "note": "Blends AI semiconductors WITH quantum — more an 'AI compute' play than a quantum pure-play."},
+        "concentration": {"rating": "yellow", "note": "~35 holdings; weights not yet verified."},
+        "liquidity":  {"rating": "red",     "note": "New (late 2025), small — verify AUM and volume before trusting liquidity."},
+        "track_record": {"rating": "red",   "note": "<1 year live — no track record."}
+      },
+      "overall": "AI-semiconductor + quantum hybrid — the least 'pure' quantum option here.",
+      "memo": {
+        "thesis": "A hybrid that pairs AI semiconductors with quantum names. If your real thesis is 'AI compute infrastructure' it's interesting, but as a QUANTUM bet it's the most diluted of the group. Several fields below need a live Refresh to confirm.",
+        "strategy": "Passively tracks Global X's AI Semiconductor & Quantum index. Combines chip names that enable AI with quantum-computing companies. Launched late 2025.",
+        "purity_verdict": {"rating": "red", "text": "Quantum is only part of the mandate — the rest is AI semiconductors. Treat as an AI/compute fund with quantum exposure, not a quantum pure-play."},
+        "holdings_illustrative": [
+          {"name": "(tap Refresh for live holdings)", "weight": "—", "playtype": "partial", "note": "mix of AI-chip names + quantum pure-plays"}
+        ],
+        "concentration": "~35 holdings. Verify top-10 weight and largest position via Refresh.",
+        "sector_geo": "Heavily semiconductors + some quantum, mostly US. Likely heavy overlap with SOXX and AI ETFs.",
+        "cost_context": "Expense ratio unverified here — tap Refresh. Global X thematic funds usually sit around 0.50%.",
+        "track_record_note": "Launched late 2025; no meaningful history. Use Refresh once it has more.",
+        "red_flags": [
+          "🚩 Data incomplete — expense ratio/AUM/holdings need a live Refresh.",
+          "⚠️ Not a quantum pure-play (AI-semis blend).",
+          "🚩 New & likely small — closure + liquidity risk.",
+          "❓ Heavy semiconductor overlap with funds you may own."
+        ],
+        "bull": ["Captures AI + quantum in one ticker", "Global X distribution/scale behind it", "Chip ballast may steady vs pure quantum"],
+        "bear": ["Least pure quantum exposure", "Incomplete public data so far", "New, small, unproven", "Big semiconductor overlap"],
+        "decision_log": [
+          {"date": "2026-06-01", "action": "RESEARCH (incomplete)", "text": "Placeholder until live data is pulled. Tap Refresh to fill expense ratio, AUM, holdings, performance — then re-score purity vs QTUM/WQTM."}
         ]
       }
     },
@@ -129,6 +202,14 @@
       "top10_weight_pct": 62,
       "largest_position_display": "~11% (Micron)",
       "derivatives": "No",
+      "performance": {
+        "ytd": "verify (tap Refresh)",
+        "y1": "verify",
+        "y2025": "~+40%",
+        "y3_annualized": "verify",
+        "as_of": "2026-early",
+        "note": "Benchmark only. Strong 2025 (~+40%). Use as the 'what if I just bought chips instead' baseline."
+      },
       "scores": {
         "cost":       {"rating": "green",  "note": "0.34% — cheapest here (broad sector fund)."},
         "purity":     {"rating": "red",    "note": "NOT a quantum fund — semiconductors. Included only as a yardstick."},
@@ -147,14 +228,14 @@
           {"name": "Broadcom / Intel", "weight": "~7% each", "playtype": "unrelated", "note": "broad semis"}
         ],
         "concentration": "Cap-weighted and concentrated: top-10 ~62%, largest ~11%. The opposite of QTUM's equal-weight approach — a useful contrast.",
-        "sector_geo": "Pure semiconductors, mostly US. Overlaps the 'enabling tech' sleeves of both quantum ETFs.",
+        "sector_geo": "Pure semiconductors, mostly US. Overlaps the 'enabling tech' sleeves of the quantum ETFs.",
         "cost_context": "0.34% — the cheapest in this table, because it's a large mainstream sector fund, not a niche theme.",
-        "track_record_note": "Long history since 2001; strong 2025 (~+40%). Useful as the 'what if I just bought chips instead' baseline.",
+        "track_record_note": "Long history since 2001; strong 2025 (~+40%).",
         "red_flags": ["⚠️ Not quantum — do not treat as a quantum holding.", "⚠️ Cap-weight concentration in mega-cap chips."],
         "bull": ["Cheap, liquid, proven", "Broad semiconductor exposure"],
         "bear": ["No quantum-specific upside", "Concentrated in a few mega-caps"],
         "decision_log": [
-          {"date": "2026-06-01", "action": "BENCHMARK", "text": "Yardstick only. If your real thesis is 'AI/compute infrastructure' rather than 'quantum breakthrough', this cheaper, liquid fund may serve better — a question worth answering before buying a quantum ETF."}
+          {"date": "2026-06-01", "action": "BENCHMARK", "text": "Yardstick only. If your real thesis is 'AI/compute infrastructure' rather than 'quantum breakthrough', this cheaper, liquid fund may serve better."}
         ]
       }
     }
