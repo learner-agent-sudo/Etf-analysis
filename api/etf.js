@@ -103,6 +103,24 @@ function parsePerformance(ts) {
   };
 }
 
+function humanVol(n) {
+  if (!isFinite(n)) return null;
+  if (n >= 1e6) return `~${(n / 1e6).toFixed(1)}M/day`;
+  if (n >= 1e3) return `~${Math.round(n / 1e3)}K/day`;
+  return `~${n}/day`;
+}
+function parseQuote(q) {
+  const g = q && q["Global Quote"];
+  if (!g) return null;
+  const price = parseFloat(g["05. price"]);
+  const vol = parseFloat(g["06. volume"]);   // latest day's volume (proxy for activity)
+  const out = {};
+  if (isFinite(price)) { out.price = Math.round(price * 100) / 100; out.price_display = `$${out.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`; }
+  if (isFinite(vol)) { out.volume_latest = vol; out.volume_display = humanVol(vol); }
+  if (g["07. latest trading day"]) out.price_asof = g["07. latest trading day"];
+  return Object.keys(out).length ? out : null;
+}
+
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=86400");
   const ticker = String((req.query && req.query.ticker) || "").trim().toUpperCase();
@@ -116,17 +134,19 @@ export default async function handler(req, res) {
     });
   }
   try {
-    // Fetch in parallel; tolerate partial failure of either call.
-    const [profile, perf] = await Promise.allSettled([
+    // Fetch in parallel; tolerate partial failure of any call.
+    const [profile, perf, quote] = await Promise.allSettled([
       avFetch({ function: "ETF_PROFILE", symbol: ticker }),
       avFetch({ function: "TIME_SERIES_MONTHLY_ADJUSTED", symbol: ticker }),
+      avFetch({ function: "GLOBAL_QUOTE", symbol: ticker }),
     ]);
     const data = {};
     if (profile.status === "fulfilled") Object.assign(data, parseProfile(profile.value) || {});
     if (perf.status === "fulfilled") data.performance = parsePerformance(perf.value);
+    if (quote.status === "fulfilled") { const m = parseQuote(quote.value); if (m) data.market = m; }
 
     const anyData = Object.keys(data).length > 0 &&
-      (data.expense_ratio != null || (data.holdings && data.holdings.length) || data.performance);
+      (data.expense_ratio != null || (data.holdings && data.holdings.length) || data.performance || data.market);
     if (!anyData) {
       const reason = [profile, perf].find(p => p.status === "rejected");
       const msg = reason && reason.reason && reason.reason.message;

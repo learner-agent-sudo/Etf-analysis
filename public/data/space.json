@@ -16,8 +16,8 @@
       "name": "Procure Space ETF",
       "is_theme_fund": true,
       "expense_ratio": 0.75,
-      "aum_display": "~$945-980M",
-      "aum_musd": 960,
+      "aum_display": "~$1.32B",
+      "aum_musd": 1320,
       "inception": "2019",
       "structure": "Passive \u2014 index",
       "index": "S-Network Space",
@@ -119,14 +119,21 @@
         ]
       },
       "performance": {
-        "ytd": "verify (tap Refresh)",
+        "ytd": "+75%",
         "y1": "~+45%",
         "y3_annualized": "verify",
-        "as_of": "2026-05",
+        "as_of": "2026-06-03",
         "note": "Space names rallied hard in 2025-26; high beta. Verify trailing figures via Refresh."
       },
       "holdings_url": "https://procureetfs.com/ufo/",
-      "issuer": "Procure (ProcureAM)"
+      "issuer": "Procure (ProcureAM)",
+      "market": {
+        "price": 61.9,
+        "price_display": "$61.90",
+        "price_asof": "2026-06-03",
+        "volume_avg": null,
+        "volume_display": null
+      }
     },
     {
       "ticker": "ARKX",
@@ -242,7 +249,14 @@
         "note": "Active; ARK funds are volatile (big rallies & drawdowns). Verify vs benchmark via Refresh."
       },
       "holdings_url": "https://www.ark-funds.com/funds/arkx",
-      "issuer": "ARK Invest"
+      "issuer": "ARK Invest",
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": "2026-06",
+        "volume_avg": 1340000,
+        "volume_display": "~1.3M/day"
+      }
     },
     {
       "ticker": "ROKT",
@@ -356,7 +370,14 @@
         "note": "Broader 'frontiers' basket; longest space record. Verify trailing figures via Refresh."
       },
       "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-kensho-final-frontiers-etf-rokt",
-      "issuer": "State Street SPDR"
+      "issuer": "State Street SPDR",
+      "market": {
+        "price": 125.39,
+        "price_display": "$125.39",
+        "price_asof": "2026-06-03",
+        "volume_avg": 92270,
+        "volume_display": "~92K/day"
+      }
     },
     {
       "ticker": "XAR",
@@ -444,7 +465,14 @@
         "note": "Benchmark. Broad A&D; rode 2025-26 defense spending. Verify via Refresh."
       },
       "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-aerospace-defense-etf-xar",
-      "issuer": "State Street SPDR"
+      "issuer": "State Street SPDR",
+      "market": {
+        "price": 279.87,
+        "price_display": "$279.87",
+        "price_asof": "2026-06-02",
+        "volume_avg": 230610,
+        "volume_display": "~231K/day"
+      }
     },
     {
       "ticker": "SHLD",
@@ -557,7 +585,14 @@
         "note": "Benchmark. Defense-tech surged on global defense budgets. Verify via Refresh."
       },
       "holdings_url": "https://www.globalxetfs.com/funds/shld",
-      "issuer": "Global X"
+      "issuer": "Global X",
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      }
     }
   ],
   "live_refresh": true,

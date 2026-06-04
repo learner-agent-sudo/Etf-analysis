@@ -21,6 +21,8 @@ const THEME_FILES = ["quantum", "space"];  // order in the picker
 const GLOSSARY = {
   "Expense": "Expense ratio (TER): the annual fee the fund charges, as a % of your money — taken daily, win or lose. Lower is better. 0.50% on $10,000 ≈ $50/yr.",
   "AUM": "Assets Under Management: total money invested in the fund. Bigger = more liquid and less likely to be shut down. Under ~$50M raises closure risk.",
+  "Price": "Latest share price — what one share costs to buy/sell. Mainly tells you the share size; it is NOT a measure of value (a $40 and a $600 ETF can be equally good).",
+  "Avg Vol": "Average daily trading volume (shares traded per day). Higher = easier to buy/sell at a fair price with a tight bid/ask spread. Low volume is a hidden cost and a liquidity risk — a key 'is this a safer option?' signal.",
   "1-yr": "Total return over the trailing 12 months (price change + distributions). Past performance does not predict the future.",
   "YTD": "Year-to-date return: performance since 1 January of the current year.",
   "3-yr ann.": "3-year annualized return: the average yearly return over the last 3 years (compounded). Blank if the fund is younger than 3 years.",
@@ -37,6 +39,8 @@ const COLUMNS = [
   { key: "ticker", label: "Ticker" },
   { key: "expense_ratio", label: "Expense", fmt: (v, e) => liveOr(e, "expense_ratio", v == null ? "—" : v.toFixed(2) + "%") },
   { key: "aum_musd", label: "AUM", fmt: (_v, e) => liveOr(e, "aum_display", e.aum_display || "—") },
+  { key: "_price", label: "Price", fmt: (_v, e) => marketCell(e, "price") },
+  { key: "_vol", label: "Avg Vol", fmt: (_v, e) => marketCell(e, "volume") },
   { key: "_perf1y", label: "1-yr", fmt: (_v, e) => perfCell(e, "y1") },
   { key: "_perfytd", label: "YTD", fmt: (_v, e) => perfCell(e, "ytd") },
   { key: "structure", label: "Structure" },
@@ -79,6 +83,19 @@ function isPlaceholder(v) {
   if (v == null) return true;
   const s = String(v).trim().toLowerCase();
   return s === "" || s === "n/a" || s === "na" || s.startsWith("verify") || s === "—";
+}
+// Price / volume cell. Live (●) overrides the dated snapshot. "—" if neither.
+function marketCell(etf, which) {
+  const lv = LIVE[etf.ticker], m = etf.market || {};
+  if (which === "price") {
+    if (lv && lv.market && lv.market.price_display) return el("span", { title: "live price" }, lv.market.price_display + " ●");
+    if (m.price_display) return el("span", { title: "snapshot as of " + (m.price_asof || "?") + " — tap ↻" }, m.price_display);
+    return el("span", { class: "muted", title: "Tap ↻ to fetch the live price." }, "—");
+  }
+  // volume
+  if (lv && lv.market && lv.market.volume_display) return el("span", { title: "live (latest day)" }, lv.market.volume_display + " ●");
+  if (m.volume_display) return el("span", { title: "average daily volume (snapshot)" }, m.volume_display);
+  return el("span", { class: "muted", title: "Tap ↻ to fetch trading volume." }, "—");
 }
 function perfCell(etf, key) {
   const lv = LIVE[etf.ticker];
@@ -167,6 +184,8 @@ function visibleEtfs() {
   return rows;
 }
 function sortVal(e, key) {
+  if (key === "_price") { const lv = LIVE[e.ticker]; return (lv && lv.market && lv.market.price != null) ? lv.market.price : (e.market && e.market.price); }
+  if (key === "_vol") { const lv = LIVE[e.ticker]; const lvv = lv && lv.market && (lv.market.volume_latest); return lvv != null ? lvv : (e.market && e.market.volume_avg); }
   if (key === "_perf1y") return perfNum(e, "y1");
   if (key === "_perfytd") return perfNum(e, "ytd");
   if (key.startsWith("_")) { const d = key.slice(1); return SCORE_RANK[(scoreOf(e, d)||{}).rating] ?? 9; }
@@ -370,12 +389,18 @@ function openMemo(ticker) {
     if (perf.note) wrap.append(el("p", { class: "muted", style:"font-size:13px" }, perf.note));
   }
 
+  // price + volume (live overrides snapshot)
+  const mkt = e.market || {};
+  const priceTxt = (lv && lv.market && lv.market.price_display) ? lv.market.price_display + " ●" : (mkt.price_display || "—");
+  const volTxt = (lv && lv.market && lv.market.volume_display) ? lv.market.volume_display + " ● (latest day)" : (mkt.volume_display ? mkt.volume_display + " (avg)" : "—");
   const kv = el("div", { class: "kv" });
-  [["Structure", e.structure], ["Index", e.index], ["# Holdings", e.holdings_count],
+  [["Price", priceTxt], ["Avg daily volume", volTxt],
+   ["Structure", e.structure], ["Index", e.index], ["# Holdings", e.holdings_count],
    ["Top-10 weight", e.top10_weight_display], ["Largest position", e.largest_position_display],
    ["Derivatives", e.derivatives]].forEach(([k,v]) =>
     kv.append(el("div", { html: `<span>${k}:</span> ${escapeHtml(String(v ?? "—"))}` })));
   wrap.append(sectionTitle("Snapshot"), kv);
+  if (mkt.price_asof && !(lv && lv.market)) wrap.append(el("p", { class: "muted", style: "font-size:12px" }, `Price/volume as of ${mkt.price_asof} — tap ↻ Refresh live to update.`));
 
   wrap.append(sectionTitle("Scored dimensions"));
   ["cost","purity","concentration","liquidity","track_record"].forEach(dim => {

@@ -131,7 +131,14 @@
         ]
       },
       "holdings_url": "https://www.defianceetfs.com/qtum-full-holdings/",
-      "issuer": "Defiance ETFs"
+      "issuer": "Defiance ETFs",
+      "market": {
+        "price": 169.35,
+        "price_display": "$169.35",
+        "price_asof": "2026-06-03",
+        "volume_avg": 1110000,
+        "volume_display": "~1.1M/day"
+      }
     },
     {
       "ticker": "WQTM",
@@ -249,7 +256,14 @@
         ]
       },
       "holdings_url": "https://www.wisdomtree.com/us/products/megatrends/wqtm",
-      "issuer": "WisdomTree"
+      "issuer": "WisdomTree",
+      "market": {
+        "price": 39.73,
+        "price_display": "$39.73",
+        "price_asof": "2026-06-03",
+        "volume_avg": 752000,
+        "volume_display": "~752K/day"
+      }
     },
     {
       "ticker": "CHPX",
@@ -372,7 +386,14 @@
         ]
       },
       "holdings_url": "https://www.globalxetfs.com/funds/chpx",
-      "issuer": "Global X"
+      "issuer": "Global X",
+      "market": {
+        "price": 105.36,
+        "price_display": "$105.36",
+        "price_asof": "2026-06-02",
+        "volume_avg": 94910,
+        "volume_display": "~95K/day"
+      }
     },
     {
       "ticker": "SOXX",
@@ -472,7 +493,14 @@
         ]
       },
       "holdings_url": "https://www.ishares.com/us/products/239705/ishares-phlx-semiconductor-etf",
-      "issuer": "iShares (BlackRock)"
+      "issuer": "iShares (BlackRock)",
+      "market": {
+        "price": 615.39,
+        "price_display": "$615.39",
+        "price_asof": "2026-06-03",
+        "volume_avg": 8500000,
+        "volume_display": "~8.5M/day"
+      }
     }
   ]
 }
