@@ -124,7 +124,9 @@
         "y3_annualized": "verify",
         "as_of": "2026-05",
         "note": "Space names rallied hard in 2025-26; high beta. Verify trailing figures via Refresh."
-      }
+      },
+      "holdings_url": "https://procureetfs.com/ufo/",
+      "issuer": "Procure (ProcureAM)"
     },
     {
       "ticker": "ARKX",
@@ -238,7 +240,9 @@
         "y3_annualized": "verify",
         "as_of": "2026-05",
         "note": "Active; ARK funds are volatile (big rallies & drawdowns). Verify vs benchmark via Refresh."
-      }
+      },
+      "holdings_url": "https://www.ark-funds.com/funds/arkx",
+      "issuer": "ARK Invest"
     },
     {
       "ticker": "ROKT",
@@ -287,10 +291,34 @@
         },
         "holdings_illustrative": [
           {
-            "name": "(verify on issuer holdings file)",
-            "weight": "\u2014",
-            "playtype": "partial",
-            "note": "tier-weighted A&D + space + marine names"
+            "name": "Planet Labs (PL)",
+            "weight": "8.15%",
+            "playtype": "pure",
+            "note": "earth observation"
+          },
+          {
+            "name": "Intuitive Machines (LUNR)",
+            "weight": "6.43%",
+            "playtype": "pure",
+            "note": "lunar landers"
+          },
+          {
+            "name": "Redwire (RDW)",
+            "weight": "6.43%",
+            "playtype": "pure",
+            "note": "space infrastructure"
+          },
+          {
+            "name": "Iridium (IRDM)",
+            "weight": "5.81%",
+            "playtype": "pure",
+            "note": "satellite comms"
+          },
+          {
+            "name": "Rocket Lab (RKLB)",
+            "weight": "5.44%",
+            "playtype": "pure",
+            "note": "launch/space systems"
           }
         ],
         "concentration": "~37 holdings; tier-weighted. TODO: confirm top-10 weight from issuer file.",
@@ -326,7 +354,9 @@
         "y3_annualized": "verify",
         "as_of": "2026-05",
         "note": "Broader 'frontiers' basket; longest space record. Verify trailing figures via Refresh."
-      }
+      },
+      "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-kensho-final-frontiers-etf-rokt",
+      "issuer": "State Street SPDR"
     },
     {
       "ticker": "XAR",
@@ -412,7 +442,9 @@
         "y3_annualized": "verify",
         "as_of": "2026-05",
         "note": "Benchmark. Broad A&D; rode 2025-26 defense spending. Verify via Refresh."
-      }
+      },
+      "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-aerospace-defense-etf-xar",
+      "issuer": "State Street SPDR"
     },
     {
       "ticker": "SHLD",
@@ -461,22 +493,34 @@
         },
         "holdings_illustrative": [
           {
-            "name": "Lockheed Martin",
-            "weight": "~8.9%",
+            "name": "Lockheed Martin (LMT)",
+            "weight": "8.86%",
             "playtype": "unrelated",
             "note": "defense prime"
           },
           {
-            "name": "RTX / General Dynamics",
-            "weight": "~8.1% each",
+            "name": "General Dynamics (GD)",
+            "weight": "8.01%",
             "playtype": "unrelated",
-            "note": "defense primes"
+            "note": "defense prime"
           },
           {
-            "name": "Palantir",
-            "weight": "~6.5%",
+            "name": "RTX (RTX)",
+            "weight": "7.99%",
+            "playtype": "unrelated",
+            "note": "defense prime"
+          },
+          {
+            "name": "Palantir (PLTR)",
+            "weight": "6.54%",
             "playtype": "unrelated",
             "note": "defense software"
+          },
+          {
+            "name": "Rheinmetall",
+            "weight": "5.38%",
+            "playtype": "unrelated",
+            "note": "defense (Europe)"
           }
         ],
         "concentration": "~60% in top 10, largest ~8.9%; ~89% industrials, ~60% US. Concentrated in mega-cap defense.",
@@ -511,7 +555,9 @@
         "y3_annualized": "verify",
         "as_of": "2026-05",
         "note": "Benchmark. Defense-tech surged on global defense budgets. Verify via Refresh."
-      }
+      },
+      "holdings_url": "https://www.globalxetfs.com/funds/shld",
+      "issuer": "Global X"
     }
   ],
   "live_refresh": true,

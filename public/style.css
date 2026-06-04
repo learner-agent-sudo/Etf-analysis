@@ -53,6 +53,11 @@ thead th { background: var(--panel); position: sticky; top: 0; cursor: pointer;
   font-size: 12px; text-transform: uppercase; letter-spacing: .4px; color: var(--muted); user-select: none; }
 thead th:hover { color: var(--text); }
 thead th .arrow { color: var(--accent); font-size: 11px; }
+thead th .qmark { color: var(--muted); font-size: 10px; margin-left: 3px; vertical-align: super; cursor: help; }
+thead th.has-help:hover .qmark { color: var(--accent); }
+.holdlink { color: var(--accent); text-decoration: none; font-size: 12px; font-weight: 600;
+  border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; white-space: nowrap; }
+.holdlink:hover { background: var(--panel-2); }
 tbody tr { cursor: pointer; transition: background .12s; }
 tbody tr:hover { background: var(--panel); }
 tbody tr.bench { opacity: .72; }
@@ -126,7 +131,13 @@ tbody tr.live td { box-shadow: inset 0 0 0 9999px rgba(88,166,255,.05); }
 .dlog .act { font-weight: 700; color: var(--accent); }
 
 .foot { max-width: 1240px; margin: 30px auto 0; padding: 16px 22px 40px; border-top: 1px solid var(--border); }
-.foot p { color: var(--muted); font-size: 12px; margin: 0; }
+.foot p { color: var(--muted); font-size: 12px; margin: 12px 0 0; }
+.glossary { margin-bottom: 8px; }
+.glossary summary { color: var(--accent); font-size: 13px; cursor: pointer; font-weight: 600; }
+.glossary dl { margin: 10px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; }
+.glossary dt { color: var(--text); font-weight: 700; font-size: 13px; }
+.glossary dd { color: var(--muted); font-size: 13px; margin: 0; }
+@media (max-width: 640px) { .glossary dl { grid-template-columns: 1fr; gap: 2px; } .glossary dd { margin-bottom: 8px; } }
 
 @media (max-width: 640px) {
   .kv, .bb { grid-template-columns: 1fr; }

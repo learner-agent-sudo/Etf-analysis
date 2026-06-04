@@ -16,6 +16,23 @@ const SCORE_RANK = { green: 0, yellow: 1, red: 2 };
 
 const THEME_FILES = ["quantum", "space"];  // order in the picker
 
+// Plain-English definitions for abbreviations. Shown as tooltips (hover/tap) on
+// column headers and via the "?" key chips, so the page explains its own jargon.
+const GLOSSARY = {
+  "Expense": "Expense ratio (TER): the annual fee the fund charges, as a % of your money — taken daily, win or lose. Lower is better. 0.50% on $10,000 ≈ $50/yr.",
+  "AUM": "Assets Under Management: total money invested in the fund. Bigger = more liquid and less likely to be shut down. Under ~$50M raises closure risk.",
+  "1-yr": "Total return over the trailing 12 months (price change + distributions). Past performance does not predict the future.",
+  "YTD": "Year-to-date return: performance since 1 January of the current year.",
+  "3-yr ann.": "3-year annualized return: the average yearly return over the last 3 years (compounded). Blank if the fund is younger than 3 years.",
+  "Structure": "How the fund is run: Passive = mechanically tracks an index; Active = a manager picks holdings. Also notes weighting (cap- vs equal-weight).",
+  "# Hold": "Number of holdings — how many different securities the fund owns. Fewer = more concentrated.",
+  "Top-10": "Top-10 weight: the % of the fund held in its ten largest positions. Over ~50% means it's a concentrated bet on a few names.",
+  "Cost": "Our rating of the fund's cost vs peers in this theme (green=cheap, yellow=typical, red=expensive).",
+  "Purity": "Theme purity: how well the actual holdings match the fund's name/theme. Red = the label and the holdings disagree.",
+  "Concen.": "Concentration: how much is riding on a few holdings. Red = top-heavy / single-stock risk.",
+  "Live": "Tap ↻ to pull live data (expense ratio, AUM, holdings, performance) from a market-data provider. ● marks a live value.",
+};
+
 const COLUMNS = [
   { key: "ticker", label: "Ticker" },
   { key: "expense_ratio", label: "Expense", fmt: (v, e) => liveOr(e, "expense_ratio", v == null ? "—" : v.toFixed(2) + "%") },
@@ -56,15 +73,27 @@ function liveOr(etf, field, fallback) {
   }
   return fallback;
 }
+// Values like "verify (tap Refresh)", "n/a", "" mean "no confirmed number" —
+// render them as a clean "—" with an explanatory tooltip, never as raw text.
+function isPlaceholder(v) {
+  if (v == null) return true;
+  const s = String(v).trim().toLowerCase();
+  return s === "" || s === "n/a" || s === "na" || s.startsWith("verify") || s === "—";
+}
 function perfCell(etf, key) {
   const lv = LIVE[etf.ticker];
   let v = lv && lv.performance && lv.performance[key];
-  let live = !!v;
-  if (!v) v = etf.performance && etf.performance[key];
-  if (v == null || v === "" ) return el("span", { class: "muted" }, "—");
+  let live = !!v && !isPlaceholder(v);
+  if (isPlaceholder(v)) v = etf.performance && etf.performance[key];
+  if (isPlaceholder(v)) {
+    const why = (etf.performance && /n\/a|<1/i.test(String(etf.performance[key]))) || (etf.inception && etf.inception >= "2025")
+      ? "Not available — fund is too new for this period."
+      : "Not confirmed yet — tap ↻ to pull the live figure.";
+    return el("span", { class: "muted", title: why }, "—");
+  }
   const num = parseFloat(String(v).replace(/[^0-9.\-]/g, ""));
   const cls = isFinite(num) ? (num >= 0 ? "pos" : "neg") : "muted";
-  return el("span", { class: cls, title: live ? "live" : "snapshot" }, String(v) + (live ? " ●" : ""));
+  return el("span", { class: cls, title: live ? "live figure" : "dated snapshot — tap ↻ to refresh" }, String(v) + (live ? " ●" : ""));
 }
 
 // ---- boot ----------------------------------------------------------
@@ -81,6 +110,12 @@ async function init() {
   loaded.forEach(t => { window._THEMES[t._id] = t; sel.append(el("option", { value: t._id }, `${t.name} (${(t.etfs||[]).length})`)); });
   sel.addEventListener("change", () => selectTheme(sel.value));
   if (loaded.length) selectTheme(loaded[0]._id);
+
+  // Populate the footer abbreviations legend from the same GLOSSARY.
+  const gl = $("#glossaryList");
+  if (gl) Object.entries(GLOSSARY).forEach(([term, def]) => {
+    gl.append(el("dt", {}, term), el("dd", {}, def));
+  });
 
   $("#filterBox").addEventListener("input", render);
   $("#themeOnly").addEventListener("change", render);
@@ -157,7 +192,9 @@ function render() {
   const thead = el("tr");
   COLUMNS.forEach(c => {
     const active = SORT.key === c.key;
-    thead.append(el("th", { onclick: () => setSort(c.key) }, c.label,
+    const def = GLOSSARY[c.label];
+    thead.append(el("th", { onclick: () => setSort(c.key), title: def || c.label, class: def ? "has-help" : "" },
+      c.label, def ? el("span", { class: "qmark", title: def }, "ⓘ") : null,
       active ? el("span", { class: "arrow" }, SORT.dir > 0 ? " ▲" : " ▼") : null));
   });
   const tbody = el("tbody");
@@ -306,22 +343,30 @@ function openMemo(ticker) {
     el("div", { class: "sub" }, `${e.is_theme_fund ? "Theme fund" : "Benchmark / reference"} · Expense ${erShown} · AUM ${aumShown} · Inception ${e.inception || "—"}`),
     el("div", { class: "liverow" },
       el("button", { class: "refresh", onclick: () => refreshTicker(ticker).then(() => openMemo(ticker)) }, "↻ Refresh live"),
+      e.holdings_url ? el("a", { class: "holdlink", href: e.holdings_url, target: "_blank", rel: "noopener" },
+        "↗ Official holdings" + (e.issuer ? " (" + e.issuer + ")" : "")) : null,
       el("span", { class: "muted", style: "font-size:12px" }, lv ? "● = live values shown" : "showing curated snapshot")),
     m.thesis ? el("div", { class: "thesis" }, m.thesis) : null
   );
 
-  // performance block (live overlaid on snapshot)
+  // performance block (live overlaid on snapshot). Skip placeholder values.
   const perf = (lv && lv.performance) || e.performance;
   if (perf) {
     wrap.append(sectionTitle("Performance" + (lv && lv.performance ? " (live)" : " (snapshot)")));
     const pf = el("div", { class: "perf" });
+    let shown = 0;
     [["YTD","ytd"],["1-yr","y1"],["3-yr ann.","y3_annualized"],["2025","y2025"],["2024","y2024"]].forEach(([lab,k]) => {
-      if (perf[k] == null) return;
+      if (isPlaceholder(perf[k])) return;
+      shown++;
       const num = parseFloat(String(perf[k]).replace(/[^0-9.\-]/g,""));
-      pf.append(el("div", { class: "p" }, el("span", { class: "lab" }, lab),
+      pf.append(el("div", { class: "p", title: GLOSSARY[lab] || "" }, el("span", { class: "lab" }, lab),
         el("span", { class: "val " + (isFinite(num) ? (num>=0?"pos":"neg") : "muted") }, String(perf[k]))));
     });
+    if (!shown) pf.append(el("div", { class: "p" }, el("span", { class: "lab" }, "returns"),
+      el("span", { class: "val muted" }, "—")));
     wrap.append(pf);
+    if (!shown) wrap.append(el("p", { class: "muted", style:"font-size:13px" },
+      "No confirmed return figures yet (fund may be new, or not refreshed). Tap ↻ Refresh live, or open Official holdings for the issuer's stated performance."));
     if (perf.note) wrap.append(el("p", { class: "muted", style:"font-size:13px" }, perf.note));
   }
 
@@ -357,6 +402,15 @@ function openMemo(ticker) {
         el("td", {}, el("span", { class: "tag " + (h.playtype||"partial") }, h.playtype||"")),
         el("td", { class: "nm" }, h.note || ""))));
       wrap.append(ht);
+      // Always point to the fund house's authoritative, daily-updated list.
+      const src = liveHolds
+        ? "Top holdings from live market-data provider."
+        : `Top holdings — dated snapshot from public sources (as of ${e.performance && e.performance.as_of || CURRENT.as_of || "?"}).`;
+      wrap.append(el("p", { class: "muted", style: "font-size:12px" }, src + " ",
+        e.holdings_url
+          ? el("a", { class: "holdlink", href: e.holdings_url, target: "_blank", rel: "noopener" },
+              "See the full official holdings list" + (e.issuer ? " from " + e.issuer : "") + " ↗")
+          : "Verify against the issuer's published holdings."));
     }
   }
 
