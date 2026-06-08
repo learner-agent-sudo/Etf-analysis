@@ -21,6 +21,8 @@ const THEME_FILES = ["quantum", "space", "income"];  // order in the picker
 const GLOSSARY = {
   "Expense": "Expense ratio (TER): the annual fee the fund charges, as a % of your money — taken daily, win or lose. Lower is better. 0.50% on $10,000 ≈ $50/yr.",
   "AUM": "Assets Under Management: total money invested in the fund. Bigger = more liquid and less likely to be shut down. Under ~$50M raises closure risk.",
+  "Distribution yield": "Annual income paid out as a % of price. For income/covered-call funds this is the headline number — BUT a high yield can be partly 'return of capital' (your own money handed back), so check the 30-day SEC yield and total return too.",
+  "30-day SEC yield": "A standardized yield based on what the fund actually EARNS from dividends/interest — it excludes option premium, so for covered-call funds it can look much lower than the distribution yield (not necessarily a red flag).",
   "Price": "Latest share price — what one share costs to buy/sell. Mainly tells you the share size; it is NOT a measure of value (a $40 and a $600 ETF can be equally good).",
   "Avg Vol": "Average daily trading volume (shares traded per day). Higher = easier to buy/sell at a fair price with a tight bid/ask spread. Low volume is a hidden cost and a liquidity risk — a key 'is this a safer option?' signal.",
   "1-yr": "Total return over the trailing 12 months (price change + distributions). Past performance does not predict the future.",
@@ -32,8 +34,14 @@ const GLOSSARY = {
   "Cost": "Our rating of the fund's cost vs peers in this theme (green=cheap, yellow=typical, red=expensive).",
   "Purity": "Theme purity: how well the actual holdings match the fund's name/theme. Red = the label and the holdings disagree.",
   "Concen.": "Concentration: how much is riding on a few holdings. Red = top-heavy / single-stock risk.",
+  "Yield": "Distribution yield — annual income paid as a % of price (income/covered-call funds only). Beware: a high yield can be partly 'return of capital'. Compare total return, not just yield.",
   "Live": "Tap ↻ to pull live data (expense ratio, AUM, holdings, performance) from a market-data provider. ● marks a live value.",
 };
+
+// Columns active for the current theme (some columns are theme-specific, e.g. Yield).
+function activeColumns() {
+  return COLUMNS.filter(c => !c.cond || (CURRENT && c.cond(CURRENT)));
+}
 
 const COLUMNS = [
   { key: "ticker", label: "Ticker" },
@@ -41,6 +49,9 @@ const COLUMNS = [
   { key: "aum_musd", label: "AUM", fmt: (_v, e) => liveOr(e, "aum_display", e.aum_display || "—") },
   { key: "_price", label: "Price", fmt: (_v, e) => marketCell(e, "price") },
   { key: "_vol", label: "Avg Vol", fmt: (_v, e) => marketCell(e, "volume") },
+  { key: "_yield", label: "Yield", cond: t => (t.etfs || []).some(e => e.distribution_yield),
+    fmt: (_v, e) => { const y = e.distribution_yield; if (!y) return el("span", { class: "muted" }, "—");
+      const n = parseFloat(String(y).replace(/[^0-9.\-]/g, "")); return el("span", { class: n >= 0 ? "pos" : "" , title: "distribution yield" }, y); } },
   { key: "_perf1y", label: "1-yr", fmt: (_v, e) => perfCell(e, "y1") },
   { key: "_perfytd", label: "YTD", fmt: (_v, e) => perfCell(e, "ytd") },
   { key: "structure", label: "Structure" },
@@ -186,6 +197,7 @@ function visibleEtfs() {
 function sortVal(e, key) {
   if (key === "_price") { const lv = LIVE[e.ticker]; return (lv && lv.market && lv.market.price != null) ? lv.market.price : (e.market && e.market.price); }
   if (key === "_vol") { const lv = LIVE[e.ticker]; const lvv = lv && lv.market && (lv.market.volume_latest); return lvv != null ? lvv : (e.market && e.market.volume_avg); }
+  if (key === "_yield") { const n = parseFloat(String(e.distribution_yield || "").replace(/[^0-9.\-]/g, "")); return isFinite(n) ? n : null; }
   if (key === "_perf1y") return perfNum(e, "y1");
   if (key === "_perfytd") return perfNum(e, "ytd");
   if (key.startsWith("_")) { const d = key.slice(1); return SCORE_RANK[(scoreOf(e, d)||{}).rating] ?? 9; }
@@ -208,8 +220,9 @@ function cmp(a, b) {
 function render() {
   if (!CURRENT) return;
   const rows = visibleEtfs(), wrap = $("#tableWrap"); wrap.innerHTML = "";
+  const cols = activeColumns();
   const thead = el("tr");
-  COLUMNS.forEach(c => {
+  cols.forEach(c => {
     const active = SORT.key === c.key;
     const def = GLOSSARY[c.label];
     thead.append(el("th", { onclick: () => setSort(c.key), title: def || c.label, class: def ? "has-help" : "" },
@@ -220,7 +233,7 @@ function render() {
   rows.forEach(e => {
     const isLive = !!LIVE[e.ticker];
     const tr = el("tr", { class: (e.is_theme_fund ? "" : "bench ") + (isLive ? "live" : "") });
-    COLUMNS.forEach(c => {
+    cols.forEach(c => {
       if (c.key === "_refresh") {
         tr.append(el("td", {}, el("button", { class: "refresh",
           onclick: ev => { ev.stopPropagation(); refreshTicker(e.ticker); } }, "↻")));
@@ -394,11 +407,14 @@ function openMemo(ticker) {
   const priceTxt = (lv && lv.market && lv.market.price_display) ? lv.market.price_display + " ●" : (mkt.price_display || "—");
   const volTxt = (lv && lv.market && lv.market.volume_display) ? lv.market.volume_display + " ● (latest day)" : (mkt.volume_display ? mkt.volume_display + " (avg)" : "—");
   const kv = el("div", { class: "kv" });
-  [["Price", priceTxt], ["Avg daily volume", volTxt],
-   ["Structure", e.structure], ["Index", e.index], ["# Holdings", e.holdings_count],
+  const rows = [["Price", priceTxt], ["Avg daily volume", volTxt]];
+  // Income funds carry yield fields — show them prominently when present.
+  if (e.distribution_yield) rows.push(["Distribution yield", e.distribution_yield]);
+  if (e.sec_yield) rows.push(["30-day SEC yield", e.sec_yield]);
+  rows.push(["Structure", e.structure], ["Index", e.index], ["# Holdings", e.holdings_count],
    ["Top-10 weight", e.top10_weight_display], ["Largest position", e.largest_position_display],
-   ["Derivatives", e.derivatives]].forEach(([k,v]) =>
-    kv.append(el("div", { html: `<span>${k}:</span> ${escapeHtml(String(v ?? "—"))}` })));
+   ["Derivatives", e.derivatives]);
+  rows.forEach(([k,v]) => kv.append(el("div", { html: `<span>${k}:</span> ${escapeHtml(String(v ?? "—"))}` })));
   wrap.append(sectionTitle("Snapshot"), kv);
   if (mkt.price_asof && !(lv && lv.market)) wrap.append(el("p", { class: "muted", style: "font-size:12px" }, `Price/volume as of ${mkt.price_asof} — tap ↻ Refresh live to update.`));
 
