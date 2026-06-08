@@ -14,7 +14,7 @@ let SORT = { key: "ticker", dir: 1 };
 const RATING_LABEL = { green: "Good", yellow: "Caution", red: "Concern" };
 const SCORE_RANK = { green: 0, yellow: 1, red: 2 };
 
-const THEME_FILES = ["quantum", "space", "income", "pharma", "ai-robotics"];  // order in the picker
+const THEME_FILES = ["quantum", "space", "income", "pharma", "ai-robotics", "nuclear"];  // order in the picker
 
 // Plain-English definitions for abbreviations. Shown as tooltips (hover/tap) on
 // column headers and via the "?" key chips, so the page explains its own jargon.

@@ -1,0 +1,230 @@
+{
+  "id": "nuclear",
+  "name": "Nuclear / Uranium",
+  "as_of": "2026-06-08",
+  "tagline": "A commodity-driven boom-bust theme riding the nuclear revival and AI-datacenter power demand. Returns hinge on the uranium spot price and are dominated by a few miners — above all Cameco — plus real single-country (Kazakhstan/Canada) risk.",
+  "universe_note": "Three flavors: miner-heavy (URA), pure miners + physical uranium (URNM), high-risk junior miners (URNJ), and a utilities/nuclear-tech tilt (NLR). They are very different risk levels. Use 'Add ticker' for others (URNU, NUKZ, SMR-style nuclear-tech funds).",
+  "live_refresh": true,
+  "key_tensions": [
+    "Uranium spot-price dependence: these funds live and die on the uranium price — a volatile commodity with a brutal boom-bust history (URNM: +40.6% in 2025 but -14.1% in 2024).",
+    "Cameco concentration: one company dominates — ~23% of URA and ~21% of URNM. A single miner's operational or production news moves the whole fund.",
+    "Single-country / geopolitical risk: uranium supply is concentrated in Kazakhstan (Kazatomprom) and Canada (Cameco) — production cuts, export policy, or geopolitics there hit the whole theme.",
+    "Miners vs physical vs utilities: URNM holds some PHYSICAL uranium (purest spot-price proxy); URA/URNJ are miner equities (leveraged to the price); NLR tilts to nuclear UTILITIES (Constellation, PSEG) — steadier but a different bet.",
+    "Junior miners are far riskier: URNJ holds mid/small/micro-cap miners (top-10 ~79%!) — maximum leverage to uranium prices and maximum drawdown risk.",
+    "Why XLE is the yardstick: a narrow single-commodity bet vs broad, cash-generative energy. XLE (oil & gas, 0.08%) shows what you give up in diversification and what you take on in volatility."
+  ],
+  "benchmark_note": "XLE (broad energy) is the yardstick, NOT a nuclear fund — it's oil & gas majors (Exxon, Chevron). It shows the contrast: a narrow, high-volatility single-commodity uranium bet vs cheap (0.08%), diversified, dividend-paying energy. Use it to judge whether the uranium concentration was rewarded.",
+  "etfs": [
+    {
+      "ticker": "URA", "name": "Global X Uranium ETF", "is_theme_fund": true,
+      "issuer": "Global X", "holdings_url": "https://www.globalxetfs.com/funds/ura",
+      "expense_ratio": 0.69, "aum_display": "~$7.3B", "aum_musd": 7300, "inception": "2010-11",
+      "structure": "Passive — index", "index": "Solactive Global Uranium & Nuclear Components",
+      "holdings_count": 50, "top10_weight_display": "~60%", "top10_weight_pct": 60,
+      "largest_position_display": "~23.4% (Cameco)", "derivatives": "No",
+      "performance": {"ytd": null, "y1": null, "y2025": null, "y2024": null, "y3_annualized": null,
+        "as_of": "2026-06", "note": "Total return — tap ↻ to refresh. Largest, most liquid uranium fund: miners + nuclear-component makers + some physical-uranium trust. Heavily Cameco-led (~23%)."},
+      "market": {"price": null, "price_display": null, "price_asof": null, "volume_avg": null, "volume_display": null},
+      "scores": {
+        "cost": {"rating": "yellow", "note": "0.69% — typical for a niche commodity-equity fund."},
+        "purity": {"rating": "green", "note": "Genuinely uranium/nuclear-focused — miners, fuel, components, plus a physical-uranium trust holding."},
+        "concentration": {"rating": "red", "note": "Top-10 ~60% and Cameco alone ~23% — extreme single-name dominance."},
+        "liquidity": {"rating": "green", "note": "~$7.3B AUM — the largest, most liquid uranium ETF."},
+        "track_record": {"rating": "yellow", "note": "Since 2010; classic uranium boom-bust volatility."}
+      },
+      "overall": "The largest, most liquid uranium fund — broad miners + components, but heavily Cameco-dominated.",
+      "memo": {
+        "thesis": "URA is the flagship uranium ETF: the broadest, most liquid way to play the nuclear-fuel cycle, spanning uranium miners, nuclear-component makers, advanced-reactor names (Oklo), and a slug of physical uranium. The trade-off is heavy concentration in Cameco (~23%) and full exposure to uranium's boom-bust volatility.",
+        "strategy": "Passively tracks the Solactive Global Uranium & Nuclear Components Index — uranium miners plus companies making nuclear components/technology. Includes the Sprott Physical Uranium Trust for some direct spot exposure. Global, miner-led, cap-tilted toward Cameco.",
+        "purity_verdict": {"rating": "green", "text": "Genuinely uranium/nuclear — miners, fuel, components and physical uranium. The broadest pure-theme exposure, though 'nuclear components' adds some adjacency."},
+        "holdings_illustrative": [
+          {"name": "Cameco (CCJ)", "weight": "~23.4%", "playtype": "pure", "note": "dominant uranium miner (Canada) — dominates the fund"},
+          {"name": "Oklo (OKLO)", "weight": "~7.4%", "playtype": "pure", "note": "advanced reactor developer"},
+          {"name": "NexGen Energy (NXE)", "weight": "~6.3%", "playtype": "pure", "note": "uranium developer (Canada)"},
+          {"name": "Uranium Energy (UEC)", "weight": "~5.8%", "playtype": "pure", "note": "uranium miner"},
+          {"name": "Sprott Physical Uranium Trust", "weight": "~4.5%", "playtype": "pure", "note": "physical uranium — direct spot proxy"}
+        ],
+        "concentration": "Top-10 ~60% and Cameco alone ~23% — extreme single-name dominance. Cameco's news moves the whole fund.",
+        "sector_geo": "Global uranium miners + nuclear components; heavy Canada (Cameco, NexGen) plus Kazakhstan exposure via supply chain. Concentrated country risk.",
+        "cost_context": "0.69% — typical for a niche commodity-equity fund; cheaper than URNM/URNJ, pricier than NLR.",
+        "track_record_note": "Since 2010. Classic uranium boom-bust: huge rallies and deep drawdowns track the uranium spot price. Tap ↻ to pull current trailing returns.",
+        "red_flags": [
+          "🚩 Cameco ~23% — single-stock dominance.",
+          "🚩 Uranium spot-price dependence — high volatility.",
+          "⚠️ Country concentration (Canada/Kazakhstan).",
+          "⚠️ 'Nuclear components' adds some non-pure-miner names."
+        ],
+        "bull": ["Largest, most liquid uranium vehicle", "Broad exposure: miners + components + physical", "Direct play on the nuclear revival / AI power demand", "Some physical-uranium exposure"],
+        "bear": ["Cameco-dominated (~23%)", "Boom-bust commodity volatility", "Country/geopolitical concentration", "0.69% fee"],
+        "decision_log": [{"date": "2026-06-08", "action": "WATCH (example)", "text": "The default uranium pick for liquidity. Know you're ~23% in Cameco and fully exposed to the uranium price. Tap ↻ for live price/returns; compare to URNM if you want more physical-uranium exposure."}]
+      }
+    },
+    {
+      "ticker": "URNM", "name": "Sprott Uranium Miners ETF", "is_theme_fund": true,
+      "issuer": "Sprott", "holdings_url": "https://sprottetfs.com/urnm-sprott-uranium-miners-etf/",
+      "expense_ratio": 0.75, "aum_display": "~$2.2B", "aum_musd": 2210, "inception": "2019-12",
+      "structure": "Passive — index", "index": "North Shore Sprott Uranium Miners",
+      "holdings_count": 40, "top10_weight_display": "~70%", "top10_weight_pct": 70,
+      "largest_position_display": "~21.1% (Cameco)", "derivatives": "No",
+      "performance": {"ytd": "+12.0%", "y1": "+61.0%", "y2025": "+40.6%", "y2024": "-14.1%", "y3_annualized": null,
+        "as_of": "2026-06-03", "note": "Total return. Purer uranium-miner exposure + some physical uranium. The -14.1% in 2024 then +40.6% in 2025 shows the boom-bust amplitude."},
+      "market": {"price": 62.22, "price_display": "$62.22", "price_asof": "2026-06-03", "volume_avg": 748000, "volume_display": "~748K/day"},
+      "scores": {
+        "cost": {"rating": "yellow", "note": "0.75% — standard for this niche; a touch above URA."},
+        "purity": {"rating": "green", "note": "The purest uranium-miner play — dedicated miners index plus a physical-uranium holding."},
+        "concentration": {"rating": "red", "note": "Top-10 ~70%, Cameco ~21% — very concentrated in a few miners."},
+        "liquidity": {"rating": "yellow", "note": "~$2.2B AUM, ~748K shares/day — solid but below URA."},
+        "track_record": {"rating": "yellow", "note": "Since 2019; +40.6% (2025) vs -14.1% (2024) — high amplitude."}
+      },
+      "overall": "The purest uranium-miner bet — dedicated miners + physical uranium, very concentrated.",
+      "memo": {
+        "thesis": "URNM is the purest uranium-MINER ETF: a dedicated miners index plus a physical-uranium holding, with less of the 'nuclear components' dilution in URA. It's the cleanest equity proxy for the uranium price — which cuts both ways, as its -14% (2024) / +41% (2025) swing shows.",
+        "strategy": "Passively tracks the North Shore Sprott Uranium Miners Index — companies that mine, explore, develop and produce uranium, plus physical uranium holdings. Concentrated in the major miners, Cameco-led.",
+        "purity_verdict": {"rating": "green", "text": "The purest uranium play here — dedicated miners + physical uranium, minimal off-theme names. If you want a clean uranium-price proxy, this is it."},
+        "holdings_illustrative": [
+          {"name": "Cameco (CCJ)", "weight": "~21.1%", "playtype": "pure", "note": "dominant uranium miner (Canada)"},
+          {"name": "Kazatomprom", "weight": "~high", "playtype": "pure", "note": "world's largest uranium producer (Kazakhstan)"},
+          {"name": "NexGen Energy (NXE)", "weight": "—", "playtype": "pure", "note": "uranium developer"},
+          {"name": "Sprott Physical Uranium Trust", "weight": "—", "playtype": "pure", "note": "physical uranium — direct spot exposure"},
+          {"name": "Uranium Energy / Paladin", "weight": "—", "playtype": "pure", "note": "uranium miners"}
+        ],
+        "concentration": "Top-10 ~70%, Cameco ~21% — very concentrated in a handful of miners. Single-name and single-commodity risk are dominant.",
+        "sector_geo": "Pure uranium miners; heavy Canada (Cameco/NexGen) + Kazakhstan (Kazatomprom). Strong single-country supply risk.",
+        "cost_context": "0.75% — standard for the niche; slightly above URA for a purer, more concentrated portfolio.",
+        "track_record_note": "Since 2019. The boom-bust is stark: -14.1% (2024) then +40.6% (2025), +61% trailing 1-yr, +12% YTD. High amplitude tied directly to the uranium price.",
+        "red_flags": [
+          "🚩 Top-10 ~70%, Cameco ~21% — extreme concentration.",
+          "🚩 Pure uranium-price dependence — biggest swings.",
+          "🚩 Kazakhstan + Canada country concentration.",
+          "⚠️ 0.75% fee."
+        ],
+        "bull": ["Purest uranium-miner exposure", "Includes physical uranium (direct spot proxy)", "Strong recent run (+61% 1-yr)", "Cleanest uranium-price play"],
+        "bear": ["Extreme concentration (Cameco ~21%, top-10 ~70%)", "Brutal drawdowns when uranium falls (-14% in 2024)", "Country/geopolitical risk", "0.75% fee"],
+        "decision_log": [{"date": "2026-06-08", "action": "WATCH (example)", "text": "The pick if you want pure uranium-price exposure. Accept the concentration (Cameco ~21%) and the boom-bust amplitude. Size small; this is a high-volatility commodity bet."}]
+      }
+    },
+    {
+      "ticker": "URNJ", "name": "Sprott Junior Uranium Miners ETF", "is_theme_fund": true,
+      "issuer": "Sprott", "holdings_url": "https://sprottetfs.com/urnj-sprott-junior-uranium-miners-etf/",
+      "expense_ratio": 0.80, "aum_display": "~$398M", "aum_musd": 398, "inception": "2023-02",
+      "structure": "Passive — index", "index": "Nasdaq Sprott Junior Uranium Miners",
+      "holdings_count": 37, "top10_weight_display": "~79%", "top10_weight_pct": 79,
+      "largest_position_display": "high (junior miner)", "derivatives": "No",
+      "performance": {"ytd": null, "y1": null, "y2025": null, "y2024": null, "y3_annualized": null,
+        "as_of": "2026-04", "note": "Total return — tap ↻ to refresh. Mid/small/micro-cap junior miners = MAXIMUM leverage to the uranium price and maximum drawdown risk. Top-10 ~79%."},
+      "market": {"price": 31.36, "price_display": "$31.36", "price_asof": "2026-04-24", "volume_avg": null, "volume_display": null},
+      "scores": {
+        "cost": {"rating": "red", "note": "0.80% — the most expensive uranium fund here."},
+        "purity": {"rating": "green", "note": "Pure junior uranium miners — the most aggressive expression of the theme."},
+        "concentration": {"rating": "red", "note": "Top-10 ~79% across ~37 small/micro-cap names — extreme."},
+        "liquidity": {"rating": "red", "note": "~$398M AUM — smallest here; thinner trading, wider spreads."},
+        "track_record": {"rating": "red", "note": "Since 2023 — short history; junior miners are the most volatile, highest-drawdown segment."}
+      },
+      "overall": "The high-risk, high-leverage junior-miner bet — maximum upside to the uranium price, maximum drawdown risk.",
+      "memo": {
+        "thesis": "URNJ targets JUNIOR uranium miners — mid, small and micro-cap explorers/developers — giving maximum leverage to the uranium price. When uranium rallies, juniors can massively outperform the majors; when it falls, they fall hardest. The most aggressive way to play the theme, with the smallest AUM and thinnest liquidity.",
+        "strategy": "Passively tracks the Nasdaq Sprott Junior Uranium Miners Index — smaller, often pre-production uranium companies. Higher beta to the uranium price than URA/URNM, with concentrated, illiquid small-cap holdings.",
+        "purity_verdict": {"rating": "green", "text": "Pure junior uranium miners — the most concentrated, highest-octane expression of the uranium theme. No utility/component dilution."},
+        "holdings_illustrative": [
+          {"name": "Junior uranium miners (~37 names)", "weight": "top-10 ~79%", "playtype": "pure", "note": "mid/small/micro-cap; leaders rotate"},
+          {"name": "Paladin Energy / Denison-type names", "weight": "—", "playtype": "pure", "note": "developers/explorers"},
+          {"name": "Pre-production explorers", "weight": "—", "playtype": "pure", "note": "highest leverage to uranium price"}
+        ],
+        "concentration": "Extreme — top-10 ~79% across only ~37 small/micro-cap names. Both single-name and single-commodity risk are at their highest here.",
+        "sector_geo": "Pure junior uranium miners; global but heavy Canada/Australia/Africa exploration exposure.",
+        "cost_context": "0.80% — the most expensive uranium fund here, for the highest-risk segment.",
+        "track_record_note": "Since 2023 — short history. Junior miners are the most volatile, highest-drawdown uranium segment; expect amplified versions of URNM's swings. Tap ↻ for current figures.",
+        "red_flags": [
+          "🚩 Extreme concentration (top-10 ~79%).",
+          "🚩 Smallest AUM (~$398M) + thin liquidity → wide spreads.",
+          "🚩 Junior miners = highest drawdown risk in the theme.",
+          "🚩 0.80% fee — highest here; short track record."
+        ],
+        "bull": ["Maximum leverage to a rising uranium price", "Pure junior-miner exposure unavailable elsewhere", "Can massively outperform majors in a bull market", "Direct nuclear-revival play"],
+        "bear": ["Extreme concentration + illiquidity", "Highest drawdown risk", "Smallest, newest fund (closure risk)", "Most expensive (0.80%)"],
+        "decision_log": [{"date": "2026-06-08", "action": "CAUTION (example)", "text": "The most aggressive uranium bet — only for high risk tolerance and small position sizing. Verify spreads (thin AUM). If uranium falls, this drops hardest. Tap ↻ for live data."}]
+      }
+    },
+    {
+      "ticker": "NLR", "name": "VanEck Uranium and Nuclear ETF", "is_theme_fund": true,
+      "issuer": "VanEck", "holdings_url": "https://www.vaneck.com/us/en/investments/uranium-nuclear-energy-etf-nlr/",
+      "expense_ratio": 0.56, "aum_display": "~$4.8B", "aum_musd": 4750, "inception": "2007-08",
+      "structure": "Passive — index", "index": "MVIS Global Uranium & Nuclear Energy",
+      "holdings_count": 27, "top10_weight_display": "~60%", "top10_weight_pct": 60,
+      "largest_position_display": "Constellation Energy (utility)", "derivatives": "No",
+      "performance": {"ytd": null, "y1": null, "y2025": null, "y2024": null, "y3_annualized": null,
+        "as_of": "2026-06", "note": "Total return — tap ↻ to refresh. Tilts to nuclear UTILITIES (Constellation, PSEG, PG&E) not just miners — steadier, less uranium-price-sensitive, cheaper (0.56%)."},
+      "market": {"price": null, "price_display": null, "price_asof": null, "volume_avg": null, "volume_display": null},
+      "scores": {
+        "cost": {"rating": "green", "note": "0.56% — cheapest theme fund here."},
+        "purity": {"rating": "yellow", "note": "Tilts to nuclear UTILITIES (Constellation, PSEG, PG&E) + miners — less a pure uranium-price bet, more 'nuclear power'."},
+        "concentration": {"rating": "yellow", "note": "Top-10 ~60% across ~27 names; Cameco only ~4th (utilities lead)."},
+        "liquidity": {"rating": "green", "note": "~$4.75B AUM — large and liquid."},
+        "track_record": {"rating": "green", "note": "Since 2007 — longest history; utility tilt means lower volatility than pure miners."}
+      },
+      "overall": "The steadier 'nuclear power' bet — utilities + miners, cheaper and less uranium-price-sensitive.",
+      "memo": {
+        "thesis": "NLR is the diversified, steadier way to play nuclear: it tilts toward nuclear UTILITIES (Constellation Energy, PSEG, PG&E) alongside uranium miners, so it's less a pure uranium-price bet and more a 'nuclear power generation' theme. Cheaper (0.56%) and lower-volatility than the pure-miner funds, but with less commodity upside.",
+        "strategy": "Passively tracks the MVIS Global Uranium & Nuclear Energy Index — nuclear utilities + uranium miners + nuclear-infrastructure names. The utility weighting (cash-generative, regulated) dampens the uranium-price swings that dominate URA/URNM/URNJ.",
+        "purity_verdict": {"rating": "yellow", "text": "Less of a pure uranium bet — utilities (Constellation, PSEG, PG&E) lead, with Cameco only ~4th. It's 'nuclear power' exposure, which is steadier but dilutes the commodity upside."},
+        "holdings_illustrative": [
+          {"name": "Constellation Energy (CEG)", "weight": "~top", "playtype": "partial", "note": "largest US nuclear utility — not a miner"},
+          {"name": "Public Service Enterprise (PEG)", "weight": "—", "playtype": "partial", "note": "nuclear utility"},
+          {"name": "PG&E (PCG)", "weight": "—", "playtype": "partial", "note": "utility with nuclear"},
+          {"name": "Cameco (CCJ)", "weight": "~4th", "playtype": "pure", "note": "uranium miner — smaller weight than in URA/URNM"}
+        ],
+        "concentration": "Top-10 ~60% across ~27 names, but led by diversified utilities rather than a single miner — lower single-commodity risk than the pure-miner funds.",
+        "sector_geo": "Nuclear utilities (heavily US) + global uranium miners. Less Kazakhstan/Canada commodity concentration; more US-utility regulatory exposure.",
+        "cost_context": "0.56% — the cheapest theme fund here, reflecting the steadier utility tilt.",
+        "track_record_note": "Since 2007 — the longest history in the theme. The utility weighting means lower volatility and smaller drawdowns than the pure-miner funds. Tap ↻ for current returns.",
+        "red_flags": [
+          "⚠️ Not a pure uranium bet — utility tilt dilutes commodity upside.",
+          "⚠️ US-utility regulatory/rate risk.",
+          "⚠️ Top-10 ~60% concentration.",
+          "⚠️ Less explosive than miners in a uranium bull run."
+        ],
+        "bull": ["Steadier, lower-volatility nuclear exposure", "Cheapest theme fund (0.56%)", "Longest track record (2007)", "Utilities add cash flow + dividends"],
+        "bear": ["Less uranium-price upside than miners", "Utility regulatory risk", "Still ~60% top-10", "Won't capture a uranium spike like URNM/URNJ"],
+        "decision_log": [{"date": "2026-06-08", "action": "WATCH (example)", "text": "The conservative nuclear pick — utilities make it steadier and cheaper, but you give up the uranium-price upside. Choose NLR for 'nuclear power' exposure, URNM for a 'uranium price' bet. Tap ↻ for live data."}]
+      }
+    },
+    {
+      "ticker": "XLE", "name": "Energy Select Sector SPDR Fund", "is_theme_fund": false,
+      "issuer": "State Street SPDR", "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/state-street-energy-select-sector-spdr-etf-xle",
+      "expense_ratio": 0.08, "aum_display": "~$38.7B", "aum_musd": 38670, "inception": "1998-12",
+      "structure": "Passive — cap-weighted", "index": "Energy Select Sector",
+      "holdings_count": 23, "top10_weight_display": "~75%", "top10_weight_pct": 75,
+      "largest_position_display": "Exxon Mobil", "derivatives": "No",
+      "distribution_yield": "~2.7%",
+      "performance": {"ytd": "+29.8%", "y1": null, "y2025": null, "y2024": null, "y3_annualized": null,
+        "as_of": "2026-06", "note": "Benchmark, total return. Broad oil & gas energy — cheap (0.08%), dividend-paying (~2.7%), far more diversified than a single-commodity uranium bet."},
+      "market": {"price": 57.67, "price_display": "$57.67", "price_asof": "2026-06", "volume_avg": 49000000, "volume_display": "~49M/day"},
+      "scores": {
+        "cost": {"rating": "green", "note": "0.08% — a fraction of any uranium fund."},
+        "purity": {"rating": "red", "note": "Broad oil & gas energy — NOT nuclear/uranium. The comparison baseline."},
+        "concentration": {"rating": "yellow", "note": "Top-10 ~75% (Exxon/Chevron-led), but a diversified, cash-rich sector."},
+        "liquidity": {"rating": "green", "note": "~$38.7B AUM, ~49M shares/day — extremely liquid."},
+        "track_record": {"rating": "green", "note": "Since 1998; broad energy, dividend-paying, lower volatility than uranium."}
+      },
+      "overall": "Benchmark — broad oil & gas energy; cheap, diversified, dividend-paying. The contrast to a narrow uranium bet.",
+      "memo": {
+        "thesis": "REFERENCE FUND, NOT NUCLEAR. XLE is the broad energy benchmark — oil & gas majors (Exxon, Chevron) — cheap (0.08%), dividend-paying (~2.7%), and far more diversified than a single-commodity uranium bet. Use it to judge whether the narrow, volatile uranium theme actually rewarded the concentration and country risk you took on.",
+        "strategy": "Passive, cap-weighted energy slice of the S&P 500 — oil, gas and consumable fuels, energy equipment/services. Dominated by integrated majors; cash-generative and dividend-paying.",
+        "purity_verdict": {"rating": "red", "text": "Zero nuclear/uranium mandate — it's oil & gas. The yardstick for what a diversified, cheap energy bet looks like next to a narrow uranium play."},
+        "holdings_illustrative": [
+          {"name": "Exxon Mobil (XOM)", "weight": "~large", "playtype": "unrelated", "note": "oil & gas major — not nuclear"},
+          {"name": "Chevron (CVX)", "weight": "~large", "playtype": "unrelated", "note": "oil & gas major"},
+          {"name": "ConocoPhillips / others", "weight": "—", "playtype": "unrelated", "note": "oil & gas"}
+        ],
+        "concentration": "Top-10 ~75% (Exxon/Chevron-led), but across a diversified, cash-rich sector — lower single-commodity risk than uranium.",
+        "sector_geo": "US oil & gas majors; predominantly domestic, globally operating.",
+        "cost_context": "0.08% — a fraction of the 0.56-0.80% uranium funds, with a ~2.7% dividend on top.",
+        "track_record_note": "Since 1998; broad energy, dividend-paying, far lower volatility than uranium. Strong YTD (+29.8%). The 'diversified energy instead of a commodity bet' baseline.",
+        "red_flags": ["⚠️ Not nuclear/uranium — different bet entirely.", "⚠️ Oil-price (not uranium-price) sensitivity.", "⚠️ Top-10 ~75% in majors."],
+        "bull": ["Cheap (0.08%) + ~2.7% dividend", "Diversified, cash-generative majors", "Extremely liquid", "Lower volatility than uranium"],
+        "bear": ["No nuclear/uranium upside", "Oil-price cyclicality", "Concentrated in 2 majors"],
+        "decision_log": [{"date": "2026-06-08", "action": "BENCHMARK", "text": "The yardstick. Before taking on uranium's concentration + country risk, ask whether broad, cheap, dividend-paying energy serves your goal better. Different bet — use for contrast."}]
+      }
+    }
+  ]
+}
