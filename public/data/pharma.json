@@ -2,234 +2,649 @@
   "id": "pharma",
   "name": "Pharma / Biotech",
   "as_of": "2026-06-08",
-  "tagline": "A barbell of risk — from speculative, FDA-binary small-cap biotech (XBI, ARKG) to cash-rich mega-cap pharma (PPH) — in a sector that swings on trial readouts, drug-pricing politics, M&A and rates. Pick your weighting scheme and sub-industry; they behave very differently.",
+  "tagline": "A barbell of risk \u2014 from speculative, FDA-binary small-cap biotech (XBI, ARKG) to cash-rich mega-cap pharma (PPH) \u2014 in a sector that swings on trial readouts, drug-pricing politics, M&A and rates. Pick your weighting scheme and sub-industry; they behave very differently.",
   "universe_note": "Three distinct sub-themes hide under one label: biotech (XBI/IBB), big pharma (PPH), and genomics (ARKG). They are NOT interchangeable. Use 'Add ticker' to pull any fund not listed (e.g. XPH for equal-weight pharma, XLV variants).",
   "live_refresh": true,
   "key_tensions": [
-    "FDA binary-event risk: small/mid-cap biotech (XBI, ARKG) can move 30-80% on a single trial readout or approval/CRL — idiosyncratic risk that big pharma (PPH) and broad healthcare (XLV) largely dampen.",
+    "FDA binary-event risk: small/mid-cap biotech (XBI, ARKG) can move 30-80% on a single trial readout or approval/CRL \u2014 idiosyncratic risk that big pharma (PPH) and broad healthcare (XLV) largely dampen.",
     "Equal-weight XBI vs cap-weight IBB: XBI equal-weights ~150 biotechs (top-10 ~15%, heavy small/clinical-stage tilt, high beta); IBB cap-weights ~255 names but is top-heavy (top-10 ~45-50%) dominated by 4 profitable mega-caps. Same sector, very different risk.",
     "Biotech vs pharma vs genomics: biotech = US R&D/commercial biotech; pharma = profitable dividend-paying large caps (often foreign-domiciled ADRs); genomics = a money-losing-heavy thematic basket. Different exposures entirely.",
     "ARKG active concentration: ~33 names, top-10 ~60%, single names up to ~10%, high turnover, brutal drawdowns (-28% in 2024, -54% in 2022) and key-person risk. You're buying a manager's thesis.",
-    "PPH is Lilly-dependent: a 25-stock fund with Eli Lilly ~18-19% and top-10 ~71% — closer to a concentrated GLP-1/big-pharma basket than a diversified fund; also thinly traded (~264K shares/day).",
-    "Why XLV is a yardstick: it's broad healthcare (insurers, devices, tools + drugmakers), the cheapest (0.08%) and most liquid option — the 'did the concentrated bet actually beat plain healthcare?' reference."
+    "PPH is Lilly-dependent: a 25-stock fund with Eli Lilly ~18-19% and top-10 ~71% \u2014 closer to a concentrated GLP-1/big-pharma basket than a diversified fund; also thinly traded (~264K shares/day).",
+    "Why XLV is a yardstick: it's broad healthcare (insurers, devices, tools + drugmakers), the cheapest (0.08%) and most liquid option \u2014 the 'did the concentrated bet actually beat plain healthcare?' reference."
   ],
-  "benchmark_note": "XLV (broad healthcare) is the yardstick, NOT a pure biotech/pharma bet — a big chunk is insurers (UnitedHealth), devices (Abbott) and tools (Thermo Fisher). Use it to judge whether the concentration and cost of a pure biotech/pharma fund were rewarded vs simply owning the sector cheaply.",
+  "benchmark_note": "XLV (broad healthcare) is the yardstick, NOT a pure biotech/pharma bet \u2014 a big chunk is insurers (UnitedHealth), devices (Abbott) and tools (Thermo Fisher). Use it to judge whether the concentration and cost of a pure biotech/pharma fund were rewarded vs simply owning the sector cheaply.",
   "etfs": [
     {
-      "ticker": "XBI", "name": "SPDR S&P Biotech ETF", "is_theme_fund": true,
-      "issuer": "State Street SPDR", "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-biotech-etf-xbi",
-      "expense_ratio": 0.35, "aum_display": "~$7.9B", "aum_musd": 7860, "inception": "2006-02-06",
-      "structure": "Passive — modified equal-weight", "index": "S&P Biotechnology Select Industry",
-      "holdings_count": 155, "top10_weight_display": "~14-16%", "top10_weight_pct": 15,
-      "largest_position_display": "~1.8% (rotates)", "derivatives": "No",
-      "performance": {"ytd": "+12.1%", "y1": "+52.7%", "y2025": "+35.9%", "y2024": "+1.0%", "y3_annualized": null,
-        "as_of": "2026-06-05", "note": "Total return. Huge 1-yr (+52.7%) off a flat 2024 (+1.0%) — sharp biotech recovery. High historical volatility; prior multi-year drawdowns."},
-      "market": {"price": 128.30, "price_display": "$128.30", "price_asof": "2026-06-05", "volume_avg": 7950000, "volume_display": "~7.9M/day"},
-      "scores": {
-        "cost": {"rating": "yellow", "note": "0.35% — typical for a sector ETF, not cheap."},
-        "purity": {"rating": "green", "note": "~100% biotech, ~96% US — the cleanest biotech beta."},
-        "concentration": {"rating": "green", "note": "Equal-weight; top-10 ~15%, no name above ~2% — risk is broad-sector, not single-name."},
-        "liquidity": {"rating": "green", "note": "~$7.9B AUM, ~8M shares/day — very deep."},
-        "track_record": {"rating": "yellow", "note": "Long history (2006) but high volatility and past deep drawdowns."}
+      "ticker": "XBI",
+      "name": "SPDR S&P Biotech ETF",
+      "is_theme_fund": true,
+      "issuer": "State Street SPDR",
+      "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-biotech-etf-xbi",
+      "expense_ratio": 0.35,
+      "aum_display": "~$7.9B",
+      "aum_musd": 7860,
+      "inception": "2006-02-06",
+      "structure": "Passive \u2014 modified equal-weight",
+      "index": "S&P Biotechnology Select Industry",
+      "holdings_count": 155,
+      "top10_weight_display": "~14-16%",
+      "top10_weight_pct": 15,
+      "largest_position_display": "~1.8% (rotates)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": "+12.1%",
+        "y1": "+52.7%",
+        "y2025": "+35.9%",
+        "y2024": "+1.0%",
+        "y3_annualized": null,
+        "as_of": "2026-06-05",
+        "note": "Total return. Huge 1-yr (+52.7%) off a flat 2024 (+1.0%) \u2014 sharp biotech recovery. High historical volatility; prior multi-year drawdowns."
       },
-      "overall": "Cleanest, most liquid pure-biotech beta — high reward, high volatility, low single-name risk.",
+      "market": {
+        "price": 128.3,
+        "price_display": "$128.30",
+        "price_asof": "2026-06-05",
+        "volume_avg": 7950000,
+        "volume_display": "~7.9M/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.35% \u2014 typical for a sector ETF, not cheap."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "~100% biotech, ~96% US \u2014 the cleanest biotech beta."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Equal-weight; top-10 ~15%, no name above ~2% \u2014 risk is broad-sector, not single-name."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$7.9B AUM, ~8M shares/day \u2014 very deep."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Long history (2006) but high volatility and past deep drawdowns."
+        }
+      },
+      "overall": "Cleanest, most liquid pure-biotech beta \u2014 high reward, high volatility, low single-name risk.",
       "memo": {
-        "thesis": "XBI is the purest, highest-beta way to own the broad biotech innovation cycle with minimal single-stock risk via equal weighting. It gives small/mid-cap clinical-stage biotech a real seat at the table, so it captures M&A pops and risk-on rallies — but whipsaws hard. The go-to vehicle for 'biotech is recovering'.",
-        "strategy": "Tracks the S&P Biotechnology Select Industry Index using MODIFIED EQUAL WEIGHTING with periodic rebalancing, so each of ~150 names carries a similar ~0.6-1.8% weight regardless of market cap. This structurally tilts toward smaller, often pre-revenue biotechs and avoids mega-cap domination — producing high rebalance turnover and elevated volatility.",
-        "purity_verdict": {"rating": "green", "text": "Essentially 100% biotech, ~96%+ US. The cleanest 'biotech beta' of the group."},
+        "thesis": "XBI is the purest, highest-beta way to own the broad biotech innovation cycle with minimal single-stock risk via equal weighting. It gives small/mid-cap clinical-stage biotech a real seat at the table, so it captures M&A pops and risk-on rallies \u2014 but whipsaws hard. The go-to vehicle for 'biotech is recovering'.",
+        "strategy": "Tracks the S&P Biotechnology Select Industry Index using MODIFIED EQUAL WEIGHTING with periodic rebalancing, so each of ~150 names carries a similar ~0.6-1.8% weight regardless of market cap. This structurally tilts toward smaller, often pre-revenue biotechs and avoids mega-cap domination \u2014 producing high rebalance turnover and elevated volatility.",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "Essentially 100% biotech, ~96%+ US. The cleanest 'biotech beta' of the group."
+        },
         "holdings_illustrative": [
-          {"name": "Travere (TVTX)", "weight": "~1.8%", "playtype": "pure", "note": "biotech (leader rotates with equal-weight)"},
-          {"name": "Revolution Medicines (RVMD)", "weight": "~1.8%", "playtype": "pure", "note": "oncology biotech"},
-          {"name": "Alkermes (ALKS)", "weight": "~1.7%", "playtype": "pure", "note": "biotech"},
-          {"name": "Twist Bioscience (TWST)", "weight": "~1.6%", "playtype": "pure", "note": "synthetic biology"},
-          {"name": "TG Therapeutics (TGTX)", "weight": "~1.5%", "playtype": "pure", "note": "biotech"}
+          {
+            "name": "Travere (TVTX)",
+            "weight": "~1.8%",
+            "playtype": "pure",
+            "note": "biotech (leader rotates with equal-weight)"
+          },
+          {
+            "name": "Revolution Medicines (RVMD)",
+            "weight": "~1.8%",
+            "playtype": "pure",
+            "note": "oncology biotech"
+          },
+          {
+            "name": "Alkermes (ALKS)",
+            "weight": "~1.7%",
+            "playtype": "pure",
+            "note": "biotech"
+          },
+          {
+            "name": "Twist Bioscience (TWST)",
+            "weight": "~1.6%",
+            "playtype": "pure",
+            "note": "synthetic biology"
+          },
+          {
+            "name": "TG Therapeutics (TGTX)",
+            "weight": "~1.5%",
+            "playtype": "pure",
+            "note": "biotech"
+          }
         ],
-        "concentration": "Lowest concentration of the group — top-10 only ~14-16%, no single name above ~2%. Risk is broad-sector, not name-specific.",
+        "concentration": "Lowest concentration of the group \u2014 top-10 only ~14-16%, no single name above ~2%. Risk is broad-sector, not name-specific.",
         "sector_geo": "~99.9% healthcare/biotech, ~96.6% US. Heavy small/mid-cap tilt.",
-        "cost_context": "0.35% is standard for a sector/industry ETF — middle of this pack; cheaper than ARKG, far above XLV (0.08%).",
+        "cost_context": "0.35% is standard for a sector/industry ETF \u2014 middle of this pack; cheaper than ARKG, far above XLV (0.08%).",
         "track_record_note": "Long history since 2006. Strong 2025 (+35.9%) and huge trailing 1-yr (+52.7%) off 2024's flat (+1.0%) year. High historical volatility and prior multi-year drawdowns (2021-23 bear) are the trade-off.",
         "red_flags": [
-          "⚠️ Equal weight = persistent small/clinical-stage exposure → high drawdown risk.",
-          "⚠️ Very high beta — whipsaws in risk-off / rising-rate regimes.",
-          "⚠️ Many holdings are unprofitable.",
-          "⚠️ Drug-pricing policy sensitivity."
+          "\u26a0\ufe0f Equal weight = persistent small/clinical-stage exposure \u2192 high drawdown risk.",
+          "\u26a0\ufe0f Very high beta \u2014 whipsaws in risk-off / rising-rate regimes.",
+          "\u26a0\ufe0f Many holdings are unprofitable.",
+          "\u26a0\ufe0f Drug-pricing policy sensitivity."
         ],
-        "bull": ["Best vehicle to capture biotech M&A/innovation broadly", "Minimal single-stock blow-up risk", "Deep liquidity / tight spreads", "Strong recovery momentum"],
-        "bear": ["Whipsaws in risk-off / rising rates", "Many holdings unprofitable", "No mega-cap ballast", "Policy (drug pricing) sensitive"],
-        "decision_log": [{"date": "2026-06-08", "action": "WATCH (example)", "text": "The clean biotech-beta pick. Equal-weight = lower single-name risk but high volatility — size accordingly. Compare trailing return vs XLV to see if the extra risk paid."}]
+        "bull": [
+          "Best vehicle to capture biotech M&A/innovation broadly",
+          "Minimal single-stock blow-up risk",
+          "Deep liquidity / tight spreads",
+          "Strong recovery momentum"
+        ],
+        "bear": [
+          "Whipsaws in risk-off / rising rates",
+          "Many holdings unprofitable",
+          "No mega-cap ballast",
+          "Policy (drug pricing) sensitive"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "WATCH (example)",
+            "text": "The clean biotech-beta pick. Equal-weight = lower single-name risk but high volatility \u2014 size accordingly. Compare trailing return vs XLV to see if the extra risk paid."
+          }
+        ]
       }
     },
     {
-      "ticker": "IBB", "name": "iShares Biotechnology ETF", "is_theme_fund": true,
-      "issuer": "BlackRock (iShares)", "holdings_url": "https://www.ishares.com/us/products/239699/ishares-biotechnology-etf",
-      "expense_ratio": 0.44, "aum_display": "~$7.0-7.9B", "aum_musd": 7500, "inception": "2001-02-05",
-      "structure": "Passive — cap-weighted", "index": "NASDAQ Biotechnology",
-      "holdings_count": 258, "top10_weight_display": "~45-50%", "top10_weight_pct": 48,
-      "largest_position_display": "~7.5% (Vertex)", "derivatives": "No",
-      "performance": {"ytd": "-0.7%", "y1": "+32.3%", "y2025": "+28.0%", "y2024": "-2.4%", "y3_annualized": null,
-        "as_of": "2026-05-31", "note": "Total return; 1-yr is annualized to Mar 31 2026. Solid 2025 after down 2024; flat-to-negative YTD after a Jan peak. Lower drawdowns than XBI."},
-      "market": {"price": 172.20, "price_display": "$172.20", "price_asof": "2026-05-29", "volume_avg": null, "volume_display": null},
-      "scores": {
-        "cost": {"rating": "red", "note": "0.44% — priciest passive biotech here, notably above XBI's 0.35%."},
-        "purity": {"rating": "green", "note": "~100% biotech, mostly US; slightly less innovation-stage than XBI (mega-caps dominate)."},
-        "concentration": {"rating": "yellow", "note": "High for 255 names — top-10 ~45-50%, four mega-caps ~7% each."},
-        "liquidity": {"rating": "green", "note": "Large and liquid (specific ADV unconfirmed)."},
-        "track_record": {"rating": "green", "note": "25-yr history; lower volatility than XBI."}
+      "ticker": "IBB",
+      "name": "iShares Biotechnology ETF",
+      "is_theme_fund": true,
+      "issuer": "BlackRock (iShares)",
+      "holdings_url": "https://www.ishares.com/us/products/239699/ishares-biotechnology-etf",
+      "expense_ratio": 0.44,
+      "aum_display": "~$7.0-7.9B",
+      "aum_musd": 7500,
+      "inception": "2001-02-05",
+      "structure": "Passive \u2014 cap-weighted",
+      "index": "NASDAQ Biotechnology",
+      "holdings_count": 258,
+      "top10_weight_display": "~45-50%",
+      "top10_weight_pct": 48,
+      "largest_position_display": "~7.5% (Vertex)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": "-0.7%",
+        "y1": "+32.3%",
+        "y2025": "+28.0%",
+        "y2024": "-2.4%",
+        "y3_annualized": null,
+        "as_of": "2026-05-31",
+        "note": "Total return; 1-yr is annualized to Mar 31 2026. Solid 2025 after down 2024; flat-to-negative YTD after a Jan peak. Lower drawdowns than XBI."
       },
-      "overall": "Steadier, mega-cap-anchored biotech core — but pricey and top-heavy on 4 names.",
+      "market": {
+        "price": 172.2,
+        "price_display": "$172.20",
+        "price_asof": "2026-05-29",
+        "volume_avg": 1280000,
+        "volume_display": "~1.3M/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "red",
+          "note": "0.44% \u2014 priciest passive biotech here, notably above XBI's 0.35%."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "~100% biotech, mostly US; slightly less innovation-stage than XBI (mega-caps dominate)."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "High for 255 names \u2014 top-10 ~45-50%, four mega-caps ~7% each."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "Large and liquid (specific ADV unconfirmed)."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "25-yr history; lower volatility than XBI."
+        }
+      },
+      "overall": "Steadier, mega-cap-anchored biotech core \u2014 but pricey and top-heavy on 4 names.",
       "memo": {
-        "thesis": "IBB is the 'blue-chip biotech' core — cap-weighted toward the four profitable biotech mega-caps (Vertex, Gilead, Amgen, Regeneron), giving steadier exposure than XBI but real top-heaviness. The way to own biotech where earnings and cash flow, not just pipeline lottery tickets, drive most of the return.",
+        "thesis": "IBB is the 'blue-chip biotech' core \u2014 cap-weighted toward the four profitable biotech mega-caps (Vertex, Gilead, Amgen, Regeneron), giving steadier exposure than XBI but real top-heaviness. The way to own biotech where earnings and cash flow, not just pipeline lottery tickets, drive most of the return.",
         "strategy": "Tracks the NASDAQ Biotechnology Index, cap-weighted, so the largest profitable biotechs dominate while a long tail of ~250 names adds breadth but little weight. Lower turnover and lower volatility than XBI; behaves more like large-cap growth healthcare than speculative biotech.",
-        "purity_verdict": {"rating": "green", "text": "Pure biotech by classification, predominantly US. Slightly less 'innovation-stage' than XBI because mega-caps dominate."},
+        "purity_verdict": {
+          "rating": "green",
+          "text": "Pure biotech by classification, predominantly US. Slightly less 'innovation-stage' than XBI because mega-caps dominate."
+        },
         "holdings_illustrative": [
-          {"name": "Vertex (VRTX)", "weight": "~7.5%", "playtype": "pure", "note": "profitable biotech mega-cap"},
-          {"name": "Gilead (GILD)", "weight": "~7.4%", "playtype": "pure", "note": "profitable biotech mega-cap"},
-          {"name": "Amgen (AMGN)", "weight": "~7.2%", "playtype": "pure", "note": "profitable biotech mega-cap"},
-          {"name": "Regeneron (REGN)", "weight": "~6.7%", "playtype": "pure", "note": "profitable biotech mega-cap"},
-          {"name": "Alnylam (ALNY)", "weight": "~3.5%", "playtype": "pure", "note": "RNAi biotech"}
+          {
+            "name": "Vertex (VRTX)",
+            "weight": "~7.5%",
+            "playtype": "pure",
+            "note": "profitable biotech mega-cap"
+          },
+          {
+            "name": "Gilead (GILD)",
+            "weight": "~7.4%",
+            "playtype": "pure",
+            "note": "profitable biotech mega-cap"
+          },
+          {
+            "name": "Amgen (AMGN)",
+            "weight": "~7.2%",
+            "playtype": "pure",
+            "note": "profitable biotech mega-cap"
+          },
+          {
+            "name": "Regeneron (REGN)",
+            "weight": "~6.7%",
+            "playtype": "pure",
+            "note": "profitable biotech mega-cap"
+          },
+          {
+            "name": "Alnylam (ALNY)",
+            "weight": "~3.5%",
+            "playtype": "pure",
+            "note": "RNAi biotech"
+          }
         ],
-        "concentration": "High for a 255-name fund — top-10 ~45-50%, four names ~7% each. Idiosyncratic risk concentrated in Vertex/Gilead/Amgen/Regeneron.",
+        "concentration": "High for a 255-name fund \u2014 top-10 ~45-50%, four names ~7% each. Idiosyncratic risk concentrated in Vertex/Gilead/Amgen/Regeneron.",
         "sector_geo": "Overwhelmingly US biotech; mega-cap led with a small/mid-cap tail.",
-        "cost_context": "0.44% is the most expensive passive biotech option here and notably above XBI's 0.35% — a long-standing knock on IBB.",
+        "cost_context": "0.44% is the most expensive passive biotech option here and notably above XBI's 0.35% \u2014 a long-standing knock on IBB.",
         "track_record_note": "Longest history of the group (2001). Solid 2025 (+28.0%) after a down 2024 (-2.4%); flat-to-slightly-negative YTD 2026 after an early-Jan peak. Lower drawdowns than XBI historically.",
         "red_flags": [
-          "🚩 0.44% fee — high vs peers.",
-          "⚠️ Heavy reliance on 4 mega-caps.",
-          "⚠️ Gilead/Amgen patent-cliff & pipeline risk.",
-          "⚠️ YTD negative after Jan peak (momentum cooling)."
+          "\ud83d\udea9 0.44% fee \u2014 high vs peers.",
+          "\u26a0\ufe0f Heavy reliance on 4 mega-caps.",
+          "\u26a0\ufe0f Gilead/Amgen patent-cliff & pipeline risk.",
+          "\u26a0\ufe0f YTD negative after Jan peak (momentum cooling)."
         ],
-        "bull": ["Profitable, cash-generative core holdings", "Lower volatility than XBI", "Broad 250-name backbone", "Long track record"],
-        "bear": ["Top-heavy = single-name shocks matter", "Fee drag (0.44%)", "Mega-cap maturity caps upside vs small-cap biotech", "Rate/policy sensitivity"],
-        "decision_log": [{"date": "2026-06-08", "action": "WATCH (example)", "text": "The steadier biotech core. If you want biotech without XBI's whipsaw, IBB works — but you pay 0.44% and ride 4 mega-caps. Verify avg volume before trading."}]
+        "bull": [
+          "Profitable, cash-generative core holdings",
+          "Lower volatility than XBI",
+          "Broad 250-name backbone",
+          "Long track record"
+        ],
+        "bear": [
+          "Top-heavy = single-name shocks matter",
+          "Fee drag (0.44%)",
+          "Mega-cap maturity caps upside vs small-cap biotech",
+          "Rate/policy sensitivity"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "WATCH (example)",
+            "text": "The steadier biotech core. If you want biotech without XBI's whipsaw, IBB works \u2014 but you pay 0.44% and ride 4 mega-caps. Verify avg volume before trading."
+          }
+        ]
       }
     },
     {
-      "ticker": "ARKG", "name": "ARK Genomic Revolution ETF", "is_theme_fund": true,
-      "issuer": "ARK Investment Management", "holdings_url": "https://www.ark-funds.com/funds/arkg",
-      "expense_ratio": 0.75, "aum_display": "~$1.27B", "aum_musd": 1270, "inception": "2014-10-31",
-      "structure": "Active — non-index", "index": "None (active genomics mandate)",
-      "holdings_count": 34, "top10_weight_display": "~60%", "top10_weight_pct": 60,
-      "largest_position_display": "~10.1% (CRISPR Tx)", "derivatives": "No",
-      "performance": {"ytd": "+3.3%", "y1": "+35.8%", "y2025": "+23.0%", "y2024": "-28.2%", "y3_annualized": null,
-        "as_of": "2026-06", "note": "Total return. Extremely volatile: strong 2025 (+23%) & 1-yr (+35.8%) but devastating 2024 (-28%) and 2022 (-54%). High-amplitude vehicle."},
-      "market": {"price": 33.20, "price_display": "$33.20", "price_asof": "2026-06", "volume_avg": 3460000, "volume_display": "~3.5M/day"},
-      "scores": {
-        "cost": {"rating": "red", "note": "0.75% — by far the most expensive here (~2x XBI/IBB, ~9x XLV)."},
-        "purity": {"rating": "yellow", "note": "On-theme for genomics but mixes diagnostics/tools/'techbio' (Tempus, 10x), not biotech-pure."},
-        "concentration": {"rating": "red", "note": "~33 names, top-10 ~60%, top name ~10% — single-stock & thesis risk dominate."},
-        "liquidity": {"rating": "yellow", "note": "~3.5M shares/day — adequate but thinner than XBI/IBB."},
-        "track_record": {"rating": "red", "note": "Severe drawdowns (-28% in 2024, -54% in 2022); mixed long-run record."}
+      "ticker": "ARKG",
+      "name": "ARK Genomic Revolution ETF",
+      "is_theme_fund": true,
+      "issuer": "ARK Investment Management",
+      "holdings_url": "https://www.ark-funds.com/funds/arkg",
+      "expense_ratio": 0.75,
+      "aum_display": "~$1.27B",
+      "aum_musd": 1270,
+      "inception": "2014-10-31",
+      "structure": "Active \u2014 non-index",
+      "index": "None (active genomics mandate)",
+      "holdings_count": 34,
+      "top10_weight_display": "~60%",
+      "top10_weight_pct": 60,
+      "largest_position_display": "~10.1% (CRISPR Tx)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": "+3.3%",
+        "y1": "+35.8%",
+        "y2025": "+23.0%",
+        "y2024": "-28.2%",
+        "y3_annualized": null,
+        "as_of": "2026-06",
+        "note": "Total return. Extremely volatile: strong 2025 (+23%) & 1-yr (+35.8%) but devastating 2024 (-28%) and 2022 (-54%). High-amplitude vehicle."
       },
-      "overall": "High-octane active genomics bet — big upside, brutal drawdowns, premium fee, concentrated.",
+      "market": {
+        "price": 33.2,
+        "price_display": "$33.20",
+        "price_asof": "2026-06",
+        "volume_avg": 3460000,
+        "volume_display": "~3.5M/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "red",
+          "note": "0.75% \u2014 by far the most expensive here (~2x XBI/IBB, ~9x XLV)."
+        },
+        "purity": {
+          "rating": "yellow",
+          "note": "On-theme for genomics but mixes diagnostics/tools/'techbio' (Tempus, 10x), not biotech-pure."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "~33 names, top-10 ~60%, top name ~10% \u2014 single-stock & thesis risk dominate."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~3.5M shares/day \u2014 adequate but thinner than XBI/IBB."
+        },
+        "track_record": {
+          "rating": "red",
+          "note": "Severe drawdowns (-28% in 2024, -54% in 2022); mixed long-run record."
+        }
+      },
+      "overall": "High-octane active genomics bet \u2014 big upside, brutal drawdowns, premium fee, concentrated.",
       "memo": {
-        "thesis": "ARKG is a concentrated, actively managed bet on the genomics revolution — gene editing, molecular diagnostics, genomic tools — NOT a diversified biotech fund. Outsized upside if the thesis plays out, but severe drawdown risk, high fees, and dependence on a few money-losing, high-multiple names.",
+        "thesis": "ARKG is a concentrated, actively managed bet on the genomics revolution \u2014 gene editing, molecular diagnostics, genomic tools \u2014 NOT a diversified biotech fund. Outsized upside if the thesis plays out, but severe drawdown risk, high fees, and dependence on a few money-losing, high-multiple names.",
         "strategy": "Active, high-conviction. ~33-35 names, top-10 ~60%, single positions up to ~10%, spanning gene editing (CRISPR, Beam), diagnostics (Tempus, Personalis) and tools (Twist, 10x, Illumina). Holdings shift frequently with ARK's research views; manager/key-person risk is material.",
-        "purity_verdict": {"rating": "yellow", "text": "~98% healthcare/genomics and on-theme for genomics, but deliberately holds diagnostics, tools and 'techbio' (e.g. Tempus AI) that aren't classic biotech drug developers — a narrower, idiosyncratic slice."},
+        "purity_verdict": {
+          "rating": "yellow",
+          "text": "~98% healthcare/genomics and on-theme for genomics, but deliberately holds diagnostics, tools and 'techbio' (e.g. Tempus AI) that aren't classic biotech drug developers \u2014 a narrower, idiosyncratic slice."
+        },
         "holdings_illustrative": [
-          {"name": "CRISPR Therapeutics (CRSP)", "weight": "~10.1%", "playtype": "pure", "note": "gene editing biotech"},
-          {"name": "Tempus AI (TEM)", "weight": "~8.6%", "playtype": "partial", "note": "AI-driven diagnostics / techbio"},
-          {"name": "Twist Bioscience (TWST)", "weight": "~8.2%", "playtype": "partial", "note": "synthetic-biology tools"},
-          {"name": "10x Genomics (TXG)", "weight": "~6.0%", "playtype": "partial", "note": "genomics tools"},
-          {"name": "Personalis (PSNL)", "weight": "~5.9%", "playtype": "partial", "note": "diagnostics"}
+          {
+            "name": "CRISPR Therapeutics (CRSP)",
+            "weight": "~10.1%",
+            "playtype": "pure",
+            "note": "gene editing biotech"
+          },
+          {
+            "name": "Tempus AI (TEM)",
+            "weight": "~8.6%",
+            "playtype": "partial",
+            "note": "AI-driven diagnostics / techbio"
+          },
+          {
+            "name": "Twist Bioscience (TWST)",
+            "weight": "~8.2%",
+            "playtype": "partial",
+            "note": "synthetic-biology tools"
+          },
+          {
+            "name": "10x Genomics (TXG)",
+            "weight": "~6.0%",
+            "playtype": "partial",
+            "note": "genomics tools"
+          },
+          {
+            "name": "Personalis (PSNL)",
+            "weight": "~5.9%",
+            "playtype": "partial",
+            "note": "diagnostics"
+          }
         ],
-        "concentration": "Highest of the group — ~33 holdings, top-10 ~60%, top name ~10%. Single-stock and thesis risk are dominant.",
+        "concentration": "Highest of the group \u2014 ~33 holdings, top-10 ~60%, top name ~10%. Single-stock and thesis risk are dominant.",
         "sector_geo": "~98% healthcare/genomics, ~91% US. Skews small/mid-cap and pre-profit.",
-        "cost_context": "0.75% — by far the most expensive of the group (more than 2x XBI/IBB, ~9x XLV). An active-management premium that must be earned through stock selection.",
-        "track_record_note": "Extremely volatile. Strong 2025 (+23%) and trailing 1-yr (+35.8%), but devastating 2024 (-28%) and 2022 (-54%) — a high-amplitude vehicle whose long-run record is mixed.",
+        "cost_context": "0.75% \u2014 by far the most expensive of the group (more than 2x XBI/IBB, ~9x XLV). An active-management premium that must be earned through stock selection.",
+        "track_record_note": "Extremely volatile. Strong 2025 (+23%) and trailing 1-yr (+35.8%), but devastating 2024 (-28%) and 2022 (-54%) \u2014 a high-amplitude vehicle whose long-run record is mixed.",
         "red_flags": [
-          "🚩 Extreme concentration + single-name risk.",
-          "🚩 0.75% fee — highest here.",
-          "🚩 Many holdings unprofitable / high-multiple.",
-          "🚩 Key-person/active-manager risk; historical -50%+ drawdowns."
+          "\ud83d\udea9 Extreme concentration + single-name risk.",
+          "\ud83d\udea9 0.75% fee \u2014 highest here.",
+          "\ud83d\udea9 Many holdings unprofitable / high-multiple.",
+          "\ud83d\udea9 Key-person/active-manager risk; historical -50%+ drawdowns."
         ],
-        "bull": ["Differentiated genomics exposure unavailable in passive funds", "Large upside if thesis works", "Strong recent 1-2 yr recovery", "Active flexibility to rotate"],
-        "bear": ["Worst drawdown profile of the group", "Highest cost", "Thesis/timing dependent", "You're buying a manager, not an index"],
-        "decision_log": [{"date": "2026-06-08", "action": "CAUTION (example)", "text": "The aggressive genomics bet. Only for high risk tolerance: 0.75% fee, ~60% top-10, -54% drawdown history. Size small; treat as a manager bet, not index exposure."}]
+        "bull": [
+          "Differentiated genomics exposure unavailable in passive funds",
+          "Large upside if thesis works",
+          "Strong recent 1-2 yr recovery",
+          "Active flexibility to rotate"
+        ],
+        "bear": [
+          "Worst drawdown profile of the group",
+          "Highest cost",
+          "Thesis/timing dependent",
+          "You're buying a manager, not an index"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "CAUTION (example)",
+            "text": "The aggressive genomics bet. Only for high risk tolerance: 0.75% fee, ~60% top-10, -54% drawdown history. Size small; treat as a manager bet, not index exposure."
+          }
+        ]
       }
     },
     {
-      "ticker": "PPH", "name": "VanEck Pharmaceutical ETF", "is_theme_fund": true,
-      "issuer": "VanEck", "holdings_url": "https://www.vaneck.com/us/en/investments/pharmaceutical-etf-pph/",
-      "expense_ratio": 0.36, "aum_display": "~$920M", "aum_musd": 920, "inception": "2011-12-20",
-      "structure": "Passive — cap-weighted (capped)", "index": "MVIS US Listed Pharmaceutical 25",
-      "holdings_count": 25, "top10_weight_display": "~71%", "top10_weight_pct": 71,
-      "largest_position_display": "~18.6% (Eli Lilly)", "derivatives": "No",
+      "ticker": "PPH",
+      "name": "VanEck Pharmaceutical ETF",
+      "is_theme_fund": true,
+      "issuer": "VanEck",
+      "holdings_url": "https://www.vaneck.com/us/en/investments/pharmaceutical-etf-pph/",
+      "expense_ratio": 0.36,
+      "aum_display": "~$920M",
+      "aum_musd": 920,
+      "inception": "2011-12-20",
+      "structure": "Passive \u2014 cap-weighted (capped)",
+      "index": "MVIS US Listed Pharmaceutical 25",
+      "holdings_count": 25,
+      "top10_weight_display": "~71%",
+      "top10_weight_pct": 71,
+      "largest_position_display": "~18.6% (Eli Lilly)",
+      "derivatives": "No",
       "distribution_yield": "~2.1%",
-      "performance": {"ytd": "+17.8%", "y1": "+18.3%", "y2025": "+5.5%", "y2024": "+19.4%", "y3_annualized": null,
-        "as_of": "2026-06-08", "note": "Total return. Lower-volatility than biotech, dividend-paying; increasingly Lilly / GLP-1-driven."},
-      "market": {"price": 105.73, "price_display": "$105.73", "price_asof": "2026-06-08", "volume_avg": 264000, "volume_display": "~264K/day"},
-      "scores": {
-        "cost": {"rating": "yellow", "note": "0.36% — fair, not cheap, for a 25-stock cap-weighted basket."},
-        "purity": {"rating": "green", "note": "~100% pharma — but note pharma≠biotech, and several top names are foreign-domiciled ADRs."},
-        "concentration": {"rating": "red", "note": "Only 25 names, top-10 ~71%, Eli Lilly alone ~18-19% — extreme single-name dependence."},
-        "liquidity": {"rating": "red", "note": "~264K shares/day — thinnest of the group; wider spreads."},
-        "track_record": {"rating": "green", "note": "Lower-vol, positive multi-year, ~2.1% dividend yield."}
+      "performance": {
+        "ytd": "+17.8%",
+        "y1": "+18.3%",
+        "y2025": "+5.5%",
+        "y2024": "+19.4%",
+        "y3_annualized": null,
+        "as_of": "2026-06-08",
+        "note": "Total return. Lower-volatility than biotech, dividend-paying; increasingly Lilly / GLP-1-driven."
       },
-      "overall": "Stable, dividend-paying big-pharma exposure — but dangerously Lilly-dependent and thinly traded.",
+      "market": {
+        "price": 105.73,
+        "price_display": "$105.73",
+        "price_asof": "2026-06-08",
+        "volume_avg": 264000,
+        "volume_display": "~264K/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.36% \u2014 fair, not cheap, for a 25-stock cap-weighted basket."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "~100% pharma \u2014 but note pharma\u2260biotech, and several top names are foreign-domiciled ADRs."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Only 25 names, top-10 ~71%, Eli Lilly alone ~18-19% \u2014 extreme single-name dependence."
+        },
+        "liquidity": {
+          "rating": "red",
+          "note": "~264K shares/day \u2014 thinnest of the group; wider spreads."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Lower-vol, positive multi-year, ~2.1% dividend yield."
+        }
+      },
+      "overall": "Stable, dividend-paying big-pharma exposure \u2014 but dangerously Lilly-dependent and thinly traded.",
       "memo": {
-        "thesis": "PPH is a concentrated, cap-weighted bet on the world's largest BRANDED pharmaceutical companies — profitable, dividend-paying franchises (Lilly, Novartis, Merck, Novo, Pfizer) — the lowest-pipeline-risk, most value/quality-tilted option among the theme funds. Its fortunes ride disproportionately on Eli Lilly (~18-19%) and the GLP-1/obesity cycle.",
-        "strategy": "Tracks the MVIS US Listed Pharmaceutical 25 Index — just 25 large, US-listed (including foreign-domiciled ADR) pharma names, cap-weighted with caps. Low turnover, dividend income (~2.1% yield), large-cap stability — but deliberately narrow and very top-heavy.",
-        "purity_verdict": {"rating": "green", "text": "~100% pharmaceuticals (on-theme), but note (a) it's pharma, NOT biotech — a different sub-industry, and (b) several top names are foreign-domiciled (Novartis, Novo, AstraZeneca) despite 'US Listed' — a global-pharma-via-US-listing bet."},
+        "thesis": "PPH is a concentrated, cap-weighted bet on the world's largest BRANDED pharmaceutical companies \u2014 profitable, dividend-paying franchises (Lilly, Novartis, Merck, Novo, Pfizer) \u2014 the lowest-pipeline-risk, most value/quality-tilted option among the theme funds. Its fortunes ride disproportionately on Eli Lilly (~18-19%) and the GLP-1/obesity cycle.",
+        "strategy": "Tracks the MVIS US Listed Pharmaceutical 25 Index \u2014 just 25 large, US-listed (including foreign-domiciled ADR) pharma names, cap-weighted with caps. Low turnover, dividend income (~2.1% yield), large-cap stability \u2014 but deliberately narrow and very top-heavy.",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "~100% pharmaceuticals (on-theme), but note (a) it's pharma, NOT biotech \u2014 a different sub-industry, and (b) several top names are foreign-domiciled (Novartis, Novo, AstraZeneca) despite 'US Listed' \u2014 a global-pharma-via-US-listing bet."
+        },
         "holdings_illustrative": [
-          {"name": "Eli Lilly (LLY)", "weight": "~18.6%", "playtype": "pure", "note": "GLP-1/obesity leader — dominates the fund"},
-          {"name": "Novartis (NVS)", "weight": "~10.7%", "playtype": "pure", "note": "Swiss big pharma (ADR)"},
-          {"name": "Merck (MRK)", "weight": "~9.4%", "playtype": "pure", "note": "US big pharma"},
-          {"name": "Novo Nordisk (NVO)", "weight": "~5.6%", "playtype": "pure", "note": "Danish big pharma (ADR), GLP-1"},
-          {"name": "Pfizer (PFE)", "weight": "~5.2%", "playtype": "pure", "note": "US big pharma"}
+          {
+            "name": "Eli Lilly (LLY)",
+            "weight": "~18.6%",
+            "playtype": "pure",
+            "note": "GLP-1/obesity leader \u2014 dominates the fund"
+          },
+          {
+            "name": "Novartis (NVS)",
+            "weight": "~10.7%",
+            "playtype": "pure",
+            "note": "Swiss big pharma (ADR)"
+          },
+          {
+            "name": "Merck (MRK)",
+            "weight": "~9.4%",
+            "playtype": "pure",
+            "note": "US big pharma"
+          },
+          {
+            "name": "Novo Nordisk (NVO)",
+            "weight": "~5.6%",
+            "playtype": "pure",
+            "note": "Danish big pharma (ADR), GLP-1"
+          },
+          {
+            "name": "Pfizer (PFE)",
+            "weight": "~5.2%",
+            "playtype": "pure",
+            "note": "US big pharma"
+          }
         ],
-        "concentration": "Very high — only 25 names, top-10 ~71%, Lilly alone ~18-19%. Closer to a concentrated large-cap basket than a diversified fund; Lilly-specific risk is the single biggest factor.",
+        "concentration": "Very high \u2014 only 25 names, top-10 ~71%, Lilly alone ~18-19%. Closer to a concentrated large-cap basket than a diversified fund; Lilly-specific risk is the single biggest factor.",
         "sector_geo": "100% pharma; meaningful foreign-domiciled exposure (Swiss/Danish/UK names) via US listings.",
-        "cost_context": "0.36% — in line with XBI (0.35%) and below ARKG; reasonable but not cheap for a 25-stock cap-weighted basket, and well above XLV's 0.08%.",
+        "cost_context": "0.36% \u2014 in line with XBI (0.35%) and below ARKG; reasonable but not cheap for a 25-stock cap-weighted basket, and well above XLV's 0.08%.",
         "track_record_note": "Decent, lower-volatility profile vs biotech: +19.4% (2024), +5.5% (2025), +17.8% YTD 2026, ~+18% trailing 1Y. Returns increasingly Lilly/GLP-1-driven. Pays a ~2.1% dividend.",
         "red_flags": [
-          "🚩 Extreme single-name dependence on Eli Lilly (~18-19%).",
-          "🚩 Only 25 holdings.",
-          "🚩 Low liquidity (~264K shares/day) → wider spreads.",
-          "⚠️ GLP-1/obesity-cycle and drug-pricing-policy concentration."
+          "\ud83d\udea9 Extreme single-name dependence on Eli Lilly (~18-19%).",
+          "\ud83d\udea9 Only 25 holdings.",
+          "\ud83d\udea9 Low liquidity (~264K shares/day) \u2192 wider spreads.",
+          "\u26a0\ufe0f GLP-1/obesity-cycle and drug-pricing-policy concentration."
         ],
-        "bull": ["Profitable, dividend-paying mega-cap franchises", "Lower volatility than biotech", "Direct GLP-1/obesity exposure (Lilly & Novo)", "Reasonable 0.36% fee"],
-        "bear": ["Top-heavy / idiosyncratic (Lilly)", "Thin trading", "Pharma patent-cliff & pricing risk", "Narrow 25-name diversification"],
-        "decision_log": [{"date": "2026-06-08", "action": "WATCH (example)", "text": "The stable big-pharma pick — but it's ~18-19% Eli Lilly and thinly traded. If you want diversified pharma, consider equal-weight XPH (Add ticker); if you want Lilly, you could just buy Lilly."}]
+        "bull": [
+          "Profitable, dividend-paying mega-cap franchises",
+          "Lower volatility than biotech",
+          "Direct GLP-1/obesity exposure (Lilly & Novo)",
+          "Reasonable 0.36% fee"
+        ],
+        "bear": [
+          "Top-heavy / idiosyncratic (Lilly)",
+          "Thin trading",
+          "Pharma patent-cliff & pricing risk",
+          "Narrow 25-name diversification"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "WATCH (example)",
+            "text": "The stable big-pharma pick \u2014 but it's ~18-19% Eli Lilly and thinly traded. If you want diversified pharma, consider equal-weight XPH (Add ticker); if you want Lilly, you could just buy Lilly."
+          }
+        ]
       }
     },
     {
-      "ticker": "XLV", "name": "Health Care Select Sector SPDR Fund", "is_theme_fund": false,
-      "issuer": "State Street SPDR", "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/state-street-health-care-select-sector-spdr-etf-xlv",
-      "expense_ratio": 0.08, "aum_display": "~$38B", "aum_musd": 38000, "inception": "1998-12-16",
-      "structure": "Passive — cap-weighted", "index": "Health Care Select Sector",
-      "holdings_count": 63, "top10_weight_display": "~60%", "top10_weight_pct": 60,
-      "largest_position_display": "~16.0% (Eli Lilly)", "derivatives": "No",
+      "ticker": "XLV",
+      "name": "Health Care Select Sector SPDR Fund",
+      "is_theme_fund": false,
+      "issuer": "State Street SPDR",
+      "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/state-street-health-care-select-sector-spdr-etf-xlv",
+      "expense_ratio": 0.08,
+      "aum_display": "~$38B",
+      "aum_musd": 38000,
+      "inception": "1998-12-16",
+      "structure": "Passive \u2014 cap-weighted",
+      "index": "Health Care Select Sector",
+      "holdings_count": 63,
+      "top10_weight_display": "~60%",
+      "top10_weight_pct": 60,
+      "largest_position_display": "~16.0% (Eli Lilly)",
+      "derivatives": "No",
       "distribution_yield": "~1.5%",
-      "performance": {"ytd": "-0.8%", "y1": "+16.4%", "y2025": "+13.3%", "y2024": "+2.5%", "y3_annualized": null,
-        "as_of": "2026-06-05", "note": "Benchmark, total return. Steady, low-volatility healthcare. Far smaller drawdowns than biotech. (Note: 2024 +2.5% — an early search wrongly returned XLV's 2019 figure.)"},
-      "market": {"price": 153.10, "price_display": "$153.10", "price_asof": "2026-06-07", "volume_avg": 11640000, "volume_display": "~11.6M/day"},
-      "scores": {
-        "cost": {"rating": "green", "note": "0.08% — cheapest here by a wide margin (~1/4 of the theme funds)."},
-        "purity": {"rating": "red", "note": "Broad healthcare, NOT pure biotech/pharma — big insurer/device/tools weights. Benchmark only."},
-        "concentration": {"rating": "green", "note": "Top-10 ~60% but diversified ACROSS sub-industries; lower single-name risk than PPH/ARKG."},
-        "liquidity": {"rating": "green", "note": "~11.6M shares/day — deepest of the group."},
-        "track_record": {"rating": "green", "note": "Long history (1998), low volatility, far smaller drawdowns than biotech."}
+      "performance": {
+        "ytd": "-0.8%",
+        "y1": "+16.4%",
+        "y2025": "+13.3%",
+        "y2024": "+2.5%",
+        "y3_annualized": null,
+        "as_of": "2026-06-05",
+        "note": "Benchmark, total return. Steady, low-volatility healthcare. Far smaller drawdowns than biotech. (Note: 2024 +2.5% \u2014 an early search wrongly returned XLV's 2019 figure.)"
       },
-      "overall": "Benchmark — cheap, liquid, diversified healthcare core; the reference, not a concentrated bet.",
+      "market": {
+        "price": 153.1,
+        "price_display": "$153.10",
+        "price_asof": "2026-06-07",
+        "volume_avg": 11640000,
+        "volume_display": "~11.6M/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.08% \u2014 cheapest here by a wide margin (~1/4 of the theme funds)."
+        },
+        "purity": {
+          "rating": "red",
+          "note": "Broad healthcare, NOT pure biotech/pharma \u2014 big insurer/device/tools weights. Benchmark only."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Top-10 ~60% but diversified ACROSS sub-industries; lower single-name risk than PPH/ARKG."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~11.6M shares/day \u2014 deepest of the group."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Long history (1998), low volatility, far smaller drawdowns than biotech."
+        }
+      },
+      "overall": "Benchmark \u2014 cheap, liquid, diversified healthcare core; the reference, not a concentrated bet.",
       "memo": {
-        "thesis": "REFERENCE FUND, NOT A PURE BIOTECH/PHARMA BET. XLV is broad, cap-weighted US large-cap healthcare — pharma + biotech + managed care + devices + tools — at rock-bottom cost. The standard against which the concentrated theme funds should be judged: if XBI/IBB/ARKG/PPH didn't beat XLV after higher fees and risk, the concentrated bet didn't pay.",
+        "thesis": "REFERENCE FUND, NOT A PURE BIOTECH/PHARMA BET. XLV is broad, cap-weighted US large-cap healthcare \u2014 pharma + biotech + managed care + devices + tools \u2014 at rock-bottom cost. The standard against which the concentrated theme funds should be judged: if XBI/IBB/ARKG/PPH didn't beat XLV after higher fees and risk, the concentrated bet didn't pay.",
         "strategy": "Tracks the Health Care Select Sector Index (the ~60-65 healthcare members of the S&P 500), cap-weighted. Diversified across sub-industries, anchored by Lilly, J&J, AbbVie, UnitedHealth, Merck. Low turnover, very high liquidity, minimal fee.",
-        "purity_verdict": {"rating": "red", "text": "Only a portion is drug developers; large weights are insurers (UnitedHealth), devices (Abbott) and tools (Thermo Fisher). Intentionally NOT a pure theme fund — that's why it's the yardstick."},
+        "purity_verdict": {
+          "rating": "red",
+          "text": "Only a portion is drug developers; large weights are insurers (UnitedHealth), devices (Abbott) and tools (Thermo Fisher). Intentionally NOT a pure theme fund \u2014 that's why it's the yardstick."
+        },
         "holdings_illustrative": [
-          {"name": "Eli Lilly (LLY)", "weight": "~16.0%", "playtype": "pure", "note": "pharma mega-cap"},
-          {"name": "Johnson & Johnson (JNJ)", "weight": "~10.1%", "playtype": "partial", "note": "diversified pharma + medtech"},
-          {"name": "AbbVie (ABBV)", "weight": "~7.2%", "playtype": "pure", "note": "pharma"},
-          {"name": "UnitedHealth (UNH)", "weight": "~6.4%", "playtype": "unrelated", "note": "health insurer — not a drugmaker"},
-          {"name": "Merck (MRK)", "weight": "~5.4%", "playtype": "pure", "note": "pharma"}
+          {
+            "name": "Eli Lilly (LLY)",
+            "weight": "~16.0%",
+            "playtype": "pure",
+            "note": "pharma mega-cap"
+          },
+          {
+            "name": "Johnson & Johnson (JNJ)",
+            "weight": "~10.1%",
+            "playtype": "partial",
+            "note": "diversified pharma + medtech"
+          },
+          {
+            "name": "AbbVie (ABBV)",
+            "weight": "~7.2%",
+            "playtype": "pure",
+            "note": "pharma"
+          },
+          {
+            "name": "UnitedHealth (UNH)",
+            "weight": "~6.4%",
+            "playtype": "unrelated",
+            "note": "health insurer \u2014 not a drugmaker"
+          },
+          {
+            "name": "Merck (MRK)",
+            "weight": "~5.4%",
+            "playtype": "pure",
+            "note": "pharma"
+          }
         ],
         "concentration": "Top-10 ~60%, Lilly ~16%, but diversified ACROSS sub-industries; single-name risk lower than PPH/ARKG and spread across healthcare verticals.",
         "sector_geo": "US large-cap healthcare, all sub-industries; predominantly domestic.",
-        "cost_context": "0.08% — cheapest by a wide margin (~1/4 of the pharma/biotech funds, ~1/9 of ARKG). The cost advantage compounds meaningfully over time.",
+        "cost_context": "0.08% \u2014 cheapest by a wide margin (~1/4 of the pharma/biotech funds, ~1/9 of ARKG). The cost advantage compounds meaningfully over time.",
         "track_record_note": "Steady, low-volatility: +2.5% (2024), +13.3% (2025), ~+16.4% trailing 1Y, ~flat YTD 2026. Long history since 1998; far smaller drawdowns than biotech.",
-        "red_flags": ["⚠️ Not a pure biotech/pharma bet — big insurer/device weights.", "⚠️ Managed-care (UNH) policy/regulatory risk drives part of returns.", "⚠️ Lilly-heavy at the top.", "⚠️ Will lag in a pure biotech rip."],
-        "bull": ["Lowest cost (0.08%)", "Deepest liquidity", "Diversified, lower-drawdown healthcare", "Ideal benchmark / core holding"],
-        "bear": ["Diluted theme exposure", "Less upside in biotech bull runs", "Mega-cap concentration at the top", "Sector-policy sensitivity"],
-        "decision_log": [{"date": "2026-06-08", "action": "BENCHMARK", "text": "The yardstick. Before buying any concentrated pharma/biotech fund, check whether it beat this cheap, diversified, lower-risk option after fees."}]
+        "red_flags": [
+          "\u26a0\ufe0f Not a pure biotech/pharma bet \u2014 big insurer/device weights.",
+          "\u26a0\ufe0f Managed-care (UNH) policy/regulatory risk drives part of returns.",
+          "\u26a0\ufe0f Lilly-heavy at the top.",
+          "\u26a0\ufe0f Will lag in a pure biotech rip."
+        ],
+        "bull": [
+          "Lowest cost (0.08%)",
+          "Deepest liquidity",
+          "Diversified, lower-drawdown healthcare",
+          "Ideal benchmark / core holding"
+        ],
+        "bear": [
+          "Diluted theme exposure",
+          "Less upside in biotech bull runs",
+          "Mega-cap concentration at the top",
+          "Sector-policy sensitivity"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "BENCHMARK",
+            "text": "The yardstick. Before buying any concentrated pharma/biotech fund, check whether it beat this cheap, diversified, lower-risk option after fees."
+          }
+        ]
       }
     }
   ]

@@ -74,6 +74,8 @@ tbody tr.live td:first-child { background: #11171f; }
 .nm { color: var(--muted); font-size: 13px; white-space: normal; }
 .pos { color: var(--green); } .neg { color: var(--red); }
 .muted { color: var(--muted); }
+.nodata { color: var(--muted); font-size: 12px; border: 1px dashed var(--border); border-radius: 5px;
+  padding: 1px 6px; cursor: help; white-space: nowrap; }
 .refresh { background: transparent; color: var(--accent); border: 1px solid var(--border);
   padding: 4px 8px; font-size: 12px; border-radius: 6px; }
 .refresh:hover { background: var(--panel-2); }

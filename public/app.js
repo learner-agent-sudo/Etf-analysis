@@ -92,18 +92,21 @@ function isPlaceholder(v) {
   const s = String(v).trim().toLowerCase();
   return s === "" || s === "n/a" || s === "na" || s.startsWith("verify") || s === "—";
 }
-// Price / volume cell. Live (●) overrides the dated snapshot. "—" if neither.
+// Price / volume cell. Live (●) overrides the dated snapshot.
+// A missing value shows a clear "tap ↻" affordance — NOT a red flag. Every fund
+// here is a real, listed, investable ETF; a blank just means we haven't captured
+// that number yet (the live button fills it).
 function marketCell(etf, which) {
   const lv = LIVE[etf.ticker], m = etf.market || {};
   if (which === "price") {
     if (lv && lv.market && lv.market.price_display) return el("span", { title: "live price" }, lv.market.price_display + " ●");
-    if (m.price_display) return el("span", { title: "snapshot as of " + (m.price_asof || "?") + " — tap ↻" }, m.price_display);
-    return el("span", { class: "muted", title: "Tap ↻ to fetch the live price." }, "—");
+    if (m.price_display) return el("span", { title: "snapshot as of " + (m.price_asof || "?") + " — tap ↻ to refresh" }, m.price_display);
+    return el("span", { class: "nodata", title: "Price not captured yet — tap the ↻ button to fetch it live. (The fund is investable; this is just missing data.)" }, "n/a ↻");
   }
   // volume
   if (lv && lv.market && lv.market.volume_display) return el("span", { title: "live (latest day)" }, lv.market.volume_display + " ●");
   if (m.volume_display) return el("span", { title: "average daily volume (snapshot)" }, m.volume_display);
-  return el("span", { class: "muted", title: "Tap ↻ to fetch trading volume." }, "—");
+  return el("span", { class: "nodata", title: "Volume not captured yet — tap ↻ to fetch it live. A blank does NOT mean illiquid; every fund here is listed and tradable." }, "n/a ↻");
 }
 function perfCell(etf, key) {
   const lv = LIVE[etf.ticker];
