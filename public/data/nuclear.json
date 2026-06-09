@@ -3,7 +3,7 @@
   "name": "Nuclear / Uranium",
   "as_of": "2026-06-08",
   "tagline": "A commodity-driven boom-bust theme riding the nuclear revival and AI-datacenter power demand. Returns hinge on the uranium spot price and are dominated by a few miners \u2014 above all Cameco \u2014 plus real single-country (Kazakhstan/Canada) risk.",
-  "universe_note": "Three flavors: miner-heavy (URA), pure miners + physical uranium (URNM), high-risk junior miners (URNJ), and a utilities/nuclear-tech tilt (NLR). They are very different risk levels. Use 'Add ticker' for others (URNU, NUKZ, SMR-style nuclear-tech funds).",
+  "universe_note": "Spans pure uranium miners (URNM, URNJ), miner-heavy (URA), and diversified nuclear-power baskets (NLR utilities-tilt, NUKZ reactors+utilities+fuel). The broader funds (NLR/NUKZ) are far less Cameco/uranium-spot dependent. XLE is the broad-energy benchmark. Use 'Add ticker' for others (URNU etc.).",
   "live_refresh": true,
   "key_tensions": [
     "Uranium spot-price dependence: these funds live and die on the uranium price \u2014 a volatile commodity with a brutal boom-bust history (URNM: +40.6% in 2025 but -14.1% in 2024).",
@@ -411,8 +411,8 @@
         "price": 133.3,
         "price_display": "$133.30",
         "price_asof": "2026-05-28",
-        "volume_avg": null,
-        "volume_display": null
+        "volume_avg": 300000,
+        "volume_display": "~300K/day"
       },
       "scores": {
         "cost": {
@@ -497,6 +497,132 @@
             "date": "2026-06-08",
             "action": "WATCH (example)",
             "text": "The conservative nuclear pick \u2014 utilities make it steadier and cheaper, but you give up the uranium-price upside. Choose NLR for 'nuclear power' exposure, URNM for a 'uranium price' bet. Tap \u21bb for live data."
+          }
+        ]
+      }
+    },
+    {
+      "ticker": "NUKZ",
+      "name": "Range Nuclear Renaissance Index ETF",
+      "is_theme_fund": true,
+      "issuer": "Range / Exchange Traded Concepts",
+      "holdings_url": "https://www.rangeetfs.com/nukz",
+      "expense_ratio": 0.85,
+      "aum_display": "~$835M",
+      "aum_musd": 835,
+      "inception": "2024",
+      "structure": "Passive \u2014 index",
+      "index": "Range Nuclear Renaissance",
+      "holdings_count": 54,
+      "top10_weight_display": "~36%",
+      "top10_weight_pct": 36,
+      "largest_position_display": "~9.2% (Cameco)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-06",
+        "note": "Total return \u2014 tap \u21bb. The most DIVERSIFIED nuclear fund: spans advanced reactors, utilities, construction/services AND fuel \u2014 so less uranium-spot-price-dependent and far less Cameco-concentrated (~9% vs ~21-23% in URA/URNM)."
+      },
+      "market": {
+        "price": 74.05,
+        "price_display": "$74.05",
+        "price_asof": "2026-06-02",
+        "volume_avg": 118000,
+        "volume_display": "~118K/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "red",
+          "note": "0.85% \u2014 high, the priciest nuclear fund here."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Genuinely nuclear-focused \u2014 but broad: reactors + utilities + construction + fuel, not just uranium miners."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Top-10 ~36%, Cameco only ~9% across 54 names \u2014 the LEAST concentrated nuclear fund."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$835M AUM, ~118K shares/day \u2014 adequate but thinner than URA/NLR."
+        },
+        "track_record": {
+          "rating": "red",
+          "note": "Launched 2024 \u2014 short track record."
+        }
+      },
+      "overall": "The most diversified, balanced nuclear fund \u2014 reactors + utilities + fuel, much less Cameco/uranium-spot dependent than the miner funds.",
+      "memo": {
+        "thesis": "NUKZ is the broadest nuclear bet here: a 54-stock index spanning advanced-reactor developers, nuclear utilities, construction/services, AND fuel/miners. That diversification means it's far less dependent on the uranium spot price or any single miner \u2014 Cameco is only ~9% (vs ~21-23% in URA/URNM). The trade-offs: a high 0.85% fee and a short (2024) track record.",
+        "strategy": "Passively tracks the Range Nuclear Renaissance Index \u2014 companies across the nuclear value chain: advanced reactors (incl. SMRs), utilities operating nuclear plants, engineering/construction/services, and nuclear fuel/miners. Broader than the uranium-miner funds.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Genuinely nuclear, but BROAD \u2014 it's a 'nuclear renaissance / power' bet (reactors + utilities + fuel), not a pure uranium-price play. That breadth is a feature for diversification."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Cameco (CCJ)",
+            "weight": "~9.2%",
+            "playtype": "pure",
+            "note": "uranium miner \u2014 but far smaller weight than in URA/URNM"
+          },
+          {
+            "name": "Samsung C&T",
+            "weight": "~4.2%",
+            "playtype": "partial",
+            "note": "construction/engineering (nuclear builds)"
+          },
+          {
+            "name": "GE Vernova (GEV)",
+            "weight": "~3.3%",
+            "playtype": "partial",
+            "note": "power equipment incl. nuclear/SMR"
+          },
+          {
+            "name": "Talen Energy (TLN)",
+            "weight": "~3.2%",
+            "playtype": "partial",
+            "note": "nuclear utility/IPP"
+          },
+          {
+            "name": "CEZ",
+            "weight": "~3.1%",
+            "playtype": "partial",
+            "note": "European nuclear utility"
+          }
+        ],
+        "concentration": "The LEAST concentrated nuclear fund \u2014 top-10 ~36% across 54 names, Cameco only ~9%. Single-name and single-commodity risk are much lower than the uranium-miner funds.",
+        "sector_geo": "Global nuclear value chain \u2014 utilities, reactors, construction, fuel; mix of US, Korea, Europe. Less single-country (Kazakhstan/Canada) concentration than the miner funds.",
+        "cost_context": "0.85% \u2014 the priciest nuclear fund here, for the broadest exposure. Weigh the diversification against the fee + URA's lower 0.69%.",
+        "track_record_note": "Launched 2024 \u2014 short history (Q2/2025 was a standout quarter, ~+48%). Less volatile than pure miners thanks to the utility/services sleeve. Tap \u21bb for current figures.",
+        "red_flags": [
+          "\ud83d\udea9 0.85% fee \u2014 highest nuclear fund here.",
+          "\ud83d\udea9 Short track record (2024 launch).",
+          "\u26a0\ufe0f Utility/construction sleeve dilutes uranium-price upside.",
+          "\u26a0\ufe0f ~118K shares/day \u2014 check spreads."
+        ],
+        "bull": [
+          "Most diversified nuclear exposure \u2014 reactors + utilities + fuel",
+          "Far less Cameco/single-commodity concentration (~9%)",
+          "Lower volatility than pure uranium miners",
+          "Captures the broad 'nuclear renaissance' incl. SMRs"
+        ],
+        "bear": [
+          "Highest fee (0.85%)",
+          "Short, unproven track record",
+          "Less uranium-price upside than miner funds",
+          "Thinner liquidity than URA/NLR"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "The diversified 'nuclear power' pick \u2014 least concentrated, less uranium-price-dependent. Choose NUKZ for breadth, URNM for a pure uranium-price bet. Weigh the 0.85% fee. Tap \u21bb for live data."
           }
         ]
       }
