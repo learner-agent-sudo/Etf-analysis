@@ -54,9 +54,6 @@ const COLUMNS = [
       const n = parseFloat(String(y).replace(/[^0-9.\-]/g, "")); return el("span", { class: n >= 0 ? "pos" : "" , title: "distribution yield" }, y); } },
   { key: "_perf1y", label: "1-yr", fmt: (_v, e) => perfCell(e, "y1") },
   { key: "_perfytd", label: "YTD", fmt: (_v, e) => perfCell(e, "ytd") },
-  { key: "structure", label: "Structure" },
-  { key: "holdings_count", label: "# Hold", fmt: v => v == null ? "—" : v },
-  { key: "top10_weight_pct", label: "Top-10", fmt: (_v, e) => e.top10_weight_display || "—" },
   { key: "_cost", label: "Cost", type: "score" },
   { key: "_purity", label: "Purity", type: "score" },
   { key: "_concentration", label: "Concen.", type: "score" },
@@ -235,21 +232,21 @@ function render() {
     const tr = el("tr", { class: (e.is_theme_fund ? "" : "bench ") + (isLive ? "live" : "") });
     cols.forEach(c => {
       if (c.key === "_refresh") {
-        tr.append(el("td", {}, el("button", { class: "refresh",
-          onclick: ev => { ev.stopPropagation(); refreshTicker(e.ticker); } }, "↻")));
+        tr.append(el("td", { "data-label": "" , class: "col-refresh" }, el("button", { class: "refresh",
+          onclick: ev => { ev.stopPropagation(); refreshTicker(e.ticker); } }, "↻ refresh")));
       } else if (c.type === "score") {
         const sc = scoreOf(e, c.key.slice(1));
-        const td = el("td", { class: "cellscore", title: sc ? sc.note : "", onclick: () => openMemo(e.ticker) },
+        const td = el("td", { class: "cellscore", "data-label": c.label, title: sc ? sc.note : "", onclick: () => openMemo(e.ticker) },
           sc ? el("span", { class: "dot " + sc.rating }) : "—", sc ? RATING_LABEL[sc.rating] : "");
         tr.append(td);
       } else if (c.key === "ticker") {
-        tr.append(el("td", { onclick: () => openMemo(e.ticker) },
+        tr.append(el("td", { class: "col-ticker", onclick: () => openMemo(e.ticker) },
           el("span", { class: "tk" }, e.ticker),
           isLive ? el("span", { class: "tag-live" }, "live") : null,
           el("div", { class: "nm" }, e.name)));
       } else {
         const out = c.fmt ? c.fmt(e[c.key], e) : (e[c.key] == null ? "—" : String(e[c.key]));
-        tr.append(el("td", { onclick: () => openMemo(e.ticker) }, out));
+        tr.append(el("td", { "data-label": c.label, onclick: () => openMemo(e.ticker) }, out));
       }
     });
     tbody.append(tr);
