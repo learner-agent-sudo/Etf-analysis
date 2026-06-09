@@ -3,7 +3,7 @@
   "name": "AI / Robotics",
   "as_of": "2026-06-08",
   "tagline": "The hottest theme \u2014 but the central question is overlap: many 'AI' funds are stuffed with NVIDIA/Micron/AMD/Alphabet you likely already own via a cheap index fund. The genuine robotics plays (ABB, Keyence, Fanuc) cost more but give differentiated exposure.",
-  "universe_note": "Two sub-themes hide here: genuine ROBOTICS/AUTOMATION (BOTZ, ROBO \u2014 industrial robot makers, often foreign) vs broad AI/SEMICONDUCTORS (ARTY, CHAT \u2014 chips + mega-cap software). The latter overlaps QQQ heavily. Use 'Add ticker' for others (AIQ, ROBT, THNQ).",
+  "universe_note": "A deep, crowded theme. Genuine ROBOTICS/AUTOMATION (BOTZ, ROBO, ROBT, THNQ) vs AI/SEMICONDUCTOR-heavy (ARTY, CHAT, AIQ, IGPT, WTAI) \u2014 the latter overlap QQQ/SMH heavily. SMH & XT are references. Use 'Add ticker' for others (ROBT peers, AIQ peers).",
   "live_refresh": true,
   "key_tensions": [
     "Mega-cap overlap is the #1 issue: AI funds like ARTY/CHAT lean on NVIDIA, Micron, AMD, Alphabet, Microsoft \u2014 the same names you already own in any S&P/Nasdaq fund. You may be paying a thematic fee for exposure you already have.",
@@ -618,6 +618,888 @@
             "date": "2026-06-08",
             "action": "BENCHMARK",
             "text": "The key test: if a thematic AI fund's top holdings look like QQQ's, you're paying extra for what you'd get here at 0.18%. Buy a theme fund only for what QQQ does NOT give you (e.g. real robotics names)."
+          }
+        ]
+      }
+    },
+    {
+      "ticker": "AIQ",
+      "name": "Global X Artificial Intelligence & Technology ETF",
+      "is_theme_fund": true,
+      "issuer": "Global X",
+      "holdings_url": "https://www.globalxetfs.com/funds/aiq",
+      "expense_ratio": 0.68,
+      "aum_display": "~$10.9B",
+      "aum_musd": 10850,
+      "inception": "2018-05",
+      "structure": "Passive \u2014 cap-weighted",
+      "index": "Indxx Artificial Intelligence & Big Data",
+      "holdings_count": 92,
+      "top10_weight_display": "~42%",
+      "top10_weight_pct": 42,
+      "largest_position_display": "~6.5% (SK hynix)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": "+22.9%",
+        "y1": null,
+        "y2025": "+31.9%",
+        "y2024": "+24.1%",
+        "y3_annualized": null,
+        "as_of": "2026-06-05",
+        "note": "Total return. Differentiated: top weights are Asian memory/semis (SK hynix, Micron, Samsung) not US mega-caps \u2014 adds real semiconductor exposure on top of QQQ."
+      },
+      "market": {
+        "price": 68.03,
+        "price_display": "$68.03",
+        "price_asof": "2026-06-05",
+        "volume_avg": 2850000,
+        "volume_display": "~2.9M/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.68% \u2014 mid-pack for AI thematics, ~2x SMH/XT."
+        },
+        "purity": {
+          "rating": "yellow",
+          "note": "Broad 'AI & big data' \u2014 includes generic large-cap tech/comm-services."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Top-10 ~42%, ~92 names \u2014 diversified for the category."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$10B AUM, ~2.85M shares/day \u2014 deep."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "8-yr history, survived 2022."
+        }
+      },
+      "overall": "Broad, liquid AI fund that overweights the Asian memory/semiconductor chain \u2014 more differentiated from QQQ than its name suggests.",
+      "memo": {
+        "thesis": "AIQ is the broadest, most liquid pure-AI thematic here, and uniquely overweights the memory/semiconductor supply chain (SK hynix, Micron, Samsung) that benefits from AI capex but is under-represented in QQQ. Diversified, lower-single-name-risk AI exposure for 0.68%. The trade-off is theme breadth \u2014 it sweeps in networking and large-cap tech only loosely AI-driven.",
+        "strategy": "Cap-weighted index of developed-market companies positioned to benefit from AI and big-data adoption. ~92 holdings with a soft single-name cap keep any one name near ~6-7%, producing a meaningful Asia/semiconductor tilt vs US-centric peers.",
+        "purity_verdict": {
+          "rating": "yellow",
+          "note": "Clearly AI-themed and supply-chain-heavy, but the index definition is wide enough to include general big-data/IT names."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "SK hynix",
+            "weight": "~6.5%",
+            "playtype": "partial",
+            "note": "memory leader, AI-levered (Korea)"
+          },
+          {
+            "name": "Micron (MU)",
+            "weight": "~5.4%",
+            "playtype": "partial",
+            "note": "memory chips"
+          },
+          {
+            "name": "Samsung Electronics",
+            "weight": "~5.1%",
+            "playtype": "unrelated",
+            "note": "mega-cap conglomerate"
+          },
+          {
+            "name": "AMD",
+            "weight": "~4.6%",
+            "playtype": "partial",
+            "note": "AI accelerators + CPUs"
+          },
+          {
+            "name": "Cisco (CSCO)",
+            "weight": "~4.1%",
+            "playtype": "partial",
+            "note": "networking, AI-data-center adjacent"
+          }
+        ],
+        "concentration": "Low for the category \u2014 ~42% top-10, no position >~7%.",
+        "sector_geo": "~76% IT, ~10% comm services; large South Korea/Taiwan sleeves alongside US.",
+        "cost_context": "0.68% = category median for AI thematics; ~2x SMH/XT.",
+        "track_record_note": "One of the oldest dedicated AI ETFs (2018); full cycle history including the 2022 drawdown.",
+        "red_flags": [
+          "\u26a0\ufe0f 'AI & big data' label is broad \u2014 not a pure robotics/AI play.",
+          "\u26a0\ufe0f Heavy Asian-memory tilt adds FX/geopolitical risk.",
+          "\u2753 AUM varies by source ($8.6-10.9B).",
+          "\u26a0\ufe0f 0.68% fee high vs broad-tech benchmarks."
+        ],
+        "bull": [
+          "Differentiated semis/memory exposure complementary to QQQ",
+          "Deep liquidity, tight spreads",
+          "Diversified (~92 names)",
+          "Strong, consistent 2024-26 returns"
+        ],
+        "bear": [
+          "Concentrated in cyclical memory chips \u2014 sharp drawdowns when the cycle turns",
+          "Fee drag vs cheap beta",
+          "Name promises 'AI' but delivers broad tech",
+          "Ex-US holdings add currency risk"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "A genuine QQQ complement (Asian memory/semis). If you already own QQQ + a chip fund, check overlap; otherwise one of the better-diversified AI options."
+          }
+        ]
+      }
+    },
+    {
+      "ticker": "ROBT",
+      "name": "First Trust Nasdaq AI & Robotics ETF",
+      "is_theme_fund": true,
+      "issuer": "First Trust",
+      "holdings_url": "https://www.ftportfolios.com/retail/etf/etfsummary.aspx?Ticker=ROBT",
+      "expense_ratio": 0.65,
+      "aum_display": "~$675M",
+      "aum_musd": 675,
+      "inception": "2018-02",
+      "structure": "Passive \u2014 modified equal-weight",
+      "index": "Nasdaq CTA AI & Robotics",
+      "holdings_count": 100,
+      "top10_weight_display": "~18%",
+      "top10_weight_pct": 18,
+      "largest_position_display": "~2.2% (Palo Alto Networks)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": "+15.7%",
+        "y2025": "+15.2%",
+        "y2024": "-0.4%",
+        "y3_annualized": null,
+        "as_of": "2026-03",
+        "note": "Total return. The MOST differentiated fund here \u2014 equal-weight caps mega-caps near ~2%, so it barely overlaps QQQ. But that design made it badly lag cap-weighted/semis-heavy peers, and it trades thin."
+      },
+      "market": {
+        "price": 60.35,
+        "price_display": "$60.35",
+        "price_asof": "2026-05",
+        "volume_avg": 54000,
+        "volume_display": "~54K/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.65% \u2014 mid-pack."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Tightly themed AI+robotics, rules-based 3-bucket methodology."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Top-10 ~18% \u2014 lowest concentration here."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$675M AUM ok, but ~54K shares/day is thin \u2192 wider spreads."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "2018 inception but middling results (flat 2024)."
+        }
+      },
+      "overall": "The most diversified, least mega-cap-overlapping AI+robotics fund \u2014 the best QQQ complement, but it lags and trades thin.",
+      "memo": {
+        "thesis": "ROBT is the closest to a true diversified AI+robotics basket \u2014 modified-equal-weight strips out mega-cap dominance and gives ~100 all-cap global names across enablers, engagers, and enhancers. Highly additive to a QQQ-heavy book. The cost is performance: equal-weighting meant it badly trailed cap-weighted/semis-heavy peers in 2024-25.",
+        "strategy": "Tracks the Nasdaq CTA AI & Robotics Index, classifying firms as enablers (chips/machinery), engagers (AI/robotics products & software) or enhancers (ancillary), weighting on a modified-equal basis. Rebalanced semi-annually.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Explicit, rules-based AI/robotics taxonomy; little generic large-cap drift."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Palo Alto Networks (PANW)",
+            "weight": "~2.2%",
+            "playtype": "partial",
+            "note": "cybersecurity, AI-enhanced not robotics"
+          },
+          {
+            "name": "Cisco (CSCO)",
+            "weight": "~2.0%",
+            "playtype": "partial",
+            "note": "networking"
+          },
+          {
+            "name": "SentinelOne (S)",
+            "weight": "~1.8%",
+            "playtype": "partial",
+            "note": "AI-native security"
+          },
+          {
+            "name": "Cloudflare (NET)",
+            "weight": "~1.6%",
+            "playtype": "partial",
+            "note": "edge/AI-inference adjacent"
+          },
+          {
+            "name": "Synopsys (SNPS)",
+            "weight": "~1.6%",
+            "playtype": "pure",
+            "note": "EDA chip-design software \u2014 core AI-hardware enabler"
+          }
+        ],
+        "concentration": "Lowest in the set \u2014 no position above ~2.3%.",
+        "sector_geo": "Tech + industrials + healthcare; genuinely global, all-cap.",
+        "cost_context": "0.65% mid-pack; you pay a thematic premium for the equal-weight, broad construction.",
+        "track_record_note": "8-yr live record but middling \u2014 equal-weight structurally lags in mega-cap-led AI rallies.",
+        "red_flags": [
+          "\ud83d\udea9 Thin liquidity (~54K shares/day) \u2192 execution/spread risk.",
+          "\u26a0\ufe0f Chronic underperformance vs cap-weighted AI/semis peers.",
+          "\u26a0\ufe0f Equal-weight dilutes the NVIDIA/winner exposure driving the theme.",
+          "\u2753 No clean current-dated YTD found."
+        ],
+        "bull": [
+          "Best diversification / least mega-cap overlap \u2192 strongest QQQ complement",
+          "Genuine small/mid-cap robotics & cyber exposure",
+          "Disciplined, transparent index methodology",
+          "8-yr track record"
+        ],
+        "bear": [
+          "Equal-weight is a structural headwind in concentrated AI bull markets",
+          "Thin volume",
+          "Heavy cyber/software tilt \u2014 as much 'software' as 'robotics'",
+          "Fee high for the lagging returns"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "The pick if your goal is exposure you DON'T already have via QQQ. Accept the thin volume and the structural lag in mega-cap-led rallies."
+          }
+        ]
+      }
+    },
+    {
+      "ticker": "THNQ",
+      "name": "ROBO Global Artificial Intelligence ETF",
+      "is_theme_fund": true,
+      "issuer": "ROBO Global / Exchange Traded Concepts",
+      "holdings_url": "https://www.roboglobaletfs.com/thnq",
+      "expense_ratio": 0.68,
+      "aum_display": "~$294M",
+      "aum_musd": 294,
+      "inception": "2020-05",
+      "structure": "Passive \u2014 tiered equal-weight",
+      "index": "ROBO Global Artificial Intelligence",
+      "holdings_count": 56,
+      "top10_weight_display": "~30%",
+      "top10_weight_pct": 30,
+      "largest_position_display": "~4.0% (AMD)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": "-7.7%",
+        "y1": "+33.1%",
+        "y2025": "+29.8%",
+        "y2024": "+18.8%",
+        "y3_annualized": null,
+        "as_of": "2026-06-09",
+        "note": "Total return. Arguably the PUREST AI fund \u2014 revenue-screened, surfaces differentiated mid-caps (Global Unichip, Nebius, Lumentum) you won't find in QQQ. But smallest/least liquid and most volatile (worst YTD here)."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.68%."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Revenue-based AI screen \u2192 genuinely pure (highest purity here)."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Top-10 ~30%, mid-equal-weight."
+        },
+        "liquidity": {
+          "rating": "red",
+          "note": "Smallest/most niche (~$294M), thin volume."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "2020 launch, survived 2022, but only ~6 yrs."
+        }
+      },
+      "overall": "The purest 'AI revenue' fund \u2014 differentiated mid-caps, maximally complementary to QQQ, but small, illiquid and volatile.",
+      "memo": {
+        "thesis": "THNQ's index requires meaningful AI-derived revenue and equal-weights across the value chain, surfacing differentiated mid-caps (Global Unichip, Nebius, Lumentum) you won't find in QQQ or a mega-cap fund. It captured strong 2024-25 upside. But it's the smallest, least liquid, and most volatile here (down ~8% YTD 2026), and its purity means a rougher ride.",
+        "strategy": "Tracks the ROBO Global AI Index across the full AI stack \u2014 compute (semis, networking), enabling tech (data, cloud), and applications \u2014 selecting by AI-revenue significance and weighting on a tiered modified-equal basis. Global, ~56 names.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Highest purity in the set \u2014 revenue-screened, application-to-infrastructure AI value chain. (Note: some aggregators show STALE holdings like Splunk/Alteryx \u2014 those were acquired; current top names are AMD/Global Unichip/Nebius.)"
+        },
+        "holdings_illustrative": [
+          {
+            "name": "AMD",
+            "weight": "~4.0%",
+            "playtype": "partial",
+            "note": "AI accelerators core, also CPUs"
+          },
+          {
+            "name": "Global Unichip",
+            "weight": "~3.5%",
+            "playtype": "pure",
+            "note": "ASIC/SoC design for AI silicon (TSMC-affiliated)"
+          },
+          {
+            "name": "Nebius (NBIS)",
+            "weight": "~3.4%",
+            "playtype": "pure",
+            "note": "AI GPU cloud"
+          },
+          {
+            "name": "MediaTek",
+            "weight": "~3.3%",
+            "playtype": "partial",
+            "note": "broad SoC, AI-edge"
+          },
+          {
+            "name": "Lumentum (LITE)",
+            "weight": "~2.8%",
+            "playtype": "pure",
+            "note": "optical components, AI-data-center demand"
+          }
+        ],
+        "concentration": "Moderate-low; ~30% top-10, no name >~4%.",
+        "sector_geo": "Tech-heavy with semis/optical/cloud tilt; international (Taiwan etc.) meaningfully represented.",
+        "cost_context": "0.68% on a small, niche fund \u2014 fair for the access but not cheap.",
+        "track_record_note": "~6-yr record; strong 2024-25, weak start to 2026 \u2014 purity = higher beta.",
+        "red_flags": [
+          "\ud83d\udea9 Stale third-party holdings data (Splunk/Alteryx) \u2014 verify on issuer page.",
+          "\ud83d\udea9 Smallest AUM + thinnest liquidity \u2192 closure/spread risk.",
+          "\ud83d\udea9 Worst YTD-2026 of the group (~-8%).",
+          "\u26a0\ufe0f Niche mid-caps are volatile and less familiar."
+        ],
+        "bull": [
+          "Purest-play AI exposure, maximally complementary to QQQ",
+          "Differentiated supply-chain/mid-cap names",
+          "Equal-weight avoids mega-cap crowding",
+          "Strong 2024-25 track of capturing the theme"
+        ],
+        "bear": [
+          "Liquidity/closure risk at ~$294M",
+          "High volatility / drawdown-prone",
+          "Data-quality issues for display",
+          "0.68% fee on a small fund"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "CAUTION (example)",
+            "text": "The purest AI bet, but small and volatile. For high risk tolerance + a desire for exposure outside the mega-caps. Verify holdings/AUM before acting; size small."
+          }
+        ]
+      }
+    },
+    {
+      "ticker": "IGPT",
+      "name": "Invesco AI and Next Gen Software ETF",
+      "is_theme_fund": true,
+      "issuer": "Invesco",
+      "holdings_url": "https://www.invesco.com/us/en/financial-products/etfs/invesco-ai-and-next-gen-software-etf.html",
+      "expense_ratio": 0.56,
+      "aum_display": "~$1.1B",
+      "aum_musd": 1120,
+      "inception": "2023 (repositioned)",
+      "structure": "Passive \u2014 index",
+      "index": "STOXX World AC NexGen Software Development",
+      "holdings_count": 105,
+      "top10_weight_display": "~61%",
+      "top10_weight_pct": 61,
+      "largest_position_display": "~7.6% (NVIDIA)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": "+29.9%",
+        "y1": "+121%",
+        "y2025": "+31.6%",
+        "y2024": "+17.2%",
+        "y3_annualized": null,
+        "as_of": "2026-06-07",
+        "note": "Total return. Despite 'software' in the name, it's SEMICONDUCTOR-led (NVIDIA/AMD/Qualcomm) \u2014 high overlap with QQQ/SMH. Repositioned from an old software fund in 2023, so its long record is a different strategy."
+      },
+      "market": {
+        "price": 85.0,
+        "price_display": "$85.00",
+        "price_asof": "2026-06-07",
+        "volume_avg": 262000,
+        "volume_display": "~262K/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.56% \u2014 cheapest dedicated AI thematic here."
+        },
+        "purity": {
+          "rating": "yellow",
+          "note": "Name says 'software', book is semis-led \u2014 definitional drift."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Top-10 ~61% \u2014 most concentrated AI thematic here."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$1B AUM ok; ~262K shares/day moderate."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Current strategy only ~3 yrs old; pre-2023 history is a different fund."
+        }
+      },
+      "overall": "Cheapest AI thematic here, but effectively a concentrated semiconductor+software fund that heavily overlaps QQQ/SMH.",
+      "memo": {
+        "thesis": "IGPT is the cheapest dedicated AI thematic here and has ridden the semis/AI rally hard (1-yr ~+121%). But it's effectively a concentrated semiconductor-plus-software fund wearing a 'next-gen software' label, with ~61% in its top 10 and heavy NVIDIA/AMD/Qualcomm weights that substantially duplicate QQQ/SMH. It adds less differentiation than THNQ/ROBT.",
+        "strategy": "Tracks the STOXX World AC NexGen Software Development Index \u2014 companies enabling next-gen software (now including semis, cloud infrastructure, AI hardware, plus software). Cap-influenced weighting \u2192 top-heavy in the largest AI-chip names.",
+        "purity_verdict": {
+          "rating": "yellow",
+          "note": "Strongly AI-levered, but the 'software' branding mismatches a semiconductor-dominated portfolio."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "NVIDIA (NVDA)",
+            "weight": "~7.6%",
+            "playtype": "partial",
+            "note": "AI-chip leader \u2014 also in QQQ/SMH"
+          },
+          {
+            "name": "Intuitive Surgical (ISRG)",
+            "weight": "~6.9%",
+            "playtype": "pure",
+            "note": "surgical robotics \u2014 genuine differentiation"
+          },
+          {
+            "name": "Adobe (ADBE)",
+            "weight": "~6.3%",
+            "playtype": "partial",
+            "note": "software, AI-feature-driven"
+          },
+          {
+            "name": "AMD",
+            "weight": "~6.0%",
+            "playtype": "partial",
+            "note": "compute chips"
+          },
+          {
+            "name": "Qualcomm (QCOM)",
+            "weight": "~4.5%",
+            "playtype": "partial",
+            "note": "mobile/edge chips"
+          }
+        ],
+        "concentration": "Highest concentration of the AI thematics (~61% top-10); single-name risk meaningful.",
+        "sector_geo": "Tech-dominant, semis-heavy; ~79% US / ~21% foreign.",
+        "cost_context": "0.56% is a genuine edge \u2014 ~12bps cheaper than the 0.68% peers.",
+        "track_record_note": "Only meaningful since the Aug-2023 re-launch; older history is not comparable.",
+        "red_flags": [
+          "\ud83d\udea9 Name/holdings mismatch ('software' \u2192 mostly semis).",
+          "\ud83d\udea9 ~61% top-10 concentration.",
+          "\u26a0\ufe0f Repositioned 2023 \u2192 short relevant track record.",
+          "\u26a0\ufe0f High mega-cap overlap with QQQ/SMH \u2192 little diversification."
+        ],
+        "bull": [
+          "Lowest fee among AI thematics (0.56%)",
+          "Strongest recent momentum (1-yr ~+121%)",
+          "Intuitive Surgical adds a differentiated robotics-medtech angle",
+          "Decent liquidity/AUM"
+        ],
+        "bear": [
+          "High mega-cap overlap with QQQ/SMH",
+          "Top-heavy concentration \u2192 drawdown risk",
+          "Definitional drift undermines theme clarity",
+          "Returns largely a leveraged-beta echo of NVIDIA/AMD"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "CAUTION (example)",
+            "text": "Cheap, but check overlap: if you own QQQ or a chip fund, IGPT's top holdings likely duplicate them. The 2023 repositioning also muddies its track record."
+          }
+        ]
+      }
+    },
+    {
+      "ticker": "WTAI",
+      "name": "WisdomTree Artificial Intelligence and Innovation Fund",
+      "is_theme_fund": true,
+      "issuer": "WisdomTree",
+      "holdings_url": "https://www.wisdomtree.com/investments/etfs/megatrends/wtai",
+      "expense_ratio": 0.45,
+      "aum_display": "~$600M",
+      "aum_musd": 600,
+      "inception": "2021-12",
+      "structure": "Passive \u2014 equal-weight",
+      "index": "WisdomTree AI & Innovation",
+      "holdings_count": 64,
+      "top10_weight_display": "~37%",
+      "top10_weight_pct": 37,
+      "largest_position_display": "~4.6% (Micron)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": "+34.0%",
+        "y1": "+34.7%",
+        "y2025": null,
+        "y2024": "+6.5%",
+        "y3_annualized": null,
+        "as_of": "2026-06",
+        "note": "Total return. Cheapest DEDICATED AI fund (0.45%), equal-weight, well-diversified. Moderate mega-cap overlap (NVDA/AMZN/GOOGL in top 5). Note brutal 2022 (~-42%) \u2014 high theme beta."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": 130000,
+        "volume_display": "~130K/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.45% \u2014 best dedicated-AI fee in the set."
+        },
+        "purity": {
+          "rating": "yellow",
+          "note": "'AI & innovation' is broad."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Top-10 ~37%, equal-weight."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$600M AUM; ~130K shares/day moderate."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "2021 launch; brutal 2022, ~5-yr history."
+        }
+      },
+      "overall": "The most cost-efficient diversified AI play \u2014 equal-weight, ~64 names, cheapest dedicated-AI fee, but moderate QQQ overlap.",
+      "memo": {
+        "thesis": "WTAI is the most cost-efficient diversified AI play in this batch (0.45%, equal-weight, ~64 names), blending the AI semiconductor complex with select mega-caps and 'innovation' names. It led the group on YTD-2026 performance. Mega-cap overlap is moderate (NVDA/AMZN/GOOGL in top 5) and the 'innovation' mandate adds breadth beyond pure AI.",
+        "strategy": "Tracks WisdomTree's AI & Innovation Index \u2014 globally-listed companies tied to AI and adjacent innovation, weighted approximately equally and tiered by AI-engagement. Equal weight balances single-name risk and spreads across the value chain.",
+        "purity_verdict": {
+          "rating": "yellow",
+          "note": "Solidly AI-centric but '& innovation' widens the net beyond pure AI/robotics."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Micron (MU)",
+            "weight": "~4.6%",
+            "playtype": "partial",
+            "note": "memory, AI-levered cyclical"
+          },
+          {
+            "name": "Samsung",
+            "weight": "~4.4%",
+            "playtype": "unrelated",
+            "note": "mega-cap conglomerate"
+          },
+          {
+            "name": "NVIDIA (NVDA)",
+            "weight": "~4.4%",
+            "playtype": "partial",
+            "note": "in QQQ too"
+          },
+          {
+            "name": "Amazon (AMZN)",
+            "weight": "~4.2%",
+            "playtype": "unrelated",
+            "note": "mega-cap; AWS AI exposure"
+          },
+          {
+            "name": "Alphabet (GOOGL)",
+            "weight": "~3.7%",
+            "playtype": "unrelated",
+            "note": "mega-cap, already in QQQ"
+          }
+        ],
+        "concentration": "Low; equal-weight, ~37% top-10, no name >~4.6%.",
+        "sector_geo": "~72% tech; ~75% US, rest global (Samsung etc.).",
+        "cost_context": "0.45% materially undercuts the 0.56-0.68% peers \u2014 best-in-batch for a dedicated AI fund.",
+        "track_record_note": "~5 yrs; includes the savage 2022 (-42%) and strong 2023/2025/2026 \u2014 high beta to the theme.",
+        "red_flags": [
+          "\u26a0\ufe0f '& Innovation' dilutes theme purity.",
+          "\u26a0\ufe0f 2022 showed deep drawdown capacity (-42%).",
+          "\u26a0\ufe0f Moderate liquidity (~130K shares/day).",
+          "\u26a0\ufe0f Top names (NVDA/AMZN/GOOGL) duplicate QQQ."
+        ],
+        "bull": [
+          "Cheapest dedicated AI fund (0.45%)",
+          "Best YTD-2026 performer here",
+          "Equal-weight diversification",
+          "Balanced semis-plus-platform exposure"
+        ],
+        "bear": [
+          "Moderate QQQ overlap reduces diversification benefit",
+          "High theme beta (big 2022 loss)",
+          "Broad 'innovation' mandate",
+          "Mid-size AUM/liquidity"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "Best cost + diversification combo for a dedicated AI fund. Accept moderate QQQ overlap and high theme beta (recall -42% in 2022)."
+          }
+        ]
+      }
+    },
+    {
+      "ticker": "XT",
+      "name": "iShares Future Exponential Technologies ETF",
+      "is_theme_fund": false,
+      "issuer": "BlackRock (iShares)",
+      "holdings_url": "https://www.ishares.com/us/products/272532/ishares-exponential-technologies-etf",
+      "expense_ratio": 0.46,
+      "aum_display": "~$3.9B",
+      "aum_musd": 3890,
+      "inception": "2015-03",
+      "structure": "Passive \u2014 broadly equal-weight",
+      "index": "Morningstar Exponential Technologies",
+      "holdings_count": 228,
+      "top10_weight_display": "~33%",
+      "top10_weight_pct": 33,
+      "largest_position_display": "~4.1% (Texas Instruments)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": "+9.6%",
+        "y1": "+42.5%",
+        "y2025": "+26.3%",
+        "y2024": "+0.3%",
+        "y3_annualized": null,
+        "as_of": "2026-05-26",
+        "note": "Total return. REFERENCE/diversifier, NOT an AI fund \u2014 ~228 names across AI, robotics, biotech, fintech, energy. Lowest QQQ overlap; holds non-tech (Eli Lilly, AbbVie). Lagged in narrow-AI years."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": 73000,
+        "volume_display": "~73K/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.46% \u2014 cheap for a broad global basket."
+        },
+        "purity": {
+          "rating": "red",
+          "note": "NOT an AI fund \u2014 'exponential technologies' spans biotech/fintech/energy. Reference/diversifier."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Top-10 ~33%, ~228 names \u2014 most diversified here."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "$3.9B AUM strong; ~73K shares/day modest."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "2015 \u2014 longest live history in the set."
+        }
+      },
+      "overall": "Benchmark/diversifier \u2014 the broadest, longest-tenured 'exponential tech' basket; lowest QQQ overlap but not a focused AI bet.",
+      "memo": {
+        "thesis": "REFERENCE/DIVERSIFIER, NOT A FOCUSED AI BET. XT is a ~228-stock equal-weight basket of 'exponential' disruptors across AI, robotics, genomics, fintech and energy. It deliberately spreads beyond tech (Eli Lilly, AbbVie), giving it the lowest correlation-to-QQQ profile and the most diversification, at the cost of theme focus (it lagged in narrow-AI 2024).",
+        "strategy": "Tracks a Morningstar exponential-technologies index selecting global companies creating/using disruptive technologies, weighted roughly equally (~228 names). Reconstituted annually; spans nine 'exponential' categories well beyond AI.",
+        "purity_verdict": {
+          "rating": "red",
+          "note": "Low purity AS an AI/robotics fund \u2014 it's a multi-theme disruption fund. Use as a benchmark/diversifier, like a broad reference."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Texas Instruments (TXN)",
+            "weight": "~4.1%",
+            "playtype": "partial",
+            "note": "broad analog chips, AI-adjacent"
+          },
+          {
+            "name": "Eli Lilly (LLY)",
+            "weight": "~4.0%",
+            "playtype": "unrelated",
+            "note": "pharma \u2014 exponential-bio, not AI/robotics"
+          },
+          {
+            "name": "NVIDIA (NVDA)",
+            "weight": "~4.0%",
+            "playtype": "partial",
+            "note": "mega-cap, in QQQ"
+          },
+          {
+            "name": "Tesla (TSLA)",
+            "weight": "~3.8%",
+            "playtype": "partial",
+            "note": "autonomy/robotics optionality but auto/mega-cap"
+          },
+          {
+            "name": "Microsoft (MSFT)",
+            "weight": "~3.4%",
+            "playtype": "unrelated",
+            "note": "mega-cap, already in QQQ"
+          }
+        ],
+        "concentration": "Most diversified in the set (~228 holdings, top-10 ~33%).",
+        "sector_geo": "Tech + healthcare + industrials + financials; global incl. emerging markets.",
+        "cost_context": "0.46% \u2014 cheap for an actively-themed, broad global basket.",
+        "track_record_note": "Longest record here (2015); full multi-cycle history, but 2024 was ~flat (broad basket lagged the narrow AI rally).",
+        "red_flags": [
+          "\u26a0\ufe0f NOT an AI fund \u2014 name/use mismatch if slotted as AI exposure.",
+          "\u26a0\ufe0f Lagged badly in narrow-AI years (2024 ~0.3%).",
+          "\u26a0\ufe0f Modest daily volume.",
+          "\u26a0\ufe0f Holds many non-AI names an 'AI/robotics' buyer won't want."
+        ],
+        "bull": [
+          "Lowest mega-cap/QQQ overlap \u2192 strongest diversifier",
+          "Cheap (0.46%) and large ($3.9B)",
+          "Longest track record",
+          "Non-tech disruptors (genomics/pharma) add breadth"
+        ],
+        "bear": [
+          "Theme dilution \u2192 won't capture AI upside cleanly",
+          "Structural lag in concentrated AI bull markets",
+          "Holds many non-AI names",
+          "Modest liquidity"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "BENCHMARK",
+            "text": "Treat as a broad 'disruption' diversifier, not an AI bet. Useful to compare how much a focused AI fund adds vs a broad exponential-tech basket."
+          }
+        ]
+      }
+    },
+    {
+      "ticker": "SMH",
+      "name": "VanEck Semiconductor ETF",
+      "is_theme_fund": false,
+      "issuer": "VanEck",
+      "holdings_url": "https://www.vaneck.com/us/en/investments/semiconductor-etf-smh/",
+      "expense_ratio": 0.35,
+      "aum_display": "~$65B",
+      "aum_musd": 65000,
+      "inception": "2000-05",
+      "structure": "Passive \u2014 modified cap-weight",
+      "index": "MVIS US Listed Semiconductor 25",
+      "holdings_count": 26,
+      "top10_weight_display": "~72%",
+      "top10_weight_pct": 72,
+      "largest_position_display": "~16% (NVIDIA)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": "+58.3%",
+        "y1": null,
+        "y2025": "+49.2%",
+        "y2024": "+39.1%",
+        "y3_annualized": null,
+        "as_of": "2026-06-05",
+        "note": "Total return. Second SEMICONDUCTOR benchmark (with SOXX) \u2014 the picks-and-shovels of AI. NVIDIA ~16%, top-10 ~72%. Maximal overlap with QQQ + the chip sleeves of every AI fund here."
+      },
+      "market": {
+        "price": 627.68,
+        "price_display": "$627.68",
+        "price_asof": "2026-06-05",
+        "volume_avg": 9600000,
+        "volume_display": "~9.6M/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.35% \u2014 cheapest in the set."
+        },
+        "purity": {
+          "rating": "red",
+          "note": "Semiconductor benchmark, NOT a diversified AI/robotics fund."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Top-10 ~72%, NVIDIA ~16% \u2014 most concentrated here."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "Huge \u2014 $65B, ~9.6M shares/day."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Longest/deepest history (2000 lineage)."
+        }
+      },
+      "overall": "Benchmark \u2014 the dominant, ultra-liquid semiconductor fund; the AI hardware backbone, but maximal overlap with what you already own.",
+      "memo": {
+        "thesis": "REFERENCE/BENCHMARK, NOT A DIVERSIFIED THEME FUND. SMH is the cleanest, cheapest, most liquid way to own the semiconductor complex \u2014 the literal picks-and-shovels of AI \u2014 anchored by NVIDIA (~16%) and TSMC (~9.6%). It has crushed returns (2024 +39%, 2025 +49%, YTD +58%). But it's a concentrated sector benchmark whose NVIDIA/AVGO/AMD weights heavily overlap what you already hold via QQQ.",
+        "strategy": "Tracks the MVIS US-Listed Semiconductor 25 Index \u2014 the 25 largest US-listed semiconductor (and equipment) firms, modified-cap-weighted with a ~20% single-name cap. Despite 'US Listed,' it holds TSMC and ASML.",
+        "purity_verdict": {
+          "rating": "red",
+          "note": "As a SEMICONDUCTOR benchmark it's pure; as an AI/robotics theme fund it's a sector reference (is_theme_fund=false)."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "NVIDIA (NVDA)",
+            "weight": "~16%",
+            "playtype": "partial",
+            "note": "AI chip leader \u2014 already in QQQ"
+          },
+          {
+            "name": "Taiwan Semiconductor (TSM)",
+            "weight": "~9.6%",
+            "playtype": "pure",
+            "note": "the foundry enabling all AI silicon"
+          },
+          {
+            "name": "Micron (MU)",
+            "weight": "~8.2%",
+            "playtype": "partial",
+            "note": "memory, cyclical"
+          },
+          {
+            "name": "AMD",
+            "weight": "~7.4%",
+            "playtype": "partial",
+            "note": "compute chips"
+          },
+          {
+            "name": "Broadcom (AVGO)",
+            "weight": "~7.3%",
+            "playtype": "partial",
+            "note": "AI networking/ASICs, broad"
+          }
+        ],
+        "concentration": "Highest in the set \u2014 ~72% top-10, NVIDIA ~16%, single-name risk is the story.",
+        "sector_geo": "~85% tech / pure semis; ~82% US but key Taiwan (TSM) and Europe (ASML) names.",
+        "cost_context": "0.35% \u2014 cheapest here and very cheap for the exposure.",
+        "track_record_note": "Deepest history (2000 lineage); multiple full semi cycles incl. severe 2022 drawdown.",
+        "red_flags": [
+          "\ud83d\udea9 Extreme concentration (NVIDIA ~16%, top-10 ~72%).",
+          "\ud83d\udea9 Maximal overlap with QQQ and the chip sleeves of the other funds.",
+          "\u26a0\ufe0f Cyclical \u2014 semis can draw down 40%+ (2022).",
+          "\u26a0\ufe0f It's a benchmark, not a diversified AI fund."
+        ],
+        "bull": [
+          "Cheapest (0.35%), deepest liquidity ($65B)",
+          "Purest exposure to AI's hardware backbone",
+          "Best trailing returns in the set",
+          "Longest track record"
+        ],
+        "bear": [
+          "Heavy redundancy with existing QQQ/AI-fund chip exposure",
+          "NVIDIA-concentration risk",
+          "Deep cyclicality",
+          "Not diversified \u2014 all eggs in semis"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "BENCHMARK",
+            "text": "The chip benchmark (with SOXX). If a thematic AI fund's top holdings look like SMH, you're paying extra for what you'd get here cheaply. Buy a theme fund only for what SMH does NOT give you."
           }
         ]
       }
