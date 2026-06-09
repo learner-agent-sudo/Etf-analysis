@@ -27,6 +27,22 @@
       <label class="toggle">
         <input type="checkbox" id="themeOnly" /> Theme funds only
       </label>
+      <span class="ratingfilter">
+        <select id="ratingDim" aria-label="Rating dimension to filter by">
+          <option value="">Rating: any</option>
+          <option value="cost">Cost</option>
+          <option value="purity">Purity</option>
+          <option value="concentration">Concentration</option>
+          <option value="liquidity">Liquidity</option>
+          <option value="track_record">Track record</option>
+        </select>
+        <select id="ratingVal" aria-label="Minimum rating" disabled>
+          <option value="">—</option>
+          <option value="green">🟢 Good only</option>
+          <option value="greenyellow">🟢🟡 Good + Caution</option>
+          <option value="red">🔴 Concern only</option>
+        </select>
+      </span>
       <span class="addbox">
         <input type="search" id="addTicker" maxlength="8" placeholder="Add ticker (e.g. QTUM)…" />
         <button id="addBtn">＋ Look up</button>

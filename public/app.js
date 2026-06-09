@@ -147,6 +147,13 @@ async function init() {
 
   $("#filterBox").addEventListener("input", render);
   $("#themeOnly").addEventListener("change", render);
+  $("#ratingDim").addEventListener("change", () => {
+    const rv = $("#ratingVal");
+    rv.disabled = !$("#ratingDim").value;
+    if (!$("#ratingDim").value) rv.value = "";
+    render();
+  });
+  $("#ratingVal").addEventListener("change", render);
   $("#addBtn").addEventListener("click", onAddTicker);
   $("#addTicker").addEventListener("keydown", e => { if (e.key === "Enter") onAddTicker(); });
   $("#closeMemo").addEventListener("click", closeMemo);
@@ -188,9 +195,18 @@ function renderTensions() {
 function visibleEtfs() {
   const q = $("#filterBox").value.trim().toLowerCase();
   const themeOnly = $("#themeOnly").checked;
+  const rdim = $("#ratingDim") ? $("#ratingDim").value : "";
+  const rval = $("#ratingVal") ? $("#ratingVal").value : "";
   let rows = (CURRENT.etfs || []).slice();
   if (themeOnly) rows = rows.filter(e => e.is_theme_fund);
   if (q) rows = rows.filter(e => (e.ticker + " " + e.name).toLowerCase().includes(q));
+  if (rdim && rval) rows = rows.filter(e => {
+    const r = (scoreOf(e, rdim) || {}).rating;
+    if (rval === "green") return r === "green";
+    if (rval === "greenyellow") return r === "green" || r === "yellow";
+    if (rval === "red") return r === "red";
+    return true;
+  });
   rows.sort(cmp);
   return rows;
 }
