@@ -166,7 +166,7 @@ function selectTheme(id) {
   LIVE = {};
   $("#controls").hidden = false;
   $("#liveMsg").hidden = true;
-  renderIntro(); renderTensions(); render();
+  renderIntro(); renderTensions(); render(); renderRoster();
 }
 
 // ---- intro / tensions ----------------------------------------------
@@ -189,6 +189,38 @@ function renderTensions() {
     ul.append(el("li", { html: i > 0 ? `<b>${escapeHtml(x.slice(0,i))}</b>${escapeHtml(x.slice(i))}` : escapeHtml(x) }));
   });
   box.append(el("h3", {}, "Key tensions in this theme"), ul);
+}
+
+// ---- full-universe roster ------------------------------------------
+// Tier 2: the complete list of funds tagged to the theme. Curated funds (those
+// with a full card above) are marked "detailed"; the rest are look-up-only.
+function renderRoster() {
+  const box = $("#roster"); if (!box) return;
+  box.innerHTML = "";
+  const roster = CURRENT.roster || [];
+  if (!roster.length) { box.hidden = true; return; }
+  box.hidden = false;
+  const curated = new Set((CURRENT.etfs || []).map(e => e.ticker));
+  const det = el("details", { class: "rosterbox" });
+  const nDetailed = roster.filter(x => curated.has(x.ticker)).length;
+  det.append(el("summary", {},
+    `Full universe — ${roster.length} ${CURRENT.name} ETFs (${nDetailed} detailed above · tap any to look up live)`));
+  const note = el("p", { class: "rosternote" },
+    "The complete set of US-listed funds tagged to this theme, including leveraged/inverse and niche variants (clearly tagged). " +
+    "Funds marked ✓ have a full analysis card above. Tap any ticker to pull live data, or ask to add a full card.");
+  const grid = el("div", { class: "rostergrid" });
+  roster.slice().sort((a, b) => a.ticker.localeCompare(b.ticker)).forEach(x => {
+    const isDet = curated.has(x.ticker);
+    const row = el("div", { class: "rosteritem" + (isDet ? " detailed" : ""),
+      title: isDet ? "Detailed card above — click to open" : "Click to look up live data",
+      onclick: () => isDet ? openMemo(x.ticker) : refreshTicker(x.ticker) },
+      el("span", { class: "rtk" }, (isDet ? "✓ " : "") + x.ticker),
+      x.tag ? el("span", { class: "rtag" }, x.tag) : null,
+      el("span", { class: "rnm" }, x.name || ""));
+    grid.append(row);
+  });
+  det.append(note, grid);
+  box.append(det);
 }
 
 // ---- table ---------------------------------------------------------

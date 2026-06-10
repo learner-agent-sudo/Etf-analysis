@@ -86,6 +86,19 @@ tbody tr.live td:first-child { background: #11171f; }
 .dot.green { background: var(--green); } .dot.yellow { background: var(--yellow); } .dot.red { background: var(--red); }
 .cellscore { font-size: 13px; }
 
+.roster { margin-top: 22px; }
+.rosterbox summary { color: var(--accent); font-size: 14px; font-weight: 600; cursor: pointer; padding: 6px 0; }
+.rosternote { color: var(--muted); font-size: 12px; margin: 6px 0 12px; }
+.rostergrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+.rosteritem { display: flex; align-items: baseline; gap: 8px; padding: 8px 10px; border: 1px solid var(--border);
+  border-radius: 8px; background: var(--panel); cursor: pointer; transition: background .12s; }
+.rosteritem:hover { background: var(--panel-2); }
+.rosteritem.detailed { border-color: var(--accent); }
+.rosteritem .rtk { font-weight: 700; color: var(--accent); white-space: nowrap; }
+.rosteritem .rtag { font-size: 10px; color: var(--muted); border: 1px solid var(--border); border-radius: 999px;
+  padding: 0 6px; white-space: nowrap; }
+.rosteritem .rnm { color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
 .tensions { margin-top: 22px; }
 .tensions h3 { font-size: 15px; margin: 0 0 8px; }
 .tensions ul { margin: 0; padding-left: 18px; }

@@ -502,5 +502,57 @@
         "volume_display": "~8.5M/day"
       }
     }
+  ],
+  "roster": [
+    {
+      "ticker": "QTUM",
+      "name": "Defiance Quantum ETF",
+      "tag": "broad \u00b7 equal-wt"
+    },
+    {
+      "ticker": "WQTM",
+      "name": "WisdomTree Quantum Computing Fund",
+      "tag": "pure-play"
+    },
+    {
+      "ticker": "CHPX",
+      "name": "Global X AI Semiconductor & Quantum ETF",
+      "tag": "AI-semi + quantum"
+    },
+    {
+      "ticker": "QTUF",
+      "name": "Defiance Quantum & AI ETF (verify)",
+      "tag": "broad \u00b7 verify"
+    },
+    {
+      "ticker": "QPUX",
+      "name": "Defiance 2X Daily Long Pure Quantum ETF",
+      "tag": "\u26a0\ufe0f 2x leveraged basket"
+    },
+    {
+      "ticker": "RGTU",
+      "name": "Tradr 2X Long RGTI Daily ETF",
+      "tag": "\u26a0\ufe0f 2x single-stock (Rigetti)"
+    },
+    {
+      "ticker": "QBUX",
+      "name": "Tradr 2X Long QUBT Daily ETF",
+      "tag": "\u26a0\ufe0f 2x single-stock (QUBT)"
+    },
+    {
+      "ticker": "QBTX",
+      "name": "Tradr 2X Long QBTS Daily ETF",
+      "tag": "\u26a0\ufe0f 2x single-stock (D-Wave)"
+    },
+    {
+      "ticker": "XNDX",
+      "name": "Tradr 2X Long Xanadu Daily ETF",
+      "tag": "\u26a0\ufe0f 2x single-stock"
+    },
+    {
+      "ticker": "SOXX",
+      "name": "iShares Semiconductor ETF",
+      "tag": "benchmark (semis)"
+    }
   ]
 }
