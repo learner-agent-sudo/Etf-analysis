@@ -1529,5 +1529,107 @@
         ]
       }
     }
+  ],
+  "roster": [
+    {
+      "ticker": "XBI",
+      "name": "SPDR S&P Biotech",
+      "tag": "biotech \u00b7 equal-wt"
+    },
+    {
+      "ticker": "IBB",
+      "name": "iShares Biotechnology",
+      "tag": "biotech \u00b7 cap-wt"
+    },
+    {
+      "ticker": "FBT",
+      "name": "First Trust NYSE Arca Biotech",
+      "tag": "biotech \u00b7 equal-wt"
+    },
+    {
+      "ticker": "SBIO",
+      "name": "ALPS Medical Breakthroughs",
+      "tag": "clinical-stage biotech"
+    },
+    {
+      "ticker": "ARKG",
+      "name": "ARK Genomic Revolution",
+      "tag": "genomics \u00b7 active"
+    },
+    {
+      "ticker": "GNOM",
+      "name": "Global X Genomics & Biotechnology",
+      "tag": "genomics \u00b7 passive"
+    },
+    {
+      "ticker": "IDNA",
+      "name": "iShares Genomics Immunology & Healthcare",
+      "tag": "genomics+immuno \u00b7 global"
+    },
+    {
+      "ticker": "PPH",
+      "name": "VanEck Pharmaceutical",
+      "tag": "big pharma \u00b7 cap-wt"
+    },
+    {
+      "ticker": "XPH",
+      "name": "SPDR S&P Pharmaceuticals",
+      "tag": "pharma \u00b7 equal-wt"
+    },
+    {
+      "ticker": "PJP",
+      "name": "Invesco Pharmaceuticals",
+      "tag": "pharma \u00b7 quant"
+    },
+    {
+      "ticker": "IHI",
+      "name": "iShares U.S. Medical Devices",
+      "tag": "\u26a0\ufe0f devices, not drugs"
+    },
+    {
+      "ticker": "IHE",
+      "name": "iShares U.S. Pharmaceuticals",
+      "tag": "pharma \u00b7 cap-wt"
+    },
+    {
+      "ticker": "BBH",
+      "name": "VanEck Biotech",
+      "tag": "biotech \u00b7 cap-wt"
+    },
+    {
+      "ticker": "GERM",
+      "name": "ETFMG Treatments Testing & Advancements",
+      "tag": "vaccines/diagnostics"
+    },
+    {
+      "ticker": "CNCR",
+      "name": "Range Cancer Therapeutics",
+      "tag": "oncology \u00b7 niche"
+    },
+    {
+      "ticker": "HELX",
+      "name": "Franklin Genomic Advancements",
+      "tag": "genomics \u00b7 active"
+    },
+    {
+      "ticker": "IHF",
+      "name": "iShares U.S. Healthcare Providers",
+      "tag": "insurers/providers"
+    },
+    {
+      "ticker": "CURE",
+      "name": "Direxion Daily Healthcare Bull 3X",
+      "tag": "\u26a0\ufe0f 3x leveraged"
+    },
+    {
+      "ticker": "LABU",
+      "name": "Direxion Daily S&P Biotech Bull 3X",
+      "tag": "\u26a0\ufe0f 3x leveraged"
+    },
+    {
+      "ticker": "XLV",
+      "name": "Health Care Select Sector SPDR",
+      "tag": "benchmark (healthcare)"
+    }
   ]
 }

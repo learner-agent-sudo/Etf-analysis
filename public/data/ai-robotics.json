@@ -1504,5 +1504,97 @@
         ]
       }
     }
+  ],
+  "roster": [
+    {
+      "ticker": "BOTZ",
+      "name": "Global X Robotics & AI",
+      "tag": "robotics"
+    },
+    {
+      "ticker": "ROBO",
+      "name": "ROBO Global Robotics & Automation",
+      "tag": "robotics \u00b7 equal-wt"
+    },
+    {
+      "ticker": "ROBT",
+      "name": "First Trust Nasdaq AI & Robotics",
+      "tag": "AI+robotics \u00b7 equal-wt"
+    },
+    {
+      "ticker": "THNQ",
+      "name": "ROBO Global Artificial Intelligence",
+      "tag": "AI \u00b7 pure"
+    },
+    {
+      "ticker": "AIQ",
+      "name": "Global X Artificial Intelligence & Tech",
+      "tag": "AI \u00b7 broad"
+    },
+    {
+      "ticker": "ARTY",
+      "name": "iShares Future AI & Tech",
+      "tag": "AI-semi"
+    },
+    {
+      "ticker": "CHAT",
+      "name": "Roundhill Generative AI & Tech",
+      "tag": "generative AI \u00b7 active"
+    },
+    {
+      "ticker": "IGPT",
+      "name": "Invesco AI & Next Gen Software",
+      "tag": "AI-semi/software"
+    },
+    {
+      "ticker": "WTAI",
+      "name": "WisdomTree AI & Innovation",
+      "tag": "AI \u00b7 equal-wt"
+    },
+    {
+      "ticker": "XT",
+      "name": "iShares Future Exponential Technologies",
+      "tag": "broad disruptor"
+    },
+    {
+      "ticker": "IYW",
+      "name": "iShares U.S. Technology",
+      "tag": "broad tech"
+    },
+    {
+      "ticker": "AIVL",
+      "name": "WisdomTree US AI Enhanced Value",
+      "tag": "AI-picked value"
+    },
+    {
+      "ticker": "LRNZ",
+      "name": "TrueShares Technology AI & Deep Learning",
+      "tag": "AI \u00b7 active"
+    },
+    {
+      "ticker": "AIYY",
+      "name": "YieldMax AI Option Income",
+      "tag": "\u26a0\ufe0f single-stock income (PLTR-ish)"
+    },
+    {
+      "ticker": "SMH",
+      "name": "VanEck Semiconductor",
+      "tag": "benchmark (semis)"
+    },
+    {
+      "ticker": "SOXX",
+      "name": "iShares Semiconductor",
+      "tag": "benchmark (semis)"
+    },
+    {
+      "ticker": "QQQ",
+      "name": "Invesco QQQ Trust",
+      "tag": "benchmark (Nasdaq-100)"
+    },
+    {
+      "ticker": "UBOT",
+      "name": "Direxion Daily Robotics/AI Bull 2X",
+      "tag": "\u26a0\ufe0f 2x leveraged"
+    }
   ]
 }

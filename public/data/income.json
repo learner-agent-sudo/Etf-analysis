@@ -1459,5 +1459,102 @@
         ]
       }
     }
+  ],
+  "roster": [
+    {
+      "ticker": "JEPI",
+      "name": "JPMorgan Equity Premium Income",
+      "tag": "active \u00b7 ELN"
+    },
+    {
+      "ticker": "JEPQ",
+      "name": "JPMorgan Nasdaq Equity Premium Income",
+      "tag": "active \u00b7 ELN \u00b7 Nasdaq"
+    },
+    {
+      "ticker": "QYLD",
+      "name": "Global X Nasdaq 100 Covered Call",
+      "tag": "100% overwrite"
+    },
+    {
+      "ticker": "XYLD",
+      "name": "Global X S&P 500 Covered Call",
+      "tag": "100% overwrite"
+    },
+    {
+      "ticker": "RYLD",
+      "name": "Global X Russell 2000 Covered Call",
+      "tag": "100% overwrite \u00b7 small-cap"
+    },
+    {
+      "ticker": "DIVO",
+      "name": "Amplify CWP Enhanced Dividend Income",
+      "tag": "tactical \u00b7 partial"
+    },
+    {
+      "ticker": "SPYI",
+      "name": "NEOS S&P 500 High Income",
+      "tag": "call-spread \u00b7 tax-managed"
+    },
+    {
+      "ticker": "QQQI",
+      "name": "NEOS Nasdaq-100 High Income",
+      "tag": "call-spread \u00b7 Nasdaq"
+    },
+    {
+      "ticker": "ISPY",
+      "name": "ProShares S&P 500 High Income",
+      "tag": "daily calls \u00b7 swap"
+    },
+    {
+      "ticker": "GPIX",
+      "name": "Goldman Sachs S&P 500 Premium Income",
+      "tag": "partial \u00b7 low-cost"
+    },
+    {
+      "ticker": "SVOL",
+      "name": "Simplify Volatility Premium",
+      "tag": "\u26a0\ufe0f short-VIX"
+    },
+    {
+      "ticker": "GPIQ",
+      "name": "Goldman Sachs Nasdaq-100 Premium Income",
+      "tag": "partial \u00b7 Nasdaq"
+    },
+    {
+      "ticker": "FEPI",
+      "name": "REX FANG & Innovation Premium Income",
+      "tag": "single-name calls \u00b7 high-yield"
+    },
+    {
+      "ticker": "BALI",
+      "name": "iShares Advantage Large Cap Income",
+      "tag": "buffered income"
+    },
+    {
+      "ticker": "JEPY",
+      "name": "Defiance S&P 500 Enhanced Options Income",
+      "tag": "daily calls \u00b7 high-yield"
+    },
+    {
+      "ticker": "QQQY",
+      "name": "Defiance Nasdaq 100 Enhanced Options Income",
+      "tag": "\u26a0\ufe0f 0-DTE \u00b7 very high yield"
+    },
+    {
+      "ticker": "XYLG",
+      "name": "Global X S&P 500 Covered Call & Growth",
+      "tag": "50% overwrite"
+    },
+    {
+      "ticker": "DJIA",
+      "name": "Global X Dow 30 Covered Call",
+      "tag": "100% overwrite \u00b7 Dow"
+    },
+    {
+      "ticker": "SPY",
+      "name": "SPDR S&P 500",
+      "tag": "benchmark (S&P 500)"
+    }
   ]
 }

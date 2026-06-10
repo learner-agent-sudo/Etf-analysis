@@ -740,5 +740,42 @@
         ]
       }
     }
+  ],
+  "roster": [
+    {
+      "ticker": "URA",
+      "name": "Global X Uranium",
+      "tag": "miners + components"
+    },
+    {
+      "ticker": "URNM",
+      "name": "Sprott Uranium Miners",
+      "tag": "pure miners + physical"
+    },
+    {
+      "ticker": "URNJ",
+      "name": "Sprott Junior Uranium Miners",
+      "tag": "\u26a0\ufe0f junior miners"
+    },
+    {
+      "ticker": "NLR",
+      "name": "VanEck Uranium & Nuclear",
+      "tag": "utilities-tilt"
+    },
+    {
+      "ticker": "NUKZ",
+      "name": "Range Nuclear Renaissance",
+      "tag": "reactors+utilities+fuel"
+    },
+    {
+      "ticker": "URNU",
+      "name": "Global X Uranium (UCITS/var.) / verify",
+      "tag": "uranium \u00b7 verify"
+    },
+    {
+      "ticker": "XLE",
+      "name": "Energy Select Sector SPDR",
+      "tag": "benchmark (energy)"
+    }
   ]
 }

@@ -1059,5 +1059,72 @@
     }
   ],
   "live_refresh": true,
-  "universe_note": "Space pure-plays (UFO, ARKX, ROKT, NASA) span passive index to active+pre-IPO-SpaceX (NASA). XAR/SHLD/ITA/PPA are aerospace & defense references; DFEN is a 3x leveraged TRADING tool (not buy-and-hold), included only to illustrate leverage risk. Use 'Add ticker' for others."
+  "universe_note": "Space pure-plays (UFO, ARKX, ROKT, NASA) span passive index to active+pre-IPO-SpaceX (NASA). XAR/SHLD/ITA/PPA are aerospace & defense references; DFEN is a 3x leveraged TRADING tool (not buy-and-hold), included only to illustrate leverage risk. Use 'Add ticker' for others.",
+  "roster": [
+    {
+      "ticker": "UFO",
+      "name": "Procure Space",
+      "tag": "space \u00b7 passive"
+    },
+    {
+      "ticker": "ARKX",
+      "name": "ARK Space & Defense Innovation",
+      "tag": "space+defense \u00b7 active"
+    },
+    {
+      "ticker": "ROKT",
+      "name": "SPDR S&P Kensho Final Frontiers",
+      "tag": "space+deep-sea"
+    },
+    {
+      "ticker": "NASA",
+      "name": "Tema Space Innovators",
+      "tag": "space \u00b7 active \u00b7 pre-IPO SpaceX"
+    },
+    {
+      "ticker": "XAR",
+      "name": "SPDR S&P Aerospace & Defense",
+      "tag": "A&D \u00b7 equal-wt"
+    },
+    {
+      "ticker": "SHLD",
+      "name": "Global X Defense Tech",
+      "tag": "defense-tech"
+    },
+    {
+      "ticker": "ITA",
+      "name": "iShares U.S. Aerospace & Defense",
+      "tag": "A&D \u00b7 cap-wt"
+    },
+    {
+      "ticker": "PPA",
+      "name": "Invesco Aerospace & Defense",
+      "tag": "A&D \u00b7 broad"
+    },
+    {
+      "ticker": "DFEN",
+      "name": "Direxion Daily Aerospace & Defense Bull 3X",
+      "tag": "\u26a0\ufe0f 3x leveraged"
+    },
+    {
+      "ticker": "DFNS",
+      "name": "Global X Defense Tech (var.) / verify",
+      "tag": "defense \u00b7 verify"
+    },
+    {
+      "ticker": "SPCX",
+      "name": "The Original Space ETF",
+      "tag": "space \u00b7 niche"
+    },
+    {
+      "ticker": "ARKD",
+      "name": "ARK Drone/Defense (verify)",
+      "tag": "drones/defense \u00b7 verify"
+    },
+    {
+      "ticker": "WAR",
+      "name": "Leatherback Defense (verify)",
+      "tag": "defense \u00b7 active \u00b7 verify"
+    }
+  ]
 }
