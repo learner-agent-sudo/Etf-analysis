@@ -139,7 +139,8 @@
             "text": "The default uranium pick for liquidity. Know you're ~23% in Cameco and fully exposed to the uranium price. Tap \u21bb for live price/returns; compare to URNM if you want more physical-uranium exposure."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "URNM",
@@ -265,7 +266,8 @@
             "text": "The pick if you want pure uranium-price exposure. Accept the concentration (Cameco ~21%) and the boom-bust amplitude. Size small; this is a high-volatility commodity bet."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "URNJ",
@@ -379,7 +381,8 @@
             "text": "The most aggressive uranium bet \u2014 only for high risk tolerance and small position sizing. Verify spreads (thin AUM). If uranium falls, this drops hardest. Tap \u21bb for live data."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "NLR",
@@ -499,7 +502,8 @@
             "text": "The conservative nuclear pick \u2014 utilities make it steadier and cheaper, but you give up the uranium-price upside. Choose NLR for 'nuclear power' exposure, URNM for a 'uranium price' bet. Tap \u21bb for live data."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "NUKZ",
@@ -625,7 +629,8 @@
             "text": "The diversified 'nuclear power' pick \u2014 least concentrated, less uranium-price-dependent. Choose NUKZ for breadth, URNM for a pure uranium-price bet. Weigh the 0.85% fee. Tap \u21bb for live data."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "XLE",
@@ -738,7 +743,8 @@
             "text": "The yardstick. Before taking on uranium's concentration + country risk, ask whether broad, cheap, dividend-paying energy serves your goal better. Different bet \u2014 use for contrast."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     }
   ],
   "roster": [

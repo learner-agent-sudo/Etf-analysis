@@ -133,7 +133,8 @@
         "price_asof": "2026-06-09",
         "volume_avg": 1230000,
         "volume_display": "~1.2M/day"
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "ARKX",
@@ -256,7 +257,8 @@
         "price_asof": "2026-06-05",
         "volume_avg": 1340000,
         "volume_display": "~1.3M/day"
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "ROKT",
@@ -377,7 +379,8 @@
         "price_asof": "2026-06-03",
         "volume_avg": 92270,
         "volume_display": "~92K/day"
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "XAR",
@@ -472,7 +475,8 @@
         "price_asof": "2026-06-02",
         "volume_avg": 230610,
         "volume_display": "~231K/day"
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "SHLD",
@@ -592,7 +596,8 @@
         "price_asof": "2026-06-07",
         "volume_avg": 2170000,
         "volume_display": "~2.2M/day"
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "NASA",
@@ -719,7 +724,8 @@
             "text": "The way to get SpaceX exposure in an ETF \u2014 but you pay 0.87%, hold a private valuation, and have no track record. Understand the pre-IPO SPV mechanics before buying; size for high volatility."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "ITA",
@@ -842,7 +848,8 @@
             "text": "Yardstick. If your thesis is 'defense/aerospace' not 'space', this cheaper liquid fund may beat a pricey space ETF. Compare holdings to see what pure-space you'd gain."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "PPA",
@@ -954,7 +961,8 @@
             "text": "A&D yardstick (broader than ITA). For defense exposure ITA is cheaper; for space, neither \u2014 use a dedicated space fund. Tap \u21bb for price/volume."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "DFEN",
@@ -1055,7 +1063,8 @@
             "text": "Included to show leverage risk. A day-trading instrument \u2014 3x daily with volatility decay. Do NOT treat as a space or buy-and-hold investment."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     }
   ],
   "live_refresh": true,

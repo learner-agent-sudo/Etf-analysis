@@ -81,6 +81,9 @@ tbody tr.live td:first-child { background: #11171f; }
 .refresh:hover { background: var(--panel-2); }
 .tag-live { font-size: 10px; color: var(--green); border: 1px solid var(--green); border-radius: 999px;
   padding: 0 6px; margin-left: 6px; vertical-align: middle; }
+.tag-pass { font-size: 10px; font-weight: 700; color: #06223f; background: var(--green); border-radius: 999px;
+  padding: 1px 7px; margin-left: 6px; vertical-align: middle; }
+.pass-toggle { color: var(--green); font-weight: 600; }
 
 .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
 .dot.green { background: var(--green); } .dot.yellow { background: var(--yellow); } .dot.red { background: var(--red); }

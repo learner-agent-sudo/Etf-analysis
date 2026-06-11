@@ -147,6 +147,7 @@ async function init() {
 
   $("#filterBox").addEventListener("input", render);
   $("#themeOnly").addEventListener("change", render);
+  $("#passOnly").addEventListener("change", render);
   $("#ratingDim").addEventListener("change", () => {
     const rv = $("#ratingVal");
     rv.disabled = !$("#ratingDim").value;
@@ -231,6 +232,7 @@ function visibleEtfs() {
   const rval = $("#ratingVal") ? $("#ratingVal").value : "";
   let rows = (CURRENT.etfs || []).slice();
   if (themeOnly) rows = rows.filter(e => e.is_theme_fund);
+  if ($("#passOnly") && $("#passOnly").checked) rows = rows.filter(e => e.meets_criteria);
   if (q) rows = rows.filter(e => (e.ticker + " " + e.name).toLowerCase().includes(q));
   if (rdim && rval) rows = rows.filter(e => {
     const r = (scoreOf(e, rdim) || {}).rating;
@@ -293,6 +295,7 @@ function render() {
       } else if (c.key === "ticker") {
         tr.append(el("td", { class: "col-ticker", onclick: () => openMemo(e.ticker) },
           el("span", { class: "tk" }, e.ticker),
+          e.meets_criteria ? el("span", { class: "tag-pass", title: "Meets buy criteria: cost 🟢, concentration 🟢, purity 🟢/🟡" }, "✓ criteria") : null,
           isLive ? el("span", { class: "tag-live" }, "live") : null,
           el("div", { class: "nm" }, e.name)));
       } else {

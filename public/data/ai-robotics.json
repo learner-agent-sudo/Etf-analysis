@@ -139,7 +139,8 @@
             "text": "The pick if you want REAL robotics (not just AI chips). Accept the 0.68% fee and foreign/cyclical exposure. Compare vs ROBO on cost and holdings."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "ROBO",
@@ -259,7 +260,8 @@
             "text": "The diversified robotics pick \u2014 but 0.95% is the priciest fund here. Worth it only if you value the equal-weight breadth over BOTZ's cheaper (0.68%) concentrated version."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "ARTY",
@@ -385,7 +387,8 @@
             "text": "Check overlap before buying: if you already own a chip or Nasdaq fund, ARTY may duplicate it. The 2026 IRBO->ARTY repositioning also means little clean track record."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "CHAT",
@@ -505,7 +508,8 @@
             "text": "Before buying, check your existing funds \u2014 CHAT's top holdings are probably already in your S&P/Nasdaq exposure. Verify AUM. The 0.75% fee buys mostly mega-caps you own."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "QQQ",
@@ -620,7 +624,8 @@
             "text": "The key test: if a thematic AI fund's top holdings look like QQQ's, you're paying extra for what you'd get here at 0.18%. Buy a theme fund only for what QQQ does NOT give you (e.g. real robotics names)."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "AIQ",
@@ -746,7 +751,8 @@
             "text": "A genuine QQQ complement (Asian memory/semis). If you already own QQQ + a chip fund, check overlap; otherwise one of the better-diversified AI options."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "ROBT",
@@ -872,7 +878,8 @@
             "text": "The pick if your goal is exposure you DON'T already have via QQQ. Accept the thin volume and the structural lag in mega-cap-led rallies."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "THNQ",
@@ -998,7 +1005,8 @@
             "text": "The purest AI bet, but small and volatile. For high risk tolerance + a desire for exposure outside the mega-caps. Verify holdings/AUM before acting; size small."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "IGPT",
@@ -1124,7 +1132,8 @@
             "text": "Cheap, but check overlap: if you own QQQ or a chip fund, IGPT's top holdings likely duplicate them. The 2023 repositioning also muddies its track record."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "WTAI",
@@ -1250,7 +1259,8 @@
             "text": "Best cost + diversification combo for a dedicated AI fund. Accept moderate QQQ overlap and high theme beta (recall -42% in 2022)."
           }
         ]
-      }
+      },
+      "meets_criteria": true
     },
     {
       "ticker": "XT",
@@ -1376,7 +1386,8 @@
             "text": "Treat as a broad 'disruption' diversifier, not an AI bet. Useful to compare how much a focused AI fund adds vs a broad exponential-tech basket."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "SMH",
@@ -1502,7 +1513,8 @@
             "text": "The chip benchmark (with SOXX). If a thematic AI fund's top holdings look like SMH, you're paying extra for what you'd get here cheaply. Buy a theme fund only for what SMH does NOT give you."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     }
   ],
   "roster": [

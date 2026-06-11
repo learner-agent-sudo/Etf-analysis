@@ -141,7 +141,8 @@
             "text": "The safest income pick here. Decide if you want income now (JEPI) or growth (SPY). Hold in a tax-advantaged account. Compare total return \u2014 not yield \u2014 vs SPY before committing."
           }
         ]
-      }
+      },
+      "meets_criteria": true
     },
     {
       "ticker": "JEPQ",
@@ -269,7 +270,8 @@
             "text": "Higher income but tech-concentrated and unproven in a bear. Verify volume/liquidity; size for tech volatility; prefer a tax-advantaged account."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "QYLD",
@@ -379,7 +381,8 @@
             "text": "Highest yield but the cautionary case: check the latest 19a-1 notice for return-of-capital %, and compare 5-yr TOTAL return vs QQQ before being seduced by the 12% headline."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "DIVO",
@@ -507,7 +510,8 @@
             "text": "Best blend of income + growth, but concentrated. If you want income without giving up most upside, this is the pick; accept the ~20-25 stock concentration and lower headline yield."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "SPY",
@@ -618,7 +622,8 @@
             "text": "Yardstick. If your goal is growth (not monthly income), SPY usually wins on total return. Compare every income fund's total return to this before buying for yield."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "XYLD",
@@ -739,7 +744,8 @@
             "text": "High yield but maximum upside sacrifice. Compare total return (not yield) to SPY; GPIX/ISPY keep more upside for similar income."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "RYLD",
@@ -854,7 +860,8 @@
             "text": "Highest yield but worst total return + NAV decay. The ~12% headline masks return-of-capital; check the price chart over 5 years before buying for income."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "SPYI",
@@ -976,7 +983,8 @@
             "text": "Best-of-both for many: high income + partial upside + tax efficiency. But understand the ~94% ROC \u2014 it's tax-deferred return of your capital, not dividend income. Best in a taxable account."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "QQQI",
@@ -1097,7 +1105,8 @@
             "text": "Highest income but highest risk \u2014 Nasdaq concentration + ROC + no bear-market test. Size for tech volatility; understand the distribution is largely return of capital."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "ISPY",
@@ -1212,7 +1221,8 @@
             "text": "If you want income with the LEAST upside sacrifice, the daily-call design is compelling. Accept the lower ~7% yield and the swap-counterparty wrinkle. Tap \u21bb for current price/volume."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "GPIX",
@@ -1334,7 +1344,8 @@
             "text": "Arguably the best blend here: cheapest fee, strong upside retention, ~8% income. If you want income without sacrificing much growth, GPIX is the standout \u2014 accept the ROC distribution character."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "SVOL",
@@ -1457,7 +1468,8 @@
             "text": "A different animal \u2014 short-vol income, not covered calls. Only as a small diversifier for those who understand VIX-spike risk. The ~20% yield comes with genuine drawdown risk; recently negative."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     }
   ],
   "roster": [

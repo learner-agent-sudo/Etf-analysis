@@ -139,7 +139,8 @@
             "text": "The clean biotech-beta pick. Equal-weight = lower single-name risk but high volatility \u2014 size accordingly. Compare trailing return vs XLV to see if the extra risk paid."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "IBB",
@@ -265,7 +266,8 @@
             "text": "The steadier biotech core. If you want biotech without XBI's whipsaw, IBB works \u2014 but you pay 0.44% and ride 4 mega-caps. Verify avg volume before trading."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "ARKG",
@@ -391,7 +393,8 @@
             "text": "The aggressive genomics bet. Only for high risk tolerance: 0.75% fee, ~60% top-10, -54% drawdown history. Size small; treat as a manager bet, not index exposure."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "PPH",
@@ -518,7 +521,8 @@
             "text": "The stable big-pharma pick \u2014 but it's ~18-19% Eli Lilly and thinly traded. If you want diversified pharma, consider equal-weight XPH (Add ticker); if you want Lilly, you could just buy Lilly."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "XLV",
@@ -645,7 +649,8 @@
             "text": "The yardstick. Before buying any concentrated pharma/biotech fund, check whether it beat this cheap, diversified, lower-risk option after fees."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "XPH",
@@ -771,7 +776,8 @@
             "text": "The equal-weight pharma alternative to Lilly-dominated PPH. Higher beta to SMID pharma; cheap. Watch spreads given modest AUM."
           }
         ]
-      }
+      },
+      "meets_criteria": true
     },
     {
       "ticker": "PJP",
@@ -897,7 +903,8 @@
             "text": "Large-cap pharma with a quant tilt. The thin ~8.5K/day volume is the main caveat \u2014 use limit orders. Compare to cheaper PPH/XPH."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "FBT",
@@ -1023,7 +1030,8 @@
             "text": "A middle-ground biotech fund (between XBI and IBB). Main caveat: heavy overlap with IBB/XBI \u2014 don't double up. Check holdings vs what you own."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "SBIO",
@@ -1149,7 +1157,8 @@
             "text": "The most speculative pharma/biotech bet \u2014 pure clinical-stage R&D. Only for high risk tolerance + small sizing; closure risk at ~$120M AUM. Tap \u21bb for price/volume."
           }
         ]
-      }
+      },
+      "meets_criteria": true
     },
     {
       "ticker": "IHI",
@@ -1275,7 +1284,8 @@
             "text": "Include only if you want MEDICAL DEVICES, not drugs. Different risk driver from the rest of this theme; useful as a healthcare-adjacent diversifier, not a pharma substitute."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "GNOM",
@@ -1401,7 +1411,8 @@
             "text": "Cheaper passive ARKG alternative, but the ~$26M AUM is a real closure risk \u2014 confirm AUM is growing before buying. Overlaps ARKG; don't double up."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "IDNA",
@@ -1527,7 +1538,8 @@
             "text": "A more drug-developer-weighted, global genomics fund than GNOM. Volatile (recall -42% in 2022); modest AUM. Tap \u21bb for price/volume."
           }
         ]
-      }
+      },
+      "meets_criteria": false
     }
   ],
   "roster": [

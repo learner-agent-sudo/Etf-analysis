@@ -138,7 +138,8 @@
         "price_asof": "2026-06-03",
         "volume_avg": 1110000,
         "volume_display": "~1.1M/day"
-      }
+      },
+      "meets_criteria": true
     },
     {
       "ticker": "WQTM",
@@ -263,7 +264,8 @@
         "price_asof": "2026-06-03",
         "volume_avg": 752000,
         "volume_display": "~752K/day"
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "CHPX",
@@ -393,7 +395,8 @@
         "price_asof": "2026-06-02",
         "volume_avg": 94910,
         "volume_display": "~95K/day"
-      }
+      },
+      "meets_criteria": false
     },
     {
       "ticker": "SOXX",
@@ -500,7 +503,8 @@
         "price_asof": "2026-06-03",
         "volume_avg": 8500000,
         "volume_display": "~8.5M/day"
-      }
+      },
+      "meets_criteria": false
     }
   ],
   "roster": [
