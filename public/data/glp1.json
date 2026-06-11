@@ -1,0 +1,276 @@
+{
+  "id": "glp1",
+  "name": "Obesity / GLP-1",
+  "as_of": "2026-06-09 (scores from stable attributes; tap \u21bb for live price/AUM/returns)",
+  "tagline": "The blockbuster weight-loss / GLP-1 drug wave (Ozempic, Zepbound) \u2014 one of the biggest stories in pharma. A tiny fund universe with extreme dependence on just two companies: Eli Lilly and Novo Nordisk.",
+  "universe_note": "A brand-new, thin niche \u2014 SLIM is the main dedicated fund. The defining feature is duopoly concentration: Lilly + Novo dominate any GLP-1 basket. Broad pharma (PPH/XLV) is the diversified alternative. Market figures need a live \u21bb.",
+  "live_refresh": true,
+  "key_tensions": [
+    "Duopoly concentration: Eli Lilly + Novo Nordisk ARE the GLP-1 market \u2014 any focused fund is effectively a leveraged two-stock bet.",
+    "Binary clinical/competitive risk: oral GLP-1s, new entrants (Amgen, Viking), and trial readouts can re-rate the whole theme overnight.",
+    "Tiny universe: ~1 dedicated US fund (SLIM) \u2014 scarcity + closure risk.",
+    "Valuation: Lilly/Novo trade at premium multiples on huge growth expectations \u2014 disappointment hits hard.",
+    "Pure-play vs broad pharma: you can get most of the GLP-1 upside from cheaper, diversified PPH/XLV without the concentration."
+  ],
+  "benchmark_note": "PPH (big pharma) and XLV (broad healthcare) are the yardsticks \u2014 both already hold Lilly heavily, so they capture much of the GLP-1 upside far more cheaply and diversified.",
+  "etfs": [
+    {
+      "ticker": "SLIM",
+      "name": "Roundhill GLP-1 & Weight Loss ETF",
+      "is_theme_fund": true,
+      "issuer": "Roundhill",
+      "holdings_url": "https://www.roundhillinvestments.com/etf/slim/",
+      "expense_ratio": 0.59,
+      "aum_display": "~$150M (verify \u21bb)",
+      "aum_musd": 150,
+      "inception": "2024",
+      "structure": "Passive \u2014 index",
+      "index": "Roundhill GLP-1 & Weight Loss",
+      "holdings_count": 30,
+      "top10_weight_display": "~60%",
+      "top10_weight_pct": 60,
+      "largest_position_display": "Lilly/Novo (verify, large)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "verify",
+        "note": "The dedicated GLP-1/weight-loss fund \u2014 manufacturers (Lilly, Novo, Amgen, Viking) + supply chain. Effectively a Lilly+Novo-dominated bet. Tap \u21bb for current figures."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.59% \u2014 typical thematic fee for a tiny niche fund."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Genuine GLP-1/weight-loss pure-play \u2014 drug makers + supply chain."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Top-10 ~60%, dominated by Lilly + Novo \u2014 extreme duopoly concentration."
+        },
+        "liquidity": {
+          "rating": "red",
+          "note": "~$150M AUM, new (2024) \u2014 closure + liquidity risk."
+        },
+        "track_record": {
+          "rating": "red",
+          "note": "Launched 2024 \u2014 essentially no track record."
+        }
+      },
+      "overall": "The one dedicated GLP-1 fund \u2014 genuine theme, but effectively a concentrated Lilly + Novo bet, tiny and new.",
+      "memo": {
+        "thesis": "SLIM is the only dedicated way to play the GLP-1/obesity-drug boom in one ticker \u2014 the manufacturers (Eli Lilly, Novo Nordisk, plus challengers Amgen, Viking) and the CDMO/device supply chain. But because Lilly and Novo ARE the market, it's effectively a concentrated two-stock bet wrapped in an ETF, and it's tiny and brand-new.",
+        "strategy": "Passively tracks the Roundhill GLP-1 & Weight Loss Index \u2014 companies developing/manufacturing GLP-1 and weight-loss therapies plus enabling supply chain; concentrated by the reality of the market.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Genuine GLP-1/weight-loss pure-play \u2014 but 'pure' here means concentrated in the two dominant drug makers."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Eli Lilly (LLY)",
+            "weight": "~large",
+            "playtype": "pure",
+            "note": "Zepbound/Mounjaro \u2014 co-leader"
+          },
+          {
+            "name": "Novo Nordisk (NVO)",
+            "weight": "~large",
+            "playtype": "pure",
+            "note": "Ozempic/Wegovy \u2014 co-leader"
+          },
+          {
+            "name": "Amgen / Viking",
+            "weight": "~mid",
+            "playtype": "pure",
+            "note": "GLP-1 challengers (binary trial risk)"
+          },
+          {
+            "name": "CDMO/device supply chain",
+            "weight": "~small",
+            "playtype": "partial",
+            "note": "manufacturing/injector enablers"
+          }
+        ],
+        "concentration": "Extreme \u2014 top-10 ~60% dominated by Lilly + Novo. Effectively a leveraged duopoly bet; a single trial/competition headline re-rates it.",
+        "sector_geo": "Global pharma (US Lilly + Danish Novo) + supply chain.",
+        "cost_context": "0.59% \u2014 high for what is largely a two-stock exposure you can get cheaper via PPH/XLV.",
+        "track_record_note": "Launched 2024 \u2014 no meaningful history. Tap \u21bb for returns.",
+        "red_flags": [
+          "\ud83d\udea9 Duopoly concentration (Lilly + Novo) \u2014 not really diversified.",
+          "\ud83d\udea9 Tiny (~$150M) + new \u2014 closure/liquidity risk.",
+          "\ud83d\udea9 Binary competitive/clinical risk (oral GLP-1s, new entrants).",
+          "\u26a0\ufe0f You can get most of this via cheaper PPH/XLV."
+        ],
+        "bull": [
+          "Single-ticker access to the GLP-1 megatrend",
+          "Genuine manufacturer + supply-chain exposure",
+          "Captures challengers (Amgen/Viking) too",
+          "Huge addressable-market story"
+        ],
+        "bear": [
+          "Effectively a Lilly+Novo two-stock bet",
+          "Tiny, new, illiquid",
+          "Premium valuations \u2192 drawdown risk",
+          "Cheaper/diversified alternatives exist"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "CAUTION (example)",
+            "text": "Fails concentration \u2014 it's basically Lilly+Novo. If you want GLP-1 exposure, compare to just owning Lilly, or cheaper diversified PPH/XLV. Tiny/new \u2014 verify AUM trend via \u21bb."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "PPH",
+      "name": "VanEck Pharmaceutical ETF",
+      "is_theme_fund": false,
+      "issuer": "VanEck",
+      "holdings_url": "https://www.vaneck.com/us/en/investments/pharmaceutical-etf-pph/",
+      "expense_ratio": 0.36,
+      "aum_display": "~$920M (verify \u21bb)",
+      "aum_musd": 920,
+      "inception": "2011-12",
+      "structure": "Passive \u2014 cap-weight (capped)",
+      "index": "MVIS US Listed Pharmaceutical 25",
+      "holdings_count": 25,
+      "top10_weight_display": "~71%",
+      "top10_weight_pct": 71,
+      "largest_position_display": "~18% (Eli Lilly)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "verify",
+        "note": "Benchmark \u2014 big pharma, ALREADY ~18% Eli Lilly + holds Novo, so it captures much of the GLP-1 upside cheaper and more diversified. Tap \u21bb for figures."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.36% \u2014 cheaper than SLIM."
+        },
+        "purity": {
+          "rating": "red",
+          "note": "Broad big pharma, not GLP-1-specific \u2014 but heavy Lilly/Novo. The benchmark."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Top-10 ~71%, Lilly ~18% \u2014 concentrated (cross-listed from Pharma theme)."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$920M \u2014 liquid."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2011."
+        }
+      },
+      "overall": "Benchmark \u2014 big pharma already ~18% Lilly + Novo; captures much of GLP-1 cheaper and broader than SLIM.",
+      "memo": {
+        "thesis": "REFERENCE, NOT A GLP-1 FUND. PPH already holds Eli Lilly (~18%) and Novo Nordisk among 25 big-pharma names, so it captures most of the GLP-1 upside while diversifying into the rest of pharma \u2014 at a lower 0.36% fee. The key question SLIM must answer: does a dedicated GLP-1 fund beat just owning PPH (or Lilly directly)?",
+        "strategy": "Passive, capped cap-weight of 25 large US-listed pharma names; Lilly-dominated.",
+        "purity_verdict": {
+          "rating": "red",
+          "note": "Broad pharma, not GLP-1-specific \u2014 but its Lilly/Novo weight makes it a cheap proxy. The yardstick."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Eli Lilly (LLY)",
+            "weight": "~18%",
+            "playtype": "pure",
+            "note": "GLP-1 co-leader \u2014 dominates PPH already"
+          },
+          {
+            "name": "Novo Nordisk (NVO)",
+            "weight": "~5%",
+            "playtype": "pure",
+            "note": "GLP-1 co-leader"
+          },
+          {
+            "name": "Merck / Pfizer / others",
+            "weight": "\u2014",
+            "playtype": "partial",
+            "note": "the rest of big pharma (diversification)"
+          }
+        ],
+        "concentration": "Top-10 ~71%, Lilly ~18% \u2014 concentrated, but spread across pharma vs SLIM's GLP-1-only.",
+        "sector_geo": "US-listed big pharma (incl. foreign ADRs).",
+        "cost_context": "0.36% \u2014 cheaper than SLIM for much of the same Lilly/Novo exposure.",
+        "track_record_note": "Since 2011. Tap \u21bb for returns.",
+        "red_flags": [
+          "\u26a0\ufe0f Not GLP-1-specific.",
+          "\u26a0\ufe0f Lilly ~18% concentration."
+        ],
+        "bull": [
+          "Captures GLP-1 via Lilly/Novo, cheaper",
+          "Diversified across big pharma",
+          "Liquid, established"
+        ],
+        "bear": [
+          "Not pure GLP-1",
+          "Still Lilly-concentrated"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "BENCHMARK",
+            "text": "The honest GLP-1 yardstick: PPH already gives you Lilly+Novo cheaper + diversified. Buy SLIM only if you want MORE GLP-1 concentration than this."
+          }
+        ]
+      },
+      "meets_criteria": false
+    }
+  ],
+  "roster": [
+    {
+      "ticker": "SLIM",
+      "name": "Roundhill GLP-1 & Weight Loss",
+      "tag": "GLP-1 \u00b7 only dedicated fund"
+    },
+    {
+      "ticker": "HRTS",
+      "name": "Tema Cardiovascular & Metabolic",
+      "tag": "cardiometabolic \u00b7 adjacent \u00b7 verify"
+    },
+    {
+      "ticker": "PPH",
+      "name": "VanEck Pharmaceutical",
+      "tag": "benchmark (big pharma, Lilly-heavy)"
+    },
+    {
+      "ticker": "XLV",
+      "name": "Health Care Select Sector SPDR",
+      "tag": "benchmark (healthcare)"
+    },
+    {
+      "ticker": "LLY",
+      "name": "Eli Lilly (stock, not ETF)",
+      "tag": "the dominant single name"
+    }
+  ]
+}
