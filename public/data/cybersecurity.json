@@ -1,0 +1,618 @@
+{
+  "id": "cybersecurity",
+  "name": "Cybersecurity",
+  "as_of": "2026-06-09 (scores from stable fund attributes; tap \u21bb for live price/AUM/returns)",
+  "tagline": "Software and services defending against digital threats \u2014 a large, established, recession-resilient theme. Unlike most niche areas, several funds are big and liquid, so a clean green-light is actually achievable here.",
+  "universe_note": "A mature theme with 5+ real funds. The split is concentration vs diversification: CIBR/BUG/HACK lean into the big pure-plays (CrowdStrike, Palo Alto, Fortinet, Zscaler); IHAK/WCBR spread wider/cheaper. Market figures need a live \u21bb refresh.",
+  "live_refresh": true,
+  "key_tensions": [
+    "Concentration vs breadth: CIBR/BUG concentrate in a handful of mega-cap cyber names; IHAK/WCBR equal-weight wider \u2014 very different single-stock risk.",
+    "High valuations: cyber software trades at rich multiples; great businesses, but drawdown-prone when growth multiples compress.",
+    "Mega-cap overlap: Broadcom/Cisco/Microsoft appear in some funds \u2014 you may already own them via tech/Nasdaq funds.",
+    "Pure-play vs diversified-tech: HACK/CIBR are cyber-pure; some 'cyber & tech' funds dilute with broader software.",
+    "Cost clustering ~0.45-0.60%: not cheap vs broad tech (XLK ~0.09%) \u2014 the theme premium must be earned."
+  ],
+  "benchmark_note": "XLK (tech sector, ~0.09%) and IGV (software) are the yardsticks, NOT cyber funds. They show what you pay extra for cyber focus \u2014 and how much cyber exposure you already get from broad tech.",
+  "etfs": [
+    {
+      "ticker": "IHAK",
+      "name": "iShares Cybersecurity and Tech ETF",
+      "is_theme_fund": true,
+      "issuer": "BlackRock (iShares)",
+      "holdings_url": "https://www.ishares.com/us/products/307352/",
+      "expense_ratio": 0.47,
+      "aum_display": "~$1B (verify \u21bb)",
+      "aum_musd": 1000,
+      "inception": "2019-06",
+      "structure": "Passive \u2014 modified equal-weight",
+      "index": "NYSE FactSet Global Cyber Security",
+      "holdings_count": 35,
+      "top10_weight_display": "~38%",
+      "top10_weight_pct": 38,
+      "largest_position_display": "~4-5% (verify)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "verify",
+        "note": "Global cyber, more equal-weighted than CIBR/BUG \u2014 lower single-name risk. Tap \u21bb for current price/AUM/returns."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.47% \u2014 among the cheapest dedicated cyber funds."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Global cybersecurity pure-play by index."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Modified equal-weight, ~35 names, top-10 ~38% \u2014 the most diversified cyber fund."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "Mid-size AUM; verify liquidity via \u21bb."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2019; established iShares thematic."
+        }
+      },
+      "overall": "The diversified, lower-cost cyber pure-play \u2014 equal-weight spreads single-stock risk.",
+      "memo": {
+        "thesis": "IHAK is the broad, cost-efficient way to own cybersecurity: a modified-equal-weight, global index of ~35 cyber and cyber-tech names. It deliberately avoids the mega-cap concentration of CIBR/BUG, so no single name dominates \u2014 making it the cyber fund most likely to clear a cost+concentration screen.",
+        "strategy": "Passively tracks the NYSE FactSet Global Cyber Security Index, modified-equal-weighted across hardware, software and services globally; rebalanced periodically so weights stay spread.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Cybersecurity pure-play \u2014 software + services + some cyber-hardware, globally."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Cyber software leaders (CrowdStrike/Palo Alto/Zscaler-type)",
+            "weight": "~4-5%",
+            "playtype": "pure",
+            "note": "equal-weighted, leaders rotate"
+          },
+          {
+            "name": "Cyber services & hardware",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "diversifies beyond software"
+          },
+          {
+            "name": "International cyber names",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "global, not US-only"
+          }
+        ],
+        "concentration": "Most diversified cyber fund \u2014 modified equal-weight, top-10 ~38% across ~35 names.",
+        "sector_geo": "Global cybersecurity software/services/hardware; US-heavy with international names.",
+        "cost_context": "0.47% \u2014 cheapest tier of dedicated cyber funds, though still ~5x broad tech (XLK).",
+        "track_record_note": "Since 2019; rode the secular cyber-spend growth. Tap \u21bb for trailing returns.",
+        "red_flags": [
+          "\u26a0\ufe0f Still ~5x XLK's fee.",
+          "\u26a0\ufe0f Cyber software valuations are rich.",
+          "\u2753 Verify AUM/liquidity via \u21bb.",
+          "\u26a0\ufe0f Some mega-cap overlap with tech funds."
+        ],
+        "bull": [
+          "Cheapest + most diversified cyber pure-play",
+          "Equal-weight avoids single-stock blowups",
+          "Global, secular-growth theme",
+          "Established iShares fund"
+        ],
+        "bear": [
+          "Theme premium over broad tech",
+          "Rich valuations \u2192 drawdown risk",
+          "Mid-size AUM",
+          "Overlaps tech you may own"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "The cyber fund most likely to pass cost+concentration. Verify AUM/liquidity via \u21bb before acting; compare trailing return vs XLK."
+          }
+        ]
+      },
+      "meets_criteria": true
+    },
+    {
+      "ticker": "CIBR",
+      "name": "First Trust NASDAQ Cybersecurity ETF",
+      "is_theme_fund": true,
+      "issuer": "First Trust",
+      "holdings_url": "https://www.ftportfolios.com/retail/etf/etfsummary.aspx?Ticker=CIBR",
+      "expense_ratio": 0.59,
+      "aum_display": "~$9B (verify \u21bb)",
+      "aum_musd": 9000,
+      "inception": "2015-07",
+      "structure": "Passive \u2014 liquidity-weighted",
+      "index": "Nasdaq CTA Cybersecurity",
+      "holdings_count": 35,
+      "top10_weight_display": "~45%",
+      "top10_weight_pct": 45,
+      "largest_position_display": "~7-8% (verify)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "verify",
+        "note": "The largest, most liquid cyber fund \u2014 but pricier and more concentrated in the big cyber names. Tap \u21bb for current figures."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.59% \u2014 typical for the theme, not cheap."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Cybersecurity pure-play."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "Top-10 ~45% \u2014 concentrated in the big cyber names."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "The largest, most liquid cyber ETF (~$9B)."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2015 \u2014 longest cyber track record."
+        }
+      },
+      "overall": "The flagship cyber fund \u2014 biggest and most liquid, but pricier and more concentrated.",
+      "memo": {
+        "thesis": "CIBR is the cyber benchmark fund \u2014 largest AUM, longest history, deepest liquidity. It liquidity-weights ~35 cyber names, so the big pure-plays (CrowdStrike, Palo Alto, Fortinet, Zscaler, Broadcom) dominate. Great liquidity, but the concentration and 0.59% fee mean it likely lands a \ud83d\udfe1 on cost+concentration.",
+        "strategy": "Passively tracks the Nasdaq CTA Cybersecurity Index, security-liquidity-weighted across companies in cyber hardware, software and services; rebalanced semi-annually.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Cybersecurity pure-play, though includes some broader infra/hardware (Broadcom/Cisco) that dilute a touch."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "CrowdStrike / Palo Alto / Fortinet (rotate)",
+            "weight": "~7-8%",
+            "playtype": "pure",
+            "note": "the big cyber pure-plays"
+          },
+          {
+            "name": "Zscaler / Cloudflare",
+            "weight": "~5%",
+            "playtype": "pure",
+            "note": "cloud security"
+          },
+          {
+            "name": "Broadcom / Cisco",
+            "weight": "~5%",
+            "playtype": "partial",
+            "note": "broad infra with security arms \u2014 also in tech funds"
+          }
+        ],
+        "concentration": "Top-10 ~45% \u2014 liquidity-weighted toward the largest names.",
+        "sector_geo": "Global cybersecurity, US-heavy.",
+        "cost_context": "0.59% \u2014 standard for the theme but ~6x XLK.",
+        "track_record_note": "Since 2015; the longest cyber record. Tap \u21bb for trailing returns.",
+        "red_flags": [
+          "\u26a0\ufe0f 0.59% fee.",
+          "\u26a0\ufe0f Top-10 ~45% concentration.",
+          "\u26a0\ufe0f Some mega-cap (Broadcom/Cisco) overlap.",
+          "\u26a0\ufe0f Rich software valuations."
+        ],
+        "bull": [
+          "Largest, most liquid cyber fund",
+          "Longest track record",
+          "Owns all the cyber leaders",
+          "Secular spending tailwind"
+        ],
+        "bear": [
+          "Pricier + more concentrated than IHAK",
+          "Mega-cap overlap",
+          "Valuation/drawdown risk",
+          "Theme premium over XLK"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "The liquid default, but IHAK is cheaper + more diversified. Decide if CIBR's liquidity is worth the higher fee + concentration."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "BUG",
+      "name": "Global X Cybersecurity ETF",
+      "is_theme_fund": true,
+      "issuer": "Global X",
+      "holdings_url": "https://www.globalxetfs.com/funds/bug",
+      "expense_ratio": 0.5,
+      "aum_display": "~$0.9B (verify \u21bb)",
+      "aum_musd": 900,
+      "inception": "2019-10",
+      "structure": "Passive \u2014 modified cap-weight",
+      "index": "Indxx Cybersecurity",
+      "holdings_count": 25,
+      "top10_weight_display": "~55%",
+      "top10_weight_pct": 55,
+      "largest_position_display": "~8% (verify)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "verify",
+        "note": "Concentrated, ~25 mega-cap cyber names. Tap \u21bb for current figures."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.50% \u2014 mid-tier cyber fee."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Cybersecurity pure-play."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Only ~25 names, top-10 ~55% \u2014 concentrated."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$0.9B AUM; verify liquidity."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Since 2019."
+        }
+      },
+      "overall": "A concentrated pure-play on the biggest cyber names \u2014 punchier but more single-stock risk.",
+      "memo": {
+        "thesis": "BUG concentrates ~25 of the largest cybersecurity companies in a modified-cap-weight basket. Cleaner pure-play focus than CIBR (fewer infra names), but the ~55% top-10 means real single-stock risk \u2014 it fails a strict concentration screen.",
+        "strategy": "Passively tracks the Indxx Cybersecurity Index, modified-cap-weighted across ~25 leading cyber companies; rebalanced semi-annually.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Tight cybersecurity pure-play \u2014 fewer broad-infra names than CIBR."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Palo Alto / CrowdStrike",
+            "weight": "~8%",
+            "playtype": "pure",
+            "note": "cyber leaders"
+          },
+          {
+            "name": "Zscaler / Fortinet",
+            "weight": "~6%",
+            "playtype": "pure",
+            "note": "cloud + network security"
+          },
+          {
+            "name": "CyberArk / Okta",
+            "weight": "~5%",
+            "playtype": "pure",
+            "note": "identity security"
+          }
+        ],
+        "concentration": "~25 names, top-10 ~55% \u2014 the most concentrated cyber fund here.",
+        "sector_geo": "Global cyber, US-heavy.",
+        "cost_context": "0.50% \u2014 middle of the cyber pack.",
+        "track_record_note": "Since 2019. Tap \u21bb for returns.",
+        "red_flags": [
+          "\ud83d\udea9 Top-10 ~55% \u2014 concentrated.",
+          "\u26a0\ufe0f Only ~25 holdings.",
+          "\u26a0\ufe0f Valuation/drawdown risk.",
+          "\u2753 Verify AUM/liquidity."
+        ],
+        "bull": [
+          "Tight pure-play on cyber leaders",
+          "Reasonable 0.50% fee",
+          "Punchy upside in a cyber rally",
+          "Clean theme exposure"
+        ],
+        "bear": [
+          "Concentrated single-stock risk",
+          "Smaller AUM than CIBR",
+          "Rich valuations",
+          "Theme premium"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "Cleaner pure-play but concentrated. If you want diversification, IHAK; if you want the punchy leaders, BUG. Verify liquidity."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "HACK",
+      "name": "Amplify Cybersecurity ETF",
+      "is_theme_fund": true,
+      "issuer": "Amplify",
+      "holdings_url": "https://amplifyetfs.com/hack/",
+      "expense_ratio": 0.6,
+      "aum_display": "~$1.5B (verify \u21bb)",
+      "aum_musd": 1500,
+      "inception": "2014-11",
+      "structure": "Passive \u2014 tiered weight",
+      "index": "Prime Cyber Defense",
+      "holdings_count": 25,
+      "top10_weight_display": "~45%",
+      "top10_weight_pct": 45,
+      "largest_position_display": "~6% (verify)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "verify",
+        "note": "The original cyber ETF (2014). Tap \u21bb for current figures."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.60% \u2014 priciest cyber fund here."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Cybersecurity pure-play (software + services)."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "~25 names, top-10 ~45%."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "Established ~$1.5B fund."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2014 \u2014 the original cyber ETF."
+        }
+      },
+      "overall": "The original cybersecurity ETF \u2014 established and pure, but the priciest here.",
+      "memo": {
+        "thesis": "HACK pioneered cyber-theme investing in 2014. It tier-weights ~25 cyber software and services names. Established and genuinely pure, but at 0.60% it's the priciest cyber option, and concentration is moderate.",
+        "strategy": "Passively tracks the Prime Cyber Defense Index, tier-weighting cyber names into 'infrastructure' and 'service' buckets; rebalanced quarterly.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Cybersecurity pure-play \u2014 software and managed-security services."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Broadcom / Palo Alto",
+            "weight": "~6%",
+            "playtype": "partial",
+            "note": "infra + security"
+          },
+          {
+            "name": "CrowdStrike / Fortinet",
+            "weight": "~5%",
+            "playtype": "pure",
+            "note": "cyber leaders"
+          },
+          {
+            "name": "Managed-security services",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "the 'service' tier"
+          }
+        ],
+        "concentration": "~25 names, top-10 ~45%.",
+        "sector_geo": "Global cyber, US-heavy.",
+        "cost_context": "0.60% \u2014 the priciest cyber fund here.",
+        "track_record_note": "Since 2014 \u2014 longest record of all. Tap \u21bb for returns.",
+        "red_flags": [
+          "\u26a0\ufe0f 0.60% \u2014 highest cyber fee.",
+          "\u26a0\ufe0f Top-10 ~45%.",
+          "\u26a0\ufe0f Valuation risk.",
+          "\u26a0\ufe0f Overlaps broad tech."
+        ],
+        "bull": [
+          "The original, established cyber ETF",
+          "Genuine software+services purity",
+          "Decent liquidity",
+          "Long track record"
+        ],
+        "bear": [
+          "Priciest cyber fund",
+          "Moderate concentration",
+          "Theme premium",
+          "Rich valuations"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "Established but priciest. IHAK/BUG are cheaper. Mostly here for history/comparison."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "XLK",
+      "name": "Technology Select Sector SPDR",
+      "is_theme_fund": false,
+      "issuer": "State Street SPDR",
+      "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/the-technology-select-sector-spdr-fund-xlk",
+      "expense_ratio": 0.09,
+      "aum_display": "~$80B (verify \u21bb)",
+      "aum_musd": 80000,
+      "inception": "1998-12",
+      "structure": "Passive \u2014 cap-weighted",
+      "index": "Technology Select Sector",
+      "holdings_count": 65,
+      "top10_weight_display": "~70%",
+      "top10_weight_pct": 70,
+      "largest_position_display": "mega-cap tech",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "verify",
+        "note": "Benchmark \u2014 broad tech at 0.09%; already holds the mega-cap security arms. Tap \u21bb for current figures."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.09% \u2014 a fraction of any cyber fund."
+        },
+        "purity": {
+          "rating": "red",
+          "note": "Broad tech, NOT cybersecurity \u2014 the benchmark."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Cap-weighted; top-10 ~70%, mega-cap dominated."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "One of the largest, most liquid ETFs."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 1998."
+        }
+      },
+      "overall": "Benchmark \u2014 broad tech at 0.09%; the 'do I need a cyber fund?' yardstick.",
+      "memo": {
+        "thesis": "REFERENCE, NOT A CYBER FUND. XLK is broad tech at 0.09% \u2014 it already holds Microsoft, Broadcom and others with large security businesses. Use it to judge whether a dedicated cyber fund's focus is worth ~5-6x the fee.",
+        "strategy": "Passive, cap-weighted S&P 500 technology sector. Mega-cap dominated.",
+        "purity_verdict": {
+          "rating": "red",
+          "note": "Zero cyber-specific mandate; the comparison baseline."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Microsoft / Apple / Nvidia",
+            "weight": "\u2014",
+            "playtype": "unrelated",
+            "note": "mega-cap tech; some have security arms"
+          },
+          {
+            "name": "Broadcom",
+            "weight": "\u2014",
+            "playtype": "partial",
+            "note": "owns Symantec enterprise security"
+          }
+        ],
+        "concentration": "Top-10 ~70%, mega-cap dominated.",
+        "sector_geo": "US large-cap tech.",
+        "cost_context": "0.09% \u2014 far below any cyber fund.",
+        "track_record_note": "Since 1998; proven. Tap \u21bb for returns.",
+        "red_flags": [
+          "\u26a0\ufe0f Not a cyber fund.",
+          "\u26a0\ufe0f Mega-cap concentration."
+        ],
+        "bull": [
+          "Cheapest, most liquid",
+          "Some embedded security exposure"
+        ],
+        "bear": [
+          "No cyber focus",
+          "Mega-cap concentration"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "BENCHMARK",
+            "text": "Yardstick. If a cyber fund barely beats XLK after its higher fee, the focus didn't pay."
+          }
+        ]
+      },
+      "meets_criteria": false
+    }
+  ],
+  "roster": [
+    {
+      "ticker": "CIBR",
+      "name": "First Trust Nasdaq Cybersecurity",
+      "tag": "largest \u00b7 liquidity-wt"
+    },
+    {
+      "ticker": "BUG",
+      "name": "Global X Cybersecurity",
+      "tag": "concentrated pure-play"
+    },
+    {
+      "ticker": "HACK",
+      "name": "Amplify Cybersecurity",
+      "tag": "the original (2014)"
+    },
+    {
+      "ticker": "IHAK",
+      "name": "iShares Cybersecurity & Tech",
+      "tag": "equal-wt \u00b7 cheaper"
+    },
+    {
+      "ticker": "WCBR",
+      "name": "WisdomTree Cybersecurity",
+      "tag": "equal-wt \u00b7 smaller"
+    },
+    {
+      "ticker": "XLK",
+      "name": "Technology Select Sector SPDR",
+      "tag": "benchmark (tech)"
+    },
+    {
+      "ticker": "IGV",
+      "name": "iShares Expanded Tech-Software",
+      "tag": "benchmark (software)"
+    }
+  ]
+}

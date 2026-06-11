@@ -1,0 +1,628 @@
+{
+  "id": "water",
+  "name": "Water & Infrastructure",
+  "as_of": "2026-06-09 (scores from stable fund attributes; tap \u21bb for live price/AUM/returns)",
+  "tagline": "The least glamorous but most defensive 'megatrend': water utilities, treatment and the infrastructure rebuild. Lower-volatility, dividend-paying, and \u2014 unusually for a theme \u2014 some funds are diversified and cheap enough to clear a strict screen.",
+  "universe_note": "Water pure-plays (PHO, FIW, CGW, AQWA) hold utilities + equipment (Xylem, Ecolab, Roper). PAVE is broad US infrastructure (the diversified adjacent). All are defensive vs the tech themes. Market figures need a live \u21bb.",
+  "live_refresh": true,
+  "key_tensions": [
+    "Water 'equipment' names (Ecolab, Roper, Xylem) are industrials \u2014 purity is good but not 100% water-utility.",
+    "Concentration varies: narrow US water funds (FIW/PHO) lean on a few utilities/equipment names; PAVE spreads across ~100 infrastructure stocks.",
+    "Defensive, lower-beta: won't deliver thematic moonshots \u2014 this is the steady, dividend-paying end of theme investing.",
+    "Rate-sensitive: water utilities are bond-proxies \u2014 they wobble when long rates rise.",
+    "Cost ~0.47-0.59%: not cheap vs a plain utility fund (XLU ~0.09%)."
+  ],
+  "benchmark_note": "XLU (utilities, ~0.09%) is the yardstick \u2014 water funds should beat plain cheap utilities to justify their fee. Not a water fund itself.",
+  "etfs": [
+    {
+      "ticker": "PAVE",
+      "name": "Global X U.S. Infrastructure Development ETF",
+      "is_theme_fund": true,
+      "issuer": "Global X",
+      "holdings_url": "https://www.globalxetfs.com/funds/pave",
+      "expense_ratio": 0.47,
+      "aum_display": "~$8-9B (verify \u21bb)",
+      "aum_musd": 8500,
+      "inception": "2017-03",
+      "structure": "Passive \u2014 modified equal-weight",
+      "index": "Indxx US Infrastructure Development",
+      "holdings_count": 100,
+      "top10_weight_display": "~25%",
+      "top10_weight_pct": 25,
+      "largest_position_display": "~3% (verify)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "verify",
+        "note": "Tap \u21bb for current price/AUM/returns."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.47% \u2014 cheap for a thematic fund and the cheapest here."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Genuine US-infrastructure pure-play (materials, equipment, engineering) \u2014 broad, on-theme."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "~100 holdings, modified equal-weight, top-10 ~25% \u2014 well diversified."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$8-9B AUM \u2014 large and very liquid."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2017; rode the US infrastructure-spending wave."
+        }
+      },
+      "overall": "The diversified, cheap US infrastructure fund \u2014 broad, liquid, low single-stock risk.",
+      "memo": {
+        "thesis": "PAVE owns the companies that BUILD US infrastructure \u2014 steel/cement/aggregates, heavy equipment, engineering & construction \u2014 modified-equal-weighted across ~100 names. It's the diversified, low-concentration, reasonably-cheap infrastructure play, and the most likely fund in this theme to clear a strict cost+concentration screen.",
+        "strategy": "Passively tracks the Indxx US Infrastructure Development Index, modified-equal-weight across raw materials, heavy equipment, construction & engineering and producers; rebalanced periodically.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Genuine US-infrastructure-development pure-play \u2014 though it's 'building infrastructure', broader than water specifically."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Aggregates/materials (Vulcan/Martin Marietta-type)",
+            "weight": "~3%",
+            "playtype": "pure",
+            "note": "infrastructure materials"
+          },
+          {
+            "name": "Heavy equipment & electrical",
+            "weight": "~3%",
+            "playtype": "pure",
+            "note": "Eaton/Parker-type"
+          },
+          {
+            "name": "Engineering & construction",
+            "weight": "~2%",
+            "playtype": "pure",
+            "note": "E&C firms"
+          }
+        ],
+        "concentration": "~100 holdings, top-10 ~25% \u2014 among the most diversified theme funds anywhere here.",
+        "sector_geo": "US industrials/materials; domestic infrastructure tilt.",
+        "cost_context": "0.47% \u2014 cheap for the theme, though ~5x XLU.",
+        "track_record_note": "Since 2017; benefited from federal infrastructure spending. Tap \u21bb for returns.",
+        "red_flags": [
+          "\u26a0\ufe0f 'Infrastructure', broader than water specifically.",
+          "\u26a0\ufe0f Cyclical \u2014 tied to construction/capex.",
+          "\u26a0\ufe0f ~5x XLU's fee.",
+          "\u2753 Verify AUM/returns via \u21bb."
+        ],
+        "bull": [
+          "Diversified (~100 names) \u2014 low single-stock risk",
+          "Cheapest + most liquid here",
+          "Direct US-infrastructure-spend play",
+          "Lower concentration than any water fund"
+        ],
+        "bear": [
+          "Broader than pure water",
+          "Construction-cycle sensitive",
+          "Theme premium over XLU",
+          "Industrials, not defensive utilities"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "The diversified, cheap infrastructure pick \u2014 most likely here to pass cost+concentration. If you want pure water, see FIW/PHO; for broad build-out, PAVE."
+          }
+        ]
+      },
+      "meets_criteria": true
+    },
+    {
+      "ticker": "FIW",
+      "name": "First Trust Water ETF",
+      "is_theme_fund": true,
+      "issuer": "First Trust",
+      "holdings_url": "https://www.ftportfolios.com/retail/etf/etfsummary.aspx?Ticker=FIW",
+      "expense_ratio": 0.53,
+      "aum_display": "~$1.5B (verify \u21bb)",
+      "aum_musd": 1500,
+      "inception": "2007-05",
+      "structure": "Passive \u2014 tiered equal-weight",
+      "index": "ISE Clean Edge Water",
+      "holdings_count": 36,
+      "top10_weight_display": "~45%",
+      "top10_weight_pct": 45,
+      "largest_position_display": "~5% (verify)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "verify",
+        "note": "Tap \u21bb for current price/AUM/returns."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "Water pure-play \u2014 utilities + equipment (Xylem, Roper, Ecolab)."
+        },
+        "purity": {
+          "rating": "yellow",
+          "note": "0.53% \u2014 typical water-fund fee, not cheap."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "~36 names, top-10 ~45% \u2014 moderately concentrated."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$1.5B AUM \u2014 solid liquidity."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2007 \u2014 long water-fund record."
+        }
+      },
+      "overall": "A solid, long-running US water pure-play \u2014 utilities + water equipment.",
+      "memo": {
+        "thesis": "FIW owns ~36 companies that derive revenue from the potable/wastewater business \u2014 water utilities plus the equipment and treatment names (Xylem, Pentair, Roper, Ecolab). Tier-equal-weighted, so it's less top-heavy than a cap-weighted fund but still leans on a handful of big names.",
+        "strategy": "Passively tracks the ISE Clean Edge Water Index, tier-weighting larger and smaller water names; rebalanced semi-annually.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Genuine water pure-play \u2014 though water 'equipment' names (Ecolab/Roper) are industrials with broader businesses."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Water utilities (American Water-type)",
+            "weight": "~5%",
+            "playtype": "pure",
+            "note": "regulated water"
+          },
+          {
+            "name": "Xylem (XYL)",
+            "weight": "~5%",
+            "playtype": "pure",
+            "note": "water technology"
+          },
+          {
+            "name": "Ecolab / Roper",
+            "weight": "~4%",
+            "playtype": "partial",
+            "note": "industrials with big water arms"
+          }
+        ],
+        "concentration": "~36 names, top-10 ~45%.",
+        "sector_geo": "US water utilities + equipment; domestic.",
+        "cost_context": "0.53% \u2014 standard water-fund fee.",
+        "track_record_note": "Since 2007; defensive, lower-beta. Tap \u21bb for returns.",
+        "red_flags": [
+          "\u26a0\ufe0f Top-10 ~45% concentration.",
+          "\u26a0\ufe0f 0.53% fee.",
+          "\u26a0\ufe0f Rate-sensitive utilities.",
+          "\u26a0\ufe0f Equipment names are partial-purity industrials."
+        ],
+        "bull": [
+          "Long-running pure water exposure",
+          "Defensive, dividend-paying",
+          "Solid liquidity",
+          "Tier-weight less top-heavy than cap-weight"
+        ],
+        "bear": [
+          "Moderate concentration",
+          "Theme premium over XLU",
+          "Rate sensitivity",
+          "Equipment names dilute purity slightly"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "The classic water pure-play. Likely \ud83d\udfe1 on cost+concentration \u2014 compare to PAVE (cheaper/broader) and XLU (cheaper utilities)."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "PHO",
+      "name": "Invesco Water Resources ETF",
+      "is_theme_fund": true,
+      "issuer": "Invesco",
+      "holdings_url": "https://www.invesco.com/us/financial-products/etfs/product-detail?productId=PHO",
+      "expense_ratio": 0.59,
+      "aum_display": "~$2B (verify \u21bb)",
+      "aum_musd": 2000,
+      "inception": "2005-12",
+      "structure": "Passive \u2014 modified liquidity-weight",
+      "index": "NASDAQ OMX US Water",
+      "holdings_count": 39,
+      "top10_weight_display": "~55%",
+      "top10_weight_pct": 55,
+      "largest_position_display": "~9% (verify)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "verify",
+        "note": "Tap \u21bb for current price/AUM/returns."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "US water pure-play (utilities + equipment)."
+        },
+        "purity": {
+          "rating": "yellow",
+          "note": "0.59% \u2014 priciest water fund here."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "~39 names, top-10 ~55% \u2014 fairly concentrated."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$2B AUM \u2014 the largest water fund."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2005 \u2014 the original water ETF."
+        }
+      },
+      "overall": "The original, largest US water ETF \u2014 but pricier and more concentrated than FIW.",
+      "memo": {
+        "thesis": "PHO is the oldest and biggest water fund, holding ~39 US companies in the water value chain. Liquidity-weighting makes it more top-heavy than FIW, and at 0.59% it's the priciest water option.",
+        "strategy": "Passively tracks the NASDAQ OMX US Water Index, modified-liquidity-weighted; rebalanced quarterly.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "US water pure-play \u2014 utilities, equipment, treatment."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Water equipment (Xylem/Pentair-type)",
+            "weight": "~9%",
+            "playtype": "pure",
+            "note": "water technology"
+          },
+          {
+            "name": "Roper / Ecolab",
+            "weight": "~7%",
+            "playtype": "partial",
+            "note": "industrials w/ water arms"
+          },
+          {
+            "name": "Water utilities",
+            "weight": "~5%",
+            "playtype": "pure",
+            "note": "regulated water"
+          }
+        ],
+        "concentration": "~39 names, top-10 ~55%.",
+        "sector_geo": "US water; domestic.",
+        "cost_context": "0.59% \u2014 the priciest water fund.",
+        "track_record_note": "Since 2005 \u2014 the original water ETF. Tap \u21bb for returns.",
+        "red_flags": [
+          "\u26a0\ufe0f 0.59% \u2014 priciest water fund.",
+          "\u26a0\ufe0f Top-10 ~55% concentration.",
+          "\u26a0\ufe0f Rate-sensitive.",
+          "\u26a0\ufe0f Equipment partial-purity."
+        ],
+        "bull": [
+          "Largest, most established water fund",
+          "Defensive dividend payer",
+          "Good liquidity",
+          "Long track record"
+        ],
+        "bear": [
+          "Priciest + more concentrated than FIW",
+          "Theme premium",
+          "Rate sensitivity",
+          "Equipment dilutes purity"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "The original water fund, but FIW is cheaper and less concentrated. Compare both vs cheap XLU."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "CGW",
+      "name": "Invesco S&P Global Water ETF",
+      "is_theme_fund": true,
+      "issuer": "Invesco",
+      "holdings_url": "https://www.invesco.com/us/financial-products/etfs/product-detail?productId=CGW",
+      "expense_ratio": 0.57,
+      "aum_display": "~$1B (verify \u21bb)",
+      "aum_musd": 1000,
+      "inception": "2007-05",
+      "structure": "Passive \u2014 cap-weight (capped)",
+      "index": "S&P Global Water",
+      "holdings_count": 50,
+      "top10_weight_display": "~50%",
+      "top10_weight_pct": 50,
+      "largest_position_display": "~8% (verify)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "verify",
+        "note": "Tap \u21bb for current price/AUM/returns."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "Global water pure-play \u2014 utilities + equipment, worldwide."
+        },
+        "purity": {
+          "rating": "yellow",
+          "note": "0.57% \u2014 typical water-fund fee."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "~50 names but top-10 ~50% \u2014 moderately concentrated."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$1B AUM; verify liquidity."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2007."
+        }
+      },
+      "overall": "The GLOBAL water pure-play \u2014 adds international water utilities/equipment vs US-only peers.",
+      "memo": {
+        "thesis": "CGW holds ~50 water companies worldwide, split between water utilities and water equipment/materials, with international names (Veolia, Geberit) you don't get in US-only funds.",
+        "strategy": "Passively tracks the S&P Global Water Index (50 names, capped), balancing water utilities and water equipment globally; rebalanced semi-annually.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Global water pure-play \u2014 broader geography than US-only water funds."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Veolia / international utilities",
+            "weight": "~8%",
+            "playtype": "pure",
+            "note": "global water utilities"
+          },
+          {
+            "name": "Xylem / Geberit",
+            "weight": "~6%",
+            "playtype": "pure",
+            "note": "global water equipment"
+          },
+          {
+            "name": "Ecolab / Roper",
+            "weight": "~5%",
+            "playtype": "partial",
+            "note": "industrials w/ water arms"
+          }
+        ],
+        "concentration": "~50 names, top-10 ~50%; global.",
+        "sector_geo": "Global water utilities + equipment (US + Europe + Asia).",
+        "cost_context": "0.57% \u2014 standard.",
+        "track_record_note": "Since 2007. Tap \u21bb for returns.",
+        "red_flags": [
+          "\u26a0\ufe0f Top-10 ~50%.",
+          "\u26a0\ufe0f 0.57% fee.",
+          "\u26a0\ufe0f Currency/international risk.",
+          "\u26a0\ufe0f Rate-sensitive utilities."
+        ],
+        "bull": [
+          "Global diversification (not US-only)",
+          "Defensive dividend payer",
+          "Balanced utilities + equipment",
+          "Long track record"
+        ],
+        "bear": [
+          "Moderate concentration",
+          "Currency risk",
+          "Theme premium",
+          "Smaller AUM"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "The global water option. Adds international exposure vs FIW/PHO; similar fee/concentration. Verify liquidity."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "XLU",
+      "name": "Utilities Select Sector SPDR",
+      "is_theme_fund": false,
+      "issuer": "State Street SPDR",
+      "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/the-utilities-select-sector-spdr-fund-xlu",
+      "expense_ratio": 0.09,
+      "aum_display": "~$18B (verify \u21bb)",
+      "aum_musd": 18000,
+      "inception": "1998-12",
+      "structure": "Passive \u2014 cap-weight",
+      "index": "Utilities Select Sector",
+      "holdings_count": 32,
+      "top10_weight_display": "~55%",
+      "top10_weight_pct": 55,
+      "largest_position_display": "mega-cap utilities",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "verify",
+        "note": "Tap \u21bb for current price/AUM/returns."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "Top-10 ~55%, but diversified across power/water/gas utilities."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "0.09% \u2014 a fraction of any water fund."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Broad utilities, NOT water \u2014 the benchmark."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$18B \u2014 large, liquid."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 1998."
+        }
+      },
+      "overall": "Benchmark \u2014 broad utilities at 0.09%; the cheap defensive yardstick for water funds.",
+      "memo": {
+        "thesis": "REFERENCE, NOT A WATER FUND. XLU is the broad utility sector (mostly electric/gas, some water) at 0.09%. It's the cheap, defensive baseline \u2014 water funds should beat it to justify their ~6x fee.",
+        "strategy": "Passive, cap-weighted S&P 500 utilities sector.",
+        "purity_verdict": {
+          "rating": "red",
+          "note": "Broad utilities (mostly electric/gas), not water-specific. The comparison baseline."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "NextEra / Southern / Duke",
+            "weight": "\u2014",
+            "playtype": "unrelated",
+            "note": "electric utilities, not water"
+          },
+          {
+            "name": "American Water Works",
+            "weight": "\u2014",
+            "playtype": "partial",
+            "note": "the one big water utility"
+          }
+        ],
+        "concentration": "Top-10 ~55%; electric/gas dominated.",
+        "sector_geo": "US utilities; domestic, defensive.",
+        "cost_context": "0.09% \u2014 far below water funds.",
+        "track_record_note": "Since 1998; the defensive proxy. Tap \u21bb for returns.",
+        "red_flags": [
+          "\u26a0\ufe0f Not a water fund.",
+          "\u26a0\ufe0f Rate-sensitive."
+        ],
+        "bull": [
+          "Cheapest, defensive, liquid",
+          "Some water exposure (AWK)"
+        ],
+        "bear": [
+          "Not water-focused",
+          "Rate sensitivity"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "BENCHMARK",
+            "text": "Yardstick. If a water fund barely beats XLU after fees, the focus didn't pay."
+          }
+        ]
+      },
+      "meets_criteria": false
+    }
+  ],
+  "roster": [
+    {
+      "ticker": "PAVE",
+      "name": "Global X US Infrastructure Development",
+      "tag": "broad infra \u00b7 diversified"
+    },
+    {
+      "ticker": "FIW",
+      "name": "First Trust Water",
+      "tag": "water \u00b7 tiered-wt"
+    },
+    {
+      "ticker": "PHO",
+      "name": "Invesco Water Resources",
+      "tag": "water \u00b7 original"
+    },
+    {
+      "ticker": "CGW",
+      "name": "Invesco S&P Global Water",
+      "tag": "water \u00b7 global"
+    },
+    {
+      "ticker": "AQWA",
+      "name": "Global X Clean Water",
+      "tag": "water \u00b7 newer"
+    },
+    {
+      "ticker": "EBLU",
+      "name": "Ecofin Global Water ESG",
+      "tag": "water \u00b7 ESG"
+    },
+    {
+      "ticker": "GRID",
+      "name": "First Trust Clean Edge Smart Grid",
+      "tag": "grid infrastructure"
+    },
+    {
+      "ticker": "IFRA",
+      "name": "iShares US Infrastructure",
+      "tag": "infra \u00b7 equal-wt"
+    },
+    {
+      "ticker": "XLU",
+      "name": "Utilities Select Sector SPDR",
+      "tag": "benchmark (utilities)"
+    }
+  ]
+}
