@@ -213,8 +213,8 @@ function renderRoster() {
   roster.slice().sort((a, b) => a.ticker.localeCompare(b.ticker)).forEach(x => {
     const isDet = curated.has(x.ticker);
     const row = el("div", { class: "rosteritem" + (isDet ? " detailed" : ""),
-      title: isDet ? "Detailed card above — click to open" : "Click to look up live data",
-      onclick: () => isDet ? openMemo(x.ticker) : refreshTicker(x.ticker) },
+      title: isDet ? "Detailed card above — click to open" : "Click to look up / open this fund",
+      onclick: () => isDet ? openMemo(x.ticker) : lookupTicker(x.ticker, x) },
       el("span", { class: "rtk" }, (isDet ? "✓ " : "") + x.ticker),
       x.tag ? el("span", { class: "rtag" }, x.tag) : null,
       el("span", { class: "rnm" }, x.name || ""));
@@ -341,18 +341,66 @@ async function onAddTicker() {
   const ticker = inp.value.trim().toUpperCase();
   if (!ticker) return;
   $("#addBtn").disabled = true;
-  // If it already exists in the theme, just refresh + open it.
-  let existing = (CURRENT.etfs || []).find(e => e.ticker === ticker);
-  const data = await refreshTicker(ticker);
-  if (!existing && data) {
-    // Inject a lightweight, clearly-marked "live only" row (no curated memo yet).
+  await lookupTicker(ticker);
+  $("#addBtn").disabled = false;
+  inp.value = "";
+}
+
+// Shared look-up used by the "Look up" box AND the Full-universe roster.
+// ALWAYS ends by showing a card: a live-data card when the API returns data,
+// otherwise a clearly-marked stub so the click is never a dead end (works even
+// on static hosting / before the live API is configured).
+async function lookupTicker(ticker, rosterEntry) {
+  ticker = String(ticker || "").trim().toUpperCase();
+  if (!ticker) return;
+  const existing = (CURRENT.etfs || []).find(e => e.ticker === ticker);
+  if (existing) { openMemo(ticker); return existing; }   // already curated → just open it
+  const data = await refreshTicker(ticker);              // try live
+  if (data) {
     CURRENT.etfs.push(makeLiveEtf(ticker, data));
     liveMsg(`Added ${ticker} from live data. No curated analysis yet — ask to add a full memo. ● = live.`);
     render();
+    openMemo(ticker);
+    return data;
   }
-  if (existing) openMemo(ticker);
-  $("#addBtn").disabled = false;
-  inp.value = "";
+  // Live unavailable (no API key / static host / bad ticker): show an honest stub.
+  const stub = makeStubEtf(ticker, rosterEntry);
+  CURRENT.etfs.push(stub);
+  liveMsg(`${ticker}: opened from the roster. Live market data needs the deployed API (or an API key) — meanwhile, here's what we have.`, "warn");
+  render();
+  openMemo(ticker);
+  return null;
+}
+// A minimal "not curated yet" card so a roster click always shows something.
+function makeStubEtf(ticker, rosterEntry) {
+  const name = (rosterEntry && rosterEntry.name) || ticker;
+  const tag = rosterEntry && rosterEntry.tag;
+  return {
+    ticker, name, is_theme_fund: true, _adhoc: true,
+    expense_ratio: null, aum_musd: null, aum_display: null, structure: "—", index: "—",
+    holdings_count: null, top10_weight_pct: null, top10_weight_display: "—",
+    largest_position_display: "—", derivatives: "—", performance: {},
+    market: { price: null, price_display: null, volume_avg: null, volume_display: null },
+    scores: {
+      cost: { rating: "yellow", note: "Not yet curated — tap ↻ Refresh live (needs the deployed data API)." },
+      purity: { rating: "yellow", note: "Not yet assessed. Ask to add a full analysis card." },
+      concentration: { rating: "yellow", note: "Not yet assessed." },
+      liquidity: { rating: "yellow", note: "Not yet assessed." },
+      track_record: { rating: "yellow", note: "Not yet assessed." },
+    },
+    overall: "From the full-universe roster — not yet curated.",
+    memo: {
+      thesis: `${name}${tag ? " — " + tag : ""}. This fund is in the theme's full-universe roster but doesn't have a curated analysis yet. Tap "↻ Refresh live" to pull market data (needs the live API on the deployed site), or ask me to add a full analysis card.`,
+      strategy: "— (not yet curated)",
+      purity_verdict: { rating: "yellow", text: "Roster entry — purity not yet assessed." },
+      holdings_illustrative: [{ name: "(tap ↻ Refresh live for holdings)", weight: "—", playtype: "partial", note: tag || "" }],
+      concentration: "Not yet assessed.", sector_geo: "Not yet assessed.", cost_context: "Not yet assessed.",
+      track_record_note: "Not yet assessed.",
+      red_flags: ["❓ Not yet curated — verify everything against the issuer fact sheet before acting."],
+      bull: [], bear: [],
+      decision_log: [{ date: new Date().toISOString().slice(0,10), action: "ROSTER LOOKUP", text: "Ask for a curated card to analyze this fund properly." }],
+    },
+  };
 }
 function makeLiveEtf(ticker, d) {
   return {
