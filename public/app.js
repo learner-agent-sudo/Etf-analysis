@@ -2,8 +2,8 @@
 
 // ====================================================================
 // ETF Analysis — static frontend.
-// Content comes from /data/<theme>.json (committed, always available).
-// Live HARD FACTS come from /api/etf?ticker=XXX (Vercel function), layered
+// Content comes from data/<theme>.json (committed, always available).
+// Live HARD FACTS come from api/etf?ticker=XXX (serverless fn), layered
 // on top when the user taps ↻ or looks up a new ticker.
 // ====================================================================
 
@@ -130,7 +130,7 @@ async function init() {
   const loaded = [];
   for (const id of THEME_FILES) {
     try {
-      const r = await fetch(`/data/${id}.json`, { cache: "no-store" });
+      const r = await fetch(`data/${id}.json`, { cache: "no-store" });
       if (r.ok) { const t = await r.json(); t._id = id; loaded.push(t); }
     } catch (_) { /* skip */ }
   }
@@ -321,7 +321,7 @@ function liveMsg(text, cls) {
 async function refreshTicker(ticker) {
   liveMsg(`Fetching live data for ${ticker}…`);
   try {
-    const r = await fetch(`/api/etf?ticker=${encodeURIComponent(ticker)}`);
+    const r = await fetch(`api/etf?ticker=${encodeURIComponent(ticker)}`);
     const j = await r.json();
     if (!j.ok) {
       liveMsg(j.message || `Couldn't fetch ${ticker} (${j.error}). Static data still shown.`, "warn");
@@ -332,7 +332,7 @@ async function refreshTicker(ticker) {
     render();
     return j.data;
   } catch (e) {
-    liveMsg(`Live refresh failed (${e.message}). This works once deployed to Vercel with an API key.`, "err");
+    liveMsg(`Live refresh failed (${e.message}). This works on a serverless host with an API key.`, "err");
     return null;
   }
 }
