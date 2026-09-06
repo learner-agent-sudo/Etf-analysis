@@ -35,6 +35,39 @@ catch.
 > thematic** and **options** ETFs this repo focuses on, the fund house's choices
 > drive almost everything — so manager and strategy risk go *up*, not down.
 
+## The web app (hosted, with live refresh)
+
+The main way to use this is a **mobile-friendly, static web app** hosted free on
+**GitHub Pages** — a public URL that opens on any device, no install, no download,
+no usage limits. Per theme you get a **sortable / filterable comparison table**
+(expense ratio, AUM, 1-yr & YTD performance, concentration, colored score dots)
+and a click-to-open **deep memo** per ETF (strategy, theme-purity holdings, red
+flags, bull/bear, decision log).
+
+It has **two layers**:
+- **Curated analysis** (`public/data/*.json`) — the judgment that no API makes:
+  theme-purity ratings, red flags, scores, memos. Always available, fully static.
+- **Live refresh** (`api/etf.js`, an *optional* serverless function) — the **↻**
+  buttons and the **"Look up" box** pull current data for any ticker. This needs a
+  serverless host (Cloudflare/Netlify) + an API key; on plain GitHub Pages it
+  degrades gracefully to a "not yet curated" stub. See `docs/DEPLOYMENT.md`.
+
+**Deploy it (free):** [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) — enable GitHub
+Pages (Settings → Pages → Source: GitHub Actions) and it auto-deploys to
+`https://learner-agent-sudo.github.io/Etf-analysis/`. **Run it locally:**
+```bash
+python3 app/server.py          # then open http://127.0.0.1:8000
+```
+
+Ships with **Quantum Computing** (QTUM, WQTM, CHPX + SOXX benchmark) and **Space**
+(UFO, ARKX, ROKT + XAR, SHLD benchmarks). See [`app/README.md`](app/README.md) for
+architecture and how to add a theme.
+
+> The static layer is a **dated snapshot** from public sources; the live layer
+> refreshes the numbers on demand. No free API reliably lists "every ETF in a
+> theme," so discovering the full universe stays a research task (ask me) — the
+> "Look up" box covers pulling any specific new ticker live.
+
 ## How to use this repo
 
 1. **Pick a theme** → create/open a folder under `themes/`.
@@ -53,16 +86,28 @@ catch.
 ```
 .
 ├── README.md                     ← you are here
+├── public/                       ← the web app (static site, deployed as-is)
+│   ├── index.html · style.css · app.js
+│   └── data/                     ← curated theme data (quantum.json, space.json)
+├── api/
+│   └── etf.js                    ← optional serverless fn: live data refresh
+├── vercel.json                   ← (legacy) inert without a Vercel deploy
+├── app/
+│   ├── server.py                 ← run the static site locally (stdlib only)
+│   └── README.md                 ← app architecture & how to add a theme
 ├── docs/
 │   ├── METHODOLOGY.md            ← the dimensions we score and why
+│   ├── DEPLOYMENT.md             ← get a free public URL on GitHub Pages
 │   ├── DATA-SOURCES.md           ← where to get the data (and access notes)
 │   └── GLOSSARY.md               ← plain-English definitions
+├── scripts/
+│   └── screen.py                 ← backend green-light screener
 ├── templates/
 │   ├── etf-memo-template.md      ← deep one-pager per ETF
 │   ├── comparison-scorecard-template.md
 │   └── red-flags-checklist.md
 └── themes/
-    └── space/                    ← worked pilot example
+    └── space/                    ← worked pilot example (Markdown)
         ├── README.md
         ├── comparison.md         ← ARKX vs UFO vs ROKT vs XAR
         └── memos/

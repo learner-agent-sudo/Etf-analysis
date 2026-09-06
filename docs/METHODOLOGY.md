@@ -132,6 +132,26 @@ the manager is adding or subtracting value net of fees.
 
 ---
 
+## The green-light screen (backend gate)
+
+A fund only earns buy-interest if it clears a hard screen on the dimensions that
+are non-negotiable. Default rule (see `scripts/screen.py`):
+
+- **Cost — must be 🟢 green** (the one thing fully in your control)
+- **Concentration — must be 🟢 green** (the "concern" — no hidden single-stock bet)
+- **Theme purity — 🟢 green or 🟡 yellow** (you'll accept some dilution, but not a
+  fund whose label and holdings flatly disagree)
+
+Benchmarks/reference funds are excluded (they exist for comparison, not to buy).
+Run `python3 scripts/screen.py` for the report, `--stamp` to tag every fund with
+`meets_criteria` so the website shows a **✓ criteria** badge and a "Meets my
+criteria" filter. Re-run after adding or re-scoring any fund.
+
+> Finding: across six themes only a handful of funds pass — niche themes are
+> structurally small (→ concentrated) and low-scale (→ pricey), so "cheap AND
+> diversified AND on-theme" is rare. That scarcity is the point: the screen
+> surfaces the few funds actually worth a deep look.
+
 ## Putting it together
 
 There is **no universal weighting** — it depends on your goal. A reasonable

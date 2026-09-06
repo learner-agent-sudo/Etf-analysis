@@ -1,0 +1,1572 @@
+{
+  "id": "income",
+  "name": "Income / Covered-Call",
+  "as_of": "2026-06-08",
+  "tagline": "Get paid now, give up the rip \u2014 these funds sell call options to convert future upside into a high monthly paycheck. Great in flat/down markets, they lag a plain index fund in bull runs.",
+  "universe_note": "A deep theme (dozens of funds). Splits into: ACTIVE+ELN (JEPI/JEPQ), SYSTEMATIC 100%-overwrite (QYLD/XYLD/RYLD), CALL-SPREAD tax-managed (SPYI/QQQI), DAILY-call (ISPY), PARTIAL/dynamic (DIVO/GPIX), and SHORT-VOL (SVOL). Use 'Add ticker' for any not listed.",
+  "live_refresh": true,
+  "key_tensions": [
+    "Yield is NOT return: a 10-12% distribution after capped upside often trails a plain S&P fund over multi-year bull runs. JEPI ~9.8%/yr since 2020 vs S&P ~13.2%.",
+    "Upside cap is the core cost: QYLD/XYLD write calls on ~100% of the portfolio (almost no upside); JEPI/JEPQ keep some; DIVO covers only part (keeps the most upside, yields least).",
+    "Return-of-capital / NAV erosion: QYLD's price fell from $25 (2013) to ~$18 while paying ~12% \u2014 part of the 'income' is your own principal handed back. JEPI/JEPQ/DIVO income is higher quality.",
+    "Active+ELN (JEPI/JEPQ) adds bank counterparty risk & opacity; systematic (QYLD) is transparent but rigid with max upside sacrifice; DIVO is active, writes options directly, tactically.",
+    "Tax: ELN income is ordinary income; index options (QYLD/XYLD) get 60/40 treatment; ROC defers tax but erodes basis. Best held in tax-advantaged accounts.",
+    "Short volatility: yields rise when markets are fearful (high VIX) and shrink in calm markets \u2014 the paycheck is variable, not contractual."
+  ],
+  "benchmark_note": "SPY (plain S&P 500) is the yardstick, NOT an income fund. It keeps 100% of market upside at ~0.09% fee and ~1% yield. Compare each fund's TOTAL RETURN (not its yield) to SPY to see the true cost of the coupon \u2014 in 2024 SPY +24.9% vs JEPI +12.6%.",
+  "etfs": [
+    {
+      "ticker": "JEPI",
+      "name": "JPMorgan Equity Premium Income ETF",
+      "is_theme_fund": true,
+      "issuer": "J.P. Morgan Asset Management",
+      "holdings_url": "https://am.jpmorgan.com/us/en/asset-management/adv/products/jpmorgan-equity-premium-income-etf-etf-shares-46641q332",
+      "expense_ratio": 0.35,
+      "aum_display": "~$41.5-45.6B",
+      "aum_musd": 43000,
+      "inception": "2020-05-20",
+      "structure": "Active \u2014 stocks + ELN options",
+      "index": "None (active; ELN-based S&P covered calls)",
+      "holdings_count": 126,
+      "top10_weight_display": "~16%",
+      "top10_weight_pct": 16,
+      "largest_position_display": "~1.8% (Alphabet)",
+      "derivatives": "Yes \u2014 ELN covered calls",
+      "distribution_yield": "~8.2%",
+      "sec_yield": "~8.45%",
+      "performance": {
+        "ytd": "+2.6%",
+        "y1": null,
+        "y2025": "+8.1%",
+        "y2024": "+12.6%",
+        "y3_annualized": null,
+        "as_of": "2026-04-30",
+        "note": "Total return; income mix ~1.4% dividends + ~7.2% options premium. Lags SPY in bull years (the cost of the coupon)."
+      },
+      "market": {
+        "price": 55.27,
+        "price_display": "$55.27",
+        "price_asof": "2026-06-02",
+        "volume_avg": 5700000,
+        "volume_display": "~5.7M/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.35% \u2014 cheap for an active income product (QYLD/XYLD are 0.60%)."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Textbook equity-premium-income; distributions are mostly real premium + dividends, minimal return-of-capital."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Top-10 ~16% across ~126 low-vol names \u2014 very diversified."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "Huge (~$43B AUM, ~$300M traded/day)."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "5+ yrs, largest covered-call ETF; ~9.8%/yr since inception, sustainable income."
+        }
+      },
+      "overall": "The blue-chip, lowest-drama covered-call ETF \u2014 diversified defensive sleeve, reliable ~8% income, lags a plain S&P fund in bull years.",
+      "memo": {
+        "thesis": "JEPI pairs a defensively built ~130-stock S&P sleeve with an options-income overlay, aiming to deliver most of the equity return with ~2/3 the volatility and a high monthly payout. It's the institutional-grade choice for equity income without QYLD-style NAV decay \u2014 best in tax-advantaged accounts.",
+        "strategy": "Owns ~130 low-beta stocks (its alpha source), then buys equity-linked notes (ELNs) whose payoff equals selling ~1-month, slightly out-of-the-money S&P 500 index calls. Collects premium (paid monthly) but forfeits index gains above the strike each month \u2014 so it captures only PARTIAL upside in a fast rally. The defensive stock picks cushion drawdowns. Softer upside cap than QYLD because strikes are OTM on the index.",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "A clean equity-premium-income fund. Income is predominantly true option premium + dividends, not return of capital \u2014 the high-quality end of this theme."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Alphabet (GOOGL)",
+            "weight": "~1.8%",
+            "playtype": "partial",
+            "note": "low-vol equity sleeve"
+          },
+          {
+            "name": "Amazon (AMZN)",
+            "weight": "~1.7%",
+            "playtype": "partial",
+            "note": "equity sleeve"
+          },
+          {
+            "name": "Eaton (ETN)",
+            "weight": "~1.7%",
+            "playtype": "partial",
+            "note": "equity sleeve"
+          },
+          {
+            "name": "NextEra Energy (NEE)",
+            "weight": "~1.7%",
+            "playtype": "partial",
+            "note": "low-vol equity sleeve"
+          },
+          {
+            "name": "ELN options overlay",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "the income engine: S&P covered calls via notes"
+          }
+        ],
+        "concentration": "Very low \u2014 top-10 ~16%, ~126 names, deliberately diversified and low-volatility tilted.",
+        "sector_geo": "US large-cap, value/low-vol tilt (underweights the most volatile mega-cap tech vs the S&P); diversified across sectors. 100% US.",
+        "cost_context": "0.35% is cheap for actively managed options income; ELN structuring costs are embedded in returns.",
+        "track_record_note": "5-yr live record, ~9.8%/yr since 2020. Income is high quality (mostly premium + dividends, low ROC) but the headline yield is VARIABLE. Total return clearly trails SPY in strong bull years \u2014 the structural cost of the coupon.",
+        "red_flags": [
+          "\u26a0\ufe0f Lags the S&P meaningfully in bull markets (capped upside).",
+          "\u26a0\ufe0f ELNs add bank counterparty risk + a layer of opacity.",
+          "\u26a0\ufe0f Distribution is variable, not guaranteed; shrinks when volatility is low.",
+          "\u26a0\ufe0f Mostly ordinary-income tax treatment \u2014 inefficient in taxable accounts."
+        ],
+        "bull": [
+          "~8% monthly income with lower volatility than the S&P",
+          "Cheap (0.35%) and massively liquid",
+          "Genuine income, minimal ROC \u2014 sustainable",
+          "Defensive sleeve cushions bear markets"
+        ],
+        "bear": [
+          "Structurally caps upside \u2014 wealth-builders do better in SPY",
+          "Counterparty/opacity risk from ELNs",
+          "Income shrinks in low-vol regimes",
+          "Tax-inefficient in taxable accounts"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "WATCH (example)",
+            "text": "The safest income pick here. Decide if you want income now (JEPI) or growth (SPY). Hold in a tax-advantaged account. Compare total return \u2014 not yield \u2014 vs SPY before committing."
+          }
+        ]
+      },
+      "meets_criteria": true
+    },
+    {
+      "ticker": "JEPQ",
+      "name": "JPMorgan Nasdaq Equity Premium Income ETF",
+      "is_theme_fund": true,
+      "issuer": "J.P. Morgan Asset Management",
+      "holdings_url": "https://am.jpmorgan.com/us/en/asset-management/adv/products/jpmorgan-nasdaq-equity-premium-income-etf-etf-shares-46654q203",
+      "expense_ratio": 0.35,
+      "aum_display": "~$40B",
+      "aum_musd": 40000,
+      "inception": "2022-05-03",
+      "structure": "Active \u2014 stocks + ELN options",
+      "index": "None (active; ELN-based Nasdaq-100 covered calls)",
+      "holdings_count": 85,
+      "top10_weight_display": "~44%",
+      "top10_weight_pct": 44,
+      "largest_position_display": "~7.9% (NVIDIA)",
+      "derivatives": "Yes \u2014 ELN covered calls",
+      "distribution_yield": "~11.7%",
+      "sec_yield": "~11.98%",
+      "performance": {
+        "ytd": "+9.1%",
+        "y1": null,
+        "y2025": "+15.2%",
+        "y2024": "+24.9%",
+        "y3_annualized": null,
+        "as_of": "2026-04-30",
+        "note": "Total return; higher yield reflects richer tech-option premiums. Born into a tech bull \u2014 untested in a sustained Nasdaq bear."
+      },
+      "market": {
+        "price": 59.7,
+        "price_display": "$59.70",
+        "price_asof": "2026-06-01",
+        "volume_avg": 7060000,
+        "volume_display": "~7.1M/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.35% \u2014 cheap vs systematic peers."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Clean covered-call income; distributions mostly real premium income (low ROC historically)."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "Top-10 ~44%, dominated by NVDA/AAPL/GOOG/MSFT/AMZN \u2014 high single-stock & tech risk."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "Very large (~$40B AUM)."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Only ~4 yrs, entirely within a tech bull \u2014 untested in a prolonged tech bear."
+        }
+      },
+      "overall": "JEPI's racier sibling \u2014 Nasdaq-100 underlying means a fatter ~12% yield and stronger returns, but more concentration and volatility.",
+      "memo": {
+        "thesis": "JEPQ applies JPMorgan's equity-premium-income engine to the Nasdaq-100, generating ~12% yield because tech options carry richer premiums. It delivered strong income AND total return through the 2023-25 tech bull, but carries materially more concentration and downside risk than JEPI.",
+        "strategy": "Identical ELN approach to JEPI but on Nasdaq-100 names. Higher implied volatility in tech = larger premiums = higher distributions. The flip side: when mega-cap tech rallies hard, the OTM call overwrite caps a large chunk of that upside, and in a tech drawdown the equity sleeve falls more than JEPI's defensive sleeve.",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "Clean covered-call income strategy; distributions predominantly real premium income, not return of capital."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "NVIDIA (NVDA)",
+            "weight": "~7.9%",
+            "playtype": "partial",
+            "note": "Nasdaq-100 equity sleeve"
+          },
+          {
+            "name": "Apple (AAPL)",
+            "weight": "~6.4%",
+            "playtype": "partial",
+            "note": "equity sleeve"
+          },
+          {
+            "name": "Alphabet (GOOG)",
+            "weight": "~6.4%",
+            "playtype": "partial",
+            "note": "equity sleeve"
+          },
+          {
+            "name": "Microsoft (MSFT)",
+            "weight": "~5.0%",
+            "playtype": "partial",
+            "note": "equity sleeve"
+          },
+          {
+            "name": "ELN options overlay",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "income engine: Nasdaq-100 covered calls via notes"
+          }
+        ],
+        "concentration": "Top-10 ~44%, dominated by mega-cap tech \u2014 single-stock and sector (tech) risk is high.",
+        "sector_geo": "Heavy US technology / communication-services (Nasdaq-100 profile); 100% US.",
+        "cost_context": "0.35% \u2014 cheap vs systematic peers (QYLD 0.60%).",
+        "track_record_note": "Only ~4 years, entirely within a tech bull \u2014 behavior in a prolonged Nasdaq bear is unproven. Yield quality good (mostly premium income); the higher headline reflects higher underlying volatility, not free money.",
+        "red_flags": [
+          "\ud83d\udea9 ~44% in top 10 \u2014 concentrated tech bet.",
+          "\u26a0\ufe0f Short track record, never tested in a sustained tech bear.",
+          "\u26a0\ufe0f Caps the very mega-cap upside that drove its returns.",
+          "\u26a0\ufe0f ELN counterparty risk + ordinary-income tax drag."
+        ],
+        "bull": [
+          "Highest yield of the JPM pair (~12%)",
+          "Strong total return through 2024-25",
+          "Cheap and liquid",
+          "Mostly genuine premium income"
+        ],
+        "bear": [
+          "Tech concentration cuts both ways \u2014 bigger drawdowns",
+          "Unproven in a bear market",
+          "Upside capped right where the action is",
+          "Tax-inefficient in taxable accounts"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "WATCH (example)",
+            "text": "Higher income but tech-concentrated and unproven in a bear. Verify volume/liquidity; size for tech volatility; prefer a tax-advantaged account."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "QYLD",
+      "name": "Global X NASDAQ 100 Covered Call ETF",
+      "is_theme_fund": true,
+      "issuer": "Global X (Mirae Asset)",
+      "holdings_url": "https://www.globalxetfs.com/funds/qyld",
+      "expense_ratio": 0.6,
+      "aum_display": "~$8.3B",
+      "aum_musd": 8300,
+      "inception": "2013-12",
+      "structure": "Systematic \u2014 100% covered call",
+      "index": "Cboe Nasdaq-100 BuyWrite V2",
+      "holdings_count": 102,
+      "top10_weight_display": "~50%",
+      "top10_weight_pct": 50,
+      "largest_position_display": "Nasdaq-100 mega-caps",
+      "derivatives": "Yes \u2014 100% ATM index calls",
+      "distribution_yield": "~11.8%",
+      "sec_yield": null,
+      "performance": {
+        "ytd": "+3.7%",
+        "y1": null,
+        "y2025": "+9.3%",
+        "y2024": "+19.4%",
+        "y3_annualized": null,
+        "as_of": "2026-06",
+        "note": "Total return. PRICE fell from $25 (2013) to ~$18 \u2014 ~28% NAV erosion despite ~12%/yr payouts. A large, swinging share of distributions has been RETURN OF CAPITAL."
+      },
+      "market": {
+        "price": 18.0,
+        "price_display": "$18.00",
+        "price_asof": "2026-06",
+        "volume_avg": 6400000,
+        "volume_display": "~6.4M/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.60% \u2014 pricey for a rules-based fund (25bps more than JPM's active funds)."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "The purest, most literal covered-call mechanic \u2014 100% at-the-money overwrite."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "Top-10 ~50%, mirrors the top-heavy Nasdaq-100."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "Very liquid (~$8.3B AUM, ~6.4M shares/day)."
+        },
+        "track_record": {
+          "rating": "red",
+          "note": "12-yr record shows real NAV/price erosion + total return badly lagging QQQ despite the high payout."
+        }
+      },
+      "overall": "The original high-yield (~12%) systematic covered-call fund \u2014 maximum income, maximum upside sacrifice, and a long-term NAV decline that makes the 'yield' partly your own capital.",
+      "memo": {
+        "thesis": "QYLD maximizes current income by systematically writing at-the-money calls on its ENTIRE Nasdaq-100 portfolio, delivering a consistent ~12% headline yield. The trade-off is severe: it surrenders essentially all upside above the strike, so over a tech bull its price and NAV erode while QQQ compounds. Suitable only if you explicitly prioritize current cash flow over growth.",
+        "strategy": "Owns the Nasdaq-100 and each month sells AT-THE-MONEY index calls on ~100% of assets. ATM strikes maximize premium but mean almost no participation in monthly gains \u2014 if the Nasdaq jumps 8%, QYLD keeps roughly only the ~1-2% premium, not the rally. In down months it still falls (cushioned only by premium). The asymmetric profile structurally erodes NAV in rising markets.",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "Most literal covered-call fund \u2014 but this 'purity' (100% ATM overwrite) is exactly what causes the NAV drag and return-of-capital."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Nasdaq-100 basket (NVDA/AAPL/MSFT\u2026)",
+            "weight": "~50% top-10",
+            "playtype": "partial",
+            "note": "full index equity sleeve"
+          },
+          {
+            "name": "100% ATM call overwrite",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "defining strategy \u2014 caps virtually all upside"
+          }
+        ],
+        "concentration": "Mirrors the top-heavy Nasdaq-100 (~50% in top 10).",
+        "sector_geo": "US mega-cap tech; 100% US.",
+        "cost_context": "0.60% is expensive for a systematic, rules-based strategy \u2014 25bps more than JPM's active funds.",
+        "track_record_note": "THE KEY CAUTIONARY TALE: price fell from $25 (2013) to ~$18 (~28%) even while paying ~12%/yr. A large, unpredictable share of distributions has been RETURN OF CAPITAL (near 100% in some years), so part of the 'income' is your own principal. Total return has badly trailed QQQ.",
+        "red_flags": [
+          "\ud83d\udea9 Return of capital \u2014 headline yield overstates true income; ROC swings 0-100% yearly.",
+          "\ud83d\udea9 NAV/price erosion \u2014 long-term capital depreciation.",
+          "\ud83d\udea9 100% ATM overwrite = essentially zero upside participation.",
+          "\u26a0\ufe0f 0.60% fee is high for a rules-based fund."
+        ],
+        "bull": [
+          "Highest, most consistent monthly distribution (~1%/mo)",
+          "Smooths returns in flat/choppy markets",
+          "Simple, transparent, rules-based \u2014 no manager risk",
+          "Very liquid, 12-yr history"
+        ],
+        "bear": [
+          "Caps virtually all upside \u2014 terrible in bull markets",
+          "Long-run NAV erosion eats principal",
+          "Big ROC component \u2014 'income' is partly your own money",
+          "Lags QQQ/total return dramatically over time"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "CAUTION (example)",
+            "text": "Highest yield but the cautionary case: check the latest 19a-1 notice for return-of-capital %, and compare 5-yr TOTAL return vs QQQ before being seduced by the 12% headline."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "DIVO",
+      "name": "Amplify CWP Enhanced Dividend Income ETF",
+      "is_theme_fund": true,
+      "issuer": "Amplify (sub-advised by Capital Wealth Planning)",
+      "holdings_url": "https://amplifyetfs.com/divo/",
+      "expense_ratio": 0.56,
+      "aum_display": "~$7.1B",
+      "aum_musd": 7100,
+      "inception": "2016-12-13",
+      "structure": "Active \u2014 tactical partial covered call",
+      "index": "None (active)",
+      "holdings_count": 37,
+      "top10_weight_display": "~50%",
+      "top10_weight_pct": 50,
+      "largest_position_display": "~6.0% (Microsoft)",
+      "derivatives": "Yes \u2014 tactical direct calls on part of book",
+      "distribution_yield": "~4.7%",
+      "sec_yield": "~1.6%",
+      "performance": {
+        "ytd": "+4.6%",
+        "y1": null,
+        "y2025": "+17.4%",
+        "y2024": "+16.2%",
+        "y3_annualized": null,
+        "as_of": "2026-06-06",
+        "note": "Total return. Best upside capture of the covered-call funds (covers only part of the book). 30-day SEC yield ~1.6% EXCLUDES option premium \u2014 not return of capital."
+      },
+      "market": {
+        "price": 45.85,
+        "price_display": "$45.85",
+        "price_asof": "2026-06-06",
+        "volume_avg": 903000,
+        "volume_display": "~903K/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.56% \u2014 mid-pack (cheaper than QYLD, pricier than JEPI)."
+        },
+        "purity": {
+          "rating": "yellow",
+          "note": "More a dividend-equity fund with an OPPORTUNISTIC option overlay than a pure covered-call play."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Only ~20-25 core stocks; top-10 ~50% \u2014 real single-stock risk."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "Ample (~$7.1B AUM, ~903K shares/day)."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "9+ yrs, 5-star Morningstar; clean income (minimal ROC), strong risk-adjusted returns."
+        }
+      },
+      "overall": "The 'total-return-friendly' income fund \u2014 a concentrated blue-chip dividend portfolio with light, tactical call-writing; lower yield (~4.7%) but much better upside capture than QYLD.",
+      "memo": {
+        "thesis": "DIVO blends a hand-picked portfolio of ~20-25 blue-chip dividend payers with TACTICAL (not blanket) covered-call writing, targeting ~5% income plus capital appreciation. Because it covers only part of the book opportunistically, it keeps far more upside than full-overwrite funds \u2014 at the cost of a lower yield. The best 'total-return + income' compromise here, but concentrated.",
+        "strategy": "Holds a focused set of quality dividend stocks for dividends + appreciation, then tactically sells calls on INDIVIDUAL names when a stock shows strength or elevated implied volatility \u2014 rather than mechanically covering everything. Most of the portfolio stays uncapped most of the time, so DIVO participates in more of a rally than QYLD/JEPI (analysts estimate it gives up only ~30% of big up-months vs near-100% for QYLD). The trade-off: less premium, hence the lower ~4.7% yield. Writes options DIRECTLY (not ELNs).",
+        "purity_verdict": {
+          "rating": "yellow",
+          "text": "More a dividend-growth fund with an income overlay than a pure covered-call vehicle \u2014 a feature for total return, a caveat for 'covered-call purity'."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Microsoft (MSFT)",
+            "weight": "~6.0%",
+            "playtype": "partial",
+            "note": "quality dividend core"
+          },
+          {
+            "name": "Caterpillar (CAT)",
+            "weight": "~6.0%",
+            "playtype": "partial",
+            "note": "dividend core"
+          },
+          {
+            "name": "Apple (AAPL)",
+            "weight": "~5.7%",
+            "playtype": "partial",
+            "note": "dividend core"
+          },
+          {
+            "name": "Goldman Sachs (GS)",
+            "weight": "~5.1%",
+            "playtype": "partial",
+            "note": "dividend core"
+          },
+          {
+            "name": "Tactical call overlay",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "income enhancer on selected names"
+          }
+        ],
+        "concentration": "The most concentrated fund here \u2014 ~20-25 stocks, top-10 ~50%; meaningful single-stock risk.",
+        "sector_geo": "US large-cap blue chips, diversified across financials/industrials/tech/consumer; 100% US.",
+        "cost_context": "0.56% is mid-pack \u2014 cheaper than QYLD/XYLD (0.60%), pricier than JEPI/JEPQ (0.35%).",
+        "track_record_note": "9+ yr record, 5-star Morningstar (Derivative Income). Yield quality is high and clean \u2014 the ~4.7% distribution is funded by real dividends + option premium with minimal ROC. The low ~1.6% 30-day SEC yield is NOT a red flag \u2014 SEC yield simply doesn't count option income. Total returns (16-17% in 2024-25) strong for an income fund.",
+        "red_flags": [
+          "\ud83d\udea9 Concentration \u2014 only ~20-25 holdings.",
+          "\u26a0\ufe0f Lower yield than peers may disappoint income-maximizers.",
+          "\u26a0\ufe0f 0.56% fee plus active-manager/key-person risk (CWP).",
+          "\u26a0\ufe0f Still caps ~30% of strong up-months despite 'tactical' framing."
+        ],
+        "bull": [
+          "Best upside participation in the group \u2014 strong total returns",
+          "Clean income (real dividends + premium, minimal ROC)",
+          "5-star track record, 9+ yrs",
+          "Quality blue-chip portfolio cushions drawdowns"
+        ],
+        "bear": [
+          "Highly concentrated \u2014 single-stock risk",
+          "Lowest headline yield here",
+          "Active/key-person risk and 0.56% fee",
+          "Tactical call-timing may not always add value"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "WATCH (example)",
+            "text": "Best blend of income + growth, but concentrated. If you want income without giving up most upside, this is the pick; accept the ~20-25 stock concentration and lower headline yield."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "SPY",
+      "name": "SPDR S&P 500 ETF Trust",
+      "is_theme_fund": false,
+      "issuer": "State Street Global Advisors",
+      "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+      "expense_ratio": 0.09,
+      "aum_display": "~$735B",
+      "aum_musd": 735000,
+      "inception": "1993-01",
+      "structure": "Passive \u2014 cap-weighted",
+      "index": "S&P 500",
+      "holdings_count": 503,
+      "top10_weight_display": "~37%",
+      "top10_weight_pct": 37,
+      "largest_position_display": "~7.6% (NVIDIA)",
+      "derivatives": "No",
+      "distribution_yield": "~0.98%",
+      "sec_yield": "~1.2%",
+      "performance": {
+        "ytd": "+11.0%",
+        "y1": null,
+        "y2025": "+17.7%",
+        "y2024": "+24.9%",
+        "y3_annualized": "+14%/yr",
+        "as_of": "2026-06",
+        "note": "Benchmark. Keeps 100% of market upside \u2014 the 'what you give up' baseline. In 2024 SPY +24.9% vs JEPI +12.6%: that gap is the price of the coupon."
+      },
+      "market": {
+        "price": 756.48,
+        "price_display": "$756.48",
+        "price_asof": "2026-06",
+        "volume_avg": 49000000,
+        "volume_display": "~49M/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.09% \u2014 among the cheapest funds in existence."
+        },
+        "purity": {
+          "rating": "red",
+          "note": "Intentionally NOT an income/covered-call fund \u2014 it's the comparison baseline."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "Top-10 ~37%, mega-cap heavy but across 500 names."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "The most liquid ETF in the world (~49M shares/day)."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "30+ yrs; ~14%/yr over 5 yrs with full upside participation."
+        }
+      },
+      "overall": "Benchmark \u2014 the plain S&P 500 total-return fund; ~1% yield but full market upside. The yardstick for what income funds give up.",
+      "memo": {
+        "thesis": "REFERENCE FUND, NOT AN INCOME BET. SPY is the plain-vanilla, total-return S&P 500 fund (~0.09% fee, ~1% yield) that keeps 100% of market upside. It's the 'what you give up for income' baseline: covered-call funds are essentially SPY minus the right tail of returns, plus a fat cash coupon.",
+        "strategy": "Full-replication of the S&P 500, cap-weighted. No options, no income strategy \u2014 you get the index's total return, all of its upside, and all of its downside.",
+        "purity_verdict": {
+          "rating": "red",
+          "text": "Zero income-strategy mandate \u2014 it's the control group. Use it to compare TOTAL RETURN against the covered-call funds."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "NVIDIA (NVDA)",
+            "weight": "~7.6%",
+            "playtype": "unrelated",
+            "note": "broad-market mega-cap"
+          },
+          {
+            "name": "Apple (AAPL)",
+            "weight": "~6.7%",
+            "playtype": "unrelated",
+            "note": "broad-market mega-cap"
+          },
+          {
+            "name": "Microsoft (MSFT)",
+            "weight": "~4.9%",
+            "playtype": "unrelated",
+            "note": "broad-market mega-cap"
+          }
+        ],
+        "concentration": "Top-10 ~37%, mega-cap heavy but spread across 500 names.",
+        "sector_geo": "Entire US large-cap market, all sectors; 100% US.",
+        "cost_context": "0.09% \u2014 a fraction of any covered-call fund's fee.",
+        "track_record_note": "30+ years; ~14%/yr over the last 5 years. In 2024 SPY +24.9% beat JEPI +12.6%, XYLD +19.5%, QYLD +19.4%; in 2025 +17.7% beat all the income funds. Over multi-year bull runs the gap compounds \u2014 the structural cost of capping upside. What SPY can't offer: a high monthly cash distribution.",
+        "red_flags": [
+          "\u26a0\ufe0f Not an income fund \u2014 ~1% yield only.",
+          "\u26a0\ufe0f Full market downside in a crash (no premium cushion)."
+        ],
+        "bull": [
+          "Keeps 100% of market upside",
+          "Cheapest + most liquid",
+          "30-yr proven total-return record"
+        ],
+        "bear": [
+          "Minimal income (~1% yield)",
+          "No downside cushion vs covered-call funds"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "BENCHMARK",
+            "text": "Yardstick. If your goal is growth (not monthly income), SPY usually wins on total return. Compare every income fund's total return to this before buying for yield."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "XYLD",
+      "name": "Global X S&P 500 Covered Call ETF",
+      "is_theme_fund": true,
+      "issuer": "Global X",
+      "holdings_url": "https://www.globalxetfs.com/funds/xyld",
+      "expense_ratio": 0.6,
+      "aum_display": "~$3.1B",
+      "aum_musd": 3100,
+      "inception": "2013-06",
+      "structure": "Systematic \u2014 100% covered call",
+      "index": "Cboe S&P 500 BuyWrite (BXM)",
+      "holdings_count": 504,
+      "top10_weight_display": "~38%",
+      "top10_weight_pct": 38,
+      "largest_position_display": "~8.6% (NVIDIA)",
+      "derivatives": "Yes \u2014 100% ATM index calls",
+      "distribution_yield": "~10.5%",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": "+8.0%",
+        "y2024": "+19.5%",
+        "y3_annualized": null,
+        "as_of": "2025-12-31",
+        "note": "Total return. The original ATM S&P buy-write \u2014 lagged badly in 2025 (+8% vs S&P ~+18%) because it caps upside. Moderate return-of-capital."
+      },
+      "market": {
+        "price": 40.73,
+        "price_display": "$40.73",
+        "price_asof": "2026-06-05",
+        "volume_avg": 648000,
+        "volume_display": "~648K/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.60% \u2014 mid-pack; pricier than GPIX (0.29%)."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Very pure, transparent rules-based covered call on the index."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "Cap-weighted S&P 500 \u2014 ~8.6% NVDA, tech-heavy top 10."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "Deep, 13-yr-old fund, tight spreads."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Long record but well-documented total-return lag vs S&P 500."
+        }
+      },
+      "overall": "The original mechanical ATM S&P 500 buy-write \u2014 high yield, but caps nearly all upside and bleeds vs the index in bull markets.",
+      "memo": {
+        "thesis": "XYLD owns the S&P 500 and sells at-the-money index calls on ~100% of the portfolio, throwing off a ~10%+ distribution. Because it writes ATM on essentially the whole book, it surrenders nearly all upside in strong markets (hence +8% in a strong 2025). Best for flat/choppy markets and income-first investors who accept capped growth.",
+        "strategy": "Each month sells one-month ATM S&P 500 index calls covering ~100% of assets (tracks the Cboe BXM index). Above the strike, gains are forfeited; the fund keeps premium + dividends. Full downside (less premium) retained \u2014 an asymmetric give-up of the best months.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Pure, transparent ATM covered-call mechanic \u2014 the genre's benchmark, but that purity is what caps the upside."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "NVIDIA (NVDA)",
+            "weight": "~8.6%",
+            "playtype": "partial",
+            "note": "S&P equity sleeve backing the calls"
+          },
+          {
+            "name": "Apple (AAPL)",
+            "weight": "~7.1%",
+            "playtype": "partial",
+            "note": "equity sleeve"
+          },
+          {
+            "name": "Microsoft (MSFT)",
+            "weight": "~5.4%",
+            "playtype": "partial",
+            "note": "equity sleeve"
+          },
+          {
+            "name": "100% ATM call overwrite",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "the income engine \u2014 caps nearly all upside"
+          }
+        ],
+        "concentration": "Mirrors S&P 500 cap weights; mega-cap tech dominates the top.",
+        "sector_geo": "~100% US large-cap; heavy Information Technology tilt.",
+        "cost_context": "0.60% is double GPIX (0.29%) for arguably less upside participation.",
+        "track_record_note": "Long 12-yr history but chronic total-return underperformance vs SPY in bull runs; distributions partly ROC, partly premium/cap-gains.",
+        "red_flags": [
+          "\ud83d\udea9 Severe upside cap \u2014 lagged badly in 2025.",
+          "\ud83d\udea9 Long-run NAV erosion tendency.",
+          "\u26a0\ufe0f 0.60% fee high for a mechanical strategy.",
+          "\u26a0\ufe0f Distribution yield quoted inconsistently (10.5% vs ~13%)."
+        ],
+        "bull": [
+          "Reliable double-digit monthly income",
+          "Deepest liquidity / longest record in the niche",
+          "Lower volatility than SPY; cushions mild drops",
+          "Fully transparent rules"
+        ],
+        "bear": [
+          "Caps the very upside equity investors want",
+          "Total return trails SPY badly over cycles",
+          "Fee drag",
+          "ATM writing = least upside of any S&P covered-call design"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "CAUTION (example)",
+            "text": "High yield but maximum upside sacrifice. Compare total return (not yield) to SPY; GPIX/ISPY keep more upside for similar income."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "RYLD",
+      "name": "Global X Russell 2000 Covered Call ETF",
+      "is_theme_fund": true,
+      "issuer": "Global X",
+      "holdings_url": "https://www.globalxetfs.com/funds/ryld",
+      "expense_ratio": 0.6,
+      "aum_display": "~$1.4B",
+      "aum_musd": 1400,
+      "inception": "2019-04",
+      "structure": "Systematic \u2014 100% covered call",
+      "index": "Cboe Russell 2000 BuyWrite",
+      "holdings_count": 10,
+      "top10_weight_display": "n/a (fund-of-ETF)",
+      "top10_weight_pct": null,
+      "largest_position_display": "Global X Russell 2000 ETF",
+      "derivatives": "Yes \u2014 100% ATM index calls",
+      "distribution_yield": "~12%",
+      "performance": {
+        "ytd": "+8.2%",
+        "y1": null,
+        "y2025": "+5.7%",
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-05-27",
+        "note": "Total return. Small-cap ATM buy-write \u2014 highest headline yield of the trio (~12%) but weakest long-run total return (~5%/yr) and pronounced NAV decay."
+      },
+      "market": {
+        "price": 15.74,
+        "price_display": "$15.74",
+        "price_asof": "2026-05-27",
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.60% \u2014 high for a mechanical strategy."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Pure rules-based covered call (on Russell 2000)."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Underlying is ~2,000 small-caps \u2014 very diversified at look-through."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$1.4B AUM; small-cap options less liquid."
+        },
+        "track_record": {
+          "rating": "red",
+          "note": "Since-inception ~5%/yr; long-run NAV erosion is pronounced."
+        }
+      },
+      "overall": "The small-cap cousin of XYLD \u2014 highest stated yield, but the weakest long-run total return and a steadily declining share price.",
+      "memo": {
+        "thesis": "RYLD applies the XYLD playbook to the Russell 2000, where higher small-cap volatility funds a larger ~12% distribution. But small-caps' vol cuts both ways: it caps small-cap rallies while absorbing their deeper drawdowns, producing chronically weak total returns and a declining share price. An income-yield vehicle, not a wealth-builder.",
+        "strategy": "Holds Russell 2000 exposure (largely via the RSSL ETF) and sells ~100% ATM one-month RUT index calls. Upside above the strike is forfeited monthly; premium + dividends retained. Small-cap dispersion makes the capped-upside drag structurally larger than on large-caps.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Pure ATM covered-call mechanic on small-caps; clean but high-drag."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Global X Russell 2000 ETF (RSSL)",
+            "weight": "~100%",
+            "playtype": "partial",
+            "note": "the equity collateral; income from the index-options overlay"
+          },
+          {
+            "name": "Russell 2000 look-through (~2,000 names)",
+            "weight": "\u2014",
+            "playtype": "partial",
+            "note": "broadly diversified small-caps"
+          },
+          {
+            "name": "100% ATM call overwrite",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "defining strategy"
+          }
+        ],
+        "concentration": "Line-item concentrated (1 ETF) but economically diversified across ~2,000 small-caps.",
+        "sector_geo": "~100% US small-cap; financials/industrials/health-care heavy; no mega-cap tech.",
+        "cost_context": "0.60% is steep given persistent total-return underperformance.",
+        "track_record_note": "Worst long-run total return here (~5%/yr); high yield is partly return of capital plus premium.",
+        "red_flags": [
+          "\ud83d\udea9 Long-run NAV erosion \u2014 share price trends down for years.",
+          "\ud83d\udea9 Weakest total return of the cohort.",
+          "\ud83d\udea9 Likely high return-of-capital component.",
+          "\u26a0\ufe0f Small-cap covered calls = max structural drag."
+        ],
+        "bull": [
+          "Highest headline distribution of the buy-write trio (~12%)",
+          "Genuine small-cap diversification at look-through",
+          "Monthly income, 7-yr payout history",
+          "Lower realized vol than owning Russell 2000 outright"
+        ],
+        "bear": [
+          "Caps small-cap upside \u2014 the whole reason to own small-caps",
+          "Persistent price decline",
+          "High fee",
+          "Thin small-cap option liquidity in stress"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "CAUTION (example)",
+            "text": "Highest yield but worst total return + NAV decay. The ~12% headline masks return-of-capital; check the price chart over 5 years before buying for income."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "SPYI",
+      "name": "NEOS S&P 500 High Income ETF",
+      "is_theme_fund": true,
+      "issuer": "NEOS Investments",
+      "holdings_url": "https://neosfunds.com/spyi/",
+      "expense_ratio": 0.68,
+      "aum_display": "~$10B",
+      "aum_musd": 10000,
+      "inception": "2022-08",
+      "structure": "Active \u2014 call-spread (tax-managed)",
+      "index": "None (active SPX call spread)",
+      "holdings_count": 513,
+      "top10_weight_display": "~40%",
+      "top10_weight_pct": 40,
+      "largest_position_display": "~8.5% (NVIDIA)",
+      "derivatives": "Yes \u2014 SPX call spread",
+      "distribution_yield": "~12.1%",
+      "sec_yield": "~0.53%",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": "+19.0%",
+        "y2024": "+18.1%",
+        "y3_annualized": null,
+        "as_of": "2025-12-31",
+        "note": "Total return. Call-SPREAD design keeps more upside than ATM buy-writes (beat XYLD). BUT ~94% of 2025 distributions were RETURN OF CAPITAL (SEC yield just 0.53%) \u2014 tax-efficient by design, but the 'yield' is largely premium + your own capital."
+      },
+      "market": {
+        "price": 53.22,
+        "price_display": "$53.22",
+        "price_asof": "2026-06-08",
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.68% \u2014 top of the S&P 500 cohort (vs 0.29% GPIX)."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Pure, well-designed active index-options income strategy."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "S&P 500 cap weights; ~8.5% NVDA, top-10 ~40%."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "$10B AUM, very liquid."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Strong 2024-25 but only ~3.5-yr history; ~94% ROC distributions."
+        }
+      },
+      "overall": "The most popular tax-efficient income ETF \u2014 an S&P 500 call SPREAD that keeps some upside, ~12% distribution that's ~94% return-of-capital.",
+      "memo": {
+        "thesis": "SPYI owns the S&P 500 and runs a net-credit call spread on the index, paying ~12% monthly while retaining partial upside (the bought-back OTM call lets it ride rallies between strikes). Its signature is tax efficiency: ~94% of distributions are return of capital, deferring taxes. Delivered ~18-19% in 2024-25, beating ATM peers like XYLD \u2014 but its short history hasn't faced a sustained bear.",
+        "strategy": "Sells S&P 500 index calls (collect premium) and buys higher-strike calls (cap the cap). Below the short strike it behaves like the S&P; between strikes upside is partly given up; above the long strike upside resumes. A SOFTER upside cap than XYLD \u2014 why it captures more total return.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "A clean, sophisticated active call-spread income fund. Note the income is ~94% return-of-capital \u2014 tax-deferred, not organic dividend income."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "NVIDIA (NVDA)",
+            "weight": "~8.5%",
+            "playtype": "partial",
+            "note": "S&P equity sleeve"
+          },
+          {
+            "name": "Apple (AAPL)",
+            "weight": "~6.9%",
+            "playtype": "partial",
+            "note": "equity sleeve"
+          },
+          {
+            "name": "Microsoft (MSFT)",
+            "weight": "~5.3%",
+            "playtype": "partial",
+            "note": "equity sleeve"
+          },
+          {
+            "name": "SPX call-spread overlay",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "income engine; keeps partial upside"
+          }
+        ],
+        "concentration": "Standard S&P 500 cap-weighting; mega-cap tech ~40% of top 10.",
+        "sector_geo": "~100% US large-cap; heavy Information Technology.",
+        "cost_context": "0.68% is the priciest S&P 500 fund here \u2014 you pay for active spread management + tax engineering.",
+        "track_record_note": "Best total returns of the S&P 500 income cohort in 2024-25, but 0.53% SEC yield vs 12% distribution + 94% ROC mean the 'yield' is largely premium/capital \u2014 sustainable only while markets cooperate.",
+        "red_flags": [
+          "\ud83d\udea9 ~94% of distributions are return of capital \u2014 not organic income; erodes basis.",
+          "\ud83d\udea9 30-day SEC yield just 0.53%.",
+          "\u26a0\ufe0f Highest fee in the S&P 500 cohort (0.68%).",
+          "\u26a0\ufe0f Short track record (~3.5 yrs), untested in a deep bear."
+        ],
+        "bull": [
+          "Retains more upside than ATM buy-writes (call spread)",
+          "Tax-efficient \u2014 ROC defers taxes in taxable accounts",
+          "Strong 2024-25 total returns (~18-19%)",
+          "$10B AUM, deep liquidity, active management"
+        ],
+        "bear": [
+          "ROC-heavy distribution can mask NAV erosion if markets stall",
+          "Fee drag highest in class",
+          "Unproven through a downturn",
+          "Distribution not guaranteed (may require ROC)"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "Best-of-both for many: high income + partial upside + tax efficiency. But understand the ~94% ROC \u2014 it's tax-deferred return of your capital, not dividend income. Best in a taxable account."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "QQQI",
+      "name": "NEOS Nasdaq-100 High Income ETF",
+      "is_theme_fund": true,
+      "issuer": "NEOS Investments",
+      "holdings_url": "https://neosfunds.com/qqqi/",
+      "expense_ratio": 0.68,
+      "aum_display": "~$9-12B",
+      "aum_musd": 10500,
+      "inception": "2024-01",
+      "structure": "Active \u2014 NDX call-spread (tax-managed)",
+      "index": "None (active NDX call spread)",
+      "holdings_count": 101,
+      "top10_weight_display": "~48%",
+      "top10_weight_pct": 48,
+      "largest_position_display": "~8.6% (NVIDIA)",
+      "derivatives": "Yes \u2014 NDX call spread",
+      "distribution_yield": "~13.5%",
+      "performance": {
+        "ytd": "+13.4%",
+        "y1": "+30.4%",
+        "y2025": "+18.6%",
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-06-03",
+        "note": "Total return. Nasdaq-100 version of SPYI \u2014 higher yield (~13-14%) from richer tech-option premiums, but the most concentrated/highest-beta income fund. ROC-heavy; untested in a tech bear."
+      },
+      "market": {
+        "price": 57.37,
+        "price_display": "$57.37",
+        "price_asof": "2026-06-08",
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.68% \u2014 high."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Pure active index-options income on the NDX."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Nasdaq-100 \u2014 most concentrated underlying here (~8.6% NVDA, top-10 ~48%)."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "Multi-billion AUM, very liquid."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Very strong since 2024 launch but shortest history (~2.4 yrs); never tested in a tech bear."
+        }
+      },
+      "overall": "The Nasdaq-100 version of SPYI \u2014 ~13-14% yield from high-vol tech options, highest concentration and beta of the income cohort.",
+      "memo": {
+        "thesis": "QQQI brings NEOS's tax-managed call-spread approach to the Nasdaq-100, harvesting its high implied volatility for a ~13-14% distribution. The long-call leg preserves some upside, and 2024-26 tech strength delivered standout returns (+30% 1-yr). The catch: it's the most concentrated, highest-beta fund here, ROC-heavy, and entirely untested through a Nasdaq drawdown.",
+        "strategy": "Owns the Nasdaq-100 and sells NDX index calls (covered by the basket), partly buying back upside via long calls \u2014 a spread that caps gains between strikes but participates below the short strike and above the long strike. Higher NDX vol = bigger premium and higher headline yield than SPYI.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Clean active NDX call-spread income; like SPYI, distributions are ROC-heavy (tax-deferred, not organic income)."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "NVIDIA (NVDA)",
+            "weight": "~8.6%",
+            "playtype": "partial",
+            "note": "NDX equity sleeve"
+          },
+          {
+            "name": "Apple (AAPL)",
+            "weight": "~7.1%",
+            "playtype": "partial",
+            "note": "equity sleeve"
+          },
+          {
+            "name": "Microsoft (MSFT)",
+            "weight": "~5.4%",
+            "playtype": "partial",
+            "note": "equity sleeve"
+          },
+          {
+            "name": "NDX call-spread overlay",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "income engine"
+          }
+        ],
+        "concentration": "Highest in the cohort \u2014 Nasdaq-100 is dominated by a few mega-cap tech names; top 5 \u2248 30%.",
+        "sector_geo": "~100% US; overwhelmingly tech / comm-services / consumer-disc mega-cap.",
+        "cost_context": "0.68%, same as SPYI; high but in line with active tax-managed index-options peers.",
+        "track_record_note": "Best trailing total return here, but distribution is largely premium/ROC; sustainability depends on continued tech strength and elevated vol. Shortest history.",
+        "red_flags": [
+          "\ud83d\udea9 Extreme single-sector concentration (NVDA ~8.6%, top-5 ~30%).",
+          "\ud83d\udea9 ROC-heavy distribution (basis erosion).",
+          "\ud83d\udea9 Shortest track record; never seen a Nasdaq bear.",
+          "\u26a0\ufe0f AUM figure varies widely by source ($9.4B vs $12.5B)."
+        ],
+        "bull": [
+          "Highest income + strongest total return in the cohort",
+          "Tax-efficient ROC structure",
+          "Retains upside better than ATM buy-writes",
+          "Huge, liquid, fast-growing fund"
+        ],
+        "bear": [
+          "Highest beta/concentration \u2014 a tech selloff hits hard",
+          "Yield is premium/ROC, not dividends",
+          "Untested in stress",
+          "Capped upside in the strongest tech rallies"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "CAUTION (example)",
+            "text": "Highest income but highest risk \u2014 Nasdaq concentration + ROC + no bear-market test. Size for tech volatility; understand the distribution is largely return of capital."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "ISPY",
+      "name": "ProShares S&P 500 High Income ETF",
+      "is_theme_fund": true,
+      "issuer": "ProShares",
+      "holdings_url": "https://www.proshares.com/our-etfs/strategic/ispy",
+      "expense_ratio": 0.56,
+      "aum_display": "~$1.3B",
+      "aum_musd": 1300,
+      "inception": "2023-12",
+      "structure": "Daily covered call (swap-based)",
+      "index": "S&P 500 Daily Covered Call",
+      "holdings_count": null,
+      "top10_weight_display": "n/a (swap-based)",
+      "top10_weight_pct": null,
+      "largest_position_display": "S&P 500 swaps + T-bills",
+      "derivatives": "Yes \u2014 daily 0-DTE calls via swaps",
+      "distribution_yield": "~7%",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": "+13.2%",
+        "y2024": "+21.3%",
+        "y3_annualized": null,
+        "as_of": "2025-12-31",
+        "note": "Total return. DAILY (0-DTE) covered calls reset every day, so it keeps more upside than monthly buy-writes \u2014 beat XYLD in both 2024 (+21%) and 2025 (+13%). Lower ~7% yield but more 'real' income (less ROC). Gained via swaps, not direct options."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.56% \u2014 between GPIX (0.29%) and NEOS (0.68%)."
+        },
+        "purity": {
+          "rating": "yellow",
+          "note": "Pure income intent, but SWAP-based (counterparty exposure; not direct options)."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "S&P 500 look-through; cap-weighted tech tilt."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$1.3B; younger and smaller than the leaders."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "~2.5-yr history; strong upside capture but unproven in a bear."
+        }
+      },
+      "overall": "A daily-covered-call S&P 500 fund (via swaps) designed to keep more upside than monthly buy-writes \u2014 lower ~7% yield but better total return and a 6% floor.",
+      "memo": {
+        "thesis": "ISPY sells 0-DTE (daily-expiring) S&P 500 calls via swaps on the S&P 500 Daily Covered Call Index, harvesting premium far more frequently and forfeiting less of each big up-day. That produced better total returns (+21% 2024, +13% 2025) than XYLD at a lower ~7% distribution. The trade-off is a lower headline yield and reliance on swap counterparties rather than direct options.",
+        "strategy": "Each day the index sells a fresh ~ATM S&P 500 call expiring that day; ISPY replicates this via total-return swaps (holds S&P 500 exposure + swaps + T-bill collateral). Daily resetting means the upside cap resets every day rather than locking for a month \u2014 so a multi-week rally is captured more fully. Premium is lower per contract but collected ~250x/yr.",
+        "purity_verdict": {
+          "rating": "yellow",
+          "note": "Pure income intent, but the swap-based daily-call structure (you don't own the options) is a wrinkle vs direct covered-call funds."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "S&P 500 exposure + Daily Covered Call swaps",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "the daily-call income engine"
+          },
+          {
+            "name": "US Treasury collateral",
+            "weight": "\u2014",
+            "playtype": "partial",
+            "note": "collateral earning yield"
+          },
+          {
+            "name": "S&P 500 look-through (~500 names)",
+            "weight": "\u2014",
+            "playtype": "partial",
+            "note": "reference equity exposure"
+          }
+        ],
+        "concentration": "Look-through is standard S&P 500 cap-weighting (mega-cap tech heavy); no single-stock idiosyncratic risk beyond the index.",
+        "sector_geo": "~100% US large-cap; Information Technology heavy.",
+        "cost_context": "0.56% sits between GPIX (0.29%) and NEOS (0.68%); reasonable for a swap-based daily-options strategy.",
+        "track_record_note": "Better total-return capture than the buy-write trio; yield is more 'real' (premium + dividends, less ROC) but lower (~7%); short history.",
+        "red_flags": [
+          "\ud83d\udea9 Swap-based \u2014 counterparty/derivative-structure risk; you don't own the options.",
+          "\u26a0\ufe0f Reported yield varies by source (4.6% vs 7.4%).",
+          "\u26a0\ufe0f Short (~2.5-yr) record, untested in a bear.",
+          "\u26a0\ufe0f Holdings opaque (swaps obscure look-through)."
+        ],
+        "bull": [
+          "Best upside capture of the S&P 500 income funds (+21% 2024)",
+          "6% minimum yield floor",
+          "Daily-call design reduces the monthly-cap drag",
+          "Less ROC-reliant \u2014 more sustainable distribution"
+        ],
+        "bear": [
+          "Lower headline yield than peers (~7%)",
+          "Swap structure adds complexity/counterparty risk",
+          "Still caps upside (just less)",
+          "Thin holdings transparency"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "If you want income with the LEAST upside sacrifice, the daily-call design is compelling. Accept the lower ~7% yield and the swap-counterparty wrinkle. Tap \u21bb for current price/volume."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "GPIX",
+      "name": "Goldman Sachs S&P 500 Premium Income ETF",
+      "is_theme_fund": true,
+      "issuer": "Goldman Sachs Asset Management",
+      "holdings_url": "https://am.gs.com/en-us/advisors/funds/detail/PV105258/38149W622/goldman-sachs-s-p-500-premium-income-etf",
+      "expense_ratio": 0.29,
+      "aum_display": "~$3.2-4.3B",
+      "aum_musd": 3700,
+      "inception": "2023-10",
+      "structure": "Active \u2014 partial call writing",
+      "index": "None (active, dynamic coverage)",
+      "holdings_count": 497,
+      "top10_weight_display": "~39%",
+      "top10_weight_pct": 39,
+      "largest_position_display": "~8.6% (NVIDIA)",
+      "derivatives": "Yes \u2014 partial S&P index calls",
+      "distribution_yield": "~8.0%",
+      "sec_yield": "~0.85%",
+      "performance": {
+        "ytd": null,
+        "y1": "+16.4%",
+        "y2025": null,
+        "y2024": "+23.2%",
+        "y3_annualized": null,
+        "as_of": "2026-04-30",
+        "note": "Total return. Writes calls on only PART of the book (dynamic coverage), so it kept far more upside than XYLD (+23% in 2024). Cheapest fee here (0.29%). Distributions >90% ROC."
+      },
+      "market": {
+        "price": 54.57,
+        "price_display": "$54.57",
+        "price_asof": "2026-06-07",
+        "volume_avg": 785000,
+        "volume_display": "~785K/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.29% \u2014 best-in-class, less than half the NEOS/Global X funds."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Pure active premium-income strategy on the S&P 500."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "S&P 500 cap weights; ~8.6% NVDA, top-10 ~39%."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "$3B+, GS-backed, very liquid."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "~2.6-yr history but strong (+23% 2024); untested in a bear."
+        }
+      },
+      "overall": "The low-cost 'core' S&P 500 income fund \u2014 partial/dynamic call writing keeps more upside, ~8% yield, by far the cheapest fee here (0.29%).",
+      "memo": {
+        "thesis": "GPIX writes calls on only a PORTION of the book and actively manages coverage, so it kept far more upside than XYLD (+23% in 2024) while still paying ~8% monthly. At 0.29% it's the cheapest fund in this whole theme by a wide margin. The distribution is >90% return of capital (tax-deferred but basis-eroding), and the strategy hasn't been tested through a sustained drawdown.",
+        "strategy": "Sells S&P 500 index calls on a fraction of the portfolio (coverage ratio actively managed, well below 100%), so a large share of equity upside flows through uncapped. This is why GPIX tracks the S&P far more closely than ATM buy-writes \u2014 at the cost of a lower (~8%) distribution than XYLD/RYLD.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Clean active partial-coverage premium-income strategy; like its peers, distributions are >90% ROC (tax-deferred)."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "NVIDIA (NVDA)",
+            "weight": "~8.6%",
+            "playtype": "partial",
+            "note": "core S&P equity sleeve"
+          },
+          {
+            "name": "Apple (AAPL)",
+            "weight": "~7.1%",
+            "playtype": "partial",
+            "note": "equity sleeve"
+          },
+          {
+            "name": "Microsoft (MSFT)",
+            "weight": "~4.6%",
+            "playtype": "partial",
+            "note": "equity sleeve"
+          },
+          {
+            "name": "Partial S&P call overlay",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "income engine; only part of book covered"
+          }
+        ],
+        "concentration": "Standard S&P 500 cap weighting; top-10 ~39%, mega-cap tech led.",
+        "sector_geo": "~100% US large-cap; Information Technology heavy.",
+        "cost_context": "0.29% \u2014 the cost leader of this entire theme, roughly half of NEOS (0.68%) and Global X (0.60%); a major edge for long-term holders.",
+        "track_record_note": "Strong total returns (best 2024 in the cohort at +23%); 8% distribution but >90% ROC and 0.85% SEC yield \u2014 income is premium/capital, not dividends.",
+        "red_flags": [
+          "\ud83d\udea9 >90% of distributions are return of capital \u2014 basis erosion.",
+          "\ud83d\udea9 30-day SEC yield only ~0.85%.",
+          "\u26a0\ufe0f Short (~2.6-yr) record, no bear-market test.",
+          "\u26a0\ufe0f AUM varies by source ($3.2B vs $4.3B)."
+        ],
+        "bull": [
+          "Cheapest fee here by far (0.29%)",
+          "Partial writing = best upside retention of the S&P cohort (+23% 2024)",
+          "GS active management + scale/liquidity",
+          "Tax-efficient ROC + reasonable 8% income"
+        ],
+        "bear": [
+          "Lower distribution than XYLD/SPYI (8% vs 10-12%)",
+          "ROC-heavy can mask NAV trends",
+          "Unproven in a downturn",
+          "Still caps some upside in strong rallies"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "Arguably the best blend here: cheapest fee, strong upside retention, ~8% income. If you want income without sacrificing much growth, GPIX is the standout \u2014 accept the ROC distribution character."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "SVOL",
+      "name": "Simplify Volatility Premium ETF",
+      "is_theme_fund": true,
+      "issuer": "Simplify Asset Management",
+      "holdings_url": "https://www.simplify.us/etfs/svol-simplify-volatility-premium-etf",
+      "expense_ratio": 0.5,
+      "aum_display": "~$590M",
+      "aum_musd": 590,
+      "inception": "2021-05",
+      "structure": "Short-VIX-futures (hedged)",
+      "index": "None (short vol premium)",
+      "holdings_count": 15,
+      "top10_weight_display": "n/a (futures+collateral)",
+      "top10_weight_pct": null,
+      "largest_position_display": "short VIX futures + T-bills",
+      "derivatives": "Yes \u2014 short VIX futures + VIX call hedge",
+      "distribution_yield": "~20%",
+      "sec_yield": "~2.77%",
+      "performance": {
+        "ytd": "-5%",
+        "y1": "-6.3%",
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-06-06",
+        "note": "Total return. NOT a covered-call fund \u2014 it SHORTS VIX futures to harvest the volatility risk premium, paying ~20%. Recently NEGATIVE (a choppy-vol regime hurt it). Its enemy is a VIX spike, not a capped rally."
+      },
+      "market": {
+        "price": 15.8,
+        "price_display": "$15.80",
+        "price_asof": "2026-06-06",
+        "volume_avg": 426000,
+        "volume_display": "~426K/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.50% net, but all-in (short interest + acquired-fund fees) is materially higher (~1.16%+)."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Pure income-from-volatility-premium strategy (a different premium than covered calls)."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "Concentrated in a few instruments (short VIX futures + Treasuries + sibling ETFs)."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$590M \u2014 smallest here; underlying VIX futures are liquid."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Longest of the new-wave funds (2021, survived 2022) but most fragile to tail events; recently negative."
+        }
+      },
+      "overall": "NOT a covered-call fund \u2014 a hedged short-VIX-futures income strategy paying ~20%, but exposed to volatility spikes and recently posting negative returns.",
+      "memo": {
+        "thesis": "SVOL monetizes the volatility risk premium by shorting VIX futures at a modest -0.2x to -0.3x, capturing contango roll-down to fund a ~20% distribution, while buying VIX-call tail hedges to blunt spikes. It's structurally different from every other fund here \u2014 its enemy is a fast VIX spike, not a capped rally. Longest live record of the new-income cohort, but recently posted negative total returns in a choppy-vol environment.",
+        "strategy": "Shorts VIX short-term futures (~-0.2x to -0.3x daily) to harvest contango roll-down; buys long VIX calls (~5%) as a tail hedge; holds US Treasuries + sibling Simplify ETFs as collateral; sells some S&P index options. Targets a distribution near fed funds + 10%, NAV-stability focused. A sudden VIX spike causes mark-to-market losses on the short futures (the long calls cap that downside).",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "A pure volatility-risk-premium income strategy \u2014 just a DIFFERENT premium (short vol) than covered calls. Do not bucket it with the equity-income funds."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Short VIX futures + long VIX call hedge",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "THE income engine + its tail hedge"
+          },
+          {
+            "name": "US Treasury Bills",
+            "weight": "~27%",
+            "playtype": "partial",
+            "note": "collateral earning yield"
+          },
+          {
+            "name": "Short E-mini S&P 500 futures",
+            "weight": "~-49%",
+            "playtype": "partial",
+            "note": "positioning/hedge leg"
+          },
+          {
+            "name": "Sibling Simplify ETFs (SPUC/QIS/AGGH)",
+            "weight": "\u2014",
+            "playtype": "partial",
+            "note": "collateral/return sleeves"
+          }
+        ],
+        "concentration": "Not a stock portfolio \u2014 concentrated in VIX-futures shorts, Treasuries, and several affiliated Simplify ETFs. Single-strategy risk.",
+        "sector_geo": "No traditional equity sector exposure; collateral is US Treasuries; short S&P futures is a hedge leg, not directional equity.",
+        "cost_context": "Headline 0.50% net is fine, but acquired-fund fees + short-position interest push the economic cost much higher \u2014 read the gross figure.",
+        "track_record_note": "Longest live history of the cohort (incl. 2022), but the ~20% distribution is the least equity-like and most exposed to tail risk; recent 1-yr total return negative. ROC component likely meaningful.",
+        "red_flags": [
+          "\ud83d\udea9 Short-volatility tail risk \u2014 a sharp VIX spike can cause large, sudden NAV losses.",
+          "\ud83d\udea9 Recently NEGATIVE total return (~-6% 1-yr).",
+          "\ud83d\udea9 All-in cost well above the 0.50% headline.",
+          "\u26a0\ufe0f ~20% distribution is high, not guaranteed, ROC-prone in bad vol regimes.",
+          "\u26a0\ufe0f Complex, multi-instrument structure."
+        ],
+        "bull": [
+          "Genuinely diversifying \u2014 income uncorrelated with covered-call equity beta",
+          "Built-in VIX-call tail hedge mitigates the worst blowups",
+          "Conservative -0.2x/-0.3x sizing vs naive -1x products",
+          "Longest live track record of the new-income funds"
+        ],
+        "bear": [
+          "Loses money in volatility spikes \u2014 opposite risk to equity income funds",
+          "Negative recent performance",
+          "High true cost",
+          "Payout sustainability questionable in adverse regimes"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "CAUTION (example)",
+            "text": "A different animal \u2014 short-vol income, not covered calls. Only as a small diversifier for those who understand VIX-spike risk. The ~20% yield comes with genuine drawdown risk; recently negative."
+          }
+        ]
+      },
+      "meets_criteria": false
+    }
+  ],
+  "roster": [
+    {
+      "ticker": "JEPI",
+      "name": "JPMorgan Equity Premium Income",
+      "tag": "active \u00b7 ELN"
+    },
+    {
+      "ticker": "JEPQ",
+      "name": "JPMorgan Nasdaq Equity Premium Income",
+      "tag": "active \u00b7 ELN \u00b7 Nasdaq"
+    },
+    {
+      "ticker": "QYLD",
+      "name": "Global X Nasdaq 100 Covered Call",
+      "tag": "100% overwrite"
+    },
+    {
+      "ticker": "XYLD",
+      "name": "Global X S&P 500 Covered Call",
+      "tag": "100% overwrite"
+    },
+    {
+      "ticker": "RYLD",
+      "name": "Global X Russell 2000 Covered Call",
+      "tag": "100% overwrite \u00b7 small-cap"
+    },
+    {
+      "ticker": "DIVO",
+      "name": "Amplify CWP Enhanced Dividend Income",
+      "tag": "tactical \u00b7 partial"
+    },
+    {
+      "ticker": "SPYI",
+      "name": "NEOS S&P 500 High Income",
+      "tag": "call-spread \u00b7 tax-managed"
+    },
+    {
+      "ticker": "QQQI",
+      "name": "NEOS Nasdaq-100 High Income",
+      "tag": "call-spread \u00b7 Nasdaq"
+    },
+    {
+      "ticker": "ISPY",
+      "name": "ProShares S&P 500 High Income",
+      "tag": "daily calls \u00b7 swap"
+    },
+    {
+      "ticker": "GPIX",
+      "name": "Goldman Sachs S&P 500 Premium Income",
+      "tag": "partial \u00b7 low-cost"
+    },
+    {
+      "ticker": "SVOL",
+      "name": "Simplify Volatility Premium",
+      "tag": "\u26a0\ufe0f short-VIX"
+    },
+    {
+      "ticker": "GPIQ",
+      "name": "Goldman Sachs Nasdaq-100 Premium Income",
+      "tag": "partial \u00b7 Nasdaq"
+    },
+    {
+      "ticker": "FEPI",
+      "name": "REX FANG & Innovation Premium Income",
+      "tag": "single-name calls \u00b7 high-yield"
+    },
+    {
+      "ticker": "BALI",
+      "name": "iShares Advantage Large Cap Income",
+      "tag": "buffered income"
+    },
+    {
+      "ticker": "JEPY",
+      "name": "Defiance S&P 500 Enhanced Options Income",
+      "tag": "daily calls \u00b7 high-yield"
+    },
+    {
+      "ticker": "QQQY",
+      "name": "Defiance Nasdaq 100 Enhanced Options Income",
+      "tag": "\u26a0\ufe0f 0-DTE \u00b7 very high yield"
+    },
+    {
+      "ticker": "XYLG",
+      "name": "Global X S&P 500 Covered Call & Growth",
+      "tag": "50% overwrite"
+    },
+    {
+      "ticker": "DJIA",
+      "name": "Global X Dow 30 Covered Call",
+      "tag": "100% overwrite \u00b7 Dow"
+    },
+    {
+      "ticker": "SPY",
+      "name": "SPDR S&P 500",
+      "tag": "benchmark (S&P 500)"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ETF Analysis</title>
+  <meta name="description" content="Compare thematic ETFs on expense ratio, holdings, concentration and performance." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">▲</span>
+      <h1>ETF Analysis</h1>
+    </div>
+    <div class="theme-picker">
+      <label for="themeSelect">Theme</label>
+      <select id="themeSelect" aria-label="Select theme"></select>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="themeIntro" class="intro"></section>
+
+    <section class="controls" id="controls" hidden>
+      <input type="search" id="filterBox" placeholder="Filter by ticker or name…" />
+      <label class="toggle">
+        <input type="checkbox" id="themeOnly" /> Theme funds only
+      </label>
+      <label class="toggle pass-toggle" title="cost 🟢 + concentration 🟢 + purity 🟢/🟡">
+        <input type="checkbox" id="passOnly" /> ✓ Meets my criteria
+      </label>
+      <span class="ratingfilter">
+        <select id="ratingDim" aria-label="Rating dimension to filter by">
+          <option value="">Rating: any</option>
+          <option value="cost">Cost</option>
+          <option value="purity">Purity</option>
+          <option value="concentration">Concentration</option>
+          <option value="liquidity">Liquidity</option>
+          <option value="track_record">Track record</option>
+        </select>
+        <select id="ratingVal" aria-label="Minimum rating" disabled>
+          <option value="">—</option>
+          <option value="green">🟢 Good only</option>
+          <option value="greenyellow">🟢🟡 Good + Caution</option>
+          <option value="red">🔴 Concern only</option>
+        </select>
+      </span>
+      <span class="addbox">
+        <input type="search" id="addTicker" maxlength="8" placeholder="Add ticker (e.g. QTUM)…" />
+        <button id="addBtn">＋ Look up</button>
+      </span>
+      <span class="hint">Click a header to sort · click a row for the memo · ↻ pulls live data</span>
+    </section>
+
+    <section id="liveMsg" class="livemsg" hidden></section>
+    <section id="tableWrap" class="table-wrap"></section>
+    <section id="roster" class="roster" hidden></section>
+    <section id="tensions" class="tensions"></section>
+  </main>
+
+  <div id="overlay" class="overlay" hidden></div>
+  <aside id="memoDrawer" class="drawer" hidden aria-label="ETF memo">
+    <button id="closeMemo" class="close" aria-label="Close">×</button>
+    <div id="memoBody"></div>
+  </aside>
+
+  <footer class="foot">
+    <details class="glossary">
+      <summary>Abbreviations &amp; terms (tap to expand)</summary>
+      <dl id="glossaryList"></dl>
+    </details>
+    <p>
+      Personal research aid — <strong>not investment advice</strong>. Curated figures
+      are a dated snapshot from public sources; the ↻ button and "Look up" box pull
+      live data from a market-data provider, and each fund links to its issuer's
+      official holdings. Always verify against the issuer fact sheet and latest SEC
+      filing before acting. A <span class="nodata">n/a ↻</span> means a figure
+      isn't loaded yet — tap ↻ to fetch it; <strong>every fund listed is a real,
+      tradable ETF</strong>, so a blank never means "not investable".
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

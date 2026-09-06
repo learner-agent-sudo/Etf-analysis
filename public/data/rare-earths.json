@@ -1,0 +1,274 @@
+{
+  "id": "rare-earths",
+  "name": "Rare Earths / Critical Minerals",
+  "as_of": "2026-06-09 (scores from stable attributes; tap \u21bb for live price/AUM/returns)",
+  "tagline": "The materials behind magnets, EVs, robotics, wind and defense \u2014 where China controls most of the supply. A geopolitical/supply-shock bet with a tiny fund universe and extreme concentration: a textbook binary theme.",
+  "universe_note": "A VERY thin universe \u2014 REMX is essentially the only established fund; CRIT and broad metals-miners (XME/PICK) are the alternatives. Extreme single-name + single-country (China) concentration. Market figures need a live \u21bb.",
+  "live_refresh": true,
+  "key_tensions": [
+    "China dominance: China controls ~60-70% of rare-earth mining and ~85%+ of processing \u2014 export policy there can move the whole theme overnight.",
+    "Extreme concentration: REMX leans on MP Materials, Lynas and a few Chinese producers \u2014 top-10 dominates; a single name/policy headline swings it.",
+    "Tiny universe: essentially one real fund (REMX). Scarcity itself is the finding \u2014 and a closure/liquidity concern.",
+    "Commodity boom-bust: rare-earth prices are violently cyclical; the equities are higher-beta still.",
+    "Strategic tailwind vs price reality: Western governments subsidize supply (defense/EV), but oversupply from China can crush prices regardless."
+  ],
+  "benchmark_note": "XME (SPDR Metals & Mining) or PICK (broad global miners) are the yardsticks \u2014 diversified mining vs a narrow, China-exposed rare-earth bet.",
+  "etfs": [
+    {
+      "ticker": "REMX",
+      "name": "VanEck Rare Earth & Strategic Metals ETF",
+      "is_theme_fund": true,
+      "issuer": "VanEck",
+      "holdings_url": "https://www.vaneck.com/us/en/investments/rare-earth-strategic-metals-etf-remx/",
+      "expense_ratio": 0.53,
+      "aum_display": "~$400M (verify \u21bb)",
+      "aum_musd": 400,
+      "inception": "2010-10",
+      "structure": "Passive \u2014 index",
+      "index": "MVIS Global Rare Earth/Strategic Metals",
+      "holdings_count": 30,
+      "top10_weight_display": "~60%",
+      "top10_weight_pct": 60,
+      "largest_position_display": "~8-9% (MP Materials / Lynas, verify)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "verify",
+        "note": "The only established rare-earth fund \u2014 miners + processors of rare earths and strategic metals (lithium, tungsten, etc.). Heavy China + MP/Lynas concentration. Tap \u21bb for current figures."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.53% \u2014 typical for a niche commodity-equity fund."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Genuine rare-earth/strategic-metals pure-play \u2014 miners + processors."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "~30 names, top-10 ~60%, China-heavy \u2014 extreme single-name + single-country concentration."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$400M AUM \u2014 modest; verify liquidity/spreads via \u21bb."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Since 2010; brutal commodity boom-bust history."
+        }
+      },
+      "overall": "Essentially the only rare-earth fund \u2014 genuine exposure, but extreme China + single-name concentration.",
+      "memo": {
+        "thesis": "REMX is the one established way to own the rare-earth & strategic-metals supply chain \u2014 the magnets/materials behind EVs, robotics, wind and defense. The bet is really a geopolitical one: China dominates supply, and the fund is heavily concentrated in a handful of producers (MP Materials, Lynas) plus Chinese names. Big strategic tailwind, but extreme concentration and commodity-price volatility.",
+        "strategy": "Passively tracks the MVIS Global Rare Earth/Strategic Metals Index \u2014 ~30 companies mining/refining rare earths and strategic metals (incl. lithium, tungsten, titanium). Cap-influenced, so top producers dominate.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Genuine rare-earth/strategic-metals pure-play, though 'strategic metals' broadens it beyond pure rare earths (lithium etc.)."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "MP Materials (MP)",
+            "weight": "~8-9%",
+            "playtype": "pure",
+            "note": "the US rare-earth champion"
+          },
+          {
+            "name": "Lynas Rare Earths",
+            "weight": "~7%",
+            "playtype": "pure",
+            "note": "largest ex-China producer (Australia)"
+          },
+          {
+            "name": "Chinese rare-earth producers",
+            "weight": "~5% each",
+            "playtype": "pure",
+            "note": "JL MAG, China Northern etc. \u2014 China-supply concentration"
+          }
+        ],
+        "concentration": "~30 names, top-10 ~60%, with heavy China exposure \u2014 both single-name and single-COUNTRY concentration are severe.",
+        "sector_geo": "Global rare-earth/strategic-metals miners; China-heavy, plus Australia (Lynas) and US (MP).",
+        "cost_context": "0.53% \u2014 standard niche-commodity fee.",
+        "track_record_note": "Since 2010; violent boom-bust tracking rare-earth/lithium prices and Chinese policy. Tap \u21bb for trailing returns.",
+        "red_flags": [
+          "\ud83d\udea9 China supply/policy dominance \u2014 a single export rule can swing it.",
+          "\ud83d\udea9 Top-10 ~60% + single-country concentration.",
+          "\ud83d\udea9 Commodity boom-bust volatility.",
+          "\u26a0\ufe0f Modest AUM (~$400M) \u2014 verify liquidity."
+        ],
+        "bull": [
+          "The only established rare-earth vehicle",
+          "Genuine supply-chain exposure (magnets/EV/defense)",
+          "Strategic-security tailwind (Western subsidies)",
+          "Direct MP/Lynas exposure"
+        ],
+        "bear": [
+          "Extreme China + single-name concentration",
+          "Commodity price crashes (China oversupply)",
+          "Modest liquidity",
+          "High volatility"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "CAUTION (example)",
+            "text": "A genuine supply-shock bet but fails concentration hard (China + MP/Lynas). Size small; understand it's as much a geopolitics bet as a metals bet. Tap \u21bb for live data."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "XME",
+      "name": "SPDR S&P Metals & Mining ETF",
+      "is_theme_fund": false,
+      "issuer": "State Street SPDR",
+      "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-metals-mining-etf-xme",
+      "expense_ratio": 0.35,
+      "aum_display": "~$2B (verify \u21bb)",
+      "aum_musd": 2000,
+      "inception": "2006-06",
+      "structure": "Passive \u2014 equal-weight",
+      "index": "S&P Metals & Mining Select",
+      "holdings_count": 30,
+      "top10_weight_display": "~40%",
+      "top10_weight_pct": 40,
+      "largest_position_display": "equal-weight US miners",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "verify",
+        "note": "Benchmark \u2014 broad US metals & mining (steel, coal, aluminum, gold), equal-weighted. Diversified contrast to a narrow rare-earth bet. Tap \u21bb for figures."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.35% \u2014 cheap, far below REMX."
+        },
+        "purity": {
+          "rating": "red",
+          "note": "Broad metals & mining, NOT rare earths \u2014 the benchmark."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Equal-weight, top-10 ~40% \u2014 diversified across the mining sector."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$2B \u2014 liquid."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2006."
+        }
+      },
+      "overall": "Benchmark \u2014 diversified, cheap US metals & mining; the yardstick vs a narrow rare-earth bet.",
+      "memo": {
+        "thesis": "REFERENCE, NOT A RARE-EARTH FUND. XME is broad, equal-weighted US metals & mining (steel, aluminum, coal, gold, copper) at 0.35%. Use it to judge whether REMX's narrow, China-exposed rare-earth concentration was worth it vs diversified mining.",
+        "strategy": "Passive, equal-weighted S&P Metals & Mining Select industry index; rebalanced quarterly.",
+        "purity_verdict": {
+          "rating": "red",
+          "note": "Broad mining, not rare-earth-specific. The comparison baseline."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Steel makers (Nucor/Steel Dynamics)",
+            "weight": "~4%",
+            "playtype": "unrelated",
+            "note": "steel, not rare earths"
+          },
+          {
+            "name": "Gold/copper miners",
+            "weight": "~4%",
+            "playtype": "partial",
+            "note": "some critical-metals overlap"
+          },
+          {
+            "name": "Aluminum/coal",
+            "weight": "~4%",
+            "playtype": "unrelated",
+            "note": "broad mining"
+          }
+        ],
+        "concentration": "Equal-weight, top-10 ~40% \u2014 diversified.",
+        "sector_geo": "US metals & mining; domestic.",
+        "cost_context": "0.35% \u2014 far cheaper than REMX.",
+        "track_record_note": "Since 2006; cyclical but diversified. Tap \u21bb for returns.",
+        "red_flags": [
+          "\u26a0\ufe0f Not rare-earth-specific.",
+          "\u26a0\ufe0f Cyclical mining sector."
+        ],
+        "bull": [
+          "Cheap, diversified, liquid",
+          "Broad commodity-cycle exposure"
+        ],
+        "bear": [
+          "No rare-earth focus",
+          "Mining cyclicality"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "BENCHMARK",
+            "text": "Yardstick \u2014 diversified mining vs REMX's narrow rare-earth concentration."
+          }
+        ]
+      },
+      "meets_criteria": false
+    }
+  ],
+  "roster": [
+    {
+      "ticker": "REMX",
+      "name": "VanEck Rare Earth & Strategic Metals",
+      "tag": "rare earths \u00b7 only established fund"
+    },
+    {
+      "ticker": "CRIT",
+      "name": "Optica Rare Earths & Critical Materials",
+      "tag": "critical materials \u00b7 newer \u00b7 verify"
+    },
+    {
+      "ticker": "XME",
+      "name": "SPDR S&P Metals & Mining",
+      "tag": "benchmark (broad mining)"
+    },
+    {
+      "ticker": "PICK",
+      "name": "iShares MSCI Global Metals & Mining",
+      "tag": "benchmark (global miners)"
+    },
+    {
+      "ticker": "LIT",
+      "name": "Global X Lithium & Battery Tech",
+      "tag": "adjacent (lithium/battery)"
+    },
+    {
+      "ticker": "BATT",
+      "name": "Amplify Lithium & Battery Technology",
+      "tag": "adjacent (battery metals)"
+    }
+  ]
+}

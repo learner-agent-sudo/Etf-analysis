@@ -1,0 +1,1139 @@
+{
+  "id": "space",
+  "name": "Space",
+  "as_of": "2026-05-29",
+  "tagline": "The space economy \u2014 launch, satellites, earth-observation, comms, plus the defense names riding alongside. Small universe, young funds, heavy concentration, and a big gap between marketing and holdings.",
+  "key_tensions": [
+    "'Space' vs 'defense' drift: several funds broadened mandates toward defense in 2025 (ARKX literally renamed to add 'Defense'). Pure-space and defense are different risk profiles.",
+    "Concentration: funds run ~34-54 holdings with top-10 weights near 50-60% \u2014 fairly concentrated bets either way.",
+    "Cost: space funds cluster at 0.75%; broad aerospace & defense funds are 0.35-0.50% for more liquidity. Is pure-space access worth the premium?",
+    "Data quality: aggregator figures disagreed with SEC filings (e.g. UFO concentration ~58% vs ~22%). Cross-check before deciding."
+  ],
+  "benchmark_note": "XAR and SHLD are aerospace & defense funds, NOT space funds \u2014 included as yardsticks. A lot of 'space' exposure is really aerospace/defense; comparing shows how much extra (and how much overlap) a space label actually buys.",
+  "etfs": [
+    {
+      "ticker": "UFO",
+      "name": "Procure Space ETF",
+      "is_theme_fund": true,
+      "expense_ratio": 0.75,
+      "aum_display": "~$1.32B",
+      "aum_musd": 1320,
+      "inception": "2019",
+      "structure": "Passive \u2014 index",
+      "index": "S-Network Space",
+      "holdings_count": 54,
+      "top10_weight_display": "~50% (May'26)",
+      "top10_weight_pct": 50,
+      "largest_position_display": "~7.4% (Rocket Lab)",
+      "derivatives": "No",
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.75% \u2014 typical for space, but high vs broad A&D."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "May'26 holdings genuinely space-pure (Rocket Lab, Planet Labs, Iridium...)."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "~50% top-10 across ~54 names."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$950M AUM \u2014 healthy for a thematic fund."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Since 2019; modest history."
+        }
+      },
+      "overall": "The purest passive space-economy bet.",
+      "memo": {
+        "thesis": "The purest passive bet on the space economy: tracks a dedicated space index and, as of 2026, genuinely holds space pure-plays (launch, satellites, comms) rather than filler.",
+        "strategy": "Passively tracks the S-Network Space Index. Rules-based, transparent, rebalanced per index methodology. No active manager, no derivatives.",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "By May 2026 the top names (Rocket Lab, Planet Labs, ViaSat, Globalstar, Iridium, Intuitive Machines) are real space pure-plays. NOTE: its 2023 SEC filing showed weaker purity (incl. a furniture retailer, a water-tech firm) \u2014 purity is time-varying, re-check at decision time."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Rocket Lab (RKLB)",
+            "weight": "~7.4%",
+            "playtype": "pure",
+            "note": "launch + space systems"
+          },
+          {
+            "name": "Planet Labs (PL)",
+            "weight": "~6.4%",
+            "playtype": "pure",
+            "note": "earth observation"
+          },
+          {
+            "name": "ViaSat (VSAT)",
+            "weight": "~5.9%",
+            "playtype": "pure",
+            "note": "satellite comms"
+          },
+          {
+            "name": "Globalstar / Iridium",
+            "weight": "~4.8% each",
+            "playtype": "pure",
+            "note": "satellite comms"
+          },
+          {
+            "name": "Intuitive Machines (LUNR)",
+            "weight": "~4.2%",
+            "playtype": "pure",
+            "note": "lunar landers"
+          }
+        ],
+        "concentration": "~50% in top 10 across ~54 names. Moderate for the theme, but the pure-plays are high-beta.",
+        "sector_geo": "Concentrated in space/satellite + some industrials; international names included. Less defense-prime overlap than ARKX.",
+        "cost_context": "0.75% \u2014 standard for space, but ~2x the broad A&D funds. The premium buys genuine space purity.",
+        "track_record_note": "Since 2019. TODO: trailing returns vs a space/A&D benchmark + max drawdown, with dates.",
+        "red_flags": [
+          "\u26a0\ufe0f Cost 0.75% vs cheaper A&D alternatives.",
+          "\u26a0\ufe0f Concentration ~50% in top 10.",
+          "\u2753 Data: aggregator vs SEC filing concentration disagreed (58% vs 22%) \u2014 verify on issuer fact sheet.",
+          "\u2753 Purity changed over time \u2014 confirm current holdings."
+        ],
+        "bull": [
+          "Purest passive space exposure",
+          "Transparent rules-based index",
+          "Healthy liquidity for the theme",
+          "Genuine pure-plays as of 2026"
+        ],
+        "bear": [
+          "0.75% fee",
+          "~50% top-10 concentration",
+          "High-beta pure-plays",
+          "Modest track record"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-05-29",
+            "action": "WATCH (example)",
+            "text": "Strongest pure-space candidate. Verify current top-10 + concentration on the issuer fact sheet; pull drawdown vs benchmark before acting."
+          }
+        ]
+      },
+      "performance": {
+        "ytd": "+75%",
+        "y1": "~+45%",
+        "y3_annualized": "verify",
+        "as_of": "2026-06-03",
+        "note": "Space names rallied hard in 2025-26; high beta. Verify trailing figures via Refresh."
+      },
+      "holdings_url": "https://procureetfs.com/ufo/",
+      "issuer": "Procure (ProcureAM)",
+      "market": {
+        "price": 54.85,
+        "price_display": "$54.85",
+        "price_asof": "2026-06-09",
+        "volume_avg": 1230000,
+        "volume_display": "~1.2M/day"
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "ARKX",
+      "name": "ARK Space & Defense Innovation ETF",
+      "is_theme_fund": true,
+      "expense_ratio": 0.75,
+      "aum_display": "~$500-919M",
+      "aum_musd": 700,
+      "inception": "2021-03-30",
+      "structure": "Active \u2014 no index",
+      "index": "None (active)",
+      "holdings_count": 34,
+      "top10_weight_display": "~59%",
+      "top10_weight_pct": 59,
+      "largest_position_display": "~7-9% (RKLB/LHX)",
+      "derivatives": "No",
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.75% + active management premium."
+        },
+        "purity": {
+          "rating": "yellow",
+          "note": "Space AND defense (renamed 2025) \u2014 intentionally diluted with defense."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "~59% top-10 in only ~34 names \u2014 high single-stock risk."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "AUM ~$0.5-0.9B (sources disagree)."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Since 2021; active record mixed/volatile."
+        }
+      },
+      "overall": "Concentrated active space + defense bet \u2014 you're buying ARK's judgment.",
+      "memo": {
+        "thesis": "An actively managed, high-conviction bet on a handful of space- and (since 2025) defense-innovation companies, picked by ARK. You buy the manager's judgment as much as the theme.",
+        "strategy": "Actively managed, NO underlying index \u2014 ARK selects and re-weights daily. >=80% in equities tied to its theme. Renamed in late 2025 from 'Space Exploration & Innovation' to add 'Defense Innovation', broadening the mandate. Returns ride on ARK's stock selection \u2192 key-person/manager risk is first-order.",
+        "purity_verdict": {
+          "rating": "yellow",
+          "text": "Recognizably themed (Rocket Lab, L3Harris, Kratos) but the 2025 defense expansion intentionally dilutes 'space purity' with defense + some adjacent industrials (Deere). You're buying ARK's definition of the theme."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Rocket Lab (RKLB)",
+            "weight": "~7-9%",
+            "playtype": "pure",
+            "note": "launch/space systems"
+          },
+          {
+            "name": "L3Harris (LHX)",
+            "weight": "~7-9%",
+            "playtype": "partial",
+            "note": "defense prime + space"
+          },
+          {
+            "name": "Kratos (KTOS)",
+            "weight": "~6-8%",
+            "playtype": "partial",
+            "note": "drones, space"
+          },
+          {
+            "name": "Teradyne (TER)",
+            "weight": "~6%",
+            "playtype": "partial",
+            "note": "semis/test, adjacent"
+          },
+          {
+            "name": "Deere (DE)",
+            "weight": "~6%",
+            "playtype": "unrelated",
+            "note": "industrial/ag (autonomy angle)"
+          }
+        ],
+        "concentration": "High: ~59% in top 10 across only ~34 names. Combined with active management + volatile theme, expect large drawdowns.",
+        "sector_geo": "Heavily Industrials (~60%) and Tech (~28%), mostly US. Overlap watch: big defense primes (LHX) also dominate XAR/SHLD \u2014 holding ARKX + a defense ETF doubles up.",
+        "cost_context": "0.75% top of the cohort, and you pay for active management. Justified only if ARK adds value net of fee.",
+        "track_record_note": "Active since 2021; ARK funds are famously volatile (big rallies, deep drawdowns). TODO: trailing 1/3/5-yr vs benchmark, with dates.",
+        "red_flags": [
+          "\ud83d\udea9 Concentration ~59% top-10 in ~34 names.",
+          "\u26a0\ufe0f Theme drift: space -> space & defense (2025).",
+          "\u26a0\ufe0f 0.75% active vs cheaper passive peers.",
+          "\u26a0\ufe0f Manager/key-person risk (no index).",
+          "\u2753 AUM uncertainty ($500M-$919M)."
+        ],
+        "bull": [
+          "Active manager can pivot in a young sector",
+          "High-conviction genuine space leaders",
+          "Defense addition taps funded demand"
+        ],
+        "bear": [
+          "Active + 0.75% may lag cheap passive",
+          "~59% top-10 / ~34 names = severe risk",
+          "Diluted space purity, overlaps defense ETFs"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-05-29",
+            "action": "WATCH (example)",
+            "text": "Verify AUM + top-10 on ARK fact sheet; pull drawdown + returns vs benchmark; decide whether you want space or space+defense (if latter, compare to SHLD/XAR on cost)."
+          }
+        ]
+      },
+      "performance": {
+        "ytd": "verify (tap Refresh)",
+        "y1": "~+50%",
+        "y3_annualized": "verify",
+        "as_of": "2026-05",
+        "note": "Active; ARK funds are volatile (big rallies & drawdowns). Verify vs benchmark via Refresh."
+      },
+      "holdings_url": "https://www.ark-funds.com/funds/arkx",
+      "issuer": "ARK Invest",
+      "market": {
+        "price": 34.04,
+        "price_display": "$34.04",
+        "price_asof": "2026-06-05",
+        "volume_avg": 1340000,
+        "volume_display": "~1.3M/day"
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "ROKT",
+      "name": "SPDR S&P Kensho Final Frontiers ETF",
+      "is_theme_fund": true,
+      "expense_ratio": 0.45,
+      "aum_display": "~$200M",
+      "aum_musd": 200,
+      "inception": "2018-10-22",
+      "structure": "Passive \u2014 index",
+      "index": "S&P Kensho Final Frontiers",
+      "holdings_count": 37,
+      "top10_weight_display": "(verify)",
+      "top10_weight_pct": null,
+      "largest_position_display": "(verify)",
+      "derivatives": "No",
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.45% \u2014 cheapest space fund."
+        },
+        "purity": {
+          "rating": "yellow",
+          "note": "'Final Frontiers' = space AND deep-sea exploration; broader than pure space."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "~37 holdings; verify top-10 weight."
+        },
+        "liquidity": {
+          "rating": "red",
+          "note": "~$200M AUM \u2014 thinnest of the space funds."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2018 \u2014 longest space record here."
+        }
+      },
+      "overall": "Cheap, broad 'frontiers' exposure \u2014 but thin and not pure space.",
+      "memo": {
+        "thesis": "The cost-conscious, broader 'frontiers' play: tracks an index of space AND deep-sea exploration companies. Cheapest space fund, but the mandate is wider than pure space and liquidity is the thinnest.",
+        "strategy": "Passively tracks the S&P Kensho Final Frontiers Index (US equities tied to space + deep-sea exploration), tier-weighted. Rules-based, no active manager.",
+        "purity_verdict": {
+          "rating": "yellow",
+          "text": "'Final Frontiers' deliberately spans space AND deep-sea \u2014 so it's not a pure space bet. Skews toward Industrials / Aerospace & Defense."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Planet Labs (PL)",
+            "weight": "8.15%",
+            "playtype": "pure",
+            "note": "earth observation"
+          },
+          {
+            "name": "Intuitive Machines (LUNR)",
+            "weight": "6.43%",
+            "playtype": "pure",
+            "note": "lunar landers"
+          },
+          {
+            "name": "Redwire (RDW)",
+            "weight": "6.43%",
+            "playtype": "pure",
+            "note": "space infrastructure"
+          },
+          {
+            "name": "Iridium (IRDM)",
+            "weight": "5.81%",
+            "playtype": "pure",
+            "note": "satellite comms"
+          },
+          {
+            "name": "Rocket Lab (RKLB)",
+            "weight": "5.44%",
+            "playtype": "pure",
+            "note": "launch/space systems"
+          }
+        ],
+        "concentration": "~37 holdings; tier-weighted. TODO: confirm top-10 weight from issuer file.",
+        "sector_geo": "Broad Aerospace & Defense / Industrials, US-focused. Overlaps XAR/SHLD on the defense side.",
+        "cost_context": "0.45% \u2014 cheapest space option, roughly 40% less than UFO/ARKX. The trade-off is breadth (less pure) and thin AUM.",
+        "track_record_note": "Since 2018. TODO: trailing returns vs benchmark + drawdown, with dates.",
+        "red_flags": [
+          "\ud83d\udea9 Thin AUM ~$200M \u2014 wider spreads, some closure risk.",
+          "\u26a0\ufe0f Not pure space (includes deep-sea).",
+          "\u2753 Top-10 weight not yet verified."
+        ],
+        "bull": [
+          "Cheapest space fund (0.45%)",
+          "Longest track record",
+          "Broader 'frontiers' diversification"
+        ],
+        "bear": [
+          "Thin ~$200M AUM",
+          "Not pure space (deep-sea included)",
+          "Defense overlap with A&D funds"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-05-29",
+            "action": "WATCH (example)",
+            "text": "Attractive on cost. Verify top-10 + average spread (thin AUM); confirm whether 'frontiers' breadth fits your thesis before acting."
+          }
+        ]
+      },
+      "performance": {
+        "ytd": "verify (tap Refresh)",
+        "y1": "~+40%",
+        "y3_annualized": "verify",
+        "as_of": "2026-05",
+        "note": "Broader 'frontiers' basket; longest space record. Verify trailing figures via Refresh."
+      },
+      "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-kensho-final-frontiers-etf-rokt",
+      "issuer": "State Street SPDR",
+      "market": {
+        "price": 125.39,
+        "price_display": "$125.39",
+        "price_asof": "2026-06-03",
+        "volume_avg": 92270,
+        "volume_display": "~92K/day"
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "XAR",
+      "name": "SPDR S&P Aerospace & Defense ETF",
+      "is_theme_fund": false,
+      "expense_ratio": 0.35,
+      "aum_display": "~$5.9B",
+      "aum_musd": 5900,
+      "inception": "2011",
+      "structure": "Passive \u2014 equal-weight",
+      "index": "S&P A&D Select",
+      "holdings_count": 41,
+      "top10_weight_display": "low (equal-wt)",
+      "top10_weight_pct": 25,
+      "largest_position_display": "~3.7% (capped)",
+      "derivatives": "No",
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.35% \u2014 very cheap."
+        },
+        "purity": {
+          "rating": "red",
+          "note": "Aerospace & defense, NOT space. Benchmark only."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Equal-weight, max ~3.7% \u2014 very well spread."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$5.9B AUM \u2014 highly liquid."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2011 \u2014 long, broad."
+        }
+      },
+      "overall": "Benchmark \u2014 diversified, cheap aerospace & defense yardstick.",
+      "memo": {
+        "thesis": "REFERENCE FUND, NOT SPACE. The broad, cheap, equal-weighted aerospace & defense benchmark. Included to show how much extra (and how much overlap) a space label actually buys versus mainstream A&D.",
+        "strategy": "Passive, EQUAL-WEIGHTED index of ~41 US aerospace & defense companies; no single stock exceeds ~3.7%. Very diversified within the sector.",
+        "purity_verdict": {
+          "rating": "red",
+          "text": "No space-specific mandate (some constituents have space divisions). Use purely as a cost/liquidity/diversification yardstick."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "BWX Technologies / Curtiss-Wright (equal-wt)",
+            "weight": "~3.7% max",
+            "playtype": "partial",
+            "note": "A&D primes & suppliers, some space exposure"
+          }
+        ],
+        "concentration": "Equal-weight = very low single-name risk (max ~3.7%). The opposite of ARKX \u2014 useful contrast.",
+        "sector_geo": "Pure aerospace & defense, US. Overlaps the defense sleeves of ARKX/ROKT/SHLD.",
+        "cost_context": "0.35% \u2014 far cheaper than the space funds, for more diversification and liquidity (but no pure-space upside).",
+        "track_record_note": "Long history since 2011; the established A&D baseline.",
+        "red_flags": [
+          "\u26a0\ufe0f Not space \u2014 limited pure-space upside.",
+          "\u26a0\ufe0f Equal-weight underweights the mega-cap primes."
+        ],
+        "bull": [
+          "Cheap, liquid, diversified",
+          "Equal-weight avoids single-stock risk",
+          "Long track record"
+        ],
+        "bear": [
+          "No pure-space exposure",
+          "Defense-cycle dependent"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-05-29",
+            "action": "BENCHMARK",
+            "text": "Yardstick. If your thesis is really 'defense', this cheaper diversified fund may beat a pricey space ETF \u2014 answer that before buying space."
+          }
+        ]
+      },
+      "performance": {
+        "ytd": "verify (tap Refresh)",
+        "y1": "~+35%",
+        "y3_annualized": "verify",
+        "as_of": "2026-05",
+        "note": "Benchmark. Broad A&D; rode 2025-26 defense spending. Verify via Refresh."
+      },
+      "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-aerospace-defense-etf-xar",
+      "issuer": "State Street SPDR",
+      "market": {
+        "price": 279.87,
+        "price_display": "$279.87",
+        "price_asof": "2026-06-02",
+        "volume_avg": 230610,
+        "volume_display": "~231K/day"
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "SHLD",
+      "name": "Global X Defense Tech ETF",
+      "is_theme_fund": false,
+      "expense_ratio": 0.5,
+      "aum_display": "~$7.7B",
+      "aum_musd": 7700,
+      "inception": "2023",
+      "structure": "Passive \u2014 index",
+      "index": "Global X Defense Tech",
+      "holdings_count": 53,
+      "top10_weight_display": "~60%",
+      "top10_weight_pct": 60,
+      "largest_position_display": "~8.9% (Lockheed)",
+      "derivatives": "No",
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.50% \u2014 reasonable."
+        },
+        "purity": {
+          "rating": "red",
+          "note": "Defense-tech, NOT space. Benchmark only."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "~60% top-10, largest ~8.9% \u2014 concentrated in primes."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$7.7B AUM \u2014 very liquid, big inflows."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Newer fund, huge recent inflows."
+        }
+      },
+      "overall": "Benchmark \u2014 concentrated defense-tech yardstick, not space.",
+      "memo": {
+        "thesis": "REFERENCE FUND, NOT SPACE. A large, fast-growing defense-tech ETF. Included to show the adjacency/overlap: many 'space' funds lean on the same defense primes this fund holds.",
+        "strategy": "Passive index of defense-technology companies; cap/tier-weighted, concentrated in the big primes (Lockheed, RTX, General Dynamics) plus tech names like Palantir.",
+        "purity_verdict": {
+          "rating": "red",
+          "text": "Defense-tech mandate, not space. Use as an overlap check: holding SHLD + a space ETF likely double-counts defense primes."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Lockheed Martin (LMT)",
+            "weight": "8.86%",
+            "playtype": "unrelated",
+            "note": "defense prime"
+          },
+          {
+            "name": "General Dynamics (GD)",
+            "weight": "8.01%",
+            "playtype": "unrelated",
+            "note": "defense prime"
+          },
+          {
+            "name": "RTX (RTX)",
+            "weight": "7.99%",
+            "playtype": "unrelated",
+            "note": "defense prime"
+          },
+          {
+            "name": "Palantir (PLTR)",
+            "weight": "6.54%",
+            "playtype": "unrelated",
+            "note": "defense software"
+          },
+          {
+            "name": "Rheinmetall",
+            "weight": "5.38%",
+            "playtype": "unrelated",
+            "note": "defense (Europe)"
+          }
+        ],
+        "concentration": "~60% in top 10, largest ~8.9%; ~89% industrials, ~60% US. Concentrated in mega-cap defense.",
+        "sector_geo": "Defense-tech, ~89% industrials, ~60% US. Heavy overlap with ARKX/ROKT/XAR defense sleeves.",
+        "cost_context": "0.50% \u2014 between the space funds and XAR. Fair for the exposure, but it's defense, not space.",
+        "track_record_note": "Newer fund riding large 2025-26 inflows on defense spending. Short history.",
+        "red_flags": [
+          "\u26a0\ufe0f Not space.",
+          "\u26a0\ufe0f ~60% top-10 concentration.",
+          "\u26a0\ufe0f Short track record despite size."
+        ],
+        "bull": [
+          "Large, liquid defense-tech exposure",
+          "Rides funded defense demand"
+        ],
+        "bear": [
+          "No pure-space upside",
+          "Concentrated in primes",
+          "Short history"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-05-29",
+            "action": "BENCHMARK",
+            "text": "Overlap yardstick. Check it against any space fund's holdings to avoid doubling up on defense primes."
+          }
+        ]
+      },
+      "performance": {
+        "ytd": "verify (tap Refresh)",
+        "y1": "~+55%",
+        "y3_annualized": "verify",
+        "as_of": "2026-05",
+        "note": "Benchmark. Defense-tech surged on global defense budgets. Verify via Refresh."
+      },
+      "holdings_url": "https://www.globalxetfs.com/funds/shld",
+      "issuer": "Global X",
+      "market": {
+        "price": 62.51,
+        "price_display": "$62.51",
+        "price_asof": "2026-06-07",
+        "volume_avg": 2170000,
+        "volume_display": "~2.2M/day"
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "NASA",
+      "name": "Tema Space Innovators ETF",
+      "is_theme_fund": true,
+      "issuer": "Tema ETFs",
+      "holdings_url": "https://temaetfs.com/nasa",
+      "expense_ratio": 0.87,
+      "aum_display": "~$2.4B",
+      "aum_musd": 2380,
+      "inception": "2026-03",
+      "structure": "Active \u2014 incl. pre-IPO",
+      "index": "None (active)",
+      "holdings_count": 40,
+      "top10_weight_display": "~58%",
+      "top10_weight_pct": 58,
+      "largest_position_display": "~10.2% (Rocket Lab)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-06",
+        "note": "Total return \u2014 launched Mar 2026, no full-year history. The hot new space fund ($2.4B in ~2 months) \u2014 actively managed, uniquely holds pre-IPO SpaceX (~6%) alongside Rocket Lab, Planet, AST SpaceMobile."
+      },
+      "market": {
+        "price": 33.4,
+        "price_display": "$33.40",
+        "price_asof": "2026-06",
+        "volume_avg": 13340000,
+        "volume_display": "~13.3M/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "red",
+          "note": "0.87% \u2014 among the most expensive funds here (active + pre-IPO access)."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "The purest active space-economy bet \u2014 launch, satellites, comms, plus rare pre-IPO SpaceX exposure."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Top-10 ~58% across ~40 names; concentrated in volatile pure-plays."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$2.4B AUM, ~13M shares/day \u2014 surprisingly liquid for a new fund."
+        },
+        "track_record": {
+          "rating": "red",
+          "note": "Launched Mar 2026 \u2014 essentially no track record."
+        }
+      },
+      "overall": "The hot new active space fund \u2014 uniquely offers pre-IPO SpaceX exposure, but pricey, concentrated and unproven.",
+      "memo": {
+        "thesis": "NASA is the breakout space fund of 2026: actively managed, it holds genuine space pure-plays (Rocket Lab, Planet, AST SpaceMobile, Intuitive Machines) AND a slice of pre-IPO SpaceX (~6%) via a private SPV \u2014 exposure no other ETF offers. It gathered $2.4B in ~2 months on SpaceX-IPO hype. The catch: 0.87% fee, heavy concentration in volatile names, and zero track record.",
+        "strategy": "Actively managed exposure to the emerging space economy \u2014 publicly listed space companies plus a limited selection of high-conviction PRE-IPO names (notably SpaceX via a private SPV). Covers exploration, rockets/propulsion, satellites.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "The purest space-economy bet available \u2014 and the only way to get SpaceX exposure in an ETF. Genuine pure-plays dominate, not aerospace/defense filler."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Rocket Lab (RKLB)",
+            "weight": "~10.2%",
+            "playtype": "pure",
+            "note": "launch + space systems; top return driver"
+          },
+          {
+            "name": "Planet Labs (PL)",
+            "weight": "~6.6%",
+            "playtype": "pure",
+            "note": "earth observation"
+          },
+          {
+            "name": "SpaceX (pre-IPO SPV)",
+            "weight": "~6.4%",
+            "playtype": "pure",
+            "note": "private \u2014 UNIQUE to this fund"
+          },
+          {
+            "name": "Intuitive Machines (LUNR)",
+            "weight": "~6.2%",
+            "playtype": "pure",
+            "note": "lunar landers"
+          },
+          {
+            "name": "AST SpaceMobile (ASTS)",
+            "weight": "~5.9%",
+            "playtype": "pure",
+            "note": "space-based cellular"
+          }
+        ],
+        "concentration": "High \u2014 top-10 ~58% across ~40 names, concentrated in pre-profit, high-beta pure-plays. The pre-IPO SpaceX stake also carries private-valuation/illiquidity risk.",
+        "sector_geo": "Almost entirely space pure-plays; mostly US with some international (MDA Space, 5N Plus). Minimal defense-prime filler.",
+        "cost_context": "0.87% \u2014 top of the space cohort, reflecting active management + the cost/complexity of holding a private (SpaceX) position.",
+        "track_record_note": "Launched March 2026 \u2014 no meaningful return history. The ~13M shares/day volume reflects SpaceX-IPO-driven interest, which could fade.",
+        "red_flags": [
+          "\ud83d\udea9 0.87% fee \u2014 highest in the space cohort.",
+          "\ud83d\udea9 No track record (launched 2026).",
+          "\ud83d\udea9 Holds a PRIVATE pre-IPO SpaceX stake \u2014 valuation estimated, not market-priced; illiquidity risk.",
+          "\u26a0\ufe0f Concentrated (~58% top-10) in volatile pre-profit names.",
+          "\u26a0\ufe0f Volume may be hype-driven and could fade."
+        ],
+        "bull": [
+          "Purest active space-economy exposure",
+          "ONLY ETF with pre-IPO SpaceX access",
+          "Genuine pure-plays, minimal defense filler",
+          "Large, liquid for a new fund"
+        ],
+        "bear": [
+          "0.87% fee",
+          "No track record",
+          "Private SpaceX valuation risk + concentration",
+          "Hype-driven flows could reverse"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "The way to get SpaceX exposure in an ETF \u2014 but you pay 0.87%, hold a private valuation, and have no track record. Understand the pre-IPO SPV mechanics before buying; size for high volatility."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "ITA",
+      "name": "iShares U.S. Aerospace & Defense ETF",
+      "is_theme_fund": false,
+      "issuer": "BlackRock (iShares)",
+      "holdings_url": "https://www.ishares.com/us/products/239502/ishares-us-aerospace-defense-etf",
+      "expense_ratio": 0.38,
+      "aum_display": "~$14B",
+      "aum_musd": 14000,
+      "inception": "2006-05",
+      "structure": "Passive \u2014 cap-weighted",
+      "index": "DJ US Select Aerospace & Defense",
+      "holdings_count": 38,
+      "top10_weight_display": "~74%",
+      "top10_weight_pct": 74,
+      "largest_position_display": "~20% (GE Aerospace)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": "+1.9%",
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-06-08",
+        "note": "Total return. Broad A&D benchmark \u2014 cap-weighted, GE Aerospace (~20%) + RTX + Boeing dominate. Holds Rocket Lab (~5%) so minor space crossover, but primarily defense primes."
+      },
+      "market": {
+        "price": 229.45,
+        "price_display": "$229.45",
+        "price_asof": "2026-06-08",
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.38% \u2014 cheap for a sector fund."
+        },
+        "purity": {
+          "rating": "red",
+          "note": "Aerospace & defense, NOT space \u2014 benchmark (some space crossover via Rocket Lab)."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Cap-weighted; top-10 ~74%, GE Aerospace alone ~20%."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$14B AUM \u2014 very liquid."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2006; deep history."
+        }
+      },
+      "overall": "Reference \u2014 the big, cheap, cap-weighted aerospace & defense benchmark; defense-prime dominated, not a space bet.",
+      "memo": {
+        "thesis": "REFERENCE, NOT A SPACE FUND. ITA is the largest, cheapest broad A&D ETF \u2014 cap-weighted, so GE Aerospace (~20%), RTX and Boeing dominate. It does hold Rocket Lab (~5%), giving minor space crossover, but it's fundamentally a defense-prime fund. Use it to see how much pure-space a dedicated fund adds vs mainstream A&D.",
+        "strategy": "Passive, cap-weighted Dow Jones US Select Aerospace & Defense Index \u2014 ~38 names dominated by the largest primes and suppliers.",
+        "purity_verdict": {
+          "rating": "red",
+          "note": "Defense/aerospace-prime fund, not space. Minor space exposure (Rocket Lab). A cost/liquidity yardstick."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "GE Aerospace (GE)",
+            "weight": "~20%",
+            "playtype": "unrelated",
+            "note": "jet engines \u2014 dominates the fund"
+          },
+          {
+            "name": "RTX (RTX)",
+            "weight": "~14%",
+            "playtype": "unrelated",
+            "note": "defense prime"
+          },
+          {
+            "name": "Boeing (BA)",
+            "weight": "~9.6%",
+            "playtype": "partial",
+            "note": "aerospace incl. space/defense"
+          },
+          {
+            "name": "Rocket Lab (RKLB)",
+            "weight": "~5.3%",
+            "playtype": "pure",
+            "note": "the one real space pure-play"
+          },
+          {
+            "name": "Howmet (HWM)",
+            "weight": "~4.7%",
+            "playtype": "unrelated",
+            "note": "aerospace components"
+          }
+        ],
+        "concentration": "Very top-heavy \u2014 cap-weighted, top-10 ~74%, GE Aerospace ~20%.",
+        "sector_geo": "US aerospace & defense; minimal pure-space.",
+        "cost_context": "0.38% \u2014 far cheaper than the space funds (0.45-0.87%), for more liquidity but little pure-space exposure.",
+        "track_record_note": "Long history since 2006; rode the 2025-26 defense-spending surge.",
+        "red_flags": [
+          "\u26a0\ufe0f Not a space fund \u2014 defense-prime dominated.",
+          "\u26a0\ufe0f GE Aerospace ~20% \u2014 extreme single-name weight.",
+          "\u26a0\ufe0f Top-10 ~74% concentration."
+        ],
+        "bull": [
+          "Cheap, liquid, proven A&D benchmark",
+          "Rides funded defense demand",
+          "Some space crossover (Rocket Lab)"
+        ],
+        "bear": [
+          "No real pure-space upside",
+          "Cap-weight concentration in a few primes",
+          "Defense-cycle dependent"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "BENCHMARK",
+            "text": "Yardstick. If your thesis is 'defense/aerospace' not 'space', this cheaper liquid fund may beat a pricey space ETF. Compare holdings to see what pure-space you'd gain."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "PPA",
+      "name": "Invesco Aerospace & Defense ETF",
+      "is_theme_fund": false,
+      "issuer": "Invesco",
+      "holdings_url": "https://www.invesco.com/us/financial-products/etfs/product-detail?productId=PPA",
+      "expense_ratio": 0.58,
+      "aum_display": "~$8.2B",
+      "aum_musd": 8200,
+      "inception": "2005-10",
+      "structure": "Passive \u2014 tiered weight",
+      "index": "SPADE Defense",
+      "holdings_count": 60,
+      "top10_weight_display": "~50%",
+      "top10_weight_pct": 50,
+      "largest_position_display": "defense primes",
+      "derivatives": "No",
+      "performance": {
+        "ytd": "+8.9%",
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-06",
+        "note": "Total return. Broader A&D benchmark than ITA (~60 holdings, less top-heavy), but pricier at 0.58%. Defense-focused, not space."
+      },
+      "market": {
+        "price": null,
+        "price_display": null,
+        "price_asof": null,
+        "volume_avg": null,
+        "volume_display": null
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.58% \u2014 pricier than ITA (0.38%)."
+        },
+        "purity": {
+          "rating": "red",
+          "note": "Aerospace & defense, NOT space \u2014 benchmark."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "~60 holdings, less top-heavy than ITA but still concentrated."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$8.2B AUM \u2014 very liquid."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2005; deep history."
+        }
+      },
+      "overall": "Reference \u2014 a broader, pricier aerospace & defense benchmark than ITA; defense-focused, not space.",
+      "memo": {
+        "thesis": "REFERENCE, NOT A SPACE FUND. PPA is a broad A&D benchmark with ~60 holdings \u2014 less top-heavy than ITA but pricier (0.58%). It captures the defense/A&D sector, with only incidental space exposure. Use it as an A&D yardstick alongside ITA.",
+        "strategy": "Passive, tiered-weight SPADE Defense Index \u2014 ~60 defense, aerospace and government-services names; broader and more balanced than ITA's cap-weighted top.",
+        "purity_verdict": {
+          "rating": "red",
+          "note": "Defense/aerospace fund, not space. A reference, not a theme bet."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Defense primes (RTX/Lockheed/GD-type)",
+            "weight": "\u2014",
+            "playtype": "unrelated",
+            "note": "the A&D core"
+          },
+          {
+            "name": "Aerospace suppliers",
+            "weight": "\u2014",
+            "playtype": "unrelated",
+            "note": "components/services"
+          },
+          {
+            "name": "Some space-adjacent names",
+            "weight": "\u2014",
+            "playtype": "partial",
+            "note": "incidental space exposure"
+          }
+        ],
+        "concentration": "~60 holdings; top-5 ~35% \u2014 less concentrated than ITA but still defense-prime led.",
+        "sector_geo": "US aerospace & defense + government services; minimal pure-space.",
+        "cost_context": "0.58% \u2014 pricier than ITA (0.38%) for a broader, more balanced A&D basket.",
+        "track_record_note": "Long history since 2005; rode the defense-spending surge.",
+        "red_flags": [
+          "\u26a0\ufe0f Not a space fund.",
+          "\u26a0\ufe0f 0.58% \u2014 pricier than ITA.",
+          "\u26a0\ufe0f Defense-cycle dependent.",
+          "\u2753 Current price/volume not captured \u2014 tap \u21bb."
+        ],
+        "bull": [
+          "Broader, more balanced A&D than ITA",
+          "Large, liquid",
+          "Long track record"
+        ],
+        "bear": [
+          "No pure-space upside",
+          "Pricier than ITA",
+          "Defense-cycle dependent"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "BENCHMARK",
+            "text": "A&D yardstick (broader than ITA). For defense exposure ITA is cheaper; for space, neither \u2014 use a dedicated space fund. Tap \u21bb for price/volume."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "DFEN",
+      "name": "Direxion Daily Aerospace & Defense Bull 3X Shares",
+      "is_theme_fund": false,
+      "issuer": "Direxion",
+      "holdings_url": "https://www.direxion.com/product/daily-aerospace-defense-bull-3x-shares",
+      "expense_ratio": 0.93,
+      "aum_display": "~$0.3B",
+      "aum_musd": 300,
+      "inception": "2017-05",
+      "structure": "LEVERAGED 3x daily \u2014 NOT buy-and-hold",
+      "index": "DJ US Select A&D (3x daily)",
+      "holdings_count": null,
+      "top10_weight_display": "n/a (swaps)",
+      "top10_weight_pct": null,
+      "largest_position_display": "3x A&D swaps",
+      "derivatives": "Yes \u2014 3x daily leverage (swaps)",
+      "performance": {
+        "ytd": "+32.5%",
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-06-04",
+        "note": "Total return. \u26a0\ufe0f 3x LEVERAGED, DAILY-RESET \u2014 for short-term trading ONLY. Suffers volatility decay; NOT buy-and-hold. The +32.5% YTD reflects leverage on the A&D rally and can reverse violently."
+      },
+      "market": {
+        "price": 71.5,
+        "price_display": "$71.50",
+        "price_asof": "2026-06-04",
+        "volume_avg": 5000000,
+        "volume_display": "~5.0M/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "red",
+          "note": "0.93% \u2014 very high (leverage structure)."
+        },
+        "purity": {
+          "rating": "red",
+          "note": "Leveraged A&D trading vehicle, NOT space and NOT an investment fund."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Swap-based 3x exposure \u2014 extreme risk."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$300M AUM, liquid enough for trading."
+        },
+        "track_record": {
+          "rating": "red",
+          "note": "Daily-reset leverage = volatility decay; unsuitable as a hold."
+        }
+      },
+      "overall": "\u26a0\ufe0f A 3x LEVERAGED daily-trading vehicle (not space, not buy-and-hold) \u2014 included only to show what leverage looks like. High decay risk.",
+      "memo": {
+        "thesis": "\u26a0\ufe0f NOT AN INVESTMENT FUND \u2014 A TRADING TOOL. DFEN seeks 3x the DAILY return of a US aerospace & defense index via swaps. Daily resetting causes volatility decay, so over any period longer than a day its return diverges (often badly) from 3x the index. Included as a cautionary reference: for short-term tactical trades by experienced traders, NOT a theme holding.",
+        "strategy": "Holds swaps to deliver +300% of the daily move of the Dow Jones US Select Aerospace & Defense Index. Rebalances daily \u2014 compounding works against you in choppy markets (volatility decay).",
+        "purity_verdict": {
+          "rating": "red",
+          "note": "Not space, not an investment \u2014 a leveraged daily-trading instrument. Listed only to illustrate leverage risk."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "3x A&D index swaps",
+            "weight": "\u2014",
+            "playtype": "unrelated",
+            "note": "leveraged derivative exposure, not stocks"
+          }
+        ],
+        "concentration": "Economic exposure is 3x a concentrated A&D index \u2014 magnified single-name and sector risk.",
+        "sector_geo": "3x US aerospace & defense; no pure-space.",
+        "cost_context": "0.93% \u2014 among the highest fees anywhere, on top of leverage costs.",
+        "track_record_note": "Leveraged daily products structurally erode over time in volatile markets; the +32.5% YTD is leverage on a strong run and can reverse far faster than the index.",
+        "red_flags": [
+          "\ud83d\udea9 3x LEVERAGED, daily-reset \u2014 volatility decay; NOT buy-and-hold.",
+          "\ud83d\udea9 0.93% fee + leverage costs.",
+          "\ud83d\udea9 Not space, not an investment fund \u2014 a trading tool.",
+          "\ud83d\udea9 Can lose value even if the index is flat over time."
+        ],
+        "bull": [
+          "Amplifies short-term A&D moves for tactical traders",
+          "Liquid enough to trade",
+          "No options account needed for leverage"
+        ],
+        "bear": [
+          "Volatility decay destroys long-term returns",
+          "Extreme drawdown risk (3x)",
+          "Very high cost",
+          "Unsuitable as a theme/buy-and-hold holding"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "AVOID for investing (reference only)",
+            "text": "Included to show leverage risk. A day-trading instrument \u2014 3x daily with volatility decay. Do NOT treat as a space or buy-and-hold investment."
+          }
+        ]
+      },
+      "meets_criteria": false
+    }
+  ],
+  "live_refresh": true,
+  "universe_note": "Space pure-plays (UFO, ARKX, ROKT, NASA) span passive index to active+pre-IPO-SpaceX (NASA). XAR/SHLD/ITA/PPA are aerospace & defense references; DFEN is a 3x leveraged TRADING tool (not buy-and-hold), included only to illustrate leverage risk. Use 'Add ticker' for others.",
+  "roster": [
+    {
+      "ticker": "UFO",
+      "name": "Procure Space",
+      "tag": "space \u00b7 passive"
+    },
+    {
+      "ticker": "ARKX",
+      "name": "ARK Space & Defense Innovation",
+      "tag": "space+defense \u00b7 active"
+    },
+    {
+      "ticker": "ROKT",
+      "name": "SPDR S&P Kensho Final Frontiers",
+      "tag": "space+deep-sea"
+    },
+    {
+      "ticker": "NASA",
+      "name": "Tema Space Innovators",
+      "tag": "space \u00b7 active \u00b7 pre-IPO SpaceX"
+    },
+    {
+      "ticker": "XAR",
+      "name": "SPDR S&P Aerospace & Defense",
+      "tag": "A&D \u00b7 equal-wt"
+    },
+    {
+      "ticker": "SHLD",
+      "name": "Global X Defense Tech",
+      "tag": "defense-tech"
+    },
+    {
+      "ticker": "ITA",
+      "name": "iShares U.S. Aerospace & Defense",
+      "tag": "A&D \u00b7 cap-wt"
+    },
+    {
+      "ticker": "PPA",
+      "name": "Invesco Aerospace & Defense",
+      "tag": "A&D \u00b7 broad"
+    },
+    {
+      "ticker": "DFEN",
+      "name": "Direxion Daily Aerospace & Defense Bull 3X",
+      "tag": "\u26a0\ufe0f 3x leveraged"
+    },
+    {
+      "ticker": "DFNS",
+      "name": "Global X Defense Tech (var.) / verify",
+      "tag": "defense \u00b7 verify"
+    },
+    {
+      "ticker": "SPCX",
+      "name": "The Original Space ETF",
+      "tag": "space \u00b7 niche"
+    },
+    {
+      "ticker": "ARKD",
+      "name": "ARK Drone/Defense (verify)",
+      "tag": "drones/defense \u00b7 verify"
+    },
+    {
+      "ticker": "WAR",
+      "name": "Leatherback Defense (verify)",
+      "tag": "defense \u00b7 active \u00b7 verify"
+    }
+  ]
+}
