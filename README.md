@@ -37,23 +37,24 @@ catch.
 
 ## The web app (hosted, with live refresh)
 
-The main way to use this is a **mobile-friendly web app** meant to be deployed to
-**Vercel** so you get a public URL that opens on any device — no install, no
-download. Per theme you get a **sortable / filterable comparison table** (expense
-ratio, AUM, 1-yr & YTD performance, concentration, colored score dots) and a
-click-to-open **deep memo** per ETF (strategy, theme-purity holdings, red flags,
-bull/bear, decision log).
+The main way to use this is a **mobile-friendly, static web app** hosted free on
+**GitHub Pages** — a public URL that opens on any device, no install, no download,
+no usage limits. Per theme you get a **sortable / filterable comparison table**
+(expense ratio, AUM, 1-yr & YTD performance, concentration, colored score dots)
+and a click-to-open **deep memo** per ETF (strategy, theme-purity holdings, red
+flags, bull/bear, decision log).
 
 It has **two layers**:
 - **Curated analysis** (`public/data/*.json`) — the judgment that no API makes:
-  theme-purity ratings, red flags, scores, memos. Always available.
-- **Live refresh** (`api/etf.js`, a Vercel serverless function) — the **↻**
-  buttons and the **"Look up" box** pull current expense ratio, AUM, holdings,
-  sectors and performance for any ticker, including **newly-launched ETFs you type
-  in**. Live values are marked with a ● dot.
+  theme-purity ratings, red flags, scores, memos. Always available, fully static.
+- **Live refresh** (`api/etf.js`, an *optional* serverless function) — the **↻**
+  buttons and the **"Look up" box** pull current data for any ticker. This needs a
+  serverless host (Cloudflare/Netlify) + an API key; on plain GitHub Pages it
+  degrades gracefully to a "not yet curated" stub. See `docs/DEPLOYMENT.md`.
 
-**Deploy it:** see [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) (≈5 min, from a
-browser). **Run it locally (static only):**
+**Deploy it (free):** [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) — enable GitHub
+Pages (Settings → Pages → Source: GitHub Actions) and it auto-deploys to
+`https://learner-agent-sudo.github.io/Etf-analysis/`. **Run it locally:**
 ```bash
 python3 app/server.py          # then open http://127.0.0.1:8000
 ```
@@ -89,16 +90,18 @@ architecture and how to add a theme.
 │   ├── index.html · style.css · app.js
 │   └── data/                     ← curated theme data (quantum.json, space.json)
 ├── api/
-│   └── etf.js                    ← Vercel serverless fn: live data refresh
-├── vercel.json                   ← Vercel config (no build step)
+│   └── etf.js                    ← optional serverless fn: live data refresh
+├── vercel.json                   ← (legacy) inert without a Vercel deploy
 ├── app/
 │   ├── server.py                 ← run the static site locally (stdlib only)
 │   └── README.md                 ← app architecture & how to add a theme
 ├── docs/
 │   ├── METHODOLOGY.md            ← the dimensions we score and why
-│   ├── DEPLOYMENT.md             ← get a public URL on Vercel
+│   ├── DEPLOYMENT.md             ← get a free public URL on GitHub Pages
 │   ├── DATA-SOURCES.md           ← where to get the data (and access notes)
 │   └── GLOSSARY.md               ← plain-English definitions
+├── scripts/
+│   └── screen.py                 ← backend green-light screener
 ├── templates/
 │   ├── etf-memo-template.md      ← deep one-pager per ETF
 │   ├── comparison-scorecard-template.md
