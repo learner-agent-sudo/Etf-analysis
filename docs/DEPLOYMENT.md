@@ -1,55 +1,60 @@
-# Deployment — get a public URL on Vercel
+# Deployment — free hosting on GitHub Pages
 
-Goal: a webpage you can open from any device (phone, any browser), where the
-analysis happens on the page and the data can refresh itself.
+The site is **static** (`public/` — HTML/CSS/JS + JSON data), so it hosts free on
+**GitHub Pages** with no server, no account beyond GitHub, and no usage limits
+that matter for a page like this. A GitHub Actions workflow auto-deploys on every
+push, exactly like a connected host would.
 
-## Why Vercel
+## One-time setup (≈1 minute, from any browser)
 
-- Serves the static site (`public/`) on a free public URL.
-- Runs the serverless function (`api/etf.js`) for **live data refresh** — Vercel
-  has outbound internet (the dev sandbox does not), so live fetching works there.
-- Auto-redeploys whenever the GitHub branch updates: ask me to add a fund or
-  refresh data → I commit → the live page updates in about a minute.
+1. Go to the repo → **Settings** → **Pages**.
+2. Under **Build and deployment → Source**, choose **GitHub Actions**.
+3. Done. The workflow (`.github/workflows/pages.yml`) runs on the next push (or
+   run it now: **Actions** tab → "Deploy to GitHub Pages" → **Run workflow**).
 
-## One-time setup (≈5 minutes, from any browser)
+Your site will be live at:
 
-1. Go to **vercel.com** and sign in with **GitHub**.
-2. **Add New → Project → Import** the `learner-agent-sudo/etf-analysis` repo.
-3. Framework preset: **Other** (no build step). Leave build/output settings
-   empty — `vercel.json` already configures everything.
-4. **Set the production branch** to the working branch
-   (`claude/keen-feynman-NnG7I`) under Project → Settings → Git, *or* merge that
-   branch to `main` first. (Ask me if you want a PR to merge it.)
-5. **Add the live-data API key** (optional but recommended) under
-   Settings → Environment Variables:
-   - Name: `ALPHAVANTAGE_KEY`
-   - Value: a free key from **alphavantage.co/support/#api-key**
-   - Apply to Production (and Preview).
-6. **Deploy.** You get `https://<project>.vercel.app`. Open it on your phone.
+> **https://learner-agent-sudo.github.io/Etf-analysis/**
 
-> Without the API key the site still works fully — you get the curated analysis;
-> the ↻ live-refresh buttons just report that live data isn't configured yet.
+Every future push that touches `public/` redeploys automatically — so when I add
+or update ETF data, the live page updates within a minute of the push.
 
-## How "refresh" works once deployed
+## What works on GitHub Pages
 
-- **Curated data** (scores, memos, theme purity) — updated by committing JSON.
-  This is the trustworthy layer for holdings and brand-new funds.
-- **Live numbers** (expense ratio, AUM, holdings, performance) — fetched on the
-  page via ↻ and the "Look up" box, from the data provider. Free tier is
-  rate-limited (~25 calls/day); live values are a bonus on top of static data.
+Everything except the live serverless refresh:
 
-## Data provider notes / limits
+- ✅ All curated analysis: comparison tables, memos, scores, holdings, the
+  green-light screen and "Meets my criteria" filter, the full-universe rosters.
+- ✅ Sorting, filtering, mobile card layout, the abbreviations glossary.
+- ⚠️ The **↻ live-refresh / "Look up" box**: GitHub Pages is static-only, so
+  there's no `api/etf` server. Clicking a roster ticker shows the graceful
+  **"not yet curated" stub** instead of live prices. The curated data is a dated
+  snapshot; refresh it by asking me to re-pull and commit.
 
-- Default provider: **Alpha Vantage** `ETF_PROFILE` (expense ratio, net assets,
-  sectors, ~top holdings) + monthly prices (for YTD / 1-yr / 3-yr returns).
-- Free tier limits: ~25 requests/day, ~5/min. Fine for occasional lookups, not
-  for hammering. Upgrade the key or swap providers in `api/etf.js` if you need
-  more. The function degrades gracefully (clear message, static data unaffected).
-- No free API reliably lists *"every ETF in a theme."* Theme discovery stays a
-  research task (ask me); the "Look up" box covers pulling a specific new ticker.
+## Local preview
 
-## Alternative hosts
+```bash
+python3 app/server.py        # http://127.0.0.1:8000
+```
+Zero dependencies (Python stdlib). Serves the same `public/` folder.
 
-The static `public/` folder works on any static host (GitHub Pages, Netlify,
-Cloudflare Pages). Only the **live refresh** needs a serverless platform —
-Netlify/Cloudflare Functions work too, with small tweaks to `api/etf.js`.
+## Migrating off the paused Vercel project
+
+Nothing to clean up is required — the paused Vercel deployment simply stops
+serving. If you want, delete the Vercel project from your Vercel dashboard and
+update the repo's **homepage** (Settings → General) to the Pages URL above. The
+`vercel.json` / `api/etf.js` files are left in the repo but are inert without a
+Vercel deploy.
+
+## Want the live ↻ refresh back later? (optional)
+
+The live feature needs a serverless runtime + a data API key. Free options that
+don't have Vercel's limits:
+
+- **Cloudflare Pages** — connect the repo, set the build output directory to
+  `public`, and port `api/etf.js` to a Pages Function (`functions/api/etf.js`).
+  Add the `ALPHAVANTAGE_KEY` as an environment variable. Generous free tier.
+- **Netlify** — similar; `api/etf.js` → a Netlify Function, output dir `public`.
+
+Ask me and I'll wire up whichever you pick. Until then, GitHub Pages gives you
+the full analysis for free.
