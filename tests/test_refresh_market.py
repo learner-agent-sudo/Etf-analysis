@@ -127,5 +127,126 @@ class MergeAndTickers(unittest.TestCase):
         self.assertIn("QTUM", tickers)
 
 
+class CircuitBreaker(unittest.TestCase):
+    def test_dead_source_is_switched_off_and_fallback_used(self):
+        calls = {"a": 0, "b": 0}
+        days = list(business_days(dt.date(2026, 1, 5), dt.date(2026, 3, 2)))
+        good = {"bars": [(d, 10.0, 10.0, 100.0) for d in days], "returns_basis": "price", "meta": {}}
+
+        def a(t):
+            calls["a"] += 1
+            raise RuntimeError("blocked")
+
+        def b(t):
+            calls["b"] += 1
+            return good
+
+        ok, failed = rm.refresh([f"T{i}" for i in range(20)], sources=(a, b), pause=0, log=lambda *_: None, trip_after=3)
+        self.assertEqual(len(ok), 20)
+        self.assertEqual(failed, {})
+        self.assertEqual(calls["a"], 3)          # tripped after 3 straight failures
+        self.assertEqual(calls["b"], 20)
+
+    def test_unknown_ticker_does_not_trip_breaker(self):
+        def a(t):
+            raise LookupError("not found")
+        ok, failed = rm.refresh(["X1", "X2", "X3", "X4"], sources=(a,), pause=0, log=lambda *_: None, trip_after=2)
+        self.assertEqual(sorted(failed), ["X1", "X2", "X3", "X4"])
+        self.assertTrue(all("not found" in v for v in failed.values()))
+
+    def test_all_sources_down_stops_early(self):
+        def a(t):
+            raise RuntimeError("down")
+        ok, failed = rm.refresh([f"T{i}" for i in range(10)], sources=(a,), pause=0, log=lambda *_: None, trip_after=2)
+        self.assertEqual(ok, {})
+        self.assertEqual(len(failed), 10)
+        self.assertEqual(failed["T9"], "all sources tripped")
+
+
+class ProfileAndFallbacks(unittest.TestCase):
+    PROFILE = {"quoteSummary": {"error": None, "result": [{
+        "summaryDetail": {"totalAssets": {"raw": 4_620_000_000, "fmt": "4.62B"}, "yield": {"raw": 0.0071}},
+        "defaultKeyStatistics": {"annualReportExpenseRatio": {"raw": 0.004}},
+        "fundProfile": {"family": "Defiance ETFs", "feesExpensesInvestment": {"annualReportExpenseRatio": {"raw": 0.004}}},
+        "topHoldings": {
+            "holdings": [{"symbol": f"S{i}", "holdingName": f"Stock {i}", "holdingPercent": {"raw": 0.025}} for i in range(10)],
+            "sectorWeightings": [{"technology": {"raw": 0.81}}, {"industrials": {"raw": 0.04}}, {"realestate": {"raw": 0}}],
+        },
+    }]}}
+
+    def test_parse_profile(self):
+        p = rm.parse_profile(self.PROFILE)
+        self.assertEqual(p["aum_musd"], 4620)
+        self.assertEqual(p["aum_display"], "~$4.6B")
+        self.assertEqual(p["expense_ratio"], 0.4)
+        self.assertEqual(p["yield_ttm"], "0.71%")
+        self.assertEqual(len(p["holdings"]), 10)
+        self.assertEqual(p["holdings"][0], {"symbol": "S0", "name": "Stock 0", "weight": 2.5})
+        self.assertEqual(p["top10_weight_pct"], 25.0)
+        self.assertEqual(p["sectors"], [{"sector": "Technology", "weight": 81.0}, {"sector": "Industrials", "weight": 4.0}])
+        self.assertEqual(p["fund_family"], "Defiance ETFs")
+
+    def test_parse_profile_rejects_bad_expense_and_empty(self):
+        bad = json.loads(json.dumps(self.PROFILE))
+        r = bad["quoteSummary"]["result"][0]
+        r["fundProfile"]["feesExpensesInvestment"]["annualReportExpenseRatio"]["raw"] = 0.75   # nonsense 75%
+        r["defaultKeyStatistics"] = {}
+        self.assertNotIn("expense_ratio", rm.parse_profile(bad))
+        with self.assertRaises(LookupError):
+            rm.parse_profile({"quoteSummary": {"result": None, "error": {"description": "Quote not found"}}})
+        with self.assertRaises(ValueError):
+            rm.parse_profile({"quoteSummary": {"result": [{"summaryDetail": {}}]}})
+
+    def test_parse_stooq(self):
+        today = dt.date.today()
+        rows = "\n".join(f"{(today - dt.timedelta(days=k)).isoformat()},1,1,1,{10 + k},{1000 * k}" for k in range(5, 0, -1))
+        raw = rm.parse_stooq("Date,Open,High,Low,Close,Volume\n" + rows + "\n")
+        self.assertEqual(len(raw["bars"]), 5)
+        self.assertEqual(raw["returns_basis"], "price")
+        with self.assertRaises(ValueError):
+            rm.parse_stooq("<html>captcha</html>")
+
+    def test_parse_nasdaq(self):
+        j = {"data": {"tradesTable": {"rows": [
+            {"date": "10/08/2026", "close": "$169.35", "volume": "1,234,567"},
+            {"date": "10/07/2026", "close": "$1,168.10", "volume": "N/A"},
+            {"date": "bad", "close": "$1"}]}}}
+        raw = rm.parse_nasdaq(j)
+        self.assertEqual(raw["bars"][0], (dt.date(2026, 10, 8), 169.35, 169.35, 1234567.0))
+        self.assertEqual(raw["bars"][1][1], 1168.10)
+        self.assertIsNone(raw["bars"][1][3])
+        self.assertEqual(len(raw["bars"]), 2)
+        with self.assertRaises(ValueError):
+            rm.parse_nasdaq({"data": None})
+
+    def test_profile_failure_carries_previous_profile_and_prunes(self):
+        prev = {"tickers": {"AAA": {"price": 1, "aum_musd": 50, "holdings": [1], "profile_asof": "2026-10-01"},
+                            "GONE": {"price": 9}}}
+        fresh = {"AAA": {"price": 2, "price_asof": "2026-10-08"}}
+        doc = rm.merge(prev, fresh, {}, "x", keep={"AAA"})
+        self.assertEqual(doc["tickers"]["AAA"]["aum_musd"], 50)
+        self.assertEqual(doc["tickers"]["AAA"]["profile_asof"], "2026-10-01")
+        self.assertNotIn("GONE", doc["tickers"])
+
+    def test_refresh_adds_profile_and_survives_profile_outage(self):
+        days = list(business_days(dt.date(2026, 1, 5), dt.date(2026, 3, 2)))
+        good = {"bars": [(d, 10.0, 10.0, 100.0) for d in days], "returns_basis": "total", "meta": {}}
+        calls = {"p": 0}
+
+        def prof(t):
+            calls["p"] += 1
+            if t == "A":
+                return {"aum_musd": 5}
+            raise RuntimeError("crumb blocked")
+
+        ok, failed = rm.refresh(["A", "B", "C", "D", "E"], sources=(lambda t: good,), profile=prof,
+                                pause=0, log=lambda *_: None, trip_after=2)
+        self.assertEqual(len(ok), 5)
+        self.assertEqual(ok["A"]["aum_musd"], 5)
+        self.assertIn("profile_asof", ok["A"])
+        self.assertNotIn("profile_asof", ok["B"])
+        self.assertEqual(calls["p"], 3)          # A ok, B + C fail -> switched off
+
+
 if __name__ == "__main__":
     unittest.main()

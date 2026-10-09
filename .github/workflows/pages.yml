@@ -4,8 +4,8 @@ name: Deploy to GitHub Pages
 # data fresh without any server:
 #   1. scripts/refresh_market.py pulls daily prices / volume / returns for every
 #      ticker in public/data/*.json and writes public/data/market.json
-#   2. on the daily schedule (and manual runs) that file is committed back, so
-#      the repo always holds the last good snapshot
+#   2. that file is committed back, so the repo always holds the last good
+#      snapshot (commits made with GITHUB_TOKEN don't re-trigger this workflow)
 #   3. public/ is deployed to Pages
 # If the market-data source is down, the refresh step fails softly and the site
 # still deploys with the previous market.json.
@@ -43,6 +43,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0              # full history so the data commit can rebase
 
       - name: Unit tests (market-data maths)
         run: python3 -m unittest discover -s tests
@@ -50,10 +52,14 @@ jobs:
       - name: Refresh market data
         id: refresh
         continue-on-error: true     # never block the deploy on a data-source hiccup
+        timeout-minutes: 15
+        env:
+          PYTHONUNBUFFERED: "1"       # stream progress into the Actions log
         run: python3 scripts/refresh_market.py
 
-      - name: Commit refreshed market.json (scheduled / manual runs)
-        if: github.event_name != 'push' && hashFiles('public/data/market.json') != ''
+      - name: Commit refreshed market.json
+        if: hashFiles('public/data/market.json') != ''
+        continue-on-error: true     # a failed data commit must not block the deploy
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
