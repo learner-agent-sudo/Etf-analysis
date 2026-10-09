@@ -637,8 +637,10 @@ def refresh(tickers, sources, profile=None, workers=4, pause=0.2, log=log,
                 try:
                     entry.update(profile(t))
                     entry["profile_asof"] = today
-                    cur = entry.get("currency") or "USD"
-                    if cur != "USD" and entry.get("aum_musd"):   # label non-US AUM in its currency
+                    # Yahoo reports AUM in the fund's base currency: HKD for HK funds,
+                    # USD for London UCITS (whatever the trading currency).
+                    cur = entry.get("currency") if t.endswith(".HK") else "USD"
+                    if cur and cur != "USD" and entry.get("aum_musd"):
                         entry["aum_currency"] = cur
                         entry["aum_display"] = fmt_dollars(entry["aum_musd"] * 1e6, per_day=False, cur=cur)
                     with lock:

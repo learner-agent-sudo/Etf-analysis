@@ -45,10 +45,12 @@ AUM, price, volume, 1-yr & YTD return, colored score dots), a **full-universe
 roster** of every fund tagged to the theme, and a click-to-open **deep memo**
 per ETF (strategy, theme-purity holdings, red flags, bull/bear, decision log).
 
-Plus an **Explorer** tab: every listed ETF (all ~5,800 US-listed today; Hong
-Kong and London next) in one searchable, sortable list — expense ratio, AUM,
-price, 52-week price change, YTD, volume, mechanical cost/size ratings, theme
-suggestions and a one-click "pre-screen". Built daily by `scripts/build_universe.py`.
+Plus an **Explorer** tab: every listed ETF on three markets — US (~5,800),
+Hong Kong (~380, from the HKEX list) and London (~4,000 lines) — in one
+searchable, sortable list: expense ratio, AUM (with a US$ equivalent), price,
+52-week price change, YTD, yield, volume, domicile, mechanical cost/size
+ratings, theme suggestions, a one-click "pre-screen" and a general
+tax-and-domicile explainer. Built daily by `scripts/build_universe.py`.
 
 It has **two layers**:
 - **Curated analysis** (`public/data/<theme>.json`) — the judgment no API makes:

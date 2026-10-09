@@ -15,8 +15,9 @@ const UNIVERSE_FILES = [
 // Domicile buckets for the filter (codes come from the ISIN, or the market).
 const DOMICILES = [["US", "US-domiciled"], ["IE/LU", "Ireland / Luxembourg (UCITS)"], ["HK", "Hong Kong"], ["other", "Other"]];
 const domBucket = d => !d ? "other" : d === "US" ? "US" : d === "HK" ? "HK" : /^(IE|LU|IE\/LU)$/.test(d) ? "IE/LU" : "other";
-const DOM_TEXT = { US: "US-domiciled", HK: "HK-domiciled", IE: "Irish UCITS", LU: "Luxembourg UCITS", "IE/LU": "UCITS (Ireland/Lux)", GB: "UK-domiciled" };
+const DOM_TEXT = { US: "US-domiciled", HK: "HK-domiciled", IE: "Irish UCITS", LU: "Luxembourg UCITS", "IE/LU": "UCITS (Ireland/Lux)", GB: "UK-domiciled", SG: "Singapore-domiciled" };
 const aumUsd = r => r.aumu != null ? r.aumu : (r.cur === "USD" || !r.cur ? r.aum : null);
+const aumCur = r => r.acur || r.cur || "USD";        // AUM is in the fund's base currency
 const EX_PAGE = 100;
 let UNIVERSE = null;                      // { rows: [...], meta: { US: {...} } }
 const EX = { sort: { key: "aum", dir: -1 }, shown: EX_PAGE };
@@ -88,7 +89,7 @@ async function showExplorer(themeId) {
 function buildExplorer(box) {
   box.innerHTML = "";
   box.dataset.built = "1";
-  const metas = Object.values(UNIVERSE.meta);
+  const metas = UNIVERSE_FILES.map(f => UNIVERSE.meta[f.market]).filter(Boolean);   // fixed order
   if (!metas.length) {
     box.append(el("p", { class: "livemsg warn" }, "The Explorer data hasn't been generated yet — it's built automatically after the next daily update."));
     return;
@@ -119,7 +120,8 @@ function buildExplorer(box) {
     el("div", { id: "exCount", class: "muted small" }),
     el("section", { id: "exTable", class: "table-wrap" }),
     el("div", { class: "exmore" }, el("button", { id: "exMore", class: "refresh" }, "Show more")),
-    el("p", { class: "muted small" }, "1-yr price = 52-week change in the share price only (excludes distributions — income and bond funds look worse than their real return). YTD = total return as reported by Yahoo Finance. Sources: " +
+    el("p", { class: "muted small" }, "1-yr price = 52-week change in the share price only (excludes distributions — income and bond funds look worse than their real return). YTD = total return as reported by Yahoo Finance. " +
+      "AUM is shown in the fund's reporting currency (≈ US$ on hover) and is approximate for London lines: several share classes of one fund report the same fund-wide total. Sources: " +
       metas.map(m => m.source).join(" ")));
   let t = null;
   $("#exQ").addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => { EX.shown = EX_PAGE; renderExplorer(); }, 150); });
@@ -161,9 +163,9 @@ const EX_COLS = [
   { key: "t", label: "Ticker" },
   { key: "er", label: "Expense", fmt: r => r.er == null ? nodata("Expense ratio") : r.er.toFixed(2) + "%" },
   { key: "aum", label: "AUM", fmt: r => r.aum == null ? nodata("AUM")
-      : r.cur && r.cur !== "USD" && aumUsd(r) != null
-        ? el("span", { title: `≈ ${fmtMoneyM(aumUsd(r), "USD")} at today's FX rate` }, fmtMoneyM(r.aum, r.cur))
-        : fmtMoneyM(r.aum, r.cur) },
+      : aumCur(r) !== "USD" && aumUsd(r) != null
+        ? el("span", { title: `≈ ${fmtMoneyM(aumUsd(r), "USD")} at today's FX rate` }, fmtMoneyM(r.aum, aumCur(r)))
+        : fmtMoneyM(r.aum, aumCur(r)) },
   { key: "p", label: "Price", fmt: r => money(r.p, r.cur) || nodata("Price") },
   { key: "c1y", label: "1-yr price", fmt: r => pctSpan(r.c1y) },
   { key: "ytd", label: "YTD", fmt: r => pctSpan(r.ytd) },
@@ -257,7 +259,7 @@ function makeUniverseEtf(r) {
     ticker: r.t, name: r.n, is_theme_fund: true, _adhoc: true, _fresh: true, _explorer: true,
     issuer: null, holdings_url: null,
     expense_ratio: r.er, aum_musd: r.aum != null ? Math.round(r.aum) : null,
-    aum_display: r.aum != null ? fmtMoneyM(r.aum, r.cur) + (r.cur && r.cur !== "USD" && aumUsd(r) != null ? ` (≈ ${fmtMoneyM(aumUsd(r), "USD")})` : "") : null,
+    aum_display: r.aum != null ? fmtMoneyM(r.aum, aumCur(r)) + (aumCur(r) !== "USD" && aumUsd(r) != null ? ` (≈ ${fmtMoneyM(aumUsd(r), "USD")})` : "") : null,
     inception: r.inc, domicile: r.dom ? (DOM_TEXT[r.dom] || r.dom) : null, listing: `${(UNIVERSE.meta[r.mkt] || {}).label || r.mkt}${r.x ? " (" + r.x + ")" : ""} · trades in ${r.cur || "USD"}`,
     structure: flagged.length ? flagged.join(" · ") : "—", index: "—", holdings_count: null,
     top10_weight_pct: null, top10_weight_display: "—", largest_position_display: "—",

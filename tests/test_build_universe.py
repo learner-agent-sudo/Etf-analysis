@@ -94,7 +94,7 @@ class Units(unittest.TestCase):
         self.assertEqual((spy["p"], spy["c1y"], spy["ytd"], spy["aum"], spy["er"], spy["yld"], spy["vol"]),
                          (776.65, 17.2, 14.9, 650000.0, 0.09, 1.18, 61234567))
         self.assertEqual(spy["inc"], "1993-01-22")
-        self.assertEqual((spy["cur"], spy["dom"], spy["aumu"]), ("USD", "US", 650000.0))
+        self.assertEqual((spy["cur"], spy["dom"], spy["aumu"], spy["acur"]), ("USD", "US", 650000.0, "USD"))
         newx = dict(zip(bu.COLS, rows[0]))
         self.assertEqual((newx["p"], newx["aum"], newx["n"]), (25.1, None, "Brand New ETF"))
 
@@ -143,15 +143,39 @@ class HongKong(unittest.TestCase):
                               "q": {"currency": "GBp", "regularMarketPrice": 9512.0, "netAssets": 4.0e10}}}
         quotes = {"2800.HK": {"currency": "HKD", "regularMarketPrice": 25.6, "netAssets": 1.6e11}}
         fx = {"USD": 1.0, "HKD": 0.128, "GBP": 1.30}
-        rows = {r[0]: dict(zip(bu.COLS, r)) for r in bu.build_rows(listing, quotes, {"er": 1, "ytd": 1, "c1y": 1}, fx=fx)}
-        hk, ln = rows["2800.HK"], rows["VUSA.L"]
-        self.assertEqual((hk["cur"], hk["p"], hk["aum"], hk["aumu"]), ("HKD", 25.6, 160000.0, 20480.0))
-        self.assertEqual((ln["cur"], ln["p"], ln["dom"], ln["aumu"]), ("GBP", 95.12, "IE/LU", 52000.0))
+        hk = dict(zip(bu.COLS, bu.build_rows({"2800.HK": listing["2800.HK"]}, quotes, {"er": 1, "ytd": 1, "c1y": 1}, fx=fx)[0]))
+        ln = dict(zip(bu.COLS, bu.build_rows({"VUSA.L": listing["VUSA.L"]}, {}, {"er": 1, "ytd": 1, "c1y": 1}, fx=fx,
+                                             default_cur="GBP", aum_in_usd=True)[0]))
+        self.assertEqual((hk["cur"], hk["p"], hk["aum"], hk["aumu"], hk["acur"]), ("HKD", 25.6, 160000.0, 20480.0, "HKD"))
+        # London: price in pounds (from pence), AUM reported in the fund's USD base currency
+        self.assertEqual((ln["cur"], ln["p"], ln["dom"], ln["aum"], ln["aumu"], ln["acur"]), ("GBP", 95.12, "IE/LU", 40000.0, 40000.0, "USD"))
 
     def test_yahoo_symbol(self):
         self.assertEqual(bu.yahoo_symbol("BRK.B"), "BRK-B")
         self.assertEqual(bu.yahoo_symbol("2800.HK"), "2800.HK")
         self.assertEqual(bu.yahoo_symbol("URNU.L"), "URNU.L")
+
+
+class London(unittest.TestCase):
+    def test_iob_duplicates_dropped_and_domicile(self):
+        orig = bu.discover_screener
+        bu.discover_screener = lambda y, ex, label: {
+            "VUSA.L": {"t": "VUSA.L", "n": "Vanguard S&P 500 UCITS ETF", "x": label},
+            "0LOS.L": {"t": "0LOS.L", "n": "Vanguard Total Stock Market ETF", "x": label},
+            "PHAU.L": {"t": "PHAU.L", "n": "WisdomTree Physical Gold", "x": label}}
+        try:
+            got = bu.discover_lse(None)
+        finally:
+            bu.discover_screener = orig
+        self.assertEqual(sorted(got), ["PHAU.L", "VUSA.L"])
+        self.assertEqual((got["VUSA.L"]["dom"], got["PHAU.L"]["dom"]), ("IE/LU", ""))
+
+
+class AumCurrency(unittest.TestCase):
+    def test_name_hint(self):
+        self.assertEqual(bu.aum_currency("Goldman Sachs Japan Equity UCITS ETF Class JPY (Acc)"), "JPY")
+        self.assertEqual(bu.aum_currency("iShares Core MSCI Europe UCITS ETF EUR (Acc)"), "EUR")
+        self.assertEqual(bu.aum_currency("Vanguard S&P 500 UCITS ETF"), "USD")
 
 
 class Screener(unittest.TestCase):

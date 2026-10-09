@@ -13,7 +13,7 @@ One GitHub Actions workflow (`.github/workflows/pages.yml`) does everything:
 | When | What happens |
 |---|---|
 | Every weekday ~21:41 UTC (after the US close) | `scripts/refresh_market.py` fetches price, volume, returns, AUM and top holdings for **every** ticker in `public/data/*.json` (curated + full-universe roster), writes `public/data/market.json`, commits it, and redeploys the site |
-| Same run | `scripts/build_universe.py` lists **every** US-listed ETF (NASDAQ Trader symbol directory, all exchanges) with Yahoo batch quotes — price, 52-week change, YTD, AUM, expense ratio, yield, volume — into `public/data/universe-us.json` for the Explorer tab |
+| Same run | `scripts/build_universe.py` lists **every** ETF on three markets — US (NASDAQ Trader symbol directory, all exchanges), Hong Kong (HKEX List of Securities, with ISIN-based domicile) and London (Yahoo screener; international-order-book duplicates dropped) — with Yahoo batch quotes (price, 52-week change, YTD, AUM, expense ratio, yield, volume) into `public/data/universe-{us,hk,lse}.json` for the Explorer tab. Each market builds independently and keeps yesterday's file if its source fails |
 | Every push that touches `public/`, `scripts/` or the workflow | same refresh + redeploy, so analysis changes go live within ~5 minutes |
 | On demand | **Actions** tab → "Deploy to GitHub Pages" → **Run workflow** |
 

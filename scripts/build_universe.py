@@ -55,8 +55,9 @@ QUOTE_FIELDS = ("longName,shortName,quoteType,currency,fullExchangeName,regularM
                 "ytdReturn,netAssets,netExpenseRatio,trailingAnnualDividendYield,dividendYield,yield,"
                 "averageDailyVolume3Month,fundInceptionDate,firstTradeDateMilliseconds")
 BATCH = 100
-COLS = ["t", "n", "x", "p", "c1y", "ytd", "aum", "er", "yld", "vol", "f", "inc", "cur", "dom", "aumu"]
-FX_FALLBACK = {"USD": 1.0, "GBP": 1.30, "EUR": 1.10, "HKD": 0.128, "CHF": 1.15, "JPY": 0.0068}
+COLS = ["t", "n", "x", "p", "c1y", "ytd", "aum", "er", "yld", "vol", "f", "inc", "cur", "dom", "aumu", "acur"]
+FX_FALLBACK = {"USD": 1.0, "GBP": 1.30, "EUR": 1.10, "HKD": 0.128, "CHF": 1.15, "JPY": 0.0068,
+               "SEK": 0.095, "NOK": 0.093, "DKK": 0.15, "CAD": 0.73, "AUD": 0.66}
 # flags (f): L = leveraged/inverse, N = exchange-traded note, F = futures-based commodity/VIX
 LEVERAGED = re.compile(r"(?<![\w.])-?[1-9](\.\d+)?x\b|\bultra(pro)?(short)?\b|\bleveraged\b|\binverse\b"
                        r"|\bbear\b|\bdaily\b.*\bbull\b|^proshares short\b", re.I)
@@ -270,11 +271,23 @@ def discover_screener(yahoo, exchange, label, max_rows=8000):
     return out
 
 
+IOB_CODE = re.compile(r"^0[A-Z0-9]{3}\.L$")
+
+
 def discover_lse(yahoo):
     found = discover_screener(yahoo, "LSE", "London")
+    # Drop International Order Book lines (codes like 0LOS.L): secondary quotes of
+    # funds whose primary listing is elsewhere (US ETFs, or the same UCITS fund's
+    # main London ticker) — they would only duplicate rows.
+    iob = [t for t in found if IOB_CODE.match(t)]
+    for t in iob:
+        del found[t]
+    log(f"  dropped {len(iob)} international-order-book duplicates")
     for r in found.values():
-        # Name-based domicile: UCITS funds on London are Irish or Luxembourg funds.
-        r["dom"] = "IE/LU" if "UCITS" in (r["n"] or "").upper() else "GB"
+        # Name-based domicile: UCITS funds on London are Irish or Luxembourg
+        # funds; other London ETPs (mostly commodity ETCs/notes from Jersey or
+        # Ireland) are left unknown rather than guessed.
+        r["dom"] = "IE/LU" if "UCITS" in (r["n"] or "").upper() else ""
     return found
 
 
@@ -367,8 +380,25 @@ def _r(x, nd=2):
     return round(x, nd) if isinstance(x, (int, float)) else None
 
 
-def build_rows(listing, quotes, mult, screener=None, fx=None, default_cur="USD"):
-    """Merge discovery + quotes (+ screener fallback) into compact rows (COLS)."""
+NAME_CUR = re.compile(r"\b(JPY|EUR|CHF|GBP|USD|SEK|NOK|DKK|CAD|AUD)\b")
+
+
+def aum_currency(name):
+    """London share classes named with a currency ('... Class JPY (Acc)',
+    '... EUR (Dist)') report AUM in that currency; otherwise the fund's base
+    currency, which for London UCITS is almost always USD."""
+    m = NAME_CUR.search(name or "")
+    return m.group(1) if m else "USD"
+
+
+def build_rows(listing, quotes, mult, screener=None, fx=None, default_cur="USD", aum_in_usd=False):
+    """Merge discovery + quotes (+ screener fallback) into compact rows (COLS).
+
+    `aum_in_usd`: Yahoo reports a fund's netAssets in its BASE currency. For
+    London UCITS that is almost always USD (checked: VUSA.L's figure matches
+    the whole fund in USD, not the £ trading line), so London AUM is taken as
+    USD; HK funds report in HKD; US funds in USD.
+    """
     screener, fx = screener or {}, fx or FX_FALLBACK
     rows = []
     for t, base in sorted(listing.items()):
@@ -388,7 +418,8 @@ def build_rows(listing, quotes, mult, screener=None, fx=None, default_cur="USD")
         c1y = q.get("fiftyTwoWeekChangePercent")
         c1y = c1y * mult["c1y"] if isinstance(c1y, (int, float)) else s.get("c1y")
         ytd = q.get("ytdReturn")
-        rate = fx.get(cur)
+        acur = aum_currency(name) if aum_in_usd else cur
+        rate = fx.get(acur)
         rows.append([
             t, name, base.get("x") or q.get("fullExchangeName") or "",
             _r(price),
@@ -403,6 +434,7 @@ def build_rows(listing, quotes, mult, screener=None, fx=None, default_cur="USD")
             cur,
             base.get("dom") or "",
             round(aum_m * rate, 1) if aum_m is not None and rate else None,
+            acur,
         ])
     return rows
 
@@ -412,7 +444,7 @@ MARKETS = {
            "anchors": ["SPY", "QQQ", "JEPI"]},
     "hk": {"label": "Hong Kong", "discover": discover_hk, "min": 50, "cur": "HKD",
            "anchors": ["2800.HK", "3067.HK", "2833.HK"]},
-    "lse": {"label": "London", "discover": discover_lse, "min": 200, "cur": "GBP",
+    "lse": {"label": "London", "discover": discover_lse, "min": 200, "cur": "GBP", "aum_in_usd": True,
             "anchors": ["CSPX.L", "VUSA.L", "URNU.L"]},
 }
 SOURCES = {
@@ -440,7 +472,7 @@ def build_market(key, yahoo, mult, fx, dry):
             log(f"  Nasdaq screener fallback: {len(screener)} rows")
         except Exception as e:  # noqa: BLE001
             log(f"  Nasdaq screener unavailable: {e}")
-    rows = build_rows(listing, quotes, mult, screener, fx, m["cur"])
+    rows = build_rows(listing, quotes, mult, screener, fx, m["cur"], m.get("aum_in_usd", False))
     for a in m["anchors"]:
         r = next((x for x in rows if x[0] == a), None)
         log(f"  anchor {a}: {dict(zip(COLS, r)) if r else 'not listed'}")
