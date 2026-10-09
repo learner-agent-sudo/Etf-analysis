@@ -132,6 +132,26 @@ function aumCell(e) {
   return a.fresh ? el("span", { title: `Net assets per fund data (${a.asof || "latest"})` }, a.display)
                  : el("span", { class: "snap", title: snapTitle("AUM", CURRENT && CURRENT.as_of) }, a.display);
 }
+// Where the latest fund data contradicts the numbers a curated rating was
+// based on. `screen` marks checks that touch the buy screen (cost/concentration).
+function dataChecks(e) {
+  const d = daily(e.ticker);
+  if (!d || e._adhoc) return [];
+  const out = [];
+  if (d.top10_weight_pct != null && e.top10_weight_pct != null && Math.abs(d.top10_weight_pct - e.top10_weight_pct) >= 8) {
+    const over = d.top10_weight_pct > 50 && e.top10_weight_pct <= 50;
+    out.push({ dim: "concentration", screen: over || d.top10_weight_pct > e.top10_weight_pct + 8,
+      text: `Top-10 weight is now ~${d.top10_weight_pct}% (rated on ~${e.top10_weight_pct}%)${d.top10_weight_pct > 50 ? " — above the 50% red-flag line" : ""}.` });
+  }
+  if (d.expense_ratio != null && e.expense_ratio != null && Math.abs(d.expense_ratio - e.expense_ratio) >= 0.05) {
+    out.push({ dim: "cost", screen: d.expense_ratio > e.expense_ratio,
+      text: `Fund data shows a ${d.expense_ratio.toFixed(2)}% expense ratio (rated on ${e.expense_ratio.toFixed(2)}%; the difference may be acquired-fund fees or a fee change — check the issuer).` });
+  }
+  if (d.aum_musd && e.aum_musd && (d.aum_musd / e.aum_musd > 2 || d.aum_musd / e.aum_musd < 0.5)) {
+    out.push({ dim: "liquidity", screen: false, text: `AUM is now ${d.aum_display} (rated on ${fmtMusd(e.aum_musd)}).` });
+  }
+  return out;
+}
 function yieldOf(e) {
   const d = daily(e.ticker);
   if (d && d.yield_ttm) return { v: d.yield_ttm, fresh: true };
@@ -159,7 +179,7 @@ function perfOf(e, key) {
   const d = daily(e.ticker), dp = d && d.performance;
   if (dp && !isPlaceholder(dp[key])) return { v: dp[key], fresh: true, asof: dp.as_of, priceOnly: /^price/.test(dp.basis || "") };
   const sp = e.performance;
-  if (sp && !isPlaceholder(sp[key])) return { v: sp[key], fresh: false, asof: sp.as_of };
+  if (sp && !isPlaceholder(sp[key])) return { v: sp[key], fresh: false, asof: isPlaceholder(sp.as_of) ? (CURRENT && CURRENT.as_of) : sp.as_of };
   return null;
 }
 // Is the fund simply too young to have a figure for this period?
@@ -392,11 +412,11 @@ function render() {
       if (c.type === "score") {
         const sc = scoreOf(e, c.key.slice(1));
         tr.append(el("td", { class: "cellscore", "data-label": c.label, title: sc ? sc.note : "", onclick: () => openMemo(e.ticker) },
-          sc ? el("span", { class: "dot " + sc.rating }) : "—", sc ? RATING_LABEL[sc.rating] : ""));
+          sc ? el("span", { class: "score" }, el("span", { class: "dot " + sc.rating }), RATING_LABEL[sc.rating]) : "—"));
       } else if (c.key === "ticker") {
         tr.append(pressable(el("td", { class: "col-ticker", "aria-label": `Open the memo for ${e.ticker}` },
           el("span", { class: "tk" }, e.ticker),
-          e.meets_criteria ? el("span", { class: "tag-pass", title: "Meets buy criteria: cost 🟢, concentration 🟢, purity 🟢/🟡" }, "✓ criteria") : null,
+          e.meets_criteria ? criteriaTag(e) : null,
           e._adhoc ? el("span", { class: "tag-adhoc", title: "Opened from the full-universe roster — no curated analysis yet" }, "not curated") : null,
           el("div", { class: "nm" }, e.name)), () => openMemo(e.ticker)));
       } else {
@@ -410,6 +430,13 @@ function render() {
 function setSort(key) {
   if (SORT.key === key) SORT.dir *= -1; else SORT = { key, dir: key === "ticker" ? 1 : -1 };
   render();
+}
+
+function criteriaTag(e) {
+  const warn = dataChecks(e).filter(c => c.screen);
+  return warn.length
+    ? el("span", { class: "tag-pass recheck", title: "Passed the screen (cost 🟢, concentration 🟢, purity 🟢/🟡) on the analysed numbers, but the latest fund data disagrees: " + warn.map(c => c.text).join(" ") }, "✓ criteria ⚠ re-check")
+    : el("span", { class: "tag-pass", title: "Meets buy criteria: cost 🟢, concentration 🟢, purity 🟢/🟡" }, "✓ criteria");
 }
 
 // ---- messages / updates --------------------------------------------
@@ -503,8 +530,9 @@ function makeDailyEtf(ticker, d, entry) {
   const name = (entry && entry.name) || d.name || ticker;
   const tag = entry && entry.tag;
   const top = d.holdings && d.holdings[0];
+  const stock = !!(d.instrument_type && d.instrument_type !== "ETF");
   return {
-    ticker, name, is_theme_fund: true, _adhoc: true, issuer: d.fund_family || null, holdings_url: null,
+    ticker, name, is_theme_fund: true, _adhoc: true, _stock: stock, issuer: d.fund_family || null, holdings_url: null,
     expense_ratio: null, aum_musd: null, aum_display: null,             // erOf()/aumOf() read the daily data
     inception: d.first_trade_date || null, structure: tag || "—", index: "—",
     holdings_count: null, top10_weight_pct: null,
@@ -514,16 +542,19 @@ function makeDailyEtf(ticker, d, entry) {
     scores: {
       cost: scoreFromExpense(d.expense_ratio),
       purity: { rating: "yellow", note: "Not assessed — no curated analysis yet. Ask Claude to add a full card." },
-      concentration: scoreFromTop10(d.top10_weight_pct),
+      concentration: stock ? { rating: "red", note: "A single stock — 100% in one company." } : scoreFromTop10(d.top10_weight_pct),
       liquidity: scoreFromLiquidity(d),
       track_record: { rating: "yellow", note: "Not yet reviewed." },
     },
     overall: "From the full-universe roster — not yet curated.",
     memo: {
-      thesis: `${name}${tag ? " — " + tag : ""}. This fund is in the theme's full-universe roster but has no curated analysis yet: the numbers below come straight from the daily fund data, and the ratings are mechanical (cost from the expense ratio, concentration from the top-10 weight, liquidity from AUM and dollar volume). Theme purity needs a human read of the holdings.`,
+      thesis: stock
+        ? `${name}${tag ? " — " + tag : ""}. Listed in the roster for reference: it's the single company the theme revolves around, not a fund. The numbers below are its daily market data; ratings are not meaningful for a single stock (it is 100% concentrated by definition).`
+        : `${name}${tag ? " — " + tag : ""}. This fund is in the theme's full-universe roster but has no curated analysis yet: the numbers below come straight from the daily fund data, and the ratings are mechanical (cost from the expense ratio, concentration from the top-10 weight, liquidity from AUM and dollar volume). Theme purity needs a human read of the holdings.`,
       purity_verdict: { rating: "yellow", text: "Not assessed — check whether the top holdings below are genuine plays on the theme." },
       holdings_illustrative: [],
-      red_flags: [...rosterFlags(tag), "❓ Not curated — verify against the issuer's fact sheet before acting."],
+      red_flags: [...(d.instrument_type && d.instrument_type !== "ETF" ? ["🔴 This is a single company's stock, not an ETF — no diversification at all."] : []),
+        ...rosterFlags(tag), "❓ Not curated — verify against the issuer's fact sheet before acting."],
       bull: [], bear: [],
     },
   };
@@ -576,7 +607,7 @@ function openMemo(ticker) {
   const body = $("#memoBody"); body.innerHTML = "";
   const wrap = el("div", { class: "memo" });
   const er = erOf(e), a = aumOf(e);
-  const kind = e._adhoc ? "Roster fund (not curated)" : e.is_theme_fund ? "Theme fund" : "Benchmark / reference";
+  const kind = e._stock ? "Single stock (not an ETF)" : e._adhoc ? "Roster fund (not curated)" : e.is_theme_fund ? "Theme fund" : "Benchmark / reference";
 
   wrap.append(
     el("h2", { id: "memoTitle" }, `${e.ticker} — ${e.name}`),
@@ -613,7 +644,8 @@ function openMemo(ticker) {
     !tiles.length ? (tooNew(e, "y1") ? "The fund is too new for trailing returns." : "No return figures yet.") : null,
   ].filter(Boolean).join(" ");
   if (basisTxt) wrap.append(el("p", { class: "muted small" }, basisTxt));
-  if (e.performance && e.performance.note) wrap.append(el("p", { class: "muted small" }, `Analyst note (${e.performance.as_of || "snapshot"}): ${e.performance.note}`));
+  if (e.performance && e.performance.note) wrap.append(el("p", { class: "muted small" },
+    `Analyst note (${isPlaceholder(e.performance.as_of) ? CURRENT.as_of : e.performance.as_of}): ${e.performance.note}`));
 
   // Key facts
   const mk = e.market || {};
@@ -647,6 +679,16 @@ function openMemo(ticker) {
     wrap.append(el("p", {}, el("span", { class: "badge " + sc.rating }, RATING_LABEL[sc.rating]),
       " ", el("b", {}, dim.replace("_", " ")), " — ", sc.note));
   });
+
+  const checks = dataChecks(e);
+  if (checks.length) {
+    const ul = el("ul", { class: "flags" });
+    checks.forEach(c => ul.append(el("li", {}, `⚠ ${c.dim.replace("_", " ")}: ${c.text}`)));
+    wrap.append(sectionTitle("Data check — latest fund data vs this analysis"), ul,
+      el("p", { class: "muted small" }, (e.meets_criteria && checks.some(c => c.screen)
+        ? "This fund passed your screen on the analysed numbers; the newer data may change that. "
+        : "") + "Ratings are re-scored when the analysis is refreshed — ask Claude to re-check this fund."));
+  }
 
   if (m.strategy) wrap.append(sectionTitle("Strategy"), el("p", {}, m.strategy));
 

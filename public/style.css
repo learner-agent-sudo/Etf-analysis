@@ -101,10 +101,12 @@ td.col-ticker:focus-visible, .rosteritem:focus-visible { outline: 2px solid var(
 .tag-pass { font-size: 10px; font-weight: 700; color: #06223f; background: var(--green); border-radius: 999px;
   padding: 1px 7px; margin-left: 6px; vertical-align: middle; }
 .pass-toggle { color: var(--green); font-weight: 600; }
+.tag-pass.recheck { background: var(--yellow); }
 
 .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
 .dot.green { background: var(--green); } .dot.yellow { background: var(--yellow); } .dot.red { background: var(--red); }
 .cellscore { font-size: 13px; }
+.cellscore .score { white-space: nowrap; }
 
 .roster { margin-top: 22px; }
 .rosterbox summary { color: var(--accent); font-size: 14px; font-weight: 600; cursor: pointer; padding: 6px 0; }

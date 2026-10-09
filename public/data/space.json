@@ -1115,24 +1115,14 @@
       "tag": "\u26a0\ufe0f 3x leveraged"
     },
     {
-      "ticker": "DFNS",
-      "name": "Global X Defense Tech (var.) / verify",
-      "tag": "defense \u00b7 verify"
-    },
-    {
       "ticker": "SPCX",
-      "name": "The Original Space ETF",
-      "tag": "space \u00b7 niche"
-    },
-    {
-      "ticker": "ARKD",
-      "name": "ARK Drone/Defense (verify)",
-      "tag": "drones/defense \u00b7 verify"
+      "name": "SpaceX \u2014 Space Exploration Technologies (stock, not an ETF)",
+      "tag": "single stock \u00b7 the space bellwether"
     },
     {
       "ticker": "WAR",
-      "name": "Leatherback Defense (verify)",
-      "tag": "defense \u00b7 active \u00b7 verify"
+      "name": "U.S. Global Technology and Aerospace & Defense",
+      "tag": "defense-tech \u00b7 active"
     }
   ]
 }
