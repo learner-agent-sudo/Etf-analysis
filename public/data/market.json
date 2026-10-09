@@ -1,8 +1,8 @@
 {
  "as_of": "2026-10-09",
- "generated_at": "2026-10-09T15:00:18+00:00",
+ "generated_at": "2026-10-09T20:43:31+00:00",
  "source": "Daily closes from Yahoo Finance or Nasdaq (returns reinvest distributions); fund profile (AUM, expense ratio, top-10 holdings) from Yahoo Finance/Morningstar when available. Refreshed automatically by GitHub Actions every weekday after the US close.",
- "count": 102,
+ "count": 129,
  "failed": {
   "CNCR": "Yahoo Finance: CNCR: not found on Yahoo; Nasdaq: CNCR: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
   "CRIT": "Yahoo Finance: CRIT: not found on Yahoo; Nasdaq: CRIT: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
@@ -10,8 +10,7 @@
   "GERM": "Yahoo Finance: GERM: not found on Yahoo; Nasdaq: GERM: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
   "JEPY": "Yahoo Finance: JEPY: not found on Yahoo; Nasdaq: JEPY: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
   "QBUX": "Yahoo Finance: QBUX: not found on Yahoo; Nasdaq: QBUX: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
-  "QTUF": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
-  "URNU": "Yahoo Finance: URNU: not found on Yahoo; Nasdaq: URNU: not listed (closed, non-US or wrong ticker?)"
+  "QTUF": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
  },
  "hold_policy": {
   "days": 30,
@@ -20,72 +19,67 @@
  "missing": {
   "CNCR": {
    "since": "2026-10-09",
-   "checks": 4,
+   "checks": 5,
    "last_checked": "2026-10-09",
    "reason": "Yahoo Finance: CNCR: not found on Yahoo; Nasdaq: CNCR: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "CRIT": {
    "since": "2026-10-09",
-   "checks": 4,
+   "checks": 5,
    "last_checked": "2026-10-09",
    "reason": "Yahoo Finance: CRIT: not found on Yahoo; Nasdaq: CRIT: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "EBLU": {
    "since": "2026-10-09",
-   "checks": 4,
+   "checks": 5,
    "last_checked": "2026-10-09",
    "reason": "Yahoo Finance: EBLU: not found on Yahoo; Nasdaq: EBLU: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "GERM": {
    "since": "2026-10-09",
-   "checks": 4,
+   "checks": 5,
    "last_checked": "2026-10-09",
    "reason": "Yahoo Finance: GERM: not found on Yahoo; Nasdaq: GERM: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "JEPY": {
    "since": "2026-10-09",
-   "checks": 4,
+   "checks": 5,
    "last_checked": "2026-10-09",
    "reason": "Yahoo Finance: JEPY: not found on Yahoo; Nasdaq: JEPY: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "QBUX": {
    "since": "2026-10-09",
-   "checks": 4,
+   "checks": 5,
    "last_checked": "2026-10-09",
    "reason": "Yahoo Finance: QBUX: not found on Yahoo; Nasdaq: QBUX: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "QTUF": {
    "since": "2026-10-09",
-   "checks": 4,
+   "checks": 5,
    "last_checked": "2026-10-09",
    "reason": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
-  },
-  "URNU": {
-   "since": "2026-10-09",
-   "checks": 4,
-   "last_checked": "2026-10-09",
-   "reason": "Yahoo Finance: URNU: not found on Yahoo; Nasdaq: URNU: not listed (closed, non-US or wrong ticker?)"
   }
  },
  "removed_recent": [],
  "tickers": {
   "AIQ": {
-   "price": 66.42,
-   "price_display": "$66.42",
+   "price": 66.6,
+   "price_display": "$66.60",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 1326704,
+   "volume_avg": 1333757,
    "volume_display": "~1.3M/day",
-   "dollar_volume_avg": 82380032,
-   "dollar_volume_display": "~$82.4M/day",
+   "dollar_volume_avg": 82850498,
+   "dollar_volume_display": "~$82.9M/day",
    "high_52w": 70.14,
    "low_52w": 44.78,
-   "pct_below_high": "-5.3%",
+   "pct_below_high": "-5.0%",
    "max_drawdown_1y": "-20.2%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+30.6%",
-    "y1": "+29.7%",
-    "y3_annualized": "+34.5%/yr",
+    "ytd": "+30.9%",
+    "y1": "+30.0%",
+    "y3_annualized": "+34.7%/yr",
     "y2025": "+31.9%",
     "y2024": "+24.1%",
     "as_of": "2026-10-09",
@@ -183,22 +177,23 @@
    "profile_asof": "2026-10-09"
   },
   "AIVL": {
-   "price": 130.81,
-   "price_display": "$130.81",
+   "price": 131.96,
+   "price_display": "$131.96",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 3603,
+   "volume_avg": 3635,
    "volume_display": "~4K/day",
-   "dollar_volume_avg": 472229,
-   "dollar_volume_display": "~$472K/day",
+   "dollar_volume_avg": 476534,
+   "dollar_volume_display": "~$477K/day",
    "high_52w": 136.29,
    "low_52w": 110.34,
-   "pct_below_high": "-4.0%",
+   "pct_below_high": "-3.2%",
    "max_drawdown_1y": "-7.8%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+15.0%",
-    "y1": "+16.3%",
-    "y3_annualized": "+16.1%/yr",
+    "ytd": "+16.1%",
+    "y1": "+17.3%",
+    "y3_annualized": "+16.4%/yr",
     "y2025": "+9.7%",
     "y2024": "+13.5%",
     "as_of": "2026-10-09",
@@ -316,21 +311,22 @@
    "profile_asof": "2026-10-09"
   },
   "AIYY": {
-   "price": 7.51,
-   "price_display": "$7.51",
+   "price": 7.44,
+   "price_display": "$7.44",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 82479,
-   "volume_display": "~82K/day",
-   "dollar_volume_avg": 628339,
-   "dollar_volume_display": "~$628K/day",
+   "volume_avg": 83017,
+   "volume_display": "~83K/day",
+   "dollar_volume_avg": 632316,
+   "dollar_volume_display": "~$632K/day",
    "high_52w": 27.7,
    "low_52w": 7.18,
-   "pct_below_high": "-72.9%",
+   "pct_below_high": "-73.1%",
    "max_drawdown_1y": "-54.9%",
    "history_start": "2023-11-28",
    "performance": {
-    "ytd": "-27.1%",
-    "y1": "-45.2%",
+    "ytd": "-27.8%",
+    "y1": "-45.7%",
     "y3_annualized": null,
     "y2025": "-59.0%",
     "y2024": "-14.7%",
@@ -357,23 +353,122 @@
    "fund_family": "YieldMax ETFs",
    "profile_asof": "2026-10-09"
   },
-  "AQWA": {
-   "price": 17.94,
-   "price_display": "$17.94",
+  "AMLP": {
+   "price": 52.56,
+   "price_display": "$52.56",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 5085,
+   "volume_avg": 1232766,
+   "volume_display": "~1.2M/day",
+   "dollar_volume_avg": 67061524,
+   "dollar_volume_display": "~$67.1M/day",
+   "high_52w": 56.19,
+   "low_52w": 44.68,
+   "pct_below_high": "-6.5%",
+   "max_drawdown_1y": "-8.1%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "+18.4%",
+    "y1": "+24.7%",
+    "y3_annualized": "+17.0%/yr",
+    "y2025": "+5.8%",
+    "y2024": "+22.8%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Alerian MLP ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2010-08-25",
+   "source": "Yahoo Finance",
+   "aum_musd": 12619,
+   "aum_display": "~$12.6B",
+   "expense_ratio": 1.01,
+   "yield_ttm": "7.84%",
+   "holdings": [
+    {
+     "symbol": "SUN",
+     "name": "Sunoco LP",
+     "weight": 13.47
+    },
+    {
+     "symbol": "MPLX",
+     "name": "MPLX LP Partnership Units",
+     "weight": 13.33
+    },
+    {
+     "symbol": "PAA",
+     "name": "Plains All American Pipeline LP",
+     "weight": 13.01
+    },
+    {
+     "symbol": "WES",
+     "name": "Western Midstream Partners LP",
+     "weight": 12.99
+    },
+    {
+     "symbol": "ET",
+     "name": "Energy Transfer LP",
+     "weight": 12.84
+    },
+    {
+     "symbol": "EPD",
+     "name": "Enterprise Products Partners LP",
+     "weight": 12.77
+    },
+    {
+     "symbol": "HESM",
+     "name": "Hess Midstream LP Class A",
+     "weight": 8.89
+    },
+    {
+     "symbol": "CQP",
+     "name": "Cheniere Energy Partners LP",
+     "weight": 4.55
+    },
+    {
+     "symbol": "USAC",
+     "name": "USA Compression Partners LP",
+     "weight": 4.15
+    },
+    {
+     "symbol": "GEL",
+     "name": "Genesis Energy LP",
+     "weight": 2.78
+    }
+   ],
+   "top10_weight_pct": 98.8,
+   "sectors": [
+    {
+     "sector": "Energy",
+     "weight": 98.2
+    },
+    {
+     "sector": "Utilities",
+     "weight": 1.8
+    }
+   ],
+   "fund_family": "ALPS",
+   "profile_asof": "2026-10-09"
+  },
+  "AQWA": {
+   "price": 18.02,
+   "price_display": "$18.02",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 5093,
    "volume_display": "~5K/day",
-   "dollar_volume_avg": 96277,
+   "dollar_volume_avg": 96411,
    "dollar_volume_display": "~$96K/day",
    "high_52w": 20.89,
    "low_52w": 17.83,
-   "pct_below_high": "-14.1%",
+   "pct_below_high": "-13.8%",
    "max_drawdown_1y": "-14.1%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-3.8%",
-    "y1": "-6.3%",
-    "y3_annualized": "+9.8%/yr",
+    "ytd": "-3.4%",
+    "y1": "-5.9%",
+    "y3_annualized": "+9.9%/yr",
     "y2025": "+13.1%",
     "y2024": "+4.3%",
     "as_of": "2026-10-09",
@@ -471,22 +566,23 @@
    "profile_asof": "2026-10-09"
   },
   "ARKG": {
-   "price": 50.69,
-   "price_display": "$50.69",
+   "price": 51.3,
+   "price_display": "$51.30",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 3827642,
-   "volume_display": "~3.8M/day",
-   "dollar_volume_avg": 182566681,
-   "dollar_volume_display": "~$182.6M/day",
+   "volume_avg": 3875723,
+   "volume_display": "~3.9M/day",
+   "dollar_volume_avg": 185059965,
+   "dollar_volume_display": "~$185.1M/day",
    "high_52w": 56.77,
    "low_52w": 24.82,
-   "pct_below_high": "-10.7%",
+   "pct_below_high": "-9.6%",
    "max_drawdown_1y": "-27.5%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+75.0%",
-    "y1": "+60.2%",
-    "y3_annualized": "+24.7%/yr",
+    "ytd": "+77.1%",
+    "y1": "+62.1%",
+    "y3_annualized": "+25.2%/yr",
     "y2025": "+23.0%",
     "y2024": "-28.2%",
     "as_of": "2026-10-09",
@@ -564,22 +660,23 @@
    "profile_asof": "2026-10-09"
   },
   "ARKX": {
-   "price": 32.3,
-   "price_display": "$32.30",
+   "price": 32.2,
+   "price_display": "$32.20",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 542743,
-   "volume_display": "~543K/day",
-   "dollar_volume_avg": 17498931,
-   "dollar_volume_display": "~$17.5M/day",
+   "volume_avg": 549302,
+   "volume_display": "~549K/day",
+   "dollar_volume_avg": 17709864,
+   "dollar_volume_display": "~$17.7M/day",
    "high_52w": 37.74,
    "low_52w": 25.74,
-   "pct_below_high": "-14.4%",
+   "pct_below_high": "-14.7%",
    "max_drawdown_1y": "-21.8%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+11.5%",
-    "y1": "+2.2%",
-    "y3_annualized": "+33.0%/yr",
+    "ytd": "+11.1%",
+    "y1": "+1.8%",
+    "y3_annualized": "+32.8%/yr",
     "y2025": "+48.5%",
     "y2024": "+26.7%",
     "as_of": "2026-10-09",
@@ -669,22 +766,23 @@
    "profile_asof": "2026-10-09"
   },
   "ARTY": {
-   "price": 78.91,
-   "price_display": "$78.91",
+   "price": 79.15,
+   "price_display": "$79.15",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 461276,
-   "volume_display": "~461K/day",
-   "dollar_volume_avg": 33814502,
-   "dollar_volume_display": "~$33.8M/day",
+   "volume_avg": 464331,
+   "volume_display": "~464K/day",
+   "dollar_volume_avg": 34056814,
+   "dollar_volume_display": "~$34.1M/day",
    "high_52w": 81.24,
    "low_52w": 44.2,
-   "pct_below_high": "-2.9%",
+   "pct_below_high": "-2.6%",
    "max_drawdown_1y": "-24.0%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+63.9%",
-    "y1": "+59.3%",
-    "y3_annualized": "+37.8%/yr",
+    "ytd": "+64.4%",
+    "y1": "+59.8%",
+    "y3_annualized": "+38.0%/yr",
     "y2025": "+30.0%",
     "y2024": "+8.0%",
     "as_of": "2026-10-09",
@@ -782,22 +880,23 @@
    "profile_asof": "2026-10-09"
   },
   "BALI": {
-   "price": 34.8,
-   "price_display": "$34.80",
+   "price": 34.83,
+   "price_display": "$34.83",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 266616,
-   "volume_display": "~267K/day",
-   "dollar_volume_avg": 9208501,
-   "dollar_volume_display": "~$9.2M/day",
+   "volume_avg": 272734,
+   "volume_display": "~273K/day",
+   "dollar_volume_avg": 9421642,
+   "dollar_volume_display": "~$9.4M/day",
    "high_52w": 35.19,
    "low_52w": 30.04,
-   "pct_below_high": "-1.1%",
+   "pct_below_high": "-1.0%",
    "max_drawdown_1y": "-6.7%",
    "history_start": "2023-09-28",
    "performance": {
-    "ytd": "+16.7%",
-    "y1": "+19.2%",
-    "y3_annualized": "+21.0%/yr",
+    "ytd": "+16.8%",
+    "y1": "+19.3%",
+    "y3_annualized": "+21.1%/yr",
     "y2025": "+14.5%",
     "y2024": "+22.4%",
     "as_of": "2026-10-09",
@@ -900,21 +999,22 @@
    "profile_asof": "2026-10-09"
   },
   "BATT": {
-   "price": 14.7,
-   "price_display": "$14.70",
+   "price": 14.68,
+   "price_display": "$14.68",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 39406,
-   "volume_display": "~39K/day",
-   "dollar_volume_avg": 584604,
-   "dollar_volume_display": "~$585K/day",
+   "volume_avg": 39613,
+   "volume_display": "~40K/day",
+   "dollar_volume_avg": 587646,
+   "dollar_volume_display": "~$588K/day",
    "high_52w": 18.03,
    "low_52w": 12.55,
-   "pct_below_high": "-18.5%",
+   "pct_below_high": "-18.6%",
    "max_drawdown_1y": "-23.0%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+6.5%",
-    "y1": "+12.0%",
+    "ytd": "+6.4%",
+    "y1": "+11.8%",
     "y3_annualized": "+13.4%/yr",
     "y2025": "+59.7%",
     "y2024": "-13.9%",
@@ -1005,22 +1105,23 @@
    "profile_asof": "2026-10-09"
   },
   "BBH": {
-   "price": 237.82,
-   "price_display": "$237.82",
+   "price": 240.47,
+   "price_display": "$240.47",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 9267,
+   "volume_avg": 9307,
    "volume_display": "~9K/day",
-   "dollar_volume_avg": 2155882,
+   "dollar_volume_avg": 2165877,
    "dollar_volume_display": "~$2.2M/day",
    "high_52w": 245.64,
    "low_52w": 172.08,
-   "pct_below_high": "-3.2%",
+   "pct_below_high": "-2.1%",
    "max_drawdown_1y": "-10.5%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+25.7%",
-    "y1": "+36.8%",
-    "y3_annualized": "+15.9%/yr",
+    "ytd": "+27.1%",
+    "y1": "+38.3%",
+    "y3_annualized": "+16.3%/yr",
     "y2025": "+21.2%",
     "y2024": "-4.3%",
     "as_of": "2026-10-09",
@@ -1098,21 +1199,22 @@
    "profile_asof": "2026-10-09"
   },
   "BOTZ": {
-   "price": 35.46,
-   "price_display": "$35.46",
+   "price": 35.48,
+   "price_display": "$35.48",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 653933,
-   "volume_display": "~654K/day",
-   "dollar_volume_avg": 23258761,
-   "dollar_volume_display": "~$23.3M/day",
+   "volume_avg": 657791,
+   "volume_display": "~658K/day",
+   "dollar_volume_avg": 23395694,
+   "dollar_volume_display": "~$23.4M/day",
    "high_52w": 41.63,
    "low_52w": 31.99,
    "pct_below_high": "-14.8%",
    "max_drawdown_1y": "-19.3%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-2.1%",
-    "y1": "-4.5%",
+    "ytd": "-2.0%",
+    "y1": "-4.4%",
     "y3_annualized": "+13.3%/yr",
     "y2025": "+14.2%",
     "y2024": "+12.3%",
@@ -1211,22 +1313,23 @@
    "profile_asof": "2026-10-09"
   },
   "BUG": {
-   "price": 48.88,
-   "price_display": "$48.88",
+   "price": 50.08,
+   "price_display": "$50.08",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 1419837,
-   "volume_display": "~1.4M/day",
-   "dollar_volume_avg": 60664069,
-   "dollar_volume_display": "~$60.7M/day",
-   "high_52w": 48.88,
+   "volume_avg": 1451672,
+   "volume_display": "~1.5M/day",
+   "dollar_volume_avg": 62270653,
+   "dollar_volume_display": "~$62.3M/day",
+   "high_52w": 50.08,
    "low_52w": 23.3,
    "pct_below_high": "0.0%",
    "max_drawdown_1y": "-35.2%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+60.5%",
-    "y1": "+36.0%",
-    "y3_annualized": "+26.1%/yr",
+    "ytd": "+64.4%",
+    "y1": "+39.4%",
+    "y3_annualized": "+27.2%/yr",
     "y2025": "-5.0%",
     "y2024": "+9.6%",
     "as_of": "2026-10-09",
@@ -1304,22 +1407,23 @@
    "profile_asof": "2026-10-09"
   },
   "CGW": {
-   "price": 63.81,
-   "price_display": "$63.81",
+   "price": 63.99,
+   "price_display": "$63.99",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 21686,
+   "volume_avg": 21911,
    "volume_display": "~22K/day",
-   "dollar_volume_avg": 1398657,
+   "dollar_volume_avg": 1413084,
    "dollar_volume_display": "~$1.4M/day",
    "high_52w": 68.86,
    "low_52w": 61.38,
-   "pct_below_high": "-7.3%",
+   "pct_below_high": "-7.1%",
    "max_drawdown_1y": "-10.9%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+1.3%",
-    "y1": "+2.0%",
-    "y3_annualized": "+13.4%/yr",
+    "ytd": "+1.6%",
+    "y1": "+2.3%",
+    "y3_annualized": "+13.5%/yr",
     "y2025": "+18.1%",
     "y2024": "+4.5%",
     "as_of": "2026-10-09",
@@ -1421,22 +1525,23 @@
    "profile_asof": "2026-10-09"
   },
   "CHAT": {
-   "price": 92.14,
-   "price_display": "$92.14",
+   "price": 92.22,
+   "price_display": "$92.22",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 388064,
-   "volume_display": "~388K/day",
-   "dollar_volume_avg": 33567081,
-   "dollar_volume_display": "~$33.6M/day",
+   "volume_avg": 389517,
+   "volume_display": "~390K/day",
+   "dollar_volume_avg": 33701180,
+   "dollar_volume_display": "~$33.7M/day",
    "high_52w": 104.07,
    "low_52w": 56.92,
-   "pct_below_high": "-11.5%",
+   "pct_below_high": "-11.4%",
    "max_drawdown_1y": "-28.3%",
    "history_start": "2023-05-18",
    "performance": {
-    "ytd": "+56.3%",
-    "y1": "+45.0%",
-    "y3_annualized": "+50.8%/yr",
+    "ytd": "+56.4%",
+    "y1": "+45.1%",
+    "y3_annualized": "+50.9%/yr",
     "y2025": "+49.9%",
     "y2024": "+31.0%",
     "as_of": "2026-10-09",
@@ -1526,21 +1631,22 @@
    "profile_asof": "2026-10-09"
   },
   "CHPX": {
-   "price": 100.53,
-   "price_display": "$100.53",
+   "price": 100.72,
+   "price_display": "$100.72",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 53336,
-   "volume_display": "~53K/day",
-   "dollar_volume_avg": 4997340,
+   "volume_avg": 53588,
+   "volume_display": "~54K/day",
+   "dollar_volume_avg": 5022697,
    "dollar_volume_display": "~$5.0M/day",
    "high_52w": 110.74,
    "low_52w": 50.37,
-   "pct_below_high": "-9.2%",
+   "pct_below_high": "-9.0%",
    "max_drawdown_1y": "-27.1%",
    "history_start": "2025-10-01",
    "performance": {
-    "ytd": "+84.2%",
-    "y1": "+82.0%",
+    "ytd": "+84.6%",
+    "y1": "+82.3%",
     "y3_annualized": null,
     "as_of": "2026-10-09",
     "basis": "total return (distributions reinvested)"
@@ -1625,22 +1731,23 @@
    "profile_asof": "2026-10-09"
   },
   "CIBR": {
-   "price": 108.22,
-   "price_display": "$108.22",
+   "price": 110.0,
+   "price_display": "$110.00",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 1636375,
-   "volume_display": "~1.6M/day",
-   "dollar_volume_avg": 160481279,
-   "dollar_volume_display": "~$160.5M/day",
-   "high_52w": 108.21,
+   "volume_avg": 1657989,
+   "volume_display": "~1.7M/day",
+   "dollar_volume_avg": 162872783,
+   "dollar_volume_display": "~$162.9M/day",
+   "high_52w": 110.0,
    "low_52w": 60.74,
    "pct_below_high": "0.0%",
    "max_drawdown_1y": "-21.9%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+51.9%",
-    "y1": "+39.5%",
-    "y3_annualized": "+33.3%/yr",
+    "ytd": "+54.4%",
+    "y1": "+41.8%",
+    "y3_annualized": "+34.0%/yr",
     "y2025": "+13.1%",
     "y2024": "+18.2%",
     "as_of": "2026-10-09",
@@ -1726,22 +1833,23 @@
    "profile_asof": "2026-10-09"
   },
   "CURE": {
-   "price": 130.38,
-   "price_display": "$130.38",
+   "price": 134.15,
+   "price_display": "$134.15",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 57179,
-   "volume_display": "~57K/day",
-   "dollar_volume_avg": 7353767,
+   "volume_avg": 57624,
+   "volume_display": "~58K/day",
+   "dollar_volume_avg": 7414915,
    "dollar_volume_display": "~$7.4M/day",
    "high_52w": 147.87,
    "low_52w": 83.61,
-   "pct_below_high": "-11.8%",
+   "pct_below_high": "-9.3%",
    "max_drawdown_1y": "-31.1%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+18.0%",
-    "y1": "+42.9%",
-    "y3_annualized": "+13.9%/yr",
+    "ytd": "+21.4%",
+    "y1": "+47.0%",
+    "y3_annualized": "+15.0%/yr",
     "y2025": "+22.5%",
     "y2024": "-8.5%",
     "as_of": "2026-10-09",
@@ -1784,22 +1892,23 @@
    "profile_asof": "2026-10-09"
   },
   "DFEN": {
-   "price": 46.08,
-   "price_display": "$46.08",
+   "price": 46.63,
+   "price_display": "$46.63",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 249767,
-   "volume_display": "~250K/day",
-   "dollar_volume_avg": 15217191,
-   "dollar_volume_display": "~$15.2M/day",
+   "volume_avg": 252255,
+   "volume_display": "~252K/day",
+   "dollar_volume_avg": 15333984,
+   "dollar_volume_display": "~$15.3M/day",
    "high_52w": 97.48,
    "low_52w": 44.5,
-   "pct_below_high": "-52.7%",
+   "pct_below_high": "-52.2%",
    "max_drawdown_1y": "-54.3%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-27.8%",
-    "y1": "-27.8%",
-    "y3_annualized": "+53.4%/yr",
+    "ytd": "-26.9%",
+    "y1": "-27.0%",
+    "y3_annualized": "+54.0%/yr",
     "y2025": "+156.6%",
     "y2024": "+27.1%",
     "as_of": "2026-10-09",
@@ -1842,21 +1951,22 @@
    "profile_asof": "2026-10-09"
   },
   "DIVO": {
-   "price": 47.39,
-   "price_display": "$47.39",
+   "price": 47.44,
+   "price_display": "$47.44",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 785874,
-   "volume_display": "~786K/day",
-   "dollar_volume_avg": 37312620,
-   "dollar_volume_display": "~$37.3M/day",
+   "volume_avg": 797614,
+   "volume_display": "~798K/day",
+   "dollar_volume_avg": 37869767,
+   "dollar_volume_display": "~$37.9M/day",
    "high_52w": 48.81,
    "low_52w": 43.6,
-   "pct_below_high": "-2.9%",
+   "pct_below_high": "-2.8%",
    "max_drawdown_1y": "-5.9%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+10.4%",
-    "y1": "+14.9%",
+    "ytd": "+10.5%",
+    "y1": "+15.1%",
     "y3_annualized": "+17.1%/yr",
     "y2025": "+17.4%",
     "y2024": "+16.2%",
@@ -1871,7 +1981,7 @@
    "aum_musd": 7731,
    "aum_display": "~$7.7B",
    "expense_ratio": 0.56,
-   "yield_ttm": "2.6%",
+   "yield_ttm": "2.33%",
    "holdings": [
     {
      "symbol": "MSFT",
@@ -1971,22 +2081,23 @@
    "profile_asof": "2026-10-09"
   },
   "DJIA": {
-   "price": 22.4,
-   "price_display": "$22.40",
+   "price": 22.5,
+   "price_display": "$22.50",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 53143,
-   "volume_display": "~53K/day",
-   "dollar_volume_avg": 1199517,
+   "volume_avg": 53751,
+   "volume_display": "~54K/day",
+   "dollar_volume_avg": 1213204,
    "dollar_volume_display": "~$1.2M/day",
    "high_52w": 23.06,
    "low_52w": 20.65,
-   "pct_below_high": "-2.9%",
+   "pct_below_high": "-2.4%",
    "max_drawdown_1y": "-7.3%",
    "history_start": "2022-02-24",
    "performance": {
-    "ytd": "+7.8%",
-    "y1": "+13.4%",
-    "y3_annualized": "+11.8%/yr",
+    "ytd": "+8.3%",
+    "y1": "+13.9%",
+    "y3_annualized": "+12.0%/yr",
     "y2025": "+9.1%",
     "y2024": "+14.5%",
     "as_of": "2026-10-09",
@@ -2095,23 +2206,505 @@
    "fund_family": "Global X Funds",
    "profile_asof": "2026-10-09"
   },
-  "FBT": {
-   "price": 263.96,
-   "price_display": "$263.96",
+  "ELFY": {
+   "price": 39.66,
+   "price_display": "$39.66",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 74863,
-   "volume_display": "~75K/day",
-   "dollar_volume_avg": 19504869,
-   "dollar_volume_display": "~$19.5M/day",
+   "volume_avg": 29969,
+   "volume_display": "~30K/day",
+   "dollar_volume_avg": 1221197,
+   "dollar_volume_display": "~$1.2M/day",
+   "high_52w": 45.61,
+   "low_52w": 34.51,
+   "pct_below_high": "-13.1%",
+   "max_drawdown_1y": "-15.5%",
+   "history_start": "2025-04-10",
+   "performance": {
+    "ytd": "+13.6%",
+    "y1": "+10.0%",
+    "y3_annualized": null,
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "ALPS Electrification Infrastructure ETF",
+   "exchange": "NasdaqGM",
+   "instrument_type": "ETF",
+   "first_trade_date": "2025-04-10",
+   "source": "Yahoo Finance",
+   "aum_musd": 185,
+   "aum_display": "~$185M",
+   "expense_ratio": 0.5,
+   "yield_ttm": "1.15%",
+   "holdings": [
+    {
+     "symbol": "VICR",
+     "name": "Vicor Corp",
+     "weight": 1.49
+    },
+    {
+     "symbol": "FPS",
+     "name": "Forgent Power Solutions Inc Ordinary Shares - Class A",
+     "weight": 1.18
+    },
+    {
+     "symbol": "GNRC",
+     "name": "Generac Holdings Inc",
+     "weight": 1.04
+    },
+    {
+     "symbol": "KEYS",
+     "name": "Keysight Technologies Inc",
+     "weight": 1.03
+    },
+    {
+     "symbol": "ZBRA",
+     "name": "Zebra Technologies Corp Ordinary Shares - Class A",
+     "weight": 1.0
+    },
+    {
+     "symbol": "BE",
+     "name": "Bloom Energy Corp Class A",
+     "weight": 0.98
+    },
+    {
+     "symbol": "AME",
+     "name": "AMETEK Inc",
+     "weight": 0.97
+    },
+    {
+     "symbol": "APH",
+     "name": "Amphenol Corp Class A",
+     "weight": 0.97
+    },
+    {
+     "symbol": "EMR",
+     "name": "Emerson Electric Co",
+     "weight": 0.96
+    },
+    {
+     "symbol": "ETN",
+     "name": "Eaton Corp PLC",
+     "weight": 0.96
+    }
+   ],
+   "top10_weight_pct": 10.6,
+   "sectors": [
+    {
+     "sector": "Utilities",
+     "weight": 35.7
+    },
+    {
+     "sector": "Industrials",
+     "weight": 28.8
+    },
+    {
+     "sector": "Technology",
+     "weight": 16.1
+    },
+    {
+     "sector": "Energy",
+     "weight": 14.3
+    },
+    {
+     "sector": "Materials",
+     "weight": 5.1
+    }
+   ],
+   "fund_family": "ALPS",
+   "profile_asof": "2026-10-09"
+  },
+  "EMLP": {
+   "price": 42.36,
+   "price_display": "$42.36",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 283981,
+   "volume_display": "~284K/day",
+   "dollar_volume_avg": 12279369,
+   "dollar_volume_display": "~$12.3M/day",
+   "high_52w": 44.84,
+   "low_52w": 37.38,
+   "pct_below_high": "-5.5%",
+   "max_drawdown_1y": "-7.9%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "+14.3%",
+    "y1": "+14.8%",
+    "y3_annualized": "+21.4%/yr",
+    "y2025": "+9.7%",
+    "y2024": "+33.4%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "First Trust North American Energy Infrastructure Fund",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2012-06-21",
+   "source": "Yahoo Finance",
+   "aum_musd": 3918,
+   "aum_display": "~$3.9B",
+   "expense_ratio": 0.95,
+   "yield_ttm": "2.99%",
+   "holdings": [
+    {
+     "symbol": "EPD",
+     "name": "Enterprise Products Partners LP",
+     "weight": 8.81
+    },
+    {
+     "symbol": "ET",
+     "name": "Energy Transfer LP",
+     "weight": 7.59
+    },
+    {
+     "symbol": "MPLX",
+     "name": "MPLX LP Partnership Units",
+     "weight": 4.41
+    },
+    {
+     "symbol": "MISXX",
+     "name": "Morgan Stanley Instl Lqudty Trs Instl",
+     "weight": 4.08
+    },
+    {
+     "symbol": "PAGP",
+     "name": "Plains GP Holdings LP Class A",
+     "weight": 3.94
+    },
+    {
+     "symbol": "NFG",
+     "name": "National Fuel Gas Co",
+     "weight": 3.87
+    },
+    {
+     "symbol": "KMI",
+     "name": "Kinder Morgan Inc Class P",
+     "weight": 3.73
+    },
+    {
+     "symbol": "PPL",
+     "name": "PPL Corp",
+     "weight": 2.86
+    },
+    {
+     "symbol": "SO",
+     "name": "Southern Co",
+     "weight": 2.82
+    },
+    {
+     "symbol": "DUK",
+     "name": "Duke Energy Corp",
+     "weight": 2.56
+    }
+   ],
+   "top10_weight_pct": 44.7,
+   "sectors": [
+    {
+     "sector": "Utilities",
+     "weight": 49.0
+    },
+    {
+     "sector": "Energy",
+     "weight": 46.4
+    },
+    {
+     "sector": "Industrials",
+     "weight": 4.0
+    },
+    {
+     "sector": "Materials",
+     "weight": 0.6
+    }
+   ],
+   "fund_family": "First Trust",
+   "profile_asof": "2026-10-09"
+  },
+  "ENFR": {
+   "price": 38.01,
+   "price_display": "$38.01",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 98167,
+   "volume_display": "~98K/day",
+   "dollar_volume_avg": 3828066,
+   "dollar_volume_display": "~$3.8M/day",
+   "high_52w": 40.54,
+   "low_52w": 29.86,
+   "pct_below_high": "-6.2%",
+   "max_drawdown_1y": "-9.1%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "+24.6%",
+    "y1": "+26.7%",
+    "y3_annualized": "+25.9%/yr",
+    "y2025": "+5.9%",
+    "y2024": "+42.2%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Alerian Energy Infrastructure ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2013-11-01",
+   "source": "Yahoo Finance",
+   "aum_musd": 518,
+   "aum_display": "~$518M",
+   "expense_ratio": 0.35,
+   "yield_ttm": "4.21%",
+   "holdings": [
+    {
+     "symbol": "ET",
+     "name": "Energy Transfer LP",
+     "weight": 8.53
+    },
+    {
+     "symbol": "ENB.TO",
+     "name": "Enbridge Inc",
+     "weight": 7.42
+    },
+    {
+     "symbol": "EPD",
+     "name": "Enterprise Products Partners LP",
+     "weight": 7.18
+    },
+    {
+     "symbol": "WMB",
+     "name": "Williams Companies Inc",
+     "weight": 6.06
+    },
+    {
+     "symbol": "KMI",
+     "name": "Kinder Morgan Inc Class P",
+     "weight": 5.25
+    },
+    {
+     "symbol": "LNG",
+     "name": "Cheniere Energy Inc",
+     "weight": 5.22
+    },
+    {
+     "symbol": "MPLX",
+     "name": "MPLX LP Partnership Units",
+     "weight": 5.09
+    },
+    {
+     "symbol": "TRP.TO",
+     "name": "TC Energy Corp",
+     "weight": 5.04
+    },
+    {
+     "symbol": "PAGP",
+     "name": "Plains GP Holdings LP Class A",
+     "weight": 5.0
+    },
+    {
+     "symbol": "TRGP",
+     "name": "Targa Resources Corp",
+     "weight": 4.99
+    }
+   ],
+   "top10_weight_pct": 59.8,
+   "sectors": [
+    {
+     "sector": "Energy",
+     "weight": 99.6
+    },
+    {
+     "sector": "Utilities",
+     "weight": 0.4
+    }
+   ],
+   "fund_family": "ALPS",
+   "profile_asof": "2026-10-09"
+  },
+  "ERX": {
+   "price": 112.11,
+   "price_display": "$112.11",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 270872,
+   "volume_display": "~271K/day",
+   "dollar_volume_avg": 27708615,
+   "dollar_volume_display": "~$27.7M/day",
+   "high_52w": 114.8,
+   "low_52w": 51.17,
+   "pct_below_high": "-2.3%",
+   "max_drawdown_1y": "-30.0%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "+103.1%",
+    "y1": "+110.1%",
+    "y3_annualized": "+23.4%/yr",
+    "y2025": "+2.8%",
+    "y2024": "+1.1%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Direxion Daily Energy Bull 2X Shares",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2008-11-19",
+   "source": "Yahoo Finance",
+   "aum_musd": 232,
+   "aum_display": "~$232M",
+   "expense_ratio": 0.91,
+   "yield_ttm": "1.39%",
+   "holdings": [
+    {
+     "symbol": "XOM",
+     "name": "ExxonMobil Holdings Corp",
+     "weight": 8.2
+    },
+    {
+     "symbol": "CVX",
+     "name": "Chevron Corp",
+     "weight": 6.16
+    },
+    {
+     "symbol": "COP",
+     "name": "ConocoPhillips",
+     "weight": 2.3
+    }
+   ],
+   "top10_weight_pct": 16.7,
+   "sectors": [
+    {
+     "sector": "Energy",
+     "weight": 100.0
+    }
+   ],
+   "fund_family": "Direxion Funds",
+   "profile_asof": "2026-10-09"
+  },
+  "FAN": {
+   "price": 22.23,
+   "price_display": "$22.23",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 85119,
+   "volume_display": "~85K/day",
+   "dollar_volume_avg": 2002732,
+   "dollar_volume_display": "~$2.0M/day",
+   "high_52w": 27.23,
+   "low_52w": 19.21,
+   "pct_below_high": "-18.4%",
+   "max_drawdown_1y": "-18.7%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "+9.3%",
+    "y1": "+11.2%",
+    "y3_annualized": "+18.7%/yr",
+    "y2025": "+40.4%",
+    "y2024": "-9.0%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "First Trust Global Wind Energy ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2008-06-27",
+   "source": "Yahoo Finance",
+   "aum_musd": 199,
+   "aum_display": "~$199M",
+   "expense_ratio": 0.6,
+   "yield_ttm": "0.91%",
+   "holdings": [
+    {
+     "symbol": "NDX1.DE",
+     "name": "Nordex SE Akt. nach Kapitalherabsetzung",
+     "weight": 8.4
+    },
+    {
+     "symbol": "ORSTED.CO",
+     "name": "Orsted AS",
+     "weight": 8.06
+    },
+    {
+     "symbol": "EDPR.LS",
+     "name": "EDP Renewables SA",
+     "weight": 7.63
+    },
+    {
+     "symbol": "VWS.CO",
+     "name": "Vestas Wind Systems AS",
+     "weight": 7.43
+    },
+    {
+     "symbol": "00916",
+     "name": "China Longyuan Power Group Corp Ltd Class H",
+     "weight": 5.7
+    },
+    {
+     "symbol": "ERG.MI",
+     "name": "ERG SpA",
+     "weight": 4.13
+    },
+    {
+     "symbol": "CADLR.OL",
+     "name": "Cadeler AS Ordinary Shares",
+     "weight": 3.6
+    },
+    {
+     "symbol": "112610.KQ",
+     "name": "CS Wind Corp",
+     "weight": 3.49
+    },
+    {
+     "symbol": "02208",
+     "name": "Goldwind Science & Technology Co Ltd Class H",
+     "weight": 3.26
+    },
+    {
+     "symbol": "9958.TW",
+     "name": "Century Iron And Steel Industrial Co Ltd",
+     "weight": 2.34
+    }
+   ],
+   "top10_weight_pct": 54.0,
+   "sectors": [
+    {
+     "sector": "Utilities",
+     "weight": 49.1
+    },
+    {
+     "sector": "Industrials",
+     "weight": 47.7
+    },
+    {
+     "sector": "Consumer cyclical",
+     "weight": 2.1
+    },
+    {
+     "sector": "Materials",
+     "weight": 0.7
+    },
+    {
+     "sector": "Energy",
+     "weight": 0.4
+    }
+   ],
+   "fund_family": "First Trust",
+   "profile_asof": "2026-10-09"
+  },
+  "FBT": {
+   "price": 265.4,
+   "price_display": "$265.40",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 77658,
+   "volume_display": "~78K/day",
+   "dollar_volume_avg": 20246981,
+   "dollar_volume_display": "~$20.2M/day",
    "high_52w": 273.91,
    "low_52w": 182.41,
-   "pct_below_high": "-3.6%",
+   "pct_below_high": "-3.1%",
    "max_drawdown_1y": "-14.3%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+27.8%",
-    "y1": "+41.4%",
-    "y3_annualized": "+22.1%/yr",
+    "ytd": "+28.5%",
+    "y1": "+42.2%",
+    "y3_annualized": "+22.3%/yr",
     "y2025": "+24.3%",
     "y2024": "+5.9%",
     "as_of": "2026-10-09",
@@ -2188,22 +2781,121 @@
    "fund_family": "First Trust",
    "profile_asof": "2026-10-09"
   },
-  "FEPI": {
-   "price": 43.57,
-   "price_display": "$43.57",
+  "FCG": {
+   "price": 29.93,
+   "price_display": "$29.93",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 191724,
-   "volume_display": "~192K/day",
-   "dollar_volume_avg": 8028594,
-   "dollar_volume_display": "~$8.0M/day",
+   "volume_avg": 827509,
+   "volume_display": "~828K/day",
+   "dollar_volume_avg": 24771014,
+   "dollar_volume_display": "~$24.8M/day",
+   "high_52w": 32.74,
+   "low_52w": 21.95,
+   "pct_below_high": "-8.6%",
+   "max_drawdown_1y": "-19.7%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "+30.0%",
+    "y1": "+31.5%",
+    "y3_annualized": "+7.7%/yr",
+    "y2025": "-2.3%",
+    "y2024": "+4.2%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "First Trust Natural Gas ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2007-05-11",
+   "source": "Yahoo Finance",
+   "aum_musd": 638,
+   "aum_display": "~$638M",
+   "expense_ratio": 0.59,
+   "yield_ttm": "2.31%",
+   "holdings": [
+    {
+     "symbol": "COP",
+     "name": "ConocoPhillips",
+     "weight": 4.62
+    },
+    {
+     "symbol": "EOG",
+     "name": "EOG Resources Inc",
+     "weight": 4.58
+    },
+    {
+     "symbol": "HESM",
+     "name": "Hess Midstream LP Class A",
+     "weight": 4.54
+    },
+    {
+     "symbol": "WES",
+     "name": "Western Midstream Partners LP",
+     "weight": 4.51
+    },
+    {
+     "symbol": "DVN",
+     "name": "Devon Energy Corp",
+     "weight": 4.45
+    },
+    {
+     "symbol": "OXY",
+     "name": "Occidental Petroleum Corp",
+     "weight": 4.19
+    },
+    {
+     "symbol": "FANG",
+     "name": "Diamondback Energy Inc",
+     "weight": 4.07
+    },
+    {
+     "symbol": "EQT",
+     "name": "EQT Corp",
+     "weight": 3.86
+    },
+    {
+     "symbol": "PR",
+     "name": "Permian Resources Corp Class A",
+     "weight": 3.68
+    },
+    {
+     "symbol": "APA",
+     "name": "APA Corp",
+     "weight": 3.66
+    }
+   ],
+   "top10_weight_pct": 42.2,
+   "sectors": [
+    {
+     "sector": "Energy",
+     "weight": 98.0
+    },
+    {
+     "sector": "Technology",
+     "weight": 2.0
+    }
+   ],
+   "fund_family": "First Trust",
+   "profile_asof": "2026-10-09"
+  },
+  "FEPI": {
+   "price": 43.51,
+   "price_display": "$43.51",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 194568,
+   "volume_display": "~195K/day",
+   "dollar_volume_avg": 8152300,
+   "dollar_volume_display": "~$8.2M/day",
    "high_52w": 49.54,
    "low_52w": 37.98,
-   "pct_below_high": "-12.1%",
+   "pct_below_high": "-12.2%",
    "max_drawdown_1y": "-15.0%",
    "history_start": "2023-10-11",
    "performance": {
-    "ytd": "+14.7%",
-    "y1": "+17.2%",
+    "ytd": "+14.6%",
+    "y1": "+17.0%",
     "y3_annualized": null,
     "y2025": "+18.3%",
     "y2024": "+15.7%",
@@ -2290,22 +2982,23 @@
    "profile_asof": "2026-10-09"
   },
   "FIW": {
-   "price": 104.79,
-   "price_display": "$104.79",
+   "price": 105.09,
+   "price_display": "$105.09",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 50741,
+   "volume_avg": 51130,
    "volume_display": "~51K/day",
-   "dollar_volume_avg": 5483353,
+   "dollar_volume_avg": 5524302,
    "dollar_volume_display": "~$5.5M/day",
    "high_52w": 115.84,
    "low_52w": 99.66,
-   "pct_below_high": "-9.5%",
+   "pct_below_high": "-9.3%",
    "max_drawdown_1y": "-13.8%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-3.0%",
-    "y1": "-6.5%",
-    "y3_annualized": "+9.0%/yr",
+    "ytd": "-2.7%",
+    "y1": "-6.2%",
+    "y3_annualized": "+9.1%/yr",
     "y2025": "+7.2%",
     "y2024": "+8.4%",
     "as_of": "2026-10-09",
@@ -2403,22 +3096,23 @@
    "profile_asof": "2026-10-09"
   },
   "GNOM": {
-   "price": 67.58,
-   "price_display": "$67.58",
+   "price": 68.75,
+   "price_display": "$68.75",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 30773,
+   "volume_avg": 31028,
    "volume_display": "~31K/day",
-   "dollar_volume_avg": 1974379,
+   "dollar_volume_avg": 1992001,
    "dollar_volume_display": "~$2.0M/day",
    "high_52w": 72.3,
    "low_52w": 40.99,
-   "pct_below_high": "-6.5%",
+   "pct_below_high": "-4.9%",
    "max_drawdown_1y": "-18.2%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+48.8%",
-    "y1": "+62.9%",
-    "y3_annualized": "+20.2%/yr",
+    "ytd": "+51.4%",
+    "y1": "+65.7%",
+    "y3_annualized": "+20.9%/yr",
     "y2025": "+18.6%",
     "y2024": "-16.0%",
     "as_of": "2026-10-09",
@@ -2500,21 +3194,22 @@
    "profile_asof": "2026-10-09"
   },
   "GPIQ": {
-   "price": 58.13,
-   "price_display": "$58.13",
+   "price": 58.19,
+   "price_display": "$58.19",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 1490613,
+   "volume_avg": 1504490,
    "volume_display": "~1.5M/day",
-   "dollar_volume_avg": 84767861,
-   "dollar_volume_display": "~$84.8M/day",
+   "dollar_volume_avg": 85575678,
+   "dollar_volume_display": "~$85.6M/day",
    "high_52w": 59.52,
    "low_52w": 47.96,
-   "pct_below_high": "-2.3%",
+   "pct_below_high": "-2.2%",
    "max_drawdown_1y": "-9.5%",
    "history_start": "2023-10-27",
    "performance": {
-    "ytd": "+20.0%",
-    "y1": "+22.6%",
+    "ytd": "+20.2%",
+    "y1": "+22.7%",
     "y3_annualized": null,
     "y2025": "+19.8%",
     "y2024": "+23.2%",
@@ -2629,21 +3324,22 @@
    "profile_asof": "2026-10-09"
   },
   "GPIX": {
-   "price": 56.37,
-   "price_display": "$56.37",
+   "price": 56.44,
+   "price_display": "$56.44",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 1143337,
-   "volume_display": "~1.1M/day",
-   "dollar_volume_avg": 63834657,
-   "dollar_volume_display": "~$63.8M/day",
+   "volume_avg": 1153386,
+   "volume_display": "~1.2M/day",
+   "dollar_volume_avg": 64402160,
+   "dollar_volume_display": "~$64.4M/day",
    "high_52w": 56.67,
    "low_52w": 48.68,
-   "pct_below_high": "-0.5%",
+   "pct_below_high": "-0.4%",
    "max_drawdown_1y": "-7.7%",
    "history_start": "2023-10-27",
    "performance": {
-    "ytd": "+14.6%",
-    "y1": "+17.6%",
+    "ytd": "+14.8%",
+    "y1": "+17.7%",
     "y3_annualized": null,
     "y2025": "+16.2%",
     "y2024": "+21.8%",
@@ -2762,22 +3458,23 @@
    "profile_asof": "2026-10-09"
   },
   "GRID": {
-   "price": 180.31,
-   "price_display": "$180.31",
+   "price": 180.89,
+   "price_display": "$180.89",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 574256,
-   "volume_display": "~574K/day",
-   "dollar_volume_avg": 103713692,
-   "dollar_volume_display": "~$103.7M/day",
+   "volume_avg": 577723,
+   "volume_display": "~578K/day",
+   "dollar_volume_avg": 104341960,
+   "dollar_volume_display": "~$104.3M/day",
    "high_52w": 199.8,
    "low_52w": 146.51,
-   "pct_below_high": "-9.8%",
+   "pct_below_high": "-9.5%",
    "max_drawdown_1y": "-15.8%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+18.6%",
-    "y1": "+19.2%",
-    "y3_annualized": "+26.2%/yr",
+    "ytd": "+19.0%",
+    "y1": "+19.5%",
+    "y3_annualized": "+26.4%/yr",
     "y2025": "+29.7%",
     "y2024": "+15.2%",
     "as_of": "2026-10-09",
@@ -2871,22 +3568,23 @@
    "profile_asof": "2026-10-09"
   },
   "HACK": {
-   "price": 128.4,
-   "price_display": "$128.40",
+   "price": 130.76,
+   "price_display": "$130.76",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 296182,
-   "volume_display": "~296K/day",
-   "dollar_volume_avg": 34439548,
-   "dollar_volume_display": "~$34.4M/day",
-   "high_52w": 128.4,
+   "volume_avg": 300853,
+   "volume_display": "~301K/day",
+   "dollar_volume_avg": 35056495,
+   "dollar_volume_display": "~$35.1M/day",
+   "high_52w": 130.76,
    "low_52w": 70.69,
    "pct_below_high": "0.0%",
    "max_drawdown_1y": "-20.6%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+59.8%",
-    "y1": "+44.2%",
-    "y3_annualized": "+34.6%/yr",
+    "ytd": "+62.7%",
+    "y1": "+46.9%",
+    "y3_annualized": "+35.5%/yr",
     "y2025": "+8.0%",
     "y2024": "+23.5%",
     "as_of": "2026-10-09",
@@ -2968,22 +3666,23 @@
    "profile_asof": "2026-10-09"
   },
   "HELX": {
-   "price": 42.45,
-   "price_display": "$42.45",
+   "price": 42.64,
+   "price_display": "$42.64",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 4050,
-   "volume_display": "~4K/day",
-   "dollar_volume_avg": 172694,
-   "dollar_volume_display": "~$173K/day",
+   "volume_avg": 6119,
+   "volume_display": "~6K/day",
+   "dollar_volume_avg": 260921,
+   "dollar_volume_display": "~$261K/day",
    "high_52w": 45.19,
    "low_52w": 31.24,
-   "pct_below_high": "-6.1%",
+   "pct_below_high": "-5.7%",
    "max_drawdown_1y": "-18.0%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+16.9%",
-    "y1": "+29.5%",
-    "y3_annualized": "+14.8%/yr",
+    "ytd": "+17.4%",
+    "y1": "+30.1%",
+    "y3_annualized": "+14.9%/yr",
     "y2025": "+26.3%",
     "y2024": "-5.3%",
     "as_of": "2026-10-09",
@@ -3069,25 +3768,26 @@
    "profile_asof": "2026-10-09"
   },
   "HRTS": {
-   "price": 35.55,
-   "price_display": "$35.55",
-   "price_asof": "2026-10-08",
-   "volume_avg": 3962,
+   "price": 36.22,
+   "price_display": "$36.22",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 3925,
    "volume_display": "~4K/day",
-   "dollar_volume_avg": 146544,
-   "dollar_volume_display": "~$147K/day",
+   "dollar_volume_avg": 145202,
+   "dollar_volume_display": "~$145K/day",
    "high_52w": 38.87,
    "low_52w": 32.15,
-   "pct_below_high": "-8.1%",
+   "pct_below_high": "-6.8%",
    "max_drawdown_1y": "-11.0%",
    "history_start": "2023-11-21",
    "performance": {
-    "ytd": "+1.2%",
-    "y1": "+11.1%",
+    "ytd": "+2.6%",
+    "y1": "+12.7%",
     "y3_annualized": null,
     "y2025": "+23.9%",
     "y2024": "-4.3%",
-    "as_of": "2026-10-08",
+    "as_of": "2026-10-09",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Tema Heart & Health ETF",
@@ -3162,22 +3862,23 @@
    "profile_asof": "2026-10-09"
   },
   "IBB": {
-   "price": 203.27,
-   "price_display": "$203.27",
+   "price": 206.49,
+   "price_display": "$206.49",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 1549564,
-   "volume_display": "~1.5M/day",
-   "dollar_volume_avg": 313674013,
-   "dollar_volume_display": "~$313.7M/day",
+   "volume_avg": 1574712,
+   "volume_display": "~1.6M/day",
+   "dollar_volume_avg": 318910782,
+   "dollar_volume_display": "~$318.9M/day",
    "high_52w": 216.96,
    "low_52w": 149.95,
-   "pct_below_high": "-6.3%",
+   "pct_below_high": "-4.8%",
    "max_drawdown_1y": "-9.6%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+20.6%",
-    "y1": "+34.0%",
-    "y3_annualized": "+18.8%/yr",
+    "ytd": "+22.5%",
+    "y1": "+36.1%",
+    "y3_annualized": "+19.4%/yr",
     "y2025": "+28.0%",
     "y2024": "-2.4%",
     "as_of": "2026-10-09",
@@ -3254,23 +3955,130 @@
    "fund_family": "iShares",
    "profile_asof": "2026-10-09"
   },
-  "IDNA": {
-   "price": 41.17,
-   "price_display": "$41.17",
+  "ICLN": {
+   "price": 17.28,
+   "price_display": "$17.28",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 113662,
-   "volume_display": "~114K/day",
-   "dollar_volume_avg": 4514725,
-   "dollar_volume_display": "~$4.5M/day",
+   "volume_avg": 6564432,
+   "volume_display": "~6.6M/day",
+   "dollar_volume_avg": 116349069,
+   "dollar_volume_display": "~$116.3M/day",
+   "high_52w": 23.75,
+   "low_52w": 15.78,
+   "pct_below_high": "-27.2%",
+   "max_drawdown_1y": "-29.0%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "+5.5%",
+    "y1": "+8.2%",
+    "y3_annualized": "+9.4%/yr",
+    "y2025": "+47.0%",
+    "y2024": "-25.7%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "iShares Global Clean Energy ETF",
+   "exchange": "NasdaqGM",
+   "instrument_type": "ETF",
+   "first_trade_date": "2008-06-25",
+   "source": "Yahoo Finance",
+   "aum_musd": 2225,
+   "aum_display": "~$2.2B",
+   "expense_ratio": 0.38,
+   "yield_ttm": "1.08%",
+   "holdings": [
+    {
+     "symbol": "BE",
+     "name": "Bloom Energy Corp Class A",
+     "weight": 9.71
+    },
+    {
+     "symbol": "600900.SS",
+     "name": "China Yangtze Power Co Ltd Class A",
+     "weight": 8.05
+    },
+    {
+     "symbol": "FSLR",
+     "name": "First Solar Inc",
+     "weight": 6.96
+    },
+    {
+     "symbol": "NXT",
+     "name": "Nextpower Inc",
+     "weight": 6.33
+    },
+    {
+     "symbol": "ENPH",
+     "name": "Enphase Energy Inc",
+     "weight": 4.2
+    },
+    {
+     "symbol": "VWS.CO",
+     "name": "Vestas Wind Systems AS",
+     "weight": 4.18
+    },
+    {
+     "symbol": "EQTL3.SA",
+     "name": "Equatorial SA",
+     "weight": 3.54
+    },
+    {
+     "symbol": "EDP.LS",
+     "name": "EDP-Energias De Portugal SA",
+     "weight": 3.01
+    },
+    {
+     "symbol": "PLUG",
+     "name": "Plug Power Inc",
+     "weight": 2.61
+    },
+    {
+     "symbol": "9502.T",
+     "name": "Chubu Electric Power Co Inc",
+     "weight": 2.61
+    }
+   ],
+   "top10_weight_pct": 51.2,
+   "sectors": [
+    {
+     "sector": "Utilities",
+     "weight": 40.8
+    },
+    {
+     "sector": "Technology",
+     "weight": 30.1
+    },
+    {
+     "sector": "Industrials",
+     "weight": 27.1
+    },
+    {
+     "sector": "Materials",
+     "weight": 1.9
+    }
+   ],
+   "fund_family": "iShares",
+   "profile_asof": "2026-10-09"
+  },
+  "IDNA": {
+   "price": 42.17,
+   "price_display": "$42.17",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 115501,
+   "volume_display": "~116K/day",
+   "dollar_volume_avg": 4592852,
+   "dollar_volume_display": "~$4.6M/day",
    "high_52w": 42.72,
    "low_52w": 24.02,
-   "pct_below_high": "-3.6%",
+   "pct_below_high": "-1.3%",
    "max_drawdown_1y": "-10.7%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+57.9%",
-    "y1": "+69.3%",
-    "y3_annualized": "+29.4%/yr",
+    "ytd": "+61.7%",
+    "y1": "+73.4%",
+    "y3_annualized": "+30.4%/yr",
     "y2025": "+17.3%",
     "y2024": "-0.7%",
     "as_of": "2026-10-09",
@@ -3347,23 +4155,126 @@
    "fund_family": "iShares",
    "profile_asof": "2026-10-09"
   },
-  "IFRA": {
-   "price": 56.88,
-   "price_display": "$56.88",
+  "IDU": {
+   "price": 105.61,
+   "price_display": "$105.61",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 427463,
-   "volume_display": "~427K/day",
-   "dollar_volume_avg": 25377017,
-   "dollar_volume_display": "~$25.4M/day",
+   "volume_avg": 169428,
+   "volume_display": "~169K/day",
+   "dollar_volume_avg": 18248056,
+   "dollar_volume_display": "~$18.2M/day",
+   "high_52w": 120.7,
+   "low_52w": 100.52,
+   "pct_below_high": "-12.5%",
+   "max_drawdown_1y": "-15.3%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "-0.9%",
+    "y1": "-5.5%",
+    "y3_annualized": "+16.1%/yr",
+    "y2025": "+15.2%",
+    "y2024": "+23.2%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "iShares U.S. Utilities ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2000-06-20",
+   "source": "Yahoo Finance",
+   "aum_musd": 1356,
+   "aum_display": "~$1.4B",
+   "expense_ratio": 0.37,
+   "yield_ttm": "2.56%",
+   "holdings": [
+    {
+     "symbol": "NEE",
+     "name": "NextEra Energy Inc",
+     "weight": 10.8
+    },
+    {
+     "symbol": "SO",
+     "name": "Southern Co",
+     "weight": 6.52
+    },
+    {
+     "symbol": "DUK",
+     "name": "Duke Energy Corp",
+     "weight": 6.07
+    },
+    {
+     "symbol": "CEG",
+     "name": "Constellation Energy Corp",
+     "weight": 5.57
+    },
+    {
+     "symbol": "WM",
+     "name": "Waste Management Inc",
+     "weight": 5.19
+    },
+    {
+     "symbol": "AEP",
+     "name": "American Electric Power Co Inc",
+     "weight": 4.42
+    },
+    {
+     "symbol": "D",
+     "name": "Dominion Energy Inc",
+     "weight": 3.64
+    },
+    {
+     "symbol": "SRE",
+     "name": "Sempra",
+     "weight": 3.48
+    },
+    {
+     "symbol": "VST",
+     "name": "Vistra Corp",
+     "weight": 3.18
+    },
+    {
+     "symbol": "ETR",
+     "name": "Entergy Corp",
+     "weight": 3.16
+    }
+   ],
+   "top10_weight_pct": 52.0,
+   "sectors": [
+    {
+     "sector": "Utilities",
+     "weight": 89.4
+    },
+    {
+     "sector": "Industrials",
+     "weight": 10.1
+    },
+    {
+     "sector": "Energy",
+     "weight": 0.5
+    }
+   ],
+   "fund_family": "iShares",
+   "profile_asof": "2026-10-09"
+  },
+  "IFRA": {
+   "price": 57.0,
+   "price_display": "$57.00",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 428894,
+   "volume_display": "~429K/day",
+   "dollar_volume_avg": 25458785,
+   "dollar_volume_display": "~$25.5M/day",
    "high_52w": 64.07,
    "low_52w": 50.77,
-   "pct_below_high": "-11.2%",
+   "pct_below_high": "-11.0%",
    "max_drawdown_1y": "-13.7%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+9.4%",
-    "y1": "+9.2%",
-    "y3_annualized": "+18.3%/yr",
+    "ytd": "+9.7%",
+    "y1": "+9.5%",
+    "y3_annualized": "+18.4%/yr",
     "y2025": "+15.9%",
     "y2024": "+17.0%",
     "as_of": "2026-10-09",
@@ -3457,21 +4368,22 @@
    "profile_asof": "2026-10-09"
   },
   "IGPT": {
-   "price": 100.02,
-   "price_display": "$100.02",
+   "price": 100.21,
+   "price_display": "$100.21",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 162742,
+   "volume_avg": 163269,
    "volume_display": "~163K/day",
-   "dollar_volume_avg": 15189356,
+   "dollar_volume_avg": 15242198,
    "dollar_volume_display": "~$15.2M/day",
    "high_52w": 108.11,
    "low_52w": 54.18,
-   "pct_below_high": "-7.5%",
+   "pct_below_high": "-7.3%",
    "max_drawdown_1y": "-24.7%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+68.2%",
-    "y1": "+74.1%",
+    "ytd": "+68.5%",
+    "y1": "+74.5%",
     "y3_annualized": "+44.4%/yr",
     "y2025": "+31.6%",
     "y2024": "+17.1%",
@@ -3570,22 +4482,23 @@
    "profile_asof": "2026-10-09"
   },
   "IGV": {
-   "price": 111.59,
-   "price_display": "$111.59",
+   "price": 112.67,
+   "price_display": "$112.67",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 10757278,
+   "volume_avg": 10830509,
    "volume_display": "~10.8M/day",
-   "dollar_volume_avg": 1085842081,
+   "dollar_volume_avg": 1094112988,
    "dollar_volume_display": "~$1.1B/day",
    "high_52w": 117.08,
    "low_52w": 74.67,
-   "pct_below_high": "-4.7%",
+   "pct_below_high": "-3.8%",
    "max_drawdown_1y": "-36.2%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+5.6%",
-    "y1": "-3.5%",
-    "y3_annualized": "+16.7%/yr",
+    "ytd": "+6.6%",
+    "y1": "-2.6%",
+    "y3_annualized": "+17.1%/yr",
     "y2025": "+5.6%",
     "y2024": "+23.4%",
     "as_of": "2026-10-09",
@@ -3679,22 +4592,23 @@
    "profile_asof": "2026-10-09"
   },
   "IHAK": {
-   "price": 71.52,
-   "price_display": "$71.52",
+   "price": 72.94,
+   "price_display": "$72.94",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 175306,
-   "volume_display": "~175K/day",
-   "dollar_volume_avg": 11410840,
-   "dollar_volume_display": "~$11.4M/day",
-   "high_52w": 71.51,
+   "volume_avg": 176756,
+   "volume_display": "~177K/day",
+   "dollar_volume_avg": 11518027,
+   "dollar_volume_display": "~$11.5M/day",
+   "high_52w": 72.94,
    "low_52w": 41.26,
    "pct_below_high": "0.0%",
    "max_drawdown_1y": "-21.9%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+48.6%",
-    "y1": "+35.5%",
-    "y3_annualized": "+22.4%/yr",
+    "ytd": "+51.6%",
+    "y1": "+38.2%",
+    "y3_annualized": "+23.2%/yr",
     "y2025": "-1.3%",
     "y2024": "+7.6%",
     "as_of": "2026-10-09",
@@ -3776,22 +4690,23 @@
    "profile_asof": "2026-10-09"
   },
   "IHE": {
-   "price": 99.09,
-   "price_display": "$99.09",
+   "price": 100.09,
+   "price_display": "$100.09",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 236523,
-   "volume_display": "~237K/day",
-   "dollar_volume_avg": 24162929,
-   "dollar_volume_display": "~$24.2M/day",
+   "volume_avg": 240996,
+   "volume_display": "~241K/day",
+   "dollar_volume_avg": 24611646,
+   "dollar_volume_display": "~$24.6M/day",
    "high_52w": 108.16,
    "low_52w": 73.63,
-   "pct_below_high": "-8.4%",
+   "pct_below_high": "-7.5%",
    "max_drawdown_1y": "-8.9%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+17.9%",
-    "y1": "+33.2%",
-    "y3_annualized": "+20.4%/yr",
+    "ytd": "+19.1%",
+    "y1": "+34.5%",
+    "y3_annualized": "+20.8%/yr",
     "y2025": "+31.7%",
     "y2024": "+8.1%",
     "as_of": "2026-10-09",
@@ -3869,22 +4784,23 @@
    "profile_asof": "2026-10-09"
   },
   "IHF": {
-   "price": 56.28,
-   "price_display": "$56.28",
+   "price": 56.76,
+   "price_display": "$56.76",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 567263,
-   "volume_display": "~567K/day",
-   "dollar_volume_avg": 32100208,
-   "dollar_volume_display": "~$32.1M/day",
+   "volume_avg": 572039,
+   "volume_display": "~572K/day",
+   "dollar_volume_avg": 32372842,
+   "dollar_volume_display": "~$32.4M/day",
    "high_52w": 58.11,
    "low_52w": 40.98,
-   "pct_below_high": "-3.1%",
+   "pct_below_high": "-2.3%",
    "max_drawdown_1y": "-19.7%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+18.1%",
-    "y1": "+12.1%",
-    "y3_annualized": "+4.8%/yr",
+    "ytd": "+19.2%",
+    "y1": "+13.0%",
+    "y3_annualized": "+5.1%/yr",
     "y2025": "+0.9%",
     "y2024": "-7.9%",
     "as_of": "2026-10-09",
@@ -3966,22 +4882,23 @@
    "profile_asof": "2026-10-09"
   },
   "IHI": {
-   "price": 51.44,
-   "price_display": "$51.44",
+   "price": 51.74,
+   "price_display": "$51.74",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 2593404,
+   "volume_avg": 2613320,
    "volume_display": "~2.6M/day",
-   "dollar_volume_avg": 136486973,
-   "dollar_volume_display": "~$136.5M/day",
+   "dollar_volume_avg": 137519301,
+   "dollar_volume_display": "~$137.5M/day",
    "high_52w": 64.47,
    "low_52w": 47.55,
-   "pct_below_high": "-20.2%",
+   "pct_below_high": "-19.7%",
    "max_drawdown_1y": "-26.1%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-16.9%",
-    "y1": "-13.9%",
-    "y3_annualized": "+2.9%/yr",
+    "ytd": "-16.4%",
+    "y1": "-13.4%",
+    "y3_annualized": "+3.1%/yr",
     "y2025": "+6.9%",
     "y2024": "+8.6%",
     "as_of": "2026-10-09",
@@ -4059,21 +4976,22 @@
    "profile_asof": "2026-10-09"
   },
   "ISPY": {
-   "price": 48.45,
-   "price_display": "$48.45",
+   "price": 48.6,
+   "price_display": "$48.60",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 86307,
-   "volume_display": "~86K/day",
-   "dollar_volume_avg": 4152239,
+   "volume_avg": 86966,
+   "volume_display": "~87K/day",
+   "dollar_volume_avg": 4184269,
    "dollar_volume_display": "~$4.2M/day",
    "high_52w": 49.17,
    "low_52w": 42.32,
-   "pct_below_high": "-1.5%",
+   "pct_below_high": "-1.1%",
    "max_drawdown_1y": "-8.4%",
    "history_start": "2023-12-20",
    "performance": {
-    "ytd": "+11.4%",
-    "y1": "+13.2%",
+    "ytd": "+11.8%",
+    "y1": "+13.5%",
     "y3_annualized": null,
     "y2025": "+13.1%",
     "y2024": "+21.3%",
@@ -4187,22 +5105,23 @@
    "profile_asof": "2026-10-09"
   },
   "ITA": {
-   "price": 206.1,
-   "price_display": "$206.10",
+   "price": 206.65,
+   "price_display": "$206.65",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 710271,
-   "volume_display": "~710K/day",
-   "dollar_volume_avg": 161022226,
-   "dollar_volume_display": "~$161.0M/day",
+   "volume_avg": 716035,
+   "volume_display": "~716K/day",
+   "dollar_volume_avg": 162214461,
+   "dollar_volume_display": "~$162.2M/day",
    "high_52w": 253.22,
    "low_52w": 198.23,
-   "pct_below_high": "-18.6%",
+   "pct_below_high": "-18.4%",
    "max_drawdown_1y": "-19.5%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-3.8%",
-    "y1": "-2.2%",
-    "y3_annualized": "+24.6%/yr",
+    "ytd": "-3.5%",
+    "y1": "-1.9%",
+    "y3_annualized": "+24.7%/yr",
     "y2025": "+48.6%",
     "y2024": "+15.8%",
     "as_of": "2026-10-09",
@@ -4279,23 +5198,229 @@
    "fund_family": "iShares",
    "profile_asof": "2026-10-09"
   },
-  "IYW": {
-   "price": 268.49,
-   "price_display": "$268.49",
+  "IVEP": {
+   "price": 26.2,
+   "price_display": "$26.20",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 538030,
-   "volume_display": "~538K/day",
-   "dollar_volume_avg": 136018359,
-   "dollar_volume_display": "~$136.0M/day",
+   "volume_avg": 13266,
+   "volume_display": "~13K/day",
+   "dollar_volume_avg": 345962,
+   "dollar_volume_display": "~$346K/day",
+   "high_52w": 29.25,
+   "low_52w": 24.12,
+   "pct_below_high": "-10.4%",
+   "max_drawdown_1y": "-17.5%",
+   "history_start": "2026-04-08",
+   "performance": {
+    "ytd": null,
+    "y1": null,
+    "y3_annualized": null,
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Dan IVES Wedbush AI Power & Infrastructure ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2026-04-08",
+   "source": "Yahoo Finance",
+   "aum_musd": 16,
+   "aum_display": "~$16M",
+   "expense_ratio": 0.75,
+   "holdings": [
+    {
+     "symbol": "SBGSY",
+     "name": "Schneider Electric SE ADR",
+     "weight": 4.7
+    },
+    {
+     "symbol": "ETN",
+     "name": "Eaton Corp PLC",
+     "weight": 4.61
+    },
+    {
+     "symbol": "BE",
+     "name": "Bloom Energy Corp Class A",
+     "weight": 4.29
+    },
+    {
+     "symbol": "JCI",
+     "name": "Johnson Controls International PLC Registered Shares",
+     "weight": 4.24
+    },
+    {
+     "symbol": "SMERY",
+     "name": "Siemens Energy AG ADR - Sponsored",
+     "weight": 4.16
+    },
+    {
+     "symbol": "EQIX",
+     "name": "Equinix Inc",
+     "weight": 4.11
+    },
+    {
+     "symbol": "PWR",
+     "name": "Quanta Services Inc",
+     "weight": 4.09
+    },
+    {
+     "symbol": "CEG",
+     "name": "Constellation Energy Corp",
+     "weight": 4.08
+    },
+    {
+     "symbol": "GEV",
+     "name": "GE Vernova Inc",
+     "weight": 3.84
+    },
+    {
+     "symbol": "NEE",
+     "name": "NextEra Energy Inc",
+     "weight": 3.77
+    }
+   ],
+   "top10_weight_pct": 41.9,
+   "sectors": [
+    {
+     "sector": "Industrials",
+     "weight": 44.0
+    },
+    {
+     "sector": "Utilities",
+     "weight": 20.8
+    },
+    {
+     "sector": "Energy",
+     "weight": 13.8
+    },
+    {
+     "sector": "Technology",
+     "weight": 10.5
+    },
+    {
+     "sector": "Real estate",
+     "weight": 7.8
+    },
+    {
+     "sector": "Materials",
+     "weight": 3.1
+    }
+   ],
+   "fund_family": "Wedbush Funds",
+   "profile_asof": "2026-10-09"
+  },
+  "IXC": {
+   "price": 59.88,
+   "price_display": "$59.88",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 626881,
+   "volume_display": "~627K/day",
+   "dollar_volume_avg": 35486144,
+   "dollar_volume_display": "~$35.5M/day",
+   "high_52w": 60.58,
+   "low_52w": 40.23,
+   "pct_below_high": "-1.2%",
+   "max_drawdown_1y": "-15.4%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "+44.7%",
+    "y1": "+49.8%",
+    "y3_annualized": "+18.1%/yr",
+    "y2025": "+14.0%",
+    "y2024": "+2.0%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "iShares Global Energy ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2001-11-26",
+   "source": "Yahoo Finance",
+   "aum_musd": 2982,
+   "aum_display": "~$3.0B",
+   "expense_ratio": 0.37,
+   "yield_ttm": "2.76%",
+   "holdings": [
+    {
+     "symbol": "XOM",
+     "name": "ExxonMobil Holdings Corp",
+     "weight": 18.11
+    },
+    {
+     "symbol": "CVX",
+     "name": "Chevron Corp",
+     "weight": 10.92
+    },
+    {
+     "symbol": "SHEL.L",
+     "name": "Shell PLC",
+     "weight": 7.42
+    },
+    {
+     "symbol": "TTE.PA",
+     "name": "TotalEnergies SE",
+     "weight": 4.72
+    },
+    {
+     "symbol": "COP",
+     "name": "ConocoPhillips",
+     "weight": 4.07
+    },
+    {
+     "symbol": "BP.L",
+     "name": "BP PLC",
+     "weight": 3.1
+    },
+    {
+     "symbol": "VLO",
+     "name": "Valero Energy Corp",
+     "weight": 3.02
+    },
+    {
+     "symbol": "MPC",
+     "name": "Marathon Petroleum Corp",
+     "weight": 3.0
+    },
+    {
+     "symbol": "ENB.TO",
+     "name": "Enbridge Inc",
+     "weight": 2.8
+    },
+    {
+     "symbol": "PSX",
+     "name": "Phillips 66",
+     "weight": 2.76
+    }
+   ],
+   "top10_weight_pct": 59.9,
+   "sectors": [
+    {
+     "sector": "Energy",
+     "weight": 100.0
+    }
+   ],
+   "fund_family": "iShares",
+   "profile_asof": "2026-10-09"
+  },
+  "IYW": {
+   "price": 269.01,
+   "price_display": "$269.01",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 543246,
+   "volume_display": "~543K/day",
+   "dollar_volume_avg": 137421956,
+   "dollar_volume_display": "~$137.4M/day",
    "high_52w": 272.59,
    "low_52w": 173.53,
-   "pct_below_high": "-1.5%",
+   "pct_below_high": "-1.3%",
    "max_drawdown_1y": "-17.8%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+34.6%",
-    "y1": "+34.0%",
-    "y3_annualized": "+35.6%/yr",
+    "ytd": "+34.8%",
+    "y1": "+34.2%",
+    "y3_annualized": "+35.7%/yr",
     "y2025": "+25.4%",
     "y2024": "+30.2%",
     "as_of": "2026-10-09",
@@ -4389,20 +5514,21 @@
    "profile_asof": "2026-10-09"
   },
   "JEPI": {
-   "price": 56.74,
-   "price_display": "$56.74",
+   "price": 56.77,
+   "price_display": "$56.77",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 4381407,
+   "volume_avg": 4419143,
    "volume_display": "~4.4M/day",
-   "dollar_volume_avg": 249866306,
-   "dollar_volume_display": "~$249.9M/day",
+   "dollar_volume_avg": 252009023,
+   "dollar_volume_display": "~$252.0M/day",
    "high_52w": 59.88,
    "low_52w": 55.29,
    "pct_below_high": "-5.2%",
    "max_drawdown_1y": "-6.7%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+5.2%",
+    "ytd": "+5.3%",
     "y1": "+8.3%",
     "y3_annualized": "+10.5%/yr",
     "y2025": "+8.1%",
@@ -4522,13 +5648,14 @@
    "profile_asof": "2026-10-09"
   },
   "JEPQ": {
-   "price": 61.06,
-   "price_display": "$61.06",
+   "price": 61.09,
+   "price_display": "$61.09",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 6168508,
+   "volume_avg": 6210164,
    "volume_display": "~6.2M/day",
-   "dollar_volume_avg": 367914015,
-   "dollar_volume_display": "~$367.9M/day",
+   "dollar_volume_avg": 370459014,
+   "dollar_volume_display": "~$370.5M/day",
    "high_52w": 61.46,
    "low_52w": 53.77,
    "pct_below_high": "-0.6%",
@@ -4655,22 +5782,23 @@
    "profile_asof": "2026-10-09"
   },
   "LABU": {
-   "price": 234.36,
-   "price_display": "$234.36",
+   "price": 243.09,
+   "price_display": "$243.09",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 391187,
-   "volume_display": "~391K/day",
-   "dollar_volume_avg": 105477831,
-   "dollar_volume_display": "~$105.5M/day",
+   "volume_avg": 395691,
+   "volume_display": "~396K/day",
+   "dollar_volume_avg": 106617091,
+   "dollar_volume_display": "~$106.6M/day",
    "high_52w": 341.55,
    "low_52w": 107.06,
-   "pct_below_high": "-31.4%",
+   "pct_below_high": "-28.8%",
    "max_drawdown_1y": "-34.7%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+47.0%",
-    "y1": "+110.3%",
-    "y3_annualized": "+49.6%/yr",
+    "ytd": "+52.5%",
+    "y1": "+118.1%",
+    "y3_annualized": "+51.4%/yr",
     "y2025": "+79.2%",
     "y2024": "-26.0%",
     "as_of": "2026-10-09",
@@ -4707,13 +5835,14 @@
    "profile_asof": "2026-10-09"
   },
   "LIT": {
-   "price": 69.75,
-   "price_display": "$69.75",
+   "price": 69.73,
+   "price_display": "$69.73",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 204939,
-   "volume_display": "~205K/day",
-   "dollar_volume_avg": 14817938,
-   "dollar_volume_display": "~$14.8M/day",
+   "volume_avg": 207845,
+   "volume_display": "~208K/day",
+   "dollar_volume_avg": 15020561,
+   "dollar_volume_display": "~$15.0M/day",
    "high_52w": 91.62,
    "low_52w": 53.92,
    "pct_below_high": "-23.9%",
@@ -4816,22 +5945,23 @@
    "profile_asof": "2026-10-09"
   },
   "LLY": {
-   "price": 1165.91,
-   "price_display": "$1,165.91",
+   "price": 1179.27,
+   "price_display": "$1,179.27",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 2468618,
+   "volume_avg": 2485402,
    "volume_display": "~2.5M/day",
-   "dollar_volume_avg": 2900760343,
+   "dollar_volume_avg": 2920622255,
    "dollar_volume_display": "~$2.9B/day",
    "high_52w": 1280.34,
    "low_52w": 799.57,
-   "pct_below_high": "-8.9%",
+   "pct_below_high": "-7.9%",
    "max_drawdown_1y": "-23.2%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+9.0%",
-    "y1": "+37.2%",
-    "y3_annualized": "+27.7%/yr",
+    "ytd": "+10.3%",
+    "y1": "+38.7%",
+    "y3_annualized": "+28.2%/yr",
     "y2025": "+40.2%",
     "y2024": "+33.3%",
     "as_of": "2026-10-09",
@@ -4844,22 +5974,23 @@
    "source": "Yahoo Finance"
   },
   "LRNZ": {
-   "price": 67.6,
-   "price_display": "$67.60",
+   "price": 69.05,
+   "price_display": "$69.05",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 2818,
+   "volume_avg": 2830,
    "volume_display": "~3K/day",
-   "dollar_volume_avg": 183859,
-   "dollar_volume_display": "~$184K/day",
+   "dollar_volume_avg": 184708,
+   "dollar_volume_display": "~$185K/day",
    "high_52w": 71.27,
    "low_52w": 38.18,
-   "pct_below_high": "-5.2%",
+   "pct_below_high": "-3.1%",
    "max_drawdown_1y": "-26.9%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+41.8%",
-    "y1": "+37.5%",
-    "y3_annualized": "+31.0%/yr",
+    "ytd": "+44.9%",
+    "y1": "+40.5%",
+    "y3_annualized": "+31.9%/yr",
     "y2025": "+22.3%",
     "y2024": "+2.0%",
     "as_of": "2026-10-09",
@@ -4944,17 +6075,112 @@
    "fund_family": "TrueShares",
    "profile_asof": "2026-10-09"
   },
-  "NASA": {
-   "price": 24.21,
-   "price_display": "$24.21",
+  "MLPX": {
+   "price": 72.15,
+   "price_display": "$72.15",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 1523006,
+   "volume_avg": 381892,
+   "volume_display": "~382K/day",
+   "dollar_volume_avg": 28408046,
+   "dollar_volume_display": "~$28.4M/day",
+   "high_52w": 77.62,
+   "low_52w": 57.84,
+   "pct_below_high": "-7.0%",
+   "max_drawdown_1y": "-9.1%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "+23.1%",
+    "y1": "+24.8%",
+    "y3_annualized": "+25.3%/yr",
+    "y2025": "+5.0%",
+    "y2024": "+42.9%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Global X MLP & Energy Infrastructure ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2013-08-07",
+   "source": "Yahoo Finance",
+   "aum_musd": 3395,
+   "aum_display": "~$3.4B",
+   "expense_ratio": 0.45,
+   "yield_ttm": "4.4%",
+   "holdings": [
+    {
+     "symbol": "WMB",
+     "name": "Williams Companies Inc",
+     "weight": 9.0
+    },
+    {
+     "symbol": "TRP.TO",
+     "name": "TC Energy Corp",
+     "weight": 8.98
+    },
+    {
+     "symbol": "ENB.TO",
+     "name": "Enbridge Inc",
+     "weight": 8.97
+    },
+    {
+     "symbol": "TRGP",
+     "name": "Targa Resources Corp",
+     "weight": 7.84
+    },
+    {
+     "symbol": "KMI",
+     "name": "Kinder Morgan Inc Class P",
+     "weight": 7.09
+    },
+    {
+     "symbol": "OKE",
+     "name": "ONEOK Inc",
+     "weight": 6.24
+    },
+    {
+     "symbol": "LNG",
+     "name": "Cheniere Energy Inc",
+     "weight": 4.77
+    },
+    {
+     "symbol": "MPLX",
+     "name": "MPLX LP Partnership Units",
+     "weight": 4.65
+    },
+    {
+     "symbol": "EPD",
+     "name": "Enterprise Products Partners LP",
+     "weight": 4.54
+    },
+    {
+     "symbol": "ET",
+     "name": "Energy Transfer LP",
+     "weight": 4.53
+    }
+   ],
+   "top10_weight_pct": 66.6,
+   "sectors": [
+    {
+     "sector": "Energy",
+     "weight": 100.0
+    }
+   ],
+   "fund_family": "Global X Funds",
+   "profile_asof": "2026-10-09"
+  },
+  "NASA": {
+   "price": 24.1,
+   "price_display": "$24.10",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 1535218,
    "volume_display": "~1.5M/day",
-   "dollar_volume_avg": 36645548,
-   "dollar_volume_display": "~$36.6M/day",
+   "dollar_volume_avg": 36939164,
+   "dollar_volume_display": "~$36.9M/day",
    "high_52w": 41.89,
    "low_52w": 20.54,
-   "pct_below_high": "-42.2%",
+   "pct_below_high": "-42.5%",
    "max_drawdown_1y": "-51.0%",
    "history_start": "2026-03-31",
    "performance": {
@@ -5046,21 +6272,22 @@
    "profile_asof": "2026-10-09"
   },
   "NLR": {
-   "price": 103.23,
-   "price_display": "$103.23",
+   "price": 103.35,
+   "price_display": "$103.35",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 380999,
-   "volume_display": "~381K/day",
-   "dollar_volume_avg": 42562138,
-   "dollar_volume_display": "~$42.6M/day",
+   "volume_avg": 386135,
+   "volume_display": "~386K/day",
+   "dollar_volume_avg": 43093038,
+   "dollar_volume_display": "~$43.1M/day",
    "high_52w": 164.37,
    "low_52w": 102.38,
-   "pct_below_high": "-37.2%",
+   "pct_below_high": "-37.1%",
    "max_drawdown_1y": "-37.7%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-16.9%",
-    "y1": "-28.1%",
+    "ytd": "-16.8%",
+    "y1": "-28.0%",
     "y3_annualized": "+17.8%/yr",
     "y2025": "+56.5%",
     "y2024": "+14.3%",
@@ -5151,21 +6378,22 @@
    "profile_asof": "2026-10-09"
   },
   "NUKZ": {
-   "price": 60.95,
-   "price_display": "$60.95",
+   "price": 61.26,
+   "price_display": "$61.26",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 101044,
+   "volume_avg": 101431,
    "volume_display": "~101K/day",
-   "dollar_volume_avg": 6472772,
+   "dollar_volume_avg": 6496492,
    "dollar_volume_display": "~$6.5M/day",
    "high_52w": 76.23,
    "low_52w": 60.23,
-   "pct_below_high": "-20.1%",
+   "pct_below_high": "-19.6%",
    "max_drawdown_1y": "-21.0%",
    "history_start": "2024-01-24",
    "performance": {
-    "ytd": "-4.0%",
-    "y1": "-11.2%",
+    "ytd": "-3.5%",
+    "y1": "-10.8%",
     "y3_annualized": null,
     "y2025": "+56.6%",
     "as_of": "2026-10-09",
@@ -5258,22 +6486,121 @@
    "fund_family": "Exchange Traded Concepts",
    "profile_asof": "2026-10-09"
   },
-  "OZEM": {
-   "price": 29.36,
-   "price_display": "$29.36",
+  "OIH": {
+   "price": 388.65,
+   "price_display": "$388.65",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 15865,
+   "volume_avg": 253652,
+   "volume_display": "~254K/day",
+   "dollar_volume_avg": 101517084,
+   "dollar_volume_display": "~$101.5M/day",
+   "high_52w": 453.92,
+   "low_52w": 242.45,
+   "pct_below_high": "-14.4%",
+   "max_drawdown_1y": "-20.8%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "+36.5%",
+    "y1": "+53.8%",
+    "y3_annualized": "+6.4%/yr",
+    "y2025": "+6.8%",
+    "y2024": "-10.5%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "VanEck Oil Services ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2001-02-26",
+   "source": "Yahoo Finance",
+   "aum_musd": 1815,
+   "aum_display": "~$1.8B",
+   "expense_ratio": 0.35,
+   "yield_ttm": "1.29%",
+   "holdings": [
+    {
+     "symbol": "SLB",
+     "name": "SLB Ltd",
+     "weight": 19.72
+    },
+    {
+     "symbol": "BKR",
+     "name": "Baker Hughes Co Class A",
+     "weight": 11.81
+    },
+    {
+     "symbol": "FTI",
+     "name": "TechnipFMC PLC",
+     "weight": 6.63
+    },
+    {
+     "symbol": "HAL",
+     "name": "Halliburton Co",
+     "weight": 6.17
+    },
+    {
+     "symbol": "TS",
+     "name": "Tenaris SA ADR",
+     "weight": 5.39
+    },
+    {
+     "symbol": "SEI",
+     "name": "Solaris Energy Infrastructure Inc Class A",
+     "weight": 5.07
+    },
+    {
+     "symbol": "RIG",
+     "name": "Transocean Ltd",
+     "weight": 4.63
+    },
+    {
+     "symbol": "WFRD",
+     "name": "Weatherford International PLC Ordinary Shares - New",
+     "weight": 4.39
+    },
+    {
+     "symbol": "NOV",
+     "name": "NOV Inc",
+     "weight": 4.12
+    },
+    {
+     "symbol": "NE",
+     "name": "Noble Corp PLC Class A",
+     "weight": 4.0
+    }
+   ],
+   "top10_weight_pct": 71.9,
+   "sectors": [
+    {
+     "sector": "Energy",
+     "weight": 98.9
+    },
+    {
+     "sector": "Industrials",
+     "weight": 1.1
+    }
+   ],
+   "fund_family": "VanEck",
+   "profile_asof": "2026-10-09"
+  },
+  "OZEM": {
+   "price": 29.6,
+   "price_display": "$29.60",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 15915,
    "volume_display": "~16K/day",
-   "dollar_volume_avg": 512031,
-   "dollar_volume_display": "~$512K/day",
+   "dollar_volume_avg": 513533,
+   "dollar_volume_display": "~$514K/day",
    "high_52w": 37.01,
    "low_52w": 27.51,
-   "pct_below_high": "-20.7%",
+   "pct_below_high": "-20.0%",
    "max_drawdown_1y": "-20.9%",
    "history_start": "2024-05-21",
    "performance": {
-    "ytd": "-14.0%",
-    "y1": "+1.6%",
+    "ytd": "-13.3%",
+    "y1": "+2.4%",
     "y3_annualized": null,
     "y2025": "+41.9%",
     "as_of": "2026-10-09",
@@ -5351,21 +6678,22 @@
    "profile_asof": "2026-10-09"
   },
   "PAVE": {
-   "price": 53.53,
-   "price_display": "$53.53",
+   "price": 53.45,
+   "price_display": "$53.45",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 1644337,
-   "volume_display": "~1.6M/day",
-   "dollar_volume_avg": 91193444,
-   "dollar_volume_display": "~$91.2M/day",
+   "volume_avg": 1656004,
+   "volume_display": "~1.7M/day",
+   "dollar_volume_avg": 91816682,
+   "dollar_volume_display": "~$91.8M/day",
    "high_52w": 59.99,
    "low_52w": 45.51,
-   "pct_below_high": "-10.8%",
+   "pct_below_high": "-10.9%",
    "max_drawdown_1y": "-12.3%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+12.2%",
-    "y1": "+13.3%",
+    "ytd": "+12.0%",
+    "y1": "+13.2%",
     "y3_annualized": "+21.6%/yr",
     "y2025": "+19.4%",
     "y2024": "+17.9%",
@@ -5455,23 +6783,138 @@
    "fund_family": "Global X Funds",
    "profile_asof": "2026-10-09"
   },
-  "PHO": {
-   "price": 68.36,
-   "price_display": "$68.36",
+  "PBW": {
+   "price": 28.33,
+   "price_display": "$28.33",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 76383,
-   "volume_display": "~76K/day",
-   "dollar_volume_avg": 5343268,
-   "dollar_volume_display": "~$5.3M/day",
+   "volume_avg": 594674,
+   "volume_display": "~595K/day",
+   "dollar_volume_avg": 19227877,
+   "dollar_volume_display": "~$19.2M/day",
+   "high_52w": 46.99,
+   "low_52w": 28.29,
+   "pct_below_high": "-39.7%",
+   "max_drawdown_1y": "-38.9%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "-5.8%",
+    "y1": "-11.8%",
+    "y3_annualized": "+1.3%/yr",
+    "y2025": "+54.0%",
+    "y2024": "-30.8%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Invesco WilderHill Clean Energy ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2005-03-03",
+   "source": "Yahoo Finance",
+   "aum_musd": 336,
+   "aum_display": "~$336M",
+   "expense_ratio": 0.63,
+   "yield_ttm": "2.3%",
+   "holdings": [
+    {
+     "symbol": "ARRY",
+     "name": "Array Technologies Inc Ordinary Shares",
+     "weight": 1.84
+    },
+    {
+     "symbol": "CSIQ",
+     "name": "Canadian Solar Inc",
+     "weight": 1.77
+    },
+    {
+     "symbol": "NXT",
+     "name": "Nextpower Inc",
+     "weight": 1.71
+    },
+    {
+     "symbol": "ORA",
+     "name": "Ormat Technologies Inc",
+     "weight": 1.7
+    },
+    {
+     "symbol": "JKS",
+     "name": "JinkoSolar Holding Co Ltd DR",
+     "weight": 1.64
+    },
+    {
+     "symbol": "TE",
+     "name": "T1 Energy Inc",
+     "weight": 1.6
+    },
+    {
+     "symbol": "IONQ",
+     "name": "IonQ Inc",
+     "weight": 1.6
+    },
+    {
+     "symbol": "AEIS",
+     "name": "Advanced Energy Industries Inc",
+     "weight": 1.58
+    },
+    {
+     "symbol": "FSLR",
+     "name": "First Solar Inc",
+     "weight": 1.58
+    },
+    {
+     "symbol": "FLNC",
+     "name": "Fluence Energy Inc Class A",
+     "weight": 1.57
+    }
+   ],
+   "top10_weight_pct": 16.6,
+   "sectors": [
+    {
+     "sector": "Industrials",
+     "weight": 30.0
+    },
+    {
+     "sector": "Technology",
+     "weight": 29.4
+    },
+    {
+     "sector": "Materials",
+     "weight": 17.7
+    },
+    {
+     "sector": "Consumer cyclical",
+     "weight": 12.8
+    },
+    {
+     "sector": "Utilities",
+     "weight": 8.5
+    },
+    {
+     "sector": "Consumer staples",
+     "weight": 1.5
+    }
+   ],
+   "fund_family": "Invesco",
+   "profile_asof": "2026-10-09"
+  },
+  "PHO": {
+   "price": 68.59,
+   "price_display": "$68.59",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 76907,
+   "volume_display": "~77K/day",
+   "dollar_volume_avg": 5379229,
+   "dollar_volume_display": "~$5.4M/day",
    "high_52w": 74.61,
    "low_52w": 64.15,
-   "pct_below_high": "-8.4%",
+   "pct_below_high": "-8.1%",
    "max_drawdown_1y": "-13.8%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-2.5%",
-    "y1": "-5.5%",
-    "y3_annualized": "+9.2%/yr",
+    "ytd": "-2.2%",
+    "y1": "-5.1%",
+    "y3_annualized": "+9.4%/yr",
     "y2025": "+7.6%",
     "y2024": "+8.6%",
     "as_of": "2026-10-09",
@@ -5565,22 +7008,23 @@
    "profile_asof": "2026-10-09"
   },
   "PICK": {
-   "price": 60.3,
-   "price_display": "$60.30",
+   "price": 60.65,
+   "price_display": "$60.65",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 664776,
-   "volume_display": "~665K/day",
-   "dollar_volume_avg": 41004982,
-   "dollar_volume_display": "~$41.0M/day",
+   "volume_avg": 667985,
+   "volume_display": "~668K/day",
+   "dollar_volume_avg": 41199997,
+   "dollar_volume_display": "~$41.2M/day",
    "high_52w": 68.93,
    "low_52w": 44.3,
-   "pct_below_high": "-12.5%",
+   "pct_below_high": "-12.0%",
    "max_drawdown_1y": "-19.5%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+18.4%",
-    "y1": "+33.9%",
-    "y3_annualized": "+19.7%/yr",
+    "ytd": "+19.1%",
+    "y1": "+34.7%",
+    "y3_annualized": "+19.9%/yr",
     "y2025": "+51.9%",
     "y2024": "-16.4%",
     "as_of": "2026-10-09",
@@ -5674,22 +7118,23 @@
    "profile_asof": "2026-10-09"
   },
   "PJP": {
-   "price": 121.32,
-   "price_display": "$121.32",
+   "price": 122.88,
+   "price_display": "$122.88",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 39769,
+   "volume_avg": 40009,
    "volume_display": "~40K/day",
-   "dollar_volume_avg": 4918438,
+   "dollar_volume_avg": 4948189,
    "dollar_volume_display": "~$4.9M/day",
    "high_52w": 131.64,
    "low_52w": 92.64,
-   "pct_below_high": "-7.8%",
+   "pct_below_high": "-6.7%",
    "max_drawdown_1y": "-9.4%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+17.0%",
-    "y1": "+29.4%",
-    "y3_annualized": "+20.3%/yr",
+    "ytd": "+18.5%",
+    "y1": "+31.1%",
+    "y3_annualized": "+20.9%/yr",
     "y2025": "+28.0%",
     "y2024": "+9.6%",
     "as_of": "2026-10-09",
@@ -5767,22 +7212,23 @@
    "profile_asof": "2026-10-09"
   },
   "PPA": {
-   "price": 154.73,
-   "price_display": "$154.73",
+   "price": 155.02,
+   "price_display": "$155.02",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 223176,
-   "volume_display": "~223K/day",
-   "dollar_volume_avg": 37009768,
-   "dollar_volume_display": "~$37.0M/day",
+   "volume_avg": 225393,
+   "volume_display": "~225K/day",
+   "dollar_volume_avg": 37353560,
+   "dollar_volume_display": "~$37.4M/day",
    "high_52w": 185.59,
    "low_52w": 146.12,
-   "pct_below_high": "-16.6%",
+   "pct_below_high": "-16.5%",
    "max_drawdown_1y": "-17.3%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-0.8%",
-    "y1": "-0.9%",
-    "y3_annualized": "+24.1%/yr",
+    "ytd": "-0.6%",
+    "y1": "-0.7%",
+    "y3_annualized": "+24.2%/yr",
     "y2025": "+37.1%",
     "y2024": "+25.3%",
     "as_of": "2026-10-09",
@@ -5868,22 +7314,23 @@
    "profile_asof": "2026-10-09"
   },
   "PPH": {
-   "price": 109.65,
-   "price_display": "$109.65",
+   "price": 110.49,
+   "price_display": "$110.49",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 259884,
-   "volume_display": "~260K/day",
-   "dollar_volume_avg": 28966184,
-   "dollar_volume_display": "~$29.0M/day",
+   "volume_avg": 262197,
+   "volume_display": "~262K/day",
+   "dollar_volume_avg": 29223487,
+   "dollar_volume_display": "~$29.2M/day",
    "high_52w": 117.87,
    "low_52w": 90.97,
-   "pct_below_high": "-7.0%",
+   "pct_below_high": "-6.3%",
    "max_drawdown_1y": "-10.8%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+8.1%",
-    "y1": "+19.7%",
-    "y3_annualized": "+13.5%/yr",
+    "ytd": "+9.0%",
+    "y1": "+20.6%",
+    "y3_annualized": "+13.8%/yr",
     "y2025": "+22.0%",
     "y2024": "+8.0%",
     "as_of": "2026-10-09",
@@ -5961,21 +7408,22 @@
    "profile_asof": "2026-10-09"
   },
   "QBTX": {
-   "price": 16.97,
-   "price_display": "$16.97",
+   "price": 17.24,
+   "price_display": "$17.24",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 506667,
-   "volume_display": "~507K/day",
-   "dollar_volume_avg": 14539666,
-   "dollar_volume_display": "~$14.5M/day",
+   "volume_avg": 510455,
+   "volume_display": "~510K/day",
+   "dollar_volume_avg": 14605577,
+   "dollar_volume_display": "~$14.6M/day",
    "high_52w": 633.03,
-   "low_52w": 16.97,
+   "low_52w": 17.24,
    "pct_below_high": "-97.3%",
    "max_drawdown_1y": "-97.0%",
    "history_start": "2025-04-25",
    "performance": {
-    "ytd": "-87.2%",
-    "y1": "-95.4%",
+    "ytd": "-87.0%",
+    "y1": "-95.3%",
     "y3_annualized": null,
     "as_of": "2026-10-09",
     "basis": "total return (distributions reinvested)"
@@ -5992,21 +7440,140 @@
    "fund_family": "AXS",
    "profile_asof": "2026-10-09"
   },
-  "QPUX": {
-   "price": 9.95,
-   "price_display": "$9.95",
+  "QCLN": {
+   "price": 48.35,
+   "price_display": "$48.35",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 228696,
-   "volume_display": "~229K/day",
-   "dollar_volume_avg": 3310771,
+   "volume_avg": 163810,
+   "volume_display": "~164K/day",
+   "dollar_volume_avg": 8260083,
+   "dollar_volume_display": "~$8.3M/day",
+   "high_52w": 68.47,
+   "low_52w": 41.1,
+   "pct_below_high": "-29.4%",
+   "max_drawdown_1y": "-32.1%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "+8.4%",
+    "y1": "+10.1%",
+    "y3_annualized": "+7.7%/yr",
+    "y2025": "+31.8%",
+    "y2024": "-18.9%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "First Trust NASDAQ Clean Edge Green Energy Index Fund",
+   "exchange": "NasdaqGM",
+   "instrument_type": "ETF",
+   "first_trade_date": "2007-02-14",
+   "source": "Yahoo Finance",
+   "aum_musd": 551,
+   "aum_display": "~$551M",
+   "expense_ratio": 0.59,
+   "yield_ttm": "0.11%",
+   "holdings": [
+    {
+     "symbol": "BE",
+     "name": "Bloom Energy Corp Class A",
+     "weight": 10.85
+    },
+    {
+     "symbol": "MPWR",
+     "name": "Monolithic Power Systems Inc",
+     "weight": 8.59
+    },
+    {
+     "symbol": "ON",
+     "name": "ON Semiconductor Corp",
+     "weight": 8.38
+    },
+    {
+     "symbol": "TSLA",
+     "name": "Tesla Inc",
+     "weight": 7.79
+    },
+    {
+     "symbol": "RIVN",
+     "name": "Rivian Automotive Inc Class A",
+     "weight": 6.79
+    },
+    {
+     "symbol": "AEIS",
+     "name": "Advanced Energy Industries Inc",
+     "weight": 3.84
+    },
+    {
+     "symbol": "NXT",
+     "name": "Nextpower Inc",
+     "weight": 3.84
+    },
+    {
+     "symbol": "FSLR",
+     "name": "First Solar Inc",
+     "weight": 3.5
+    },
+    {
+     "symbol": "VICR",
+     "name": "Vicor Corp",
+     "weight": 3.38
+    },
+    {
+     "symbol": "ENLT.TA",
+     "name": "Enlight Renewable Energy Ltd",
+     "weight": 3.3
+    }
+   ],
+   "top10_weight_pct": 60.3,
+   "sectors": [
+    {
+     "sector": "Technology",
+     "weight": 38.8
+    },
+    {
+     "sector": "Industrials",
+     "weight": 24.4
+    },
+    {
+     "sector": "Consumer cyclical",
+     "weight": 15.3
+    },
+    {
+     "sector": "Utilities",
+     "weight": 11.8
+    },
+    {
+     "sector": "Materials",
+     "weight": 7.9
+    },
+    {
+     "sector": "Financials",
+     "weight": 1.6
+    },
+    {
+     "sector": "Energy",
+     "weight": 0.1
+    }
+   ],
+   "fund_family": "First Trust",
+   "profile_asof": "2026-10-09"
+  },
+  "QPUX": {
+   "price": 9.94,
+   "price_display": "$9.94",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 231157,
+   "volume_display": "~231K/day",
+   "dollar_volume_avg": 3335207,
    "dollar_volume_display": "~$3.3M/day",
    "high_52w": 242.92,
-   "low_52w": 9.95,
+   "low_52w": 9.94,
    "pct_below_high": "-95.9%",
    "max_drawdown_1y": "-95.9%",
    "history_start": "2025-08-07",
    "performance": {
-    "ytd": "-79.3%",
+    "ytd": "-79.4%",
     "y1": "-95.1%",
     "y3_annualized": null,
     "as_of": "2026-10-09",
@@ -6025,21 +7592,22 @@
    "profile_asof": "2026-10-09"
   },
   "QQQ": {
-   "price": 750.69,
-   "price_display": "$750.69",
+   "price": 751.27,
+   "price_display": "$751.27",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 34851941,
-   "volume_display": "~34.9M/day",
-   "dollar_volume_avg": 24938835212,
-   "dollar_volume_display": "~$24.9B/day",
+   "volume_avg": 35055820,
+   "volume_display": "~35.1M/day",
+   "dollar_volume_avg": 25092059489,
+   "dollar_volume_display": "~$25.1B/day",
    "high_52w": 759.66,
    "low_52w": 558.28,
-   "pct_below_high": "-1.2%",
+   "pct_below_high": "-1.1%",
    "max_drawdown_1y": "-12.0%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+22.6%",
-    "y1": "+23.5%",
+    "ytd": "+22.7%",
+    "y1": "+23.6%",
     "y3_annualized": "+27.7%/yr",
     "y2025": "+20.8%",
     "y2024": "+25.6%",
@@ -6154,13 +7722,14 @@
    "profile_asof": "2026-10-09"
   },
   "QQQI": {
-   "price": 56.23,
-   "price_display": "$56.23",
+   "price": 56.27,
+   "price_display": "$56.27",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 4627925,
-   "volume_display": "~4.6M/day",
-   "dollar_volume_avg": 252345485,
-   "dollar_volume_display": "~$252.3M/day",
+   "volume_avg": 4661273,
+   "volume_display": "~4.7M/day",
+   "dollar_volume_avg": 254222723,
+   "dollar_volume_display": "~$254.2M/day",
    "high_52w": 57.69,
    "low_52w": 48.12,
    "pct_below_high": "-2.5%",
@@ -6168,7 +7737,7 @@
    "history_start": "2024-01-30",
    "performance": {
     "ytd": "+16.1%",
-    "y1": "+17.9%",
+    "y1": "+18.0%",
     "y3_annualized": null,
     "y2025": "+18.6%",
     "as_of": "2026-10-09",
@@ -6282,21 +7851,22 @@
    "profile_asof": "2026-10-09"
   },
   "QQQY": {
-   "price": 22.57,
-   "price_display": "$22.57",
+   "price": 22.56,
+   "price_display": "$22.56",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 91413,
-   "volume_display": "~91K/day",
-   "dollar_volume_avg": 2057635,
+   "volume_avg": 92301,
+   "volume_display": "~92K/day",
+   "dollar_volume_avg": 2077669,
    "dollar_volume_display": "~$2.1M/day",
    "high_52w": 25.63,
    "low_52w": 19.99,
-   "pct_below_high": "-11.9%",
+   "pct_below_high": "-12.0%",
    "max_drawdown_1y": "-11.1%",
    "history_start": "2023-09-14",
    "performance": {
-    "ytd": "+20.8%",
-    "y1": "+21.2%",
+    "ytd": "+20.7%",
+    "y1": "+21.1%",
     "y3_annualized": "+17.5%/yr",
     "y2025": "+15.0%",
     "y2024": "+7.7%",
@@ -6366,22 +7936,23 @@
    "profile_asof": "2026-10-09"
   },
   "QTUM": {
-   "price": 151.51,
-   "price_display": "$151.51",
+   "price": 152.06,
+   "price_display": "$152.06",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 329575,
-   "volume_display": "~330K/day",
-   "dollar_volume_avg": 48862753,
-   "dollar_volume_display": "~$48.9M/day",
+   "volume_avg": 332095,
+   "volume_display": "~332K/day",
+   "dollar_volume_avg": 49246574,
+   "dollar_volume_display": "~$49.2M/day",
    "high_52w": 168.76,
    "low_52w": 100.36,
-   "pct_below_high": "-10.2%",
+   "pct_below_high": "-9.9%",
    "max_drawdown_1y": "-21.5%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+39.1%",
-    "y1": "+36.5%",
-    "y3_annualized": "+48.0%/yr",
+    "ytd": "+39.6%",
+    "y1": "+37.0%",
+    "y3_annualized": "+48.1%/yr",
     "y2025": "+36.7%",
     "y2024": "+50.5%",
     "as_of": "2026-10-09",
@@ -6475,21 +8046,22 @@
    "profile_asof": "2026-10-09"
   },
   "QYLD": {
-   "price": 18.67,
-   "price_display": "$18.67",
+   "price": 18.69,
+   "price_display": "$18.69",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 3893079,
+   "volume_avg": 3915478,
    "volume_display": "~3.9M/day",
-   "dollar_volume_avg": 70720578,
-   "dollar_volume_display": "~$70.7M/day",
-   "high_52w": 18.68,
+   "dollar_volume_avg": 71139553,
+   "dollar_volume_display": "~$71.1M/day",
+   "high_52w": 18.69,
    "low_52w": 16.7,
-   "pct_below_high": "-0.1%",
+   "pct_below_high": "0.0%",
    "max_drawdown_1y": "-5.8%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+15.6%",
-    "y1": "+22.8%",
+    "ytd": "+15.7%",
+    "y1": "+22.9%",
     "y3_annualized": "+16.3%/yr",
     "y2025": "+9.3%",
     "y2024": "+19.4%",
@@ -6599,22 +8171,23 @@
    "profile_asof": "2026-10-09"
   },
   "REMX": {
-   "price": 60.8,
-   "price_display": "$60.80",
+   "price": 60.97,
+   "price_display": "$60.97",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 664736,
-   "volume_display": "~665K/day",
-   "dollar_volume_avg": 47368368,
-   "dollar_volume_display": "~$47.4M/day",
+   "volume_avg": 669940,
+   "volume_display": "~670K/day",
+   "dollar_volume_avg": 47686303,
+   "dollar_volume_display": "~$47.7M/day",
    "high_52w": 109.53,
    "low_52w": 60.58,
-   "pct_below_high": "-44.5%",
+   "pct_below_high": "-44.3%",
    "max_drawdown_1y": "-44.7%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-17.7%",
-    "y1": "-17.2%",
-    "y3_annualized": "+0.5%/yr",
+    "ytd": "-17.5%",
+    "y1": "-17.0%",
+    "y3_annualized": "+0.6%/yr",
     "y2025": "+92.9%",
     "y2024": "-35.0%",
     "as_of": "2026-10-09",
@@ -6692,20 +8265,21 @@
    "profile_asof": "2026-10-09"
   },
   "RGTU": {
-   "price": 8.19,
-   "price_display": "$8.19",
+   "price": 8.33,
+   "price_display": "$8.33",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 88953,
-   "volume_display": "~89K/day",
-   "dollar_volume_avg": 996424,
-   "dollar_volume_display": "~$996K/day",
+   "volume_avg": 89832,
+   "volume_display": "~90K/day",
+   "dollar_volume_avg": 1003783,
+   "dollar_volume_display": "~$1.0M/day",
    "high_52w": 457.29,
-   "low_52w": 8.19,
+   "low_52w": 8.33,
    "pct_below_high": "-98.2%",
-   "max_drawdown_1y": "-98.0%",
+   "max_drawdown_1y": "-97.9%",
    "history_start": "2025-06-24",
    "performance": {
-    "ytd": "-81.9%",
+    "ytd": "-81.5%",
     "y1": "-97.2%",
     "y3_annualized": null,
     "as_of": "2026-10-09",
@@ -6724,22 +8298,23 @@
    "profile_asof": "2026-10-09"
   },
   "ROBO": {
-   "price": 80.85,
-   "price_display": "$80.85",
+   "price": 81.26,
+   "price_display": "$81.26",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 154545,
+   "volume_avg": 155271,
    "volume_display": "~155K/day",
-   "dollar_volume_avg": 12472407,
+   "dollar_volume_avg": 12531572,
    "dollar_volume_display": "~$12.5M/day",
    "high_52w": 90.34,
    "low_52w": 63.04,
-   "pct_below_high": "-10.5%",
+   "pct_below_high": "-10.1%",
    "max_drawdown_1y": "-17.4%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+16.6%",
-    "y1": "+18.3%",
-    "y3_annualized": "+18.1%/yr",
+    "ytd": "+17.2%",
+    "y1": "+18.9%",
+    "y3_annualized": "+18.3%/yr",
     "y2025": "+23.7%",
     "y2024": "-1.3%",
     "as_of": "2026-10-09",
@@ -6837,22 +8412,23 @@
    "profile_asof": "2026-10-09"
   },
   "ROBT": {
-   "price": 59.98,
-   "price_display": "$59.98",
+   "price": 60.33,
+   "price_display": "$60.33",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 38835,
+   "volume_avg": 39160,
    "volume_display": "~39K/day",
-   "dollar_volume_avg": 2243965,
-   "dollar_volume_display": "~$2.2M/day",
+   "dollar_volume_avg": 2263585,
+   "dollar_volume_display": "~$2.3M/day",
    "high_52w": 61.06,
    "low_52w": 44.32,
-   "pct_below_high": "-1.8%",
+   "pct_below_high": "-1.2%",
    "max_drawdown_1y": "-21.7%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+15.7%",
-    "y1": "+7.3%",
-    "y3_annualized": "+15.0%/yr",
+    "ytd": "+16.3%",
+    "y1": "+7.9%",
+    "y3_annualized": "+15.3%/yr",
     "y2025": "+15.2%",
     "y2024": "-0.4%",
     "as_of": "2026-10-09",
@@ -6950,22 +8526,23 @@
    "profile_asof": "2026-10-09"
   },
   "ROKT": {
-   "price": 103.12,
-   "price_display": "$103.12",
+   "price": 103.48,
+   "price_display": "$103.48",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 19867,
+   "volume_avg": 19974,
    "volume_display": "~20K/day",
-   "dollar_volume_avg": 2201851,
+   "dollar_volume_avg": 2212920,
    "dollar_volume_display": "~$2.2M/day",
    "high_52w": 136.68,
    "low_52w": 72.93,
-   "pct_below_high": "-24.6%",
+   "pct_below_high": "-24.3%",
    "max_drawdown_1y": "-24.7%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+21.4%",
-    "y1": "+28.4%",
-    "y3_annualized": "+38.1%/yr",
+    "ytd": "+21.8%",
+    "y1": "+28.8%",
+    "y3_annualized": "+38.2%/yr",
     "y2025": "+50.6%",
     "y2024": "+27.9%",
     "as_of": "2026-10-09",
@@ -7055,21 +8632,22 @@
    "profile_asof": "2026-10-09"
   },
   "RYLD": {
-   "price": 15.55,
-   "price_display": "$15.55",
+   "price": 15.57,
+   "price_display": "$15.57",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 514776,
-   "volume_display": "~515K/day",
-   "dollar_volume_avg": 8221188,
-   "dollar_volume_display": "~$8.2M/day",
+   "volume_avg": 520780,
+   "volume_display": "~521K/day",
+   "dollar_volume_avg": 8314729,
+   "dollar_volume_display": "~$8.3M/day",
    "high_52w": 16.43,
    "low_52w": 14.64,
-   "pct_below_high": "-5.4%",
+   "pct_below_high": "-5.2%",
    "max_drawdown_1y": "-6.3%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+11.2%",
-    "y1": "+15.0%",
+    "ytd": "+11.4%",
+    "y1": "+15.1%",
     "y3_annualized": "+9.8%/yr",
     "y2025": "+5.7%",
     "y2024": "+10.1%",
@@ -7143,22 +8721,23 @@
    "profile_asof": "2026-10-09"
   },
   "SBIO": {
-   "price": 54.73,
-   "price_display": "$54.73",
+   "price": 55.04,
+   "price_display": "$55.04",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 40699,
+   "volume_avg": 40919,
    "volume_display": "~41K/day",
-   "dollar_volume_avg": 2585018,
+   "dollar_volume_avg": 2597262,
    "dollar_volume_display": "~$2.6M/day",
    "high_52w": 70.79,
    "low_52w": 41.08,
-   "pct_below_high": "-22.7%",
+   "pct_below_high": "-22.2%",
    "max_drawdown_1y": "-23.8%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+6.9%",
-    "y1": "+31.9%",
-    "y3_annualized": "+28.8%/yr",
+    "ytd": "+7.5%",
+    "y1": "+32.6%",
+    "y3_annualized": "+29.1%/yr",
     "y2025": "+55.1%",
     "y2024": "+3.8%",
     "as_of": "2026-10-09",
@@ -7236,22 +8815,23 @@
    "profile_asof": "2026-10-09"
   },
   "SHLD": {
-   "price": 59.61,
-   "price_display": "$59.61",
+   "price": 59.87,
+   "price_display": "$59.87",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 1150259,
+   "volume_avg": 1158934,
    "volume_display": "~1.2M/day",
-   "dollar_volume_avg": 72756450,
-   "dollar_volume_display": "~$72.8M/day",
+   "dollar_volume_avg": 73276376,
+   "dollar_volume_display": "~$73.3M/day",
    "high_52w": 78.02,
    "low_52w": 58.2,
-   "pct_below_high": "-23.6%",
+   "pct_below_high": "-23.3%",
    "max_drawdown_1y": "-25.4%",
    "history_start": "2023-09-14",
    "performance": {
-    "ytd": "-7.7%",
-    "y1": "-14.4%",
-    "y3_annualized": "+33.7%/yr",
+    "ytd": "-7.3%",
+    "y1": "-14.0%",
+    "y3_annualized": "+33.9%/yr",
     "y2025": "+74.2%",
     "y2024": "+35.0%",
     "as_of": "2026-10-09",
@@ -7333,22 +8913,23 @@
    "profile_asof": "2026-10-09"
   },
   "SMH": {
-   "price": 605.87,
-   "price_display": "$605.87",
+   "price": 603.33,
+   "price_display": "$603.33",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 8359893,
+   "volume_avg": 8404450,
    "volume_display": "~8.4M/day",
-   "dollar_volume_avg": 4748170769,
-   "dollar_volume_display": "~$4.7B/day",
+   "dollar_volume_avg": 4774948810,
+   "dollar_volume_display": "~$4.8B/day",
    "high_52w": 668.91,
    "low_52w": 325.1,
-   "pct_below_high": "-9.4%",
+   "pct_below_high": "-9.8%",
    "max_drawdown_1y": "-24.6%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+68.2%",
-    "y1": "+76.1%",
-    "y3_annualized": "+60.7%/yr",
+    "ytd": "+67.5%",
+    "y1": "+75.3%",
+    "y3_annualized": "+60.5%/yr",
     "y2025": "+49.2%",
     "y2024": "+39.1%",
     "as_of": "2026-10-09",
@@ -7425,23 +9006,135 @@
    "fund_family": "VanEck",
    "profile_asof": "2026-10-09"
   },
-  "SOXX": {
-   "price": 561.88,
-   "price_display": "$561.88",
+  "SMRF": {
+   "price": 22.44,
+   "price_display": "$22.44",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 8009991,
+   "volume_avg": 8100,
+   "volume_display": "~8K/day",
+   "dollar_volume_avg": 195656,
+   "dollar_volume_display": "~$196K/day",
+   "high_52w": 29.49,
+   "low_52w": 21.66,
+   "pct_below_high": "-23.9%",
+   "max_drawdown_1y": "-26.2%",
+   "history_start": "2026-02-19",
+   "performance": {
+    "ytd": null,
+    "y1": null,
+    "y3_annualized": null,
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "ALPS Nautilus SMR, Nuclear & Technology ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2026-02-19",
+   "source": "Yahoo Finance",
+   "aum_musd": 16,
+   "aum_display": "~$16M",
+   "expense_ratio": 0.65,
+   "holdings": [
+    {
+     "symbol": "1816.HK",
+     "name": "CGN Power Co Ltd Class H",
+     "weight": 5.56
+    },
+    {
+     "symbol": "NXE.TO",
+     "name": "NexGen Energy Ltd",
+     "weight": 4.75
+    },
+    {
+     "symbol": "UEC",
+     "name": "Uranium Energy Corp",
+     "weight": 4.59
+    },
+    {
+     "symbol": "KAP",
+     "name": "National Atomic Co Kazatomprom JSC GDR - Regulation S",
+     "weight": 4.54
+    },
+    {
+     "symbol": "CCO.TO",
+     "name": "Cameco Corp",
+     "weight": 4.47
+    },
+    {
+     "symbol": "GEV",
+     "name": "GE Vernova Inc",
+     "weight": 4.18
+    },
+    {
+     "symbol": "OKLO",
+     "name": "Oklo Inc Class A Shares",
+     "weight": 3.71
+    },
+    {
+     "symbol": "BWXT",
+     "name": "BWX Technologies Inc",
+     "weight": 3.61
+    },
+    {
+     "symbol": "PDN.AX",
+     "name": "Paladin Energy Ltd",
+     "weight": 3.41
+    },
+    {
+     "symbol": "EFR.TO",
+     "name": "Energy Fuels Inc",
+     "weight": 3.17
+    }
+   ],
+   "top10_weight_pct": 42.0,
+   "sectors": [
+    {
+     "sector": "Energy",
+     "weight": 37.5
+    },
+    {
+     "sector": "Technology",
+     "weight": 24.4
+    },
+    {
+     "sector": "Industrials",
+     "weight": 19.3
+    },
+    {
+     "sector": "Utilities",
+     "weight": 16.8
+    },
+    {
+     "sector": "Communication",
+     "weight": 1.8
+    },
+    {
+     "sector": "Materials",
+     "weight": 0.2
+    }
+   ],
+   "fund_family": "ALPS",
+   "profile_asof": "2026-10-09"
+  },
+  "SOXX": {
+   "price": 559.4,
+   "price_display": "$559.40",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 8049470,
    "volume_display": "~8.0M/day",
-   "dollar_volume_avg": 4243187495,
-   "dollar_volume_display": "~$4.2B/day",
+   "dollar_volume_avg": 4265177843,
+   "dollar_volume_display": "~$4.3B/day",
    "high_52w": 655.01,
    "low_52w": 268.1,
-   "pct_below_high": "-14.2%",
+   "pct_below_high": "-14.6%",
    "max_drawdown_1y": "-29.0%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+86.9%",
-    "y1": "+94.2%",
-    "y3_annualized": "+53.0%/yr",
+    "ytd": "+86.1%",
+    "y1": "+93.4%",
+    "y3_annualized": "+52.7%/yr",
     "y2025": "+40.7%",
     "y2024": "+12.9%",
     "as_of": "2026-10-09",
@@ -7519,16 +9212,17 @@
    "profile_asof": "2026-10-09"
   },
   "SPCX": {
-   "price": 163.08,
-   "price_display": "$163.08",
+   "price": 162.57,
+   "price_display": "$162.57",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 93297017,
-   "volume_display": "~93.3M/day",
-   "dollar_volume_avg": 13008713895,
-   "dollar_volume_display": "~$13.0B/day",
+   "volume_avg": 94050770,
+   "volume_display": "~94.1M/day",
+   "dollar_volume_avg": 13130828764,
+   "dollar_volume_display": "~$13.1B/day",
    "high_52w": 211.39,
    "low_52w": 108.27,
-   "pct_below_high": "-22.9%",
+   "pct_below_high": "-23.1%",
    "max_drawdown_1y": "-48.8%",
    "history_start": "2026-06-12",
    "performance": {
@@ -7545,21 +9239,22 @@
    "source": "Yahoo Finance"
   },
   "SPY": {
-   "price": 777.41,
-   "price_display": "$777.41",
+   "price": 778.57,
+   "price_display": "$778.57",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 43203715,
-   "volume_display": "~43.2M/day",
-   "dollar_volume_avg": 32882391685,
-   "dollar_volume_display": "~$32.9B/day",
+   "volume_avg": 43451799,
+   "volume_display": "~43.5M/day",
+   "dollar_volume_avg": 33075644971,
+   "dollar_volume_display": "~$33.1B/day",
    "high_52w": 779.09,
    "low_52w": 631.97,
-   "pct_below_high": "-0.2%",
+   "pct_below_high": "-0.1%",
    "max_drawdown_1y": "-8.9%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+14.9%",
-    "y1": "+17.1%",
+    "ytd": "+15.1%",
+    "y1": "+17.3%",
     "y3_annualized": "+23.1%/yr",
     "y2025": "+17.7%",
     "y2024": "+24.9%",
@@ -7678,21 +9373,22 @@
    "profile_asof": "2026-10-09"
   },
   "SPYI": {
-   "price": 54.04,
-   "price_display": "$54.04",
+   "price": 54.09,
+   "price_display": "$54.09",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 2697603,
+   "volume_avg": 2720764,
    "volume_display": "~2.7M/day",
-   "dollar_volume_avg": 144173722,
-   "dollar_volume_display": "~$144.2M/day",
+   "dollar_volume_avg": 145427031,
+   "dollar_volume_display": "~$145.4M/day",
    "high_52w": 54.41,
    "low_52w": 47.97,
-   "pct_below_high": "-0.7%",
+   "pct_below_high": "-0.6%",
    "max_drawdown_1y": "-7.7%",
    "history_start": "2022-08-30",
    "performance": {
-    "ytd": "+12.6%",
-    "y1": "+15.9%",
+    "ytd": "+12.7%",
+    "y1": "+16.0%",
     "y3_annualized": "+18.0%/yr",
     "y2025": "+16.7%",
     "y2024": "+19.0%",
@@ -7811,22 +9507,23 @@
    "profile_asof": "2026-10-09"
   },
   "SVOL": {
-   "price": 16.73,
-   "price_display": "$16.73",
+   "price": 16.67,
+   "price_display": "$16.67",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 295508,
-   "volume_display": "~296K/day",
-   "dollar_volume_avg": 4838787,
-   "dollar_volume_display": "~$4.8M/day",
+   "volume_avg": 298504,
+   "volume_display": "~299K/day",
+   "dollar_volume_avg": 4888629,
+   "dollar_volume_display": "~$4.9M/day",
    "high_52w": 18.34,
    "low_52w": 15.11,
-   "pct_below_high": "-8.8%",
+   "pct_below_high": "-9.1%",
    "max_drawdown_1y": "-11.4%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+11.5%",
-    "y1": "+14.0%",
-    "y3_annualized": "+9.0%/yr",
+    "ytd": "+11.1%",
+    "y1": "+13.6%",
+    "y3_annualized": "+8.8%/yr",
     "y2025": "+2.4%",
     "y2024": "+6.8%",
     "as_of": "2026-10-09",
@@ -7913,23 +9610,130 @@
    "fund_family": "Simplify Asset Management",
    "profile_asof": "2026-10-09"
   },
-  "THNQ": {
-   "price": 98.06,
-   "price_display": "$98.06",
+  "TAN": {
+   "price": 43.75,
+   "price_display": "$43.75",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 32497,
-   "volume_display": "~32K/day",
-   "dollar_volume_avg": 3015923,
+   "volume_avg": 920101,
+   "volume_display": "~920K/day",
+   "dollar_volume_avg": 45040207,
+   "dollar_volume_display": "~$45.0M/day",
+   "high_52w": 73.93,
+   "low_52w": 43.0,
+   "pct_below_high": "-40.8%",
+   "max_drawdown_1y": "-41.8%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "-10.9%",
+    "y1": "-8.0%",
+    "y3_annualized": "-2.2%/yr",
+    "y2025": "+48.3%",
+    "y2024": "-37.6%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Invesco Solar ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2008-04-15",
+   "source": "Yahoo Finance",
+   "aum_musd": 900,
+   "aum_display": "~$900M",
+   "expense_ratio": 0.7,
+   "yield_ttm": "0.0%",
+   "holdings": [
+    {
+     "symbol": "NXT",
+     "name": "Nextpower Inc",
+     "weight": 10.05
+    },
+    {
+     "symbol": "FSLR",
+     "name": "First Solar Inc",
+     "weight": 8.96
+    },
+    {
+     "symbol": "ENLT.TA",
+     "name": "Enlight Renewable Energy Ltd",
+     "weight": 7.95
+    },
+    {
+     "symbol": "ENPH",
+     "name": "Enphase Energy Inc",
+     "weight": 7.14
+    },
+    {
+     "symbol": "DORL.TA",
+     "name": "Doral Group Renewable Eneryy Resources Ltd Ordinary Shares",
+     "weight": 4.98
+    },
+    {
+     "symbol": "HASI",
+     "name": "HA Sustainable Infrastructure Capital Inc",
+     "weight": 4.78
+    },
+    {
+     "symbol": "3800.HK",
+     "name": "GCL Technology Holdings Ltd",
+     "weight": 4.66
+    },
+    {
+     "symbol": "SEDG",
+     "name": "SolarEdge Technologies Inc",
+     "weight": 3.78
+    },
+    {
+     "symbol": "RUN",
+     "name": "Sunrun Inc",
+     "weight": 3.76
+    },
+    {
+     "symbol": "CWEN",
+     "name": "Clearway Energy Inc Class C",
+     "weight": 3.76
+    }
+   ],
+   "top10_weight_pct": 59.8,
+   "sectors": [
+    {
+     "sector": "Technology",
+     "weight": 60.9
+    },
+    {
+     "sector": "Utilities",
+     "weight": 30.6
+    },
+    {
+     "sector": "Financials",
+     "weight": 4.8
+    },
+    {
+     "sector": "Industrials",
+     "weight": 3.8
+    }
+   ],
+   "fund_family": "Invesco",
+   "profile_asof": "2026-10-09"
+  },
+  "THNQ": {
+   "price": 99.02,
+   "price_display": "$99.02",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 32794,
+   "volume_display": "~33K/day",
+   "dollar_volume_avg": 3045725,
    "dollar_volume_display": "~$3.0M/day",
    "high_52w": 100.74,
    "low_52w": 55.88,
-   "pct_below_high": "-2.7%",
+   "pct_below_high": "-1.7%",
    "max_drawdown_1y": "-18.4%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+54.4%",
-    "y1": "+44.9%",
-    "y3_annualized": "+41.7%/yr",
+    "ytd": "+56.0%",
+    "y1": "+46.3%",
+    "y3_annualized": "+42.2%/yr",
     "y2025": "+29.8%",
     "y2024": "+18.8%",
     "as_of": "2026-10-09",
@@ -8027,21 +9831,22 @@
    "profile_asof": "2026-10-09"
   },
   "THNR": {
-   "price": 24.25,
-   "price_display": "$24.25",
+   "price": 24.52,
+   "price_display": "$24.52",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 1341,
+   "volume_avg": 1344,
    "volume_display": "~1K/day",
-   "dollar_volume_avg": 35302,
+   "dollar_volume_avg": 35391,
    "dollar_volume_display": "~$35K/day",
    "high_52w": 27.91,
    "low_52w": 22.94,
-   "pct_below_high": "-13.1%",
+   "pct_below_high": "-12.1%",
    "max_drawdown_1y": "-13.1%",
    "history_start": "2024-05-21",
    "performance": {
-    "ytd": "-3.8%",
-    "y1": "+1.0%",
+    "ytd": "-2.8%",
+    "y1": "+2.2%",
     "y3_annualized": null,
     "y2025": "+13.6%",
     "as_of": "2026-10-09",
@@ -8118,23 +9923,122 @@
    "fund_family": "Amplify ETFs",
    "profile_asof": "2026-10-09"
   },
-  "UBOT": {
-   "price": 21.82,
-   "price_display": "$21.82",
+  "TPYP": {
+   "price": 41.51,
+   "price_display": "$41.51",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 14616,
+   "volume_avg": 42876,
+   "volume_display": "~43K/day",
+   "dollar_volume_avg": 1819817,
+   "dollar_volume_display": "~$1.8M/day",
+   "high_52w": 44.38,
+   "low_52w": 34.05,
+   "pct_below_high": "-6.5%",
+   "max_drawdown_1y": "-9.1%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "+20.5%",
+    "y1": "+20.8%",
+    "y3_annualized": "+23.9%/yr",
+    "y2025": "+7.6%",
+    "y2024": "+37.4%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Tortoise North American Pipeline Fund",
+   "exchange": "NYSE",
+   "instrument_type": "ETF",
+   "first_trade_date": "2015-06-30",
+   "source": "Yahoo Finance",
+   "aum_musd": 823,
+   "aum_display": "~$823M",
+   "expense_ratio": 0.4,
+   "yield_ttm": "3.44%",
+   "holdings": [
+    {
+     "symbol": "KMI",
+     "name": "Kinder Morgan Inc Class P",
+     "weight": 7.69
+    },
+    {
+     "symbol": "ENB.TO",
+     "name": "Enbridge Inc",
+     "weight": 7.67
+    },
+    {
+     "symbol": "LNG",
+     "name": "Cheniere Energy Inc",
+     "weight": 7.61
+    },
+    {
+     "symbol": "TRGP",
+     "name": "Targa Resources Corp",
+     "weight": 7.54
+    },
+    {
+     "symbol": "TRP.TO",
+     "name": "TC Energy Corp",
+     "weight": 7.4
+    },
+    {
+     "symbol": "WMB",
+     "name": "Williams Companies Inc",
+     "weight": 7.35
+    },
+    {
+     "symbol": "OKE",
+     "name": "ONEOK Inc",
+     "weight": 7.0
+    },
+    {
+     "symbol": "ATO",
+     "name": "Atmos Energy Corp",
+     "weight": 4.07
+    },
+    {
+     "symbol": "NI",
+     "name": "NiSource Inc",
+     "weight": 4.06
+    },
+    {
+     "symbol": "ET",
+     "name": "Energy Transfer LP",
+     "weight": 3.95
+    }
+   ],
+   "top10_weight_pct": 64.3,
+   "sectors": [
+    {
+     "sector": "Energy",
+     "weight": 86.3
+    },
+    {
+     "sector": "Utilities",
+     "weight": 13.7
+    }
+   ],
+   "fund_family": "Tortoise Capital Advisors, LLC",
+   "profile_asof": "2026-10-09"
+  },
+  "UBOT": {
+   "price": 21.91,
+   "price_display": "$21.91",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 14669,
    "volume_display": "~15K/day",
-   "dollar_volume_avg": 328771,
-   "dollar_volume_display": "~$329K/day",
+   "dollar_volume_avg": 329949,
+   "dollar_volume_display": "~$330K/day",
    "high_52w": 32.04,
    "low_52w": 19.26,
-   "pct_below_high": "-31.9%",
+   "pct_below_high": "-31.6%",
    "max_drawdown_1y": "-36.6%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-14.0%",
-    "y1": "-20.3%",
-    "y3_annualized": "+12.5%/yr",
+    "ytd": "-13.6%",
+    "y1": "-20.0%",
+    "y3_annualized": "+12.6%/yr",
     "y2025": "+13.4%",
     "y2024": "+12.0%",
     "as_of": "2026-10-09",
@@ -8187,22 +10091,23 @@
    "profile_asof": "2026-10-09"
   },
   "UFO": {
-   "price": 42.26,
-   "price_display": "$42.26",
+   "price": 41.98,
+   "price_display": "$41.98",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 333372,
-   "volume_display": "~333K/day",
-   "dollar_volume_avg": 14826782,
-   "dollar_volume_display": "~$14.8M/day",
+   "volume_avg": 335472,
+   "volume_display": "~335K/day",
+   "dollar_volume_avg": 14914816,
+   "dollar_volume_display": "~$14.9M/day",
    "high_52w": 67.81,
    "low_52w": 31.44,
-   "pct_below_high": "-37.7%",
+   "pct_below_high": "-38.1%",
    "max_drawdown_1y": "-38.0%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+9.5%",
-    "y1": "+5.3%",
-    "y3_annualized": "+39.3%/yr",
+    "ytd": "+8.8%",
+    "y1": "+4.6%",
+    "y3_annualized": "+39.0%/yr",
     "y2025": "+67.4%",
     "y2024": "+27.2%",
     "as_of": "2026-10-09",
@@ -8287,23 +10192,59 @@
    "fund_family": "Procure ETF Trust II",
    "profile_asof": "2026-10-09"
   },
-  "URA": {
-   "price": 38.74,
-   "price_display": "$38.74",
+  "UNG": {
+   "price": 11.01,
+   "price_display": "$11.01",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 3253382,
+   "volume_avg": 16971139,
+   "volume_display": "~17.0M/day",
+   "dollar_volume_avg": 178589257,
+   "dollar_volume_display": "~$178.6M/day",
+   "high_52w": 16.9,
+   "low_52w": 9.63,
+   "pct_below_high": "-34.9%",
+   "max_drawdown_1y": "-43.0%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "-10.2%",
+    "y1": "-13.6%",
+    "y3_annualized": "-29.6%/yr",
+    "y2025": "-27.1%",
+    "y2024": "-17.1%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "United States Natural Gas Fund, LP",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2007-04-18",
+   "source": "Yahoo Finance",
+   "aum_musd": 458,
+   "aum_display": "~$458M",
+   "expense_ratio": 1.17,
+   "yield_ttm": "0.0%",
+   "fund_family": "USCF Investments",
+   "profile_asof": "2026-10-09"
+  },
+  "URA": {
+   "price": 38.9,
+   "price_display": "$38.90",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 3283490,
    "volume_display": "~3.3M/day",
-   "dollar_volume_avg": 138983683,
-   "dollar_volume_display": "~$139.0M/day",
+   "dollar_volume_avg": 140156874,
+   "dollar_volume_display": "~$140.2M/day",
    "high_52w": 61.81,
    "low_52w": 37.52,
-   "pct_below_high": "-37.3%",
+   "pct_below_high": "-37.1%",
    "max_drawdown_1y": "-39.3%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-9.3%",
-    "y1": "-21.2%",
-    "y3_annualized": "+19.8%/yr",
+    "ytd": "-9.0%",
+    "y1": "-20.8%",
+    "y3_annualized": "+20.0%/yr",
     "y2025": "+67.2%",
     "y2024": "-0.6%",
     "as_of": "2026-10-09",
@@ -8391,22 +10332,206 @@
    "fund_family": "Global X Funds",
    "profile_asof": "2026-10-09"
   },
-  "URNJ": {
-   "price": 19.11,
-   "price_display": "$19.11",
+  "URAA": {
+   "price": 18.65,
+   "price_display": "$18.65",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 332293,
-   "volume_display": "~332K/day",
-   "dollar_volume_avg": 7692247,
-   "dollar_volume_display": "~$7.7M/day",
+   "volume_avg": 66697,
+   "volume_display": "~67K/day",
+   "dollar_volume_avg": 1571920,
+   "dollar_volume_display": "~$1.6M/day",
+   "high_52w": 62.06,
+   "low_52w": 18.34,
+   "pct_below_high": "-69.9%",
+   "max_drawdown_1y": "-70.0%",
+   "history_start": "2024-06-26",
+   "performance": {
+    "ytd": "-39.4%",
+    "y1": "-56.9%",
+    "y3_annualized": null,
+    "y2025": "+88.3%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Direxion Daily Uranium Bull 2X ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2024-06-26",
+   "source": "Yahoo Finance",
+   "aum_musd": 27,
+   "aum_display": "~$27M",
+   "expense_ratio": 1.3,
+   "yield_ttm": "3.59%",
+   "holdings": [
+    {
+     "symbol": "URA",
+     "name": "Global X Uranium ETF",
+     "weight": 14.38
+    },
+    {
+     "symbol": "NLR",
+     "name": "VanEck Uranium & Nuclear ETF",
+     "weight": 9.3
+    },
+    {
+     "symbol": "URNM",
+     "name": "Sprott Uranium Miners ETF",
+     "weight": 4.64
+    }
+   ],
+   "top10_weight_pct": 28.3,
+   "sectors": [
+    {
+     "sector": "Energy",
+     "weight": 62.4
+    },
+    {
+     "sector": "Industrials",
+     "weight": 19.6
+    },
+    {
+     "sector": "Utilities",
+     "weight": 14.4
+    },
+    {
+     "sector": "Materials",
+     "weight": 2.8
+    },
+    {
+     "sector": "Technology",
+     "weight": 0.8
+    }
+   ],
+   "fund_family": "Direxion Funds",
+   "profile_asof": "2026-10-09"
+  },
+  "URAN": {
+   "price": 34.78,
+   "price_display": "$34.78",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 4627,
+   "volume_display": "~5K/day",
+   "dollar_volume_avg": 176368,
+   "dollar_volume_display": "~$176K/day",
+   "high_52w": 54.71,
+   "low_52w": 34.29,
+   "pct_below_high": "-36.4%",
+   "max_drawdown_1y": "-37.3%",
+   "history_start": "2024-09-24",
+   "performance": {
+    "ytd": "-16.3%",
+    "y1": "-26.8%",
+    "y3_annualized": null,
+    "y2025": "+49.0%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Themes Uranium & Nuclear ETF",
+   "exchange": "Cboe US",
+   "instrument_type": "ETF",
+   "first_trade_date": "2024-09-24",
+   "source": "Yahoo Finance",
+   "aum_musd": 24,
+   "aum_display": "~$24M",
+   "expense_ratio": 0.35,
+   "yield_ttm": "3.07%",
+   "holdings": [
+    {
+     "symbol": "CCO.TO",
+     "name": "Cameco Corp",
+     "weight": 8.46
+    },
+    {
+     "symbol": "CEG",
+     "name": "Constellation Energy Corp",
+     "weight": 7.99
+    },
+    {
+     "symbol": "KAP",
+     "name": "National Atomic Co Kazatomprom JSC GDR - Regulation S",
+     "weight": 4.3
+    },
+    {
+     "symbol": "AEP",
+     "name": "American Electric Power Co Inc",
+     "weight": 3.51
+    },
+    {
+     "symbol": "DUK",
+     "name": "Duke Energy Corp",
+     "weight": 3.49
+    },
+    {
+     "symbol": "601985.SS",
+     "name": "China National Nuclear Power Co Ltd Class A",
+     "weight": 3.06
+    },
+    {
+     "symbol": "PEG",
+     "name": "Public Service Enterprise Group Inc",
+     "weight": 3.05
+    },
+    {
+     "symbol": "NXE.TO",
+     "name": "NexGen Energy Ltd",
+     "weight": 2.9
+    },
+    {
+     "symbol": "003816",
+     "name": "CGN Power Co Ltd Ordinary Shares Class A",
+     "weight": 2.85
+    },
+    {
+     "symbol": "OKLO",
+     "name": "Oklo Inc Class A Shares",
+     "weight": 2.84
+    }
+   ],
+   "top10_weight_pct": 42.5,
+   "sectors": [
+    {
+     "sector": "Energy",
+     "weight": 50.7
+    },
+    {
+     "sector": "Utilities",
+     "weight": 34.7
+    },
+    {
+     "sector": "Industrials",
+     "weight": 12.7
+    },
+    {
+     "sector": "Technology",
+     "weight": 1.3
+    },
+    {
+     "sector": "Materials",
+     "weight": 0.5
+    }
+   ],
+   "fund_family": "Themes ETF Trust",
+   "profile_asof": "2026-10-09"
+  },
+  "URNJ": {
+   "price": 19.15,
+   "price_display": "$19.15",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 335611,
+   "volume_display": "~336K/day",
+   "dollar_volume_avg": 7755890,
+   "dollar_volume_display": "~$7.8M/day",
    "high_52w": 40.43,
-   "low_52w": 19.11,
-   "pct_below_high": "-52.7%",
-   "max_drawdown_1y": "-52.7%",
+   "low_52w": 19.15,
+   "pct_below_high": "-52.6%",
+   "max_drawdown_1y": "-52.6%",
    "history_start": "2023-02-02",
    "performance": {
-    "ytd": "-24.1%",
-    "y1": "-32.7%",
+    "ytd": "-24.0%",
+    "y1": "-32.6%",
     "y3_annualized": "-0.3%/yr",
     "y2025": "+45.4%",
     "y2024": "-18.3%",
@@ -8489,22 +10614,23 @@
    "profile_asof": "2026-10-09"
   },
   "URNM": {
-   "price": 46.25,
-   "price_display": "$46.25",
+   "price": 46.5,
+   "price_display": "$46.50",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 575993,
-   "volume_display": "~576K/day",
-   "dollar_volume_avg": 30524525,
-   "dollar_volume_display": "~$30.5M/day",
+   "volume_avg": 580276,
+   "volume_display": "~580K/day",
+   "dollar_volume_avg": 30724409,
+   "dollar_volume_display": "~$30.7M/day",
    "high_52w": 83.99,
    "low_52w": 46.09,
-   "pct_below_high": "-44.9%",
+   "pct_below_high": "-44.6%",
    "max_drawdown_1y": "-45.1%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-15.7%",
-    "y1": "-22.2%",
-    "y3_annualized": "+4.8%/yr",
+    "ytd": "-15.3%",
+    "y1": "-21.8%",
+    "y3_annualized": "+5.0%/yr",
     "y2025": "+40.8%",
     "y2024": "-14.1%",
     "as_of": "2026-10-09",
@@ -8585,22 +10711,536 @@
    "fund_family": "Sprott",
    "profile_asof": "2026-10-09"
   },
-  "WAR": {
-   "price": 30.82,
-   "price_display": "$30.82",
+  "URNU.L": {
+   "price": 23.27,
+   "price_display": "$23.27",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 13272,
+   "volume_avg": 36010,
+   "volume_display": "~36K/day",
+   "dollar_volume_avg": 928036,
+   "dollar_volume_display": "~$928K/day",
+   "high_52w": 36.71,
+   "low_52w": 22.76,
+   "pct_below_high": "-36.6%",
+   "max_drawdown_1y": "-38.0%",
+   "history_start": "2022-04-22",
+   "performance": {
+    "ytd": "-10.8%",
+    "y1": "-24.7%",
+    "y3_annualized": "+19.9%/yr",
+    "y2025": "+70.5%",
+    "y2024": "+1.2%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Global X Uranium UCITS ETF USD Acc",
+   "exchange": "LSE",
+   "instrument_type": "ETF",
+   "first_trade_date": "2022-04-22",
+   "source": "Yahoo Finance",
+   "aum_musd": 641,
+   "aum_display": "~$641M",
+   "expense_ratio": 0.65,
+   "yield_ttm": "0.0%",
+   "holdings": [
+    {
+     "symbol": "CCO.TO",
+     "name": "Cameco Corp",
+     "weight": 14.7
+    },
+    {
+     "symbol": "NXE.TO",
+     "name": "NexGen Energy Ltd",
+     "weight": 7.59
+    },
+    {
+     "symbol": "OKLO",
+     "name": "Oklo Inc Class A Shares",
+     "weight": 7.27
+    },
+    {
+     "symbol": "UEC",
+     "name": "Uranium Energy Corp",
+     "weight": 6.17
+    },
+    {
+     "symbol": "KAP",
+     "name": "National Atomic Co Kazatomprom JSC GDR - Regulation S",
+     "weight": 5.57
+    },
+    {
+     "symbol": "PDN.AX",
+     "name": "Paladin Energy Ltd",
+     "weight": 3.93
+    },
+    {
+     "symbol": "EFR.TO",
+     "name": "Energy Fuels Inc",
+     "weight": 3.69
+    },
+    {
+     "symbol": "SMR",
+     "name": "NuScale Power Corp Class A",
+     "weight": 3.56
+    },
+    {
+     "symbol": "LEU",
+     "name": "Centrus Energy Corp Class A",
+     "weight": 3.41
+    },
+    {
+     "symbol": "XE",
+     "name": "X-Energy Inc Class A",
+     "weight": 3.29
+    }
+   ],
+   "top10_weight_pct": 59.2,
+   "sectors": [
+    {
+     "sector": "Energy",
+     "weight": 57.7
+    },
+    {
+     "sector": "Industrials",
+     "weight": 28.5
+    },
+    {
+     "sector": "Utilities",
+     "weight": 7.7
+    },
+    {
+     "sector": "Materials",
+     "weight": 5.2
+    },
+    {
+     "sector": "Technology",
+     "weight": 0.9
+    }
+   ],
+   "fund_family": "Global X",
+   "profile_asof": "2026-10-09"
+  },
+  "UTES": {
+   "price": 76.43,
+   "price_display": "$76.43",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 170819,
+   "volume_display": "~171K/day",
+   "dollar_volume_avg": 12834786,
+   "dollar_volume_display": "~$12.8M/day",
+   "high_52w": 87.52,
+   "low_52w": 69.83,
+   "pct_below_high": "-12.7%",
+   "max_drawdown_1y": "-19.0%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "-2.2%",
+    "y1": "-10.3%",
+    "y3_annualized": "+25.6%/yr",
+    "y2025": "+25.7%",
+    "y2024": "+45.4%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Virtus Reaves Utilities ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2015-09-24",
+   "source": "Yahoo Finance",
+   "aum_musd": 1129,
+   "aum_display": "~$1.1B",
+   "expense_ratio": 0.49,
+   "yield_ttm": "1.73%",
+   "holdings": [
+    {
+     "symbol": "CEG",
+     "name": "Constellation Energy Corp",
+     "weight": 11.98
+    },
+    {
+     "symbol": "TLN",
+     "name": "Talen Energy Corp Ordinary Shares New",
+     "weight": 11.16
+    },
+    {
+     "symbol": "VST",
+     "name": "Vistra Corp",
+     "weight": 10.34
+    },
+    {
+     "symbol": "XEL",
+     "name": "Xcel Energy Inc",
+     "weight": 7.09
+    },
+    {
+     "symbol": "CNP",
+     "name": "CenterPoint Energy Inc",
+     "weight": 6.47
+    },
+    {
+     "symbol": "AEP",
+     "name": "American Electric Power Co Inc",
+     "weight": 4.91
+    },
+    {
+     "symbol": "NI",
+     "name": "NiSource Inc",
+     "weight": 4.84
+    },
+    {
+     "symbol": "ETR",
+     "name": "Entergy Corp",
+     "weight": 4.81
+    },
+    {
+     "symbol": "LNT",
+     "name": "Alliant Energy Corp",
+     "weight": 4.73
+    },
+    {
+     "symbol": "IDA",
+     "name": "Idacorp Inc",
+     "weight": 4.69
+    }
+   ],
+   "top10_weight_pct": 71.0,
+   "sectors": [
+    {
+     "sector": "Utilities",
+     "weight": 100.0
+    }
+   ],
+   "fund_family": "Virtus",
+   "profile_asof": "2026-10-09"
+  },
+  "VDE": {
+   "price": 182.11,
+   "price_display": "$182.11",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 506280,
+   "volume_display": "~506K/day",
+   "dollar_volume_avg": 88368099,
+   "dollar_volume_display": "~$88.4M/day",
+   "high_52w": 185.61,
+   "low_52w": 120.37,
+   "pct_below_high": "-1.9%",
+   "max_drawdown_1y": "-15.0%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "+47.3%",
+    "y1": "+50.8%",
+    "y3_annualized": "+17.0%/yr",
+    "y2025": "+7.1%",
+    "y2024": "+6.8%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Vanguard Energy Index Fund ETF Shares",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2004-09-29",
+   "source": "Yahoo Finance",
+   "aum_musd": 12669,
+   "aum_display": "~$12.7B",
+   "expense_ratio": 0.09,
+   "yield_ttm": "2.37%",
+   "holdings": [
+    {
+     "symbol": "XOM",
+     "name": "ExxonMobil Holdings Corp",
+     "weight": 21.82
+    },
+    {
+     "symbol": "CVX",
+     "name": "Chevron Corp",
+     "weight": 14.03
+    },
+    {
+     "symbol": "COP",
+     "name": "ConocoPhillips",
+     "weight": 5.99
+    },
+    {
+     "symbol": "MPC",
+     "name": "Marathon Petroleum Corp",
+     "weight": 4.06
+    },
+    {
+     "symbol": "VLO",
+     "name": "Valero Energy Corp",
+     "weight": 3.98
+    },
+    {
+     "symbol": "PSX",
+     "name": "Phillips 66",
+     "weight": 3.67
+    },
+    {
+     "symbol": "SLB",
+     "name": "SLB Ltd",
+     "weight": 3.36
+    },
+    {
+     "symbol": "WMB",
+     "name": "Williams Companies Inc",
+     "weight": 3.36
+    },
+    {
+     "symbol": "EOG",
+     "name": "EOG Resources Inc",
+     "weight": 2.89
+    },
+    {
+     "symbol": "BKR",
+     "name": "Baker Hughes Co Class A",
+     "weight": 2.31
+    }
+   ],
+   "top10_weight_pct": 65.5,
+   "sectors": [
+    {
+     "sector": "Energy",
+     "weight": 99.5
+    },
+    {
+     "sector": "Materials",
+     "weight": 0.4
+    },
+    {
+     "sector": "Industrials",
+     "weight": 0.1
+    }
+   ],
+   "fund_family": "Vanguard",
+   "profile_asof": "2026-10-09"
+  },
+  "VOLT": {
+   "price": 36.56,
+   "price_display": "$36.56",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 226931,
+   "volume_display": "~227K/day",
+   "dollar_volume_avg": 8389737,
+   "dollar_volume_display": "~$8.4M/day",
+   "high_52w": 42.05,
+   "low_52w": 28.32,
+   "pct_below_high": "-13.1%",
+   "max_drawdown_1y": "-17.4%",
+   "history_start": "2024-12-05",
+   "performance": {
+    "ytd": "+26.4%",
+    "y1": "+24.5%",
+    "y3_annualized": null,
+    "y2025": "+25.9%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Tema Electrification ETF",
+   "exchange": "NasdaqGM",
+   "instrument_type": "ETF",
+   "first_trade_date": "2024-12-05",
+   "source": "Yahoo Finance",
+   "aum_musd": 727,
+   "aum_display": "~$727M",
+   "expense_ratio": 0.75,
+   "yield_ttm": "0.25%",
+   "holdings": [
+    {
+     "symbol": "BELFB",
+     "name": "Bel Fuse Inc Class B",
+     "weight": 6.71
+    },
+    {
+     "symbol": "APH",
+     "name": "Amphenol Corp Class A",
+     "weight": 6.68
+    },
+    {
+     "symbol": "ETN",
+     "name": "Eaton Corp PLC",
+     "weight": 6.34
+    },
+    {
+     "symbol": "PWR",
+     "name": "Quanta Services Inc",
+     "weight": 5.53
+    },
+    {
+     "symbol": "POWL",
+     "name": "Powell Industries Inc",
+     "weight": 5.46
+    },
+    {
+     "symbol": "ET",
+     "name": "Energy Transfer LP",
+     "weight": 5.14
+    },
+    {
+     "symbol": "NEE",
+     "name": "NextEra Energy Inc",
+     "weight": 4.91
+    },
+    {
+     "symbol": "AEP",
+     "name": "American Electric Power Co Inc",
+     "weight": 4.85
+    },
+    {
+     "symbol": "NVT",
+     "name": "nVent Electric PLC",
+     "weight": 4.5
+    },
+    {
+     "symbol": "OGE",
+     "name": "OGE Energy Corp",
+     "weight": 4.46
+    }
+   ],
+   "top10_weight_pct": 54.6,
+   "sectors": [
+    {
+     "sector": "Industrials",
+     "weight": 49.5
+    },
+    {
+     "sector": "Utilities",
+     "weight": 27.8
+    },
+    {
+     "sector": "Technology",
+     "weight": 13.7
+    },
+    {
+     "sector": "Energy",
+     "weight": 9.0
+    }
+   ],
+   "fund_family": "Tema ETFs",
+   "profile_asof": "2026-10-09"
+  },
+  "VPU": {
+   "price": 179.15,
+   "price_display": "$179.15",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 329456,
+   "volume_display": "~329K/day",
+   "dollar_volume_avg": 60262221,
+   "dollar_volume_display": "~$60.3M/day",
+   "high_52w": 205.87,
+   "low_52w": 170.29,
+   "pct_below_high": "-13.0%",
+   "max_drawdown_1y": "-15.6%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "-1.2%",
+    "y1": "-6.2%",
+    "y3_annualized": "+16.1%/yr",
+    "y2025": "+16.5%",
+    "y2024": "+23.0%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "Vanguard Utilities Index Fund ETF Shares",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2004-01-30",
+   "source": "Yahoo Finance",
+   "aum_musd": 9470,
+   "aum_display": "~$9.5B",
+   "expense_ratio": 0.09,
+   "yield_ttm": "3.04%",
+   "holdings": [
+    {
+     "symbol": "NEE",
+     "name": "NextEra Energy Inc",
+     "weight": 11.73
+    },
+    {
+     "symbol": "SO",
+     "name": "Southern Co",
+     "weight": 6.78
+    },
+    {
+     "symbol": "DUK",
+     "name": "Duke Energy Corp",
+     "weight": 6.39
+    },
+    {
+     "symbol": "CEG",
+     "name": "Constellation Energy Corp",
+     "weight": 5.86
+    },
+    {
+     "symbol": "AEP",
+     "name": "American Electric Power Co Inc",
+     "weight": 4.55
+    },
+    {
+     "symbol": "D",
+     "name": "Dominion Energy Inc",
+     "weight": 3.97
+    },
+    {
+     "symbol": "SRE",
+     "name": "Sempra",
+     "weight": 3.65
+    },
+    {
+     "symbol": "ETR",
+     "name": "Entergy Corp",
+     "weight": 3.39
+    },
+    {
+     "symbol": "XEL",
+     "name": "Xcel Energy Inc",
+     "weight": 3.23
+    },
+    {
+     "symbol": "VST",
+     "name": "Vistra Corp",
+     "weight": 3.16
+    }
+   ],
+   "top10_weight_pct": 52.7,
+   "sectors": [
+    {
+     "sector": "Utilities",
+     "weight": 99.2
+    },
+    {
+     "sector": "Energy",
+     "weight": 0.5
+    },
+    {
+     "sector": "Industrials",
+     "weight": 0.2
+    }
+   ],
+   "fund_family": "Vanguard",
+   "profile_asof": "2026-10-09"
+  },
+  "WAR": {
+   "price": 30.99,
+   "price_display": "$30.99",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 13314,
    "volume_display": "~13K/day",
-   "dollar_volume_avg": 413692,
-   "dollar_volume_display": "~$414K/day",
+   "dollar_volume_avg": 414996,
+   "dollar_volume_display": "~$415K/day",
    "high_52w": 36.02,
    "low_52w": 22.49,
-   "pct_below_high": "-14.4%",
+   "pct_below_high": "-14.0%",
    "max_drawdown_1y": "-25.0%",
    "history_start": "2024-12-31",
    "performance": {
-    "ytd": "+33.5%",
-    "y1": "+29.9%",
+    "ytd": "+34.2%",
+    "y1": "+30.6%",
     "y3_annualized": null,
     "y2025": "+31.2%",
     "as_of": "2026-10-09",
@@ -8686,22 +11326,23 @@
    "profile_asof": "2026-10-09"
   },
   "WCBR": {
-   "price": 48.74,
-   "price_display": "$48.74",
+   "price": 49.96,
+   "price_display": "$49.96",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 78352,
-   "volume_display": "~78K/day",
-   "dollar_volume_avg": 3331282,
-   "dollar_volume_display": "~$3.3M/day",
-   "high_52w": 48.74,
+   "volume_avg": 79498,
+   "volume_display": "~79K/day",
+   "dollar_volume_avg": 3389299,
+   "dollar_volume_display": "~$3.4M/day",
+   "high_52w": 49.96,
    "low_52w": 22.74,
    "pct_below_high": "0.0%",
    "max_drawdown_1y": "-29.9%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+75.0%",
-    "y1": "+50.2%",
-    "y3_annualized": "+33.0%/yr",
+    "ytd": "+79.4%",
+    "y1": "+54.0%",
+    "y3_annualized": "+34.1%/yr",
     "y2025": "-1.4%",
     "y2024": "+11.4%",
     "as_of": "2026-10-09",
@@ -8779,21 +11420,22 @@
    "profile_asof": "2026-10-09"
   },
   "WQTM": {
-   "price": 31.2,
-   "price_display": "$31.20",
+   "price": 31.13,
+   "price_display": "$31.13",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 193477,
-   "volume_display": "~193K/day",
-   "dollar_volume_avg": 6267335,
+   "volume_avg": 194377,
+   "volume_display": "~194K/day",
+   "dollar_volume_avg": 6295291,
    "dollar_volume_display": "~$6.3M/day",
    "high_52w": 41.31,
    "low_52w": 23.32,
-   "pct_below_high": "-24.5%",
+   "pct_below_high": "-24.6%",
    "max_drawdown_1y": "-29.5%",
    "history_start": "2025-10-09",
    "performance": {
-    "ytd": "+20.6%",
-    "y1": "+3.0%",
+    "ytd": "+20.3%",
+    "y1": "+2.8%",
     "y3_annualized": null,
     "as_of": "2026-10-09",
     "basis": "total return (distributions reinvested)"
@@ -8881,22 +11523,23 @@
    "profile_asof": "2026-10-09"
   },
   "WTAI": {
-   "price": 44.05,
-   "price_display": "$44.05",
+   "price": 44.16,
+   "price_display": "$44.16",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 292276,
-   "volume_display": "~292K/day",
-   "dollar_volume_avg": 12141298,
-   "dollar_volume_display": "~$12.1M/day",
+   "volume_avg": 293086,
+   "volume_display": "~293K/day",
+   "dollar_volume_avg": 12177277,
+   "dollar_volume_display": "~$12.2M/day",
    "high_52w": 48.35,
    "low_52w": 26.73,
-   "pct_below_high": "-8.9%",
+   "pct_below_high": "-8.7%",
    "max_drawdown_1y": "-27.6%",
    "history_start": "2021-12-09",
    "performance": {
-    "ytd": "+51.2%",
-    "y1": "+47.5%",
-    "y3_annualized": "+37.1%/yr",
+    "ytd": "+51.5%",
+    "y1": "+47.8%",
+    "y3_annualized": "+37.2%/yr",
     "y2025": "+34.8%",
     "y2024": "+6.5%",
     "as_of": "2026-10-09",
@@ -8986,22 +11629,23 @@
    "profile_asof": "2026-10-09"
   },
   "XAR": {
-   "price": 228.04,
-   "price_display": "$228.04",
+   "price": 228.36,
+   "price_display": "$228.36",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 246913,
-   "volume_display": "~247K/day",
-   "dollar_volume_avg": 63029607,
-   "dollar_volume_display": "~$63.0M/day",
+   "volume_avg": 248916,
+   "volume_display": "~249K/day",
+   "dollar_volume_avg": 63487318,
+   "dollar_volume_display": "~$63.5M/day",
    "high_52w": 296.73,
    "low_52w": 218.75,
-   "pct_below_high": "-23.1%",
+   "pct_below_high": "-23.0%",
    "max_drawdown_1y": "-23.6%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-5.4%",
-    "y1": "-6.9%",
-    "y3_annualized": "+26.1%/yr",
+    "ytd": "-5.2%",
+    "y1": "-6.8%",
+    "y3_annualized": "+26.2%/yr",
     "y2025": "+46.2%",
     "y2024": "+23.3%",
     "as_of": "2026-10-09",
@@ -9079,22 +11723,23 @@
    "profile_asof": "2026-10-09"
   },
   "XBI": {
-   "price": 151.97,
-   "price_display": "$151.97",
+   "price": 153.77,
+   "price_display": "$153.77",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 8542063,
-   "volume_display": "~8.5M/day",
-   "dollar_volume_avg": 1340013712,
-   "dollar_volume_display": "~$1.3B/day",
+   "volume_avg": 8657771,
+   "volume_display": "~8.7M/day",
+   "dollar_volume_avg": 1357944046,
+   "dollar_volume_display": "~$1.4B/day",
    "high_52w": 169.55,
    "low_52w": 104.99,
-   "pct_below_high": "-10.4%",
+   "pct_below_high": "-9.3%",
    "max_drawdown_1y": "-11.9%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+24.8%",
-    "y1": "+43.3%",
-    "y3_annualized": "+28.7%/yr",
+    "ytd": "+26.2%",
+    "y1": "+45.0%",
+    "y3_annualized": "+29.3%/yr",
     "y2025": "+35.9%",
     "y2024": "+1.0%",
     "as_of": "2026-10-09",
@@ -9176,22 +11821,23 @@
    "profile_asof": "2026-10-09"
   },
   "XLE": {
-   "price": 65.69,
-   "price_display": "$65.69",
+   "price": 65.08,
+   "price_display": "$65.08",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 29859414,
-   "volume_display": "~29.9M/day",
-   "dollar_volume_avg": 1845464074,
-   "dollar_volume_display": "~$1.8B/day",
+   "volume_avg": 30168519,
+   "volume_display": "~30.2M/day",
+   "dollar_volume_avg": 1865505760,
+   "dollar_volume_display": "~$1.9B/day",
    "high_52w": 65.93,
    "low_52w": 42.61,
-   "pct_below_high": "-0.4%",
+   "pct_below_high": "-1.3%",
    "max_drawdown_1y": "-15.0%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+49.8%",
-    "y1": "+54.0%",
-    "y3_annualized": "+17.7%/yr",
+    "ytd": "+48.4%",
+    "y1": "+52.5%",
+    "y3_annualized": "+17.3%/yr",
     "y2025": "+7.9%",
     "y2024": "+5.6%",
     "as_of": "2026-10-09",
@@ -9269,22 +11915,23 @@
    "profile_asof": "2026-10-09"
   },
   "XLK": {
-   "price": 198.51,
-   "price_display": "$198.51",
+   "price": 198.78,
+   "price_display": "$198.78",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 7365343,
+   "volume_avg": 7418931,
    "volume_display": "~7.4M/day",
-   "dollar_volume_avg": 1367309270,
+   "dollar_volume_avg": 1377970570,
    "dollar_volume_display": "~$1.4B/day",
    "high_52w": 202.0,
    "low_52w": 127.5,
-   "pct_below_high": "-1.7%",
+   "pct_below_high": "-1.6%",
    "max_drawdown_1y": "-15.9%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+38.4%",
-    "y1": "+37.5%",
-    "y3_annualized": "+33.7%/yr",
+    "ytd": "+38.6%",
+    "y1": "+37.7%",
+    "y3_annualized": "+33.8%/yr",
     "y2025": "+24.6%",
     "y2024": "+21.6%",
     "as_of": "2026-10-09",
@@ -9362,22 +12009,23 @@
    "profile_asof": "2026-10-09"
   },
   "XLU": {
-   "price": 41.15,
-   "price_display": "$41.15",
+   "price": 41.41,
+   "price_display": "$41.41",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 24187051,
-   "volume_display": "~24.2M/day",
-   "dollar_volume_avg": 1023496708,
+   "volume_avg": 24361617,
+   "volume_display": "~24.4M/day",
+   "dollar_volume_avg": 1030749496,
    "dollar_volume_display": "~$1.0B/day",
    "high_52w": 47.73,
    "low_52w": 39.25,
-   "pct_below_high": "-13.8%",
+   "pct_below_high": "-13.2%",
    "max_drawdown_1y": "-16.1%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "-1.6%",
-    "y1": "-6.6%",
-    "y3_annualized": "+15.9%/yr",
+    "ytd": "-1.0%",
+    "y1": "-5.9%",
+    "y3_annualized": "+16.1%/yr",
     "y2025": "+16.0%",
     "y2024": "+23.3%",
     "as_of": "2026-10-09",
@@ -9455,22 +12103,23 @@
    "profile_asof": "2026-10-09"
   },
   "XLV": {
-   "price": 169.19,
-   "price_display": "$169.19",
+   "price": 170.81,
+   "price_display": "$170.81",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 8412473,
-   "volume_display": "~8.4M/day",
-   "dollar_volume_avg": 1405816616,
+   "volume_avg": 8494003,
+   "volume_display": "~8.5M/day",
+   "dollar_volume_avg": 1419790294,
    "dollar_volume_display": "~$1.4B/day",
    "high_52w": 175.68,
    "low_52w": 141.95,
-   "pct_below_high": "-3.7%",
+   "pct_below_high": "-2.8%",
    "max_drawdown_1y": "-10.5%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+10.7%",
-    "y1": "+19.3%",
-    "y3_annualized": "+10.9%/yr",
+    "ytd": "+11.7%",
+    "y1": "+20.4%",
+    "y3_annualized": "+11.2%/yr",
     "y2025": "+14.5%",
     "y2024": "+2.5%",
     "as_of": "2026-10-09",
@@ -9548,22 +12197,23 @@
    "profile_asof": "2026-10-09"
   },
   "XME": {
-   "price": 106.67,
-   "price_display": "$106.67",
+   "price": 106.35,
+   "price_display": "$106.35",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 1809898,
+   "volume_avg": 1821972,
    "volume_display": "~1.8M/day",
-   "dollar_volume_avg": 199709933,
-   "dollar_volume_display": "~$199.7M/day",
+   "dollar_volume_avg": 200993011,
+   "dollar_volume_display": "~$201.0M/day",
    "high_52w": 132.83,
    "low_52w": 87.44,
-   "pct_below_high": "-19.7%",
+   "pct_below_high": "-19.9%",
    "max_drawdown_1y": "-26.5%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+3.2%",
-    "y1": "+4.5%",
-    "y3_annualized": "+28.2%/yr",
+    "ytd": "+2.8%",
+    "y1": "+4.2%",
+    "y3_annualized": "+28.1%/yr",
     "y2025": "+83.5%",
     "y2024": "-4.5%",
     "as_of": "2026-10-09",
@@ -9649,17 +12299,18 @@
    "profile_asof": "2026-10-09"
   },
   "XNDX": {
-   "price": 1.06,
-   "price_display": "$1.06",
+   "price": 0.99,
+   "price_display": "$0.99",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 296189,
-   "volume_display": "~296K/day",
-   "dollar_volume_avg": 827927,
-   "dollar_volume_display": "~$828K/day",
+   "volume_avg": 308118,
+   "volume_display": "~308K/day",
+   "dollar_volume_avg": 839396,
+   "dollar_volume_display": "~$839K/day",
    "high_52w": 33.66,
-   "low_52w": 1.06,
-   "pct_below_high": "-96.9%",
-   "max_drawdown_1y": "-96.9%",
+   "low_52w": 0.99,
+   "pct_below_high": "-97.1%",
+   "max_drawdown_1y": "-97.1%",
    "history_start": "2026-05-07",
    "performance": {
     "ytd": null,
@@ -9679,23 +12330,126 @@
    "fund_family": "AXS",
    "profile_asof": "2026-10-09"
   },
-  "XPH": {
-   "price": 64.04,
-   "price_display": "$64.04",
+  "XOP": {
+   "price": 191.52,
+   "price_display": "$191.52",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 157709,
+   "volume_avg": 3027042,
+   "volume_display": "~3.0M/day",
+   "dollar_volume_avg": 550985464,
+   "dollar_volume_display": "~$551.0M/day",
+   "high_52w": 199.7,
+   "low_52w": 123.29,
+   "pct_below_high": "-4.1%",
+   "max_drawdown_1y": "-18.5%",
+   "history_start": "2021-10-11",
+   "performance": {
+    "ytd": "+53.7%",
+    "y1": "+49.2%",
+    "y3_annualized": "+12.2%/yr",
+    "y2025": "-2.2%",
+    "y2024": "-1.0%",
+    "as_of": "2026-10-09",
+    "basis": "total return (distributions reinvested)"
+   },
+   "name": "State Street SPDR S&P Oil & Gas Exploration & Production ETF",
+   "exchange": "NYSEArca",
+   "instrument_type": "ETF",
+   "first_trade_date": "2006-06-22",
+   "source": "Yahoo Finance",
+   "aum_musd": 3619,
+   "aum_display": "~$3.6B",
+   "expense_ratio": 0.35,
+   "yield_ttm": "1.74%",
+   "holdings": [
+    {
+     "symbol": "PBF",
+     "name": "PBF Energy Inc Class A",
+     "weight": 2.88
+    },
+    {
+     "symbol": "VLO",
+     "name": "Valero Energy Corp",
+     "weight": 2.86
+    },
+    {
+     "symbol": "DINO",
+     "name": "HF Sinclair Corp",
+     "weight": 2.84
+    },
+    {
+     "symbol": "XOM",
+     "name": "ExxonMobil Holdings Corp",
+     "weight": 2.84
+    },
+    {
+     "symbol": "MPC",
+     "name": "Marathon Petroleum Corp",
+     "weight": 2.84
+    },
+    {
+     "symbol": "PARR",
+     "name": "Par Pacific Holdings Inc",
+     "weight": 2.81
+    },
+    {
+     "symbol": "PSX",
+     "name": "Phillips 66",
+     "weight": 2.81
+    },
+    {
+     "symbol": "MUR",
+     "name": "Murphy Oil Corp",
+     "weight": 2.76
+    },
+    {
+     "symbol": "CVX",
+     "name": "Chevron Corp",
+     "weight": 2.74
+    },
+    {
+     "symbol": "DK",
+     "name": "Delek US Holdings Inc Registered Shs Stock Settlement",
+     "weight": 2.72
+    }
+   ],
+   "top10_weight_pct": 28.1,
+   "sectors": [
+    {
+     "sector": "Energy",
+     "weight": 96.3
+    },
+    {
+     "sector": "Materials",
+     "weight": 3.3
+    },
+    {
+     "sector": "Technology",
+     "weight": 0.3
+    }
+   ],
+   "fund_family": "State Street Investment Management",
+   "profile_asof": "2026-10-09"
+  },
+  "XPH": {
+   "price": 64.65,
+   "price_display": "$64.65",
+   "currency": "USD",
+   "price_asof": "2026-10-09",
+   "volume_avg": 158388,
    "volume_display": "~158K/day",
-   "dollar_volume_avg": 10698753,
+   "dollar_volume_avg": 10743019,
    "dollar_volume_display": "~$10.7M/day",
    "high_52w": 74.06,
    "low_52w": 47.32,
-   "pct_below_high": "-13.5%",
+   "pct_below_high": "-12.7%",
    "max_drawdown_1y": "-15.0%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+14.7%",
-    "y1": "+32.3%",
-    "y3_annualized": "+19.2%/yr",
+    "ytd": "+15.7%",
+    "y1": "+33.6%",
+    "y3_annualized": "+19.6%/yr",
     "y2025": "+31.6%",
     "y2024": "+4.9%",
     "as_of": "2026-10-09",
@@ -9773,22 +12527,23 @@
    "profile_asof": "2026-10-09"
   },
   "XT": {
-   "price": 84.61,
-   "price_display": "$84.61",
+   "price": 85.05,
+   "price_display": "$85.05",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 69646,
+   "volume_avg": 70308,
    "volume_display": "~70K/day",
-   "dollar_volume_avg": 5707296,
-   "dollar_volume_display": "~$5.7M/day",
+   "dollar_volume_avg": 5763589,
+   "dollar_volume_display": "~$5.8M/day",
    "high_52w": 85.5,
    "low_52w": 65.77,
-   "pct_below_high": "-1.0%",
+   "pct_below_high": "-0.5%",
    "max_drawdown_1y": "-10.5%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+21.9%",
-    "y1": "+23.6%",
-    "y3_annualized": "+21.1%/yr",
+    "ytd": "+22.5%",
+    "y1": "+24.3%",
+    "y3_annualized": "+21.3%/yr",
     "y2025": "+26.3%",
     "y2024": "+0.3%",
     "as_of": "2026-10-09",
@@ -9902,21 +12657,22 @@
    "profile_asof": "2026-10-09"
   },
   "XYLD": {
-   "price": 41.92,
-   "price_display": "$41.92",
+   "price": 41.93,
+   "price_display": "$41.93",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 543194,
-   "volume_display": "~543K/day",
-   "dollar_volume_avg": 22457632,
-   "dollar_volume_display": "~$22.5M/day",
-   "high_52w": 41.92,
+   "volume_avg": 545491,
+   "volume_display": "~545K/day",
+   "dollar_volume_avg": 22553981,
+   "dollar_volume_display": "~$22.6M/day",
+   "high_52w": 41.93,
    "low_52w": 38.36,
    "pct_below_high": "0.0%",
    "max_drawdown_1y": "-5.3%",
    "history_start": "2021-10-11",
    "performance": {
     "ytd": "+11.7%",
-    "y1": "+18.1%",
+    "y1": "+18.2%",
     "y3_annualized": "+14.0%/yr",
     "y2025": "+8.0%",
     "y2024": "+19.5%",
@@ -10035,22 +12791,23 @@
    "profile_asof": "2026-10-09"
   },
   "XYLG": {
-   "price": 29.94,
-   "price_display": "$29.94",
+   "price": 30.04,
+   "price_display": "$30.04",
+   "currency": "USD",
    "price_asof": "2026-10-09",
-   "volume_avg": 18360,
-   "volume_display": "~18K/day",
-   "dollar_volume_avg": 541842,
-   "dollar_volume_display": "~$542K/day",
-   "high_52w": 29.98,
+   "volume_avg": 18638,
+   "volume_display": "~19K/day",
+   "dollar_volume_avg": 550212,
+   "dollar_volume_display": "~$550K/day",
+   "high_52w": 30.04,
    "low_52w": 25.66,
-   "pct_below_high": "-0.1%",
+   "pct_below_high": "0.0%",
    "max_drawdown_1y": "-6.9%",
    "history_start": "2021-10-11",
    "performance": {
-    "ytd": "+13.3%",
-    "y1": "+17.6%",
-    "y3_annualized": "+18.6%/yr",
+    "ytd": "+13.7%",
+    "y1": "+18.0%",
+    "y3_annualized": "+18.7%/yr",
     "y2025": "+12.9%",
     "y2024": "+22.3%",
     "as_of": "2026-10-09",
