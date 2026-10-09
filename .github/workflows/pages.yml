@@ -3,7 +3,9 @@ name: Deploy to GitHub Pages
 # Publishes the static site in public/ to GitHub Pages, and keeps its market
 # data fresh without any server:
 #   1. scripts/refresh_market.py pulls daily prices / volume / returns for every
-#      ticker in public/data/*.json and writes public/data/market.json
+#      ticker in public/data/*.json and writes public/data/market.json;
+#      scripts/build_universe.py lists every listed ETF for the Explorer
+#      (public/data/universe-*.json)
 #   2. that file is committed back, so the repo always holds the last good
 #      snapshot (commits made with GITHUB_TOKEN don't re-trigger this workflow)
 #   3. public/ is deployed to Pages
@@ -60,6 +62,13 @@ jobs:
         env:
           PYTHONUNBUFFERED: "1"       # stream progress into the Actions log
         run: python3 scripts/refresh_market.py
+
+      - name: Build Explorer universe (every listed ETF)
+        continue-on-error: true     # the themes still deploy if this fails
+        timeout-minutes: 10
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: python3 scripts/build_universe.py
 
       - name: Commit refreshed market data
         if: hashFiles('public/data/market.json') != ''
