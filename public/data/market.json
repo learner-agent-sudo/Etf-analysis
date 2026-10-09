@@ -1,6 +1,6 @@
 {
  "as_of": "2026-10-09",
- "generated_at": "2026-10-09T21:02:52+00:00",
+ "generated_at": "2026-10-09T23:06:19+00:00",
  "source": "Daily closes from Yahoo Finance or Nasdaq (returns reinvest distributions); fund profile (AUM, expense ratio, top-10 holdings) from Yahoo Finance/Morningstar when available. Refreshed automatically by GitHub Actions every weekday after the US close.",
  "count": 129,
  "failed": {
@@ -19,43 +19,43 @@
  "missing": {
   "CNCR": {
    "since": "2026-10-09",
-   "checks": 10,
+   "checks": 11,
    "last_checked": "2026-10-09",
    "reason": "Yahoo Finance: CNCR: not found on Yahoo; Nasdaq: CNCR: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "CRIT": {
    "since": "2026-10-09",
-   "checks": 10,
+   "checks": 11,
    "last_checked": "2026-10-09",
    "reason": "Yahoo Finance: CRIT: not found on Yahoo; Nasdaq: CRIT: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "EBLU": {
    "since": "2026-10-09",
-   "checks": 10,
+   "checks": 11,
    "last_checked": "2026-10-09",
    "reason": "Yahoo Finance: EBLU: not found on Yahoo; Nasdaq: EBLU: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "GERM": {
    "since": "2026-10-09",
-   "checks": 10,
+   "checks": 11,
    "last_checked": "2026-10-09",
    "reason": "Yahoo Finance: GERM: not found on Yahoo; Nasdaq: GERM: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "JEPY": {
    "since": "2026-10-09",
-   "checks": 10,
+   "checks": 11,
    "last_checked": "2026-10-09",
    "reason": "Yahoo Finance: JEPY: not found on Yahoo; Nasdaq: JEPY: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "QBUX": {
    "since": "2026-10-09",
-   "checks": 10,
+   "checks": 11,
    "last_checked": "2026-10-09",
    "reason": "Yahoo Finance: QBUX: not found on Yahoo; Nasdaq: QBUX: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "QTUF": {
    "since": "2026-10-09",
-   "checks": 10,
+   "checks": 11,
    "last_checked": "2026-10-09",
    "reason": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   }
@@ -3216,7 +3216,7 @@
     "as_of": "2026-10-09",
     "basis": "total return (distributions reinvested)"
    },
-   "name": "Goldman Sachs Nasdaq-100 Premiu",
+   "name": "Goldman Sachs Nasdaq-100 Premium Income ETF",
    "exchange": "NasdaqGM",
    "instrument_type": "ETF",
    "first_trade_date": "2023-10-27",
@@ -10715,23 +10715,23 @@
    "price": 23.27,
    "price_display": "$23.27",
    "currency": "USD",
-   "price_asof": "2026-10-09",
-   "volume_avg": 36010,
+   "price_asof": "2026-10-08",
+   "volume_avg": 36314,
    "volume_display": "~36K/day",
-   "dollar_volume_avg": 928036,
-   "dollar_volume_display": "~$928K/day",
+   "dollar_volume_avg": 935028,
+   "dollar_volume_display": "~$935K/day",
    "high_52w": 36.71,
    "low_52w": 22.76,
-   "pct_below_high": "-36.6%",
+   "pct_below_high": "-36.9%",
    "max_drawdown_1y": "-38.0%",
    "history_start": "2022-04-22",
    "performance": {
-    "ytd": "-10.8%",
-    "y1": "-24.7%",
-    "y3_annualized": "+19.9%/yr",
+    "ytd": "-11.2%",
+    "y1": "-24.4%",
+    "y3_annualized": "+18.7%/yr",
     "y2025": "+70.5%",
     "y2024": "+1.2%",
-    "as_of": "2026-10-09",
+    "as_of": "2026-10-08",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Global X Uranium UCITS ETF USD Acc",
