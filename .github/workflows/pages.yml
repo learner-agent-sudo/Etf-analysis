@@ -61,14 +61,14 @@ jobs:
           PYTHONUNBUFFERED: "1"       # stream progress into the Actions log
         run: python3 scripts/refresh_market.py
 
-      - name: Commit refreshed market.json
+      - name: Commit refreshed market data
         if: hashFiles('public/data/market.json') != ''
         continue-on-error: true     # a failed data commit must not block the deploy
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/market.json
-          if git diff --cached --quiet; then echo "market.json unchanged"; exit 0; fi
+          git add public/data            # market.json (+ roster pruning, removed.json)
+          if git diff --cached --quiet; then echo "market data unchanged"; exit 0; fi
           git commit -m "Daily market data refresh"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"

@@ -2,11 +2,11 @@
   "id": "cybersecurity",
   "name": "Cybersecurity",
   "as_of": "2026-06-09",
-  "tagline": "Software and services defending against digital threats \u2014 a large, established, recession-resilient theme. Unlike most niche areas, several funds are big and liquid, so a clean green-light is actually achievable here.",
-  "universe_note": "A mature theme with 5+ real funds. The split is concentration vs diversification: CIBR/BUG/HACK lean into the big pure-plays (CrowdStrike, Palo Alto, Fortinet, Zscaler); IHAK/WCBR spread wider/cheaper. Price, volume, returns and AUM update daily from fund data.",
+  "tagline": "Software and services defending against digital threats \u2014 a large, established, recession-resilient theme. Unlike most niche areas, several funds are big and liquid, yet after the Oct 2026 re-score none of the curated funds clears the full green-light screen \u2014 IHAK, the closest, now has a top-10 just over 50%.",
+  "universe_note": "A mature theme with 5+ real funds. The split is concentration vs diversification: CIBR/BUG/HACK lean into the big pure-plays (CrowdStrike, Palo Alto, Fortinet, Zscaler); IHAK (4%-capped) and WCBR (equal-weight) spread wider/cheaper. Price, volume, returns and AUM update daily from fund data.",
   "live_refresh": true,
   "key_tensions": [
-    "Concentration vs breadth: CIBR/BUG concentrate in a handful of mega-cap cyber names; IHAK/WCBR equal-weight wider \u2014 very different single-stock risk.",
+    "Concentration vs breadth: CIBR/BUG concentrate in a handful of mega-cap cyber names; IHAK caps each stock at 4% (top-10 ~52%) and WCBR equal-weights \u2014 very different single-stock risk.",
     "High valuations: cyber software trades at rich multiples; great businesses, but drawdown-prone when growth multiples compress.",
     "Mega-cap overlap: Broadcom/Cisco/Microsoft appear in some funds \u2014 you may already own them via tech/Nasdaq funds.",
     "Pure-play vs diversified-tech: HACK/CIBR are cyber-pure; some 'cyber & tech' funds dilute with broader software.",
@@ -24,12 +24,12 @@
       "aum_display": "~$1B (est.)",
       "aum_musd": 1000,
       "inception": "2019-06",
-      "structure": "Passive \u2014 modified equal-weight",
+      "structure": "Passive \u2014 market-cap weighted, each stock capped at 4% at the semi-annual rebalance",
       "index": "NYSE FactSet Global Cyber Security",
-      "holdings_count": 35,
-      "top10_weight_display": "~38%",
-      "top10_weight_pct": 38,
-      "largest_position_display": "~4-5% (verify)",
+      "holdings_count": 48,
+      "top10_weight_display": "~51-55% (Oct 2026)",
+      "top10_weight_pct": 52,
+      "largest_position_display": "~5-6% (Okta, Oct 2026) \u2014 cap is 4% at rebalance, drifts higher in between",
       "derivatives": "No",
       "performance": {
         "ytd": null,
@@ -38,7 +38,7 @@
         "y2024": null,
         "y3_annualized": null,
         "as_of": "verify",
-        "note": "Global cyber, more equal-weighted than CIBR/BUG \u2014 lower single-name risk."
+        "note": "Global cyber pure-play, 4%-capped market-cap weights \u2014 less top-heavy than CIBR/BUG, but top-10 now ~52%."
       },
       "market": {
         "price": null,
@@ -54,11 +54,11 @@
         },
         "purity": {
           "rating": "green",
-          "note": "Global cybersecurity pure-play by index."
+          "note": "Global cybersecurity pure-play by index rule: constituents must earn 50%+ of revenue from cybersecurity."
         },
         "concentration": {
-          "rating": "green",
-          "note": "Modified equal-weight, ~35 names, top-10 ~38% \u2014 the most diversified cyber fund."
+          "rating": "yellow",
+          "note": "Top-10 ~51-55% (Oct 2026) \u2014 just over the 50% red-flag line. Softened to caution because no stock exceeds ~6% (4% cap at each rebalance) and it holds ~40-48 names, so it's a bet on ~10 cyber leaders, not on one stock. Re-scored 2026-10-09 (was green on a June figure of ~38%)."
         },
         "liquidity": {
           "rating": "yellow",
@@ -69,35 +69,77 @@
           "note": "Since 2019; established iShares thematic."
         }
       },
-      "overall": "The diversified, lower-cost cyber pure-play \u2014 equal-weight spreads single-stock risk.",
+      "overall": "Cheapest dedicated cyber pure-play, but no longer the 'diversified' one: top-10 is now ~52% (Oct 2026), so it misses the concentration bar of the green-light screen.",
       "memo": {
-        "thesis": "IHAK is the broad, cost-efficient way to own cybersecurity: a modified-equal-weight, global index of ~35 cyber and cyber-tech names. It deliberately avoids the mega-cap concentration of CIBR/BUG, so no single name dominates \u2014 making it the cyber fund most likely to clear a cost+concentration screen.",
-        "strategy": "Passively tracks the NYSE FactSet Global Cyber Security Index, modified-equal-weighted across hardware, software and services globally; rebalanced periodically so weights stay spread.",
+        "thesis": "IHAK is the cheapest dedicated way to own global cybersecurity: an index of ~40-48 companies that each earn at least half their revenue from cyber. It's market-cap weighted with a 4% cap per stock at each semi-annual rebalance \u2014 so it is less top-heavy than CIBR/BUG, but the ten largest names (Okta, Qualys, CrowdStrike, Netskope, Zscaler, SentinelOne, Palo Alto, Varonis, Tenable, Fortinet) now add up to just over half the fund.",
+        "strategy": "Passively tracks the NYSE FactSet Global Cyber Security Index: developed + emerging markets, all market caps, companies with 50%+ cyber revenue. Annual reconstitution, semi-annual rebalance, market-cap weights capped at 4% per stock (weights drift above the cap between rebalances).",
         "purity_verdict": {
           "rating": "green",
-          "note": "Cybersecurity pure-play \u2014 software + services + some cyber-hardware, globally."
+          "text": "Genuine cyber pure-play: the index requires 50%+ of revenue from cybersecurity. The top 10 are all dedicated security vendors."
         },
         "holdings_illustrative": [
           {
-            "name": "Cyber software leaders (CrowdStrike/Palo Alto/Zscaler-type)",
-            "weight": "~4-5%",
+            "name": "Okta (OKTA)",
+            "weight": "~6.0%",
             "playtype": "pure",
-            "note": "equal-weighted, leaders rotate"
+            "note": "identity security"
           },
           {
-            "name": "Cyber services & hardware",
-            "weight": "\u2014",
+            "name": "Qualys (QLYS)",
+            "weight": "~5.8%",
             "playtype": "pure",
-            "note": "diversifies beyond software"
+            "note": "vulnerability management"
           },
           {
-            "name": "International cyber names",
-            "weight": "\u2014",
+            "name": "CrowdStrike (CRWD)",
+            "weight": "~5.4%",
             "playtype": "pure",
-            "note": "global, not US-only"
+            "note": "endpoint security leader"
+          },
+          {
+            "name": "Netskope (NTSK)",
+            "weight": "~5.4%",
+            "playtype": "pure",
+            "note": "cloud security (newer listing)"
+          },
+          {
+            "name": "Zscaler (ZS)",
+            "weight": "~5.2%",
+            "playtype": "pure",
+            "note": "zero-trust network"
+          },
+          {
+            "name": "SentinelOne (S)",
+            "weight": "~5.1%",
+            "playtype": "pure",
+            "note": "endpoint/AI security"
+          },
+          {
+            "name": "Palo Alto Networks (PANW)",
+            "weight": "~5.0%",
+            "playtype": "pure",
+            "note": "platform leader"
+          },
+          {
+            "name": "Varonis (VRNS)",
+            "weight": "~5.0%",
+            "playtype": "pure",
+            "note": "data security"
+          },
+          {
+            "name": "Tenable (TENB)",
+            "weight": "~4.5%",
+            "playtype": "pure",
+            "note": "exposure management"
+          },
+          {
+            "name": "Fortinet (FTNT)",
+            "weight": "~4.2%",
+            "playtype": "pure",
+            "note": "firewalls/network security"
           }
         ],
-        "concentration": "Most diversified cyber fund \u2014 modified equal-weight, top-10 ~38% across ~35 names.",
+        "concentration": "Top-10 ~51-55% across ~40-48 holdings (Oct 2026); largest ~5-6%. The 4% cap at each rebalance stops any single stock dominating, but the fund now leans on ~10 leaders \u2014 past the methodology's 50% red-flag line.",
         "sector_geo": "Global cybersecurity software/services/hardware; US-heavy with international names.",
         "cost_context": "0.47% \u2014 cheapest tier of dedicated cyber funds, though still ~5x broad tech (XLK).",
         "track_record_note": "Since 2019; rode the secular cyber-spend growth.",
@@ -105,7 +147,8 @@
           "\u26a0\ufe0f Still ~5x XLK's fee.",
           "\u26a0\ufe0f Cyber software valuations are rich.",
           "\u2753 Confirm AUM/liquidity in the daily data (memo \u203a Key facts).",
-          "\u26a0\ufe0f Some mega-cap overlap with tech funds."
+          "\u26a0\ufe0f Some mega-cap overlap with tech funds.",
+          "\u26a0\ufe0f Re-scored Oct 2026: top-10 ~52% \u2014 fails the concentration bar of the green-light screen (was ~38% in the June snapshot)."
         ],
         "bull": [
           "Cheapest + most diversified cyber pure-play",
@@ -124,10 +167,15 @@
             "date": "2026-06-09",
             "action": "WATCH (example)",
             "text": "The cyber fund most likely to pass cost+concentration. Check AUM/liquidity in the daily data before acting; compare trailing return vs XLK."
+          },
+          {
+            "date": "2026-10-09",
+            "action": "RE-SCORE",
+            "text": "Concentration green \u2192 yellow after re-research: index is market-cap weighted with a 4% cap (not equal-weight), ~40-48 holdings, top-10 ~51-55%. No longer meets the screen (cost \ud83d\udfe2, concentration \ud83d\udfe2, purity \ud83d\udfe2/\ud83d\udfe1). Still the cheapest pure-play cyber fund."
           }
         ]
       },
-      "meets_criteria": true
+      "meets_criteria": false
     },
     {
       "ticker": "CIBR",
@@ -238,7 +286,7 @@
           {
             "date": "2026-06-09",
             "action": "WATCH (example)",
-            "text": "The liquid default, but IHAK is cheaper + more diversified. Decide if CIBR's liquidity is worth the higher fee + concentration."
+            "text": "The liquid default, but IHAK is cheaper and less top-heavy. Decide if CIBR's liquidity is worth the higher fee + concentration."
           }
         ]
       },
@@ -597,7 +645,7 @@
     {
       "ticker": "IHAK",
       "name": "iShares Cybersecurity & Tech",
-      "tag": "equal-wt \u00b7 cheaper"
+      "tag": "4%-capped \u00b7 cheapest"
     },
     {
       "ticker": "WCBR",

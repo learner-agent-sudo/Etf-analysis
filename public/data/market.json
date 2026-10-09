@@ -10112,5 +10112,60 @@
    "fund_family": "Global X Funds",
    "profile_asof": "2026-10-09"
   }
- }
+ },
+ "hold_policy": {
+  "days": 30,
+  "min_checks": 10
+ },
+ "missing": {
+  "CNCR": {
+   "since": "2026-10-09",
+   "checks": 3,
+   "last_checked": "2026-10-09",
+   "reason": "Yahoo Finance: CNCR: not found on Yahoo; Nasdaq: CNCR: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+  },
+  "CRIT": {
+   "since": "2026-10-09",
+   "checks": 3,
+   "last_checked": "2026-10-09",
+   "reason": "Yahoo Finance: CRIT: not found on Yahoo; Nasdaq: CRIT: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+  },
+  "EBLU": {
+   "since": "2026-10-09",
+   "checks": 3,
+   "last_checked": "2026-10-09",
+   "reason": "Yahoo Finance: EBLU: not found on Yahoo; Nasdaq: EBLU: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+  },
+  "GERM": {
+   "since": "2026-10-09",
+   "checks": 3,
+   "last_checked": "2026-10-09",
+   "reason": "Yahoo Finance: GERM: not found on Yahoo; Nasdaq: GERM: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+  },
+  "JEPY": {
+   "since": "2026-10-09",
+   "checks": 3,
+   "last_checked": "2026-10-09",
+   "reason": "Yahoo Finance: JEPY: not found on Yahoo; Nasdaq: JEPY: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+  },
+  "QBUX": {
+   "since": "2026-10-09",
+   "checks": 3,
+   "last_checked": "2026-10-09",
+   "reason": "Yahoo Finance: QBUX: not found on Yahoo; Nasdaq: QBUX: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+  },
+  "QTUF": {
+   "since": "2026-10-09",
+   "checks": 3,
+   "last_checked": "2026-10-09",
+   "reason": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+  },
+  "URNU": {
+   "since": "2026-10-09",
+   "checks": 3,
+   "last_checked": "2026-10-09",
+   "reason": "Yahoo Finance: URNU: not found on Yahoo; Nasdaq: URNU: not listed (closed, non-US or wrong ticker?)"
+  }
+ },
+ "removed_recent": []
 }

@@ -339,5 +339,47 @@ class NasdaqTotalReturn(unittest.TestCase):
             rm._nasdaq = orig
 
 
+class OnHold(unittest.TestCase):
+    def test_missing_register_counts_only_not_found(self):
+        failed = {"GONE": "Yahoo Finance: GONE: not found on Yahoo; Nasdaq: GONE: not listed (closed, non-US or wrong ticker?)",
+                  "BUSY": "Yahoo Finance: HTTP 503", "OFF": "all sources switched off"}
+        m = rm.track_missing(None, {}, failed, "2026-10-09")
+        self.assertEqual(list(m), ["GONE"])
+        self.assertEqual((m["GONE"]["since"], m["GONE"]["checks"]), ("2026-10-09", 1))
+        m = rm.track_missing(m, {}, failed, "2026-10-12")
+        self.assertEqual((m["GONE"]["since"], m["GONE"]["checks"]), ("2026-10-09", 2))
+        m = rm.track_missing(m, {"GONE": {}}, {}, "2026-10-13")      # found again -> released
+        self.assertEqual(m, {})
+
+    def test_due_for_removal_needs_both_time_and_checks(self):
+        self.assertFalse(rm.due_for_removal({"since": "2026-10-01", "checks": 40}, "2026-10-20"))
+        self.assertFalse(rm.due_for_removal({"since": "2026-08-01", "checks": 3}, "2026-10-20"))
+        self.assertTrue(rm.due_for_removal({"since": "2026-09-01", "checks": 12}, "2026-10-20"))
+
+    def test_prune_removes_roster_entries_but_never_curated_cards(self):
+        with tempfile.TemporaryDirectory() as d:
+            theme = {"id": "x", "etfs": [{"ticker": "KEEP"}],
+                     "roster": [{"ticker": "KEEP", "name": "Curated"}, {"ticker": "GONE", "name": "Closed fund"},
+                                {"ticker": "NEW", "name": "Recently missing"}, {"ticker": "OK", "name": "Fine"}]}
+            with open(os.path.join(d, "x.json"), "w") as fh:
+                json.dump(theme, fh)
+            missing = {"KEEP": {"since": "2026-01-01", "checks": 99, "reason": "not found"},
+                       "GONE": {"since": "2026-08-01", "checks": 30, "reason": "not found"},
+                       "NEW": {"since": "2026-10-01", "checks": 5, "reason": "not found"}}
+            removed = rm.prune_rosters(missing, "2026-10-09", data_dir=d)
+            self.assertEqual([r["ticker"] for r in removed], ["GONE"])
+            after = json.load(open(os.path.join(d, "x.json")))
+            self.assertEqual([r["ticker"] for r in after["roster"]], ["KEEP", "NEW", "OK"])
+            log = json.load(open(os.path.join(d, "removed.json")))
+            self.assertEqual(log[0]["ticker"], "GONE")
+            self.assertEqual(log[0]["missing_since"], "2026-08-01")
+
+    def test_merge_carries_register_and_policy(self):
+        prev = {"missing": {"GONE": {"since": "2026-10-01", "checks": 3}}, "tickers": {}}
+        doc = rm.merge(prev, {}, {"GONE": "Nasdaq: GONE: not listed"}, "2026-10-09T22:00:00+00:00")
+        self.assertEqual(doc["missing"]["GONE"]["checks"], 4)
+        self.assertEqual(doc["hold_policy"], {"days": 30, "min_checks": 10})
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -72,6 +72,12 @@ PROFILE_KEYS = ("aum_musd", "aum_display", "expense_ratio", "yield_ttm", "holdin
 
 # Failure reasons that mean the old entry must not be kept as "stale".
 DROP_ON = ("wrong instrument", "not listed")
+# ...and that put a ticker "on hold" (it may have closed, moved or be mistyped).
+NOT_FOUND = ("not found", "not listed", "wrong instrument")
+# A roster ticker that stays missing this long (and fails this many lookups)
+# is removed from its theme's roster. Curated cards are never auto-removed.
+HOLD_DAYS = 30
+HOLD_MIN_CHECKS = 10
 
 SECTOR_LABELS = {
     "realestate": "Real estate", "consumer_cyclical": "Consumer cyclical",
@@ -631,11 +637,78 @@ def refresh(tickers, sources, profile=None, workers=4, pause=0.2, log=log,
     return ok, failed
 
 
-def merge(previous, fresh, failed, now_iso, keep=None):
+def track_missing(previous_missing, fresh, failed, today, keep=None):
+    """Update the 'on hold' register: tickers no source can find.
+
+    A ticker enters on its first not-found failure (`since`), counts every
+    further not-found lookup (`checks`), and leaves as soon as any source
+    finds it again. Transient outages (HTTP errors, tripped sources) don't
+    count — only answers that say the ticker doesn't exist.
+    """
+    missing = {t: dict(v) for t, v in (previous_missing or {}).items()}
+    for t in fresh:
+        missing.pop(t, None)
+    for t, why in failed.items():
+        if not any(k in (why or "") for k in NOT_FOUND):
+            continue
+        m = missing.get(t) or {"since": today, "checks": 0}
+        m["checks"] += 1
+        m["last_checked"] = today
+        m["reason"] = (why or "")[:160]
+        missing[t] = m
+    if keep is not None:
+        missing = {t: v for t, v in missing.items() if t in keep}
+    return dict(sorted(missing.items()))
+
+
+def due_for_removal(m, today):
+    since = dt.date.fromisoformat(m["since"])
+    return (dt.date.fromisoformat(today) - since).days >= HOLD_DAYS and m.get("checks", 0) >= HOLD_MIN_CHECKS
+
+
+def prune_rosters(missing, today, data_dir=DATA):
+    """Remove long-missing tickers from theme rosters (never curated cards).
+
+    Returns a list of removal records (also appended to removed.json).
+    """
+    removed = []
+    for path in sorted(glob.glob(os.path.join(data_dir, "*.json"))):
+        with open(path, encoding="utf-8") as fh:
+            theme = json.load(fh)
+        if "etfs" not in theme:
+            continue
+        curated = {e["ticker"] for e in theme.get("etfs", [])}
+        keep_rows = []
+        for r in theme.get("roster", []):
+            m = missing.get(r["ticker"])
+            if m and r["ticker"] not in curated and due_for_removal(m, today):
+                removed.append({"ticker": r["ticker"], "name": r.get("name"), "theme": theme.get("id"),
+                                "removed_on": today, "missing_since": m["since"],
+                                "checks": m.get("checks"), "reason": m.get("reason")})
+            else:
+                keep_rows.append(r)
+        if len(keep_rows) != len(theme.get("roster", [])):
+            theme["roster"] = keep_rows
+            with open(path, "w", encoding="utf-8") as fh:
+                json.dump(theme, fh, indent=2, ensure_ascii=True)
+    if removed:
+        log_path = os.path.join(data_dir, "removed.json")
+        history = []
+        if os.path.exists(log_path):
+            with open(log_path, encoding="utf-8") as fh:
+                history = json.load(fh)
+        with open(log_path, "w", encoding="utf-8") as fh:
+            json.dump(history + removed, fh, indent=1, ensure_ascii=False)
+            fh.write("\n")
+    return removed
+
+
+def merge(previous, fresh, failed, now_iso, keep=None, today=None):
     """New data wins; failed tickers keep their last good entry (flagged stale).
 
     Profile fields missing from today's fetch are carried over from the
     previous entry. `keep` (a set) drops tickers no longer in any theme.
+    Not-found tickers are tracked in `missing` (the on-hold register).
     """
     old = dict((previous or {}).get("tickers") or {})
     tickers = dict(old)
@@ -664,8 +737,17 @@ def merge(previous, fresh, failed, now_iso, keep=None):
                   "when available. Refreshed automatically by GitHub Actions every weekday after the US close.",
         "count": len(tickers),
         "failed": {t: failed[t] for t in sorted(failed) if keep is None or t in keep},
+        "hold_policy": {"days": HOLD_DAYS, "min_checks": HOLD_MIN_CHECKS},
+        "missing": track_missing((previous or {}).get("missing"), fresh, failed,
+                                 today or now_iso[:10], keep),
+        "removed_recent": [r for r in (previous or {}).get("removed_recent", [])
+                           if r.get("removed_on", "") >= _days_ago(today or now_iso[:10], 60)],
         "tickers": dict(sorted(tickers.items())),
     }
+
+
+def _days_ago(day, n):
+    return (dt.date.fromisoformat(day) - dt.timedelta(days=n)).isoformat()
 
 
 def main(argv):
@@ -691,6 +773,15 @@ def main(argv):
     if not fresh:
         log("No data fetched — keeping the existing market.json untouched.")
         return 1
+    if not only:
+        removed = prune_rosters(doc["missing"], now[:10])
+        for r in removed:
+            doc["missing"].pop(r["ticker"], None)
+            log(f"Removed {r['ticker']} from the {r['theme']} roster (missing since {r['missing_since']}, "
+                f"{r['checks']} failed lookups).")
+        doc["removed_recent"] = doc["removed_recent"] + removed
+        if doc["missing"]:
+            log("On hold: " + ", ".join(f"{t} (since {m['since']}, {m['checks']}x)" for t, m in doc["missing"].items()))
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(doc, fh, indent=1, ensure_ascii=False)
         fh.write("\n")

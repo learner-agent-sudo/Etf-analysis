@@ -93,11 +93,20 @@ function pressable(node, fn) {
 
 // ---- market-data helpers -------------------------------------------
 const daily = t => (MARKET && MARKET.tickers && MARKET.tickers[t]) || null;
-// Why the daily feed has no data for a ticker (closed, non-US, wrong ticker…).
+// "On hold" = no data source can find the ticker (closed, delisted, moved
+// exchange or mistyped). Roster entries are removed automatically once they
+// have been missing for the hold period; curated cards are only flagged.
+function holdInfo(t) {
+  const m = MARKET && MARKET.missing && MARKET.missing[t];
+  if (!m) return null;
+  const p = (MARKET && MARKET.hold_policy) || { days: 30, min_checks: 10 };
+  return { since: m.since, checks: m.checks,
+    text: `On hold: not found in the market data since ${m.since} (${m.checks} failed lookup${m.checks === 1 ? "" : "s"}) — the fund may have closed, moved exchange, or the ticker may be wrong. ` +
+          `If it is still missing after ${p.days} days it is removed from the roster automatically.` };
+}
 function failReason(t) {
-  const f = MARKET && MARKET.failed;
-  const r = f && !Array.isArray(f) ? f[t] : null;
-  return "Not found in the daily market data" + (r && /not listed/i.test(r) ? " — the fund may have closed, be listed outside the US, or the ticker may be wrong." : ".") + " Verify on the issuer's site.";
+  const h = holdInfo(t);
+  return h ? h.text : "Not found in the daily market data. Verify on the issuer's site.";
 }
 
 // Values like "verify", "n/a", "" mean "no confirmed number".
@@ -135,8 +144,11 @@ function aumCell(e) {
 // Where the latest fund data contradicts the numbers a curated rating was
 // based on. `screen` marks checks that touch the buy screen (cost/concentration).
 function dataChecks(e) {
+  if (e._adhoc) return [];
+  const h = holdInfo(e.ticker);
+  if (h) return [{ dim: "data", screen: !!e.meets_criteria, text: h.text.replace("removed from the roster automatically", "flagged for review (curated cards are never removed automatically)") }];
   const d = daily(e.ticker);
-  if (!d || e._adhoc) return [];
+  if (!d) return [];
   const out = [];
   if (d.top10_weight_pct != null && e.top10_weight_pct != null && Math.abs(d.top10_weight_pct - e.top10_weight_pct) >= 8) {
     const over = d.top10_weight_pct > 50 && e.top10_weight_pct <= 50;
@@ -328,18 +340,22 @@ function renderRoster() {
     const d = daily(x.ticker);
     const y1 = d && d.performance && d.performance.y1;
     const n = num(y1);
-    const why = !d && MARKET ? failReason(x.ticker) : null;
+    const hold = !d ? holdInfo(x.ticker) : null;
     const row = pressable(el("div", { class: "rosteritem" + (isDet ? " detailed" : ""),
       title: isDet ? "Full analysis card — click to open" : "Click to open this fund's daily data" },
       el("span", { class: "rtk" }, (isDet ? "✓ " : "") + x.ticker),
       x.tag ? el("span", { class: "rtag" }, x.tag) : null,
       el("span", { class: "rnm" }, x.name || ""),
       y1 ? el("span", { class: "rperf " + (n >= 0 ? "pos" : "neg"), title: "1-yr return (daily data)" }, y1) : null,
-      why ? el("span", { class: "rnodata", title: why }, "⚠ no data") : null),
+      hold ? el("span", { class: "rnodata", title: hold.text }, "⏸ on hold") : null),
       () => isDet ? openMemo(x.ticker) : lookupTicker(x.ticker, x));
     grid.append(row);
   });
   det.append(note, grid);
+  const gone = ((MARKET && MARKET.removed_recent) || []).filter(r => r.theme === CURRENT._id);
+  if (gone.length) det.append(el("p", { class: "rosternote" }, "Recently removed (not found for " +
+    (((MARKET.hold_policy || {}).days) || 30) + "+ days): " +
+    gone.map(r => `${r.ticker} — ${r.name || ""} (${r.removed_on})`).join("; ") + "."));
   box.append(det);
 }
 
