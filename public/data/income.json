@@ -1568,5 +1568,20 @@
       "name": "SPDR S&P 500",
       "tag": "benchmark (S&P 500)"
     }
+  ],
+  "keywords": [
+    "covered call",
+    "buywrite",
+    "buy-write",
+    "premium income",
+    "option income",
+    "options income",
+    "enhanced options",
+    "equity premium",
+    "yieldmax",
+    "high income",
+    "income strategy",
+    "target income",
+    "option strategy"
   ]
 }

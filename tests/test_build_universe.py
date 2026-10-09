@@ -62,11 +62,21 @@ class Flags(unittest.TestCase):
 class Units(unittest.TestCase):
     def test_calibrate_percent_units(self):
         q = {"SPY": {"netExpenseRatio": 0.0945, "ytdReturn": 14.9, "fiftyTwoWeekChangePercent": 17.2}}
-        self.assertEqual(bu.calibrate(q, 15.1), {"er": 1.0, "ytd": 1.0, "c1y": 1.0})
+        m = bu.calibrate(q, 15.1)
+        self.assertEqual((m["er"], m["ytd"], m["c1y"]), (1.0, 1.0, 1.0))
 
     def test_calibrate_fraction_units(self):
         q = {"SPY": {"netExpenseRatio": 0.000945, "ytdReturn": 0.149, "fiftyTwoWeekChangePercent": 0.172}}
-        self.assertEqual(bu.calibrate(q, 15.1), {"er": 100.0, "ytd": 100.0, "c1y": 100.0})
+        m = bu.calibrate(q, 15.1)
+        self.assertEqual((m["er"], m["ytd"], m["c1y"]), (100.0, 100.0, 100.0))
+
+    def test_yield_units_anchor_on_spy(self):
+        q = {"SPY": {"dividendYield": 1.13, "trailingAnnualDividendYield": 0.0073}}
+        m = bu.calibrate(q, 15.0, 1.1)
+        self.assertEqual((m["dividendYield"], m["trailingAnnualDividendYield"]), (1.0, 100.0))
+        self.assertEqual(bu.pick_yield({"dividendYield": 7.9}, m), 7.9)                  # JEPI-like, percent
+        self.assertEqual(bu.pick_yield({"trailingAnnualDividendYield": 0.05}, m), 5.0)   # fraction -> percent
+        self.assertIsNone(bu.pick_yield({}, m))
 
     def test_build_rows(self):
         listing = {"SPY": {"t": "SPY", "n": "SPDR S&P 500 ETF Trust", "x": "NYSE Arca"},
@@ -76,7 +86,7 @@ class Units(unittest.TestCase):
                           "netExpenseRatio": 0.0945, "trailingAnnualDividendYield": 0.0118,
                           "averageDailyVolume3Month": 61234567.8, "fundInceptionDate": 727660800}}
         screener = {"NEWX": {"t": "NEWX", "n": "Brand New ETF", "p": 25.1, "c1y": None}}
-        rows = bu.build_rows(listing, quotes, {"er": 1.0, "ytd": 1.0, "c1y": 1.0}, screener)
+        rows = bu.build_rows(listing, quotes, {"er": 1.0, "ytd": 1.0, "c1y": 1.0, "trailingAnnualDividendYield": 100.0}, screener)
         spy = dict(zip(bu.COLS, rows[1]))
         self.assertEqual(spy["t"], "SPY")
         self.assertEqual((spy["p"], spy["c1y"], spy["ytd"], spy["aum"], spy["er"], spy["yld"], spy["vol"]),

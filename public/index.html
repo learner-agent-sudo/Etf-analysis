@@ -13,6 +13,10 @@
       <span class="logo">▲</span>
       <h1>ETF Analysis</h1>
     </div>
+    <nav class="tabs" role="tablist" aria-label="View">
+      <button id="tabThemes" class="tab active" role="tab" aria-selected="true">Themes</button>
+      <button id="tabExplore" class="tab" role="tab" aria-selected="false">Explorer</button>
+    </nav>
     <div class="theme-picker">
       <label for="themeSelect">Theme</label>
       <select id="themeSelect" aria-label="Select theme"></select>
@@ -20,6 +24,8 @@
   </header>
 
   <main id="main">
+    <section id="liveMsg" class="livemsg" hidden role="status" aria-live="polite"></section>
+    <div id="themeView">
     <section id="themeIntro" class="intro"></section>
 
     <section class="controls" id="controls" hidden>
@@ -54,10 +60,11 @@
       <span class="hint">Click a header to sort · click a row for the full memo · faded = older snapshot</span>
     </section>
 
-    <section id="liveMsg" class="livemsg" hidden role="status" aria-live="polite"></section>
     <section id="tableWrap" class="table-wrap"></section>
     <section id="roster" class="roster" hidden></section>
     <section id="tensions" class="tensions"></section>
+    </div>
+    <section id="explorer" hidden></section>
   </main>
 
   <div id="overlay" class="overlay" hidden></div>
@@ -85,5 +92,6 @@
   </footer>
 
   <script src="app.js"></script>
+  <script src="explorer.js"></script>
 </body>
 </html>

@@ -40,7 +40,7 @@ EXCHANGE = {"Q": "Nasdaq", "N": "NYSE", "P": "NYSE Arca", "A": "NYSE American",
             "Z": "Cboe BZX", "V": "IEX"}
 QUOTE_FIELDS = ("longName,shortName,quoteType,currency,fullExchangeName,regularMarketPrice,"
                 "regularMarketTime,fiftyTwoWeekLow,fiftyTwoWeekHigh,fiftyTwoWeekChangePercent,"
-                "ytdReturn,netAssets,netExpenseRatio,trailingAnnualDividendYield,dividendYield,"
+                "ytdReturn,netAssets,netExpenseRatio,trailingAnnualDividendYield,dividendYield,yield,"
                 "averageDailyVolume3Month,fundInceptionDate,firstTradeDateMilliseconds")
 BATCH = 100
 COLS = ["t", "n", "x", "p", "c1y", "ytd", "aum", "er", "yld", "vol", "f", "inc"]
@@ -163,7 +163,16 @@ def fetch_quotes(yahoo, tickers, workers=4):
     return out
 
 
-def calibrate(quotes, spy_ytd_pct=None):
+def pick_yield(q, mult):
+    """Best available distribution yield in percent (fields/units vary by fund type)."""
+    for field in ("yield", "dividendYield", "trailingAnnualDividendYield"):
+        v = q.get(field)
+        if isinstance(v, (int, float)) and v > 0:
+            return v * mult.get(field, 1.0)
+    return None
+
+
+def calibrate(quotes, spy_ytd_pct=None, spy_yield_pct=None):
     """Detect whether Yahoo's percent-ish fields are fractions or percents.
 
     Anchors: SPY's expense ratio is ~0.09% (fraction would be ~0.0009); SPY's
@@ -181,6 +190,15 @@ def calibrate(quotes, spy_ytd_pct=None):
     c1y = spy.get("fiftyTwoWeekChangePercent")
     if isinstance(c1y, (int, float)) and abs(c1y) < 1 and spy_ytd_pct is not None and abs(spy_ytd_pct) > 5:
         mult["c1y"] = 100.0
+    # Yield fields: fraction (0.012) or percent (1.2)? Anchor on SPY's ~1% yield
+    # (from market.json when available).
+    ref = spy_yield_pct if spy_yield_pct else 1.2
+    for field in ("yield", "dividendYield", "trailingAnnualDividendYield"):
+        v = spy.get(field)
+        if isinstance(v, (int, float)) and v > 0:
+            mult[field] = 100.0 if abs(v * 100 - ref) < abs(v - ref) else 1.0
+        else:
+            mult[field] = 100.0 if field != "dividendYield" else 1.0   # documented defaults
     return mult
 
 
@@ -208,7 +226,7 @@ def build_rows(listing, quotes, mult, screener=None):
         s = screener.get(t) or {}
         name = q.get("longName") or base.get("n") or q.get("shortName") or s.get("n") or t
         er = q.get("netExpenseRatio")
-        yld = q.get("trailingAnnualDividendYield")
+        yld = pick_yield(q, mult)
         aum = q.get("netAssets")
         inc = q.get("fundInceptionDate") or (q.get("firstTradeDateMilliseconds") or 0) / 1000 or None
         price = q.get("regularMarketPrice") if q.get("regularMarketPrice") is not None else s.get("p")
@@ -222,7 +240,7 @@ def build_rows(listing, quotes, mult, screener=None):
             _r(ytd * mult["ytd"], 1) if isinstance(ytd, (int, float)) else None,
             round(aum / 1e6, 1) if isinstance(aum, (int, float)) and aum > 0 else None,
             _r(er * mult["er"], 2) if isinstance(er, (int, float)) and er > 0 else None,
-            _r(yld * 100, 2) if isinstance(yld, (int, float)) and yld > 0 else None,
+            _r(yld, 2) if isinstance(yld, (int, float)) and 0 < yld < 100 else None,
             int(q["averageDailyVolume3Month"]) if isinstance(q.get("averageDailyVolume3Month"), (int, float)) else None,
             flags(name),
             dt.datetime.fromtimestamp(inc, dt.timezone.utc).date().isoformat() if isinstance(inc, (int, float)) and inc > 0 else None,
@@ -252,13 +270,15 @@ def main(argv):
             log(f"  Nasdaq screener fallback: {len(screener)} rows")
         except Exception as e:  # noqa: BLE001
             log(f"  Nasdaq screener unavailable: {e}")
-    spy_ytd = None
+    spy_ytd = spy_yld = None
     try:
         with open(os.path.join(DATA, "market.json"), encoding="utf-8") as fh:
-            spy_ytd = rm._num(json.load(fh)["tickers"]["SPY"]["performance"]["ytd"].replace("+", ""))
+            spy_m = json.load(fh)["tickers"]["SPY"]
+        spy_ytd = rm._num(spy_m["performance"]["ytd"].replace("+", ""))
+        spy_yld = rm._num(spy_m.get("yield_ttm", "").replace("%", "")) if spy_m.get("yield_ttm") else None
     except Exception:  # noqa: BLE001
         pass
-    mult = calibrate(quotes, spy_ytd)
+    mult = calibrate(quotes, spy_ytd, spy_yld)
     rows = build_rows(listing, quotes, mult, screener)
     spy = next((r for r in rows if r[0] == "SPY"), None)
     log(f"  unit calibration {mult}; SPY row: {dict(zip(COLS, spy)) if spy else None} (market.json YTD {spy_ytd})")

@@ -17,6 +17,13 @@ body { background: var(--bg); color: var(--text);
 .brand h1 { font-size: 18px; margin: 0; font-weight: 600; letter-spacing: .2px; }
 .topbar { gap: 12px; }
 .brand { flex: 0 0 auto; }
+.tabs { display: flex; gap: 4px; margin-right: auto; margin-left: 18px; }
+.tab { background: transparent; color: var(--muted); border: 1px solid var(--border); padding: 6px 12px; font-size: 13px; }
+.tab.active { background: var(--accent); color: #06223f; border-color: var(--accent); }
+.theme-picker.dim { visibility: hidden; }
+.exmore { text-align: center; margin: 12px 0; }
+.exmore button[hidden] { display: none; }
+#exCount { margin: 4px 0 8px; }
 .theme-picker { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 0 1 auto; }
 /* A <select> sizes itself to its longest option — cap it so the header never
    pushes the page wider than a phone screen. */
@@ -198,6 +205,10 @@ td.col-ticker:focus-visible, .rosteritem:focus-visible { outline: 2px solid var(
   .topbar { padding: 10px 14px; }
   .brand h1 { font-size: 16px; }
   .theme-picker { flex: 1 1 auto; justify-content: flex-end; }
+  .topbar { flex-wrap: wrap; }
+  .tabs { order: 3; flex: 1 1 100%; margin: 6px 0 0; }
+  .tab { flex: 1; padding: 8px; }
+  .theme-picker.dim { display: none; }
   .theme-picker label { display: none; }
   #themeSelect { width: 100%; }
   main { padding: 16px 14px; }

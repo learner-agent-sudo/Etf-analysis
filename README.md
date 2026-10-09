@@ -45,6 +45,11 @@ AUM, price, volume, 1-yr & YTD return, colored score dots), a **full-universe
 roster** of every fund tagged to the theme, and a click-to-open **deep memo**
 per ETF (strategy, theme-purity holdings, red flags, bull/bear, decision log).
 
+Plus an **Explorer** tab: every listed ETF (all ~5,800 US-listed today; Hong
+Kong and London next) in one searchable, sortable list — expense ratio, AUM,
+price, 52-week price change, YTD, volume, mechanical cost/size ratings, theme
+suggestions and a one-click "pre-screen". Built daily by `scripts/build_universe.py`.
+
 It has **two layers**:
 - **Curated analysis** (`public/data/<theme>.json`) — the judgment no API makes:
   theme-purity ratings, red flags, scores, memos, the green-light screen.
@@ -101,7 +106,8 @@ earths, and obesity/GLP-1. See [`app/README.md`](app/README.md) for how to add o
 │   └── GLOSSARY.md               ← plain-English definitions
 ├── scripts/
 │   ├── screen.py                 ← backend green-light screener
-│   └── refresh_market.py         ← daily market-data fetcher (writes market.json)
+│   ├── refresh_market.py         ← daily market-data fetcher (writes market.json)
+│   └── build_universe.py         ← daily Explorer universe (writes universe-*.json)
 ├── tests/                        ← offline tests for the market-data maths
 ├── templates/
 │   ├── etf-memo-template.md      ← deep one-pager per ETF

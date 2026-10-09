@@ -558,5 +558,8 @@
       "name": "iShares Semiconductor ETF",
       "tag": "benchmark (semis)"
     }
+  ],
+  "keywords": [
+    "quantum"
   ]
 }

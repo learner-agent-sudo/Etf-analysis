@@ -41,6 +41,9 @@ const GLOSSARY = {
   "Purity": "Theme purity: how well the actual holdings match the fund's name/theme. Red = the label and the holdings disagree.",
   "Concen.": "Concentration: how much is riding on a few holdings. Red = top-heavy / single-stock risk.",
   "Yield": "Trailing 12-month distribution yield (income paid ÷ price). Beware: a high yield can be partly 'return of capital'. Compare total return, not just yield.",
+  "1-yr price": "52-week change in the share price only — excludes dividends/distributions, so income and bond funds look worse than their real (total) return.",
+  "Size": "Explorer rating from fund size (AUM): 🟢 ≥ $500M, 🟡 ≥ $50M, 🔴 smaller — small funds have wider spreads and closure risk.",
+  "Pre-screen": "Explorer shortcut: expense ratio ≤ 0.50% (cost 🟢), AUM ≥ $50M, and not leveraged/inverse, an ETN or futures-based. Concentration and purity still need a look at the holdings.",
   "Daily data": "Price, volume, returns, AUM and top holdings refresh automatically every weekday after the US market close (end-of-day, not intraday). Faded values are an older hand-researched snapshot, shown until fresh data exists. For an intraday price, open a fund and tap “Live quote”.",
 };
 
@@ -80,7 +83,7 @@ const escapeHtml = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": 
 const escapeRe = s => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const scoreOf = (etf, dim) => (etf.scores && etf.scores[dim]) || null;
 const num = v => { const n = parseFloat(String(v ?? "").replace(/[^0-9.\-]/g, "")); return isFinite(n) ? n : null; };
-const fmtMusd = a => a >= 1000 ? `~$${(a / 1000).toFixed(1)}B` : `~$${a}M`;
+const fmtMusd = a => a >= 1e6 ? `~$${(a / 1e6).toFixed(1)}T` : a >= 1000 ? `~$${(a / 1000).toFixed(1)}B` : `~$${a}M`;
 const quoteUrl = t => `https://finance.yahoo.com/quote/${encodeURIComponent(t)}`;
 // Make a clickable non-button element reachable and operable by keyboard.
 function pressable(node, fn) {
@@ -132,7 +135,7 @@ function erOf(e) {
 function aumOf(e) {
   const d = daily(e.ticker);
   if (d && d.aum_musd != null) return { musd: d.aum_musd, display: d.aum_display || fmtMusd(d.aum_musd), fresh: true, asof: d.profile_asof };
-  if (e.aum_display || e.aum_musd != null) return { musd: e.aum_musd, display: e.aum_display || fmtMusd(e.aum_musd), fresh: false };
+  if (e.aum_display || e.aum_musd != null) return { musd: e.aum_musd, display: e.aum_display || fmtMusd(e.aum_musd), fresh: !!e._fresh, asof: e._fresh ? CURRENT.as_of : null };
   return null;
 }
 function aumCell(e) {
@@ -179,11 +182,11 @@ function marketCell(e, which) {
   const d = daily(e.ticker), m = e.market || {};
   if (which === "price") {
     if (d && d.price_display) return el("span", { title: `Close on ${d.price_asof}${staleNote(d)}` }, d.price_display);
-    if (m.price_display) return el("span", { class: "snap", title: snapTitle("Price", m.price_asof) }, m.price_display);
+    if (m.price_display) return el("span", { class: e._fresh ? "" : "snap", title: e._fresh ? `Close on ${m.price_asof}` : snapTitle("Price", m.price_asof) }, m.price_display);
     return nodata("Price");
   }
   if (d && d.volume_display) return el("span", { title: `Average shares/day over 3 months (${d.dollar_volume_display || "?"} in dollars)${staleNote(d)}` }, d.volume_display);
-  if (m.volume_display) return el("span", { class: "snap", title: snapTitle("Average volume", m.price_asof) }, m.volume_display);
+  if (m.volume_display) return el("span", { class: e._fresh ? "" : "snap", title: e._fresh ? "Average shares/day over 3 months" : snapTitle("Average volume", m.price_asof) }, m.volume_display);
   return nodata("Volume");
 }
 // A return figure: fresh daily data first, else the dated snapshot.
@@ -191,7 +194,7 @@ function perfOf(e, key) {
   const d = daily(e.ticker), dp = d && d.performance;
   if (dp && !isPlaceholder(dp[key])) return { v: dp[key], fresh: true, asof: dp.as_of, priceOnly: /^price/.test(dp.basis || "") };
   const sp = e.performance;
-  if (sp && !isPlaceholder(sp[key])) return { v: sp[key], fresh: false, asof: isPlaceholder(sp.as_of) ? (CURRENT && CURRENT.as_of) : sp.as_of };
+  if (sp && !isPlaceholder(sp[key])) return { v: sp[key], fresh: !!e._fresh, asof: isPlaceholder(sp.as_of) ? (CURRENT && CURRENT.as_of) : sp.as_of };
   return null;
 }
 // Is the fund simply too young to have a figure for this period?
@@ -230,6 +233,22 @@ async function loadMarket(bust) {
   } catch (_) { /* not generated yet — the curated snapshot is used */ }
   return MARKET;
 }
+// ---- views: Themes (curated analysis) | Explorer (every listed ETF) --
+let VIEW = "themes", LAST_THEME = null;
+function setView(v) {
+  VIEW = v;
+  $("#themeView").hidden = v !== "themes";
+  $("#explorer").hidden = v !== "explore";
+  $(".theme-picker").classList.toggle("dim", v !== "themes");
+  $("#tabThemes").classList.toggle("active", v === "themes");
+  $("#tabExplore").classList.toggle("active", v === "explore");
+  $("#tabThemes").setAttribute("aria-selected", v === "themes");
+  $("#tabExplore").setAttribute("aria-selected", v === "explore");
+  if (v === "explore" && !location.hash.startsWith("#explore")) history.replaceState(null, "", "#explore");
+  closeMemo();
+}
+const exploreRoute = () => { const h = decodeURIComponent(location.hash.replace(/^#/, "")); return h === "explore" || h.startsWith("explore=") ? (h.split("=")[1] || "") : null; };
+
 const THEME_ALIASES = { nuclear: "energy" };     // renamed themes keep old links working
 const themeAlias = id => THEME_ALIASES[id] || id;
 const themeFromUrl = () => themeAlias(decodeURIComponent(location.hash.replace(/^#/, "")));
@@ -263,6 +282,8 @@ async function init() {
   $("#segmentSel").addEventListener("change", render);
   $("#addBtn").addEventListener("click", onAddTicker);
   $("#addTicker").addEventListener("keydown", e => { if (e.key === "Enter") onAddTicker(); });
+  $("#tabThemes").addEventListener("click", () => { if (VIEW !== "themes") selectTheme(LAST_THEME || $("#themeSelect").value); });
+  $("#tabExplore").addEventListener("click", () => { if (VIEW !== "explore") showExplorer(); });
   $("#closeMemo").addEventListener("click", closeMemo);
   $("#overlay").addEventListener("click", closeMemo);
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeMemo(); });
@@ -274,15 +295,22 @@ async function init() {
   const want = [themeFromUrl(), savedTheme()].find(id => id && window._THEMES[id]);
   const first = want || loaded[0]._id;
   sel.value = first;
-  selectTheme(first);
+  const ex = exploreRoute();
+  if (ex !== null) { LAST_THEME = first; showExplorer(window._THEMES[ex] ? ex : ""); }
+  else selectTheme(first);
   window.addEventListener("hashchange", () => {
+    const exr = exploreRoute();
+    if (exr !== null) { if (VIEW !== "explore") showExplorer(window._THEMES[exr] ? exr : undefined); return; }
     const h = themeFromUrl();
-    if (h && window._THEMES[h] && h !== CURRENT._id) { sel.value = h; selectTheme(h); }
+    if (h && window._THEMES[h] && (VIEW !== "themes" || h !== CURRENT._id)) { sel.value = h; selectTheme(h); }
   });
 }
 
 function selectTheme(id) {
   CURRENT = window._THEMES[id];
+  LAST_THEME = id;
+  $("#themeSelect").value = id;
+  setView("themes");
   if (!activeColumns().some(c => c.key === SORT.key)) SORT = { key: "ticker", dir: 1 };
   $("#controls").hidden = false;
   $("#liveMsg").hidden = true;
@@ -371,7 +399,8 @@ function renderRoster() {
     roster.slice().sort(byTicker).forEach(x => g.append(item(x)));
     grid.append(g);
   }
-  det.append(note, grid);
+  det.append(note, grid, el("p", { class: "rosternote" },
+    el("button", { class: "refresh", onclick: () => showExplorer(CURRENT._id) }, "Browse every listed ETF matching this theme in the Explorer →")));
   const gone = ((MARKET && MARKET.removed_recent) || []).filter(r => r.theme === CURRENT._id);
   if (gone.length) det.append(el("p", { class: "rosternote" }, "Recently removed (not found for " +
     (((MARKET.hold_policy || {}).days) || 30) + "+ days): " +
@@ -646,7 +675,7 @@ function openMemo(ticker) {
   const body = $("#memoBody"); body.innerHTML = "";
   const wrap = el("div", { class: "memo" });
   const er = erOf(e), a = aumOf(e);
-  const kind = e._stock ? "Single stock (not an ETF)" : e._adhoc ? "Roster fund (not curated)" : e.is_theme_fund ? "Theme fund" : "Benchmark / reference";
+  const kind = e._stock ? "Single stock (not an ETF)" : e._explorer ? "Explorer fund (not curated)" : e._adhoc ? "Roster fund (not curated)" : e.is_theme_fund ? "Theme fund" : "Benchmark / reference";
 
   wrap.append(
     el("h2", { id: "memoTitle" }, `${e.ticker} — ${e.name}`),
@@ -655,7 +684,9 @@ function openMemo(ticker) {
       el("a", { class: "holdlink", href: quoteUrl(ticker), target: "_blank", rel: "noopener" }, "↗ Live quote"),
       e.holdings_url ? el("a", { class: "holdlink", href: e.holdings_url, target: "_blank", rel: "noopener" },
         "↗ Official holdings" + (e.issuer ? " (" + e.issuer + ")" : "")) : null),
-    el("p", { class: "muted small" }, d
+    el("p", { class: "muted small" }, e._explorer
+      ? `Explorer data: ${e.performance.as_of} · updates automatically every weekday.`
+      : d
       ? `Market data: ${d.price_asof} close${staleNote(d)} · updates automatically every weekday.`
       : MARKET ? "No daily market data for this ticker yet — figures below are the hand-researched snapshot."
                : "Showing the hand-researched snapshot (daily data not generated yet)."),
