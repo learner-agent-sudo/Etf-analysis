@@ -3,7 +3,7 @@
   "name": "AI / Robotics",
   "as_of": "2026-06-08",
   "tagline": "The hottest theme \u2014 but the central question is overlap: many 'AI' funds are stuffed with NVIDIA/Micron/AMD/Alphabet you likely already own via a cheap index fund. The genuine robotics plays (ABB, Keyence, Fanuc) cost more but give differentiated exposure.",
-  "universe_note": "A deep, crowded theme. Genuine ROBOTICS/AUTOMATION (BOTZ, ROBO, ROBT, THNQ) vs AI/SEMICONDUCTOR-heavy (ARTY, CHAT, AIQ, IGPT, WTAI) \u2014 the latter overlap QQQ/SMH heavily. SMH & XT are references. Use 'Add ticker' for others (ROBT peers, AIQ peers).",
+  "universe_note": "A deep, crowded theme. Genuine ROBOTICS/AUTOMATION (BOTZ, ROBO, ROBT, THNQ) vs AI/SEMICONDUCTOR-heavy (ARTY, CHAT, AIQ, IGPT, WTAI) \u2014 the latter overlap QQQ/SMH heavily. SMH & XT are references. Use the Look-up box for others (ROBT peers, AIQ peers).",
   "live_refresh": true,
   "key_tensions": [
     "Mega-cap overlap is the #1 issue: AI funds like ARTY/CHAT lean on NVIDIA, Micron, AMD, Alphabet, Microsoft \u2014 the same names you already own in any S&P/Nasdaq fund. You may be paying a thematic fee for exposure you already have.",
@@ -397,7 +397,7 @@
       "issuer": "Roundhill Investments",
       "holdings_url": "https://www.roundhillinvestments.com/etf/chat/",
       "expense_ratio": 0.75,
-      "aum_display": "verify (tap Refresh)",
+      "aum_display": null,
       "aum_musd": null,
       "inception": "2023-05",
       "structure": "Active",

@@ -47,20 +47,20 @@
         </select>
       </span>
       <span class="addbox">
-        <input type="search" id="addTicker" maxlength="8" placeholder="Add ticker (e.g. QTUM)…" />
+        <input type="search" id="addTicker" maxlength="8" placeholder="Look up a ticker (e.g. ARKQ)" aria-label="Look up a ticker" />
         <button id="addBtn">＋ Look up</button>
       </span>
-      <span class="hint">Click a header to sort · click a row for the memo · ↻ pulls live data</span>
+      <span class="hint">Click a header to sort · click a row for the full memo · faded = older snapshot</span>
     </section>
 
-    <section id="liveMsg" class="livemsg" hidden></section>
+    <section id="liveMsg" class="livemsg" hidden role="status" aria-live="polite"></section>
     <section id="tableWrap" class="table-wrap"></section>
     <section id="roster" class="roster" hidden></section>
     <section id="tensions" class="tensions"></section>
   </main>
 
   <div id="overlay" class="overlay" hidden></div>
-  <aside id="memoDrawer" class="drawer" hidden aria-label="ETF memo">
+  <aside id="memoDrawer" class="drawer" hidden role="dialog" aria-modal="true" aria-labelledby="memoTitle">
     <button id="closeMemo" class="close" aria-label="Close">×</button>
     <div id="memoBody"></div>
   </aside>
@@ -71,13 +71,15 @@
       <dl id="glossaryList"></dl>
     </details>
     <p>
-      Personal research aid — <strong>not investment advice</strong>. Curated figures
-      are a dated snapshot from public sources; the ↻ button and "Look up" box pull
-      live data from a market-data provider, and each fund links to its issuer's
-      official holdings. Always verify against the issuer fact sheet and latest SEC
-      filing before acting. A <span class="nodata">n/a ↻</span> means a figure
-      isn't loaded yet — tap ↻ to fetch it; <strong>every fund listed is a real,
-      tradable ETF</strong>, so a blank never means "not investable".
+      Personal research aid — <strong>not investment advice</strong>. The analysis
+      (ratings, memos, purity calls) is a dated, hand-researched snapshot. Price,
+      volume, returns, AUM and top holdings update automatically every weekday
+      after the US close (end-of-day data via Yahoo Finance; faded values are the
+      older snapshot). Each fund links to its issuer's official holdings — always
+      verify against the issuer fact sheet and latest SEC filing before acting.
+      An <span class="nodata">n/a</span> means a figure isn't loaded yet;
+      <strong>every fund listed is a real, tradable ETF</strong>, so a blank never
+      means "not investable".
     </p>
   </footer>
 

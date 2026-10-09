@@ -1,9 +1,9 @@
 {
   "id": "cybersecurity",
   "name": "Cybersecurity",
-  "as_of": "2026-06-09 (scores from stable fund attributes; tap \u21bb for live price/AUM/returns)",
+  "as_of": "2026-06-09",
   "tagline": "Software and services defending against digital threats \u2014 a large, established, recession-resilient theme. Unlike most niche areas, several funds are big and liquid, so a clean green-light is actually achievable here.",
-  "universe_note": "A mature theme with 5+ real funds. The split is concentration vs diversification: CIBR/BUG/HACK lean into the big pure-plays (CrowdStrike, Palo Alto, Fortinet, Zscaler); IHAK/WCBR spread wider/cheaper. Market figures need a live \u21bb refresh.",
+  "universe_note": "A mature theme with 5+ real funds. The split is concentration vs diversification: CIBR/BUG/HACK lean into the big pure-plays (CrowdStrike, Palo Alto, Fortinet, Zscaler); IHAK/WCBR spread wider/cheaper. Price, volume, returns and AUM update daily from fund data.",
   "live_refresh": true,
   "key_tensions": [
     "Concentration vs breadth: CIBR/BUG concentrate in a handful of mega-cap cyber names; IHAK/WCBR equal-weight wider \u2014 very different single-stock risk.",
@@ -21,7 +21,7 @@
       "issuer": "BlackRock (iShares)",
       "holdings_url": "https://www.ishares.com/us/products/307352/",
       "expense_ratio": 0.47,
-      "aum_display": "~$1B (verify \u21bb)",
+      "aum_display": "~$1B (est.)",
       "aum_musd": 1000,
       "inception": "2019-06",
       "structure": "Passive \u2014 modified equal-weight",
@@ -38,7 +38,7 @@
         "y2024": null,
         "y3_annualized": null,
         "as_of": "verify",
-        "note": "Global cyber, more equal-weighted than CIBR/BUG \u2014 lower single-name risk. Tap \u21bb for current price/AUM/returns."
+        "note": "Global cyber, more equal-weighted than CIBR/BUG \u2014 lower single-name risk."
       },
       "market": {
         "price": null,
@@ -62,7 +62,7 @@
         },
         "liquidity": {
           "rating": "yellow",
-          "note": "Mid-size AUM; verify liquidity via \u21bb."
+          "note": "Mid-size AUM; verify liquidity in the daily data (memo \u203a Key facts)."
         },
         "track_record": {
           "rating": "green",
@@ -100,11 +100,11 @@
         "concentration": "Most diversified cyber fund \u2014 modified equal-weight, top-10 ~38% across ~35 names.",
         "sector_geo": "Global cybersecurity software/services/hardware; US-heavy with international names.",
         "cost_context": "0.47% \u2014 cheapest tier of dedicated cyber funds, though still ~5x broad tech (XLK).",
-        "track_record_note": "Since 2019; rode the secular cyber-spend growth. Tap \u21bb for trailing returns.",
+        "track_record_note": "Since 2019; rode the secular cyber-spend growth.",
         "red_flags": [
           "\u26a0\ufe0f Still ~5x XLK's fee.",
           "\u26a0\ufe0f Cyber software valuations are rich.",
-          "\u2753 Verify AUM/liquidity via \u21bb.",
+          "\u2753 Confirm AUM/liquidity in the daily data (memo \u203a Key facts).",
           "\u26a0\ufe0f Some mega-cap overlap with tech funds."
         ],
         "bull": [
@@ -123,7 +123,7 @@
           {
             "date": "2026-06-09",
             "action": "WATCH (example)",
-            "text": "The cyber fund most likely to pass cost+concentration. Verify AUM/liquidity via \u21bb before acting; compare trailing return vs XLK."
+            "text": "The cyber fund most likely to pass cost+concentration. Check AUM/liquidity in the daily data before acting; compare trailing return vs XLK."
           }
         ]
       },
@@ -136,7 +136,7 @@
       "issuer": "First Trust",
       "holdings_url": "https://www.ftportfolios.com/retail/etf/etfsummary.aspx?Ticker=CIBR",
       "expense_ratio": 0.59,
-      "aum_display": "~$9B (verify \u21bb)",
+      "aum_display": "~$9B (est.)",
       "aum_musd": 9000,
       "inception": "2015-07",
       "structure": "Passive \u2014 liquidity-weighted",
@@ -153,7 +153,7 @@
         "y2024": null,
         "y3_annualized": null,
         "as_of": "verify",
-        "note": "The largest, most liquid cyber fund \u2014 but pricier and more concentrated in the big cyber names. Tap \u21bb for current figures."
+        "note": "The largest, most liquid cyber fund \u2014 but pricier and more concentrated in the big cyber names."
       },
       "market": {
         "price": null,
@@ -215,7 +215,7 @@
         "concentration": "Top-10 ~45% \u2014 liquidity-weighted toward the largest names.",
         "sector_geo": "Global cybersecurity, US-heavy.",
         "cost_context": "0.59% \u2014 standard for the theme but ~6x XLK.",
-        "track_record_note": "Since 2015; the longest cyber record. Tap \u21bb for trailing returns.",
+        "track_record_note": "Since 2015; the longest cyber record.",
         "red_flags": [
           "\u26a0\ufe0f 0.59% fee.",
           "\u26a0\ufe0f Top-10 ~45% concentration.",
@@ -251,7 +251,7 @@
       "issuer": "Global X",
       "holdings_url": "https://www.globalxetfs.com/funds/bug",
       "expense_ratio": 0.5,
-      "aum_display": "~$0.9B (verify \u21bb)",
+      "aum_display": "~$0.9B (est.)",
       "aum_musd": 900,
       "inception": "2019-10",
       "structure": "Passive \u2014 modified cap-weight",
@@ -268,7 +268,7 @@
         "y2024": null,
         "y3_annualized": null,
         "as_of": "verify",
-        "note": "Concentrated, ~25 mega-cap cyber names. Tap \u21bb for current figures."
+        "note": "Concentrated, ~25 mega-cap cyber names."
       },
       "market": {
         "price": null,
@@ -330,7 +330,7 @@
         "concentration": "~25 names, top-10 ~55% \u2014 the most concentrated cyber fund here.",
         "sector_geo": "Global cyber, US-heavy.",
         "cost_context": "0.50% \u2014 middle of the cyber pack.",
-        "track_record_note": "Since 2019. Tap \u21bb for returns.",
+        "track_record_note": "Since 2019.",
         "red_flags": [
           "\ud83d\udea9 Top-10 ~55% \u2014 concentrated.",
           "\u26a0\ufe0f Only ~25 holdings.",
@@ -366,7 +366,7 @@
       "issuer": "Amplify",
       "holdings_url": "https://amplifyetfs.com/hack/",
       "expense_ratio": 0.6,
-      "aum_display": "~$1.5B (verify \u21bb)",
+      "aum_display": "~$1.5B (est.)",
       "aum_musd": 1500,
       "inception": "2014-11",
       "structure": "Passive \u2014 tiered weight",
@@ -383,7 +383,7 @@
         "y2024": null,
         "y3_annualized": null,
         "as_of": "verify",
-        "note": "The original cyber ETF (2014). Tap \u21bb for current figures."
+        "note": "The original cyber ETF (2014)."
       },
       "market": {
         "price": null,
@@ -445,7 +445,7 @@
         "concentration": "~25 names, top-10 ~45%.",
         "sector_geo": "Global cyber, US-heavy.",
         "cost_context": "0.60% \u2014 the priciest cyber fund here.",
-        "track_record_note": "Since 2014 \u2014 longest record of all. Tap \u21bb for returns.",
+        "track_record_note": "Since 2014 \u2014 longest record of all.",
         "red_flags": [
           "\u26a0\ufe0f 0.60% \u2014 highest cyber fee.",
           "\u26a0\ufe0f Top-10 ~45%.",
@@ -481,7 +481,7 @@
       "issuer": "State Street SPDR",
       "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/the-technology-select-sector-spdr-fund-xlk",
       "expense_ratio": 0.09,
-      "aum_display": "~$80B (verify \u21bb)",
+      "aum_display": "~$80B (est.)",
       "aum_musd": 80000,
       "inception": "1998-12",
       "structure": "Passive \u2014 cap-weighted",
@@ -498,7 +498,7 @@
         "y2024": null,
         "y3_annualized": null,
         "as_of": "verify",
-        "note": "Benchmark \u2014 broad tech at 0.09%; already holds the mega-cap security arms. Tap \u21bb for current figures."
+        "note": "Benchmark \u2014 broad tech at 0.09%; already holds the mega-cap security arms."
       },
       "market": {
         "price": null,
@@ -554,7 +554,7 @@
         "concentration": "Top-10 ~70%, mega-cap dominated.",
         "sector_geo": "US large-cap tech.",
         "cost_context": "0.09% \u2014 far below any cyber fund.",
-        "track_record_note": "Since 1998; proven. Tap \u21bb for returns.",
+        "track_record_note": "Since 1998; proven.",
         "red_flags": [
           "\u26a0\ufe0f Not a cyber fund.",
           "\u26a0\ufe0f Mega-cap concentration."

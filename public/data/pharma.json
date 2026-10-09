@@ -3,7 +3,7 @@
   "name": "Pharma / Biotech",
   "as_of": "2026-06-08",
   "tagline": "A barbell of risk \u2014 from speculative, FDA-binary small-cap biotech (XBI, ARKG) to cash-rich mega-cap pharma (PPH) \u2014 in a sector that swings on trial readouts, drug-pricing politics, M&A and rates. Pick your weighting scheme and sub-industry; they behave very differently.",
-  "universe_note": "A deep theme spanning sub-industries: biotech (XBI/IBB/FBT), clinical-stage biotech (SBIO), big pharma (PPH/PJP), equal-weight pharma (XPH), genomics (ARKG/GNOM/IDNA), and medical devices (IHI \u2014 a related but DIFFERENT, non-drug sub-theme). XLV is the broad benchmark. Use 'Add ticker' for others.",
+  "universe_note": "A deep theme spanning sub-industries: biotech (XBI/IBB/FBT), clinical-stage biotech (SBIO), big pharma (PPH/PJP), equal-weight pharma (XPH), genomics (ARKG/GNOM/IDNA), and medical devices (IHI \u2014 a related but DIFFERENT, non-drug sub-theme). XLV is the broad benchmark. Use the Look-up box for others.",
   "live_refresh": true,
   "key_tensions": [
     "FDA binary-event risk: small/mid-cap biotech (XBI, ARKG) can move 30-80% on a single trial readout or approval/CRL \u2014 idiosyncratic risk that big pharma (PPH) and broad healthcare (XLV) largely dampen.",
@@ -518,7 +518,7 @@
           {
             "date": "2026-06-08",
             "action": "WATCH (example)",
-            "text": "The stable big-pharma pick \u2014 but it's ~18-19% Eli Lilly and thinly traded. If you want diversified pharma, consider equal-weight XPH (Add ticker); if you want Lilly, you could just buy Lilly."
+            "text": "The stable big-pharma pick \u2014 but it's ~18-19% Eli Lilly and thinly traded. If you want diversified pharma, consider equal-weight XPH (Look-up box); if you want Lilly, you could just buy Lilly."
           }
         ]
       },
@@ -1154,7 +1154,7 @@
           {
             "date": "2026-06-09",
             "action": "CAUTION (example)",
-            "text": "The most speculative pharma/biotech bet \u2014 pure clinical-stage R&D. Only for high risk tolerance + small sizing; closure risk at ~$120M AUM. Tap \u21bb for price/volume."
+            "text": "The most speculative pharma/biotech bet \u2014 pure clinical-stage R&D. Only for high risk tolerance + small sizing; closure risk at ~$120M AUM."
           }
         ]
       },
@@ -1535,7 +1535,7 @@
           {
             "date": "2026-06-09",
             "action": "WATCH (example)",
-            "text": "A more drug-developer-weighted, global genomics fund than GNOM. Volatile (recall -42% in 2022); modest AUM. Tap \u21bb for price/volume."
+            "text": "A more drug-developer-weighted, global genomics fund than GNOM. Volatile (recall -42% in 2022); modest AUM."
           }
         ]
       },

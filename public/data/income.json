@@ -3,7 +3,7 @@
   "name": "Income / Covered-Call",
   "as_of": "2026-06-08",
   "tagline": "Get paid now, give up the rip \u2014 these funds sell call options to convert future upside into a high monthly paycheck. Great in flat/down markets, they lag a plain index fund in bull runs.",
-  "universe_note": "A deep theme (dozens of funds). Splits into: ACTIVE+ELN (JEPI/JEPQ), SYSTEMATIC 100%-overwrite (QYLD/XYLD/RYLD), CALL-SPREAD tax-managed (SPYI/QQQI), DAILY-call (ISPY), PARTIAL/dynamic (DIVO/GPIX), and SHORT-VOL (SVOL). Use 'Add ticker' for any not listed.",
+  "universe_note": "A deep theme (dozens of funds). Splits into: ACTIVE+ELN (JEPI/JEPQ), SYSTEMATIC 100%-overwrite (QYLD/XYLD/RYLD), CALL-SPREAD tax-managed (SPYI/QQQI), DAILY-call (ISPY), PARTIAL/dynamic (DIVO/GPIX), and SHORT-VOL (SVOL). Use the Look-up box for any not listed.",
   "live_refresh": true,
   "key_tensions": [
     "Yield is NOT return: a 10-12% distribution after capped upside often trails a plain S&P fund over multi-year bull runs. JEPI ~9.8%/yr since 2020 vs S&P ~13.2%.",
@@ -1218,7 +1218,7 @@
           {
             "date": "2026-06-09",
             "action": "WATCH (example)",
-            "text": "If you want income with the LEAST upside sacrifice, the daily-call design is compelling. Accept the lower ~7% yield and the swap-counterparty wrinkle. Tap \u21bb for current price/volume."
+            "text": "If you want income with the LEAST upside sacrifice, the daily-call design is compelling. Accept the lower ~7% yield and the swap-counterparty wrinkle."
           }
         ]
       },

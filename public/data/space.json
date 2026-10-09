@@ -243,7 +243,7 @@
         ]
       },
       "performance": {
-        "ytd": "verify (tap Refresh)",
+        "ytd": null,
         "y1": "~+50%",
         "y3_annualized": "verify",
         "as_of": "2026-05",
@@ -365,7 +365,7 @@
         ]
       },
       "performance": {
-        "ytd": "verify (tap Refresh)",
+        "ytd": null,
         "y1": "~+40%",
         "y3_annualized": "verify",
         "as_of": "2026-05",
@@ -461,7 +461,7 @@
         ]
       },
       "performance": {
-        "ytd": "verify (tap Refresh)",
+        "ytd": null,
         "y1": "~+35%",
         "y3_annualized": "verify",
         "as_of": "2026-05",
@@ -582,7 +582,7 @@
         ]
       },
       "performance": {
-        "ytd": "verify (tap Refresh)",
+        "ytd": null,
         "y1": "~+55%",
         "y3_annualized": "verify",
         "as_of": "2026-05",
@@ -941,8 +941,7 @@
         "red_flags": [
           "\u26a0\ufe0f Not a space fund.",
           "\u26a0\ufe0f 0.58% \u2014 pricier than ITA.",
-          "\u26a0\ufe0f Defense-cycle dependent.",
-          "\u2753 Current price/volume not captured \u2014 tap \u21bb."
+          "\u26a0\ufe0f Defense-cycle dependent."
         ],
         "bull": [
           "Broader, more balanced A&D than ITA",
@@ -958,7 +957,7 @@
           {
             "date": "2026-06-09",
             "action": "BENCHMARK",
-            "text": "A&D yardstick (broader than ITA). For defense exposure ITA is cheaper; for space, neither \u2014 use a dedicated space fund. Tap \u21bb for price/volume."
+            "text": "A&D yardstick (broader than ITA). For defense exposure ITA is cheaper; for space, neither \u2014 use a dedicated space fund."
           }
         ]
       },
@@ -1068,7 +1067,7 @@
     }
   ],
   "live_refresh": true,
-  "universe_note": "Space pure-plays (UFO, ARKX, ROKT, NASA) span passive index to active+pre-IPO-SpaceX (NASA). XAR/SHLD/ITA/PPA are aerospace & defense references; DFEN is a 3x leveraged TRADING tool (not buy-and-hold), included only to illustrate leverage risk. Use 'Add ticker' for others.",
+  "universe_note": "Space pure-plays (UFO, ARKX, ROKT, NASA) span passive index to active+pre-IPO-SpaceX (NASA). XAR/SHLD/ITA/PPA are aerospace & defense references; DFEN is a 3x leveraged TRADING tool (not buy-and-hold), included only to illustrate leverage risk. Use the Look-up box for others.",
   "roster": [
     {
       "ticker": "UFO",

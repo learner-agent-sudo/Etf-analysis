@@ -3,7 +3,7 @@
   "name": "Quantum Computing",
   "as_of": "2026-06-01",
   "tagline": "A textbook binary-bet theme: a tiny pure-play universe, pre-profit names that swing 30%+ on a single milestone, and a flagship fund that's really 'quantum + machine learning'.",
-  "universe_note": "As of mid-2026 there are roughly 3-4 US-listed ETFs with a genuine quantum focus (QTUM, WQTM, and the AI+quantum hybrid CHPX), plus more in registration. New funds launch often \u2014 use the 'Add ticker' box on the page to pull any fund not listed here live.",
+  "universe_note": "As of mid-2026 there are roughly 3-4 US-listed ETFs with a genuine quantum focus (QTUM, WQTM, and the AI+quantum hybrid CHPX), plus more in registration. New funds launch often \u2014 use the Look-up box on the page to open any fund not listed here live.",
   "live_refresh": true,
   "key_tensions": [
     "Thin universe: only a handful of US-listed quantum ETFs, and only TWO are arguably pure-play (QTUM, WQTM). Scarcity itself is the finding.",
@@ -160,7 +160,7 @@
         "ytd": "n/a",
         "y1": "n/a (<1yr)",
         "y3_annualized": null,
-        "since_inception": "verify (tap Refresh)",
+        "since_inception": null,
         "as_of": "2026-06",
         "note": "Launched Oct 2025 \u2014 under a year of history. No meaningful trailing returns yet; cannot judge execution."
       },
@@ -285,7 +285,7 @@
       "performance": {
         "ytd": "+85.6%",
         "y1": "n/a (<1yr)",
-        "since_inception": "verify (tap Refresh)",
+        "since_inception": null,
         "as_of": "2026-05-28",
         "note": "Top-10 is ~71% and essentially ALL semiconductors (Micron, SK Hynix, Intel, ASML, TSMC, NVIDIA). This is an AI-chip fund with a quantum label. YTD +85.6% \u2014 chip-driven, not quantum.",
         "y3_annualized": null
@@ -293,7 +293,7 @@
       "scores": {
         "cost": {
           "rating": "yellow",
-          "note": "Expense ratio not yet verified \u2014 tap Refresh. Global X thematic funds are typically ~0.50%."
+          "note": "Expense ratio not hand-verified yet \u2014 the memo's Key facts show the figure from the daily fund data. Global X thematic funds typically charge ~0.50%."
         },
         "purity": {
           "rating": "red",
@@ -360,7 +360,7 @@
         ],
         "concentration": "~35 holdings. Verify top-10 weight and largest position via Refresh.",
         "sector_geo": "Heavily semiconductors + some quantum, mostly US. Likely heavy overlap with SOXX and AI ETFs.",
-        "cost_context": "Expense ratio unverified here \u2014 tap Refresh. Global X thematic funds usually sit around 0.50%.",
+        "cost_context": "Expense ratio not hand-verified yet; the daily fund data in Key facts shows the current figure. Global X thematic funds usually sit around 0.50%.",
         "track_record_note": "Launched late 2025; no meaningful history. Use Refresh once it has more.",
         "red_flags": [
           "\ud83d\udea9 Data incomplete \u2014 expense ratio/AUM/holdings need a live Refresh.",
@@ -383,7 +383,7 @@
           {
             "date": "2026-06-01",
             "action": "RESEARCH (incomplete)",
-            "text": "Placeholder until live data is pulled. Tap Refresh to fill expense ratio, AUM, holdings, performance \u2014 then re-score purity vs QTUM/WQTM."
+            "text": "Needs a curated pass: confirm the expense ratio and holdings against the issuer, then re-score purity vs QTUM/WQTM."
           }
         ]
       },

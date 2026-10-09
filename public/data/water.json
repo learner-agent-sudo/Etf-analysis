@@ -1,9 +1,9 @@
 {
   "id": "water",
   "name": "Water & Infrastructure",
-  "as_of": "2026-06-09 (scores from stable fund attributes; tap \u21bb for live price/AUM/returns)",
+  "as_of": "2026-06-09",
   "tagline": "The least glamorous but most defensive 'megatrend': water utilities, treatment and the infrastructure rebuild. Lower-volatility, dividend-paying, and \u2014 unusually for a theme \u2014 some funds are diversified and cheap enough to clear a strict screen.",
-  "universe_note": "Water pure-plays (PHO, FIW, CGW, AQWA) hold utilities + equipment (Xylem, Ecolab, Roper). PAVE is broad US infrastructure (the diversified adjacent). All are defensive vs the tech themes. Market figures need a live \u21bb.",
+  "universe_note": "Water pure-plays (PHO, FIW, CGW, AQWA) hold utilities + equipment (Xylem, Ecolab, Roper). PAVE is broad US infrastructure (the diversified adjacent). All are defensive vs the tech themes. Price, volume, returns and AUM update daily from fund data.",
   "live_refresh": true,
   "key_tensions": [
     "Water 'equipment' names (Ecolab, Roper, Xylem) are industrials \u2014 purity is good but not 100% water-utility.",
@@ -21,7 +21,7 @@
       "issuer": "Global X",
       "holdings_url": "https://www.globalxetfs.com/funds/pave",
       "expense_ratio": 0.47,
-      "aum_display": "~$8-9B (verify \u21bb)",
+      "aum_display": "~$8-9B (est.)",
       "aum_musd": 8500,
       "inception": "2017-03",
       "structure": "Passive \u2014 modified equal-weight",
@@ -37,8 +37,7 @@
         "y2025": null,
         "y2024": null,
         "y3_annualized": null,
-        "as_of": "verify",
-        "note": "Tap \u21bb for current price/AUM/returns."
+        "as_of": "verify"
       },
       "market": {
         "price": null,
@@ -100,12 +99,12 @@
         "concentration": "~100 holdings, top-10 ~25% \u2014 among the most diversified theme funds anywhere here.",
         "sector_geo": "US industrials/materials; domestic infrastructure tilt.",
         "cost_context": "0.47% \u2014 cheap for the theme, though ~5x XLU.",
-        "track_record_note": "Since 2017; benefited from federal infrastructure spending. Tap \u21bb for returns.",
+        "track_record_note": "Since 2017; benefited from federal infrastructure spending.",
         "red_flags": [
           "\u26a0\ufe0f 'Infrastructure', broader than water specifically.",
           "\u26a0\ufe0f Cyclical \u2014 tied to construction/capex.",
           "\u26a0\ufe0f ~5x XLU's fee.",
-          "\u2753 Verify AUM/returns via \u21bb."
+          "\u2753 Confirm AUM/returns in the daily data (memo \u203a Key facts)."
         ],
         "bull": [
           "Diversified (~100 names) \u2014 low single-stock risk",
@@ -136,7 +135,7 @@
       "issuer": "First Trust",
       "holdings_url": "https://www.ftportfolios.com/retail/etf/etfsummary.aspx?Ticker=FIW",
       "expense_ratio": 0.53,
-      "aum_display": "~$1.5B (verify \u21bb)",
+      "aum_display": "~$1.5B (est.)",
       "aum_musd": 1500,
       "inception": "2007-05",
       "structure": "Passive \u2014 tiered equal-weight",
@@ -152,8 +151,7 @@
         "y2025": null,
         "y2024": null,
         "y3_annualized": null,
-        "as_of": "verify",
-        "note": "Tap \u21bb for current price/AUM/returns."
+        "as_of": "verify"
       },
       "market": {
         "price": null,
@@ -215,7 +213,7 @@
         "concentration": "~36 names, top-10 ~45%.",
         "sector_geo": "US water utilities + equipment; domestic.",
         "cost_context": "0.53% \u2014 standard water-fund fee.",
-        "track_record_note": "Since 2007; defensive, lower-beta. Tap \u21bb for returns.",
+        "track_record_note": "Since 2007; defensive, lower-beta.",
         "red_flags": [
           "\u26a0\ufe0f Top-10 ~45% concentration.",
           "\u26a0\ufe0f 0.53% fee.",
@@ -251,7 +249,7 @@
       "issuer": "Invesco",
       "holdings_url": "https://www.invesco.com/us/financial-products/etfs/product-detail?productId=PHO",
       "expense_ratio": 0.59,
-      "aum_display": "~$2B (verify \u21bb)",
+      "aum_display": "~$2B (est.)",
       "aum_musd": 2000,
       "inception": "2005-12",
       "structure": "Passive \u2014 modified liquidity-weight",
@@ -267,8 +265,7 @@
         "y2025": null,
         "y2024": null,
         "y3_annualized": null,
-        "as_of": "verify",
-        "note": "Tap \u21bb for current price/AUM/returns."
+        "as_of": "verify"
       },
       "market": {
         "price": null,
@@ -330,7 +327,7 @@
         "concentration": "~39 names, top-10 ~55%.",
         "sector_geo": "US water; domestic.",
         "cost_context": "0.59% \u2014 the priciest water fund.",
-        "track_record_note": "Since 2005 \u2014 the original water ETF. Tap \u21bb for returns.",
+        "track_record_note": "Since 2005 \u2014 the original water ETF.",
         "red_flags": [
           "\u26a0\ufe0f 0.59% \u2014 priciest water fund.",
           "\u26a0\ufe0f Top-10 ~55% concentration.",
@@ -366,7 +363,7 @@
       "issuer": "Invesco",
       "holdings_url": "https://www.invesco.com/us/financial-products/etfs/product-detail?productId=CGW",
       "expense_ratio": 0.57,
-      "aum_display": "~$1B (verify \u21bb)",
+      "aum_display": "~$1B (est.)",
       "aum_musd": 1000,
       "inception": "2007-05",
       "structure": "Passive \u2014 cap-weight (capped)",
@@ -382,8 +379,7 @@
         "y2025": null,
         "y2024": null,
         "y3_annualized": null,
-        "as_of": "verify",
-        "note": "Tap \u21bb for current price/AUM/returns."
+        "as_of": "verify"
       },
       "market": {
         "price": null,
@@ -445,7 +441,7 @@
         "concentration": "~50 names, top-10 ~50%; global.",
         "sector_geo": "Global water utilities + equipment (US + Europe + Asia).",
         "cost_context": "0.57% \u2014 standard.",
-        "track_record_note": "Since 2007. Tap \u21bb for returns.",
+        "track_record_note": "Since 2007.",
         "red_flags": [
           "\u26a0\ufe0f Top-10 ~50%.",
           "\u26a0\ufe0f 0.57% fee.",
@@ -481,7 +477,7 @@
       "issuer": "State Street SPDR",
       "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/the-utilities-select-sector-spdr-fund-xlu",
       "expense_ratio": 0.09,
-      "aum_display": "~$18B (verify \u21bb)",
+      "aum_display": "~$18B (est.)",
       "aum_musd": 18000,
       "inception": "1998-12",
       "structure": "Passive \u2014 cap-weight",
@@ -497,8 +493,7 @@
         "y2025": null,
         "y2024": null,
         "y3_annualized": null,
-        "as_of": "verify",
-        "note": "Tap \u21bb for current price/AUM/returns."
+        "as_of": "verify"
       },
       "market": {
         "price": null,
@@ -554,7 +549,7 @@
         "concentration": "Top-10 ~55%; electric/gas dominated.",
         "sector_geo": "US utilities; domestic, defensive.",
         "cost_context": "0.09% \u2014 far below water funds.",
-        "track_record_note": "Since 1998; the defensive proxy. Tap \u21bb for returns.",
+        "track_record_note": "Since 1998; the defensive proxy.",
         "red_flags": [
           "\u26a0\ufe0f Not a water fund.",
           "\u26a0\ufe0f Rate-sensitive."

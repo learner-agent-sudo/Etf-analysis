@@ -3,7 +3,7 @@
   "name": "Nuclear / Uranium",
   "as_of": "2026-06-08",
   "tagline": "A commodity-driven boom-bust theme riding the nuclear revival and AI-datacenter power demand. Returns hinge on the uranium spot price and are dominated by a few miners \u2014 above all Cameco \u2014 plus real single-country (Kazakhstan/Canada) risk.",
-  "universe_note": "Spans pure uranium miners (URNM, URNJ), miner-heavy (URA), and diversified nuclear-power baskets (NLR utilities-tilt, NUKZ reactors+utilities+fuel). The broader funds (NLR/NUKZ) are far less Cameco/uranium-spot dependent. XLE is the broad-energy benchmark. Use 'Add ticker' for others (URNU etc.).",
+  "universe_note": "Spans pure uranium miners (URNM, URNJ), miner-heavy (URA), and diversified nuclear-power baskets (NLR utilities-tilt, NUKZ reactors+utilities+fuel). The broader funds (NLR/NUKZ) are far less Cameco/uranium-spot dependent. XLE is the broad-energy benchmark. Use the Look-up box for others (URNU etc.).",
   "live_refresh": true,
   "key_tensions": [
     "Uranium spot-price dependence: these funds live and die on the uranium price \u2014 a volatile commodity with a brutal boom-bust history (URNM: +40.6% in 2025 but -14.1% in 2024).",
@@ -39,7 +39,7 @@
         "y2024": null,
         "y3_annualized": null,
         "as_of": "2026-06",
-        "note": "Total return \u2014 tap \u21bb to refresh. Largest, most liquid uranium fund: miners + nuclear-component makers + some physical-uranium trust. Heavily Cameco-led (~23%)."
+        "note": "Largest, most liquid uranium fund: miners + nuclear-component makers + some physical-uranium trust. Heavily Cameco-led (~23%)."
       },
       "market": {
         "price": 45.31,
@@ -113,7 +113,7 @@
         "concentration": "Top-10 ~60% and Cameco alone ~23% \u2014 extreme single-name dominance. Cameco's news moves the whole fund.",
         "sector_geo": "Global uranium miners + nuclear components; heavy Canada (Cameco, NexGen) plus Kazakhstan exposure via supply chain. Concentrated country risk.",
         "cost_context": "0.69% \u2014 typical for a niche commodity-equity fund; cheaper than URNM/URNJ, pricier than NLR.",
-        "track_record_note": "Since 2010. Classic uranium boom-bust: huge rallies and deep drawdowns track the uranium spot price. Tap \u21bb to pull current trailing returns.",
+        "track_record_note": "Since 2010. Classic uranium boom-bust: huge rallies and deep drawdowns track the uranium spot price.",
         "red_flags": [
           "\ud83d\udea9 Cameco ~23% \u2014 single-stock dominance.",
           "\ud83d\udea9 Uranium spot-price dependence \u2014 high volatility.",
@@ -136,7 +136,7 @@
           {
             "date": "2026-06-08",
             "action": "WATCH (example)",
-            "text": "The default uranium pick for liquidity. Know you're ~23% in Cameco and fully exposed to the uranium price. Tap \u21bb for live price/returns; compare to URNM if you want more physical-uranium exposure."
+            "text": "The default uranium pick for liquidity. Know you're ~23% in Cameco and fully exposed to the uranium price."
           }
         ]
       },
@@ -293,7 +293,7 @@
         "y2024": null,
         "y3_annualized": null,
         "as_of": "2026-04",
-        "note": "Total return \u2014 tap \u21bb to refresh. Mid/small/micro-cap junior miners = MAXIMUM leverage to the uranium price and maximum drawdown risk. Top-10 ~79%."
+        "note": "Mid/small/micro-cap junior miners = MAXIMUM leverage to the uranium price and maximum drawdown risk. Top-10 ~79%."
       },
       "market": {
         "price": 31.36,
@@ -355,7 +355,7 @@
         "concentration": "Extreme \u2014 top-10 ~79% across only ~37 small/micro-cap names. Both single-name and single-commodity risk are at their highest here.",
         "sector_geo": "Pure junior uranium miners; global but heavy Canada/Australia/Africa exploration exposure.",
         "cost_context": "0.80% \u2014 the most expensive uranium fund here, for the highest-risk segment.",
-        "track_record_note": "Since 2023 \u2014 short history. Junior miners are the most volatile, highest-drawdown uranium segment; expect amplified versions of URNM's swings. Tap \u21bb for current figures.",
+        "track_record_note": "Since 2023 \u2014 short history. Junior miners are the most volatile, highest-drawdown uranium segment; expect amplified versions of URNM's swings.",
         "red_flags": [
           "\ud83d\udea9 Extreme concentration (top-10 ~79%).",
           "\ud83d\udea9 Smallest AUM (~$398M) + thin liquidity \u2192 wide spreads.",
@@ -378,7 +378,7 @@
           {
             "date": "2026-06-08",
             "action": "CAUTION (example)",
-            "text": "The most aggressive uranium bet \u2014 only for high risk tolerance and small position sizing. Verify spreads (thin AUM). If uranium falls, this drops hardest. Tap \u21bb for live data."
+            "text": "The most aggressive uranium bet \u2014 only for high risk tolerance and small position sizing. Verify spreads (thin AUM). If uranium falls, this drops hardest."
           }
         ]
       },
@@ -408,7 +408,7 @@
         "y2024": null,
         "y3_annualized": null,
         "as_of": "2026-06",
-        "note": "Total return \u2014 tap \u21bb to refresh. Tilts to nuclear UTILITIES (Constellation, PSEG, PG&E) not just miners \u2014 steadier, less uranium-price-sensitive, cheaper (0.56%)."
+        "note": "Tilts to nuclear UTILITIES (Constellation, PSEG, PG&E) not just miners \u2014 steadier, less uranium-price-sensitive, cheaper (0.56%)."
       },
       "market": {
         "price": 133.3,
@@ -476,7 +476,7 @@
         "concentration": "Top-10 ~60% across ~27 names, but led by diversified utilities rather than a single miner \u2014 lower single-commodity risk than the pure-miner funds.",
         "sector_geo": "Nuclear utilities (heavily US) + global uranium miners. Less Kazakhstan/Canada commodity concentration; more US-utility regulatory exposure.",
         "cost_context": "0.56% \u2014 the cheapest theme fund here, reflecting the steadier utility tilt.",
-        "track_record_note": "Since 2007 \u2014 the longest history in the theme. The utility weighting means lower volatility and smaller drawdowns than the pure-miner funds. Tap \u21bb for current returns.",
+        "track_record_note": "Since 2007 \u2014 the longest history in the theme. The utility weighting means lower volatility and smaller drawdowns than the pure-miner funds.",
         "red_flags": [
           "\u26a0\ufe0f Not a pure uranium bet \u2014 utility tilt dilutes commodity upside.",
           "\u26a0\ufe0f US-utility regulatory/rate risk.",
@@ -499,7 +499,7 @@
           {
             "date": "2026-06-08",
             "action": "WATCH (example)",
-            "text": "The conservative nuclear pick \u2014 utilities make it steadier and cheaper, but you give up the uranium-price upside. Choose NLR for 'nuclear power' exposure, URNM for a 'uranium price' bet. Tap \u21bb for live data."
+            "text": "The conservative nuclear pick \u2014 utilities make it steadier and cheaper, but you give up the uranium-price upside. Choose NLR for 'nuclear power' exposure, URNM for a 'uranium price' bet."
           }
         ]
       },
@@ -529,7 +529,7 @@
         "y2024": null,
         "y3_annualized": null,
         "as_of": "2026-06",
-        "note": "Total return \u2014 tap \u21bb. The most DIVERSIFIED nuclear fund: spans advanced reactors, utilities, construction/services AND fuel \u2014 so less uranium-spot-price-dependent and far less Cameco-concentrated (~9% vs ~21-23% in URA/URNM)."
+        "note": "The most DIVERSIFIED nuclear fund: spans advanced reactors, utilities, construction/services AND fuel \u2014 so less uranium-spot-price-dependent and far less Cameco-concentrated (~9% vs ~21-23% in URA/URNM)."
       },
       "market": {
         "price": 74.05,
@@ -603,7 +603,7 @@
         "concentration": "The LEAST concentrated nuclear fund \u2014 top-10 ~36% across 54 names, Cameco only ~9%. Single-name and single-commodity risk are much lower than the uranium-miner funds.",
         "sector_geo": "Global nuclear value chain \u2014 utilities, reactors, construction, fuel; mix of US, Korea, Europe. Less single-country (Kazakhstan/Canada) concentration than the miner funds.",
         "cost_context": "0.85% \u2014 the priciest nuclear fund here, for the broadest exposure. Weigh the diversification against the fee + URA's lower 0.69%.",
-        "track_record_note": "Launched 2024 \u2014 short history (Q2/2025 was a standout quarter, ~+48%). Less volatile than pure miners thanks to the utility/services sleeve. Tap \u21bb for current figures.",
+        "track_record_note": "Launched 2024 \u2014 short history (Q2/2025 was a standout quarter, ~+48%). Less volatile than pure miners thanks to the utility/services sleeve.",
         "red_flags": [
           "\ud83d\udea9 0.85% fee \u2014 highest nuclear fund here.",
           "\ud83d\udea9 Short track record (2024 launch).",
@@ -626,7 +626,7 @@
           {
             "date": "2026-06-09",
             "action": "WATCH (example)",
-            "text": "The diversified 'nuclear power' pick \u2014 least concentrated, less uranium-price-dependent. Choose NUKZ for breadth, URNM for a pure uranium-price bet. Weigh the 0.85% fee. Tap \u21bb for live data."
+            "text": "The diversified 'nuclear power' pick \u2014 least concentrated, less uranium-price-dependent. Choose NUKZ for breadth, URNM for a pure uranium-price bet. Weigh the 0.85% fee."
           }
         ]
       },

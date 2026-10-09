@@ -15,7 +15,12 @@ body { background: var(--bg); color: var(--text);
 .brand { display: flex; align-items: center; gap: 10px; }
 .brand .logo { color: var(--accent); font-size: 20px; }
 .brand h1 { font-size: 18px; margin: 0; font-weight: 600; letter-spacing: .2px; }
-.theme-picker { display: flex; align-items: center; gap: 8px; }
+.topbar { gap: 12px; }
+.brand { flex: 0 0 auto; }
+.theme-picker { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 0 1 auto; }
+/* A <select> sizes itself to its longest option — cap it so the header never
+   pushes the page wider than a phone screen. */
+#themeSelect { min-width: 0; max-width: 100%; text-overflow: ellipsis; }
 .theme-picker label { color: var(--muted); font-size: 13px; }
 select, input[type="search"] { background: var(--panel-2); color: var(--text);
   border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font-size: 14px; }
@@ -43,20 +48,33 @@ main { max-width: 1240px; margin: 0 auto; padding: 22px; }
 
 .livemsg { margin: 8px 0; padding: 10px 12px; border-radius: 8px; font-size: 13px;
   background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--accent); }
+.livemsg { position: relative; padding-right: 34px; }
 .livemsg.warn { border-left-color: var(--yellow); }
 .livemsg.err { border-left-color: var(--red); }
+.livemsg .refresh { margin-left: 4px; }
+.msgclose { position: absolute; top: 4px; right: 4px; background: none; color: var(--muted);
+  font-size: 20px; line-height: 1; padding: 4px 8px; }
+.msgclose:hover { color: var(--text); }
+.intro .asof .refresh { margin-left: 4px; padding: 2px 8px; }
+.empty { padding: 22px; text-align: center; color: var(--muted); }
+.empty .refresh { margin-left: 8px; }
+.snap { opacity: .6; }
+.small { font-size: 12px; }
+body.noscroll { overflow: hidden; }
 
 .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; }
-table { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 720px; }
-th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
-thead th { background: var(--panel); position: sticky; top: 0; z-index: 2; cursor: pointer;
+/* Comparison-table rules are scoped to .table-wrap so they don't leak into the
+   holdings tables inside the memo drawer. */
+.table-wrap table { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 720px; }
+.table-wrap th, .table-wrap td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.table-wrap thead th { background: var(--panel); position: sticky; top: 0; z-index: 2; cursor: pointer;
   font-size: 12px; text-transform: uppercase; letter-spacing: .4px; color: var(--muted); user-select: none; }
-thead th:hover { color: var(--text); }
+.table-wrap thead th:hover { color: var(--text); }
 /* Freeze the Ticker column so the fund is always visible when scrolling right */
-thead th:first-child { left: 0; z-index: 3; }
-th:first-child, td:first-child { position: sticky; left: 0; background: var(--bg); z-index: 1; }
-tbody tr:hover td:first-child { background: var(--panel); }
-.frozen-edge td:first-child::after, thead th:first-child::after { content: ""; position: absolute;
+.table-wrap thead th:first-child { left: 0; z-index: 3; }
+.table-wrap th:first-child, .table-wrap td:first-child { position: sticky; left: 0; background: var(--bg); z-index: 1; }
+.table-wrap tbody tr:hover td:first-child { background: var(--panel); }
+.table-wrap thead th:first-child::after { content: ""; position: absolute;
   top: 0; right: 0; bottom: -1px; width: 6px; box-shadow: inset 6px 0 6px -6px rgba(0,0,0,.5); pointer-events: none; }
 thead th .arrow { color: var(--accent); font-size: 11px; }
 thead th .qmark { color: var(--muted); font-size: 10px; margin-left: 3px; vertical-align: super; cursor: help; }
@@ -64,12 +82,10 @@ thead th.has-help:hover .qmark { color: var(--accent); }
 .holdlink { color: var(--accent); text-decoration: none; font-size: 12px; font-weight: 600;
   border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; white-space: nowrap; }
 .holdlink:hover { background: var(--panel-2); }
-tbody tr { cursor: pointer; transition: background .12s; }
-tbody tr:hover { background: var(--panel); }
-tbody tr.bench { opacity: .72; }
-tbody tr.bench td:first-child .nm::after { content: " · benchmark"; color: var(--muted); font-size: 11px; }
-tbody tr.live td { box-shadow: inset 0 0 0 9999px rgba(88,166,255,.05); }
-tbody tr.live td:first-child { background: #11171f; }
+.table-wrap tbody tr { cursor: pointer; transition: background .12s; }
+.table-wrap tbody tr:hover { background: var(--panel); }
+.table-wrap tbody tr.bench { opacity: .72; }
+.table-wrap tbody tr.bench td:first-child .nm::after { content: " · benchmark"; color: var(--muted); font-size: 11px; }
 .tk { font-weight: 700; color: var(--accent); }
 .nm { color: var(--muted); font-size: 13px; white-space: normal; }
 .pos { color: var(--green); } .neg { color: var(--red); }
@@ -79,8 +95,9 @@ tbody tr.live td:first-child { background: #11171f; }
 .refresh { background: transparent; color: var(--accent); border: 1px solid var(--border);
   padding: 4px 8px; font-size: 12px; border-radius: 6px; }
 .refresh:hover { background: var(--panel-2); }
-.tag-live { font-size: 10px; color: var(--green); border: 1px solid var(--green); border-radius: 999px;
+.tag-adhoc { font-size: 10px; color: var(--yellow); border: 1px solid var(--yellow); border-radius: 999px;
   padding: 0 6px; margin-left: 6px; vertical-align: middle; }
+td.col-ticker:focus-visible, .rosteritem:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .tag-pass { font-size: 10px; font-weight: 700; color: #06223f; background: var(--green); border-radius: 999px;
   padding: 1px 7px; margin-left: 6px; vertical-align: middle; }
 .pass-toggle { color: var(--green); font-weight: 600; }
@@ -100,7 +117,8 @@ tbody tr.live td:first-child { background: #11171f; }
 .rosteritem .rtk { font-weight: 700; color: var(--accent); white-space: nowrap; }
 .rosteritem .rtag { font-size: 10px; color: var(--muted); border: 1px solid var(--border); border-radius: 999px;
   padding: 0 6px; white-space: nowrap; }
-.rosteritem .rnm { color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rosteritem .rnm { color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0; }
+.rosteritem .rperf { font-size: 12px; font-weight: 600; white-space: nowrap; }
 
 .tensions { margin-top: 22px; }
 .tensions h3 { font-size: 15px; margin: 0 0 8px; }
@@ -113,18 +131,21 @@ tbody tr.live td:first-child { background: #11171f; }
   background: var(--panel); border-left: 1px solid var(--border); box-shadow: var(--shadow);
   z-index: 9; overflow-y: auto; padding: 24px 26px 60px; animation: slide .18s ease-out; }
 @keyframes slide { from { transform: translateX(30px); opacity: .4; } to { transform: none; opacity: 1; } }
-.close { position: absolute; top: 12px; right: 16px; background: none; border: none;
-  color: var(--muted); font-size: 28px; line-height: 1; cursor: pointer; }
-.close:hover { color: var(--text); }
+/* Close button floats top-right and stays pinned while the memo scrolls
+   (phones have no Esc key and little overlay to tap). */
+.close { position: sticky; top: 0; float: right; z-index: 3; margin: -12px -14px 0 10px;
+  width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid var(--border);
+  background: var(--panel-2); color: var(--text); font-size: 26px; line-height: 1; cursor: pointer; }
+.close:hover { background: var(--border); }
 
-.memo h2 { margin: 0 28px 2px 0; font-size: 22px; }
+.memo h2 { margin: 0 0 2px; font-size: 22px; }
 .memo .sub { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
 .memo .thesis { background: var(--panel-2); border-left: 3px solid var(--accent);
   padding: 12px 14px; border-radius: 8px; margin: 0 0 16px; }
 .memo h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .5px; color: var(--muted);
   margin: 20px 0 6px; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
 .memo p { margin: 6px 0; }
-.memo .liverow { display: flex; gap: 8px; align-items: center; margin: 4px 0 0; }
+.memo .liverow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 4px 0 0; }
 
 .badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; }
 .badge.green { background: rgba(63,185,80,.16); color: var(--green); }
@@ -140,7 +161,8 @@ tbody tr.live td:first-child { background: #11171f; }
 .perf .p .val { font-size: 16px; font-weight: 700; }
 
 .hold { width: 100%; border-collapse: collapse; margin-top: 6px; }
-.hold td { padding: 6px 8px; border-bottom: 1px solid var(--border); white-space: normal; font-size: 13px; }
+.hold td { padding: 6px 8px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: top; overflow-wrap: anywhere; }
+.hold td:nth-child(2) { white-space: nowrap; }
 .tag { font-size: 11px; padding: 1px 7px; border-radius: 999px; font-weight: 600; }
 .tag.pure { background: rgba(63,185,80,.16); color: var(--green); }
 .tag.partial { background: rgba(210,153,34,.16); color: var(--yellow); }
@@ -166,40 +188,50 @@ tbody tr.live td:first-child { background: #11171f; }
 
 /* ---- Mobile: turn the comparison table into stacked cards (no side-scroll) ---- */
 @media (max-width: 700px) {
+  .topbar { padding: 10px 14px; }
+  .brand h1 { font-size: 16px; }
+  .theme-picker { flex: 1 1 auto; justify-content: flex-end; }
+  .theme-picker label { display: none; }
+  #themeSelect { width: 100%; }
+  main { padding: 16px 14px; }
+  .controls input[type="search"]#filterBox { min-width: 0; flex: 1 1 100%; }
+  .addbox { flex: 1 1 100%; }
+  .addbox input { flex: 1; min-width: 0; }
   .kv, .bb { grid-template-columns: 1fr; }
   .controls .hint { display: none; }
-  .addbox input { width: 130px; }
 
   .table-wrap { overflow-x: visible; border: none; }
-  table { min-width: 0; width: 100%; display: block; }
-  thead { display: none; }                 /* headers become per-field labels */
-  tbody { display: block; }
-  tbody tr {
+  .table-wrap table { min-width: 0; width: 100%; display: block; }
+  .table-wrap thead { display: none; }                 /* headers become per-field labels */
+  .table-wrap tbody { display: block; }
+  .table-wrap tbody tr {
     display: block; margin: 0 0 14px; padding: 12px 14px;
     border: 1px solid var(--border); border-radius: 12px; background: var(--panel);
   }
-  tbody tr.bench { opacity: 1; border-style: dashed; }
-  tbody tr.live td { box-shadow: none; }
-  tbody tr.live { outline: 1px solid rgba(88,166,255,.4); }
+  .table-wrap tbody tr.bench { opacity: 1; border-style: dashed; }
 
   /* un-freeze the ticker column on mobile (cards don't scroll) */
-  th:first-child, td:first-child { position: static; background: transparent; }
-  td.col-ticker { border-bottom: 1px solid var(--border); padding: 0 0 8px; margin-bottom: 8px; white-space: normal; }
-  td.col-ticker .tk { font-size: 18px; }
-  tbody tr.bench td.col-ticker .nm::after { content: " · benchmark"; }
+  .table-wrap th:first-child, .table-wrap td:first-child { position: static; background: transparent; }
 
   /* every other cell: label on the left, value on the right */
-  tbody td {
+  .table-wrap tbody td {
     display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
     padding: 5px 0; border: none; white-space: normal; text-align: right;
   }
-  tbody td::before {
+  .table-wrap tbody td::before {
     content: attr(data-label); color: var(--muted); font-size: 12px;
     text-transform: uppercase; letter-spacing: .3px; text-align: left; flex: 0 0 auto;
   }
-  tbody td.cellscore { justify-content: space-between; }
-  td.col-refresh { justify-content: flex-end; padding-top: 10px; }
-  td.col-refresh::before { content: ""; }
-  .refresh { width: 100%; padding: 8px; }
-  .frozen-edge td:first-child::after { display: none; }
+  .table-wrap td.col-ticker { display: block; text-align: left; border-bottom: 1px solid var(--border);
+    padding: 0 0 8px; margin-bottom: 8px; }
+  .table-wrap td.col-ticker::before { content: none; }
+  .table-wrap td.col-ticker .tk { font-size: 18px; }
+
+  /* memo drawer: full width, wrap long links, tighter holdings table */
+  .drawer { width: 100vw; padding: 20px 16px 60px; }
+  .memo h2 { font-size: 19px; }
+  .holdlink { white-space: normal; }
+  .hold td { padding: 6px 4px; }
+  .hold td.nm { font-size: 12px; }
+}
 }
