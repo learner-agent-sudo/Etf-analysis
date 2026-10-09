@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Offline tests for scripts/build_universe.py (no network)."""
+import json
 import os
 import sys
 import unittest
@@ -86,14 +87,91 @@ class Units(unittest.TestCase):
                           "netExpenseRatio": 0.0945, "trailingAnnualDividendYield": 0.0118,
                           "averageDailyVolume3Month": 61234567.8, "fundInceptionDate": 727660800}}
         screener = {"NEWX": {"t": "NEWX", "n": "Brand New ETF", "p": 25.1, "c1y": None}}
+        listing["SPY"]["dom"] = "US"
         rows = bu.build_rows(listing, quotes, {"er": 1.0, "ytd": 1.0, "c1y": 1.0, "trailingAnnualDividendYield": 100.0}, screener)
         spy = dict(zip(bu.COLS, rows[1]))
         self.assertEqual(spy["t"], "SPY")
         self.assertEqual((spy["p"], spy["c1y"], spy["ytd"], spy["aum"], spy["er"], spy["yld"], spy["vol"]),
                          (776.65, 17.2, 14.9, 650000.0, 0.09, 1.18, 61234567))
         self.assertEqual(spy["inc"], "1993-01-22")
+        self.assertEqual((spy["cur"], spy["dom"], spy["aumu"]), ("USD", "US", 650000.0))
         newx = dict(zip(bu.COLS, rows[0]))
         self.assertEqual((newx["p"], newx["aum"], newx["n"]), (25.1, None, "Brand New ETF"))
+
+
+def make_xlsx(rows):
+    """Tiny .xlsx (shared strings) for parser tests."""
+    import io, zipfile
+    strings, cells = [], []
+    def sidx(v):
+        if v not in strings:
+            strings.append(v)
+        return strings.index(v)
+    for ri, row in enumerate(rows, start=1):
+        cs = "".join(f'<c r="{chr(65 + ci)}{ri}" t="s"><v>{sidx(v)}</v></c>' for ci, v in enumerate(row) if v is not None)
+        cells.append(f'<row r="{ri}">{cs}</row>')
+    ns = 'xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"'
+    sst = f'<sst {ns}>' + "".join(f"<si><t>{x.replace('&', '&amp;')}</t></si>" for x in strings) + "</sst>"
+    sheet = f'<worksheet {ns}><sheetData>{"".join(cells)}</sheetData></worksheet>'
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as z:
+        z.writestr("xl/sharedStrings.xml", sst)
+        z.writestr("xl/worksheets/sheet1.xml", sheet)
+    return buf.getvalue()
+
+
+class HongKong(unittest.TestCase):
+    def test_parse_hkex_list(self):
+        rows = [["List of Securities"], ["Updated as at 09/10/2026"],
+                ["Stock Code", "Name of Securities", "Category", "Sub-Category", "Board Lot", "ISIN"],
+                ["00700", "TENCENT", "Equity", "Equity Securities (Main Board)", "100", "KYG875721634"],
+                ["02800", "TRACKER FUND", "Exchange Traded Products", "Exchange Traded Funds", "500", "HK2800008867"],
+                ["82800", "TRACKER FUND-R", "Exchange Traded Products", "Exchange Traded Funds", "500", "HK0000000001"],
+                ["07226", "CSOP HSTECH 2X L", "Exchange Traded Products", "Leveraged and Inverse Products", "200", "HK0000664723"],
+                ["03067", "ISHARES HSTECH", "Exchange Traded Products", "Exchange Traded Funds", "200", "HK0000655093"],
+                ["09000", "SOME IE ETF", "Exchange Traded Products", "Exchange Traded Funds", "100", "IE00B4L5Y983"]]
+        got = bu.parse_hkex(bu.read_xlsx(make_xlsx(rows)))
+        self.assertEqual(sorted(got), ["2800.HK", "3067.HK", "7226.HK", "9000.HK"])
+        self.assertEqual(got["2800.HK"]["dom"], "HK")
+        self.assertEqual(got["9000.HK"]["dom"], "IE")              # domicile from the ISIN
+        self.assertEqual(got["7226.HK"]["f"], "L")                 # leveraged & inverse product
+        self.assertEqual(got["2800.HK"]["n"], "TRACKER FUND")
+
+    def test_hk_and_london_rows_currency_and_usd_aum(self):
+        listing = {"2800.HK": {"t": "2800.HK", "n": "TRACKER FUND", "x": "HKEX", "dom": "HK", "f": ""},
+                   "VUSA.L": {"t": "VUSA.L", "n": "Vanguard S&P 500 UCITS ETF", "x": "London", "dom": "IE/LU",
+                              "q": {"currency": "GBp", "regularMarketPrice": 9512.0, "netAssets": 4.0e10}}}
+        quotes = {"2800.HK": {"currency": "HKD", "regularMarketPrice": 25.6, "netAssets": 1.6e11}}
+        fx = {"USD": 1.0, "HKD": 0.128, "GBP": 1.30}
+        rows = {r[0]: dict(zip(bu.COLS, r)) for r in bu.build_rows(listing, quotes, {"er": 1, "ytd": 1, "c1y": 1}, fx=fx)}
+        hk, ln = rows["2800.HK"], rows["VUSA.L"]
+        self.assertEqual((hk["cur"], hk["p"], hk["aum"], hk["aumu"]), ("HKD", 25.6, 160000.0, 20480.0))
+        self.assertEqual((ln["cur"], ln["p"], ln["dom"], ln["aumu"]), ("GBP", 95.12, "IE/LU", 52000.0))
+
+    def test_yahoo_symbol(self):
+        self.assertEqual(bu.yahoo_symbol("BRK.B"), "BRK-B")
+        self.assertEqual(bu.yahoo_symbol("2800.HK"), "2800.HK")
+        self.assertEqual(bu.yahoo_symbol("URNU.L"), "URNU.L")
+
+
+class Screener(unittest.TestCase):
+    def test_paging_and_sort_field_fallback(self):
+        class FakeYahoo:
+            def __init__(self):
+                self.calls = []
+            def _crumb(self):
+                return "c"
+            def post_json(self, url, body):
+                self.calls.append((body["sortField"], body["offset"]))
+                if body["sortField"] == "fundnetassets":
+                    raise RuntimeError("HTTP 400")
+                start = body["offset"]
+                quotes = [{"symbol": f"E{i}.L", "longName": f"Fund {i} UCITS ETF"} for i in range(start, min(start + 250, 300))]
+                return json.dumps({"finance": {"result": [{"quotes": quotes, "total": 300}]}})
+        y = FakeYahoo()
+        got = bu.discover_screener(y, "LSE", "London")
+        self.assertEqual(len(got), 300)
+        self.assertEqual(y.calls, [("fundnetassets", 0), ("intradayprice", 0), ("intradayprice", 250)])
 
 
 if __name__ == "__main__":

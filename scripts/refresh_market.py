@@ -203,6 +203,22 @@ class Yahoo:
             return r.text
         return _get(url, timeout=timeout, opener=s)
 
+    def post_json(self, url, body, timeout=30):
+        """POST a JSON body (used by the screener endpoint)."""
+        s = self._session()
+        data = json.dumps(body).encode("utf-8")
+        if cffi_requests:
+            r = s.post(url, data=data, headers={"Content-Type": "application/json"}, timeout=timeout)
+            if r.status_code >= 400:
+                raise HttpStatus(r.status_code)
+            return r.text
+        req = urllib.request.Request(url, data=data, headers={"User-Agent": UA, "Content-Type": "application/json"})
+        try:
+            with s.open(req, timeout=timeout) as r:
+                return r.read().decode("utf-8", "replace")
+        except urllib.error.HTTPError as e:
+            raise HttpStatus(e.code) from None
+
     def chart(self, ticker):
         last = None
         for host in self.HOSTS:
