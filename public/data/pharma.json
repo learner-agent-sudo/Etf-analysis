@@ -568,8 +568,8 @@
           "note": "Broad healthcare, NOT pure biotech/pharma \u2014 big insurer/device/tools weights. Benchmark only."
         },
         "concentration": {
-          "rating": "green",
-          "note": "Top-10 ~60% but diversified ACROSS sub-industries; lower single-name risk than PPH/ARKG."
+          "rating": "yellow",
+          "note": "Top-10 ~60% and Eli Lilly ~16% \u2014 past the methodology red-flag lines (top-10 >50%, single name >10%); softened to caution because it is spread across healthcare sub-industries, so single-name risk is still lower than PPH/ARKG."
         },
         "liquidity": {
           "rating": "green",
