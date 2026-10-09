@@ -24,6 +24,9 @@ body { background: var(--bg); color: var(--text);
 .exmore { text-align: center; margin: 12px 0; }
 .exmore button[hidden] { display: none; }
 #exCount { margin: 4px 0 8px; }
+.taxbox { margin: 10px 0 0; }
+.taxbox dl { grid-template-columns: minmax(160px, max-content) 1fr; }
+.nm .seg.mkt { color: var(--yellow); }
 .theme-picker { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 0 1 auto; }
 /* A <select> sizes itself to its longest option — cap it so the header never
    pushes the page wider than a phone screen. */

@@ -44,6 +44,7 @@ const GLOSSARY = {
   "1-yr price": "52-week change in the share price only — excludes dividends/distributions, so income and bond funds look worse than their real (total) return.",
   "Size": "Explorer rating from fund size (AUM): 🟢 ≥ $500M, 🟡 ≥ $50M, 🔴 smaller — small funds have wider spreads and closure risk.",
   "Pre-screen": "Explorer shortcut: expense ratio ≤ 0.50% (cost 🟢), AUM ≥ $50M, and not leveraged/inverse, an ETN or futures-based. Concentration and purity still need a look at the holdings.",
+  "Domicile": "Where a fund is legally based (US, Ireland, Luxembourg, Hong Kong…). It drives the tax drag on dividends and, for non-US investors, US estate-tax exposure — see 'Tax & domicile' in the Explorer. General information only, not tax advice.",
   "Daily data": "Price, volume, returns, AUM and top holdings refresh automatically every weekday after the US market close (end-of-day, not intraday). Faded values are an older hand-researched snapshot, shown until fresh data exists. For an intraday price, open a fund and tap “Live quote”.",
 };
 
@@ -735,6 +736,8 @@ function openMemo(ticker) {
   if (d && d.yield_ttm) facts.push(["Trailing 12-mo yield", d.yield_ttm]);
   if (e.sec_yield) facts.push(["30-day SEC yield", e.sec_yield]);
   facts.push(["Structure", e.structure], ["Index", e.index], ["# Holdings", e.holdings_count]);
+  if (e.listing) facts.push(["Listing", e.listing]);
+  if (e.domicile) facts.push(["Domicile", e.domicile]);
   facts.push(["Top-10 weight", [e.top10_weight_display && e.top10_weight_display !== "—" ? e.top10_weight_display : null,
     !e._adhoc && d && d.top10_weight_pct != null ? `latest ~${d.top10_weight_pct}%` : null].filter(Boolean).join(" · ") || null]);
   facts.push(["Largest position", e.largest_position_display], ["Derivatives", e.derivatives]);
