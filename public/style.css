@@ -119,6 +119,7 @@ td.col-ticker:focus-visible, .rosteritem:focus-visible { outline: 2px solid var(
   padding: 0 6px; white-space: nowrap; }
 .rosteritem .rnm { color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0; }
 .rosteritem .rperf { font-size: 12px; font-weight: 600; white-space: nowrap; }
+.rosteritem .rnodata { font-size: 11px; color: var(--yellow); white-space: nowrap; }
 
 .tensions { margin-top: 22px; }
 .tensions h3 { font-size: 15px; margin: 0 0 8px; }

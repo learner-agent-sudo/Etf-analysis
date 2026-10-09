@@ -2,7 +2,7 @@
  "as_of": "2026-10-08",
  "generated_at": "2026-10-09T14:07:57+00:00",
  "source": "Daily closes from Yahoo Finance (returns use dividend-adjusted closes; Stooq/Nasdaq price-only fallbacks); fund profile (AUM, expense ratio, top-10 holdings) from Yahoo Finance/Morningstar. Refreshed automatically by GitHub Actions every weekday after the US close.",
- "count": 99,
+ "count": 98,
  "failed": [
   "CNCR",
   "CRIT",
@@ -489,30 +489,6 @@
     "y3_annualized": "+11.0%/yr",
     "y2025": "+9.9%",
     "y2024": "+10.8%",
-    "as_of": "2026-10-08",
-    "basis": "price return only (excludes distributions)"
-   },
-   "source": "Nasdaq (price-only fallback)"
-  },
-  "DJIA": {
-   "price": 51231.64,
-   "price_display": "$51,231.64",
-   "price_asof": "2026-10-08",
-   "volume_avg": null,
-   "volume_display": null,
-   "dollar_volume_avg": null,
-   "dollar_volume_display": null,
-   "high_52w": 54349.12,
-   "low_52w": 45166.64,
-   "pct_below_high": "-5.7%",
-   "max_drawdown_1y": "-10.0%",
-   "history_start": "2021-10-05",
-   "performance": {
-    "ytd": "+6.6%",
-    "y1": "+9.9%",
-    "y3_annualized": "+15.3%/yr",
-    "y2025": "+13.0%",
-    "y2024": "+12.9%",
     "as_of": "2026-10-08",
     "basis": "price return only (excludes distributions)"
    },

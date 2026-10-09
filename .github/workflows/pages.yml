@@ -49,6 +49,10 @@ jobs:
       - name: Unit tests (market-data maths)
         run: python3 -m unittest discover -s tests
 
+      - name: Install browser-grade HTTP client for Yahoo (optional)
+        continue-on-error: true     # without it the script falls back to Nasdaq
+        run: python3 -m pip install --quiet --user --break-system-packages curl_cffi
+
       - name: Refresh market data
         id: refresh
         continue-on-error: true     # never block the deploy on a data-source hiccup

@@ -1,21 +1,24 @@
 # ETF Analysis — web app
 
 A **hosted, mobile-friendly web app** for side-by-side ETF comparison with deep
-memos, plus **live data refresh**. Designed to be deployed to **Vercel** so you
-get a public URL that opens on any device — no install, no download.
+memos. It's a plain static site on **GitHub Pages**
+(<https://learner-agent-sudo.github.io/Etf-analysis/>), so it opens on any device
+with no install, no download and no server to keep running.
 
 ## Two layers (this is the key idea)
 
-1. **Curated analysis (static)** — `public/data/*.json`. The judgment calls that
-   no API can make: theme-purity ratings, red flags, bull/bear, decision logs,
-   scored dimensions. Always available, works offline, version-controlled.
-2. **Live hard facts (dynamic)** — `api/etf.js`, a Vercel serverless function.
-   Pulls current expense ratio, AUM, holdings, sectors and performance for any
-   ticker on demand (the ↻ buttons and the "Look up" box). Runs server-side so
-   the API key is never exposed to the browser.
+1. **Curated analysis** — `public/data/<theme>.json`. The judgment calls no API
+   can make: theme-purity ratings, red flags, bull/bear, decision logs, scored
+   dimensions, the green-light screen. Version-controlled.
+2. **Daily market data** — `public/data/market.json`, generated every weekday
+   after the US close by `scripts/refresh_market.py` in GitHub Actions: price,
+   3-month average volume (shares and $), YTD / 1-yr / 3-yr / calendar-year
+   total returns, 52-week range, 1-yr max drawdown, and (when Yahoo answers)
+   AUM, expense ratio, trailing yield, top-10 holdings and sector weights — for
+   every curated **and** roster ticker.
 
-This split is deliberate: the page is useful instantly (static), and the numbers
-refresh themselves and can expand to **newly-launched ETFs you type in** (live).
+The page merges the two: fresh market numbers replace the dated snapshot in the
+theme files (snapshot values are shown faded until fresh data exists).
 
 ## Layout
 
@@ -23,60 +26,54 @@ refresh themselves and can expand to **newly-launched ETFs you type in** (live).
 public/                 ← static site (deployed as-is)
 ├── index.html
 ├── style.css
-├── app.js              ← loads /data/*.json; wires ↻ refresh + "Look up"
+├── app.js              ← loads data/<theme>.json + data/market.json
 └── data/
-    ├── quantum.json    ← QTUM, WQTM, CHPX + SOXX benchmark
-    └── space.json      ← UFO, ARKX, ROKT + XAR, SHLD benchmarks
-api/
-└── etf.js              ← GET /api/etf?ticker=XXX  (live refresh)
-vercel.json             ← Vercel config
+    ├── <theme>.json    ← curated: 10 themes
+    └── market.json     ← generated daily — don't edit by hand
+scripts/
+├── refresh_market.py   ← the daily fetcher (stdlib; curl_cffi optional)
+└── screen.py           ← the green-light screener (stamps meets_criteria)
+tests/                  ← offline tests for the market-data maths
+.github/workflows/pages.yml  ← refresh + commit market.json + deploy
 ```
 
 ## Run locally
 
-**Option A — static only (no live refresh), zero dependencies:**
 ```bash
 python3 app/server.py            # http://127.0.0.1:8000
 ```
-Serves the same `public/` files. The ↻ button will say live refresh needs Vercel
-— expected; the full curated analysis still works.
-
-**Option B — full app with live refresh, using Vercel's dev server:**
-```bash
-npm i -g vercel
-vercel dev                       # runs public/ + api/ together
-```
-(Needs the `ALPHAVANTAGE_KEY` env var — see deployment.)
-
-## Deploy to Vercel (public URL)
-
-See [`../docs/DEPLOYMENT.md`](../docs/DEPLOYMENT.md) for the step-by-step. Short
-version: connect the GitHub repo to Vercel (zero build config needed), add one
-environment variable `ALPHAVANTAGE_KEY` (free key from alphavantage.co), deploy.
-You get `https://<project>.vercel.app`.
+Serves the same `public/` files with the last committed `market.json`.
 
 ## What you can do on the page
 
-- **Theme picker** — Quantum, Space, …
-- **Sortable, filterable table** — click any header (expense, AUM, 1-yr, YTD,
-  concentration, score dots) to sort; filter by ticker/name; "theme funds only".
-- **↻ per row / in each memo** — pull live expense ratio, AUM, holdings, sectors,
-  performance. Live values are marked with a ● dot.
-- **"Look up" box** — type any ETF ticker (e.g. a brand-new quantum fund) and it
-  fetches live and adds a clearly-marked, *uncurated* row. Ask for a full memo to
-  turn it into a curated entry.
-- **Memo drawer** — thesis, strategy, theme-purity holdings (live or curated),
-  scored dimensions, performance, red flags, bull/bear, decision log.
+- **Theme picker** — remembered between visits; deep links like `…/#space`.
+- **Sortable, filterable table** — click any header to sort (blanks always
+  sort last); filter by ticker/name, "theme funds only", "✓ meets my criteria",
+  or by any rating.
+- **Full-universe roster** — every fund tagged to the theme, with its 1-yr
+  return. ✓ = curated card; others open a card built from the daily data
+  (mechanical cost / concentration / liquidity ratings, clearly marked "not
+  curated"). "⚠ no data" = the feed can't find it (closed, non-US or wrong
+  ticker — verify).
+- **Look-up box** — type any ticker: opens its curated card (switching theme if
+  needed), a daily-data card, or an honest "not tracked yet" stub.
+- **Memo drawer** — thesis, performance, key facts (52-wk range, drawdown,
+  $ volume, AUM, expense drift warning), scored dimensions, strategy, latest
+  top-10 holdings next to the analyst's purity classification, red flags,
+  bull/bear, decision log, plus links to the official holdings and a live quote.
+- **↻ check for update** — re-loads `market.json` (it changes once a day).
 
 ## Add / update a curated theme or fund
 
 1. Edit (or copy) a file in `public/data/`. Keep the field names — a fund needs
    the table fields, a `performance` block, a `scores` block (all five
-   dimensions, each `{rating, note}`), and a `memo` block.
+   dimensions, each `{rating, note}`), and a `memo` block. Add new funds to the
+   theme's `roster` too.
 2. Add the theme id to `THEME_FILES` in `public/app.js`.
-3. Commit. Vercel redeploys automatically; the live page updates in ~1 minute.
+3. Run `python3 scripts/screen.py --stamp` to refresh the criteria badges.
+4. Commit and push. The workflow fetches market data for any new tickers and
+   redeploys within ~5 minutes.
 
-> Live data refreshes the **numbers**; curated JSON holds the **judgment**. When
-> you ask me to "add fund X" or "refresh the data," I research public sources,
-> cross-check, and commit updated JSON — that's the reliable path for holdings
-> and brand-new funds the free API may not cover well.
+> Market data refreshes the **numbers**; curated JSON holds the **judgment**.
+> When you ask me to "add fund X" or "re-check theme Y," I research public
+> sources, cross-check, and commit updated JSON.

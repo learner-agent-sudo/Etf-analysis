@@ -12,17 +12,23 @@ cards AND full-universe roster tickers — shows fresh numbers without a server.
 For every ticker found in public/data/<theme>.json (etfs[] + roster[]):
   * from daily price history: price, 3-month average daily volume (shares
     and $), 52-week range, % below the 52-week high, 1-year max drawdown,
-    YTD / 1-yr / 3-yr annualized / last two calendar-year returns
-  * from the fund profile (best effort): AUM, expense ratio, trailing yield,
-    top-10 holdings with weights, sector weights, fund family
+    YTD / 1-yr / 3-yr annualized / last two calendar-year TOTAL returns
+    (distributions reinvested — essential for income funds)
+  * from the fund profile (Yahoo only, best effort): AUM, expense ratio,
+    trailing yield, top-10 holdings with weights, sector weights
 
-Returns use dividend-adjusted closes (≈ total return, which matters a lot for
-income funds). Sources are tried in order (Yahoo Finance → Stooq → Nasdaq);
-the fallbacks are price-only. A source that keeps failing is switched off for
-the rest of the run, and a ticker that fails everywhere keeps its previous
-entry (flagged "stale"), so one bad day never blanks the site.
-
-Zero dependencies (stdlib only).
+Sources, tried in order per ticker:
+  1. Yahoo Finance — adjusted closes + fund profile. Yahoo answers plain
+     Python HTTP clients from cloud IPs with "429 Too Many Requests", so when
+     the optional `curl_cffi` package is installed (the workflow installs it)
+     requests go out with a real browser's TLS fingerprint.
+  2. Nasdaq — price history + dividend history (→ total return), with a
+     cross-check against the live quote so a wrong instrument (e.g. the Dow
+     index instead of the DJIA covered-call ETF) is rejected.
+  3. Stooq — price-only last resort.
+A source that keeps failing is switched off for the rest of the run, and a
+ticker that fails everywhere keeps its previous entry (flagged "stale"), so
+one bad day never blanks the site.
 
 Usage:
     python3 scripts/refresh_market.py               # refresh everything
@@ -37,10 +43,17 @@ import io
 import json
 import os
 import sys
+import threading
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
+
+try:  # optional: browser-grade TLS fingerprint for Yahoo (pip install curl_cffi)
+    from curl_cffi import requests as cffi_requests
+except Exception:  # noqa: BLE001 — absent locally; the CI workflow installs it
+    cffi_requests = None
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DATA = os.path.join(ROOT, "public", "data")
@@ -48,7 +61,6 @@ OUT = os.path.join(DATA, "market.json")
 
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
-YAHOO_HOSTS = ("query1.finance.yahoo.com", "query2.finance.yahoo.com")
 TRADING_DAYS_3M = 63
 TRADING_DAYS_1Y = 252
 HISTORY_DAYS = 5 * 366
@@ -57,6 +69,9 @@ HISTORY_DAYS = 5 * 366
 # when today's profile fetch fails (they change slowly).
 PROFILE_KEYS = ("aum_musd", "aum_display", "expense_ratio", "yield_ttm", "holdings",
                 "top10_weight_pct", "sectors", "fund_family", "profile_asof")
+
+# Failure reasons that mean the old entry must not be kept as "stale".
+DROP_ON = ("wrong instrument", "not listed")
 
 SECTOR_LABELS = {
     "realestate": "Real estate", "consumer_cyclical": "Consumer cyclical",
@@ -71,15 +86,21 @@ def log(*a):
     print(*a, flush=True)
 
 
+class HttpStatus(Exception):
+    def __init__(self, code):
+        super().__init__(f"HTTP {code}")
+        self.code = code
+
+
 # ---------------------------------------------------------------- helpers --
 def theme_tickers(data_dir=DATA):
     """Every ticker referenced by any theme file (curated + roster), sorted."""
     out = set()
     for path in glob.glob(os.path.join(data_dir, "*.json")):
-        if os.path.basename(path) == "market.json":
-            continue
         with open(path, encoding="utf-8") as fh:
             theme = json.load(fh)
+        if "etfs" not in theme:          # market.json and other non-theme files
+            continue
         for e in theme.get("etfs", []):
             out.add(e["ticker"].strip().upper())
         for r in theme.get("roster", []):
@@ -121,37 +142,94 @@ def fmt_dollars(n, per_day=True):
     return f"~${round(n)}{tail}"
 
 
-def _get(url, timeout=12, headers=None, opener=None):
+def _num(s):
+    return float(str(s).replace("$", "").replace(",", "").strip())
+
+
+def _get(url, timeout=15, headers=None, opener=None):
     h = {"User-Agent": UA, "Accept": "*/*"}
     h.update(headers or {})
     req = urllib.request.Request(url, headers=h)
     op = opener.open if opener else urllib.request.urlopen
-    with op(req, timeout=timeout) as r:
-        return r.read().decode("utf-8", "replace")
+    try:
+        with op(req, timeout=timeout) as r:
+            return r.read().decode("utf-8", "replace")
+    except urllib.error.HTTPError as e:
+        raise HttpStatus(e.code) from None
 
 
-# ------------------------------------------------------- price-history sources --
-def fetch_yahoo(ticker):
-    """Daily bars for ~5 years from Yahoo's public chart endpoint (no key)."""
-    last_err = None
-    for host in YAHOO_HOSTS:
-        url = (f"https://{host}/v8/finance/chart/{urllib.parse.quote(ticker)}"
-               "?range=5y&interval=1d&includeAdjustedClose=true&events=div%2Csplit")
-        for attempt in range(3):
+# ------------------------------------------------------------------ Yahoo --
+class Yahoo:
+    """Chart (price history) + quoteSummary (fund profile) from Yahoo Finance.
+
+    One HTTP session per worker thread; quoteSummary needs a cookie + 'crumb'.
+    """
+    HOSTS = ("query1.finance.yahoo.com", "query2.finance.yahoo.com")
+
+    def __init__(self):
+        self.local = threading.local()
+        self.kind = "curl_cffi" if cffi_requests else "urllib"
+
+    def _session(self):
+        s = getattr(self.local, "s", None)
+        if s is None:
+            if cffi_requests:
+                s = cffi_requests.Session(impersonate="chrome")
+            else:
+                s = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+            self.local.s, self.local.crumb = s, None
+        return s
+
+    def get(self, url, timeout=15):
+        s = self._session()
+        if cffi_requests:
+            r = s.get(url, timeout=timeout)
+            if r.status_code >= 400:
+                raise HttpStatus(r.status_code)
+            return r.text
+        return _get(url, timeout=timeout, opener=s)
+
+    def chart(self, ticker):
+        last = None
+        for host in self.HOSTS:
+            url = (f"https://{host}/v8/finance/chart/{urllib.parse.quote(ticker)}"
+                   "?range=5y&interval=1d&includeAdjustedClose=true&events=div%2Csplit")
             try:
-                return parse_yahoo(json.loads(_get(url)))
-            except urllib.error.HTTPError as e:
-                last_err = f"HTTP {e.code}"
+                return parse_yahoo(json.loads(self.get(url)))
+            except HttpStatus as e:
                 if e.code == 404:
-                    raise LookupError(f"{ticker}: not found on Yahoo")
-                if e.code == 429:                 # rate limited: back off, same host
-                    time.sleep(2 * (attempt + 1))
-                    continue
-                break                             # other HTTP error: try next host
-            except (urllib.error.URLError, TimeoutError, ValueError) as e:
-                last_err = str(e)
-                break                             # network/parse error: try next host
-    raise RuntimeError(f"{ticker}: yahoo failed ({last_err})")
+                    raise LookupError(f"{ticker}: not found on Yahoo") from None
+                if e.code == 429:            # throttled: retrying only digs deeper
+                    raise RuntimeError("yahoo: HTTP 429 (rate limited)") from None
+                last = e
+            except (urllib.error.URLError, TimeoutError, ValueError, OSError) as e:
+                last = e
+        raise RuntimeError(f"yahoo: {last}")
+
+    def _crumb(self):
+        self._session()
+        if getattr(self.local, "crumb", None):
+            return self.local.crumb
+        try:
+            self.get("https://fc.yahoo.com", timeout=8)
+        except Exception:  # noqa: BLE001 — a 404 here is normal; we only need the cookie
+            pass
+        c = self.get("https://query1.finance.yahoo.com/v1/test/getcrumb").strip()
+        if not c or "<" in c or " " in c or len(c) > 40:
+            raise RuntimeError("yahoo: no crumb")
+        self.local.crumb = c
+        return c
+
+    def profile(self, ticker):
+        url = (f"https://query2.finance.yahoo.com/v10/finance/quoteSummary/{urllib.parse.quote(ticker)}"
+               "?modules=topHoldings%2CfundProfile%2CsummaryDetail%2CdefaultKeyStatistics"
+               f"&crumb={urllib.parse.quote(self._crumb())}")
+        try:
+            return parse_profile(json.loads(self.get(url)))
+        except HttpStatus as e:
+            if e.code == 404:
+                raise LookupError(f"{ticker}: no profile") from None
+            raise
 
 
 def parse_yahoo(j):
@@ -167,8 +245,7 @@ def parse_yahoo(j):
     q = ((res.get("indicators") or {}).get("quote") or [{}])[0]
     adj = (((res.get("indicators") or {}).get("adjclose") or [{}])[0]).get("adjclose")
     closes, vols = q.get("close") or [], q.get("volume") or []
-    # Exchange-local date: shift the UTC timestamp by the exchange's offset.
-    off = meta.get("gmtoffset") or 0
+    off = meta.get("gmtoffset") or 0             # exchange-local trading date
     bars = []
     for i, t in enumerate(ts):
         c = closes[i] if i < len(closes) else None
@@ -191,108 +268,6 @@ def parse_yahoo(j):
         "regular_market_price": meta.get("regularMarketPrice"),
     }
     return {"bars": bars, "meta": info, "returns_basis": "total"}
-
-
-def fetch_stooq(ticker):
-    """Price-only fallback (daily CSV, no key)."""
-    text = _get(f"https://stooq.com/q/d/l/?s={ticker.lower()}.us&i=d")
-    return parse_stooq(text)
-
-
-def parse_stooq(text):
-    if not text.lstrip().lower().startswith("date"):
-        raise ValueError("stooq: unexpected response")
-    bars = []
-    for row in csv.DictReader(io.StringIO(text)):
-        try:
-            d = dt.date.fromisoformat(row["Date"])
-            c = float(row["Close"])
-        except (KeyError, ValueError, TypeError):
-            continue
-        v = row.get("Volume")
-        bars.append((d, c, c, float(v) if v not in (None, "", "0") else None))
-    cutoff = dt.date.today() - dt.timedelta(days=HISTORY_DAYS)
-    bars = [b for b in bars if b[0] >= cutoff]
-    if not bars:
-        raise ValueError("stooq: no rows")
-    return {"bars": bars, "meta": {}, "returns_basis": "price"}
-
-
-def fetch_nasdaq(ticker):
-    """Second price-only fallback: Nasdaq's public quote-history JSON."""
-    today = dt.date.today()
-    url = (f"https://api.nasdaq.com/api/quote/{urllib.parse.quote(ticker)}/historical?assetclass=etf"
-           f"&fromdate={(today - dt.timedelta(days=HISTORY_DAYS)).isoformat()}"
-           f"&todate={today.isoformat()}&limit=9999")
-    text = _get(url, headers={"Accept": "application/json, text/plain, */*",
-                              "Origin": "https://www.nasdaq.com", "Referer": "https://www.nasdaq.com/"})
-    return parse_nasdaq(json.loads(text))
-
-
-def _num(s):
-    return float(str(s).replace("$", "").replace(",", "").strip())
-
-
-def parse_nasdaq(j):
-    rows = ((((j or {}).get("data") or {}).get("tradesTable") or {}).get("rows")) or []
-    bars = []
-    for r in rows:
-        try:
-            m, d, y = r["date"].split("/")
-            day = dt.date(int(y), int(m), int(d))
-            c = _num(r["close"])
-        except (KeyError, ValueError, AttributeError, TypeError):
-            continue
-        try:
-            v = _num(r.get("volume"))
-        except (ValueError, TypeError):
-            v = None
-        bars.append((day, c, c, v))
-    if not bars:
-        raise ValueError("nasdaq: no rows")
-    return {"bars": bars, "meta": {}, "returns_basis": "price"}
-
-
-SOURCE_LABEL = {
-    "fetch_yahoo": "Yahoo Finance",
-    "fetch_stooq": "Stooq (price-only fallback)",
-    "fetch_nasdaq": "Nasdaq (price-only fallback)",
-}
-
-
-# ------------------------------------------------------------ fund profile --
-class YahooProfile:
-    """quoteSummary needs a cookie + 'crumb'; get them once per run."""
-
-    def __init__(self):
-        self.opener = urllib.request.build_opener(
-            urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
-        self.crumb = None
-
-    def _crumb(self):
-        if self.crumb:
-            return self.crumb
-        try:
-            _get("https://fc.yahoo.com", timeout=8, opener=self.opener)
-        except Exception:  # noqa: BLE001 — a 404 here is normal; we only need the cookie
-            pass
-        c = _get("https://query1.finance.yahoo.com/v1/test/getcrumb", opener=self.opener).strip()
-        if not c or "<" in c or " " in c or len(c) > 40:
-            raise RuntimeError("no crumb")
-        self.crumb = c
-        return c
-
-    def __call__(self, ticker):
-        crumb = self._crumb()
-        url = (f"https://query2.finance.yahoo.com/v10/finance/quoteSummary/{urllib.parse.quote(ticker)}"
-               "?modules=topHoldings%2CfundProfile%2CsummaryDetail%2CdefaultKeyStatistics"
-               f"&crumb={urllib.parse.quote(crumb)}")
-        try:
-            return parse_profile(json.loads(_get(url, opener=self.opener)))
-        except urllib.error.HTTPError as e:
-            if e.code == 404:
-                raise LookupError(f"{ticker}: no profile")
-            raise
 
 
 def _raw(x):
@@ -353,6 +328,140 @@ def parse_profile(j):
     if not out:
         raise ValueError("empty profile")
     return out
+
+
+# ----------------------------------------------------------------- Nasdaq --
+NASDAQ_HDR = {"Accept": "application/json, text/plain, */*",
+              "Origin": "https://www.nasdaq.com", "Referer": "https://www.nasdaq.com/"}
+
+
+def _nasdaq(path):
+    return json.loads(_get("https://api.nasdaq.com/api/quote/" + path, headers=NASDAQ_HDR, timeout=20))
+
+
+def fetch_nasdaq(ticker, today=None):
+    """Price history + dividends (→ total return) from Nasdaq's public quote API."""
+    q = urllib.parse.quote(ticker)
+    info = asset = None
+    for ac in ("etf", "stocks"):                 # ETFs first; roster may include a stock (e.g. LLY)
+        data = (_nasdaq(f"{q}/info?assetclass={ac}") or {}).get("data")
+        if data:
+            info, asset = data, ac
+            break
+    if not info:
+        raise LookupError(f"{ticker}: not listed (closed, non-US or wrong ticker?)")
+    today = today or dt.date.today()
+    start = dt.date(today.year - 4, 12, 1)      # enough for 3-yr + two calendar years
+    raw = parse_nasdaq(_nasdaq(f"{q}/historical?assetclass={asset}&fromdate={start.isoformat()}"
+                               f"&todate={today.isoformat()}&limit=9999"))
+    try:
+        quote = _num((info.get("primaryData") or {}).get("lastSalePrice"))
+    except (ValueError, TypeError):
+        quote = None
+    last = max(raw["bars"])[1]
+    if quote and abs(last / quote - 1) > 0.25:
+        raise ValueError(f"nasdaq: history close {last} doesn't match quote {quote} — wrong instrument")
+    try:
+        divs = parse_nasdaq_dividends(_nasdaq(f"{q}/dividends?assetclass={asset}"))
+        raw["bars"] = apply_dividends(raw["bars"], divs)
+        raw["returns_basis"] = "total"
+    except Exception:  # noqa: BLE001 — keep price-only returns, clearly labelled
+        pass
+    raw["meta"] = {"name": info.get("companyName"), "exchange": info.get("exchange"),
+                   "instrument_type": "ETF" if asset == "etf" else "Stock"}
+    return raw
+
+
+def parse_nasdaq(j):
+    rows = ((((j or {}).get("data") or {}).get("tradesTable") or {}).get("rows")) or []
+    bars = []
+    for r in rows:
+        try:
+            m, d, y = r["date"].split("/")
+            day = dt.date(int(y), int(m), int(d))
+            c = _num(r["close"])
+        except (KeyError, ValueError, AttributeError, TypeError):
+            continue
+        try:
+            v = _num(r.get("volume"))
+        except (ValueError, TypeError):
+            v = None
+        bars.append((day, c, c, v))
+    if not bars:
+        raise ValueError("nasdaq: no rows")
+    return {"bars": bars, "meta": {}, "returns_basis": "price"}
+
+
+def parse_nasdaq_dividends(j):
+    data = (j or {}).get("data")
+    if data is None:
+        raise ValueError("nasdaq: no dividend data")
+    out = []
+    for r in ((data.get("dividends") or {}).get("rows")) or []:
+        try:
+            m, d, y = r["exOrEffDate"].split("/")
+            amt = _num(r["amount"])
+        except (KeyError, ValueError, AttributeError, TypeError):
+            continue
+        if amt > 0:
+            out.append((dt.date(int(y), int(m), int(d)), amt))
+    return out                                    # empty list = fund pays nothing
+
+
+def apply_dividends(bars, divs):
+    """Back-adjust closes for distributions (the standard 'adjusted close').
+
+    For each ex-date, every earlier close is multiplied by (1 - amount / close
+    of the day before the ex-date), so adjusted-close returns = total return
+    with distributions reinvested. Future (declared, not yet ex) dividends are
+    ignored.
+    """
+    bars = sorted(bars, key=lambda b: b[0])
+    last_day = bars[-1][0]
+    factors = []
+    for ex, amt in sorted(divs):
+        if ex > last_day:
+            continue
+        prev = None
+        for b in bars:
+            if b[0] < ex:
+                prev = b
+            else:
+                break
+        if prev and 0 < amt < prev[1]:
+            factors.append((ex, 1 - amt / prev[1]))
+    out, mult, j = [], 1.0, len(factors) - 1
+    for b in reversed(bars):
+        while j >= 0 and factors[j][0] > b[0]:
+            mult *= factors[j][1]
+            j -= 1
+        out.append((b[0], b[1], b[1] * mult, b[3]))
+    return out[::-1]
+
+
+# ------------------------------------------------------------------ Stooq --
+def fetch_stooq(ticker):
+    """Price-only last resort (daily CSV, no key)."""
+    return parse_stooq(_get(f"https://stooq.com/q/d/l/?s={ticker.lower()}.us&i=d"))
+
+
+def parse_stooq(text):
+    if not text.lstrip().lower().startswith("date"):
+        raise ValueError("stooq: unexpected response")
+    bars = []
+    for row in csv.DictReader(io.StringIO(text)):
+        try:
+            d = dt.date.fromisoformat(row["Date"])
+            c = float(row["Close"])
+        except (KeyError, ValueError, TypeError):
+            continue
+        v = row.get("Volume")
+        bars.append((d, c, c, float(v) if v not in (None, "", "0") else None))
+    cutoff = dt.date.today() - dt.timedelta(days=HISTORY_DAYS)
+    bars = [b for b in bars if b[0] >= cutoff]
+    if not bars:
+        raise ValueError("stooq: no rows")
+    return {"bars": bars, "meta": {}, "returns_basis": "price"}
 
 
 # ---------------------------------------------------------------- metrics --
@@ -443,60 +552,82 @@ def compute_metrics(bars, returns_basis="total", meta=None):
 
 
 # ------------------------------------------------------------------- main --
-def refresh(tickers, sources=(fetch_yahoo, fetch_stooq, fetch_nasdaq), profile=None,
-            pause=0.35, log=log, budget_s=600, trip_after=5):
-    """Fetch every ticker, trying each price source in order, then the profile.
+def default_sources(yahoo):
+    return [("Yahoo Finance", yahoo.chart), ("Nasdaq", fetch_nasdaq),
+            ("Stooq (price-only)", fetch_stooq)]
 
-    Circuit breaker: a source that fails `trip_after` tickers in a row is
-    switched off for the rest of the run, and the run stops after `budget_s`
-    seconds — so a blocked/hanging source can't stall the deploy. Unknown
-    tickers (LookupError) don't count as a source failure.
+
+def refresh(tickers, sources, profile=None, workers=4, pause=0.2, log=log,
+            budget_s=600, trip_after=5):
+    """Fetch every ticker (`workers` at a time), trying each price source in
+    order, then the profile.
+
+    `sources` is a list of (label, fetch_fn). Circuit breaker: a source that
+    fails `trip_after` tickers in a row is switched off for the rest of the
+    run, and the run stops after `budget_s` seconds — so a blocked/hanging
+    source can't stall the deploy. Unknown tickers (LookupError) don't count.
     """
-    ok, failed = {}, {}
-    streak = {src: 0 for src in sources}
-    prof_streak, prof_ok = 0, 0
+    lock = threading.Lock()
+    streak = {label: 0 for label, _ in sources}
+    prof = {"streak": 0, "ok": 0, "off_logged": False}
     today = dt.date.today().isoformat()
     deadline = time.monotonic() + budget_s
-    for i, t in enumerate(tickers):
-        live = [s for s in sources if streak[s] < trip_after]
-        if not live or time.monotonic() > deadline:
-            why = "all sources tripped" if not live else "time budget exhausted"
-            for rest in tickers[i:]:
-                failed[rest] = why
-            log(f"Stopping early ({why}); {len(tickers) - i} tickers skipped.")
-            break
-        errs = []
-        for src in live:
+
+    def one(t):
+        if time.monotonic() > deadline:
+            return t, None, "time budget exhausted"
+        with lock:
+            live = [(lab, fn) for lab, fn in sources if streak[lab] < trip_after]
+        if not live:
+            return t, None, "all sources switched off"
+        errs, entry = [], None
+        for lab, fn in live:
             try:
-                raw = src(t)
-                ok[t] = compute_metrics(raw["bars"], raw["returns_basis"], raw["meta"])
-                ok[t]["source"] = SOURCE_LABEL.get(src.__name__, src.__name__)
-                streak[src] = 0
+                raw = fn(t)
+                entry = compute_metrics(raw["bars"], raw["returns_basis"], raw["meta"])
+                entry["source"] = lab
+                with lock:
+                    streak[lab] = 0
                 break
             except LookupError as e:      # unknown/delisted ticker — not a source outage
-                errs.append(f"{src.__name__}: {e}")
+                errs.append(f"{lab}: {e}")
             except Exception as e:  # noqa: BLE001 — any source failure falls through to the next
-                errs.append(f"{src.__name__}: {e}")
-                streak[src] += 1
-        if t not in ok:
-            failed[t] = "; ".join(errs)
-        elif profile is not None and prof_streak < trip_after:
-            try:
-                ok[t].update(profile(t))
-                ok[t]["profile_asof"] = today
-                prof_streak, prof_ok = 0, prof_ok + 1
-            except LookupError:
-                pass
-            except Exception as e:  # noqa: BLE001
-                prof_streak += 1
-                if prof_streak >= trip_after:
-                    log(f"Fund-profile source switched off after {trip_after} straight failures ({e}).")
-        log(f"[{i + 1}/{len(tickers)}] {t}: " + (
-            f"ok {ok[t]['price_display']} via {ok[t]['source']}" + (" +profile" if "profile_asof" in ok[t] else "")
-            if t in ok else "FAILED " + failed[t]))
+                errs.append(f"{lab}: {e}")
+                with lock:
+                    streak[lab] += 1
+        if entry is not None and profile is not None:
+            with lock:
+                use = prof["streak"] < trip_after
+            if use:
+                try:
+                    entry.update(profile(t))
+                    entry["profile_asof"] = today
+                    with lock:
+                        prof["streak"], prof["ok"] = 0, prof["ok"] + 1
+                except LookupError:
+                    pass
+                except Exception as e:  # noqa: BLE001
+                    with lock:
+                        prof["streak"] += 1
+                        if prof["streak"] >= trip_after and not prof["off_logged"]:
+                            prof["off_logged"] = True
+                            log(f"Fund-profile source switched off after {trip_after} straight failures ({e}).")
         time.sleep(pause)
+        return t, entry, "; ".join(errs)
+
+    ok, failed = {}, {}
+    with ThreadPoolExecutor(max_workers=max(1, workers)) as ex:
+        for i, (t, entry, err) in enumerate(ex.map(one, tickers)):
+            if entry is not None:
+                ok[t] = entry
+                log(f"[{i + 1}/{len(tickers)}] {t}: ok {entry['price_display']} via {entry['source']}"
+                    + ("" if entry["performance"]["basis"].startswith("total") else " (price-only)")
+                    + (" +profile" if "profile_asof" in entry else ""))
+            else:
+                failed[t] = err
+                log(f"[{i + 1}/{len(tickers)}] {t}: FAILED {err}")
     if profile is not None:
-        log(f"Fund profiles: {prof_ok}/{len(ok)}")
+        log(f"Fund profiles: {prof['ok']}/{len(ok)}")
     return ok, failed
 
 
@@ -515,21 +646,24 @@ def merge(previous, fresh, failed, now_iso, keep=None):
                 if k in prev:
                     e[k] = prev[k]
         tickers[t] = e
-    for t in failed:
-        if t in tickers:
-            tickers[t]["stale"] = True
+    for t, why in failed.items():
+        if t not in tickers:
+            continue
+        if any(k in (why or "") for k in DROP_ON):   # previous value was wrong / fund is gone
+            del tickers[t]
+        else:
+            tickers[t]["stale"] = True               # transient outage: keep last good value
     if keep is not None:
         tickers = {t: e for t, e in tickers.items() if t in keep}
     dates = [e.get("price_asof") for t, e in tickers.items() if t in fresh and e.get("price_asof")]
     return {
         "as_of": max(dates) if dates else (previous or {}).get("as_of"),
         "generated_at": now_iso,
-        "source": "Daily closes from Yahoo Finance (returns use dividend-adjusted closes; "
-                  "Stooq/Nasdaq price-only fallbacks); fund profile (AUM, expense ratio, top-10 "
-                  "holdings) from Yahoo Finance/Morningstar. Refreshed automatically by GitHub "
-                  "Actions every weekday after the US close.",
+        "source": "Daily closes from Yahoo Finance or Nasdaq (returns reinvest distributions); "
+                  "fund profile (AUM, expense ratio, top-10 holdings) from Yahoo Finance/Morningstar "
+                  "when available. Refreshed automatically by GitHub Actions every weekday after the US close.",
         "count": len(tickers),
-        "failed": sorted(t for t in failed if keep is None or t in keep),
+        "failed": {t: failed[t] for t in sorted(failed) if keep is None or t in keep},
         "tickers": dict(sorted(tickers.items())),
     }
 
@@ -538,8 +672,9 @@ def main(argv):
     dry = "--dry-run" in argv
     only = [a.upper() for a in argv if not a.startswith("-")]
     tickers = only or theme_tickers()
-    log(f"Refreshing {len(tickers)} tickers…")
-    fresh, failed = refresh(tickers, profile=YahooProfile())
+    yahoo = Yahoo()
+    log(f"Refreshing {len(tickers)} tickers (Yahoo via {yahoo.kind})…")
+    fresh, failed = refresh(tickers, default_sources(yahoo), profile=yahoo.profile)
     previous = None
     if os.path.exists(OUT):
         with open(OUT, encoding="utf-8") as fh:

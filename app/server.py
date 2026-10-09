@@ -4,16 +4,16 @@ ETF Analysis — dynamic web app backend.
 
 Zero-dependency (Python standard library only) on purpose: this runs in a
 sandbox where `pip install` is blocked (no outbound network to PyPI). It serves
-a small JSON API over the theme data files in app/data/*.json plus the static
-frontend in app/static/.
+a small JSON API over the theme data files in public/data/*.json plus the static
+frontend in public/.
 
 Run:    python3 app/server.py            # then open http://127.0.0.1:8000
         python3 app/server.py --port 9000
 
 NOTE ON DATA: the backend serves PRE-POPULATED theme files. It does not fetch
-live ETF data at runtime, because outbound internet is blocked in this
-environment. Data is refreshed out-of-band (via web search) and written into
-app/data/*.json. See docs/DATA-SOURCES.md.
+live ETF data at runtime. Curated analysis is researched out-of-band and written
+into public/data/<theme>.json; market data comes from the daily GitHub Action.
+See docs/DEPLOYMENT.md.
 """
 import argparse
 import json
@@ -23,10 +23,9 @@ from urllib.parse import urlparse
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(BASE_DIR)
-# Canonical app is the Vercel layout at repo-root: public/ (static) + public/data.
-# This local stdlib server now serves the SAME files so there's a single source
-# of truth. (The live /api/etf refresh only runs on Vercel; locally you get the
-# curated static data, which is the whole analysis.)
+# Serves the same public/ folder that GitHub Pages hosts, so there's a single
+# source of truth. public/data/market.json (daily prices/returns) is generated
+# by scripts/refresh_market.py in CI; locally you see the last committed copy.
 DATA_DIR = os.path.join(REPO_ROOT, "public", "data")
 STATIC_DIR = os.path.join(REPO_ROOT, "public")
 
@@ -40,7 +39,7 @@ CONTENT_TYPES = {
 
 
 def load_themes():
-    """Read every app/data/*.json theme file. Returns (themes, errors)."""
+    """Read every public/data/*.json theme file. Returns (themes, errors)."""
     themes, errors = {}, []
     if not os.path.isdir(DATA_DIR):
         return themes, [f"data directory not found: {DATA_DIR}"]
@@ -51,6 +50,8 @@ def load_themes():
         try:
             with open(path, encoding="utf-8") as fh:
                 theme = json.load(fh)
+            if "etfs" not in theme:      # market.json is data, not a theme
+                continue
             tid = theme.get("id") or os.path.splitext(fn)[0]
             theme["id"] = tid
             themes[tid] = theme

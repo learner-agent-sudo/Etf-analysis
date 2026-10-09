@@ -1,60 +1,60 @@
 # Deployment — free hosting on GitHub Pages
 
-The site is **static** (`public/` — HTML/CSS/JS + JSON data), so it hosts free on
-**GitHub Pages** with no server, no account beyond GitHub, and no usage limits
-that matter for a page like this. A GitHub Actions workflow auto-deploys on every
-push, exactly like a connected host would.
+The site is **static** (`public/` — HTML/CSS/JS + JSON data), so it hosts free
+on **GitHub Pages**: no server, no account beyond GitHub, no usage limits that
+matter for a page like this.
 
-## One-time setup (≈1 minute, from any browser)
+Live at **https://learner-agent-sudo.github.io/Etf-analysis/**
 
-1. Go to the repo → **Settings** → **Pages**.
-2. Under **Build and deployment → Source**, choose **GitHub Actions**.
-3. Done. The workflow (`.github/workflows/pages.yml`) runs on the next push (or
-   run it now: **Actions** tab → "Deploy to GitHub Pages" → **Run workflow**).
+## How it stays up to date — no server needed
 
-Your site will be live at:
+One GitHub Actions workflow (`.github/workflows/pages.yml`) does everything:
 
-> **https://learner-agent-sudo.github.io/Etf-analysis/**
+| When | What happens |
+|---|---|
+| Every weekday ~21:41 UTC (after the US close) | `scripts/refresh_market.py` fetches price, volume, returns, AUM and top holdings for **every** ticker in `public/data/*.json` (curated + full-universe roster), writes `public/data/market.json`, commits it, and redeploys the site |
+| Every push that touches `public/`, `scripts/` or the workflow | same refresh + redeploy, so analysis changes go live within ~5 minutes |
+| On demand | **Actions** tab → "Deploy to GitHub Pages" → **Run workflow** |
 
-Every future push that touches `public/` redeploys automatically — so when I add
-or update ETF data, the live page updates within a minute of the push.
+The page reads `market.json` on load, so fresh numbers replace the dated
+hand-researched snapshot automatically (snapshot values show faded until fresh
+data exists). The **↻ check for update** button re-loads that file; the
+**Live quote** link in each memo opens an intraday quote for the fund.
 
-## What works on GitHub Pages
+### Data sources (no API keys)
 
-Everything except the live serverless refresh:
+1. **Yahoo Finance** — dividend-adjusted closes (total return) + fund profile
+   (AUM, expense ratio, top-10 holdings, sectors). Yahoo throttles plain Python
+   clients from cloud servers, so the workflow installs `curl_cffi`, which sends
+   requests with a real browser's TLS fingerprint.
+2. **Nasdaq** — price history + dividend history, combined into total returns.
+   Each history is cross-checked against the live quote, so a wrong instrument
+   (e.g. the Dow index instead of the DJIA covered-call ETF) is rejected.
+3. **Stooq** — price-only last resort.
 
-- ✅ All curated analysis: comparison tables, memos, scores, holdings, the
-  green-light screen and "Meets my criteria" filter, the full-universe rosters.
-- ✅ Sorting, filtering, mobile card layout, the abbreviations glossary.
-- ⚠️ The **↻ live-refresh / "Look up" box**: GitHub Pages is static-only, so
-  there's no `api/etf` server. Clicking a roster ticker shows the graceful
-  **"not yet curated" stub** instead of live prices. The curated data is a dated
-  snapshot; refresh it by asking me to re-pull and commit.
+A source that keeps failing is switched off for that run; a ticker that fails
+everywhere keeps yesterday's value (marked stale), and a ticker that turns out
+to be closed/non-US is dropped and flagged "⚠ no data" in the roster. If every
+source is down, the site still deploys with the last good `market.json`.
+
+## One-time setup (already done)
+
+Repo → **Settings** → **Pages** → **Build and deployment → Source: GitHub
+Actions**. Nothing else to configure — no secrets, no API keys.
 
 ## Local preview
 
 ```bash
-python3 app/server.py        # http://127.0.0.1:8000
+python3 app/server.py                     # http://127.0.0.1:8000
+python3 scripts/refresh_market.py --dry-run QTUM   # try the fetcher (needs internet)
+python3 -m unittest discover -s tests     # offline tests for the return maths
 ```
-Zero dependencies (Python stdlib). Serves the same `public/` folder.
+Zero dependencies (Python stdlib; `curl_cffi` is optional).
 
-## Migrating off the paused Vercel project
+## History: why not Vercel any more
 
-Nothing to clean up is required — the paused Vercel deployment simply stops
-serving. If you want, delete the Vercel project from your Vercel dashboard and
-update the repo's **homepage** (Settings → General) to the Pages URL above. The
-`vercel.json` / `api/etf.js` files are left in the repo but are inert without a
-Vercel deploy.
-
-## Want the live ↻ refresh back later? (optional)
-
-The live feature needs a serverless runtime + a data API key. Free options that
-don't have Vercel's limits:
-
-- **Cloudflare Pages** — connect the repo, set the build output directory to
-  `public`, and port `api/etf.js` to a Pages Function (`functions/api/etf.js`).
-  Add the `ALPHAVANTAGE_KEY` as an environment variable. Generous free tier.
-- **Netlify** — similar; `api/etf.js` → a Netlify Function, output dir `public`.
-
-Ask me and I'll wire up whichever you pick. Until then, GitHub Pages gives you
-the full analysis for free.
+The site started on Vercel with a serverless function (`api/etf.js`, Alpha
+Vantage) for live refresh. The Vercel account hit its usage limit and was
+paused, so the site moved to GitHub Pages and the serverless function was
+replaced by the scheduled data refresh above (more data, no key, no limits).
+The old Vercel files were removed; they remain in git history.

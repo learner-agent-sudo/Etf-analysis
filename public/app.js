@@ -93,6 +93,12 @@ function pressable(node, fn) {
 
 // ---- market-data helpers -------------------------------------------
 const daily = t => (MARKET && MARKET.tickers && MARKET.tickers[t]) || null;
+// Why the daily feed has no data for a ticker (closed, non-US, wrong ticker…).
+function failReason(t) {
+  const f = MARKET && MARKET.failed;
+  const r = f && !Array.isArray(f) ? f[t] : null;
+  return "Not found in the daily market data" + (r && /not listed/i.test(r) ? " — the fund may have closed, be listed outside the US, or the ticker may be wrong." : ".") + " Verify on the issuer's site.";
+}
 
 // Values like "verify", "n/a", "" mean "no confirmed number".
 function isPlaceholder(v) {
@@ -302,12 +308,14 @@ function renderRoster() {
     const d = daily(x.ticker);
     const y1 = d && d.performance && d.performance.y1;
     const n = num(y1);
+    const why = !d && MARKET ? failReason(x.ticker) : null;
     const row = pressable(el("div", { class: "rosteritem" + (isDet ? " detailed" : ""),
       title: isDet ? "Full analysis card — click to open" : "Click to open this fund's daily data" },
       el("span", { class: "rtk" }, (isDet ? "✓ " : "") + x.ticker),
       x.tag ? el("span", { class: "rtag" }, x.tag) : null,
       el("span", { class: "rnm" }, x.name || ""),
-      y1 ? el("span", { class: "rperf " + (n >= 0 ? "pos" : "neg"), title: "1-yr return (daily data)" }, y1) : null),
+      y1 ? el("span", { class: "rperf " + (n >= 0 ? "pos" : "neg"), title: "1-yr return (daily data)" }, y1) : null,
+      why ? el("span", { class: "rnodata", title: why }, "⚠ no data") : null),
       () => isDet ? openMemo(x.ticker) : lookupTicker(x.ticker, x));
     grid.append(row);
   });
@@ -477,7 +485,10 @@ function lookupTicker(ticker, entry) {
   if (d) {
     liveMsg(`${ticker}: added with the latest daily fund data (${d.price_asof} close). No curated analysis yet in this theme${home ? "" : " — ask Claude to add a full card"}.`, "", action);
   } else {
-    liveMsg(`${ticker} isn't tracked yet, so there's no market data for it here. Ask Claude to add it to a theme and it gets daily data plus an analysis card. Meanwhile “Live quote” in the card opens an external quote page.`, "warn", action);
+    const inRoster = (CURRENT.roster || []).some(r => r.ticker === ticker);
+    liveMsg(inRoster
+      ? `${ticker}: ${failReason(ticker)}`
+      : `${ticker} isn't tracked yet, so there's no market data for it here. Ask Claude to add it to a theme and it gets daily data plus an analysis card. Meanwhile “Live quote” in the card opens an external quote page.`, "warn", action);
   }
   openMemo(ticker);
 }

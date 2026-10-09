@@ -39,7 +39,9 @@ CRITERIA_TEXT = "cost=green, concentration=green, purity in {green,yellow}"
 def load():
     out = []
     for f in sorted(glob.glob(os.path.join(DATA, "*.json"))):
-        out.append((f, json.load(open(f, encoding="utf-8"))))
+        d = json.load(open(f, encoding="utf-8"))
+        if "etfs" in d:              # skip non-theme files such as market.json
+            out.append((f, d))
     return out
 
 
