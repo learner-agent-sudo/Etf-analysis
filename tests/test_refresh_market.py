@@ -381,5 +381,23 @@ class OnHold(unittest.TestCase):
         self.assertEqual(doc["hold_policy"], {"days": 30, "min_checks": 10})
 
 
+class Currency(unittest.TestCase):
+    def test_london_pence_converted_to_pounds(self):
+        days = list(business_days(dt.date(2026, 6, 1), dt.date(2026, 10, 8)))
+        payload = yahoo_payload(days, lambda d: 1250.0)          # 1,250p = £12.50
+        payload["chart"]["result"][0]["meta"]["currency"] = "GBp"
+        raw = rm.parse_yahoo(payload)
+        m = rm.compute_metrics(raw["bars"], raw["returns_basis"], raw["meta"])
+        self.assertEqual(m["currency"], "GBP")
+        self.assertEqual(m["price"], 12.5)
+        self.assertEqual(m["price_display"], "£12.50")
+        self.assertTrue(m["dollar_volume_display"].startswith("~£"))
+
+    def test_hkd_symbol(self):
+        self.assertEqual(rm.fmt_price(23.4, "HKD"), "HK$23.40")
+        self.assertEqual(rm.fmt_price(10, None), "$10.00")
+        self.assertEqual(rm.fmt_dollars(2.5e9, per_day=False, cur="HKD"), "~HK$2.5B")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -17,7 +17,7 @@ let SORT = { key: "ticker", dir: 1 };
 const RATING_LABEL = { green: "Good", yellow: "Caution", red: "Concern" };
 const SCORE_RANK = { green: 0, yellow: 1, red: 2 };
 
-const THEME_FILES = ["quantum", "space", "income", "pharma", "ai-robotics", "nuclear", "cybersecurity", "water", "rare-earths", "glp1"];  // order in the picker
+const THEME_FILES = ["quantum", "space", "income", "pharma", "ai-robotics", "energy", "cybersecurity", "water", "rare-earths", "glp1"];  // order in the picker
 
 // Plain-English definitions for abbreviations. Shown as tooltips on column
 // headers and listed in the footer, so the page explains its own jargon.
@@ -230,8 +230,10 @@ async function loadMarket(bust) {
   } catch (_) { /* not generated yet — the curated snapshot is used */ }
   return MARKET;
 }
-const themeFromUrl = () => decodeURIComponent(location.hash.replace(/^#/, ""));
-function savedTheme() { try { return localStorage.getItem("etf.theme"); } catch (_) { return null; } }
+const THEME_ALIASES = { nuclear: "energy" };     // renamed themes keep old links working
+const themeAlias = id => THEME_ALIASES[id] || id;
+const themeFromUrl = () => themeAlias(decodeURIComponent(location.hash.replace(/^#/, "")));
+function savedTheme() { try { return themeAlias(localStorage.getItem("etf.theme")); } catch (_) { return null; } }
 
 async function init() {
   const sel = $("#themeSelect");
@@ -258,6 +260,7 @@ async function init() {
     render();
   });
   $("#ratingVal").addEventListener("change", render);
+  $("#segmentSel").addEventListener("change", render);
   $("#addBtn").addEventListener("click", onAddTicker);
   $("#addTicker").addEventListener("keydown", e => { if (e.key === "Enter") onAddTicker(); });
   $("#closeMemo").addEventListener("click", closeMemo);
@@ -283,6 +286,11 @@ function selectTheme(id) {
   if (!activeColumns().some(c => c.key === SORT.key)) SORT = { key: "ticker", dir: 1 };
   $("#controls").hidden = false;
   $("#liveMsg").hidden = true;
+  const segs = [...new Set((CURRENT.etfs || []).map(e => e.segment).filter(Boolean))];
+  const segSel = $("#segmentSel");
+  segSel.innerHTML = "";
+  segSel.append(el("option", { value: "" }, "All segments"), ...segs.map(x => el("option", { value: x }, x)));
+  segSel.hidden = segs.length < 2;
   try { localStorage.setItem("etf.theme", id); } catch (_) { /* private mode */ }
   if (themeFromUrl() !== id) history.replaceState(null, "", "#" + id);
   closeMemo();
@@ -332,16 +340,15 @@ function renderRoster() {
   det.append(el("summary", {},
     `Full universe — ${roster.length} ${CURRENT.name} ETFs (${nDetailed} analysed above · tap any to open)`));
   const note = el("p", { class: "rosternote" },
-    "Every US-listed fund tagged to this theme, including leveraged/inverse and niche variants (clearly tagged). " +
+    "Every listed fund tagged to this theme, including leveraged/inverse and niche variants (clearly tagged). " +
     "✓ = full analysis card above. The others open a card with the latest daily fund data (price, returns, AUM, top holdings) — ask Claude to add a full analysis.");
-  const grid = el("div", { class: "rostergrid" });
-  roster.slice().sort((a, b) => a.ticker.localeCompare(b.ticker)).forEach(x => {
+  const item = x => {
     const isDet = curated.has(x.ticker);
     const d = daily(x.ticker);
     const y1 = d && d.performance && d.performance.y1;
     const n = num(y1);
     const hold = !d ? holdInfo(x.ticker) : null;
-    const row = pressable(el("div", { class: "rosteritem" + (isDet ? " detailed" : ""),
+    return pressable(el("div", { class: "rosteritem" + (isDet ? " detailed" : ""),
       title: isDet ? "Full analysis card — click to open" : "Click to open this fund's daily data" },
       el("span", { class: "rtk" }, (isDet ? "✓ " : "") + x.ticker),
       x.tag ? el("span", { class: "rtag" }, x.tag) : null,
@@ -349,8 +356,21 @@ function renderRoster() {
       y1 ? el("span", { class: "rperf " + (n >= 0 ? "pos" : "neg"), title: "1-yr return (daily data)" }, y1) : null,
       hold ? el("span", { class: "rnodata", title: hold.text }, "⏸ on hold") : null),
       () => isDet ? openMemo(x.ticker) : lookupTicker(x.ticker, x));
-    grid.append(row);
-  });
+  };
+  const byTicker = (a, b) => a.ticker.localeCompare(b.ticker);
+  const segments = [...new Set(roster.map(x => x.segment).filter(Boolean))];
+  const grid = el("div", {});
+  if (segments.length > 1) {           // grouped by segment, in the theme's own order
+    segments.forEach(sg => {
+      const g = el("div", { class: "rostergrid" });
+      roster.filter(x => x.segment === sg).sort(byTicker).forEach(x => g.append(item(x)));
+      grid.append(el("h4", { class: "rosterseg" }, sg), g);
+    });
+  } else {
+    const g = el("div", { class: "rostergrid" });
+    roster.slice().sort(byTicker).forEach(x => g.append(item(x)));
+    grid.append(g);
+  }
   det.append(note, grid);
   const gone = ((MARKET && MARKET.removed_recent) || []).filter(r => r.theme === CURRENT._id);
   if (gone.length) det.append(el("p", { class: "rosternote" }, "Recently removed (not found for " +
@@ -366,7 +386,9 @@ function visibleEtfs() {
   let rows = (CURRENT.etfs || []).slice();
   if ($("#themeOnly").checked) rows = rows.filter(e => e.is_theme_fund);
   if ($("#passOnly").checked) rows = rows.filter(e => e.meets_criteria);
-  if (q) rows = rows.filter(e => (e.ticker + " " + e.name).toLowerCase().includes(q));
+  if (q) rows = rows.filter(e => (e.ticker + " " + e.name + " " + (e.segment || "")).toLowerCase().includes(q));
+  const seg = $("#segmentSel").value;
+  if (seg) rows = rows.filter(e => e.segment === seg);
   if (rdim && rval) rows = rows.filter(e => {
     const r = (scoreOf(e, rdim) || {}).rating;
     if (rval === "green") return r === "green";
@@ -401,6 +423,7 @@ function cmp(a, b) {
 function clearFilters() {
   $("#filterBox").value = ""; $("#themeOnly").checked = false; $("#passOnly").checked = false;
   $("#ratingDim").value = ""; $("#ratingVal").value = ""; $("#ratingVal").disabled = true;
+  $("#segmentSel").value = "";
   render();
 }
 function render() {
@@ -434,7 +457,7 @@ function render() {
           el("span", { class: "tk" }, e.ticker),
           e.meets_criteria ? criteriaTag(e) : null,
           e._adhoc ? el("span", { class: "tag-adhoc", title: "Opened from the full-universe roster — no curated analysis yet" }, "not curated") : null,
-          el("div", { class: "nm" }, e.name)), () => openMemo(e.ticker)));
+          el("div", { class: "nm" }, e.name, e.segment ? el("span", { class: "seg" }, e.segment) : null)), () => openMemo(e.ticker)));
       } else {
         tr.append(el("td", { "data-label": c.label, onclick: () => openMemo(e.ticker) }, c.fmt(e)));
       }

@@ -1,19 +1,20 @@
 {
-  "id": "nuclear",
-  "name": "Nuclear / Uranium",
+  "id": "energy",
+  "name": "Energy & AI Power",
   "as_of": "2026-06-08",
-  "tagline": "A commodity-driven boom-bust theme riding the nuclear revival and AI-datacenter power demand. Returns hinge on the uranium spot price and are dominated by a few miners \u2014 above all Cameco \u2014 plus real single-country (Kazakhstan/Canada) risk.",
-  "universe_note": "Spans pure uranium miners (URNM, URNJ), miner-heavy (URA), and diversified nuclear-power baskets (NLR utilities-tilt, NUKZ reactors+utilities+fuel). The broader funds (NLR/NUKZ) are far less Cameco/uranium-spot dependent. XLE is the broad-energy benchmark. Use the Look-up box for others (URNU etc.).",
+  "tagline": "AI data centres need electricity on a scale not seen in decades. This theme follows the money along the power chain \u2014 fuel (uranium, natural gas, oil), generation (utilities, nuclear), the grid that carries it, and the clean-energy build-out. Same story, very different risks: commodity-price bets, regulated utilities, fee-earning pipelines and policy-driven clean energy.",
+  "universe_note": "Six segments: Nuclear & uranium (URA, URNM, URNJ, NLR, NUKZ), Power & grid (GRID, ELFY), Utilities (VPU), Gas & midstream pipelines (AMLP, ENFR), Oil & gas (XOP; XLE as yardstick) and Clean energy (ICLN). Filter by segment above the table. The full-universe list below also carries newer AI-power funds, London-listed UCITS versions and clearly-tagged leveraged products.",
   "live_refresh": true,
   "key_tensions": [
-    "Uranium spot-price dependence: these funds live and die on the uranium price \u2014 a volatile commodity with a brutal boom-bust history (URNM: +40.6% in 2025 but -14.1% in 2024).",
-    "Cameco concentration: one company dominates \u2014 ~23% of URA and ~21% of URNM. A single miner's operational or production news moves the whole fund.",
-    "Single-country / geopolitical risk: uranium supply is concentrated in Kazakhstan (Kazatomprom) and Canada (Cameco) \u2014 production cuts, export policy, or geopolitics there hit the whole theme.",
-    "Miners vs physical vs utilities: URNM holds some PHYSICAL uranium (purest spot-price proxy); URA/URNJ are miner equities (leveraged to the price); NLR tilts to nuclear UTILITIES (Constellation, PSEG) \u2014 steadier but a different bet.",
-    "Junior miners are far riskier: URNJ holds mid/small/micro-cap miners (top-10 ~79%!) \u2014 maximum leverage to uranium prices and maximum drawdown risk.",
-    "Why XLE is the yardstick: a narrow single-commodity bet vs broad, cash-generative energy. XLE (oil & gas, 0.08%) shows what you give up in diversification and what you take on in volatility."
+    "Commodity price vs toll road: producers and miners (XOP, URNM, URA) swing with oil, gas and uranium prices; pipelines (AMLP, ENFR) earn fees on volumes \u2014 steadier and income-heavy, but capped upside.",
+    "AI-power story vs regulated returns: utilities sell the electricity, but regulators cap their profits \u2014 great demand doesn't automatically mean great returns for VPU-type funds.",
+    "Uranium spot-price dependence: nuclear funds live and die on a volatile commodity with a brutal boom-bust history; Cameco alone is ~20%+ of URA/URNM.",
+    "Clean energy has been a value trap: rate- and subsidy-sensitive (ICLN fell for years after 2021) \u2014 the AI-power tailwind hasn't removed the policy risk.",
+    "Grid is the picks-and-shovels play: transformers, cables, switchgear (GRID, ELFY) benefit whichever fuel wins \u2014 but many holdings are industrials you may already own.",
+    "Single-country / geopolitical risk: uranium supply (Kazakhstan, Canada), LNG export policy and oil (OPEC) all add headline risk outside the companies' control.",
+    "MLP tax drag: AMLP holds partnerships but is taxed as a corporation (no K-1 for you, but a tax drag inside the fund that shows up as weaker total return)."
   ],
-  "benchmark_note": "XLE (broad energy) is the yardstick, NOT a nuclear fund \u2014 it's oil & gas majors (Exxon, Chevron). It shows the contrast: a narrow, high-volatility single-commodity uranium bet vs cheap (0.08%), diversified, dividend-paying energy. Use it to judge whether the uranium concentration was rewarded.",
+  "benchmark_note": "XLE (broad US oil & gas, ~0.08%) is the yardstick, NOT an AI-power fund: it shows what cheap, diversified, dividend-paying energy delivered, so you can judge whether each segment's extra risk or fee was rewarded.",
   "etfs": [
     {
       "ticker": "URA",
@@ -140,7 +141,8 @@
           }
         ]
       },
-      "meets_criteria": false
+      "meets_criteria": false,
+      "segment": "Nuclear & uranium"
     },
     {
       "ticker": "URNM",
@@ -267,7 +269,8 @@
           }
         ]
       },
-      "meets_criteria": false
+      "meets_criteria": false,
+      "segment": "Nuclear & uranium"
     },
     {
       "ticker": "URNJ",
@@ -382,7 +385,8 @@
           }
         ]
       },
-      "meets_criteria": false
+      "meets_criteria": false,
+      "segment": "Nuclear & uranium"
     },
     {
       "ticker": "NLR",
@@ -503,7 +507,8 @@
           }
         ]
       },
-      "meets_criteria": false
+      "meets_criteria": false,
+      "segment": "Nuclear & uranium"
     },
     {
       "ticker": "NUKZ",
@@ -630,7 +635,8 @@
           }
         ]
       },
-      "meets_criteria": false
+      "meets_criteria": false,
+      "segment": "Nuclear & uranium"
     },
     {
       "ticker": "XLE",
@@ -744,44 +750,220 @@
           }
         ]
       },
-      "meets_criteria": false
+      "meets_criteria": false,
+      "segment": "Oil & gas"
     }
   ],
   "roster": [
     {
       "ticker": "URA",
       "name": "Global X Uranium",
+      "segment": "Nuclear & uranium",
       "tag": "miners + components"
     },
     {
       "ticker": "URNM",
       "name": "Sprott Uranium Miners",
+      "segment": "Nuclear & uranium",
       "tag": "pure miners + physical"
     },
     {
       "ticker": "URNJ",
       "name": "Sprott Junior Uranium Miners",
+      "segment": "Nuclear & uranium",
       "tag": "\u26a0\ufe0f junior miners"
     },
     {
       "ticker": "NLR",
       "name": "VanEck Uranium & Nuclear",
+      "segment": "Nuclear & uranium",
       "tag": "utilities-tilt"
     },
     {
       "ticker": "NUKZ",
       "name": "Range Nuclear Renaissance",
-      "tag": "reactors+utilities+fuel"
+      "segment": "Nuclear & uranium",
+      "tag": "reactors + utilities + fuel"
     },
     {
-      "ticker": "URNU",
-      "name": "Global X Uranium (UCITS/var.) / verify",
-      "tag": "uranium \u00b7 verify"
+      "ticker": "URAN",
+      "name": "Themes Uranium & Nuclear",
+      "segment": "Nuclear & uranium",
+      "tag": "newer"
+    },
+    {
+      "ticker": "SMRF",
+      "name": "ALPS Nautilus SMR, Nuclear & Technology",
+      "segment": "Nuclear & uranium",
+      "tag": "small modular reactors"
+    },
+    {
+      "ticker": "URNU.L",
+      "name": "Global X Uranium UCITS (London)",
+      "segment": "Nuclear & uranium",
+      "tag": "London-listed UCITS version of URA"
+    },
+    {
+      "ticker": "URAA",
+      "name": "Direxion Daily Uranium Bull 2X",
+      "segment": "Nuclear & uranium",
+      "tag": "\u26a0\ufe0f 2x leveraged"
+    },
+    {
+      "ticker": "GRID",
+      "name": "First Trust NASDAQ Clean Edge Smart Grid Infrastructure",
+      "segment": "Power & grid",
+      "tag": "grid equipment + utilities"
+    },
+    {
+      "ticker": "ELFY",
+      "name": "ALPS Electrification Infrastructure",
+      "segment": "Power & grid",
+      "tag": "electrification \u00b7 newer"
+    },
+    {
+      "ticker": "IVEP",
+      "name": "Dan IVES Wedbush AI Power & Infrastructure",
+      "segment": "Power & grid",
+      "tag": "AI power \u00b7 new 2026"
+    },
+    {
+      "ticker": "VOLT",
+      "name": "Tema Electrification",
+      "segment": "Power & grid",
+      "tag": "active"
+    },
+    {
+      "ticker": "XLU",
+      "name": "Utilities Select Sector SPDR",
+      "segment": "Utilities",
+      "tag": "S&P 500 utilities"
+    },
+    {
+      "ticker": "VPU",
+      "name": "Vanguard Utilities",
+      "segment": "Utilities",
+      "tag": "broad, cheapest"
+    },
+    {
+      "ticker": "IDU",
+      "name": "iShares U.S. Utilities",
+      "segment": "Utilities",
+      "tag": "broad"
+    },
+    {
+      "ticker": "UTES",
+      "name": "Virtus Reaves Utilities",
+      "segment": "Utilities",
+      "tag": "active \u00b7 power-producer tilt"
+    },
+    {
+      "ticker": "AMLP",
+      "name": "Alerian MLP",
+      "segment": "Gas & midstream",
+      "tag": "MLPs \u00b7 high income"
+    },
+    {
+      "ticker": "ENFR",
+      "name": "Alerian Energy Infrastructure",
+      "segment": "Gas & midstream",
+      "tag": "pipelines \u00b7 C-corps + MLPs"
+    },
+    {
+      "ticker": "MLPX",
+      "name": "Global X MLP & Energy Infrastructure",
+      "segment": "Gas & midstream",
+      "tag": "pipelines"
+    },
+    {
+      "ticker": "TPYP",
+      "name": "Tortoise North American Pipeline",
+      "segment": "Gas & midstream",
+      "tag": "pipelines"
+    },
+    {
+      "ticker": "EMLP",
+      "name": "First Trust North American Energy Infrastructure",
+      "segment": "Gas & midstream",
+      "tag": "active"
+    },
+    {
+      "ticker": "FCG",
+      "name": "First Trust Natural Gas",
+      "segment": "Gas & midstream",
+      "tag": "gas producers"
+    },
+    {
+      "ticker": "UNG",
+      "name": "United States Natural Gas Fund",
+      "segment": "Gas & midstream",
+      "tag": "\u26a0\ufe0f futures, not stocks \u00b7 contango"
     },
     {
       "ticker": "XLE",
       "name": "Energy Select Sector SPDR",
-      "tag": "benchmark (energy)"
+      "segment": "Oil & gas",
+      "tag": "benchmark (S&P 500 energy)"
+    },
+    {
+      "ticker": "VDE",
+      "name": "Vanguard Energy",
+      "segment": "Oil & gas",
+      "tag": "broad US energy"
+    },
+    {
+      "ticker": "XOP",
+      "name": "SPDR S&P Oil & Gas Exploration & Production",
+      "segment": "Oil & gas",
+      "tag": "E&P \u00b7 equal-weight"
+    },
+    {
+      "ticker": "OIH",
+      "name": "VanEck Oil Services",
+      "segment": "Oil & gas",
+      "tag": "oil services"
+    },
+    {
+      "ticker": "IXC",
+      "name": "iShares Global Energy",
+      "segment": "Oil & gas",
+      "tag": "global majors"
+    },
+    {
+      "ticker": "ERX",
+      "name": "Direxion Daily Energy Bull 2X",
+      "segment": "Oil & gas",
+      "tag": "\u26a0\ufe0f 2x leveraged"
+    },
+    {
+      "ticker": "ICLN",
+      "name": "iShares Global Clean Energy",
+      "segment": "Clean energy",
+      "tag": "global"
+    },
+    {
+      "ticker": "TAN",
+      "name": "Invesco Solar",
+      "segment": "Clean energy",
+      "tag": "solar"
+    },
+    {
+      "ticker": "QCLN",
+      "name": "First Trust NASDAQ Clean Edge Green Energy",
+      "segment": "Clean energy",
+      "tag": "US clean tech"
+    },
+    {
+      "ticker": "PBW",
+      "name": "Invesco WilderHill Clean Energy",
+      "segment": "Clean energy",
+      "tag": "small-cap"
+    },
+    {
+      "ticker": "FAN",
+      "name": "First Trust Global Wind Energy",
+      "segment": "Clean energy",
+      "tag": "wind"
     }
   ]
 }

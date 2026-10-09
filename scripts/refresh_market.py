@@ -121,8 +121,16 @@ def fmt_pct(x, suffix="%"):
     return f"{'+' if v > 0 else ''}{v}{suffix}"
 
 
-def fmt_price(p):
-    return None if p is None else f"${p:,.2f}"
+CURRENCY_SYMBOL = {"USD": "$", "GBP": "£", "EUR": "€", "HKD": "HK$", "CAD": "C$",
+                   "JPY": "¥", "CHF": "CHF ", "SGD": "S$", "AUD": "A$"}
+
+
+def sym(cur):
+    return CURRENCY_SYMBOL.get(cur or "USD", (cur or "") + " ")
+
+
+def fmt_price(p, cur="USD"):
+    return None if p is None else f"{sym(cur)}{p:,.2f}"
 
 
 def fmt_shares(n):
@@ -135,17 +143,17 @@ def fmt_shares(n):
     return f"~{round(n)}/day"
 
 
-def fmt_dollars(n, per_day=True):
+def fmt_dollars(n, per_day=True, cur="USD"):
     if n is None:
         return None
-    tail = "/day" if per_day else ""
+    tail, c = ("/day" if per_day else ""), sym(cur)
     if n >= 1e9:
-        return f"~${n / 1e9:.1f}B{tail}"
+        return f"~{c}{n / 1e9:.1f}B{tail}"
     if n >= 1e6:
-        return f"~${n / 1e6:.1f}M{tail}" if per_day else f"~${round(n / 1e6)}M"
+        return f"~{c}{n / 1e6:.1f}M{tail}" if per_day else f"~{c}{round(n / 1e6)}M"
     if n >= 1e3:
-        return f"~${round(n / 1e3)}K{tail}"
-    return f"~${round(n)}{tail}"
+        return f"~{c}{round(n / 1e3)}K{tail}"
+    return f"~{c}{round(n)}{tail}"
 
 
 def _num(s):
@@ -252,6 +260,8 @@ def parse_yahoo(j):
     adj = (((res.get("indicators") or {}).get("adjclose") or [{}])[0]).get("adjclose")
     closes, vols = q.get("close") or [], q.get("volume") or []
     off = meta.get("gmtoffset") or 0             # exchange-local trading date
+    cur = meta.get("currency")
+    scale = 0.01 if cur in ("GBp", "GBX") else 1.0   # London lines quoted in pence -> pounds
     bars = []
     for i, t in enumerate(ts):
         c = closes[i] if i < len(closes) else None
@@ -260,18 +270,19 @@ def parse_yahoo(j):
         a = adj[i] if adj and i < len(adj) and adj[i] is not None else c
         v = vols[i] if i < len(vols) else None
         d = dt.datetime.fromtimestamp(t + off, dt.timezone.utc).date()
-        bars.append((d, float(c), float(a), float(v) if v is not None else None))
+        bars.append((d, float(c) * scale, float(a) * scale, float(v) if v is not None else None))
     if not bars:
         raise ValueError("no usable bars")
     first_trade = meta.get("firstTradeDate")
     info = {
         "name": meta.get("longName") or meta.get("shortName"),
-        "currency": meta.get("currency"),
+        "currency": "GBP" if cur in ("GBp", "GBX") else cur,
         "exchange": meta.get("fullExchangeName") or meta.get("exchangeName"),
         "instrument_type": meta.get("instrumentType"),
         "first_trade_date": (dt.datetime.fromtimestamp(first_trade, dt.timezone.utc).date().isoformat()
                              if isinstance(first_trade, (int, float)) else None),
-        "regular_market_price": meta.get("regularMarketPrice"),
+        "regular_market_price": (meta["regularMarketPrice"] * scale
+                                 if isinstance(meta.get("regularMarketPrice"), (int, float)) else None),
     }
     return {"bars": bars, "meta": info, "returns_basis": "total"}
 
@@ -489,6 +500,7 @@ def compute_metrics(bars, returns_basis="total", meta=None):
     last_day, last_close, last_adj = last[0], last[1], last[2]
     meta = meta or {}
     price = meta.get("regular_market_price") or last_close
+    cur = meta.get("currency") or "USD"
     A = 2  # adjusted-close column
 
     def ret_since(day):
@@ -538,12 +550,13 @@ def compute_metrics(bars, returns_basis="total", meta=None):
     }
     entry = {
         "price": round(price, 2),
-        "price_display": fmt_price(price),
+        "price_display": fmt_price(price, cur),
+        "currency": cur,
         "price_asof": last_day.isoformat(),
         "volume_avg": round(vol_avg) if vol_avg is not None else None,
         "volume_display": fmt_shares(vol_avg),
         "dollar_volume_avg": round(dvol_avg) if dvol_avg is not None else None,
-        "dollar_volume_display": fmt_dollars(dvol_avg),
+        "dollar_volume_display": fmt_dollars(dvol_avg, cur=cur),
         "high_52w": round(hi, 2),
         "low_52w": round(lo, 2),
         "pct_below_high": fmt_pct(last_close / hi - 1) if hi else None,
@@ -608,6 +621,10 @@ def refresh(tickers, sources, profile=None, workers=4, pause=0.2, log=log,
                 try:
                     entry.update(profile(t))
                     entry["profile_asof"] = today
+                    cur = entry.get("currency") or "USD"
+                    if cur != "USD" and entry.get("aum_musd"):   # label non-US AUM in its currency
+                        entry["aum_currency"] = cur
+                        entry["aum_display"] = fmt_dollars(entry["aum_musd"] * 1e6, per_day=False, cur=cur)
                     with lock:
                         prof["streak"], prof["ok"] = 0, prof["ok"] + 1
                 except LookupError:

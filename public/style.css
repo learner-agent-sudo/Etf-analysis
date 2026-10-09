@@ -121,6 +121,10 @@ td.col-ticker:focus-visible, .rosteritem:focus-visible { outline: 2px solid var(
   padding: 0 6px; white-space: nowrap; }
 .rosteritem .rnm { color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0; }
 .rosteritem .rperf { font-size: 12px; font-weight: 600; white-space: nowrap; }
+.rosterseg { margin: 14px 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .4px; color: var(--muted); }
+.nm .seg { display: inline-block; margin-left: 6px; font-size: 10px; color: var(--accent); border: 1px solid var(--border);
+  border-radius: 999px; padding: 0 6px; vertical-align: middle; white-space: nowrap; }
+#segmentSel[hidden] { display: none; }
 .rosteritem .rnodata { font-size: 11px; color: var(--yellow); white-space: nowrap; }
 
 .tensions { margin-top: 22px; }

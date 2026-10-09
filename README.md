@@ -60,7 +60,7 @@ python3 app/server.py          # then open http://127.0.0.1:8000
 ```
 
 Ships with 10 themes: quantum, space, income/covered-call, pharma & biotech,
-AI & robotics, nuclear/uranium, cybersecurity, water & infrastructure, rare
+AI & robotics, energy & AI power (incl. nuclear/uranium), cybersecurity, water & infrastructure, rare
 earths, and obesity/GLP-1. See [`app/README.md`](app/README.md) for how to add one.
 
 > The curated layer is a **dated snapshot** from public sources (re-researched on
