@@ -1,10 +1,16 @@
 name: Deploy to GitHub Pages
 
-# Publishes the static site in public/ to GitHub Pages on every push.
-# configure-pages@v5 with enablement:true turns Pages on automatically
-# (needs the pages:write permission below). If that ever fails, enable it once
-# manually: repo Settings -> Pages -> Build and deployment -> Source:
-# "GitHub Actions".
+# Publishes the static site in public/ to GitHub Pages, and keeps its market
+# data fresh without any server:
+#   1. scripts/refresh_market.py pulls daily prices / volume / returns for every
+#      ticker in public/data/*.json and writes public/data/market.json
+#   2. on the daily schedule (and manual runs) that file is committed back, so
+#      the repo always holds the last good snapshot
+#   3. public/ is deployed to Pages
+# If the market-data source is down, the refresh step fails softly and the site
+# still deploys with the previous market.json.
+#
+# Pages must be enabled once: repo Settings -> Pages -> Source: "GitHub Actions".
 
 on:
   push:
@@ -13,11 +19,14 @@ on:
       - main                        # in case the site later lives on main
     paths:
       - "public/**"
+      - "scripts/**"
       - ".github/workflows/pages.yml"
+  schedule:
+    - cron: "41 21 * * 1-5"         # weekdays ~40 min after the US close (UTC)
   workflow_dispatch:                # allow manual "Run workflow"
 
 permissions:
-  contents: read
+  contents: write                   # commit the refreshed market.json
   pages: write
   id-token: write
 
@@ -34,6 +43,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Unit tests (market-data maths)
+        run: python3 -m unittest discover -s tests
+
+      - name: Refresh market data
+        id: refresh
+        continue-on-error: true     # never block the deploy on a data-source hiccup
+        run: python3 scripts/refresh_market.py
+
+      - name: Commit refreshed market.json (scheduled / manual runs)
+        if: github.event_name != 'push' && hashFiles('public/data/market.json') != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/market.json
+          if git diff --cached --quiet; then echo "market.json unchanged"; exit 0; fi
+          git commit -m "Daily market data refresh"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
