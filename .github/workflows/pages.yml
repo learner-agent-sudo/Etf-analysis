@@ -1,0 +1,95 @@
+name: Deploy to GitHub Pages
+
+# Publishes the static site in public/ to GitHub Pages, and keeps its market
+# data fresh without any server:
+#   1. scripts/refresh_market.py pulls daily prices / volume / returns for every
+#      ticker in public/data/*.json and writes public/data/market.json;
+#      scripts/build_universe.py lists every listed ETF for the Explorer
+#      (public/data/universe-*.json)
+#   2. that file is committed back, so the repo always holds the last good
+#      snapshot (commits made with GITHUB_TOKEN don't re-trigger this workflow)
+#   3. public/ is deployed to Pages
+# If the market-data source is down, the refresh step fails softly and the site
+# still deploys with the previous market.json.
+#
+# Pages must be enabled once: repo Settings -> Pages -> Source: "GitHub Actions".
+
+on:
+  push:
+    branches:
+      - claude/keen-feynman-NnG7I   # current default branch
+      - main                        # in case the site later lives on main
+    paths:
+      - "public/**"
+      - "scripts/**"
+      - ".github/workflows/pages.yml"
+  schedule:
+    - cron: "41 21 * * 1-5"         # weekdays ~40 min after the US close (UTC)
+  workflow_dispatch:                # allow manual "Run workflow"
+
+permissions:
+  contents: write                   # commit the refreshed market.json
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0              # full history so the data commit can rebase
+
+      - name: Unit tests (market-data maths)
+        run: python3 -m unittest discover -s tests
+
+      - name: Install browser-grade HTTP client for Yahoo (optional)
+        continue-on-error: true     # without it the script falls back to Nasdaq
+        run: python3 -m pip install --quiet --user --break-system-packages curl_cffi
+
+      - name: Refresh market data
+        id: refresh
+        continue-on-error: true     # never block the deploy on a data-source hiccup
+        timeout-minutes: 15
+        env:
+          PYTHONUNBUFFERED: "1"       # stream progress into the Actions log
+        run: python3 scripts/refresh_market.py
+
+      - name: Build Explorer universe (every listed ETF)
+        continue-on-error: true     # the themes still deploy if this fails
+        timeout-minutes: 10
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: python3 scripts/build_universe.py
+
+      - name: Commit refreshed market data
+        if: hashFiles('public/data/market.json') != ''
+        continue-on-error: true     # a failed data commit must not block the deploy
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data            # market.json (+ roster pruning, removed.json)
+          if git diff --cached --quiet; then echo "market data unchanged"; exit 0; fi
+          git commit -m "Daily market data refresh"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Upload public/ as the Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

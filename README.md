@@ -35,6 +35,47 @@ catch.
 > thematic** and **options** ETFs this repo focuses on, the fund house's choices
 > drive almost everything — so manager and strategy risk go *up*, not down.
 
+## The web app (hosted, auto-updating)
+
+The main way to use this is a **mobile-friendly, static web app** hosted free on
+**GitHub Pages** — <https://learner-agent-sudo.github.io/Etf-analysis/> — a
+public URL that opens on any device, no install, no download, no usage limits.
+Per theme you get a **sortable / filterable comparison table** (expense ratio,
+AUM, price, volume, 1-yr & YTD return, colored score dots), a **full-universe
+roster** of every fund tagged to the theme, and a click-to-open **deep memo**
+per ETF (strategy, theme-purity holdings, red flags, bull/bear, decision log).
+
+Plus an **Explorer** tab: every listed ETF on three markets — US (~5,800),
+Hong Kong (~380, from the HKEX list) and London (~4,000 lines) — in one
+searchable, sortable list: expense ratio, AUM (with a US$ equivalent), price,
+52-week price change, YTD, yield, volume, domicile, mechanical cost/size
+ratings, theme suggestions, a one-click "pre-screen" and a general
+tax-and-domicile explainer. Built daily by `scripts/build_universe.py`.
+
+It has **two layers**:
+- **Curated analysis** (`public/data/<theme>.json`) — the judgment no API makes:
+  theme-purity ratings, red flags, scores, memos, the green-light screen.
+- **Daily market data** (`public/data/market.json`) — regenerated every weekday
+  after the US close by a GitHub Action (`scripts/refresh_market.py`): price,
+  volume, total returns, 52-week range, drawdown, AUM and top-10 holdings for
+  every curated **and** roster ticker. No server, no API key.
+
+**Hosting & data pipeline:** [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
+**Run it locally:**
+```bash
+python3 app/server.py          # then open http://127.0.0.1:8000
+```
+
+Ships with 10 themes: quantum, space, income/covered-call, pharma & biotech,
+AI & robotics, energy & AI power (incl. nuclear/uranium), cybersecurity, water & infrastructure, rare
+earths, and obesity/GLP-1. See [`app/README.md`](app/README.md) for how to add one.
+
+> The curated layer is a **dated snapshot** from public sources (re-researched on
+> request); the market layer refreshes itself daily. No free API reliably lists
+> "every ETF in a theme," so discovering the full universe stays a research task
+> (ask me) — the "Look up" box opens any tracked ticker, and new tickers get
+> daily data once added to a theme.
+
 ## How to use this repo
 
 1. **Pick a theme** → create/open a folder under `themes/`.
@@ -53,16 +94,29 @@ catch.
 ```
 .
 ├── README.md                     ← you are here
+├── public/                       ← the web app (static site, deployed as-is)
+│   ├── index.html · style.css · app.js
+│   └── data/                     ← <theme>.json (curated) + market.json (daily, generated)
+├── .github/workflows/pages.yml   ← daily data refresh + deploy to GitHub Pages
+├── app/
+│   ├── server.py                 ← run the static site locally (stdlib only)
+│   └── README.md                 ← app architecture & how to add a theme
 ├── docs/
 │   ├── METHODOLOGY.md            ← the dimensions we score and why
+│   ├── DEPLOYMENT.md             ← get a free public URL on GitHub Pages
 │   ├── DATA-SOURCES.md           ← where to get the data (and access notes)
 │   └── GLOSSARY.md               ← plain-English definitions
+├── scripts/
+│   ├── screen.py                 ← backend green-light screener
+│   ├── refresh_market.py         ← daily market-data fetcher (writes market.json)
+│   └── build_universe.py         ← daily Explorer universe (writes universe-*.json)
+├── tests/                        ← offline tests for the market-data maths
 ├── templates/
 │   ├── etf-memo-template.md      ← deep one-pager per ETF
 │   ├── comparison-scorecard-template.md
 │   └── red-flags-checklist.md
 └── themes/
-    └── space/                    ← worked pilot example
+    └── space/                    ← worked pilot example (Markdown)
         ├── README.md
         ├── comparison.md         ← ARKX vs UFO vs ROKT vs XAR
         └── memos/
