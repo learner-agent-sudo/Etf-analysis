@@ -66,21 +66,46 @@ OPTION_KW = re.compile(
     r"covered call|buy-?write|premium income|option income|options? income|option strateg|yieldmax|yieldboost"
     r"|weekly ?pay|0dte|put-?write|cash-secured put|high income|enhanced income|volatility premium|autocall"
     r"|overwrite|equity premium|target income|enhanced dividend|short vix|enhanced options|\boptions?\b"
-    r"|weekly distribution|target \d+",
+    r"|weekly distribution|target \d+(?!(\.\d+)?x)",
     re.I)
+# Names that say outright the fund writes or sells options.
+STRONG_OPTION = re.compile(
+    r"covered call|buy-?write|option income|options? income|option strateg|\boptions?\b|yieldmax|yieldboost"
+    r"|weekly ?pay|0dte|put-?write|cash-secured put|volatility premium|autocall|overwrite|premium income"
+    r"|equity premium|enhanced options|short vix|weekly distribution|target \d+(?!(\.\d+)?x)|premium yield"
+    r"|target income|enhanced dividend", re.I)
+# 'High income' / 'enhanced income' alone also names credit and closed-end-fund products, so
+# without a strong option word they are admitted only from issuers known for option strategies.
+OPTION_ISSUERS = re.compile(r"\bneos\b|proshares|\bkurv\b|defiance|roundhill|yieldmax|global x|graniteshares|\brex\b", re.I)
 NOT_INCOME = re.compile(r"buffer|defined outcome|hedged equity|\bprotect|\bfloor\b|barrier|accelerat|tail risk|convexity"
                         r"|structured outcome|downside|max(imum)? (buffer|protection)", re.I)
-BOND = re.compile(r"\bbond|treasur|muni|credit|fixed income|\bloan|mortgage|\bclo\b|preferred|maturity|ultra-?short"
-                  r"|floating|aggregate|t-bill|money market|\bbdc\b|specialty finance|cash management", re.I)
-# Words that look like tickers in fund names but aren't single-stock underlyings.
-NOT_STOCK = {"ETF", "ETFS", "USD", "GBP", "EUR", "HKD", "NASDAQ", "SPDR", "MSCI", "FTSE", "NDX", "SPX", "RUT", "QQQ",
-             "SPY", "IWM", "DIA", "KWEB", "MLP", "BDC", "REIT", "AI", "US", "UCITS", "ACC", "DIST", "DIS", "OFC",
-             "HSI", "HSCEI", "CSOP", "TECH", "ARK", "ARKK", "XLK", "XLF", "XLE", "XLU", "XLV", "XLI", "XLY", "XLP",
-             "XLB", "XLC", "XLRE", "SOXX", "SMH", "GLD", "SLV", "TLT", "EEM", "EFA", "BTC", "ETH", "S&P", "DOW",
-             "NEOS", "JPM", "II", "III", "IV", "PLC", "LP", "THE", "AND", "OF", "TOP", "MAG", "FANG", "KOSPI",
-             "HSTECH", "WEEKLY", "DAILY", "TARGET", "INCOME", "OPTION", "PREMIUM", "COVERED", "CALL", "HIGH"}
-SINGLE_STOCK = re.compile(r"\b([A-Z]{1,5})\b\s+(?:Option Income|Enhanced Income|Covered Call|WeeklyPay|YieldBOOST|"
-                          r"Performance & Distribution|Income|Option)", re.I)
+PLAIN_LEVERAGED = re.compile(r"daily target \d+(\.\d+)?x|\b\d(\.\d+)?x (long|short)\b|daily (inverse|leveraged)", re.I)
+CEF = re.compile(r"\bcef\b|closed-end", re.I)
+BOND = re.compile(r"\bbond|treasur|\bmuni|\bcredit\b|fixed income|\bloan|mortgage|\bclo\b|preferred|maturity|ultra-?short"
+                  r"|floating|aggregate|t-bill|money market|\bbdc\b|specialty finance|cash management|high yield"
+                  r"|investment grade", re.I)
+BOND_WITH_OPTIONS = re.compile(r"covered call|buy-?write|option income|weekly ?pay|put-?write|premium income|\boptions?\b", re.I)
+TRADEMARK = re.compile(r"\((TM|R|SM)\)|[™®]")
+# Words that can sit right before 'Option Income' etc. but aren't stock tickers.
+NOT_TICKER = {
+    "ETF", "ETFS", "ETP", "ETN", "UCITS", "USD", "GBP", "EUR", "HKD", "ACC", "DIST", "DIS", "INC", "CLASS", "PLC", "LP",
+    "OFC", "SERIES", "TRUST", "FUND", "ACTIVE", "THE", "AND", "OF", "TOP", "S&P", "SPDR", "MSCI", "FTSE", "NASDAQ",
+    "NDX", "SPX", "RUT", "DOW", "HSI", "HSCEI", "HSTECH", "KOSPI", "NIKKEI", "STOXX", "EURO", "EAFE", "EM", "NEOS",
+    "CSOP", "GOLD", "SILVER", "OIL", "CRUDE", "COPPER", "BITCOIN", "ETHER", "CRYPTO", "MAG", "SEVEN", "FANG", "TECH",
+    "INCOME", "HIGH", "MLP", "REIT", "BDC", "ENERGY", "MINERS", "RUSSELL", "EQUITY", "LARGE", "CAP", "SMALL", "MID",
+    "GLOBAL", "WORLD", "EUROPE", "JAPAN", "CHINA", "KOREA", "INDIA", "SECTOR", "SELECT", "BOOST", "BOOSTED", "ULTRA",
+    "UNIVERSE", "SHORT", "LONG", "DAILY", "WEEKLY", "MONTHLY", "TARGET", "BOND", "YIELD", "PREMIUM", "ENHANCED",
+    "DIVIDEND", "GROWTH", "VALUE", "QUALITY", "SEMIS", "BIOTECH", "HEALTH", "VOL", "VIX", "STRATEGY", "N100", "US",
+    "MAX", "PLUS", "CORE", "LOW", "NEXT", "GEN", "INNOVATION", "INTERNET", "CLOUD", "DATA", "SPACE", "DEFENSE",
+    "ESG", "SRI", "BIG", "CARE", "REAL", "ETPS",
+}
+TICKER_FIX = {"BRKB": "BRK-B", "BRK.B": "BRK-B", "BRK-B": "BRK-B", "JP": "JPM"}
+# Underlyings that are ETFs, not single stocks (benchmark = the ETF, exposure = sector/broad).
+ETF_UNDERLYINGS = {"COWS", "KWEB", "SOXX", "SMH", "ARKK", "GDX", "GDXJ", "SLV", "GLD", "TLT", "HYG", "LQD", "IWM",
+                   "QQQ", "SPY", "DIA", "XBI", "IBIT", "MSOS", "EEM", "FXI", "EWZ", "USO", "BITO", "URA", "XLE", "XLF",
+                   "XLK", "XLU", "XLV", "XLI", "XLY", "XLP", "XLB", "XLC", "XLRE", "SVXY", "TQQQ", "SOXL", "TSLL"}
+# Issuers whose single-stock funds put the underlying ticker in the name (sometimes in mixed case).
+TICKER_ISSUERS = re.compile(r"yieldmax|roundhill|incomeshares|\bkurv\b|graniteshares|defiance|rex\b|tradr|\bneos\b", re.I)
 
 FAMILIES = {
     "systematic_cc": "Systematic covered call",
@@ -95,28 +120,38 @@ FAMILIES = {
     "structured": "Autocallable / structured",
     "leveraged_income": "Leveraged income",
 }
-# Benchmarks: the fund's own underlying, as a total-return series.
+# Benchmarks: the fund's own underlying, always as a TOTAL-return series (an ETF's
+# dividend-adjusted closes). Price-only indices (^HSI, ^HSCE …) would flatter the fund
+# by the index dividend yield, so tradable ETFs stand in for them.
 BENCH_RULES = [                                   # order matters: specific before generic
     (r"\bus equity|u\.s\. equity|\bus large", "SPY"),       # before 'hang seng' (issuer name on HK funds)
-    (r"\bfang\b", "QQQ"),
-    (r"hscei|china enterprises|h-share", "^HSCE"), (r"hang seng tech|hstech|hs tech", "3067.HK"),
-    (r"hang seng|\bhsi\b", "^HSI"), (r"kospi", "^KS200"),
-    (r"nasdaq[- ]?100|nasdaq 100|\bqqq\b|\bndx\b|nasdaq", "QQQ"),
+    (r"\bfang\b", "QQQ"), (r"magnificent|\bmag ?7\b|\bmag seven", "MAGS"),
+    (r"hscei|china enterprises|h-share", "2828.HK"), (r"hang seng tech|hstech|hs tech", "3067.HK"),
+    (r"hang seng|\bhsi\b", "2800.HK"), (r"kospi", "069500.KS"),
+    (r"nasdaq[- ]?100|nasdaq 100|\bqqq\b|\bndx\b|nasdaq|\bn100\b", "QQQ"),
     (r"russell 2000|\br2000\b|small[- ]?cap|\biwm\b|\brut\b|russell", "IWM"),
     (r"\bkweb\b|china internet", "KWEB"), (r"dow jones internet|\binternet\b", "FDN"),
     (r"\bdow\b|dow jones|\bdjia\b|dow 30", "DIA"),
+    (r"euro stoxx|eurozone|euro area", "FEZ"), (r"\beurope|european", "VGK"),
+    (r"all-?world|\bworld\b|\bglobal equity|\bacwi\b", "ACWI"), (r"canad", "EWC"),
     (r"\bmlp\b|midstream|energy infrastructure", "AMLP"),
-    (r"semiconductor", "SOXX"), (r"innovation", "QQQ"),
+    (r"crude|\boil\b", "USO"), (r"copper", "COPX"),
+    (r"20\+|long[- ]term treasur|\btlt\b", "TLT"), (r"high yield|\bhyg\b", "HYG"),
+    (r"investment grade|corporate bond|\blqd\b", "LQD"), (r"treasur|t-bill|\bbond|aggregate", "AGG"),
+    (r"semiconductor", "SOXX"), (r"\barkk\b|ark innovation", "ARKK"), (r"innovation", "QQQ"),
+    (r"crypto (equit|industry)|blockchain", "BKCH"),
     (r"information technology|technology|\btech\b", "XLK"), (r"financial", "XLF"), (r"industrial", "XLI"),
     (r"utilit", "XLU"), (r"health ?care|biotech", "XLV"), (r"\benergy\b", "XLE"), (r"real estate|\breit", "XLRE"),
     (r"consumer discretionary", "XLY"), (r"consumer staples|\bstaples\b", "XLP"), (r"materials", "XLB"),
     (r"communication", "XLC"),
-    (r"gold miners", "GDX"), (r"\bgold\b", "GLD"), (r"\bsilver\b", "SLV"), (r"bitcoin", "BTC-USD"),
-    (r"\bether", "ETH-USD"), (r"crypto", "BTC-USD"),
+    (r"silver miners", "SILJ"), (r"gold miners", "GDX"), (r"\bgold\b", "GLD"), (r"\bsilver\b", "SLV"),
+    (r"bitcoin", "BTC-USD"), (r"\bether", "ETH-USD"), (r"crypto", "BTC-USD"),
     (r"emerging", "EEM"), (r"international|developed|eafe|world ex", "EFA"),
-    (r"treasury|bond", "AGG"),
     (r"s&p 500|sp500|\bspx\b|\bspy\b|s&p|large[- ]cap|equity premium|500", "SPY"),
 ]
+BROAD = {"SPY", "QQQ", "IWM", "DIA", "2800.HK", "2828.HK", "069500.KS", "EFA", "EEM", "FEZ", "VGK", "ACWI", "EWC", "MAGS"}
+BONDS = {"TLT", "HYG", "LQD", "AGG"}
+COMMODITIES = {"GLD", "SLV", "USO", "COPX"}
 RISK_FREE, VIX = "BIL", "^VIX"
 
 # Tax view for a US taxable investor (fund-level character of the income).
@@ -138,7 +173,9 @@ TAX_NOTE = {
 }
 WEIGHTS = {
     "systematic_cc": {"nav": 40, "gap": 30, "tax": 30},
-    "active_premium": {"counterparty": 30, "gap": 30, "fees": 20, "transparency": 20},
+    # The brief's active + ELN weights apply to funds that actually use ELNs; other
+    # actively managed funds use the default weights (so NAV and coverage count).
+    "active_premium_eln": {"counterparty": 30, "gap": 30, "fees": 20, "transparency": 20},
     "call_spread": {"tax": 40, "gap": 30, "nav": 30},
     "short_vol": {"vix": 40, "gap": 30, "stability": 30},
     "default": {"gap": 30, "coverage": 25, "nav": 20, "quality": 15, "tax": 10},
@@ -155,25 +192,55 @@ def log(*a):
 
 
 # ------------------------------------------------------------- classification --
+def _norm_ticker(tok):
+    tok = tok.upper()
+    return TICKER_FIX.get(tok, tok)
+
+
 def stock_underlying(name):
-    """Ticker of a single-stock underlying named in the fund name, if any."""
-    m = re.search(r"YieldBOOST\s+([A-Z]{2,5})\b", name or "") or re.search(r"\(([A-Z]{2,5})\)", name or "")
-    if m and m.group(1) not in NOT_STOCK:
-        return m.group(1)
-    for m in SINGLE_STOCK.finditer(name or ""):
+    """(ticker, inverse) of a single underlying named in the fund name, or (None, False).
+
+    Handles '(GOOG)'-style and 'YieldBOOST TSLA'-style names, mixed case ('Yieldmax Gme'),
+    'BRK.B', trademark marks ('YieldMax(TM) RBLX') and inverse funds ('MSTR Short Option Income').
+    """
+    n = TRADEMARK.sub(" ", name or "")
+    inverse = bool(re.search(r"\bshort\b(?!-term| duration| maturity)", n, re.I)) and not re.search(r"short vix", n, re.I)
+    m = re.search(r"\(([A-Z]{1,5}(?:[.-][A-Z])?)\)", n)
+    if m and m.group(1).upper() not in NOT_TICKER:
+        return _norm_ticker(m.group(1)), inverse
+    m = re.search(r"yieldboost\s+([A-Za-z]{2,5}(?:[.-][A-Za-z])?)\b", n, re.I)
+    if m and m.group(1).upper() not in NOT_TICKER:
+        return _norm_ticker(m.group(1)), inverse
+    m = re.search(r"autocallable\s+([A-Za-z]{2,5})\b", n, re.I)
+    if m and m.group(1).upper() not in NOT_TICKER and m.group(1).upper() not in ("INCOME", "GROWTH"):
+        return _norm_ticker(m.group(1)), inverse
+    issuer = TICKER_ISSUERS.search(n)
+    for m in re.finditer(r"\b([A-Za-z]{1,5}(?:[.-][A-Za-z])?)\s+(?:short\s+)?(?:option income|enhanced income|covered call"
+                         r"|weekly ?pay|performance & distribution|options? etp)\b", n, re.I):
         tok = m.group(1)
-        if tok.isupper() and tok not in NOT_STOCK and len(tok) >= 2:
-            return tok
-    return None
+        up = tok.upper()
+        if up in NOT_TICKER or len(up.replace(".", "").replace("-", "")) < 2:
+            continue
+        if tok.isupper() or tok == "AI" or issuer:          # mixed case only from ticker-in-name issuers
+            return _norm_ticker(tok), inverse
+    return None, inverse
 
 
 def classify(name, flags="", ticker=""):
-    """Fund name -> {family, style, eln, under, bench, exposure} or None (not option income)."""
+    """Fund name -> {family, style, eln, under, bench, exposure, note, inverse, bench_assumed} or None."""
     n = name or ""
-    if not OPTION_KW.search(n) or BOND.search(n) or (NOT_INCOME.search(n) and not re.search(r"income|yield", n, re.I)):
+    if not OPTION_KW.search(n) or PLAIN_LEVERAGED.search(n) or CEF.search(n):
         return None
-    low = n.lower()
-    stock = stock_underlying(n)
+    if NOT_INCOME.search(n) and not re.search(r"income|yield", n, re.I):
+        return None
+    if not STRONG_OPTION.search(n) and not OPTION_ISSUERS.search(n):
+        return None                                   # e.g. 'Blackstone High Income' — a credit fund
+    if BOND.search(n) and not BOND_WITH_OPTIONS.search(n):
+        return None                                   # bond fund without an option overlay
+    low = TRADEMARK.sub(" ", n).lower()
+    under, inverse = stock_underlying(n)
+    etf_under = under if under in ETF_UNDERLYINGS else None
+    stock = None if etf_under else under
     eln = bool(re.search(r"jpmorgan|j\.p\. ?morgan|\bjpm\b", low)) and "premium income" in low
     basket = bool(re.search(r"fund of option income|fund of .*income etfs|ultra option income|universe fund", low))
     # Leveraged by name (the universe 'L' flag also fires on non-leveraged names like
@@ -184,9 +251,9 @@ def classify(name, flags="", ticker=""):
         fam = "structured"
     elif re.search(r"volatility premium|short vix|short volatility|vol premium", low):
         fam = "short_vol"
-    elif re.search(r"put[- ]?write|putwrite|cash-secured put", low):
+    elif re.search(r"put[- ]?write|putwrite|cash-secured put", low) or re.search(r"neuberger.*option strateg|nb .*option strateg", low):
         fam = "put_write"
-    elif basket or (stock and not re.search(r"portfolio|magnificent|semiconductor", low)):
+    elif basket or stock:
         fam = "single_stock"
     elif re.search(r"bitcoin|\bether|crypto|solana|\bxrp\b", low):
         fam = "crypto_income"
@@ -201,29 +268,42 @@ def classify(name, flags="", ticker=""):
     else:
         fam = "systematic_cc"
     style = "systematic" if fam in ("systematic_cc", "put_write") and "active" not in low else "active"
-    bench = stock or next((b for rx, b in BENCH_RULES if re.search(rx, low)), "SPY")
+    bench_assumed = False
+    if stock or etf_under:
+        bench = stock or etf_under
+    else:
+        bench = next((b for rx, b in BENCH_RULES if re.search(rx, low)), None)
     if basket:
         bench = "QQQ" if re.search(r"magnificent|mag 7|ultra", low) else "SPY"
+    if bench is None and not re.search(r"\.(L|HK)$", ticker or ""):
+        bench, bench_assumed = "SPY", True            # US equity option funds are mostly US large-cap
+    if inverse and fam != "short_vol":
+        bench = None                                  # an inverse fund vs the long underlying is meaningless
     if fam == "leveraged_income":
         exposure = "leveraged"
-    elif fam == "single_stock":
-        exposure = "basket of single-stock strategies" if basket else "single stock"
-    elif fam == "crypto_income" or bench in ("BTC-USD", "ETH-USD"):
+    elif basket:
+        exposure = "basket of single-stock strategies"
+    elif stock:
+        exposure = "single stock"
+    elif fam == "crypto_income" or bench in ("BTC-USD", "ETH-USD", "BKCH"):
         exposure = "crypto"
-    elif bench in ("GLD", "SLV"):
+    elif bench in COMMODITIES:
         exposure = "commodity"
-    elif bench in ("SPY", "QQQ", "IWM", "DIA", "^HSI", "^HSCE", "^KS200", "EFA", "EEM"):
+    elif bench in BONDS:
+        exposure = "bond"
+    elif bench in BROAD or bench is None:
         exposure = "broad index"
     else:
         exposure = "sector"
     note = bool(re.search(r"\bETPs?\b|\bETNs?\b|exchange traded note", n))   # collateralised notes, not funds
-    return {"family": fam, "style": style, "eln": eln, "under": stock, "bench": bench, "exposure": exposure, "note": note}
+    return {"family": fam, "style": style, "eln": eln, "under": stock, "bench": bench, "exposure": exposure,
+            "note": note, "inverse": inverse and fam != "short_vol", "bench_assumed": bench_assumed}
 
 
 def share_class_key(name):
-    """Group London share classes of one fund: strip currency / acc / dist / hedged suffixes."""
-    n = re.sub(r"\b(USD|GBP|EUR|CHF|JPY)\b|\b(acc|accumulating|accumulation|dist|distributing|dis|inc|income)\b"
-               r"|\bhedged\b|\bclass\s+\w+\b|[()]", " ", name or "", flags=re.I)
+    """Group share classes / trading counters of one fund: strip currency, acc/dist, hedged, counter suffixes."""
+    n = re.sub(r"\b(USD|GBP|EUR|CHF|JPY|HKD|RMB)\b|\b(acc|accumulating|accumulation|dist|distributing|dis|inc|income)\b"
+               r"|\bhedged\b|\bclass\s+\w+\b|\bcounter\b|-u\b|-r\b|[()]", " ", name or "", flags=re.I)
     return re.sub(r"\s+", " ", n).strip().lower()
 
 
@@ -273,9 +353,56 @@ def payout_streak_months(divs, as_of):
     return round((dates[-1] - start).days / 30.44)
 
 
+def drop_bad_ticks(bars, jump=0.4):
+    """Remove one-day price spikes (a print >40% away from both neighbours, which agree
+    with each other) — bad Yahoo ticks that would otherwise fake huge drawdowns."""
+    if len(bars) < 3:
+        return bars, 0
+    keep, dropped = [bars[0]], 0
+    for i in range(1, len(bars) - 1):
+        p0, p1, p2 = keep[-1][1], bars[i][1], bars[i + 1][1]
+        if p0 > 0 and p2 > 0 and abs(p1 / p0 - 1) > jump and abs(p1 / p2 - 1) > jump and abs(p2 / p0 - 1) < jump / 2:
+            dropped += 1
+            continue
+        keep.append(bars[i])
+    keep.append(bars[-1])
+    return keep, dropped
+
+
+def split_specials(divs, as_of):
+    """Year-end capital-gain specials vs regular distributions over the last 12 months.
+
+    A payment is 'special' if it is > 2.5x the median of the fund's own payments in
+    the last 12 months and falls in Nov-Jan (when funds pay out realised gains).
+    """
+    last12 = [(d, a) for d, a in divs if as_of - dt.timedelta(days=365) < d <= as_of]
+    if len(last12) < 3:
+        return sum(a for _, a in last12), 0.0
+    med = statistics.median(a for _, a in last12)
+    special = sum(a for d, a in last12 if a > 2.5 * med and d.month in (11, 12, 1))
+    return sum(a for _, a in last12) - special, special
+
+
+def coverage_share(tr_ann, price_cagr):
+    """Share of the distributions paid out of total return rather than out of NAV.
+
+    Log-consistent: total return ln(1+TR) = NAV change ln(1+P) + distributions D, so
+    D = ln(1+TR) - ln(1+P). If NAV grew, everything was covered; if total return was
+    zero or negative, nothing was.
+    """
+    if tr_ann is None or price_cagr is None:
+        return None
+    if price_cagr >= 0:
+        return 1.0
+    if tr_ann <= 0:
+        return 0.0
+    d = math.log(1 + tr_ann) - math.log(1 + price_cagr)
+    return max(0.0, min(1.0, math.log(1 + tr_ann) / d)) if d > 0 else None
+
+
 def compute(bars, divs, bench=None, rf=None, vix=None, years=WINDOW_YEARS):
     """Pure function: one fund's history -> income metrics (fractions, not %)."""
-    bars = sorted(bars, key=lambda b: b[0])
+    bars, bad_ticks = drop_bad_ticks(sorted(bars, key=lambda b: b[0]))
     last = bars[-1][0]
     start_target = last - dt.timedelta(days=round(365.25 * years))
     first = bars[0][0]
@@ -284,12 +411,18 @@ def compute(bars, divs, bench=None, rf=None, vix=None, years=WINDOW_YEARS):
     yrs = (last - win[0][0]).days / 365.25
     m = {"as_of": last.isoformat(), "history_start": first.isoformat(), "window_start": win[0][0].isoformat(),
          "window_years": round(yrs, 2), "price": round(bars[-1][1], 4)}
+    if bad_ticks:
+        m["bad_ticks_removed"] = bad_ticks
     closes = [b[1] for b in win]
     adj = [(b[0], b[2]) for b in win]
     # distributions
     divs = sorted(divs or [])
     ttm = sum(a for d, a in divs if last - dt.timedelta(days=365) < d <= last)
-    m["yield_ttm"] = ttm / bars[-1][1] if bars[-1][1] else None
+    regular, special = split_specials(divs, last)
+    px = bars[-1][1]
+    m["yield_ttm"] = ttm / px if px else None                 # everything paid in 12 months
+    m["yield_regular"] = regular / px if px else None         # excluding year-end specials
+    m["specials_ttm"] = special / px if px and special else 0.0
     m["payments_12m"] = sum(1 for d, _ in divs if last - dt.timedelta(days=365) < d <= last)
     recent = [a for d, a in divs if d > last - dt.timedelta(days=400)][-12:]
     m["stability_cv"] = (statistics.pstdev(recent) / statistics.mean(recent)) if len(recent) >= 4 and statistics.mean(recent) > 0 else None
@@ -314,12 +447,7 @@ def compute(bars, divs, bench=None, rf=None, vix=None, years=WINDOW_YEARS):
     paid = sum(a for d, a in divs if win[0][0] < d <= last)
     avg_px = statistics.mean(closes)
     m["dist_yield_ann"] = (paid / avg_px) / yrs if avg_px else None
-    if m["price_cagr"] is None or not m["dist_yield_ann"]:
-        m["coverage"] = None
-    elif m["price_cagr"] >= 0:
-        m["coverage"] = 1.0
-    else:
-        m["coverage"] = max(0.0, min(1.0, 1 + m["price_cagr"] / m["dist_yield_ann"]))
+    m["coverage"] = coverage_share(m["tr_ann"], m["price_cagr"]) if m["dist_yield_ann"] else None
     # risk: drawdown, volatility, Sharpe
     peak, mdd = None, 0.0
     for _, v in adj:
@@ -331,7 +459,7 @@ def compute(bars, divs, bench=None, rf=None, vix=None, years=WINDOW_YEARS):
     rf_ann = None
     if rf:
         a, b = _on_or_before(rf, win[0][0]), _on_or_before(rf, last)
-        if a and b and a[1] > 0:
+        if a and b and a[1] > 0 and (win[0][0] - a[0]).days < 10 and (last - b[0]).days < 10:
             rf_ann = _ann(b[1] / a[1], yrs)
     m["rf_ann"] = rf_ann
     if m["vol_ann"] and m["tr_ann"] is not None:
@@ -339,7 +467,9 @@ def compute(bars, divs, bench=None, rf=None, vix=None, years=WINDOW_YEARS):
     # vs the fund's own underlying
     if bench:
         a, b = _on_or_before(bench, win[0][0]), _on_or_before(bench, last)
-        if a and b and a[1] > 0 and (win[0][0] - a[0]).days < 10:
+        # both ends of the benchmark must line up with the fund's window (a stale
+        # series would be annualised over the wrong span)
+        if a and b and a[1] > 0 and (win[0][0] - a[0]).days < 10 and (last - b[0]).days < 10:
             m["bench_tr_ann"] = _ann(b[1] / a[1], yrs)
             if m["bench_tr_ann"] is not None and m["tr_ann"] is not None:
                 m["gap"] = m["tr_ann"] - m["bench_tr_ann"]
@@ -384,28 +514,43 @@ def clamp(x, lo=0.0, hi=100.0):
 HISTORY_BASED = ("gap", "coverage", "nav", "vix", "stability")
 
 
-def components(f, m, extreme_yield):
+def logistic(x, mid, scale):
+    """Smooth 0-100 curve: 50 at `mid`. Unlike a clamped line it never saturates, so a
+    fund lagging 18 pp/yr no longer ties with one lagging 8 pp/yr."""
+    return 100 / (1 + math.exp(-(x - mid) / scale))
+
+
+def components(f, m, extreme_yield, priors=None, shrink=True):
     """0-100 component scores (None = not available).
 
-    Evidence shrinkage: history-based components are pulled toward a neutral 50
-    in proportion to how much of the full window the fund has lived through, so
-    one lucky (or unlucky) year can't outrank three years of evidence.
+    gap:  -4 pp/yr vs the benchmark scores 50 (the brief's "income costs too much"
+          line); 0 pp ≈ 83, +4 pp ≈ 96, -8 pp ≈ 17.
+    nav:  -5 %/yr scores 50; flat ≈ 84; -10 %/yr ≈ 16.
+    Evidence shrinkage: history-based components of funds with < 3 years of data are
+    pulled toward `priors` — the typical value among seasoned funds of the same
+    family — so a short record is judged against what the strategy usually delivers
+    (shrinking toward a flat 50 would lift poor young funds above most seasoned ones).
     """
     c = {}
     if m.get("gap") is not None:
-        c["gap"] = clamp(100 + 12.5 * m["gap"] * 100)            # -4 pp/yr -> 50, -8 -> 0
+        c["gap"] = logistic(m["gap"] * 100, -4, 2.5)
     if m.get("coverage") is not None:
         c["coverage"] = 100 * m["coverage"]
     if m.get("price_cagr") is not None:
-        c["nav"] = clamp(100 + 10 * m["price_cagr"] * 100)       # -5 %/yr -> 50, -10 -> 0
-    q = {"broad index": 90, "sector": 70, "commodity": 55, "basket of single-stock strategies": 45,
+        c["nav"] = logistic(m["price_cagr"] * 100, -5, 3)
+    q = {"broad index": 90, "bond": 80, "sector": 70, "commodity": 55, "basket of single-stock strategies": 45,
          "crypto": 30, "single stock": 25, "leveraged": 10}[f["exposure"]]
     if extreme_yield:
         q -= 25
     q += 5 if m.get("streak_months", 0) >= 24 else (-10 if m.get("streak_months", 0) < 6 else 0)
     c["quality"] = clamp(q)
     if f["market"] == "US":                                      # tax view only meaningful for US funds
-        c["tax"] = (35 if f["eln"] else 55) if f["family"] == "active_premium" else TAX_SCORE.get(f["family"], 55)
+        if f["family"] == "active_premium":
+            c["tax"] = 35 if f["eln"] else 55
+        elif f["family"] == "systematic_cc" and f["exposure"] != "broad index":
+            c["tax"] = 45                                        # options on ETFs/sectors: usually not §1256
+        else:
+            c["tax"] = TAX_SCORE.get(f["family"], 55)
     if f.get("er") is not None:
         c["fees"] = clamp(100 - (f["er"] - 0.2) * 100)
     c["counterparty"] = 50 if f["eln"] else 90
@@ -414,43 +559,76 @@ def components(f, m, extreme_yield):
         c["vix"] = clamp(100 + m["vix_beta"] * 300)
     if m.get("stability_cv") is not None:
         c["stability"] = clamp(100 - m["stability_cv"] * 100)
-    conf = min(1.0, (m.get("window_years") or WINDOW_YEARS) / WINDOW_YEARS)
-    for k in HISTORY_BASED:
-        if k in c:
-            c[k] = 50 + (c[k] - 50) * conf
+    if shrink:
+        conf = min(1.0, (m.get("window_years") or WINDOW_YEARS) / WINDOW_YEARS)
+        pri = priors or {}
+        for k in HISTORY_BASED:
+            if k in c:
+                p0 = pri.get(k, 50.0)
+                c[k] = p0 + (c[k] - p0) * conf
     return {k: round(v, 1) for k, v in c.items()}
 
 
-def extreme_yield_cutoffs(funds, min_n=10):
-    """95th-percentile yield per strategy family (families with < min_n funds use
-    the overall cutoff). A single overall cutoff is useless: single-stock funds
-    yielding 50-150% would set it, so a 40% index covered call never looks extreme."""
-    def p95(xs):
-        xs = sorted(xs)
-        return xs[int(0.95 * (len(xs) - 1))] if xs else 1.0
-    out = {"_all": p95([f["metrics"].get("yield_ttm") or 0 for f in funds])}
-    fams = {}
-    for f in funds:
-        fams.setdefault(f["family"], []).append(f["metrics"].get("yield_ttm") or 0)
-    for k, v in fams.items():
-        if len(v) >= min_n:
-            out[k] = p95(v)
+def family_priors(funds, min_n=5, seasoned_years=2.5):
+    """Median raw history-based component per family among funds with a full record."""
+    def med(xs):
+        return statistics.median(xs) if xs else None
+    seasoned = [f for f in funds if (f["metrics"].get("window_years") or 0) >= seasoned_years]
+    overall = {k: med([f["raw"][k] for f in seasoned if k in f["raw"]]) for k in HISTORY_BASED}
+    out = {}
+    for fam in {f["family"] for f in funds}:
+        grp = [f for f in seasoned if f["family"] == fam]
+        out[fam] = {}
+        for k in HISTORY_BASED:
+            vals = [f["raw"][k] for f in grp if k in f["raw"]]
+            v = med(vals) if len(vals) >= min_n else overall.get(k)
+            if v is not None:
+                out[fam][k] = round(v, 1)
     return out
 
 
-def weighted(comp, family, us_view):
-    w = dict(WEIGHTS.get(family, WEIGHTS["default"]))
+def extreme_yield_cutoffs(funds, min_n=20, floor=0.15, small_family=0.30):
+    """Yield above which a fund is 'extreme for its strategy family' (regular yield,
+    year-end specials excluded): above the family's 95th percentile AND at least 15%
+    AND 1.5x the family median. Families with fewer than `min_n` funds use a flat 30%."""
+    def pct(xs, q):
+        xs = sorted(xs)
+        return xs[int(q * (len(xs) - 1))] if xs else 1.0
+    fams = {}
+    for f in funds:
+        fams.setdefault(f["family"], []).append(f["metrics"].get("yield_regular") or 0)
+    out = {"_all": small_family}
+    for k, v in fams.items():
+        out[k] = max(pct(v, 0.95), floor, 1.5 * statistics.median(v)) if len(v) >= min_n else small_family
+    return out
+
+
+def weights_key(f):
+    if f["family"] == "active_premium":
+        return "active_premium_eln" if f["eln"] else "default"
+    return f["family"] if f["family"] in WEIGHTS else "default"
+
+
+def weighted(comp, key, us_view):
+    w = dict(WEIGHTS.get(key, WEIGHTS["default"]))
     if not us_view:
         w.pop("tax", None)
     avail = {k: v for k, v in w.items() if comp.get(k) is not None}
     tot = sum(avail.values())
     # Too little evidence: every family weighs total return vs benchmark, which needs
     # about a year of history — without it a fund would be scored on fees and
-    # structure alone (70% of the active-premium weights).
+    # structure alone.
     if comp.get("gap") is None or tot < 0.6 * sum(w.values()):
         return None, {}
     used = {k: round(v / tot * 100, 1) for k, v in avail.items()}
     return round(sum(comp[k] * v for k, v in avail.items()) / tot, 1), used
+
+
+def rank_key(f, view):
+    """Sort key: score, then raw gap, then coverage, so equal scores aren't ordered by ticker."""
+    m = f["metrics"]
+    return (-f[f"score_{view}"], -(m.get("gap") if m.get("gap") is not None else -9),
+            -(m.get("coverage") if m.get("coverage") is not None else 0), f["t"])
 
 
 def gates(f, m, fx_usd):
@@ -470,8 +648,13 @@ def gates(f, m, fx_usd):
 
 # ------------------------------------------------------------------------ main --
 def load_candidates():
-    cands = {}
-    london = {}
+    """Option-income funds from the Explorer universe, one row per fund.
+
+    London share classes and Hong Kong trading counters (HKD / USD / RMB) of the same
+    fund collapse to one line: the benchmark-currency line for London (USD), the HKD
+    counter for Hong Kong, then the most traded.
+    """
+    cands, groups = {}, {}
     for key in ("us", "hk", "lse"):
         path = os.path.join(DATA, f"universe-{key}.json")
         if not os.path.exists(path):
@@ -486,17 +669,32 @@ def load_candidates():
             f = {"t": r["t"], "n": r["n"], "market": key.upper(), "cur": r.get("cur") or "USD",
                  "aum_usd": r.get("aumu") if r.get("aumu") is not None else r.get("aum"), "er": r.get("er"),
                  "vol": r.get("vol"), "inc": r.get("inc"), "flags": r.get("f", ""), "dom": r.get("dom"), **c}
-            if key == "lse":                       # one line per London fund: prefer USD, then most traded
-                k = share_class_key(r["n"])
-                best = london.get(k)
-                rank = (f["cur"] == "USD", f.get("vol") or 0)
+            if key in ("lse", "hk"):
+                k = (key, share_class_key(r["n"]))
+                pref = "USD" if key == "lse" else "HKD"
+                rank = (f["cur"] == pref, f.get("vol") or 0)
+                best = groups.get(k)
                 if best is None or rank > best[0]:
-                    london[k] = (rank, f)
+                    groups[k] = (rank, f)
                 continue
             cands[r["t"]] = f
-    for _, f in london.values():
+    for _, f in groups.values():
         cands[f["t"]] = f
     return cands
+
+
+def bench_currency(sym):
+    if sym.endswith(".HK"):
+        return "HKD"
+    if sym.endswith(".KS"):
+        return "KRW"
+    if sym.endswith(".L"):
+        return "GBP"
+    return "USD"
+
+
+def currencies_compatible(a, b):
+    return a == b or {a, b} == {"HKD", "USD"}           # HKD is pegged to the dollar
 
 
 def main(argv):
@@ -526,14 +724,17 @@ def main(argv):
                 time.sleep(1.5)
         return False
 
-    syms = sorted(set(cands) | {f["bench"] for f in cands.values()} | {RISK_FREE, VIX})
+    syms = sorted(set(cands) | {f["bench"] for f in cands.values() if f["bench"]} | {RISK_FREE, VIX})
     t0 = time.monotonic()
     with ThreadPoolExecutor(max_workers=4) as ex:
         list(ex.map(fetch, syms))
     log(f"fetched {len(hist)}/{len(syms)} price histories in {time.monotonic() - t0:.0f}s")
+    missing_bench = sorted({f["bench"] for f in cands.values() if f["bench"] and f["bench"] not in hist})
+    if missing_bench:
+        log(f"benchmarks unavailable: {missing_bench}")
 
     def series(sym, col=2):
-        raw = hist.get(sym)
+        raw = hist.get(sym) if sym else None
         return [(b[0], b[col]) for b in raw["bars"]] if raw else None
 
     rf, vix = series(RISK_FREE), series(VIX, 1)
@@ -548,9 +749,17 @@ def main(argv):
         raw = hist.get(t)
         if not raw:
             continue
-        m = compute(raw["bars"], raw.get("divs"), series(f["bench"]), rf, vix)
-        if (m.get("yield_ttm") or 0) < 0.02 and not (m.get("short_history") and m.get("payments_12m", 0) >= 1):
-            continue                               # not actually an income payer
+        bench = series(f["bench"])
+        if f["bench"] and not bench:
+            f["bench_missing"] = True
+        if bench and not currencies_compatible(f["cur"], bench_currency(f["bench"])):
+            f["currency_mismatch"] = True             # e.g. a GBP line vs a USD benchmark: FX would pollute the gap
+            bench = None
+        # VIX is a US-session series; Asian/European closes don't line up day by day.
+        m = compute(raw["bars"], raw.get("divs"), bench, rf, vix if f["market"] == "US" else None)
+        paying = m.get("payments_12m", 0) >= 2 and (m.get("yield_regular") or 0) >= 0.02
+        if not paying and not (m.get("short_history") and m.get("payments_12m", 0) >= 1):
+            continue                               # not actually an income payer (e.g. one year-end special)
         start = f.get("inc") or m["history_start"]
         try:
             f["age_years"] = round((today - dt.date.fromisoformat(start[:10])).days / 365.25, 2)
@@ -558,15 +767,23 @@ def main(argv):
             f["age_years"] = None
         f["metrics"] = m
         funds.append(f)
-    p95 = extreme_yield_cutoffs(funds)
+    cut = extreme_yield_cutoffs(funds)
+    for f in funds:
+        f["extreme_yield"] = (f["metrics"].get("yield_regular") or 0) > cut.get(f["family"], cut["_all"])
+        f["raw"] = components(f, f["metrics"], f["extreme_yield"], shrink=False)
+    priors = family_priors(funds)
     for f in funds:
         m = f["metrics"]
-        f["extreme_yield"] = (m.get("yield_ttm") or 0) > p95.get(f["family"], p95["_all"])
-        f["components"] = components(f, m, f["extreme_yield"])
-        f["score_us"], f["weights_us"] = weighted(f["components"], f["family"], True)
-        f["score_intl"], f["weights_intl"] = weighted(f["components"], f["family"], False)
+        f["components"] = components(f, m, f["extreme_yield"], priors.get(f["family"]))
+        f["prior"] = priors.get(f["family"])
+        del f["raw"]
+        wk = weights_key(f)
+        f["weights_key"] = wk
+        f["score_us"], f["weights_us"] = weighted(f["components"], wk, True)
+        f["score_intl"], f["weights_intl"] = weighted(f["components"], wk, False)
         f["gates"] = gates(f, m, fx.get(f["cur"], 1.0))
         f["passes"] = all(v is True for v in f["gates"].values())
+        f["gates_unknown"] = [k for k, v in f["gates"].items() if v is None]
         f["tax_note"] = TAX_NOTE.get(f["family"])
         if f["family"] == "active_premium" and not f["eln"]:
             f["tax_note"] = "Options written directly by the manager may be §1256; check the fund's annual report for the income character."
@@ -575,17 +792,17 @@ def main(argv):
         by_fam.setdefault(f["family"], []).append(f)
     for fam, lst in by_fam.items():                # rank within family (US view, then international)
         for view in ("us", "intl"):
-            ranked = sorted([f for f in lst if f[f"score_{view}"] is not None], key=lambda f: -f[f"score_{view}"])
+            ranked = sorted([f for f in lst if f[f"score_{view}"] is not None], key=lambda f: rank_key(f, view))
             for i, f in enumerate(ranked):
                 f[f"rank_{view}"] = i + 1
-    log(f"{len(funds)} income funds scored; {sum(f['passes'] for f in funds)} pass every gate; "
-        f"families: { {k: len(v) for k, v in sorted(by_fam.items())} }")
-    for t in ("JEPI", "QYLD", "SPYI", "SVOL", "TSLY", "DIVO"):
+    log(f"{len(funds)} income funds; {sum(f['score_us'] is not None for f in funds)} scored; "
+        f"{sum(f['passes'] for f in funds)} pass every gate; families: { {k: len(v) for k, v in sorted(by_fam.items())} }")
+    for t in ("JEPI", "QYLD", "SPYI", "SVOL", "TSLY", "DIVO", "RBLY", "GMEY", "3419.HK"):
         f = next((x for x in funds if x["t"] == t), None)
         if f:
             mm = f["metrics"]
-            log(f"  {t}: {f['family']} bench {f['bench']} score {f['score_us']} gates {f['gates']} "
-                f"tr {mm.get('tr_ann')} gap {mm.get('gap')} cov {mm.get('coverage')} yld {mm.get('yield_ttm')}")
+            log(f"  {t}: {f['family']} bench {f['bench']} score {f['score_us']} rank {f.get('rank_us')} "
+                f"tr {mm.get('tr_ann')} gap {mm.get('gap')} cov {mm.get('coverage')} yld {mm.get('yield_regular')}")
     if dry:
         return 0
     if len(funds) < 50:
@@ -597,8 +814,8 @@ def main(argv):
     doc = {"as_of": max(f["metrics"]["as_of"] for f in funds), "generated_at": now,
            "window_years": WINDOW_YEARS, "families": FAMILIES, "weights": WEIGHTS, "gates": GATES,
            "liquidity": {"shares": LIQ_SHARES, "dollars": LIQ_DOLLARS},
-           "extreme_yield_p95": {k: round(v, 4) for k, v in p95.items()},
-           "count": len(funds), "funds": funds}
+           "extreme_yield_cutoffs": {k: round(v, 4) for k, v in cut.items()},
+           "priors": priors, "count": len(funds), "funds": funds}
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(doc, fh, separators=(",", ":"), ensure_ascii=False, default=str)
     log(f"Wrote {os.path.relpath(OUT, rm.ROOT)} ({os.path.getsize(OUT) // 1024} KB)")

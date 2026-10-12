@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Offline tests for scripts/build_income.py (no network)."""
 import datetime as dt
+import math
 import os
 import sys
 import unittest
@@ -170,10 +171,14 @@ class Scoring(unittest.TestCase):
 
     def test_evidence_shrinkage_for_short_history(self):
         f = self.base()
-        full = bi.components(f, {"gap": 0.02, "price_cagr": 0.05, "window_years": 3.0, "streak_months": 30}, False)
-        young = bi.components(f, {"gap": 0.02, "price_cagr": 0.05, "window_years": 1.0, "streak_months": 30}, False)
-        self.assertEqual((full["gap"], full["nav"]), (100.0, 100.0))
-        self.assertAlmostEqual(young["gap"], 50 + 50 / 3, places=1)          # one year of 3 -> one third of the way
+        m_full = {"gap": 0.02, "price_cagr": 0.05, "window_years": 3.0, "streak_months": 30}
+        m_young = dict(m_full, window_years=1.0)
+        full = bi.components(f, m_full, False)
+        self.assertEqual((full["gap"], full["nav"]), (91.7, 96.6))          # smooth curves, no saturation
+        # young fund: pulled toward the family's typical seasoned value, not toward 50
+        young = bi.components(f, m_young, False, priors={"gap": 20.0, "nav": 60.0})
+        self.assertAlmostEqual(young["gap"], 20 + (91.7 - 20) / 3, places=0)
+        self.assertAlmostEqual(young["nav"], 60 + (96.6 - 60) / 3, places=0)
         self.assertEqual(young["tax"], full["tax"])                           # non-history components untouched
 
     def test_more_classification(self):
@@ -199,14 +204,17 @@ class Scoring(unittest.TestCase):
         self.assertEqual(c["quality"], 90 - 25 - 10)
 
     def test_extreme_yield_cutoff_is_per_family(self):
-        funds = [{"family": "single_stock", "metrics": {"yield_ttm": 0.5 + i / 20}} for i in range(20)] + \
-                [{"family": "systematic_cc", "metrics": {"yield_ttm": 0.08 + i / 200}} for i in range(20)] + \
-                [{"family": "short_vol", "metrics": {"yield_ttm": 0.2}}]
+        def fund(fam, y):
+            return {"family": fam, "metrics": {"yield_regular": y}}
+        funds = [fund("single_stock", 0.5 + i / 20) for i in range(20)] + \
+                [fund("systematic_cc", 0.08 + i / 200) for i in range(20)] + [fund("short_vol", 0.2)]
         cut = bi.extreme_yield_cutoffs(funds)
         self.assertLess(cut["systematic_cc"], 0.2)          # an index covered call at 20% IS extreme
-        self.assertGreater(cut["single_stock"], 1.0)
-        self.assertNotIn("short_vol", cut)                   # too few funds -> overall cutoff
-        self.assertIn("_all", cut)
+        self.assertGreater(cut["single_stock"], 1.0)        # 60-140% is normal for single-stock funds
+        self.assertEqual(cut["short_vol"], 0.30)            # small family -> flat 30%
+        # a 10-fund family with modest yields never flags its top fund (old p95 bug)
+        small = [fund("dividend_options", 0.05 + i / 200) for i in range(10)]
+        self.assertGreater(bi.extreme_yield_cutoffs(small)["dividend_options"], 0.1)
 
     def test_tiered_gates(self):
         m = {"price": 50.0}
@@ -221,6 +229,107 @@ class Scoring(unittest.TestCase):
         self.assertFalse(g["liquidity"])
         self.assertFalse(bi.gates(self.base(family="leveraged_income"), m, 1.0)["structure"])
         self.assertFalse(bi.gates(self.base(note=True), m, 1.0)["structure"])
+
+
+class ReviewFindings(unittest.TestCase):
+    """Regression tests for the adversarial review of the first real build."""
+
+    def test_classification_cases(self):
+        none = ["Defiance Daily Target 2X Long AVGO ETF", "State Street Blackstone High Income ETF",
+                "NYLIM MacKay High Income ETF", "Amplify CEF High Income ETF"]
+        for n in none:
+            self.assertIsNone(bi.classify(n), n)
+        cases = {
+            "YieldMax(TM) RBLX Option Income Strategy ETF": ("single_stock", "RBLX"),
+            "Yieldmax Gme Option Income Strategy ETF": ("single_stock", "GME"),
+            "YieldMax BRK.B Option Income Strategy ETF": ("single_stock", "BRK-B"),
+            "IncomeShares Berkshire Hathaway (BRK-B) Options ETP": ("single_stock", "BRK-B"),
+            "YieldMax AI Option Income Strategy ETF": ("single_stock", "AI"),
+            "IncomeShares Taiwan Semiconductors (TSM) Options ETP": ("single_stock", "TSM"),
+            "Amplify COWS Covered Call ETF": ("systematic_cc", "COWS"),
+            "Graniteshares Autocallable Hood ETF": ("structured", "HOOD"),
+            "State Street Communication Services Select Sector SPDR Premium Income ETF": ("active_premium", "XLC"),
+            "iShares 20+ Year Treasury Bond BuyWrite Strategy ETF": ("systematic_cc", "TLT"),
+            "Global X Euro Stoxx 50 Covered Call UCITS ETF EUR Distributing": ("systematic_cc", "FEZ"),
+            "Global X Hang Seng High Dividend Yield Covered Call ETF": ("dividend_options", "2800.HK"),
+            "NEOS S&P 500(R) High Income ETF": ("call_spread", "SPY"),
+            "Neuberger Berman Option Strategy ETF": ("put_write", "SPY"),
+        }
+        for n, (fam, bench) in cases.items():
+            c = bi.classify(n)
+            self.assertIsNotNone(c, n)
+            self.assertEqual((c["family"], c["bench"]), (fam, bench), n)
+        self.assertEqual(bi.classify("Amplify COWS Covered Call ETF")["exposure"], "sector")
+        self.assertEqual(bi.classify("Graniteshares Autocallable Hood ETF")["exposure"], "single stock")
+        self.assertEqual(bi.classify("iShares 20+ Year Treasury Bond BuyWrite Strategy ETF")["exposure"], "bond")
+        inv = bi.classify("YieldMax MSTR Short Option Income Strategy ETF")
+        self.assertTrue(inv["inverse"])
+        self.assertIsNone(inv["bench"])                       # no meaningful long benchmark
+        self.assertNotEqual(bi.classify("REX IncomeMax Option Strategy ETF")["bench"], "REX")
+        self.assertIsNone(bi.classify("Some Covered Call UCITS ETF", ticker="ABCD.L")["bench"])   # no silent SPY abroad
+        self.assertTrue(bi.classify("Thornburg Premium Income Builder ETF")["bench_assumed"])
+        for sym in ("2800.HK", "2828.HK", "3067.HK", "069500.KS"):
+            self.assertFalse(sym.startswith("^"))
+        self.assertFalse(any(b.startswith("^") for _, b in bi.BENCH_RULES))   # total-return benchmarks only
+
+    def test_coverage_is_log_consistent(self):
+        self.assertEqual(bi.coverage_share(0.08, 0.01), 1.0)
+        self.assertEqual(bi.coverage_share(-0.20, -0.60), 0.0)          # negative total return -> nothing covered
+        self.assertEqual(bi.coverage_share(0.0, -0.40), 0.0)
+        self.assertAlmostEqual(bi.coverage_share(0.05, -0.40), math.log(1.05) / (math.log(1.05) - math.log(0.6)), places=6)
+        self.assertLess(bi.coverage_share(0.05, -0.40), 0.1)
+
+    def test_bad_ticks_dropped(self):
+        days = DAYS[:200]
+        bars = [(d, 15.0, 15.0, 1e5) for d in days]
+        for i in (50, 120, 121):                              # single-day bad prints (one, then a pair)
+            bars[i] = (bars[i][0], 1.93, 1.93, 1e5)
+        clean, n = bi.drop_bad_ticks(bars)
+        self.assertEqual(n, 1)                                # the isolated spike; a 2-day run isn't a 'tick'
+        m = bi.compute([b for b in clean if b[1] > 5], [])
+        self.assertGreater(m.get("max_drawdown", 0) if "max_drawdown" in m else 0, -0.05)
+
+    def test_specials_excluded_from_regular_yield(self):
+        base = dt.date(2025, 10, 15)
+        divs = [(base + dt.timedelta(days=30 * i), 0.2) for i in range(12)]
+        divs.append((dt.date(2025, 12, 20), 2.9))           # year-end capital gains
+        regular, special = bi.split_specials(divs, dt.date(2026, 10, 9))
+        self.assertAlmostEqual(special, 2.9)
+        self.assertAlmostEqual(regular, 0.2 * 12, places=6)
+
+    def test_stale_benchmark_end_rejected(self):
+        bars, divs = fund(0.0, 0.08)
+        bench = [(d, v) for d, v in series(0.15) if d <= END - dt.timedelta(days=365)]
+        m = bi.compute(bars, divs, bench=bench)
+        self.assertNotIn("gap", m)
+
+    def test_logistic_breaks_ties(self):
+        f = Scoring.base(Scoring())
+        a = bi.components(f, {"gap": -0.18, "price_cagr": 0.0005, "window_years": 3}, False)
+        b = bi.components(f, {"gap": -0.084, "price_cagr": 0.052, "window_years": 3}, False)
+        sa, _ = bi.weighted(a, "systematic_cc", True)
+        sb, _ = bi.weighted(b, "systematic_cc", True)
+        self.assertGreater(sb, sa)
+
+    def test_eln_weights_only_for_eln_funds(self):
+        base = Scoring.base(Scoring())
+        self.assertEqual(bi.weights_key(dict(base, family="active_premium", eln=True)), "active_premium_eln")
+        self.assertEqual(bi.weights_key(dict(base, family="active_premium", eln=False)), "default")
+        # an eroding non-ELN active fund can no longer score high on constants
+        eroding = bi.components(dict(base, family="active_premium"), {"gap": -0.50, "price_cagr": -0.30,
+                                                                     "coverage": 0.0, "window_years": 3}, False)
+        score, _ = bi.weighted(eroding, "default", True)
+        self.assertLess(score, 35)
+
+    def test_family_priors(self):
+        funds = [{"family": "x", "metrics": {"window_years": 3}, "raw": {"gap": g}} for g in (10, 20, 30, 40, 50)]
+        funds.append({"family": "x", "metrics": {"window_years": 1}, "raw": {"gap": 99}})     # young: not a prior
+        self.assertEqual(bi.family_priors(funds)["x"]["gap"], 30)
+
+    def test_currency_compatibility(self):
+        self.assertTrue(bi.currencies_compatible("HKD", "USD"))
+        self.assertFalse(bi.currencies_compatible("GBP", "USD"))
+        self.assertEqual(bi.bench_currency("069500.KS"), "KRW")
 
 
 if __name__ == "__main__":

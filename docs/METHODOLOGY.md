@@ -169,13 +169,25 @@ Kong and London listings (~400 funds), grouped into strategy families.
    NAV trend; underlying quality (broad index > sector > single stock >
    leveraged, extreme-yield penalty within the family, payout track record);
    US tax efficiency; fees; ELN counterparty/transparency; volatility-spike
-   sensitivity; payout stability. History-based components are shrunk toward
-   a neutral 50 for funds with less than three years of data.
+   sensitivity; payout stability. Return and NAV components use smooth
+   curves (−4 pp/yr vs benchmark = 50, level ≈ 83) so funds don't tie at a
+   cap. Funds need ~1 year of history to be scored; with less than three
+   years, history-based components are pulled toward the median of seasoned
+   funds in the same family. Yields exclude one-off year-end capital-gain
+   specials; coverage uses log returns (a fund with negative total return
+   covered none of its payout).
 3. **Family weights:** systematic covered calls NAV 40 / gap 30 / tax 30;
-   active + ELN counterparty 30 / gap 30 / fees 20 / transparency 20; call
+   active funds that use ELNs counterparty 30 / gap 30 / fees 20 /
+   transparency 20 (other active funds use the default weights); call
    spreads tax 40 / gap 30 / NAV 30; short volatility VIX sensitivity 40 /
    gap 30 / stability 30; all other families gap 30 / coverage 25 / NAV 20 /
    quality 15 / tax 10. A non-US tax view drops the US-tax component.
+
+Benchmarks are always total-return series (ETFs rather than price-only
+indices, e.g. 2800.HK for the Hang Seng); inverse funds, lines trading in a
+different currency from their benchmark, and funds whose benchmark can't be
+loaded are listed but not scored. Leveraged "daily target" funds and
+bond/closed-end funds without an option overlay are excluded.
 
 Scores rank funds *within* a family. Holding-experience metrics (max
 drawdown, volatility, Sharpe vs T-bills, up/down capture) are shown for every

@@ -24,6 +24,8 @@ const pct = (x, d = 1) => x == null ? "—" : `${x > 0 ? "+" : ""}${(x * 100).to
 const pctPlain = (x, d = 1) => x == null ? "—" : `${(x * 100).toFixed(d)}%`;
 const pp = x => x == null ? "—" : `${x > 0 ? "+" : ""}${(x * 100).toFixed(1)} pp/yr`;
 const labScore = f => LS.tax === "us" ? f.score_us : f.score_intl;
+const regYield = f => f.metrics.yield_regular != null ? f.metrics.yield_regular : f.metrics.yield_ttm;
+const WEIGHT_LABEL = { active_premium_eln: "Active premium using ELNs", default: "All other families (incl. active funds without ELNs)" };
 const labRank = f => LS.tax === "us" ? f.rank_us : f.rank_intl;
 const labWeights = f => LS.tax === "us" ? f.weights_us : f.weights_intl;
 const famName = k => (LAB && LAB.families[k]) || k;
@@ -77,7 +79,7 @@ function buildLab(box) {
       el("h3", { id: "labChartTitle" }),
       el("div", { class: "legend", "aria-hidden": "true" },
         el("span", {}, el("i", { class: "key pass" }), "passes every gate"),
-        el("span", {}, el("i", { class: "key fail" }), "fails a gate")),
+        el("span", {}, el("i", { class: "key fail" }), "fails a gate or gate data missing")),
       el("div", { id: "labChart", class: "scatter" }),
       el("p", { class: "muted small", id: "labChartNote" })),
     el("div", { id: "labCount", class: "muted small" }),
@@ -107,10 +109,11 @@ function methodBox() {
   add("Layer 1 — tiered gates", `Systematic strategies: AUM ≥ $${g.systematic.aum}M, ≥ ${g.systematic.age} years old, expense ≤ ${g.systematic.er}%. ` +
     `Actively managed: AUM ≥ $${g.active.aum}M, ≥ ${g.active.age} years, expense ≤ ${g.active.er}%. Everyone: ≥ ${(liq.shares / 1000)}K shares/day ` +
     `or ≥ $${liq.dollars / 1e6}M/day traded, and no leveraged funds or ETNs. Untick “Recommended screen” to see every fund.`);
-  add("Layer 2 — quality components (0–100)", "Total return vs the fund's own benchmark (−4 pp/yr scores 50); distribution coverage — how much of the payout came from total return rather than from a falling NAV (<70% is flagged); NAV trend; underlying quality (broad index > sector > single stock > leveraged, extreme-yield penalty, payout track record); US tax efficiency; fees; plus ELN counterparty/transparency, volatility-spike sensitivity and payout stability where relevant.");
+  add("Layer 2 — quality components (0–100)", "Total return vs the fund's own benchmark (−4 pp/yr scores 50 on a smooth curve; level with it ≈ 83); distribution coverage — how much of the payout came from total return rather than from a falling NAV (<70% is flagged); NAV trend; underlying quality (broad index > sector > single stock > leveraged, extreme-yield penalty, payout track record); US tax efficiency; fees; plus ELN counterparty/transparency, volatility-spike sensitivity and payout stability where relevant.");
   add("Layer 3 — family weights", Object.entries(LAB.weights).map(([k, w]) =>
-    `${k === "default" ? "All other families" : famName(k)}: ` + Object.entries(w).map(([c, v]) => `${COMP_LABEL[c] || c} ${v}%`).join(", ")).join(" · "));
+    `${WEIGHT_LABEL[k] || famName(k)}: ` + Object.entries(w).map(([c, v]) => `${COMP_LABEL[c] || c} ${v}%`).join(", ")).join(" · "));
   add("Tax view", "US taxable investor: as in the brief. Non-US / tax-sheltered: the US-tax component is dropped and the other weights scaled up — §1256 60/40 treatment doesn't help non-US investors (US withholding on distributions matters instead — see the Explorer's Tax & domicile panel). Hong Kong and London funds never get the US-tax component.");
+  add("Young funds", "Funds need about a year of history to be scored. With less than three years, the history-based components are pulled toward what seasoned funds of the same strategy typically score — a short record is judged against the strategy's norm.");
   add("Changes from the original brief", "Coverage is measured from prices and distributions rather than the tax 'return of capital' label (not available in free data, and misleading for funds like SPYI whose ROC is a tax effect while NAV holds up). Benchmarks are each fund's own underlying, not always SPY. Liquidity accepts $2M/day as an alternative to 100K shares. Holdings-quality (ROE, leverage of the stocks) is approximated by the underlying exposure, since holdings fundamentals for 400+ funds aren't available.");
   d.append(dl);
   return d;
@@ -129,7 +132,7 @@ const LAB_COLS = [
   { key: "rank", label: "#", v: f => labRank(f), fmt: f => labRank(f) ? String(labRank(f)) : "—", help: "Rank within its strategy family (all funds, current tax view)." },
   { key: "t", label: "Fund", v: f => f.t },
   { key: "score", label: "Score", v: f => labScore(f), fmt: f => scoreCell(labScore(f)), help: "0–100 quality score with the family's weights. Compare within a family." },
-  { key: "yld", label: "Yield", v: f => f.metrics.yield_ttm, fmt: f => pctPlain(f.metrics.yield_ttm), help: "Distributions over the last 12 months ÷ price." },
+  { key: "yld", label: "Yield", v: f => regYield(f), fmt: f => pctPlain(regYield(f)), help: "Regular distributions over the last 12 months ÷ price (one-off year-end capital-gain specials excluded)." },
   { key: "tr", label: "Total return", v: f => f.metrics.tr_ann, fmt: f => signedSpan(f.metrics.tr_ann, pct), help: "Annualised total return (distributions reinvested) over the window." },
   { key: "gap", label: "vs benchmark", v: f => f.metrics.gap, fmt: f => signedSpan(f.metrics.gap, pp), help: "Annualised total return minus the fund's own benchmark. Below −4 pp/yr = the income is costing too much." },
   { key: "nav", label: "NAV trend", v: f => f.metrics.price_cagr, fmt: f => signedSpan(f.metrics.price_cagr, pct), help: "Annualised change in price (≈ NAV), excluding distributions." },
@@ -138,6 +141,12 @@ const LAB_COLS = [
   { key: "er", label: "Expense", v: f => f.er, fmt: f => f.er == null ? "—" : f.er.toFixed(2) + "%" },
   { key: "aum", label: "AUM", v: f => f.aum_usd, fmt: f => f.aum_usd == null ? "—" : fmtMoneyM(f.aum_usd, "USD") },
 ];
+function gateStatus(f) {
+  if (f.passes) return "passes every gate";
+  const failed = Object.entries(f.gates).filter(([, v]) => v === false).map(([k]) => GATE_LABEL[k].toLowerCase());
+  const unknown = (f.gates_unknown || []).map(k => GATE_LABEL[k].toLowerCase());
+  return [failed.length ? "fails: " + failed.join(", ") : null, unknown.length ? "no data: " + unknown.join(", ") : null].filter(Boolean).join(" · ");
+}
 function scoreCell(s) {
   if (s == null) return el("span", { class: "muted", title: "Not enough history to score (needs about a year)" }, "n/a");
   return el("span", { class: "scorechip" }, el("span", { class: "scorebar", style: `--w:${s}%` }), String(Math.round(s)));
@@ -203,13 +212,13 @@ function renderLab() {
 const X_CAP = 2.5;                                     // only yields above 250% are pinned at the edge
 function renderChart(list) {
   const host = $("#labChart"); if (!host || !LAB) return;
-  const pts = (list || labFiltered()).filter(f => labScore(f) != null && f.metrics.yield_ttm != null);
+  const pts = (list || labFiltered()).filter(f => labScore(f) != null && regYield(f) != null);
   $("#labChartTitle").textContent = `Yield vs quality score — ${LS.fam ? famName(LS.fam) : "all strategy families"}${LS.pass ? " (recommended screen)" : ""}`;
   host.innerHTML = "";
   const W = Math.max(300, host.clientWidth || 600), H = Math.min(360, Math.max(240, Math.round(W * 0.5)));
   const m = { l: 40, r: 14, t: 10, b: 34 };
   const iw = W - m.l - m.r, ih = H - m.t - m.b;
-  const maxY = Math.min(X_CAP, Math.max(0.1, ...pts.map(f => f.metrics.yield_ttm)) * 1.05);
+  const maxY = Math.min(X_CAP, Math.max(0.1, ...pts.map(f => regYield(f))) * 1.05);
   const x = v => m.l + Math.sqrt(Math.max(0, Math.min(v, maxY)) / maxY) * iw;
   const y = v => m.t + (1 - v / 100) * ih;
   const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
@@ -233,8 +242,8 @@ function renderChart(list) {
   const tip = el("div", { class: "viztip", hidden: "hidden" });
   const show = (f, cx, cy) => {
     tip.innerHTML = "";
-    tip.append(el("strong", {}, `${Math.round(labScore(f))} · ${pctPlain(f.metrics.yield_ttm)}`),
-      el("div", {}, `${f.t} — ${f.n}`), el("div", { class: "muted" }, `${famName(f.family)}${f.passes ? " · passes every gate" : " · fails a gate"}`));
+    tip.append(el("strong", {}, `${Math.round(labScore(f))} · ${pctPlain(regYield(f))}`),
+      el("div", {}, `${f.t} — ${f.n}`), el("div", { class: "muted" }, `${famName(f.family)} · ${gateStatus(f)}`));
     tip.hidden = false;
     const left = Math.min(cx + 12, W - 220), top = Math.max(0, cy - 10);
     tip.style.left = left + "px"; tip.style.top = top + "px";
@@ -243,11 +252,11 @@ function renderChart(list) {
   const placed = [];
   // failing funds first so passing ones sit on top
   pts.slice().sort((a, b) => (a.passes === b.passes ? 0 : a.passes ? 1 : -1)).forEach(f => {
-    const cx = x(f.metrics.yield_ttm), cy = y(labScore(f));
+    const cx = x(regYield(f)), cy = y(labScore(f));
     const grp = svgEl("g", { class: "pt" + (f.passes ? " pass" : " fail"), tabindex: "0", role: "button",
-      "aria-label": `${f.t}: score ${Math.round(labScore(f))}, yield ${pctPlain(f.metrics.yield_ttm)}` });
+      "aria-label": `${f.t}: score ${Math.round(labScore(f))}, yield ${pctPlain(regYield(f))}` });
     grp.append(svgEl("circle", { cx, cy, r: 12, class: "hit" }), svgEl("circle", { cx, cy, r: f.passes ? 5 : 4, class: "dot" }));
-    if (f.metrics.yield_ttm > maxY) grp.append(svgEl("path", { d: `M${cx + 6},${cy - 4} l5,4 l-5,4 z`, class: "pin" }));
+    if (regYield(f) > maxY) grp.append(svgEl("path", { d: `M${cx + 6},${cy - 4} l5,4 l-5,4 z`, class: "pin" }));
     if (top5.has(f.t)) {                               // direct label unless it would collide with one already placed
       const w = f.t.length * 7 + 4, box = [cx + 8, cy - 18, cx + 8 + w, cy - 4];
       if (!placed.some(b => box[0] < b[2] && b[0] < box[2] && box[1] < b[3] && b[1] < box[3])) {
@@ -264,7 +273,7 @@ function renderChart(list) {
     svg.append(grp);
   });
   host.append(svg, tip);
-  const pinned = pts.filter(f => f.metrics.yield_ttm > maxY).length;
+  const pinned = pts.filter(f => regYield(f) > maxY).length;
   $("#labChartNote").textContent = `${pts.length} funds with a score. Top 5 by score are labelled; hover or tap a dot for details, click to open it.` +
     (pinned ? ` ${pinned} fund${pinned === 1 ? "" : "s"} yielding over ${Math.round(maxY * 100)}% ${pinned === 1 ? "is" : "are"} pinned at the right edge (▸).` : "") +
     " Upper-right = high yield with high quality.";
@@ -279,14 +288,17 @@ function openLabCard(f) {
   const famFunds = LAB.funds.filter(x => x.family === f.family && labScore(x) != null).length;
   wrap.append(
     el("h2", { id: "memoTitle" }, `${f.t} — ${f.n}`),
-    el("div", { class: "sub" }, `${famName(f.family)} · ${f.style === "systematic" ? "systematic" : "actively managed"} · ${f.market === "LSE" ? "London" : f.market === "HK" ? "Hong Kong" : "US"}-listed · benchmark ${f.bench}` +
+    el("div", { class: "sub" }, `${famName(f.family)} · ${f.style === "systematic" ? "systematic" : "actively managed"} · ${f.market === "LSE" ? "London" : f.market === "HK" ? "Hong Kong" : "US"}-listed · ` +
+      (f.bench ? `benchmark ${f.bench}${f.bench_assumed ? " (assumed: no index named)" : ""}` : "no comparable benchmark") +
       (f.eln ? " · uses equity-linked notes" : "")),
     el("div", { class: "liverow" },
       el("a", { class: "holdlink", href: quoteUrl(f.t), target: "_blank", rel: "noopener" }, "↗ Live quote"),
       home ? el("button", { class: "refresh", onclick: () => { goTo(home, f.t); liveMsg(`${f.t}: full analysis card in the ${home.name} theme.`, "", { label: "← Back to Income Lab", fn: () => showIncomeLab() }); } }, `Full analysis in ${home.name} →`) : null),
     el("div", { class: "hero" },
       el("div", { class: "heroval" }, s == null ? "n/a" : String(Math.round(s)), el("span", { class: "muted" }, " / 100")),
-      el("div", { class: "muted small" }, s == null ? "Not enough history to score (needs about a year)." :
+      el("div", { class: "muted small" }, s == null ? (f.inverse ? "Inverse strategy — not scored against a long benchmark." :
+      f.currency_mismatch ? "Different currency from its benchmark — not scored." : f.bench_missing || !f.bench ? "No benchmark available — not scored." :
+      "Not enough history to score (needs about a year).") :
         `Rank ${labRank(f) || "—"} of ${famFunds} in ${famName(f.family)} · ${LS.tax === "us" ? "US taxable view" : "non-US view"}`)));
 
   // score breakdown
@@ -300,7 +312,8 @@ function openLabCard(f) {
         el("span", { class: "btrack" }, el("span", { class: "bfill", style: `--w:${v}%` })),
         el("span", { class: "bval" }, String(Math.round(v)))));
     });
-    wrap.append(list, el("p", { class: "muted small" }, "Each bar is a 0–100 component score; the percentage is its weight for this strategy family."));
+    wrap.append(list, el("p", { class: "muted small" }, "Each bar is a 0–100 component score; the percentage is its weight for this strategy family." +
+      (m.window_years < LAB.window_years ? ` Only ${m.window_years} years of history, so the return-based scores are pulled toward what seasoned ${famName(f.family).toLowerCase()} funds typically score.` : "")));
   }
 
   // gates
@@ -342,12 +355,13 @@ function openLabCard(f) {
     wrap.append(distChart(m.dist_hist, f.cur),
       el("p", { class: "muted small" }, `${m.payments_12m} payments in the last 12 months · paid ${m.streak_months} months in a row` +
         (m.stability_cv != null ? ` · payment variability ${Math.round(m.stability_cv * 100)}% (lower = steadier)` : "") +
-        (f.extreme_yield ? " · ⚠ yield in the top 5% of all income ETFs" : "")));
+        (f.extreme_yield ? " · ⚠ yield far above its strategy family's norm" : "")));
   }
 
   // returns & holding experience
   const facts = [
-    ["Yield (12 months)", pctPlain(m.yield_ttm)],
+    ["Yield (12 months, regular)", pctPlain(regYield(f))],
+    ["Incl. year-end specials", m.specials_ttm ? `${pctPlain(m.yield_ttm)} (specials ${pctPlain(m.specials_ttm)})` : "none"],
     ["Total return / yr", pct(m.tr_ann)], [`${f.bench} total return / yr`, pct(m.bench_tr_ann)], ["vs benchmark", pp(m.gap)],
     ["NAV (price) trend / yr", pct(m.price_cagr)], ["Max drawdown", pct(m.max_drawdown)],
     ["Volatility / yr", pctPlain(m.vol_ann)], ["Sharpe ratio", m.sharpe == null ? "—" : m.sharpe.toFixed(2)],
@@ -369,7 +383,13 @@ function openLabCard(f) {
   if (f.exposure === "single stock") flags.push(`🔴 Single-stock strategy on ${f.bench} — the payout depends on one company's volatility; NAV erosion is common.`);
   if (m.coverage != null && m.coverage < 0.7) flags.push("⚠️ Over 30% of distributions came out of NAV.");
   if (m.gap != null && m.gap < -0.04) flags.push("⚠️ Trails its benchmark by more than 4 pp a year — the income is costing a lot of return.");
-  if (f.extreme_yield) flags.push("⚠️ Yield in the top 5% of all income ETFs — usually unsustainable.");
+  if (f.extreme_yield) flags.push("⚠️ Yield far above what its strategy family normally pays — usually unsustainable.");
+  if (f.inverse) flags.push("🔴 Inverse strategy (profits when the underlying falls) — not comparable to a long benchmark, so it isn't scored.");
+  if (f.bench_missing) flags.push(`❓ Benchmark ${f.bench} couldn't be loaded — total return vs benchmark not available.`);
+  if (f.currency_mismatch) flags.push("❓ This line trades in a different currency from its benchmark, so the comparison would mostly measure the exchange rate — not scored.");
+  if (f.bench_assumed) flags.push("ℹ️ No index named in the fund's name — compared with the S&P 500 as an assumption.");
+  if (m.bad_ticks_removed) flags.push(`ℹ️ ${m.bad_ticks_removed} bad price print${m.bad_ticks_removed === 1 ? "" : "s"} removed from the price history.`);
+  if ((f.gates_unknown || []).length) flags.push("❓ Missing data for: " + f.gates_unknown.map(k => GATE_LABEL[k].toLowerCase()).join(", ") + " — the fund can't pass the recommended screen until it's known.");
   if (f.eln) flags.push("⚠️ Uses equity-linked notes: bank counterparty risk and less transparent option exposure.");
   if (m.short_history) flags.push("❓ Less than a year of history — not scored.");
   if (flags.length) { const ul = el("ul", { class: "flags" }); flags.forEach(x => ul.append(el("li", {}, x))); wrap.append(sectionTitle("Flags"), ul); }

@@ -180,6 +180,16 @@ class AumCurrency(unittest.TestCase):
         self.assertEqual(bu.aum_currency("Vanguard S&P 500 UCITS ETF"), "USD")
 
 
+class HKCounters(unittest.TestCase):
+    def test_usd_counter_aum_is_hkd(self):
+        row = lambda t, n, cur: [t, n, "HKEX", 10.0, None, None, 21486.1, 0.3, None, 1000, "", None, cur, "HK", 21486.1 if cur == "USD" else 2738.0, cur]
+        rows = [row("3416.HK", "Global X HSCEI Covered Call Active ETF", "HKD"),
+                row("9416.HK", "Global X HSCEI Covered Call Active ETF", "USD")]
+        bu.fix_hk_counters(rows, {"HKD": 0.1274})
+        d = dict(zip(bu.COLS, rows[1]))
+        self.assertEqual((d["acur"], d["aumu"]), ("HKD", round(21486.1 * 0.1274, 1)))
+
+
 class Screener(unittest.TestCase):
     def test_paging_and_sort_field_fallback(self):
         class FakeYahoo:

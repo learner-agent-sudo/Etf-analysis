@@ -439,6 +439,29 @@ def build_rows(listing, quotes, mult, screener=None, fx=None, default_cur="USD",
     return rows
 
 
+def counter_key(name):
+    """Same fund, different HK trading counter (HKD / USD '-U' / RMB '-R')."""
+    n = re.sub(r"\b(USD|HKD|RMB|CNH)\b|-[UR]\b|\bcounter\b", " ", name or "", flags=re.I)
+    return re.sub(r"\s+", " ", n).strip().lower()
+
+
+def fix_hk_counters(rows, fx):
+    """A fund's USD/RMB counter reports the fund's HKD net assets; label and convert them
+    as HKD (they were shown as USD, 7.8x too big). Applies only when the fund also has
+    an HKD counter in the list."""
+    i = {c: COLS.index(c) for c in ("n", "cur", "aum", "aumu", "acur")}
+    groups = {}
+    for r in rows:
+        groups.setdefault(counter_key(r[i["n"]]), []).append(r)
+    for grp in groups.values():
+        if len(grp) < 2 or not any(r[i["cur"]] == "HKD" for r in grp):
+            continue
+        for r in grp:
+            if r[i["cur"]] != "HKD" and r[i["aum"]] is not None:
+                r[i["acur"]] = "HKD"
+                r[i["aumu"]] = round(r[i["aum"]] * fx.get("HKD", FX_FALLBACK["HKD"]), 1)
+
+
 MARKETS = {
     "us": {"label": "US", "discover": discover_us, "min": 1000, "cur": "USD",
            "anchors": ["SPY", "QQQ", "JEPI"]},
@@ -473,6 +496,8 @@ def build_market(key, yahoo, mult, fx, dry):
         except Exception as e:  # noqa: BLE001
             log(f"  Nasdaq screener unavailable: {e}")
     rows = build_rows(listing, quotes, mult, screener, fx, m["cur"], m.get("aum_in_usd", False))
+    if key == "hk":
+        fix_hk_counters(rows, fx)
     for a in m["anchors"]:
         r = next((x for x in rows if x[0] == a), None)
         log(f"  anchor {a}: {dict(zip(COLS, r)) if r else 'not listed'}")
