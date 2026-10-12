@@ -296,9 +296,10 @@ function openLabCard(f) {
       home ? el("button", { class: "refresh", onclick: () => { goTo(home, f.t); liveMsg(`${f.t}: full analysis card in the ${home.name} theme.`, "", { label: "← Back to Income Lab", fn: () => showIncomeLab() }); } }, `Full analysis in ${home.name} →`) : null),
     el("div", { class: "hero" },
       el("div", { class: "heroval" }, s == null ? "n/a" : String(Math.round(s)), el("span", { class: "muted" }, " / 100")),
-      el("div", { class: "muted small" }, s == null ? (f.inverse ? "Inverse strategy — not scored against a long benchmark." :
-      f.currency_mismatch ? "Different currency from its benchmark — not scored." : f.bench_missing || !f.bench ? "No benchmark available — not scored." :
-      "Not enough history to score (needs about a year).") :
+      el("div", { class: "muted small" }, s == null ? (m.short_history ? "Not enough history to score (needs about a year)." :
+      f.inverse ? "Inverse strategy — not scored against a long benchmark." :
+      f.currency_mismatch ? "Different currency from its benchmark — not scored." :
+      "No usable benchmark data — not scored.") :
         `Rank ${labRank(f) || "—"} of ${famFunds} in ${famName(f.family)} · ${LS.tax === "us" ? "US taxable view" : "non-US view"}`)));
 
   // score breakdown
@@ -362,7 +363,7 @@ function openLabCard(f) {
   const facts = [
     ["Yield (12 months, regular)", pctPlain(regYield(f))],
     ["Incl. year-end specials", m.specials_ttm ? `${pctPlain(m.yield_ttm)} (specials ${pctPlain(m.specials_ttm)})` : "none"],
-    ["Total return / yr", pct(m.tr_ann)], [`${f.bench} total return / yr`, pct(m.bench_tr_ann)], ["vs benchmark", pp(m.gap)],
+    ["Total return / yr", pct(m.tr_ann)], [`${f.bench || "Benchmark"} total return / yr`, pct(m.bench_tr_ann)], ["vs benchmark", pp(m.gap)],
     ["NAV (price) trend / yr", pct(m.price_cagr)], ["Max drawdown", pct(m.max_drawdown)],
     ["Volatility / yr", pctPlain(m.vol_ann)], ["Sharpe ratio", m.sharpe == null ? "—" : m.sharpe.toFixed(2)],
     ["Upside capture", m.up_capture == null ? "—" : `${Math.round(m.up_capture * 100)}%`],
@@ -380,13 +381,14 @@ function openLabCard(f) {
   // flags + tax
   const flags = [];
   if (f.family === "leveraged_income") flags.push("🔴 Leveraged underlying — volatility decay; not a buy-and-hold income fund.");
-  if (f.exposure === "single stock") flags.push(`🔴 Single-stock strategy on ${f.bench} — the payout depends on one company's volatility; NAV erosion is common.`);
+  if (f.exposure === "single stock") flags.push(`🔴 Single-stock strategy on ${f.under || f.bench || "one stock"} — the payout depends on one company's volatility; NAV erosion is common.`);
   if (m.coverage != null && m.coverage < 0.7) flags.push("⚠️ Over 30% of distributions came out of NAV.");
   if (m.gap != null && m.gap < -0.04) flags.push("⚠️ Trails its benchmark by more than 4 pp a year — the income is costing a lot of return.");
   if (f.extreme_yield) flags.push("⚠️ Yield far above what its strategy family normally pays — usually unsustainable.");
   if (f.inverse) flags.push("🔴 Inverse strategy (profits when the underlying falls) — not comparable to a long benchmark, so it isn't scored.");
   if (f.bench_missing) flags.push(`❓ Benchmark ${f.bench} couldn't be loaded — total return vs benchmark not available.`);
   if (f.currency_mismatch) flags.push("❓ This line trades in a different currency from its benchmark, so the comparison would mostly measure the exchange rate — not scored.");
+  if (m.bench_span) flags.push(`❓ Benchmark ${f.bench} data (${m.bench_span[0]} → ${m.bench_span[1]}) doesn't line up with the fund's window — total return vs benchmark not available.`);
   if (f.bench_assumed) flags.push("ℹ️ No index named in the fund's name — compared with the S&P 500 as an assumption.");
   if (m.bad_ticks_removed) flags.push(`ℹ️ ${m.bad_ticks_removed} bad price print${m.bad_ticks_removed === 1 ? "" : "s"} removed from the price history.`);
   if ((f.gates_unknown || []).length) flags.push("❓ Missing data for: " + f.gates_unknown.map(k => GATE_LABEL[k].toLowerCase()).join(", ") + " — the fund can't pass the recommended screen until it's known.");

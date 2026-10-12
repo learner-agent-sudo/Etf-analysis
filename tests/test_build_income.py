@@ -303,6 +303,17 @@ class ReviewFindings(unittest.TestCase):
         m = bi.compute(bars, divs, bench=bench)
         self.assertNotIn("gap", m)
 
+    def test_benchmark_alignment_tolerates_holiday_gaps(self):
+        bars, divs = fund(0.0, 0.08)
+        w0 = dt.date.fromisoformat(bi.compute(bars, divs)["window_start"])
+        bench = [(d, v) for d, v in series(0.10) if d >= w0 + dt.timedelta(days=4)]       # starts 4 days late
+        m = bi.compute(bars, divs, bench=bench)
+        self.assertIn("gap", m)
+        late = [(d, v) for d, v in series(0.10) if d >= w0 + dt.timedelta(days=60)]       # 2 months late
+        m2 = bi.compute(bars, divs, bench=late)
+        self.assertNotIn("gap", m2)
+        self.assertIn("bench_span", m2)
+
     def test_logistic_breaks_ties(self):
         f = Scoring.base(Scoring())
         a = bi.components(f, {"gap": -0.18, "price_cagr": 0.0005, "window_years": 3}, False)

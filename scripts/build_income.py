@@ -242,7 +242,7 @@ def classify(name, flags="", ticker=""):
     etf_under = under if under in ETF_UNDERLYINGS else None
     stock = None if etf_under else under
     eln = bool(re.search(r"jpmorgan|j\.p\. ?morgan|\bjpm\b", low)) and "premium income" in low
-    basket = bool(re.search(r"fund of option income|fund of .*income etfs|ultra option income|universe fund", low))
+    basket = bool(re.search(r"fund of option income|fund of .*income etfs|ultra option income|universe fund|incomemax", low))
     # Leveraged by name (the universe 'L' flag also fires on non-leveraged names like
     # 'YieldMax Ultra Option Income', so it is not trusted on its own here).
     if re.search(r"\b[2-9](\.\d+)?x\b|leveraged|yieldboost|\bultra(pro|short)\b|proshares ultra|\binverse\b", low):
@@ -317,6 +317,18 @@ def _on_or_before(series, day):
         else:
             break
     return best
+
+
+def _nearest(series, day, tol=10):
+    """(date, value) of the bar closest to `day` within `tol` calendar days, either side."""
+    best = None
+    for d, v in series:
+        gap = abs((d - day).days)
+        if gap <= tol and (best is None or gap < best[0]):
+            best = (gap, d, v)
+        if d > day + dt.timedelta(days=tol):
+            break
+    return (best[1], best[2]) if best else None
 
 
 def _ann(ratio, years):
@@ -466,10 +478,13 @@ def compute(bars, divs, bench=None, rf=None, vix=None, years=WINDOW_YEARS):
         m["sharpe"] = (m["tr_ann"] - (rf_ann or 0.0)) / m["vol_ann"]
     # vs the fund's own underlying
     if bench:
-        a, b = _on_or_before(bench, win[0][0]), _on_or_before(bench, last)
-        # both ends of the benchmark must line up with the fund's window (a stale
-        # series would be annualised over the wrong span)
-        if a and b and a[1] > 0 and (win[0][0] - a[0]).days < 10 and (last - b[0]).days < 10:
+        # both ends of the benchmark must line up with the fund's window (within 10 days,
+        # either side — holiday calendars differ); a stale series would be annualised
+        # over the wrong span
+        a, b = _nearest(bench, win[0][0]), _nearest(bench, last)
+        if not (a and b and a[1] > 0):
+            m["bench_span"] = [bench[0][0].isoformat(), bench[-1][0].isoformat()] if bench else None
+        else:
             m["bench_tr_ann"] = _ann(b[1] / a[1], yrs)
             if m["bench_tr_ann"] is not None and m["tr_ann"] is not None:
                 m["gap"] = m["tr_ann"] - m["bench_tr_ann"]
