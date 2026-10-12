@@ -337,7 +337,7 @@ function freshnessText() {
 }
 function renderIntro() {
   const t = CURRENT, box = $("#themeIntro"); box.innerHTML = "";
-  box.append(
+  box.append(...[            // DOM append() would print a literal "null" — drop absent parts
     el("h2", {}, t.name + " ETFs"),
     el("div", { class: "asof" }, `Analysis as of ${t.as_of || "—"} · ${freshnessText()} `,
       el("button", { class: "refresh", title: "Re-load the latest daily market-data file", onclick: onCheckUpdate }, "↻ check for update")),
@@ -346,7 +346,7 @@ function renderIntro() {
     t.benchmark_note ? el("p", { class: "bench" }, "▸ " + t.benchmark_note) : null,
     t._id === "income" ? el("p", {}, el("button", { class: "refresh", onclick: () => showIncomeLab() },
       "Open the Income Lab — screen and score every option-income ETF →")) : null
-  );
+  ].filter(Boolean));
 }
 function renderTensions() {
   const box = $("#tensions"); box.innerHTML = "";
@@ -684,7 +684,7 @@ function openMemo(ticker) {
   const er = erOf(e), a = aumOf(e);
   const kind = e._stock ? "Single stock (not an ETF)" : e._explorer ? "Explorer fund (not curated)" : e._adhoc ? "Roster fund (not curated)" : e.is_theme_fund ? "Theme fund" : "Benchmark / reference";
 
-  wrap.append(
+  wrap.append(...[            // filter: DOM append() would print a literal "null"
     el("h2", { id: "memoTitle" }, `${e.ticker} — ${e.name}`),
     el("div", { class: "sub" }, `${kind} · Expense ${er == null ? "—" : er.toFixed(2) + "%"} · AUM ${a ? a.display : "—"} · Inception ${e.inception || "—"}`),
     el("div", { class: "liverow" },
@@ -698,7 +698,7 @@ function openMemo(ticker) {
       : MARKET ? "No daily market data for this ticker yet — figures below are the hand-researched snapshot."
                : "Showing the hand-researched snapshot (daily data not generated yet)."),
     m.thesis ? el("div", { class: "thesis" }, m.thesis) : null
-  );
+  ].filter(Boolean));
 
   // Performance: fresh daily figures, falling back to the dated snapshot per tile.
   const Y = d ? +d.price_asof.slice(0, 4) : new Date().getFullYear();
