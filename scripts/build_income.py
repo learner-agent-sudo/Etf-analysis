@@ -262,7 +262,7 @@ def payout_streak_months(divs, as_of):
     if len(dates) < 2:
         return 0
     gaps = [(b - a).days for a, b in zip(dates, dates[1:])]
-    limit = 1.6 * statistics.median(gaps[-12:])
+    limit = max(1.6 * statistics.median(gaps[-12:]), 45)   # 45d floor: a monthly->weekly switch isn't a break
     if (as_of - dates[-1]).days > limit:            # stopped paying
         return 0
     start = dates[-1]
@@ -444,7 +444,10 @@ def weighted(comp, family, us_view):
         w.pop("tax", None)
     avail = {k: v for k, v in w.items() if comp.get(k) is not None}
     tot = sum(avail.values())
-    if tot < 0.6 * sum(w.values()):                              # too little evidence to score
+    # Too little evidence: every family weighs total return vs benchmark, which needs
+    # about a year of history — without it a fund would be scored on fees and
+    # structure alone (70% of the active-premium weights).
+    if comp.get("gap") is None or tot < 0.6 * sum(w.values()):
         return None, {}
     used = {k: round(v / tot * 100, 1) for k, v in avail.items()}
     return round(sum(comp[k] * v for k, v in avail.items()) / tot, 1), used

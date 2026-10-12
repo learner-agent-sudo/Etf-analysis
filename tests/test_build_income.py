@@ -139,6 +139,11 @@ class Streak(unittest.TestCase):
         self.assertEqual(bi.payout_streak_months(divs, d[-1] + dt.timedelta(days=10)), 5)
         self.assertEqual(bi.payout_streak_months(divs, d[-1] + dt.timedelta(days=200)), 0)
 
+    def test_switch_from_monthly_to_weekly_is_not_a_break(self):
+        d = [dt.date(2023, 1, 15) + dt.timedelta(days=30 * i) for i in range(30)]
+        d += [d[-1] + dt.timedelta(days=7 * (i + 1)) for i in range(20)]
+        self.assertGreaterEqual(bi.payout_streak_months([(x, 0.1) for x in d], d[-1]), 30)
+
     def test_weekly_payer(self):
         d = [dt.date(2025, 1, 3) + dt.timedelta(days=7 * i) for i in range(60)]
         self.assertGreaterEqual(bi.payout_streak_months([(x, 0.05) for x in d], d[-1]), 13)
@@ -183,6 +188,9 @@ class Scoring(unittest.TestCase):
 
     def test_missing_evidence_not_scored(self):
         score, _ = bi.weighted({"tax": 70}, "systematic_cc", us_view=True)
+        self.assertIsNone(score)
+        # a brand-new active fund: fees/counterparty/transparency alone must not produce a score
+        score, _ = bi.weighted({"counterparty": 90, "transparency": 90, "fees": 85}, "active_premium", us_view=True)
         self.assertIsNone(score)
 
     def test_eln_and_extreme_yield(self):
