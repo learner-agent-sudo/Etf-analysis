@@ -186,7 +186,12 @@ Kong and London listings (~400 funds), grouped into strategy families.
 Benchmarks are always total-return series (ETFs rather than price-only
 indices, e.g. 2800.HK for the Hang Seng); inverse funds, lines trading in a
 different currency from their benchmark, and funds whose benchmark can't be
-loaded are listed but not scored. Leveraged "daily target" funds and
+loaded are listed but not scored. Benchmark prices are matched to the
+fund's window dates within 10 days (markets keep different holidays). If the
+benchmark's history starts late but still shares at least a year and 60% of
+the window, both are compared over that shared stretch and the card says
+so; otherwise the card shows the benchmark's date range and the fund isn't
+scored. Leveraged "daily target" funds and
 bond/closed-end funds without an option overlay are excluded.
 
 Scores rank funds *within* a family. Holding-experience metrics (max

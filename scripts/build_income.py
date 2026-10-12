@@ -60,6 +60,7 @@ DATA = rm.DATA
 OUT = os.path.join(DATA, "income-lab.json")
 WINDOW_YEARS = 3
 MIN_YEARS_SCORED = 1.0
+MIN_GAP_OVERLAP_YEARS = 1.0       # a late-starting benchmark must still share this much history
 
 # ------------------------------------------------------------------ selection --
 OPTION_KW = re.compile(
@@ -482,7 +483,18 @@ def compute(bars, divs, bench=None, rf=None, vix=None, years=WINDOW_YEARS):
         # either side — holiday calendars differ); a stale series would be annualised
         # over the wrong span
         a, b = _nearest(bench, win[0][0]), _nearest(bench, last)
-        if not (a and b and a[1] > 0):
+        s0 = next((p for p in bench if p[0] >= win[0][0]), None) if b and not a else None
+        oy = (last - s0[0]).days / 365.25 if s0 else 0
+        fa = _nearest(adj, s0[0]) if s0 else None
+        if b and s0 and fa and s0[1] > 0 and fa[1] > 0 and oy >= MIN_GAP_OVERLAP_YEARS and oy >= 0.6 * yrs:
+            # benchmark history starts late (e.g. a truncated feed): compare both over the
+            # stretch they share, and say so on the card
+            m["bench_tr_ann"] = _ann(b[1] / s0[1], oy)
+            fund_ov = _ann(adj[-1][1] / fa[1], oy)
+            if m["bench_tr_ann"] is not None and fund_ov is not None:
+                m["gap"] = fund_ov - m["bench_tr_ann"]
+                m["gap_window"] = [s0[0].isoformat(), last.isoformat()]
+        elif not (a and b and a[1] > 0):
             m["bench_span"] = [bench[0][0].isoformat(), bench[-1][0].isoformat()] if bench else None
         else:
             m["bench_tr_ann"] = _ann(b[1] / a[1], yrs)

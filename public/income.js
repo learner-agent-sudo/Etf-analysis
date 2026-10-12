@@ -363,7 +363,7 @@ function openLabCard(f) {
   const facts = [
     ["Yield (12 months, regular)", pctPlain(regYield(f))],
     ["Incl. year-end specials", m.specials_ttm ? `${pctPlain(m.yield_ttm)} (specials ${pctPlain(m.specials_ttm)})` : "none"],
-    ["Total return / yr", pct(m.tr_ann)], [`${f.bench || "Benchmark"} total return / yr`, pct(m.bench_tr_ann)], ["vs benchmark", pp(m.gap)],
+    ["Total return / yr", pct(m.tr_ann)], [`${f.bench || "Benchmark"} total return / yr${m.gap_window ? " (since " + m.gap_window[0] + ")" : ""}`, pct(m.bench_tr_ann)], [m.gap_window ? `vs benchmark (since ${m.gap_window[0]})` : "vs benchmark", pp(m.gap)],
     ["NAV (price) trend / yr", pct(m.price_cagr)], ["Max drawdown", pct(m.max_drawdown)],
     ["Volatility / yr", pctPlain(m.vol_ann)], ["Sharpe ratio", m.sharpe == null ? "—" : m.sharpe.toFixed(2)],
     ["Upside capture", m.up_capture == null ? "—" : `${Math.round(m.up_capture * 100)}%`],
@@ -388,6 +388,7 @@ function openLabCard(f) {
   if (f.inverse) flags.push("🔴 Inverse strategy (profits when the underlying falls) — not comparable to a long benchmark, so it isn't scored.");
   if (f.bench_missing) flags.push(`❓ Benchmark ${f.bench} couldn't be loaded — total return vs benchmark not available.`);
   if (f.currency_mismatch) flags.push("❓ This line trades in a different currency from its benchmark, so the comparison would mostly measure the exchange rate — not scored.");
+  if (m.gap_window) flags.push(`ℹ️ ${f.bench} data only starts ${m.gap_window[0]}, so the benchmark comparison covers ${m.gap_window[0]} → ${m.gap_window[1]} rather than the fund's full window.`);
   if (m.bench_span) flags.push(`❓ Benchmark ${f.bench} data (${m.bench_span[0]} → ${m.bench_span[1]}) doesn't line up with the fund's window — total return vs benchmark not available.`);
   if (f.bench_assumed) flags.push("ℹ️ No index named in the fund's name — compared with the S&P 500 as an assumption.");
   if (m.bad_ticks_removed) flags.push(`ℹ️ ${m.bad_ticks_removed} bad price print${m.bad_ticks_removed === 1 ? "" : "s"} removed from the price history.`);

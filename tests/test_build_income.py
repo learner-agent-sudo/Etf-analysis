@@ -309,10 +309,17 @@ class ReviewFindings(unittest.TestCase):
         bench = [(d, v) for d, v in series(0.10) if d >= w0 + dt.timedelta(days=4)]       # starts 4 days late
         m = bi.compute(bars, divs, bench=bench)
         self.assertIn("gap", m)
-        late = [(d, v) for d, v in series(0.10) if d >= w0 + dt.timedelta(days=60)]       # 2 months late
+        # starts 2 months late (truncated feed): compared over the shared stretch, same answer
+        late = [(d, v) for d, v in series(0.10) if d >= w0 + dt.timedelta(days=60)]
         m2 = bi.compute(bars, divs, bench=late)
-        self.assertNotIn("gap", m2)
-        self.assertIn("bench_span", m2)
+        self.assertAlmostEqual(m2["gap"], m["gap"], delta=0.005)
+        self.assertEqual(m2["gap_window"][0], late[0][0].isoformat())
+        self.assertNotIn("gap_window", m)
+        # shares under a year with the fund: not comparable
+        short = [(d, v) for d, v in series(0.10) if d >= END - dt.timedelta(days=200)]
+        m3 = bi.compute(bars, divs, bench=short)
+        self.assertNotIn("gap", m3)
+        self.assertIn("bench_span", m3)
 
     def test_logistic_breaks_ties(self):
         f = Scoring.base(Scoring())
