@@ -52,6 +52,14 @@ searchable, sortable list: expense ratio, AUM (with a US$ equivalent), price,
 ratings, theme suggestions, a one-click "pre-screen" and a general
 tax-and-domicile explainer. Built daily by `scripts/build_universe.py`.
 
+And an **Income Lab** tab: every option-income ETF (~400 across US, Hong
+Kong and London) screened in three layers — tiered gates, quality components
+(total return vs the fund's own benchmark, distribution coverage, NAV trend,
+underlying quality, tax) and strategy-family weights — with a yield-vs-quality
+scatter, within-family rankings, and per-fund cards showing where the
+distributions came from. Built daily by `scripts/build_income.py`; method in
+`docs/METHODOLOGY.md`.
+
 It has **two layers**:
 - **Curated analysis** (`public/data/<theme>.json`) — the judgment no API makes:
   theme-purity ratings, red flags, scores, memos, the green-light screen.
@@ -109,7 +117,8 @@ earths, and obesity/GLP-1. See [`app/README.md`](app/README.md) for how to add o
 ├── scripts/
 │   ├── screen.py                 ← backend green-light screener
 │   ├── refresh_market.py         ← daily market-data fetcher (writes market.json)
-│   └── build_universe.py         ← daily Explorer universe (writes universe-*.json)
+│   ├── build_universe.py         ← daily Explorer universe (writes universe-*.json)
+│   └── build_income.py           ← daily Income Lab screen (writes income-lab.json)
 ├── tests/                        ← offline tests for the market-data maths
 ├── templates/
 │   ├── etf-memo-template.md      ← deep one-pager per ETF

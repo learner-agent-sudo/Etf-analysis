@@ -96,23 +96,25 @@ FAMILIES = {
     "leveraged_income": "Leveraged income",
 }
 # Benchmarks: the fund's own underlying, as a total-return series.
-BENCH_RULES = [
+BENCH_RULES = [                                   # order matters: specific before generic
     (r"\bus equity|u\.s\. equity|\bus large", "SPY"),       # before 'hang seng' (issuer name on HK funds)
     (r"\bfang\b", "QQQ"),
-    (r"nasdaq[- ]?100|nasdaq 100|\bqqq\b|\bndx\b|nasdaq", "QQQ"),
-    (r"russell 2000|\br2000\b|small[- ]?cap|\biwm\b|\brut\b|russell", "IWM"),
-    (r"\bdow\b|dow jones|\bdjia\b|dow 30", "DIA"),
-    (r"utilities select", "XLU"), (r"financial select", "XLF"), (r"industrial select", "XLI"),
-    (r"consumer discretionary select", "XLY"), (r"consumer staples select", "XLP"),
-    (r"technology select", "XLK"), (r"health care select", "XLV"), (r"energy select", "XLE"),
-    (r"materials select", "XLB"), (r"real estate select", "XLRE"), (r"communication services select", "XLC"),
-    (r"\bmlp\b|midstream|energy infrastructure", "AMLP"),
-    (r"semiconductor", "SOXX"), (r"\bkweb\b|china internet", "KWEB"), (r"innovation|\barkk\b", "ARKK"),
-    (r"gold miners", "GDX"), (r"\bgold\b", "GLD"), (r"crypto", "BTC-USD"), (r"\bsilver\b", "SLV"), (r"bitcoin", "BTC-USD"), (r"\bether", "ETH-USD"),
     (r"hscei|china enterprises|h-share", "^HSCE"), (r"hang seng tech|hstech|hs tech", "3067.HK"),
     (r"hang seng|\bhsi\b", "^HSI"), (r"kospi", "^KS200"),
+    (r"nasdaq[- ]?100|nasdaq 100|\bqqq\b|\bndx\b|nasdaq", "QQQ"),
+    (r"russell 2000|\br2000\b|small[- ]?cap|\biwm\b|\brut\b|russell", "IWM"),
+    (r"\bkweb\b|china internet", "KWEB"), (r"dow jones internet|\binternet\b", "FDN"),
+    (r"\bdow\b|dow jones|\bdjia\b|dow 30", "DIA"),
+    (r"\bmlp\b|midstream|energy infrastructure", "AMLP"),
+    (r"semiconductor", "SOXX"), (r"innovation", "QQQ"),
+    (r"information technology|technology|\btech\b", "XLK"), (r"financial", "XLF"), (r"industrial", "XLI"),
+    (r"utilit", "XLU"), (r"health ?care|biotech", "XLV"), (r"\benergy\b", "XLE"), (r"real estate|\breit", "XLRE"),
+    (r"consumer discretionary", "XLY"), (r"consumer staples|\bstaples\b", "XLP"), (r"materials", "XLB"),
+    (r"communication", "XLC"),
+    (r"gold miners", "GDX"), (r"\bgold\b", "GLD"), (r"\bsilver\b", "SLV"), (r"bitcoin", "BTC-USD"),
+    (r"\bether", "ETH-USD"), (r"crypto", "BTC-USD"),
     (r"emerging", "EEM"), (r"international|developed|eafe|world ex", "EFA"),
-    (r"real estate|\breit", "VNQ"), (r"treasury|bond", "AGG"),
+    (r"treasury|bond", "AGG"),
     (r"s&p 500|sp500|\bspx\b|\bspy\b|s&p|large[- ]cap|equity premium|500", "SPY"),
 ]
 RISK_FREE, VIX = "BIL", "^VIX"
@@ -155,7 +157,7 @@ def log(*a):
 # ------------------------------------------------------------- classification --
 def stock_underlying(name):
     """Ticker of a single-stock underlying named in the fund name, if any."""
-    m = re.search(r"YieldBOOST\s+([A-Z]{2,5})\b", name or "")
+    m = re.search(r"YieldBOOST\s+([A-Z]{2,5})\b", name or "") or re.search(r"\(([A-Z]{2,5})\)", name or "")
     if m and m.group(1) not in NOT_STOCK:
         return m.group(1)
     for m in SINGLE_STOCK.finditer(name or ""):
@@ -214,7 +216,8 @@ def classify(name, flags="", ticker=""):
         exposure = "broad index"
     else:
         exposure = "sector"
-    return {"family": fam, "style": style, "eln": eln, "under": stock, "bench": bench, "exposure": exposure}
+    note = bool(re.search(r"\bETPs?\b|\bETNs?\b|exchange traded note", n))   # collateralised notes, not funds
+    return {"family": fam, "style": style, "eln": eln, "under": stock, "bench": bench, "exposure": exposure, "note": note}
 
 
 def share_class_key(name):
@@ -248,6 +251,28 @@ def month_ends(series):
     return [out[k] for k in sorted(out)]
 
 
+def payout_streak_months(divs, as_of):
+    """How long the fund has paid without an unusually long gap, in months.
+
+    Frequency-aware (weekly / monthly / quarterly payers alike): a gap counts as
+    a break only if it exceeds 1.6x the fund's typical gap. Counting calendar
+    months instead breaks when an ex-date slips from the 31st to the 1st.
+    """
+    dates = sorted({d for d, _ in divs})
+    if len(dates) < 2:
+        return 0
+    gaps = [(b - a).days for a, b in zip(dates, dates[1:])]
+    limit = 1.6 * statistics.median(gaps[-12:])
+    if (as_of - dates[-1]).days > limit:            # stopped paying
+        return 0
+    start = dates[-1]
+    for a, b in zip(reversed(dates[:-1]), reversed(dates[1:])):
+        if (b - a).days > limit:
+            break
+        start = a
+    return round((dates[-1] - start).days / 30.44)
+
+
 def compute(bars, divs, bench=None, rf=None, vix=None, years=WINDOW_YEARS):
     """Pure function: one fund's history -> income metrics (fractions, not %)."""
     bars = sorted(bars, key=lambda b: b[0])
@@ -268,20 +293,18 @@ def compute(bars, divs, bench=None, rf=None, vix=None, years=WINDOW_YEARS):
     m["payments_12m"] = sum(1 for d, _ in divs if last - dt.timedelta(days=365) < d <= last)
     recent = [a for d, a in divs if d > last - dt.timedelta(days=400)][-12:]
     m["stability_cv"] = (statistics.pstdev(recent) / statistics.mean(recent)) if len(recent) >= 4 and statistics.mean(recent) > 0 else None
-    months = {(d.year, d.month) for d, _ in divs}
-    streak, y, mo = 0, last.year, last.month
-    if (y, mo) not in months:                      # current month may not have paid yet
+    m["streak_months"] = payout_streak_months(divs, last)
+    hist, y, mo = {}, last.year, last.month          # 24 months, empty months included as 0
+    for _ in range(24):
+        hist[f"{y:04d}-{mo:02d}"] = 0.0
         y, mo = (y, mo - 1) if mo > 1 else (y - 1, 12)
-    while (y, mo) in months:
-        streak += 1
-        y, mo = (y, mo - 1) if mo > 1 else (y - 1, 12)
-    m["streak_months"] = streak
-    hist = {}
     for d, a in divs:
-        if d > last - dt.timedelta(days=731):
-            k = f"{d.year:04d}-{d.month:02d}"
-            hist[k] = round(hist.get(k, 0) + a, 4)
-    m["dist_hist"] = sorted(hist.items())
+        k = f"{d.year:04d}-{d.month:02d}"
+        if k in hist:
+            hist[k] = round(hist[k] + a, 4)
+    first_pay = min((d for d, _ in divs), default=None)
+    m["dist_hist"] = [(k, v) for k, v in sorted(hist.items())
+                      if first_pay and k >= f"{first_pay.year:04d}-{first_pay.month:02d}"]
     if yrs < MIN_YEARS_SCORED:
         m["short_history"] = True
         return m
@@ -358,8 +381,16 @@ def clamp(x, lo=0.0, hi=100.0):
     return max(lo, min(hi, x))
 
 
+HISTORY_BASED = ("gap", "coverage", "nav", "vix", "stability")
+
+
 def components(f, m, extreme_yield):
-    """0-100 component scores (None = not available)."""
+    """0-100 component scores (None = not available).
+
+    Evidence shrinkage: history-based components are pulled toward a neutral 50
+    in proportion to how much of the full window the fund has lived through, so
+    one lucky (or unlucky) year can't outrank three years of evidence.
+    """
     c = {}
     if m.get("gap") is not None:
         c["gap"] = clamp(100 + 12.5 * m["gap"] * 100)            # -4 pp/yr -> 50, -8 -> 0
@@ -383,7 +414,28 @@ def components(f, m, extreme_yield):
         c["vix"] = clamp(100 + m["vix_beta"] * 300)
     if m.get("stability_cv") is not None:
         c["stability"] = clamp(100 - m["stability_cv"] * 100)
+    conf = min(1.0, (m.get("window_years") or WINDOW_YEARS) / WINDOW_YEARS)
+    for k in HISTORY_BASED:
+        if k in c:
+            c[k] = 50 + (c[k] - 50) * conf
     return {k: round(v, 1) for k, v in c.items()}
+
+
+def extreme_yield_cutoffs(funds, min_n=10):
+    """95th-percentile yield per strategy family (families with < min_n funds use
+    the overall cutoff). A single overall cutoff is useless: single-stock funds
+    yielding 50-150% would set it, so a 40% index covered call never looks extreme."""
+    def p95(xs):
+        xs = sorted(xs)
+        return xs[int(0.95 * (len(xs) - 1))] if xs else 1.0
+    out = {"_all": p95([f["metrics"].get("yield_ttm") or 0 for f in funds])}
+    fams = {}
+    for f in funds:
+        fams.setdefault(f["family"], []).append(f["metrics"].get("yield_ttm") or 0)
+    for k, v in fams.items():
+        if len(v) >= min_n:
+            out[k] = p95(v)
+    return out
 
 
 def weighted(comp, family, us_view):
@@ -409,7 +461,7 @@ def gates(f, m, fx_usd):
     vol = f.get("vol")
     dvol_usd = (vol * m.get("price", 0) * fx_usd) if vol is not None else None
     out["liquidity"] = None if vol is None else (vol >= LIQ_SHARES or (dvol_usd or 0) >= LIQ_DOLLARS)
-    out["structure"] = f["family"] != "leveraged_income" and "N" not in (f.get("flags") or "")
+    out["structure"] = f["family"] != "leveraged_income" and "N" not in (f.get("flags") or "") and not f.get("note")
     return out
 
 
@@ -503,11 +555,10 @@ def main(argv):
             f["age_years"] = None
         f["metrics"] = m
         funds.append(f)
-    ylds = sorted(f["metrics"].get("yield_ttm") or 0 for f in funds)
-    p95 = ylds[int(0.95 * (len(ylds) - 1))] if ylds else 1
+    p95 = extreme_yield_cutoffs(funds)
     for f in funds:
         m = f["metrics"]
-        f["extreme_yield"] = (m.get("yield_ttm") or 0) > p95
+        f["extreme_yield"] = (m.get("yield_ttm") or 0) > p95.get(f["family"], p95["_all"])
         f["components"] = components(f, m, f["extreme_yield"])
         f["score_us"], f["weights_us"] = weighted(f["components"], f["family"], True)
         f["score_intl"], f["weights_intl"] = weighted(f["components"], f["family"], False)
@@ -542,7 +593,8 @@ def main(argv):
     now = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
     doc = {"as_of": max(f["metrics"]["as_of"] for f in funds), "generated_at": now,
            "window_years": WINDOW_YEARS, "families": FAMILIES, "weights": WEIGHTS, "gates": GATES,
-           "liquidity": {"shares": LIQ_SHARES, "dollars": LIQ_DOLLARS}, "extreme_yield_p95": p95,
+           "liquidity": {"shares": LIQ_SHARES, "dollars": LIQ_DOLLARS},
+           "extreme_yield_p95": {k: round(v, 4) for k, v in p95.items()},
            "count": len(funds), "funds": funds}
     with open(OUT, "w", encoding="utf-8") as fh:
         json.dump(doc, fh, separators=(",", ":"), ensure_ascii=False, default=str)

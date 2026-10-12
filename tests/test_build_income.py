@@ -124,6 +124,26 @@ class Metrics(unittest.TestCase):
         self.assertLess(m["vix_beta"], 0)
 
 
+class Streak(unittest.TestCase):
+    def test_month_boundary_slip_is_not_a_break(self):
+        # monthly payer whose ex-date slips from the 31st to the 1st (an empty calendar month)
+        d = [dt.date(2025, 1, 30) + dt.timedelta(days=30 * i) for i in range(20)]
+        d[10] = d[10] + dt.timedelta(days=2)
+        divs = [(x, 0.2) for x in d]
+        self.assertGreaterEqual(bi.payout_streak_months(divs, d[-1] + dt.timedelta(days=5)), 18)
+
+    def test_real_gap_and_stopped_paying(self):
+        d = [dt.date(2024, 1, 15) + dt.timedelta(days=30 * i) for i in range(10)] + \
+            [dt.date(2025, 3, 15) + dt.timedelta(days=30 * i) for i in range(6)]       # 4-month pause
+        divs = [(x, 0.1) for x in d]
+        self.assertEqual(bi.payout_streak_months(divs, d[-1] + dt.timedelta(days=10)), 5)
+        self.assertEqual(bi.payout_streak_months(divs, d[-1] + dt.timedelta(days=200)), 0)
+
+    def test_weekly_payer(self):
+        d = [dt.date(2025, 1, 3) + dt.timedelta(days=7 * i) for i in range(60)]
+        self.assertGreaterEqual(bi.payout_streak_months([(x, 0.05) for x in d], d[-1]), 13)
+
+
 class Scoring(unittest.TestCase):
     def base(self, **kw):
         f = {"family": "systematic_cc", "style": "systematic", "eln": False, "exposure": "broad index",
@@ -143,6 +163,24 @@ class Scoring(unittest.TestCase):
         self.assertNotIn("tax", used_intl)
         self.assertEqual(score_intl, 50.0)
 
+    def test_evidence_shrinkage_for_short_history(self):
+        f = self.base()
+        full = bi.components(f, {"gap": 0.02, "price_cagr": 0.05, "window_years": 3.0, "streak_months": 30}, False)
+        young = bi.components(f, {"gap": 0.02, "price_cagr": 0.05, "window_years": 1.0, "streak_months": 30}, False)
+        self.assertEqual((full["gap"], full["nav"]), (100.0, 100.0))
+        self.assertAlmostEqual(young["gap"], 50 + 50 / 3, places=1)          # one year of 3 -> one third of the way
+        self.assertEqual(young["tax"], full["tax"])                           # non-history components untouched
+
+    def test_more_classification(self):
+        g = bi.classify("IncomeShares Alphabet (GOOG) Options ETP")
+        self.assertEqual((g["family"], g["bench"], g["note"]), ("single_stock", "GOOG", True))
+        self.assertEqual(bi.classify("FT Vest Technology Dividend Target Income ETF")["bench"], "XLK")
+        self.assertEqual(bi.classify("FT Vest Dow Jones Internet & Target Income ETF")["bench"], "FDN")
+        self.assertEqual(bi.classify("KraneShares KWEB Covered Call Strategy ETF")["bench"], "KWEB")
+        self.assertEqual(bi.classify("Global X MLP & Energy Infrastructure Covered Call ETF")["bench"], "AMLP")
+        self.assertEqual(bi.classify("Global X Hang Seng TECH Covered Call Active ETF")["bench"], "3067.HK")
+        self.assertEqual(bi.classify("NEOS S&P 500(R) High Income ETF")["bench"], "SPY")   # '(R)' is not a ticker
+
     def test_missing_evidence_not_scored(self):
         score, _ = bi.weighted({"tax": 70}, "systematic_cc", us_view=True)
         self.assertIsNone(score)
@@ -151,6 +189,16 @@ class Scoring(unittest.TestCase):
         c = bi.components(self.base(family="active_premium", eln=True), {"streak_months": 2}, extreme_yield=True)
         self.assertEqual((c["counterparty"], c["transparency"], c["tax"]), (50, 50, 35))
         self.assertEqual(c["quality"], 90 - 25 - 10)
+
+    def test_extreme_yield_cutoff_is_per_family(self):
+        funds = [{"family": "single_stock", "metrics": {"yield_ttm": 0.5 + i / 20}} for i in range(20)] + \
+                [{"family": "systematic_cc", "metrics": {"yield_ttm": 0.08 + i / 200}} for i in range(20)] + \
+                [{"family": "short_vol", "metrics": {"yield_ttm": 0.2}}]
+        cut = bi.extreme_yield_cutoffs(funds)
+        self.assertLess(cut["systematic_cc"], 0.2)          # an index covered call at 20% IS extreme
+        self.assertGreater(cut["single_stock"], 1.0)
+        self.assertNotIn("short_vol", cut)                   # too few funds -> overall cutoff
+        self.assertIn("_all", cut)
 
     def test_tiered_gates(self):
         m = {"price": 50.0}
@@ -164,6 +212,7 @@ class Scoring(unittest.TestCase):
         g = bi.gates(self.base(vol=20_000), m, 1.0)
         self.assertFalse(g["liquidity"])
         self.assertFalse(bi.gates(self.base(family="leveraged_income"), m, 1.0)["structure"])
+        self.assertFalse(bi.gates(self.base(note=True), m, 1.0)["structure"])
 
 
 if __name__ == "__main__":

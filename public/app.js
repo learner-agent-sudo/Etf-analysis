@@ -236,16 +236,17 @@ async function loadMarket(bust) {
 }
 // ---- views: Themes (curated analysis) | Explorer (every listed ETF) --
 let VIEW = "themes", LAST_THEME = null;
+const VIEWS = { themes: ["#themeView", "#tabThemes"], explore: ["#explorer", "#tabExplore"], income: ["#incomeLab", "#tabIncome"] };
 function setView(v) {
   VIEW = v;
-  $("#themeView").hidden = v !== "themes";
-  $("#explorer").hidden = v !== "explore";
+  Object.entries(VIEWS).forEach(([k, [sec, tab]]) => {
+    $(sec).hidden = k !== v;
+    $(tab).classList.toggle("active", k === v);
+    $(tab).setAttribute("aria-selected", k === v);
+  });
   $(".theme-picker").classList.toggle("dim", v !== "themes");
-  $("#tabThemes").classList.toggle("active", v === "themes");
-  $("#tabExplore").classList.toggle("active", v === "explore");
-  $("#tabThemes").setAttribute("aria-selected", v === "themes");
-  $("#tabExplore").setAttribute("aria-selected", v === "explore");
   if (v === "explore" && !location.hash.startsWith("#explore")) history.replaceState(null, "", "#explore");
+  if (v === "income" && location.hash !== "#income-lab") history.replaceState(null, "", "#income-lab");
   closeMemo();
 }
 const exploreRoute = () => { const h = decodeURIComponent(location.hash.replace(/^#/, "")); return h === "explore" || h.startsWith("explore=") ? (h.split("=")[1] || "") : null; };
@@ -285,6 +286,7 @@ async function init() {
   $("#addTicker").addEventListener("keydown", e => { if (e.key === "Enter") onAddTicker(); });
   $("#tabThemes").addEventListener("click", () => { if (VIEW !== "themes") selectTheme(LAST_THEME || $("#themeSelect").value); });
   $("#tabExplore").addEventListener("click", () => { if (VIEW !== "explore") showExplorer(); });
+  $("#tabIncome").addEventListener("click", () => { if (VIEW !== "income") showIncomeLab(); });
   $("#closeMemo").addEventListener("click", closeMemo);
   $("#overlay").addEventListener("click", closeMemo);
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeMemo(); });
@@ -297,9 +299,11 @@ async function init() {
   const first = want || loaded[0]._id;
   sel.value = first;
   const ex = exploreRoute();
-  if (ex !== null) { LAST_THEME = first; showExplorer(window._THEMES[ex] ? ex : ""); }
+  if (location.hash === "#income-lab") { LAST_THEME = first; showIncomeLab(); }
+  else if (ex !== null) { LAST_THEME = first; showExplorer(window._THEMES[ex] ? ex : ""); }
   else selectTheme(first);
   window.addEventListener("hashchange", () => {
+    if (location.hash === "#income-lab") { if (VIEW !== "income") showIncomeLab(); return; }
     const exr = exploreRoute();
     if (exr !== null) { if (VIEW !== "explore") showExplorer(window._THEMES[exr] ? exr : undefined); return; }
     const h = themeFromUrl();
@@ -339,7 +343,9 @@ function renderIntro() {
       el("button", { class: "refresh", title: "Re-load the latest daily market-data file", onclick: onCheckUpdate }, "↻ check for update")),
     el("div", { class: "tagline" }, t.tagline || ""),
     t.universe_note ? el("p", { class: "universe" }, "▸ " + t.universe_note) : null,
-    t.benchmark_note ? el("p", { class: "bench" }, "▸ " + t.benchmark_note) : null
+    t.benchmark_note ? el("p", { class: "bench" }, "▸ " + t.benchmark_note) : null,
+    t._id === "income" ? el("p", {}, el("button", { class: "refresh", onclick: () => showIncomeLab() },
+      "Open the Income Lab — screen and score every option-income ETF →")) : null
   );
 }
 function renderTensions() {

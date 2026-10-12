@@ -152,6 +152,37 @@ criteria" filter. Re-run after adding or re-scoring any fund.
 > diversified AND on-theme" is rare. That scarcity is the point: the screen
 > surfaces the few funds actually worth a deep look.
 
+## Income Lab — screening every option-income ETF
+
+The Income Lab tab (`scripts/build_income.py`, rebuilt daily) applies a
+three-layer screen to every covered-call, premium-income, call-spread, 0DTE,
+single-stock, short-volatility, put-write and dividend+options ETF on US, Hong
+Kong and London listings (~400 funds), grouped into strategy families.
+
+1. **Tiered gates** (the "Recommended screen"): systematic strategies need AUM
+   ≥ $100M, ≥ 2 years, expense ≤ 0.60%; actively managed ones AUM ≥ $500M,
+   ≥ 3 years, expense ≤ 0.85%. All need ≥ 100K shares or ≥ $2M a day of
+   trading, and leveraged funds, ETNs and ETPs never pass.
+2. **Quality components (0–100):** total return vs the fund's *own*
+   underlying (−4 pp/yr scores 50); distribution coverage — the share of the
+   payout funded by total return rather than by a falling NAV (< 70% flagged);
+   NAV trend; underlying quality (broad index > sector > single stock >
+   leveraged, extreme-yield penalty within the family, payout track record);
+   US tax efficiency; fees; ELN counterparty/transparency; volatility-spike
+   sensitivity; payout stability. History-based components are shrunk toward
+   a neutral 50 for funds with less than three years of data.
+3. **Family weights:** systematic covered calls NAV 40 / gap 30 / tax 30;
+   active + ELN counterparty 30 / gap 30 / fees 20 / transparency 20; call
+   spreads tax 40 / gap 30 / NAV 30; short volatility VIX sensitivity 40 /
+   gap 30 / stability 30; all other families gap 30 / coverage 25 / NAV 20 /
+   quality 15 / tax 10. A non-US tax view drops the US-tax component.
+
+Scores rank funds *within* a family. Holding-experience metrics (max
+drawdown, volatility, Sharpe vs T-bills, up/down capture) are shown for every
+fund. Coverage is measured from prices and payouts because the tax
+"return of capital" label isn't in free data and misleads for funds whose ROC
+is a tax effect while their NAV holds up.
+
 ## Putting it together
 
 There is **no universal weighting** — it depends on your goal. A reasonable
