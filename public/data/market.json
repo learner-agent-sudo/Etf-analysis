@@ -1,6 +1,6 @@
 {
  "as_of": "2026-10-12",
- "generated_at": "2026-10-12T21:37:28+00:00",
+ "generated_at": "2026-10-12T21:40:08+00:00",
  "source": "Daily closes from Yahoo Finance or Nasdaq (returns reinvest distributions); fund profile (AUM, expense ratio, top-10 holdings) from Yahoo Finance/Morningstar when available. Refreshed automatically by GitHub Actions every weekday after the US close.",
  "count": 129,
  "failed": {
@@ -10,7 +10,7 @@
   "GERM": "Yahoo Finance: GERM: not found on Yahoo; Nasdaq: GERM: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
   "JEPY": "Yahoo Finance: JEPY: not found on Yahoo; Nasdaq: JEPY: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
   "QBUX": "Yahoo Finance: QBUX: not found on Yahoo; Nasdaq: QBUX: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
-  "QTUF": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+  "QTUF": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?)"
  },
  "hold_policy": {
   "days": 30,
@@ -19,45 +19,45 @@
  "missing": {
   "CNCR": {
    "since": "2026-10-09",
-   "checks": 18,
+   "checks": 19,
    "last_checked": "2026-10-12",
    "reason": "Yahoo Finance: CNCR: not found on Yahoo; Nasdaq: CNCR: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "CRIT": {
    "since": "2026-10-09",
-   "checks": 18,
+   "checks": 19,
    "last_checked": "2026-10-12",
    "reason": "Yahoo Finance: CRIT: not found on Yahoo; Nasdaq: CRIT: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "EBLU": {
    "since": "2026-10-09",
-   "checks": 18,
+   "checks": 19,
    "last_checked": "2026-10-12",
    "reason": "Yahoo Finance: EBLU: not found on Yahoo; Nasdaq: EBLU: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "GERM": {
    "since": "2026-10-09",
-   "checks": 18,
+   "checks": 19,
    "last_checked": "2026-10-12",
    "reason": "Yahoo Finance: GERM: not found on Yahoo; Nasdaq: GERM: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "JEPY": {
    "since": "2026-10-09",
-   "checks": 18,
+   "checks": 19,
    "last_checked": "2026-10-12",
    "reason": "Yahoo Finance: JEPY: not found on Yahoo; Nasdaq: JEPY: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "QBUX": {
    "since": "2026-10-09",
-   "checks": 18,
+   "checks": 19,
    "last_checked": "2026-10-12",
    "reason": "Yahoo Finance: QBUX: not found on Yahoo; Nasdaq: QBUX: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "QTUF": {
    "since": "2026-10-09",
-   "checks": 18,
+   "checks": 19,
    "last_checked": "2026-10-12",
-   "reason": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+   "reason": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?)"
   }
  },
  "removed_recent": [],
@@ -11330,9 +11330,9 @@
    "price_display": "$48.47",
    "currency": "USD",
    "price_asof": "2026-10-12",
-   "volume_avg": 81253,
+   "volume_avg": 81251,
    "volume_display": "~81K/day",
-   "dollar_volume_avg": 3480814,
+   "dollar_volume_avg": 3480725,
    "dollar_volume_display": "~$3.5M/day",
    "high_52w": 49.96,
    "low_52w": 22.74,
