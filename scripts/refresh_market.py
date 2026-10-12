@@ -300,7 +300,12 @@ def parse_yahoo(j):
         "regular_market_price": (meta["regularMarketPrice"] * scale
                                  if isinstance(meta.get("regularMarketPrice"), (int, float)) else None),
     }
-    return {"bars": bars, "meta": info, "returns_basis": "total"}
+    divs = []                                     # distribution history (ex-date, amount)
+    for ev in ((res.get("events") or {}).get("dividends") or {}).values():
+        amt, when = ev.get("amount"), ev.get("date")
+        if isinstance(amt, (int, float)) and amt > 0 and isinstance(when, (int, float)):
+            divs.append((dt.datetime.fromtimestamp(when + off, dt.timezone.utc).date(), float(amt) * scale))
+    return {"bars": bars, "meta": info, "returns_basis": "total", "divs": sorted(divs)}
 
 
 def _raw(x):

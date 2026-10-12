@@ -59,7 +59,7 @@ COLS = ["t", "n", "x", "p", "c1y", "ytd", "aum", "er", "yld", "vol", "f", "inc",
 FX_FALLBACK = {"USD": 1.0, "GBP": 1.30, "EUR": 1.10, "HKD": 0.128, "CHF": 1.15, "JPY": 0.0068,
                "SEK": 0.095, "NOK": 0.093, "DKK": 0.15, "CAD": 0.73, "AUD": 0.66}
 # flags (f): L = leveraged/inverse, N = exchange-traded note, F = futures-based commodity/VIX
-LEVERAGED = re.compile(r"(?<![\w.])-?[1-9](\.\d+)?x\b|\bultra(pro)?(short)?\b|\bleveraged\b|\binverse\b"
+LEVERAGED = re.compile(r"(?<![\w.])-?[1-9](\.\d+)?x\b|\bultra(pro|short)\b|proshares ultra\b|\bleveraged\b|\binverse\b"
                        r"|\bbear\b|\bdaily\b.*\bbull\b|^proshares short\b", re.I)
 ETN = re.compile(r"\bETNs?\b|exchange traded notes?", re.I)
 FUTURES = re.compile(r"\bfutures\b|\bvix\b|^united states (oil|natural gas|gasoline|brent|12 month)", re.I)

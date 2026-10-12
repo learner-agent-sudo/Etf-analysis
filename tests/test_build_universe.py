@@ -55,6 +55,8 @@ class Flags(unittest.TestCase):
             "iPath Series B S&P 500 VIX Short-Term Futures ETN": "NF",
             "United States Natural Gas Fund, LP": "F",
             "Vanguard Total Stock Market ETF": "",
+            "YieldMax Ultra Option Income Strategy ETF": "",   # 'Ultra' here is not leverage
+            "ProShares Ultra QQQ": "L",
         }
         for name, want in cases.items():
             self.assertEqual(bu.flags(name), want, name)

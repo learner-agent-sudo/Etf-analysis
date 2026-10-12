@@ -90,6 +90,15 @@ class ParseAndCompute(unittest.TestCase):
         self.assertEqual(m["max_drawdown_1y"], "-40.0%")
         self.assertEqual(m["pct_below_high"], "-40.0%")
 
+    def test_dividend_events_parsed(self):
+        p = yahoo_payload(self.days[-60:], lambda d: 10.0)
+        ts = p["chart"]["result"][0]["timestamp"]
+        p["chart"]["result"][0]["events"] = {"dividends": {str(ts[10]): {"amount": 0.12, "date": ts[10]},
+                                                           str(ts[40]): {"amount": 0.15, "date": ts[40]}}}
+        raw = rm.parse_yahoo(p)
+        self.assertEqual([a for _, a in raw["divs"]], [0.12, 0.15])
+        self.assertEqual(raw["divs"][0][0], self.days[-60:][10])
+
     def test_null_bars_are_skipped(self):
         p = yahoo_payload(self.days[-30:], lambda d: 10.0)
         p["chart"]["result"][0]["indicators"]["quote"][0]["close"][5] = None
