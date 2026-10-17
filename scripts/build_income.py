@@ -765,11 +765,6 @@ def main(argv):
         return [(b[0], b[col]) for b in raw["bars"]] if raw else None
 
     rf, vix = series(RISK_FREE), series(VIX, 1)
-    fx = {}
-    for key in ("hk", "lse"):
-        p = os.path.join(DATA, f"universe-{key}.json")
-        if os.path.exists(p):
-            fx.update(json.load(open(p, encoding="utf-8")).get("fx_usd") or {})
     funds = []
     today = dt.date.today()
     for t, f in sorted(cands.items()):
@@ -794,6 +789,36 @@ def main(argv):
             f["age_years"] = None
         f["metrics"] = m
         funds.append(f)
+    cut, priors = score_all(funds, load_fx())
+    for t in ("JEPI", "QYLD", "SPYI", "SVOL", "TSLY", "DIVO", "RBLY", "GMEY", "3419.HK"):
+        f = next((x for x in funds if x["t"] == t), None)
+        if f:
+            mm = f["metrics"]
+            log(f"  {t}: {f['family']} bench {f['bench']} score {f['score_us']} rank {f.get('rank_us')} "
+                f"tr {mm.get('tr_ann')} gap {mm.get('gap')} cov {mm.get('coverage')} yld {mm.get('yield_regular')}")
+    if dry:
+        return 0
+    if len(funds) < 50:
+        log("Too few funds scored — keeping the existing income-lab.json.")
+        return 1
+    for f in funds:
+        f["metrics"] = {k: (round(v, 5) if isinstance(v, float) else v) for k, v in f["metrics"].items()}
+    write_doc(funds, cut, priors, dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat())
+    return 0
+
+
+def load_fx():
+    fx = {}
+    for key in ("hk", "lse"):
+        p = os.path.join(DATA, f"universe-{key}.json")
+        if os.path.exists(p):
+            fx.update(json.load(open(p, encoding="utf-8")).get("fx_usd") or {})
+    return fx
+
+
+def score_all(funds, fx):
+    """Layers 1-3 for funds that already carry `metrics`: extreme-yield flags, component
+    scores (with family-prior shrinkage), family-weighted scores, gates and ranks."""
     cut = extreme_yield_cutoffs(funds)
     for f in funds:
         f["extreme_yield"] = (f["metrics"].get("yield_regular") or 0) > cut.get(f["family"], cut["_all"])
@@ -824,30 +849,37 @@ def main(argv):
                 f[f"rank_{view}"] = i + 1
     log(f"{len(funds)} income funds; {sum(f['score_us'] is not None for f in funds)} scored; "
         f"{sum(f['passes'] for f in funds)} pass every gate; families: { {k: len(v) for k, v in sorted(by_fam.items())} }")
-    for t in ("JEPI", "QYLD", "SPYI", "SVOL", "TSLY", "DIVO", "RBLY", "GMEY", "3419.HK"):
-        f = next((x for x in funds if x["t"] == t), None)
-        if f:
-            mm = f["metrics"]
-            log(f"  {t}: {f['family']} bench {f['bench']} score {f['score_us']} rank {f.get('rank_us')} "
-                f"tr {mm.get('tr_ann')} gap {mm.get('gap')} cov {mm.get('coverage')} yld {mm.get('yield_regular')}")
-    if dry:
-        return 0
-    if len(funds) < 50:
-        log("Too few funds scored — keeping the existing income-lab.json.")
-        return 1
-    for f in funds:
-        f["metrics"] = {k: (round(v, 5) if isinstance(v, float) else v) for k, v in f["metrics"].items()}
-    now = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
-    doc = {"as_of": max(f["metrics"]["as_of"] for f in funds), "generated_at": now,
+    return cut, priors
+
+
+def write_doc(funds, cut, priors, generated_at, path=OUT):
+    doc = {"as_of": max(f["metrics"]["as_of"] for f in funds), "generated_at": generated_at,
            "window_years": WINDOW_YEARS, "families": FAMILIES, "weights": WEIGHTS, "gates": GATES,
            "liquidity": {"shares": LIQ_SHARES, "dollars": LIQ_DOLLARS},
            "extreme_yield_cutoffs": {k: round(v, 4) for k, v in cut.items()},
            "priors": priors, "count": len(funds), "funds": funds}
-    with open(OUT, "w", encoding="utf-8") as fh:
+    with open(path, "w", encoding="utf-8") as fh:
         json.dump(doc, fh, separators=(",", ":"), ensure_ascii=False, default=str)
-    log(f"Wrote {os.path.relpath(OUT, rm.ROOT)} ({os.path.getsize(OUT) // 1024} KB)")
+    log(f"Wrote {os.path.relpath(path, rm.ROOT)} ({os.path.getsize(path) // 1024} KB)")
+
+
+# Everything score_all() derives; the rest of a fund record is classification + metrics.
+DERIVED = ("extreme_yield", "components", "prior", "weights_key", "score_us", "weights_us", "score_intl",
+           "weights_intl", "gates", "passes", "gates_unknown", "tax_note", "rank_us", "rank_intl")
+
+
+def rescore(path=OUT):
+    """Re-run the scoring on the metrics already in income-lab.json — no network, so
+    a scoring change can be checked (and shipped) without re-fetching every fund."""
+    doc = json.load(open(path, encoding="utf-8"))
+    funds = doc["funds"]
+    for f in funds:
+        for k in DERIVED:
+            f.pop(k, None)
+    cut, priors = score_all(funds, load_fx())
+    write_doc(funds, cut, priors, doc.get("generated_at"), path)
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
+    sys.exit(rescore() if "--rescore" in sys.argv else main(sys.argv[1:]))

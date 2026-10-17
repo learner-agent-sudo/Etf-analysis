@@ -257,7 +257,6 @@ td.col-ticker:focus-visible, .rosteritem:focus-visible { outline: 2px solid var(
   .hold td { padding: 6px 4px; }
   .hold td.nm { font-size: 12px; }
 }
-}
 
 /* ---- Income Lab ---------------------------------------------------- */
 .chartcard { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; margin: 10px 0 12px; }
