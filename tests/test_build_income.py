@@ -350,5 +350,163 @@ class ReviewFindings(unittest.TestCase):
         self.assertEqual(bi.bench_currency("069500.KS"), "KRW")
 
 
+def vfund(t="AAA", family="systematic_cc", exposure="broad index", **m):
+    """A rated fund record as score_all() sees it: classification + metrics + gates."""
+    metrics = {"window_years": 3.0, "tr_ann": 0.12, "price_cagr": 0.02, "yield_regular": 0.08, "gap": -0.02,
+               "max_drawdown": -0.15, "sharpe": 1.0, "rf_ann": 0.04, "dist_yield_ann": 0.08, "bench_tr_ann": 0.14}
+    metrics.update(m)
+    return {"t": t, "family": family, "style": "systematic", "exposure": exposure, "aum_usd": 5000, "flags": "",
+            "inc": "2015-01-01", "age_years": 10, "metrics": metrics, "passes": True,
+            "gates": {"aum": True, "age": True, "er": True, "liquidity": True, "structure": True}}
+
+
+class ValueScore(unittest.TestCase):
+    def test_curve_anchors(self):
+        self.assertEqual(round(bi.saturate(4, bi.INCOME_K)), 55)
+        self.assertEqual(round(bi.saturate(8, bi.INCOME_K)), 80)
+        self.assertEqual(bi.saturate(-3, bi.INCOME_K), 0)
+        self.assertEqual(round(bi.logistic(0, bi.NAV_MID, bi.NAV_SCALE)), 73)
+        self.assertEqual(round(bi.logistic(-4, bi.GAP_MID, bi.GAP_SCALE)), 50)       # the brief's line still scores 50
+        self.assertEqual(round(bi.logistic(-20, bi.DD_MID, bi.DD_SCALE)), 70)
+        self.assertEqual(round(bi.logistic(1.0, bi.SH_MID, bi.SH_SCALE)), 88)
+
+    def test_earned_income_never_exceeds_total_return(self):
+        self.assertEqual(bi.earned_yield({"yield_regular": 0.08, "tr_ann": 0.20}), 0.08)
+        self.assertEqual(bi.earned_yield({"yield_regular": 0.77, "tr_ann": 0.05}), 0.05)   # TSLY-style
+        self.assertEqual(bi.earned_yield({"yield_regular": 0.12, "tr_ann": -0.10}), 0.0)
+        self.assertEqual(bi.paid_yield({"yield_regular": None, "yield_ttm": 0.05}), 0.05)
+
+    def test_grade_follows_the_displayed_integer(self):
+        self.assertEqual(bi.grade_of(79.5), ("A", "Excellent value"))
+        self.assertEqual(bi.grade_of(79.4)[0], "B")
+        self.assertEqual(bi.grade_of(44.5)[0], "D")
+        self.assertEqual(bi.grade_of(0)[0], "F")
+
+    def test_four_equal_pillars(self):
+        f = vfund()
+        v = bi.value_score(f, {})
+        self.assertAlmostEqual(v["value_base"], sum(v["value_pillars"].values()) / 4, places=0)
+        self.assertEqual(v["value_flags"], [])
+        self.assertIsNone(v["value_ceiling"])
+        self.assertEqual(v["value_display"], round(v["value_score"]))
+
+    def test_flags_cap_and_deduct(self):
+        good = bi.value_score(vfund(), {})["value_score"]
+        self.assertGreater(good, 70)
+        lev = bi.value_score(vfund(family="leveraged_income", exposure="leveraged"), {})
+        self.assertEqual((lev["value_score"], lev["value_ceiling"]), (44.0, 44.0))
+        spec = bi.value_score(vfund(family="single_stock", exposure="single stock"), {})
+        self.assertEqual((spec["value_score"], spec["value_grade"]), (59.0, "D"))
+        own = bi.value_score(vfund(yield_regular=0.30, tr_ann=0.10), {})          # earned 10% of 30% paid
+        self.assertIn("own_money", own["value_flags"])
+        self.assertLessEqual(own["value_score"], 59)
+        cash = bi.value_score(vfund(tr_ann=0.05, rf_ann=0.04), {})
+        self.assertIn("cash_like", cash["value_flags"])
+        self.assertEqual(cash["value_deduction"], 10.0)
+        young = bi.value_score(vfund(window_years=1.5), {})
+        self.assertEqual(young["value_deduction"], 5.0)                            # 10 x (2 - 1.5)
+        small = bi.value_score(dict(vfund(), aum_usd=40), {})
+        self.assertEqual(small["value_deduction"], 5.0)
+        thin = bi.value_score(dict(vfund(), gates=dict(vfund()["gates"], liquidity=False)), {})
+        self.assertIn("small", thin["value_flags"])
+        crash = bi.value_score(vfund(max_drawdown=-0.6), {})
+        self.assertLessEqual(crash["value_score"], 44)
+        # a ceiling that doesn't bite isn't reported
+        weak_spec = bi.value_score(vfund(family="single_stock", exposure="single stock", tr_ann=-0.2, price_cagr=-0.3,
+                                         gap=-0.2, max_drawdown=-0.45, sharpe=-0.5), {})
+        self.assertIsNone(weak_spec["value_ceiling"])
+
+    def test_unrated_reasons(self):
+        self.assertIn("inverse", bi.unrated_reason(dict(vfund(), inverse=True)))
+        self.assertIn("Too new", bi.unrated_reason(vfund(window_years=0.6)))
+        self.assertIn("currency", bi.unrated_reason(dict(vfund(), currency_mismatch=True)))
+        self.assertIn("benchmark", bi.unrated_reason(vfund(gap=None)))
+        self.assertIsNone(bi.value_score(vfund(gap=None), {})["value_score"])
+
+    def test_young_funds_lean_on_their_family(self):
+        seasoned = [vfund(f"S{i}", tr_ann=0.05 + i / 100, price_cagr=-0.02 + i / 200) for i in range(5)]
+        priors = bi.value_priors(seasoned)
+        self.assertIn("systematic_cc", priors)
+        young = vfund("Y", window_years=1.5, tr_ann=0.60, price_cagr=0.40, gap=0.10)
+        v = bi.value_score(young, priors)
+        for k in ("nav", "kept"):        # pulled halfway (1.5 of 3 years) toward the family's typical value
+            self.assertAlmostEqual(v["value_pillars"][k], priors["systematic_cc"][k] + (v["value_raw"][k] - priors["systematic_cc"][k]) * 0.5, places=0)
+        # a family with too few seasoned funds falls back to its risk bucket, not to index funds
+        spec = [vfund(f"P{i}", family="single_stock", exposure="single stock", price_cagr=-0.3) for i in range(5)]
+        priors = bi.value_priors(spec + seasoned)
+        self.assertNotIn("crypto_income", priors)
+        crypto = vfund("C", family="crypto_income", exposure="crypto", window_years=1.2)
+        self.assertEqual(priors["_speculative"]["nav"], priors["single_stock"]["nav"])
+        v = bi.value_score(crypto, priors)
+        self.assertLess(v["value_pillars"]["nav"], v["value_raw"]["nav"])
+
+    def test_age_grace_and_safety_check(self):
+        gates = {"systematic": {"age": 2}, "active": {"age": 3}}
+        f = dict(vfund(), style="active", age_years=2.7, inc="2024-02-29", passes=False,
+                 gates={"aum": True, "age": False, "er": True, "liquidity": True, "structure": True})
+        self.assertEqual(bi.age_grace_until(f, gates), "2027-02-28")              # 29 Feb rolls back
+        self.assertIsNone(bi.age_grace_until(dict(f, age_years=2.4), gates))      # more than 6 months short
+        self.assertIsNone(bi.age_grace_until(dict(f, gates=dict(f["gates"], aum=False)), gates))   # not the only failure
+        self.assertIsNone(bi.age_grace_until(dict(f, gates=dict(f["gates"], aum=None)), gates))    # unknown != pass
+        funds = [f, dict(vfund("B"), passes=False, gates=dict(vfund()["gates"], er=False))]
+        bi.score_value(funds, gates)
+        self.assertEqual([x["safety_checked"] for x in funds], [True, False])
+
+    def test_ranks_and_tie_break(self):
+        funds = [vfund("BBB"), vfund("AAA"), vfund("CCC", gap=-0.10), vfund("ZZZ", gap=None)]
+        top = bi.score_value(funds, {"systematic": {"age": 2}, "active": {"age": 3}})
+        by = {f["t"]: f for f in funds}
+        self.assertEqual((by["AAA"]["value_rank"], by["BBB"]["value_rank"], by["CCC"]["value_rank"]), (1, 2, 3))
+        self.assertEqual((by["AAA"]["value_pct"], by["CCC"]["value_pct"]), (100, 0))
+        self.assertNotIn("value_rank", by["ZZZ"])
+        self.assertEqual(top["rated"], 3)
+        self.assertEqual(top["flags"]["small"]["amount"], bi.SMALL_DEDUCT)
+
+    def test_growth_of_10k(self):
+        g = bi.growth_10k({"window_years": 2.0, "tr_ann": 0.10, "price_cagr": 0.0, "dist_yield_ann": 0.05,
+                           "bench_tr_ann": 0.20})
+        self.assertEqual((g["reinvested"], g["shares_now"], g["bench_reinvested"]), (12100, 10000, 14400))
+        self.assertEqual((g["cash_paid"], g["cash_paid_exact"]), (1000, False))
+        g = bi.growth_10k({"window_years": 2.0, "tr_ann": 0.10, "price_cagr": 0.0, "cash_paid_10k": 987.6,
+                           "bench_tr_ann": 0.2, "gap_window": ["2025-01-01", "2026-01-01"]})
+        self.assertEqual((g["cash_paid"], g["cash_paid_exact"]), (988, True))
+        self.assertNotIn("bench_reinvested", g)                                   # different period: not comparable
+        bars, divs = fund(0.0, 0.08)
+        m = bi.compute(bars, divs)
+        self.assertAlmostEqual(m["cash_paid_10k"], 10000 * 0.08 * m["window_years"], delta=60)
+
+    def test_rescore_is_idempotent(self):
+        funds = [vfund(f"F{i}", tr_ann=0.04 + i / 50, window_years=1.2 + i / 4) for i in range(8)]
+        for f in funds:
+            f.update({"t": f["t"], "n": f["t"], "market": "US", "cur": "USD", "eln": False, "er": 0.5, "vol": 1e6,
+                      "bench": "SPY", "note": False, "inverse": False})
+        bi.score_all(funds, {})
+        first = [(f["value_score"], f["value_rank"], f["score_us"]) for f in funds]
+        for f in funds:
+            for k in bi.DERIVED:
+                f.pop(k, None)
+        bi.score_all(funds, {})
+        self.assertEqual(first, [(f["value_score"], f["value_rank"], f["score_us"]) for f in funds])
+
+    def test_vix_gauge(self):
+        days = DAYS[-400:]
+        vix = [(d, 12 + (i % 10)) for i, d in enumerate(days)]
+        g = bi.vix_gauge(vix)
+        self.assertEqual(g["vix"], vix[-1][1])
+        self.assertTrue(0 <= g["pct_below"] <= 100)
+        self.assertIsNone(bi.vix_gauge(vix[:10]))
+        self.assertIsNone(bi.vix_gauge(None))
+
+    def test_classification_fixes(self):
+        self.assertEqual(bi.classify("YieldMax Innovation Option Income Strategy ETF", ticker="OARK")["bench"], "ARKK")
+        self.assertEqual(bi.classify("Global X NADAQ 100 Covered Call Active ETF", ticker="3451.HK")["bench"], "QQQ")
+        for n in ("Roundhill Magnificent Seven Covered Call ETF", "REX FANG & Innovation Equity Premium Income ETF",
+                  "FT Vest DJIA Dogs 10 Target Income ETF", "REX AI Equity Premium Income ETF"):
+            self.assertEqual(bi.classify(n)["exposure"], "sector", n)
+        self.assertEqual(bi.classify("REX AI Equity Premium Income ETF")["bench"], "QQQ")
+        self.assertEqual(bi.classify("YieldMax AI & Tech Portfolio Option Income ETF")["bench"], "XLK")
+        self.assertEqual(bi.classify("Global X NASDAQ 100 Covered Call ETF")["exposure"], "broad index")
+
+
 if __name__ == "__main__":
     unittest.main()

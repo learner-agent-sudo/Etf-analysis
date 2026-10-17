@@ -16,7 +16,6 @@
     <nav class="tabs" role="tablist" aria-label="View">
       <button id="tabThemes" class="tab active" role="tab" aria-selected="true">Themes</button>
       <button id="tabExplore" class="tab" role="tab" aria-selected="false">Explorer</button>
-      <button id="tabIncome" class="tab" role="tab" aria-selected="false">Income Lab</button>
     </nav>
     <div class="theme-picker">
       <label for="themeSelect">Theme</label>
@@ -28,6 +27,7 @@
     <section id="liveMsg" class="livemsg" hidden role="status" aria-live="polite"></section>
     <div id="themeView">
     <section id="themeIntro" class="intro"></section>
+    <section id="incomeLab" hidden></section>
 
     <section class="controls" id="controls" hidden>
       <input type="search" id="filterBox" placeholder="Filter by ticker or name…" />
@@ -66,7 +66,6 @@
     <section id="tensions" class="tensions"></section>
     </div>
     <section id="explorer" hidden></section>
-    <section id="incomeLab" hidden></section>
   </main>
 
   <div id="overlay" class="overlay" hidden></div>

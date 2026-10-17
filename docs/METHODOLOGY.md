@@ -152,12 +152,49 @@ criteria" filter. Re-run after adding or re-scoring any fund.
 > diversified AND on-theme" is rare. That scarcity is the point: the screen
 > surfaces the few funds actually worth a deep look.
 
-## Income Lab — screening every option-income ETF
+## Income ranking — every option-income ETF on one Value Score
 
-The Income Lab tab (`scripts/build_income.py`, rebuilt daily) applies a
-three-layer screen to every covered-call, premium-income, call-spread, 0DTE,
+Themes → *Income / Covered-Call* → **Rankings** (`scripts/build_income.py`,
+rebuilt daily) covers every covered-call, premium-income, call-spread, 0DTE,
 single-stock, short-volatility, put-write and dividend+options ETF on US, Hong
 Kong and London listings (~400 funds), grouped into strategy families.
+
+### The headline: Value Score (0–100, compare any two funds)
+
+One number, computed the same way for every fund, so a higher score is better
+value across strategies: *how much an income investor got for what it cost
+them over the last 3 years*. Four pillars, 25 points each:
+
+| Pillar | Measures | Curve (pillar 0–100) |
+|---|---|---|
+| Earned income | regular yield, counted only up to the fund's total return (the rest came out of your capital) | 4% → 55, 8% → 80, 12% → 91 |
+| Paycheck trend | price (≈ NAV) change per year — a falling price shrinks every payout | 0%/yr → 73, −3% → 50, −10% → 9 |
+| Growth kept | total return vs the fund's own benchmark (the brief's gap) | 0 pp → 83, −4 pp → 50, −8 pp → 17 |
+| Smooth ride | half worst fall, half Sharpe vs T-bills | −10% → 92, −25% → 50; Sharpe 1.0 → 88 |
+
+Funds with under 3 years of prices are pulled toward the typical seasoned
+fund of their strategy (or risk bucket). Red flags then cap or deduct:
+leveraged or a fall of more than half → at most 44 (F); single stock /
+crypto, ETN/ETP notes, or paying out of capital (earned < half of paid, or
+price falling > 10%/yr) → at most 59 (D); no better than T-bills −10; under
+2 years −10 × (2 − years); under $100M or thinly traded −5. Grades: A 80+,
+B 70–79, C 60–69, D 45–59, F under 45. The score is pre-tax (tax is
+personal) and fee-neutral (fees are already inside every return). It
+describes the past window, not the future — and an ETF trades at about the
+value of what it holds, so the page never calls a fund "undervalued" or
+"cheap"; it ranks value for money.
+
+The default view is **safety-checked** funds: those passing every gate
+below, plus funds whose only failed gate is age and that are within six
+months of it (shown with the date they turn old enough). Today's VIX
+against its 3-year range is shown as market-wide context for how rich
+option premiums are; it isn't part of any score.
+
+### The brief's three-layer screen (expert detail in each fund card)
+
+The gates and the strategy-family score from the user's brief are kept: the
+gates define "safety-checked", and the family-weighted score (with its US /
+non-US tax view) appears in each fund card's expert details.
 
 1. **Tiered gates** (the "Recommended screen"): systematic strategies need AUM
    ≥ $100M, ≥ 2 years, expense ≤ 0.60%; actively managed ones AUM ≥ $500M,

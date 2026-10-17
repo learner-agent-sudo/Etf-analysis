@@ -37,10 +37,16 @@ Three layers (adapted from the user's brief):
 Holding-experience metrics (max drawdown, volatility, Sharpe vs T-bills,
 upside/downside capture vs the benchmark) are reported for every fund.
 
+On top of the brief's layers, every fund gets the headline Value Score (see
+score_value): one 0-100 number, the same formula for every strategy, so any
+two funds can be compared — earned income, paycheck trend, growth kept and
+smooth ride, 25 points each, minus red flags.
+
 Usage:
     python3 scripts/build_income.py              # build income-lab.json
     python3 scripts/build_income.py --dry-run    # fetch + summarise only
     python3 scripts/build_income.py --limit 40   # quick partial run
+    python3 scripts/build_income.py --rescore    # re-score the existing file, no network
 """
 import datetime as dt
 import json
@@ -129,7 +135,7 @@ BENCH_RULES = [                                   # order matters: specific befo
     (r"\bfang\b", "QQQ"), (r"magnificent|\bmag ?7\b|\bmag seven", "MAGS"),
     (r"hscei|china enterprises|h-share", "2828.HK"), (r"hang seng tech|hstech|hs tech", "3067.HK"),
     (r"hang seng|\bhsi\b", "2800.HK"), (r"kospi", "069500.KS"),
-    (r"nasdaq[- ]?100|nasdaq 100|\bqqq\b|\bndx\b|nasdaq|\bn100\b", "QQQ"),
+    (r"nasdaq[- ]?100|nasdaq 100|\bqqq\b|\bndx\b|nasdaq|nadaq|\bn100\b", "QQQ"),   # 'nadaq': a listed name's typo
     (r"russell 2000|\br2000\b|small[- ]?cap|\biwm\b|\brut\b|russell", "IWM"),
     (r"\bkweb\b|china internet", "KWEB"), (r"dow jones internet|\binternet\b", "FDN"),
     (r"\bdow\b|dow jones|\bdjia\b|dow 30", "DIA"),
@@ -141,7 +147,8 @@ BENCH_RULES = [                                   # order matters: specific befo
     (r"investment grade|corporate bond|\blqd\b", "LQD"), (r"treasur|t-bill|\bbond|aggregate", "AGG"),
     (r"semiconductor", "SOXX"), (r"\barkk\b|ark innovation", "ARKK"), (r"innovation", "QQQ"),
     (r"crypto (equit|industry)|blockchain", "BKCH"),
-    (r"information technology|technology|\btech\b", "XLK"), (r"financial", "XLF"), (r"industrial", "XLI"),
+    (r"information technology|technology|\btech\b", "XLK"), (r"\bai\b|artificial intelligence", "QQQ"),
+    (r"financial", "XLF"), (r"industrial", "XLI"),
     (r"utilit", "XLU"), (r"health ?care|biotech", "XLV"), (r"\benergy\b", "XLE"), (r"real estate|\breit", "XLRE"),
     (r"consumer discretionary", "XLY"), (r"consumer staples|\bstaples\b", "XLP"), (r"materials", "XLB"),
     (r"communication", "XLC"),
@@ -150,7 +157,10 @@ BENCH_RULES = [                                   # order matters: specific befo
     (r"emerging", "EEM"), (r"international|developed|eafe|world ex", "EFA"),
     (r"s&p 500|sp500|\bspx\b|\bspy\b|s&p|large[- ]cap|equity premium|500", "SPY"),
 ]
-BROAD = {"SPY", "QQQ", "IWM", "DIA", "2800.HK", "2828.HK", "069500.KS", "EFA", "EEM", "FEZ", "VGK", "ACWI", "EWC", "MAGS"}
+BROAD = {"SPY", "QQQ", "IWM", "DIA", "2800.HK", "2828.HK", "069500.KS", "EFA", "EEM", "FEZ", "VGK", "ACWI", "EWC"}
+# A handful of names on a broad benchmark (Magnificent 7, FANG, 'Dogs of the Dow', AI baskets): concentrated.
+CONCENTRATED = re.compile(r"\bfang\b|magnificent|\bmag ?7\b|\bmag seven|\bdogs\b|\bai\b|artificial intelligence", re.I)
+BENCH_BY_TICKER = {"OARK": "ARKK"}                   # names that don't say what they write options on
 BONDS = {"TLT", "HYG", "LQD", "AGG"}
 COMMODITIES = {"GLD", "SLV", "USO", "COPX"}
 RISK_FREE, VIX = "BIL", "^VIX"
@@ -273,7 +283,7 @@ def classify(name, flags="", ticker=""):
     if stock or etf_under:
         bench = stock or etf_under
     else:
-        bench = next((b for rx, b in BENCH_RULES if re.search(rx, low)), None)
+        bench = BENCH_BY_TICKER.get(ticker) or next((b for rx, b in BENCH_RULES if re.search(rx, low)), None)
     if basket:
         bench = "QQQ" if re.search(r"magnificent|mag 7|ultra", low) else "SPY"
     if bench is None and not re.search(r"\.(L|HK)$", ticker or ""):
@@ -292,7 +302,7 @@ def classify(name, flags="", ticker=""):
         exposure = "commodity"
     elif bench in BONDS:
         exposure = "bond"
-    elif bench in BROAD or bench is None:
+    elif (bench in BROAD or bench is None) and not CONCENTRATED.search(low):
         exposure = "broad index"
     else:
         exposure = "sector"
@@ -460,6 +470,7 @@ def compute(bars, divs, bench=None, rf=None, vix=None, years=WINDOW_YEARS):
     paid = sum(a for d, a in divs if win[0][0] < d <= last)
     avg_px = statistics.mean(closes)
     m["dist_yield_ann"] = (paid / avg_px) / yrs if avg_px else None
+    m["cash_paid_10k"] = round(10000 * paid / closes[0], 2) if closes[0] > 0 else None   # $10k bought at the window start, payouts taken as cash
     m["coverage"] = coverage_share(m["tr_ann"], m["price_cagr"]) if m["dist_yield_ann"] else None
     # risk: drawdown, volatility, Sharpe
     peak, mdd = None, 0.0
@@ -673,6 +684,239 @@ def gates(f, m, fx_usd):
     return out
 
 
+# ----------------------------------------------------------------- value score --
+# One headline number, 0-100, computed the same way for every fund so any two can be
+# compared ("which is better than which"): how much an income investor got for what it
+# cost them over the window. Four pillars, 25 points each:
+#   income  earned income   — the regular yield, counted only up to the fund's total return
+#                             (anything paid beyond that came out of the investor's capital)
+#   nav     paycheck trend  — price (≈ NAV) change per year: a falling price shrinks every payout
+#   kept    growth kept     — total return vs the fund's own benchmark (the brief's gap curve)
+#   ride    smooth ride     — half worst fall, half Sharpe (return above T-bills per unit of volatility)
+# Pre-tax (tax is personal) and fee-neutral (fees are already inside every return). Young funds
+# are pulled toward the typical seasoned fund of their family; red flags cap or deduct.
+VALUE_WEIGHTS = {"income": 25, "nav": 25, "kept": 25, "ride": 25}
+INCOME_K = 5.0                       # income = 100*(1-exp(-earned%/5)): 4% -> 55, 8% -> 80, 12% -> 91
+NAV_MID, NAV_SCALE = -3.0, 3.0       # price %/yr: +5 -> 93, 0 -> 73, -3 -> 50, -10 -> 9
+GAP_MID, GAP_SCALE = -4.0, 2.5       # pp/yr vs benchmark: 0 -> 83, -4 -> 50, -8 -> 17
+DD_MID, DD_SCALE = -25.0, 6.0        # worst fall %: -10 -> 92, -20 -> 70, -35 -> 16
+SH_MID, SH_SCALE = 0.5, 0.25         # Sharpe: 0 -> 12, 0.5 -> 50, 1.0 -> 88
+SEASONED_YEARS, PRIOR_MIN_N = 2.5, 5
+CEIL_F, CEIL_D = 44.0, 59.0          # tops of the F and D bands
+CASH_MARGIN, CASH_DEDUCT = 0.02, 10.0
+YOUNG_YEARS, YOUNG_DEDUCT_PER_YEAR = 2.0, 10.0
+SMALL_AUM_USD_M, SMALL_DEDUCT = 100.0, 5.0
+AGE_GRACE_YEARS = 0.5                # 'safety-checked' also admits funds within 6 months of the age gate
+GRADES = [(80, "A", "Excellent value"), (70, "B", "Good value"), (60, "C", "Fair value"),
+          (45, "D", "Weak value"), (0, "F", "Poor value")]
+SPECULATIVE = {"single stock", "basket of single-stock strategies", "crypto"}
+VALUE_FLAGS = {                      # id -> (kind, number, plain-English text for the page)
+    "leveraged": ("cap", CEIL_F, "Uses leverage — built to trade, not to hold for income"),
+    "big_fall": ("cap", CEIL_F, "Lost more than half its value at its worst point"),
+    "speculative": ("cap", CEIL_D, "Rides on one stock or on crypto — speculative"),
+    "note": ("cap", CEIL_D, "An issuer's note (ETN/ETP), not a fund — you rely on the bank that issued it"),
+    "own_money": ("cap", CEIL_D, "Pays you with your own money — most of the payout came out of capital, or the price fell over 10% a year"),
+    "cash_like": ("deduct", CASH_DEDUCT, "No better than cash — total return within 2%/yr of T-bills"),
+    "young": ("deduct", YOUNG_DEDUCT_PER_YEAR, "Short track record — under 2 years of prices, so the score leans on similar funds"),
+    "small": ("deduct", SMALL_DEDUCT, "Small (under $100M) or thinly traded — may close, and buying/selling costs more"),
+}
+VALUE_FIELDS = ("value_score", "value_display", "value_base", "value_grade", "value_label", "value_pillars",
+                "value_raw", "value_flags", "value_deduction", "value_ceiling", "earned_yield", "paid_yield",
+                "value_rank", "value_pct", "value_unrated", "safety_checked", "age_grace_until", "growth_10k")
+
+
+def saturate(x, k):
+    """0-100, rising quickly then flattening: extra yield beyond ~10% adds little."""
+    return 100.0 * (1.0 - math.exp(-max(0.0, x) / k))
+
+
+def display_int(score):
+    return int(math.floor(score + 0.5))             # half-up, like JS Math.round
+
+
+def grade_of(score):
+    d = display_int(score)                          # the grade follows the integer people see
+    return next((g, label) for lo, g, label in GRADES if d >= lo)
+
+
+def paid_yield(m):
+    y = m.get("yield_regular")
+    return y if y is not None else (m.get("yield_ttm") or 0.0)
+
+
+def earned_yield(m):
+    """What it paid, but never more than its total return."""
+    return min(paid_yield(m), max(m["tr_ann"], 0.0))
+
+
+def unrated_reason(f):
+    m = f.get("metrics") or {}
+    if f.get("inverse"):
+        return "Bets against its underlying (inverse) — not an income holding"
+    if m.get("short_history") or (m.get("window_years") or 0) < MIN_YEARS_SCORED:
+        return "Too new — under 1 year of prices"
+    if f.get("currency_mismatch"):
+        return "Trades in a different currency from its benchmark"
+    if m.get("gap") is None:
+        return "No usable benchmark history"
+    if any(m.get(k) is None for k in ("tr_ann", "price_cagr", "max_drawdown")):
+        return "Price history incomplete"
+    return None
+
+
+def value_raw_pillars(m):
+    dd = logistic(m["max_drawdown"] * 100, DD_MID, DD_SCALE)
+    return {"income": saturate(earned_yield(m) * 100, INCOME_K),
+            "nav": logistic(m["price_cagr"] * 100, NAV_MID, NAV_SCALE),
+            "kept": logistic(m["gap"] * 100, GAP_MID, GAP_SCALE),
+            "ride": dd if m.get("sharpe") is None else 0.5 * dd + 0.5 * logistic(m["sharpe"], SH_MID, SH_SCALE)}
+
+
+def risk_bucket(f):
+    return "speculative" if f.get("exposure") in SPECULATIVE | {"leveraged"} else "diversified"
+
+
+def value_priors(funds):
+    """Typical raw pillars for young funds to lean on: the median among rated funds with
+    >= 2.5 years of prices in the same family (needs 5 of them), else in the same risk
+    bucket, so a young crypto or leveraged fund isn't assumed to behave like an index fund."""
+    rated = [f for f in funds if unrated_reason(f) is None]
+    raw = {id(f): value_raw_pillars(f["metrics"]) for f in rated}
+    seasoned = [f for f in rated if f["metrics"]["window_years"] >= SEASONED_YEARS]
+
+    def med(grp):
+        return {k: round(statistics.median(raw[id(f)][k] for f in grp), 1) for k in VALUE_WEIGHTS} if grp else None
+    out = {"_all": med(seasoned)}
+    for b in ("diversified", "speculative"):
+        out["_" + b] = med([f for f in seasoned if risk_bucket(f) == b])
+    for fam in sorted({f["family"] for f in rated}):
+        grp = [f for f in seasoned if f["family"] == fam]
+        if len(grp) >= PRIOR_MIN_N:
+            out[fam] = med(grp)
+    return {k: v for k, v in out.items() if v}
+
+
+def value_red_flags(f):
+    m, g = f["metrics"], f.get("gates") or {}
+    flags = []
+    if f.get("exposure") == "leveraged" or f.get("family") == "leveraged_income":
+        flags.append("leveraged")
+    if m["max_drawdown"] <= -0.50:
+        flags.append("big_fall")
+    if f.get("exposure") in SPECULATIVE:
+        flags.append("speculative")
+    if f.get("note") or "N" in (f.get("flags") or ""):
+        flags.append("note")
+    paid = paid_yield(m)
+    if (paid > 0 and earned_yield(m) < 0.5 * paid) or m["price_cagr"] < -0.10:
+        flags.append("own_money")
+    rf = m.get("rf_ann") if m.get("rf_ann") is not None else 0.04
+    if m["tr_ann"] - rf < CASH_MARGIN:
+        flags.append("cash_like")
+    if m["window_years"] < YOUNG_YEARS:
+        flags.append("young")
+    if (f.get("aum_usd") is not None and f["aum_usd"] < SMALL_AUM_USD_M) or g.get("liquidity") is False:
+        flags.append("small")
+    return flags
+
+
+def value_score(f, priors):
+    why = unrated_reason(f)
+    if why:
+        return {"value_score": None, "value_unrated": why}
+    m = f["metrics"]
+    raw = value_raw_pillars(m)
+    conf = min(1.0, m["window_years"] / WINDOW_YEARS)
+    pri = priors.get(f["family"]) or priors.get("_" + risk_bucket(f)) or priors.get("_all") or raw
+    p = {k: pri[k] + (raw[k] - pri[k]) * conf for k in VALUE_WEIGHTS}
+    base = sum(p[k] * w for k, w in VALUE_WEIGHTS.items()) / sum(VALUE_WEIGHTS.values())
+    flags = value_red_flags(f)
+    deduction = sum(YOUNG_DEDUCT_PER_YEAR * (YOUNG_YEARS - m["window_years"]) if fl == "young" else VALUE_FLAGS[fl][1]
+                    for fl in flags if VALUE_FLAGS[fl][0] == "deduct")
+    ceiling = min([VALUE_FLAGS[fl][1] for fl in flags if VALUE_FLAGS[fl][0] == "cap"], default=100.0)
+    score = round(max(0.0, min(base - deduction, ceiling)), 1)
+    g, label = grade_of(score)
+    return {"value_score": score, "value_unrated": None, "value_display": display_int(score),
+            "value_base": round(base, 1), "value_grade": g, "value_label": label,
+            "value_pillars": {k: round(v, 1) for k, v in p.items()},      # 0-100 each; a quarter is points of 25
+            "value_raw": {k: round(v, 1) for k, v in raw.items()},        # before the young-fund adjustment
+            "value_flags": flags, "value_deduction": round(deduction, 1),
+            "value_ceiling": ceiling if base - deduction > ceiling else None,   # only when it bit
+            "earned_yield": round(earned_yield(m), 5), "paid_yield": round(paid_yield(m), 5)}
+
+
+def age_grace_until(f, gates_cfg):
+    """Date the fund clears the age gate, when age is its only failed gate and it is
+    within six months of it; else None."""
+    if [k for k, v in (f.get("gates") or {}).items() if v is not True] != ["age"]:
+        return None
+    need, age = gates_cfg[f["style"]]["age"], f.get("age_years")
+    start = f.get("inc") or (f.get("metrics") or {}).get("history_start")
+    if age is None or age < need - AGE_GRACE_YEARS or not start:
+        return None
+    y, mo, d = (int(x) for x in start[:10].split("-"))
+    try:
+        return dt.date(y + int(need), mo, d).isoformat()
+    except ValueError:                                  # 29 February
+        return dt.date(y + int(need), mo, 28).isoformat()
+
+
+def growth_10k(m):
+    """What $10,000 did over the window: payouts reinvested, shares if payouts were taken
+    as cash, and the cash itself (exact once compute() has stored cash_paid_10k)."""
+    yrs = m.get("window_years")
+    if not yrs or m.get("tr_ann") is None or m.get("price_cagr") is None:
+        return None
+    exact = m.get("cash_paid_10k")
+    cash = exact if exact is not None else \
+        10000 * (m.get("dist_yield_ann") or 0) * yrs * (1 + m["price_cagr"]) ** (yrs / 2)
+    out = {"years": yrs, "reinvested": round(10000 * (1 + m["tr_ann"]) ** yrs),
+           "shares_now": round(10000 * (1 + m["price_cagr"]) ** yrs),
+           "cash_paid": round(cash), "cash_paid_exact": exact is not None}
+    if m.get("bench_tr_ann") is not None and not m.get("gap_window"):
+        out["bench_reinvested"] = round(10000 * (1 + m["bench_tr_ann"]) ** yrs)
+    return out
+
+
+def value_sort_key(f):
+    gap = f["metrics"].get("gap")
+    return (-f["value_score"], -f["value_base"], -(gap if gap is not None else -9), f["t"])
+
+
+def score_value(funds, gates_cfg):
+    """Annotate every fund with its Value Score; return the top-level 'value' block."""
+    priors = value_priors(funds)
+    for f in funds:
+        f.update(value_score(f, priors))
+        grace = age_grace_until(f, gates_cfg)
+        f["safety_checked"] = f["value_score"] is not None and (bool(f.get("passes")) or grace is not None)
+        f["age_grace_until"] = grace
+        f["growth_10k"] = growth_10k(f["metrics"])
+    rated = sorted([f for f in funds if f["value_score"] is not None], key=value_sort_key)
+    n = len(rated)
+    for i, f in enumerate(rated):
+        f["value_rank"] = i + 1
+        f["value_pct"] = round(100 * (n - 1 - i) / (n - 1)) if n > 1 else 100   # "better than X% of rated"
+    return {"weights": VALUE_WEIGHTS, "grades": [list(g) for g in GRADES],
+            "flags": {k: {"kind": v[0], "amount": v[1], "text": v[2]} for k, v in VALUE_FLAGS.items()},
+            "age_grace_years": AGE_GRACE_YEARS, "priors": priors, "rated": n,
+            "safety_checked": sum(1 for f in funds if f["safety_checked"])}
+
+
+def vix_gauge(vix, years=WINDOW_YEARS):
+    """Today's VIX against its own range: option premiums (the income these funds sell) are
+    richer when the VIX is high. Market-wide context only — not part of any fund's score."""
+    if not vix:
+        return None
+    last_day, now = vix[-1]
+    past = [v for d, v in vix if d > last_day - dt.timedelta(days=round(365.25 * years))]
+    if len(past) < 60 or not now:
+        return None
+    return {"vix": round(now, 2), "as_of": last_day.isoformat(), "years": years,
+            "pct_below": round(100 * sum(1 for v in past if v < now) / len(past)),
+            "median": round(statistics.median(past), 2)}
+
+
 # ------------------------------------------------------------------------ main --
 def load_candidates():
     """Option-income funds from the Explorer universe, one row per fund.
@@ -789,12 +1033,15 @@ def main(argv):
             f["age_years"] = None
         f["metrics"] = m
         funds.append(f)
-    cut, priors = score_all(funds, load_fx())
+    cut, priors, value = score_all(funds, load_fx())
+    market = vix_gauge(vix)
+    log(f"VIX gauge: {market}")
     for t in ("JEPI", "QYLD", "SPYI", "SVOL", "TSLY", "DIVO", "RBLY", "GMEY", "3419.HK"):
         f = next((x for x in funds if x["t"] == t), None)
         if f:
             mm = f["metrics"]
             log(f"  {t}: {f['family']} bench {f['bench']} score {f['score_us']} rank {f.get('rank_us')} "
+                f"value {f['value_score']} {f.get('value_grade')} #{f.get('value_rank')} "
                 f"tr {mm.get('tr_ann')} gap {mm.get('gap')} cov {mm.get('coverage')} yld {mm.get('yield_regular')}")
     if dry:
         return 0
@@ -803,7 +1050,7 @@ def main(argv):
         return 1
     for f in funds:
         f["metrics"] = {k: (round(v, 5) if isinstance(v, float) else v) for k, v in f["metrics"].items()}
-    write_doc(funds, cut, priors, dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat())
+    write_doc(funds, cut, priors, value, dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat(), market)
     return 0
 
 
@@ -847,17 +1094,19 @@ def score_all(funds, fx):
             ranked = sorted([f for f in lst if f[f"score_{view}"] is not None], key=lambda f: rank_key(f, view))
             for i, f in enumerate(ranked):
                 f[f"rank_{view}"] = i + 1
+    value = score_value(funds, GATES)
     log(f"{len(funds)} income funds; {sum(f['score_us'] is not None for f in funds)} scored; "
-        f"{sum(f['passes'] for f in funds)} pass every gate; families: { {k: len(v) for k, v in sorted(by_fam.items())} }")
-    return cut, priors
+        f"{sum(f['passes'] for f in funds)} pass every gate; {value['rated']} value-rated, "
+        f"{value['safety_checked']} safety-checked; families: { {k: len(v) for k, v in sorted(by_fam.items())} }")
+    return cut, priors, value
 
 
-def write_doc(funds, cut, priors, generated_at, path=OUT):
+def write_doc(funds, cut, priors, value, generated_at, market=None, path=OUT):
     doc = {"as_of": max(f["metrics"]["as_of"] for f in funds), "generated_at": generated_at,
            "window_years": WINDOW_YEARS, "families": FAMILIES, "weights": WEIGHTS, "gates": GATES,
            "liquidity": {"shares": LIQ_SHARES, "dollars": LIQ_DOLLARS},
            "extreme_yield_cutoffs": {k: round(v, 4) for k, v in cut.items()},
-           "priors": priors, "count": len(funds), "funds": funds}
+           "priors": priors, "value": value, "market": market, "count": len(funds), "funds": funds}
     with open(path, "w", encoding="utf-8") as fh:
         json.dump(doc, fh, separators=(",", ":"), ensure_ascii=False, default=str)
     log(f"Wrote {os.path.relpath(path, rm.ROOT)} ({os.path.getsize(path) // 1024} KB)")
@@ -865,7 +1114,7 @@ def write_doc(funds, cut, priors, generated_at, path=OUT):
 
 # Everything score_all() derives; the rest of a fund record is classification + metrics.
 DERIVED = ("extreme_yield", "components", "prior", "weights_key", "score_us", "weights_us", "score_intl",
-           "weights_intl", "gates", "passes", "gates_unknown", "tax_note", "rank_us", "rank_intl")
+           "weights_intl", "gates", "passes", "gates_unknown", "tax_note", "rank_us", "rank_intl") + VALUE_FIELDS
 
 
 def rescore(path=OUT):
@@ -876,8 +1125,8 @@ def rescore(path=OUT):
     for f in funds:
         for k in DERIVED:
             f.pop(k, None)
-    cut, priors = score_all(funds, load_fx())
-    write_doc(funds, cut, priors, doc.get("generated_at"), path)
+    cut, priors, value = score_all(funds, load_fx())
+    write_doc(funds, cut, priors, value, doc.get("generated_at"), doc.get("market"), path)
     return 0
 
 

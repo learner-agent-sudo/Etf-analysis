@@ -46,6 +46,9 @@ const GLOSSARY = {
   "Pre-screen": "Explorer shortcut: expense ratio ≤ 0.50% (cost 🟢), AUM ≥ $50M, and not leveraged/inverse, an ETN or futures-based. Concentration and purity still need a look at the holdings.",
   "Domicile": "Where a fund is legally based (US, Ireland, Luxembourg, Hong Kong…). It drives the tax drag on dividends and, for non-US investors, US estate-tax exposure — see 'Tax & domicile' in the Explorer. General information only, not tax advice.",
   "Daily data": "Price, volume, returns, AUM and top holdings refresh automatically every weekday after the US market close (end-of-day, not intraday). Faded values are an older hand-researched snapshot, shown until fresh data exists. For an intraday price, open a fund and tap “Live quote”.",
+  "Value Score": "Income / Covered-Call → Value ranking: one number out of 100 for how much an income ETF delivered for the risk you took over the last 3 years — earned income, paycheck trend, growth kept and smooth ride, 25 points each, minus red flags. Same formula for every fund, so higher is better. A 80+, B 70–79, C 60–69, D 45–59, F under 45. Describes the past, not a forecast; not advice.",
+  "Earned income": "The payout yield, counted only up to the fund's total return. Anything paid beyond that came out of your own capital (the share price fell).",
+  "Safety-checked": "Passes the size, age, fee, trading-volume and structure checks from the income brief (or is within 6 months of the age rule).",
 };
 
 // Columns active for the current theme (some columns are theme-specific, e.g. Yield).
@@ -60,6 +63,7 @@ const COLUMNS = [
   { key: "_price", label: "Price", fmt: e => marketCell(e, "price") },
   { key: "_vol", label: "Avg Vol", fmt: e => marketCell(e, "volume") },
   { key: "_yield", label: "Yield", cond: t => (t.etfs || []).some(e => e.distribution_yield), fmt: e => yieldCell(e) },
+  { key: "_value", label: "Value Score", cond: t => t._id === "income", fmt: e => valueColCell(e) },
   { key: "_perf1y", label: "1-yr", fmt: e => perfCell(e, "y1") },
   { key: "_perfytd", label: "YTD", fmt: e => perfCell(e, "ytd") },
   { key: "_cost", label: "Cost", type: "score" },
@@ -168,7 +172,13 @@ function dataChecks(e) {
   }
   return out;
 }
+// Income-ranking data for a ticker, once income.js has loaded it.
+const labOf = t => (typeof LAB !== "undefined" && LAB && LAB.funds.find(f => f.t === t)) || null;
 function yieldOf(e) {
+  // Yahoo's yield field is unreliable for option-income funds (SPYI showed 1.4%): prefer the
+  // ranking's own figure, measured from the actual payouts.
+  const lf = labOf(e.ticker), ly = lf && (lf.metrics.yield_regular != null ? lf.metrics.yield_regular : lf.metrics.yield_ttm);
+  if (ly != null) return { v: (ly * 100).toFixed(2) + "%", fresh: true, lab: true };
   const d = daily(e.ticker);
   if (d && d.yield_ttm) return { v: d.yield_ttm, fresh: true };
   if (e.distribution_yield) return { v: e.distribution_yield, fresh: false };
@@ -177,7 +187,15 @@ function yieldOf(e) {
 function yieldCell(e) {
   const y = yieldOf(e);
   if (!y) return el("span", { class: "muted" }, "—");
-  return el("span", { class: y.fresh ? "" : "snap", title: y.fresh ? "Trailing 12-month yield (fund data)" : snapTitle("Distribution yield", CURRENT && CURRENT.as_of) }, y.v);
+  return el("span", { class: y.fresh ? "" : "snap", title: y.lab ? "Regular payouts over the last 12 months ÷ price (year-end specials excluded), from the payout history"
+    : y.fresh ? "Trailing 12-month yield (fund data)" : snapTitle("Distribution yield", CURRENT && CURRENT.as_of) }, y.v);
+}
+function valueOf(e) { const f = labOf(e.ticker); return f && f.value_score != null ? f : null; }
+function valueColCell(e) {
+  const f = valueOf(e);
+  if (!f) return el("span", { class: "muted", title: labOf(e.ticker) ? labOf(e.ticker).value_unrated : "Not an income fund in the ranking" }, "—");
+  return el("span", { class: "scorechip", title: `Value Score ${f.value_display}/100 — ${f.value_label}. Open the Value ranking tab to compare it with every income ETF.` },
+    el("b", {}, String(f.value_display)), el("span", { class: "grade g" + f.value_grade }, f.value_grade));
 }
 function marketCell(e, which) {
   const d = daily(e.ticker), m = e.market || {};
@@ -235,8 +253,10 @@ async function loadMarket(bust) {
   return MARKET;
 }
 // ---- views: Themes (curated analysis) | Explorer (every listed ETF) --
-let VIEW = "themes", LAST_THEME = null;
-const VIEWS = { themes: ["#themeView", "#tabThemes"], explore: ["#explorer", "#tabExplore"], income: ["#incomeLab", "#tabIncome"] };
+// The income theme has two sub-views: the Value ranking of every income ETF
+// (income.js, the default) and the curated "Analyst picks" table.
+let VIEW = "themes", LAST_THEME = null, INCOME_SUB = null, INCOME_SUB_LAST = "rankings";
+const VIEWS = { themes: ["#themeView", "#tabThemes"], explore: ["#explorer", "#tabExplore"] };
 function setView(v) {
   VIEW = v;
   Object.entries(VIEWS).forEach(([k, [sec, tab]]) => {
@@ -246,14 +266,16 @@ function setView(v) {
   });
   $(".theme-picker").classList.toggle("dim", v !== "themes");
   if (v === "explore" && !location.hash.startsWith("#explore")) history.replaceState(null, "", "#explore");
-  if (v === "income" && location.hash !== "#income-lab") history.replaceState(null, "", "#income-lab");
   closeMemo();
+  if (typeof renderTray === "function") renderTray();
 }
 const exploreRoute = () => { const h = decodeURIComponent(location.hash.replace(/^#/, "")); return h === "explore" || h.startsWith("explore=") ? (h.split("=")[1] || "") : null; };
 
-const THEME_ALIASES = { nuclear: "energy" };     // renamed themes keep old links working
+// renamed themes keep old links working; the Income Lab tab became the income theme's ranking
+const THEME_ALIASES = { nuclear: "energy", "income-lab": "income" };
 const themeAlias = id => THEME_ALIASES[id] || id;
-const themeFromUrl = () => themeAlias(decodeURIComponent(location.hash.replace(/^#/, "")));
+const themeFromUrl = () => themeAlias(decodeURIComponent(location.hash.replace(/^#/, "")).split("/")[0]);
+const incomeSubFromUrl = () => decodeURIComponent(location.hash).split("/")[1] === "picks" ? "picks" : "rankings";
 function savedTheme() { try { return themeAlias(localStorage.getItem("etf.theme")); } catch (_) { return null; } }
 
 async function init() {
@@ -286,7 +308,6 @@ async function init() {
   $("#addTicker").addEventListener("keydown", e => { if (e.key === "Enter") onAddTicker(); });
   $("#tabThemes").addEventListener("click", () => { if (VIEW !== "themes") selectTheme(LAST_THEME || $("#themeSelect").value); });
   $("#tabExplore").addEventListener("click", () => { if (VIEW !== "explore") showExplorer(); });
-  $("#tabIncome").addEventListener("click", () => { if (VIEW !== "income") showIncomeLab(); });
   $("#closeMemo").addEventListener("click", closeMemo);
   $("#overlay").addEventListener("click", closeMemo);
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeMemo(); });
@@ -299,25 +320,32 @@ async function init() {
   const first = want || loaded[0]._id;
   sel.value = first;
   const ex = exploreRoute();
-  if (location.hash === "#income-lab") { LAST_THEME = first; showIncomeLab(); }
-  else if (ex !== null) { LAST_THEME = first; showExplorer(window._THEMES[ex] ? ex : ""); }
-  else selectTheme(first);
+  if (ex !== null) { LAST_THEME = first; showExplorer(window._THEMES[ex] ? ex : ""); }
+  else selectTheme(first, first === themeFromUrl() && first === "income" ? incomeSubFromUrl() : undefined);
   window.addEventListener("hashchange", () => {
-    if (location.hash === "#income-lab") { if (VIEW !== "income") showIncomeLab(); return; }
     const exr = exploreRoute();
     if (exr !== null) { if (VIEW !== "explore") showExplorer(window._THEMES[exr] ? exr : undefined); return; }
     const h = themeFromUrl();
-    if (h && window._THEMES[h] && (VIEW !== "themes" || h !== CURRENT._id)) { sel.value = h; selectTheme(h); }
+    if (!h || !window._THEMES[h]) return;
+    const sub = h === "income" ? incomeSubFromUrl() : undefined;
+    if (VIEW !== "themes" || h !== CURRENT._id || sub !== (INCOME_SUB || undefined)) { sel.value = h; selectTheme(h, sub); }
+    else if (sub === "rankings") showIncomeRankings();            // e.g. #income/fund=GPIX while already there
   });
 }
 
-function selectTheme(id) {
+// `sub` only applies to the income theme: "rankings" (default) or "picks".
+function selectTheme(id, sub) {
   CURRENT = window._THEMES[id];
   LAST_THEME = id;
+  INCOME_SUB = id === "income" ? (sub || INCOME_SUB_LAST) : null;
+  if (INCOME_SUB) INCOME_SUB_LAST = INCOME_SUB;
+  const ranking = INCOME_SUB === "rankings";
   $("#themeSelect").value = id;
   setView("themes");
   if (!activeColumns().some(c => c.key === SORT.key)) SORT = { key: "ticker", dir: 1 };
-  $("#controls").hidden = false;
+  $("#controls").hidden = ranking;
+  $("#tableWrap").hidden = ranking;
+  $("#incomeLab").hidden = !ranking;
   $("#liveMsg").hidden = true;
   const segs = [...new Set((CURRENT.etfs || []).map(e => e.segment).filter(Boolean))];
   const segSel = $("#segmentSel");
@@ -325,9 +353,22 @@ function selectTheme(id) {
   segSel.append(el("option", { value: "" }, "All segments"), ...segs.map(x => el("option", { value: x }, x)));
   segSel.hidden = segs.length < 2;
   try { localStorage.setItem("etf.theme", id); } catch (_) { /* private mode */ }
-  if (themeFromUrl() !== id) history.replaceState(null, "", "#" + id);
+  const want = "#" + id + (INCOME_SUB === "picks" ? "/picks" : "");
+  const deep = ranking && /^#income\/(fund|compare)=/.test(location.hash);    // keep a deep link for income.js
+  if (location.hash !== want && !deep) history.replaceState(null, "", want);
   closeMemo();
-  renderIntro(); renderTensions(); render(); renderRoster();
+  renderIntro(); renderTensions();
+  if (ranking) { $("#roster").hidden = true; showIncomeRankings(); return; }
+  render(); renderRoster();
+  // the picks table reads the ranking's yields and Value Scores once they're loaded
+  if (id === "income" && typeof loadLab === "function" && !LAB) loadLab().then(() => { if (CURRENT && CURRENT._id === "income" && INCOME_SUB === "picks") render(); });
+}
+function incomeSubTabs() {
+  const n = (CURRENT.etfs || []).filter(e => !e._adhoc).length;
+  const tab = (sub, label) => el("button", { class: "subtab" + (INCOME_SUB === sub ? " active" : ""), role: "tab", "aria-selected": String(INCOME_SUB === sub),
+    onclick: () => { if (INCOME_SUB !== sub) selectTheme("income", sub); } }, label);
+  return el("div", { class: "subtabs", role: "tablist", "aria-label": "Income views" },
+    tab("rankings", "Value ranking · every income ETF"), tab("picks", `Analyst picks · ${n} funds`));
 }
 
 // ---- intro / tensions ----------------------------------------------
@@ -337,15 +378,17 @@ function freshnessText() {
 }
 function renderIntro() {
   const t = CURRENT, box = $("#themeIntro"); box.innerHTML = "";
+  const curated = INCOME_SUB !== "rankings";          // the ranking writes its own intro
   box.append(...[            // DOM append() would print a literal "null" — drop absent parts
     el("h2", {}, t.name + " ETFs"),
-    el("div", { class: "asof" }, `Analysis as of ${t.as_of || "—"} · ${freshnessText()} `,
-      el("button", { class: "refresh", title: "Re-load the latest daily market-data file", onclick: onCheckUpdate }, "↻ check for update")),
+    t._id === "income" ? incomeSubTabs() : null,
+    curated ? el("div", { class: "asof" }, `Analysis as of ${t.as_of || "—"} · ${freshnessText()} `,
+      el("button", { class: "refresh", title: "Re-load the latest daily market-data file", onclick: onCheckUpdate }, "↻ check for update")) : null,
     el("div", { class: "tagline" }, t.tagline || ""),
-    t.universe_note ? el("p", { class: "universe" }, "▸ " + t.universe_note) : null,
-    t.benchmark_note ? el("p", { class: "bench" }, "▸ " + t.benchmark_note) : null,
-    t._id === "income" ? el("p", {}, el("button", { class: "refresh", onclick: () => showIncomeLab() },
-      "Open the Income Lab — screen and score every option-income ETF →")) : null
+    curated && t.universe_note ? el("p", { class: "universe" }, "▸ " + t.universe_note) : null,
+    curated && t.benchmark_note ? el("p", { class: "bench" }, "▸ " + t.benchmark_note) : null,
+    curated && t._id === "income" ? el("p", { class: "bench" }, "▸ Want one number to compare every income ETF? ",
+      el("button", { class: "refresh", onclick: () => selectTheme("income", "rankings") }, "See the Value ranking →")) : null
   ].filter(Boolean));
 }
 function renderTensions() {
@@ -445,6 +488,7 @@ function sortVal(e, key) {
     case "_yield": { const y = yieldOf(e); return y ? num(y.v) : null; }
     case "_perf1y": { const p = perfOf(e, "y1"); return p ? num(p.v) : null; }
     case "_perfytd": { const p = perfOf(e, "ytd"); return p ? num(p.v) : null; }
+    case "_value": { const f = valueOf(e); return f ? f.value_score : null; }
   }
   const sc = scoreOf(e, key.slice(1));
   return sc ? SCORE_RANK[sc.rating] : null;
@@ -550,7 +594,7 @@ function rosterEntry(ticker) {
 }
 function goTo(theme, ticker) {
   $("#themeSelect").value = theme._id;
-  selectTheme(theme._id);
+  selectTheme(theme._id, theme._id === "income" ? "picks" : undefined);    // curated memos live in the picks table
   openMemo(ticker);
 }
 function onAddTicker() {
@@ -854,8 +898,11 @@ function colList(cls, title, items) {
 }
 const sectionTitle = t => el("h3", {}, t);
 function closeMemo() {
+  const open = !$("#memoDrawer").hidden;
   $("#overlay").hidden = true; $("#memoDrawer").hidden = true;
+  $("#memoDrawer").classList.remove("wide");
   document.body.classList.remove("noscroll");
+  if (open && /^#income\/(fund|compare)=/.test(location.hash)) history.replaceState(null, "", "#income");
 }
 
 init();
