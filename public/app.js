@@ -368,7 +368,7 @@ function incomeSubTabs() {
   const tab = (sub, label) => el("button", { class: "subtab" + (INCOME_SUB === sub ? " active" : ""), role: "tab", "aria-selected": String(INCOME_SUB === sub),
     onclick: () => { if (INCOME_SUB !== sub) selectTheme("income", sub); } }, label);
   return el("div", { class: "subtabs", role: "tablist", "aria-label": "Income views" },
-    tab("rankings", "Value ranking · every income ETF"), tab("picks", `Analyst picks · ${n} funds`));
+    tab("rankings", "Value ranking · every income ETF"), tab("picks", `Analyst memos · ${n} funds`));
 }
 
 // ---- intro / tensions ----------------------------------------------

@@ -194,7 +194,7 @@ function standoutsBlock() {
       el("div", { class: "slab" }, label),
       el("div", { class: "stop" }, el("span", {}, el("span", { class: "tk" }, f.t), el("div", { class: "nm" }, f.n)),
         el("span", { class: "sscore" }, el("span", { class: "big" }, String(f.value_display)), gradeChip(f, true))),
-      el("div", { class: "small" }, `Pays ${pctPlain(paidY(f))}`, el("span", { class: all ? "pos" : "warn" }, all ? " · all earned" : ` · ${pctPlain(f.earned_yield)} earned`),
+      el("div", { class: "small" }, `Pays ${pctPlain(paidY(f))}`, el("span", { class: all ? "pos" : "warn", title: earnedTitle(f) }, all ? " · all earned" : ` · ${pctPlain(f.earned_yield)} earned`),
         ` · price ${perYr(f.metrics.price_cagr)} · worst fall ${pct(f.metrics.max_drawdown)}`),
       el("div", { class: "small" }, `On $10,000: about ${usd(10000 * paidY(f))} a year in cash`),
       f.age_grace_until ? el("div", { class: "small muted" }, `Turns ${LAB.gates[f.style].age} years old on ${f.age_grace_until}`) : null,
@@ -355,8 +355,11 @@ function incomeCell(f) {
   const all = f.earned_yield == null || f.earned_yield >= paid - 0.0005;
   return el("div", {}, el("b", {}, pctPlain(paid)),
     el("div", { class: "sub2" }, `${usd(10000 * paid)}/yr on $10k`, f.earned_yield == null ? null
-      : el("span", { class: all ? "pos" : "warn" }, all ? " · all earned" : ` · only ${pctPlain(f.earned_yield)} earned`)));
+      : el("span", { class: all ? "pos" : "warn", title: earnedTitle(f) }, all ? " · all earned" : ` · only ${pctPlain(f.earned_yield)} earned`)));
 }
+const earnedTitle = f => f.earned_yield >= paidY(f) - 0.0005
+  ? "All earned: the fund's total return covered the whole payout — none of it came out of your capital."
+  : `Only ${pctPlain(f.earned_yield)} a year was covered by the fund's total return; the rest of the payout came out of your capital (the share price fell).`;
 function gapCell(f) {
   const g = f.metrics.gap;
   if (g == null) return el("span", { class: "muted" }, "—");
@@ -367,7 +370,7 @@ function gapCell(f) {
 function ddCell(f) {
   const d = f.metrics.max_drawdown;
   if (d == null) return el("span", { class: "muted" }, "—");
-  return el("div", {}, el("span", { class: "neg" }, pct(d)), el("div", { class: "sub2" }, `${usd(10000 * d)} on $10k`));
+  return el("div", {}, el("span", { class: "neg" }, pct(d)), el("div", { class: "sub2", title: "The biggest drop from a previous high to a later low, applied to $10,000" }, `${usd(10000 * d)} per $10k`));
 }
 function signedSpan(x, f) { return x == null ? el("span", { class: "muted" }, "—") : el("span", { class: x >= 0 ? "pos" : "neg" }, f(x)); }
 
@@ -376,7 +379,7 @@ function fundChips(f) {
   if (f.age_grace_until) chips.push(el("span", { class: "chip info", title: `Passes every other safety check; turns ${LAB.gates[f.style].age} years old on ${f.age_grace_until}.` }, `${LAB.gates[f.style].age} yrs on ${f.age_grace_until}`));
   if (curatedHome(f.t, null)) chips.push(el("span", { class: "chip info", title: "Has a hand-written analyst memo" }, "Analyst notes"));
   (f.value_flags || []).forEach(k => {
-    const cap = ((LAB.value.flags || {})[k] || {}).kind === "cap";
+    const cap = (((LAB.value || {}).flags || {})[k] || {}).kind === "cap";
     chips.push(el("span", { class: "chip " + (cap ? "bad" : "warn"), title: flagText(k) }, FLAG_CHIP[k] || k));
   });
   if (f.value_score != null && !f.safety_checked) chips.push(el("span", { class: "chip", title: "Not safety-checked — " + gateStatus(f) }, "✗ safety check"));
@@ -651,7 +654,7 @@ function heroBlock(f) {
   }
   const safe = LAB.funds.filter(x => x.safety_checked).sort(byValue);
   const si = safe.indexOf(f);
-  const flags = (f.value_flags || []).map(k => el("li", {}, `${((LAB.value.flags || {})[k] || {}).kind === "cap" ? "🔴" : "⚠️"} ${flagText(k)}`));
+  const flags = (f.value_flags || []).map(k => el("li", {}, `${(((LAB.value || {}).flags || {})[k] || {}).kind === "cap" ? "🔴" : "⚠️"} ${flagText(k)}`));
   return el("div", { class: "hero" },
     el("div", { class: "heroline" }, el("span", { class: "heroval" }, String(f.value_display), el("span", { class: "muted" }, " / 100")), gradeChip(f, true)),
     el("div", { class: "muted small" }, [si >= 0 ? `#${si + 1} of ${safe.length} safety-checked` : "not safety-checked", `#${f.value_rank} of ${LAB.value.rated} rated`,
@@ -667,13 +670,15 @@ function verdictText(f) {
     income: () => `earned ${pctPlain(f.earned_yield)} a year in income`,
     nav: () => `price up ${pctPlain(m.price_cagr)} a year`,
     kept: () => m.gap >= 0 ? `beat ${bn} by ${pctPlain(m.gap)} a year` : `kept nearly all of ${bn}'s return`,
-    ride: () => `worst fall only ${pctPlain(-m.max_drawdown)}`,
+    ride: () => m.max_drawdown >= -0.18 ? `worst fall only ${pctPlain(-m.max_drawdown)}`
+      : `good return for its ups and downs (Sharpe ${m.sharpe != null ? m.sharpe.toFixed(2) : "—"})`,
   };
   const weak = {
     income: () => f.earned_yield < paidY(f) - 0.005 ? `pays ${pctPlain(paidY(f))} but earned only ${pctPlain(f.earned_yield)}` : `pays only ${pctPlain(paidY(f))}`,
     nav: () => `price falling ${pctPlain(-m.price_cagr)} a year, so each payout buys less`,
     kept: () => `${pctPlain(-m.gap)} a year behind ${bn}`,
-    ride: () => `fell ${pctPlain(-m.max_drawdown)} at its worst`,
+    ride: () => m.max_drawdown < -0.20 || m.sharpe == null ? `fell ${pctPlain(-m.max_drawdown)} at its worst`
+      : `little return for its ups and downs (Sharpe ${m.sharpe.toFixed(2)})`,
   };
   const ks = Object.keys(R);
   const s = ks.filter(k => R[k] >= 75).sort((a, b) => R[b] - R[a]).slice(0, 2).map(k => strong[k]());
@@ -721,13 +726,13 @@ function tenKBlock(f) {
     const short = f.earned_yield != null && f.earned_yield < paid - 0.0005;
     tile("Cash a year, at today's payout", usd(10000 * paid), short
       ? `but only ${usd(10000 * f.earned_yield)} of it was earned — the rest came out of your capital`
-      : `about ${usd(10000 * paid / 12)} a month`);
+      : `about ${usd(10000 * paid / 12)} a month, if payouts stay at today's level`);
   }
   if (g) {
     tile("Payouts reinvested", `${usd(10000)} → ${usd(g.reinvested)}`, `over ${g.years} years` + (g.bench_reinvested ? ` · ${benchThe(f)} turned $10,000 into ${usd(g.bench_reinvested)}` : ""));
     tile("Took the cash instead", `${usd(g.shares_now)} + ${g.cash_paid_exact ? "" : "≈"}${usd(g.cash_paid)}`, "shares now + payouts received");
   }
-  if (m.max_drawdown != null) tile("Worst fall", usd(10000 * m.max_drawdown), "at the low point (payouts reinvested)");
+  if (m.max_drawdown != null) tile("Worst fall", pct(m.max_drawdown), `from a previous high to the low (payouts reinvested) — ${usd(-10000 * m.max_drawdown)} on every $10,000 at that high`);
   return [sectionTitle("What $10,000 did"), tiles,
     el("p", { class: "muted small" }, g ? `${m.window_start} → ${m.as_of}. What happened, not a forecast.` : "Too new for a track record.")];
 }

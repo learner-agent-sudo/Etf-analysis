@@ -154,7 +154,7 @@ criteria" filter. Re-run after adding or re-scoring any fund.
 
 ## Income ranking — every option-income ETF on one Value Score
 
-Themes → *Income / Covered-Call* → **Rankings** (`scripts/build_income.py`,
+Themes → *Income / Covered-Call* → **Value ranking** (`scripts/build_income.py`,
 rebuilt daily) covers every covered-call, premium-income, call-spread, 0DTE,
 single-stock, short-volatility, put-write and dividend+options ETF on US, Hong
 Kong and London listings (~400 funds), grouped into strategy families.

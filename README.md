@@ -52,13 +52,15 @@ searchable, sortable list: expense ratio, AUM (with a US$ equivalent), price,
 ratings, theme suggestions, a one-click "pre-screen" and a general
 tax-and-domicile explainer. Built daily by `scripts/build_universe.py`.
 
-And an **Income Lab** tab: every option-income ETF (~400 across US, Hong
-Kong and London) screened in three layers — tiered gates, quality components
-(total return vs the fund's own benchmark, distribution coverage, NAV trend,
-underlying quality, tax) and strategy-family weights — with a yield-vs-quality
-scatter, within-family rankings, and per-fund cards showing where the
-distributions came from. Built daily by `scripts/build_income.py`; method in
-`docs/METHODOLOGY.md`.
+And inside the **Income / Covered-Call** theme, a **Value ranking** of every
+option-income ETF (~400 across US, Hong Kong and London): one Value Score out
+of 100 — the same formula for every strategy, so any two funds compare —
+built from earned income, paycheck (price) trend, growth kept vs the fund's own
+market and smoothness of the ride, minus red flags. Standouts, a compare view
+(up to 3 funds, winner per row), a "$10,000" example per fund, and the brief's
+gates and strategy-family score in each card's expert details. Built daily by
+`scripts/build_income.py`; method in `docs/METHODOLOGY.md`. (Old `#income-lab`
+links open it.)
 
 It has **two layers**:
 - **Curated analysis** (`public/data/<theme>.json`) — the judgment no API makes:

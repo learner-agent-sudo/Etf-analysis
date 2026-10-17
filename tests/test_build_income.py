@@ -424,21 +424,32 @@ class ValueScore(unittest.TestCase):
         self.assertIsNone(bi.value_score(vfund(gap=None), {})["value_score"])
 
     def test_young_funds_lean_on_their_family(self):
-        seasoned = [vfund(f"S{i}", tr_ann=0.05 + i / 100, price_cagr=-0.02 + i / 200) for i in range(5)]
+        # Seasoned funds chosen so the family, risk-bucket and all-fund priors all differ:
+        # rules-based covered calls hold their price, dividend/put-write funds slide 6%/yr,
+        # single-stock funds collapse.
+        nav = lambda px: bi.logistic(px * 100, bi.NAV_MID, bi.NAV_SCALE)
+        seasoned = ([vfund(f"S{i}", price_cagr=0.05) for i in range(5)] +
+                    [vfund(f"D{i}", family="dividend_options", price_cagr=-0.06) for i in range(6)] +
+                    [vfund(f"W{i}", family="put_write", price_cagr=-0.06) for i in range(2)] +
+                    [vfund(f"X{i}", family="single_stock", exposure="single stock", price_cagr=-0.40) for i in range(15)])
         priors = bi.value_priors(seasoned)
-        self.assertIn("systematic_cc", priors)
-        young = vfund("Y", window_years=1.5, tr_ann=0.60, price_cagr=0.40, gap=0.10)
-        v = bi.value_score(young, priors)
-        for k in ("nav", "kept"):        # pulled halfway (1.5 of 3 years) toward the family's typical value
-            self.assertAlmostEqual(v["value_pillars"][k], priors["systematic_cc"][k] + (v["value_raw"][k] - priors["systematic_cc"][k]) * 0.5, places=0)
-        # a family with too few seasoned funds falls back to its risk bucket, not to index funds
-        spec = [vfund(f"P{i}", family="single_stock", exposure="single stock", price_cagr=-0.3) for i in range(5)]
-        priors = bi.value_priors(spec + seasoned)
-        self.assertNotIn("crypto_income", priors)
-        crypto = vfund("C", family="crypto_income", exposure="crypto", window_years=1.2)
-        self.assertEqual(priors["_speculative"]["nav"], priors["single_stock"]["nav"])
-        v = bi.value_score(crypto, priors)
-        self.assertLess(v["value_pillars"]["nav"], v["value_raw"]["nav"])
+        self.assertAlmostEqual(priors["systematic_cc"]["nav"], nav(0.05), places=0)
+        self.assertNotIn("put_write", priors)                                   # only 2 seasoned: no family prior
+        self.assertAlmostEqual(priors["_diversified"]["nav"], nav(-0.06), places=0)
+        self.assertAlmostEqual(priors["_speculative"]["nav"], nav(-0.40), places=0)
+        self.assertNotAlmostEqual(priors["_all"]["nav"], priors["_diversified"]["nav"], places=0)
+
+        def blended(f, prior_nav):
+            v = bi.value_score(f, priors)
+            w = f["metrics"]["window_years"] / bi.WINDOW_YEARS
+            self.assertAlmostEqual(v["value_pillars"]["nav"], prior_nav + (v["value_raw"]["nav"] - prior_nav) * w, places=0)
+        blended(vfund("Y", window_years=1.5, price_cagr=-0.20), priors["systematic_cc"]["nav"])        # own family
+        blended(vfund("P", family="put_write", window_years=1.5, price_cagr=0.10), priors["_diversified"]["nav"])  # bucket
+        blended(vfund("C", family="crypto_income", exposure="crypto", window_years=1.2, price_cagr=0.10),
+                priors["_speculative"]["nav"])                                  # a young crypto fund isn't judged like an index fund
+        full = vfund("F", price_cagr=0.10)                                      # a full record is not blended at all
+        v = bi.value_score(full, priors)
+        self.assertEqual(v["value_pillars"], v["value_raw"])
 
     def test_age_grace_and_safety_check(self):
         gates = {"systematic": {"age": 2}, "active": {"age": 3}}
@@ -496,6 +507,66 @@ class ValueScore(unittest.TestCase):
         self.assertTrue(0 <= g["pct_below"] <= 100)
         self.assertIsNone(bi.vix_gauge(vix[:10]))
         self.assertIsNone(bi.vix_gauge(None))
+
+    def test_each_flag_trigger(self):
+        # price sliding > 10%/yr is 'paying with your own money' even when the payout was covered
+        slide = bi.value_score(vfund(yield_regular=0.05, tr_ann=0.06, price_cagr=-0.12), {})
+        self.assertIn("own_money", slide["value_flags"])
+        self.assertLessEqual(slide["value_score"], bi.CEIL_D)
+        for rec in (dict(vfund(), note=True), dict(vfund(), flags="N")):     # ETN / ETP notes
+            v = bi.value_score(rec, {})
+            self.assertIn("note", v["value_flags"])
+            self.assertEqual(v["value_score"], bi.CEIL_D)
+        # smooth ride: half worst fall, half Sharpe
+        a, b = bi.value_raw_pillars(vfund(sharpe=0.2)["metrics"]), bi.value_raw_pillars(vfund(sharpe=1.2)["metrics"])
+        dd = bi.logistic(-15, bi.DD_MID, bi.DD_SCALE)
+        self.assertAlmostEqual(b["ride"], 0.5 * dd + 0.5 * bi.logistic(1.2, bi.SH_MID, bi.SH_SCALE))
+        self.assertGreater(b["ride"], a["ride"])
+        self.assertAlmostEqual(bi.value_raw_pillars(vfund(sharpe=None)["metrics"])["ride"], dd)
+
+    def test_tie_break_by_base_then_gap(self):
+        # both capped at 59 (single stock): the one with the better underlying record ranks first,
+        # whatever the ticker order
+        # (base decides before gap: the stronger fund has the slightly worse gap)
+        strong = vfund("AAA", family="single_stock", exposure="single stock", gap=-0.01, price_cagr=0.08, sharpe=1.5)
+        weak = vfund("ZZZ", family="single_stock", exposure="single stock", gap=0.0, price_cagr=-0.025, sharpe=0.3)
+        strong["t"], weak["t"] = "ZZZ", "AAA"
+        bi.score_value([strong, weak], {"systematic": {"age": 2}, "active": {"age": 3}})
+        self.assertEqual((strong["value_score"], weak["value_score"]), (59.0, 59.0))
+        self.assertEqual((strong["value_rank"], weak["value_rank"]), (1, 2))
+
+    def test_priors_ignore_young_funds(self):
+        seasoned = [vfund(f"S{i}", price_cagr=0.03) for i in range(5)]
+        base = bi.value_priors(seasoned)
+        noisy = bi.value_priors(seasoned + [vfund(f"Y{i}", window_years=1.5, price_cagr=-0.9) for i in range(6)])
+        self.assertEqual(base["systematic_cc"], noisy["systematic_cc"])
+
+    def test_cash_paid_uses_the_starting_price(self):
+        bars, divs = fund(-0.05, 0.03)                       # price slides, so the first close is above the average
+        m = bi.compute(bars, divs)
+        w0 = dt.date.fromisoformat(m["window_start"])
+        first = next(b[1] for b in bars if b[0] == w0)
+        paid = sum(a for d, a in divs if w0 < d <= bars[-1][0])
+        self.assertAlmostEqual(m["cash_paid_10k"], 10000 * paid / first, places=1)
+
+    def test_vix_gauge_counts_strictly_lower_days(self):
+        flat = [(d, 15.0) for d in DAYS[-300:]]
+        self.assertEqual(bi.vix_gauge(flat)["pct_below"], 0)                  # an ordinary day isn't 'higher than 100%'
+
+    def test_rescore_clears_stale_value_fields(self):
+        self.assertTrue(set(bi.VALUE_FIELDS) <= set(bi.DERIVED))
+        funds = [vfund(f"F{i}") for i in range(3)]
+        for f in funds:
+            f.update({"n": f["t"], "market": "US", "cur": "USD", "eln": False, "er": 0.5, "vol": 1e6,
+                      "bench": "SPY", "note": False, "inverse": False})
+        bi.score_all(funds, {})
+        funds[0]["metrics"]["gap"] = None                     # its benchmark disappears
+        for f in funds:
+            for k in bi.DERIVED:
+                f.pop(k, None)
+        bi.score_all(funds, {})
+        self.assertNotIn("value_rank", funds[0])
+        self.assertEqual(sorted(f["value_rank"] for f in funds[1:]), [1, 2])
 
     def test_classification_fixes(self):
         self.assertEqual(bi.classify("YieldMax Innovation Option Income Strategy ETF", ticker="OARK")["bench"], "ARKK")
