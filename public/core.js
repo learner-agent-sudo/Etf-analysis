@@ -107,7 +107,7 @@ function buildCore(box) {
       "What do these columns mean? (Fee, Size, Payout, Domicile …)"),
     el("div", { id: "coreLists" }),
     el("p", { class: "muted small" }, "Source: the Explorer's daily list of every ETF listed in the US, London and Hong Kong (Yahoo Finance numbers). Roles are read from fund names. Sizes and fees for some London lines aren't published by Yahoo. Not investment advice."));
-  const setSeg = () => document.querySelectorAll("#corePol button").forEach(b => b.classList.toggle("active", b.dataset.v === CS.pol));
+  const setSeg = () => document.querySelectorAll("#corePol button").forEach(b => { b.classList.toggle("active", b.dataset.v === CS.pol); b.setAttribute("aria-pressed", String(b.dataset.v === CS.pol)); });
   document.querySelectorAll("#corePol button").forEach(b => b.addEventListener("click", () => { CS.pol = b.dataset.v; CS.more = {}; setSeg(); renderCoreLists(); }));
   setSeg();
   $("#coreMkt").addEventListener("change", e => { CS.mkt = e.target.value; CS.more = {}; renderCoreLists(); });
