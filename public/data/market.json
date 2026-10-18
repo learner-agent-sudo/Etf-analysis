@@ -1,16 +1,16 @@
 {
  "as_of": "2026-10-16",
- "generated_at": "2026-10-17T15:47:03+00:00",
+ "generated_at": "2026-10-18T02:30:36+00:00",
  "source": "Daily closes from Yahoo Finance or Nasdaq (returns reinvest distributions); fund profile (AUM, expense ratio, top-10 holdings) from Yahoo Finance/Morningstar when available. Refreshed automatically by GitHub Actions every weekday after the US close.",
  "count": 129,
  "failed": {
-  "CNCR": "Yahoo Finance: CNCR: not found on Yahoo; Nasdaq: CNCR: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
-  "CRIT": "Yahoo Finance: CRIT: not found on Yahoo; Nasdaq: CRIT: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
-  "EBLU": "Yahoo Finance: EBLU: not found on Yahoo; Nasdaq: EBLU: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
-  "GERM": "Yahoo Finance: GERM: not found on Yahoo; Nasdaq: GERM: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
-  "JEPY": "Yahoo Finance: JEPY: not found on Yahoo; Nasdaq: JEPY: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
-  "QBUX": "Yahoo Finance: QBUX: not found on Yahoo; Nasdaq: QBUX: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
-  "QTUF": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+  "CNCR": "Yahoo Finance: CNCR: not found on Yahoo; Nasdaq: CNCR: not listed (closed, non-US or wrong ticker?); Stooq (price-only): <urlopen error timed out>",
+  "CRIT": "Yahoo Finance: CRIT: not found on Yahoo; Nasdaq: CRIT: not listed (closed, non-US or wrong ticker?); Stooq (price-only): <urlopen error timed out>",
+  "EBLU": "Yahoo Finance: EBLU: not found on Yahoo; Nasdaq: EBLU: not listed (closed, non-US or wrong ticker?); Stooq (price-only): <urlopen error timed out>",
+  "GERM": "Yahoo Finance: GERM: not found on Yahoo; Nasdaq: GERM: not listed (closed, non-US or wrong ticker?); Stooq (price-only): <urlopen error timed out>",
+  "JEPY": "Yahoo Finance: JEPY: not found on Yahoo; Nasdaq: JEPY: not listed (closed, non-US or wrong ticker?); Stooq (price-only): <urlopen error timed out>",
+  "QBUX": "Yahoo Finance: QBUX: not found on Yahoo; Nasdaq: QBUX: not listed (closed, non-US or wrong ticker?); Stooq (price-only): <urlopen error timed out>",
+  "QTUF": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?); Stooq (price-only): <urlopen error timed out>"
  },
  "hold_policy": {
   "days": 30,
@@ -19,45 +19,45 @@
  "missing": {
   "CNCR": {
    "since": "2026-10-09",
-   "checks": 27,
-   "last_checked": "2026-10-17",
-   "reason": "Yahoo Finance: CNCR: not found on Yahoo; Nasdaq: CNCR: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+   "checks": 28,
+   "last_checked": "2026-10-18",
+   "reason": "Yahoo Finance: CNCR: not found on Yahoo; Nasdaq: CNCR: not listed (closed, non-US or wrong ticker?); Stooq (price-only): <urlopen error timed out>"
   },
   "CRIT": {
    "since": "2026-10-09",
-   "checks": 27,
-   "last_checked": "2026-10-17",
-   "reason": "Yahoo Finance: CRIT: not found on Yahoo; Nasdaq: CRIT: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+   "checks": 28,
+   "last_checked": "2026-10-18",
+   "reason": "Yahoo Finance: CRIT: not found on Yahoo; Nasdaq: CRIT: not listed (closed, non-US or wrong ticker?); Stooq (price-only): <urlopen error timed out>"
   },
   "EBLU": {
    "since": "2026-10-09",
-   "checks": 27,
-   "last_checked": "2026-10-17",
-   "reason": "Yahoo Finance: EBLU: not found on Yahoo; Nasdaq: EBLU: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+   "checks": 28,
+   "last_checked": "2026-10-18",
+   "reason": "Yahoo Finance: EBLU: not found on Yahoo; Nasdaq: EBLU: not listed (closed, non-US or wrong ticker?); Stooq (price-only): <urlopen error timed out>"
   },
   "GERM": {
    "since": "2026-10-09",
-   "checks": 27,
-   "last_checked": "2026-10-17",
-   "reason": "Yahoo Finance: GERM: not found on Yahoo; Nasdaq: GERM: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+   "checks": 28,
+   "last_checked": "2026-10-18",
+   "reason": "Yahoo Finance: GERM: not found on Yahoo; Nasdaq: GERM: not listed (closed, non-US or wrong ticker?); Stooq (price-only): <urlopen error timed out>"
   },
   "JEPY": {
    "since": "2026-10-09",
-   "checks": 27,
-   "last_checked": "2026-10-17",
-   "reason": "Yahoo Finance: JEPY: not found on Yahoo; Nasdaq: JEPY: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+   "checks": 28,
+   "last_checked": "2026-10-18",
+   "reason": "Yahoo Finance: JEPY: not found on Yahoo; Nasdaq: JEPY: not listed (closed, non-US or wrong ticker?); Stooq (price-only): <urlopen error timed out>"
   },
   "QBUX": {
    "since": "2026-10-09",
-   "checks": 27,
-   "last_checked": "2026-10-17",
-   "reason": "Yahoo Finance: QBUX: not found on Yahoo; Nasdaq: QBUX: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+   "checks": 28,
+   "last_checked": "2026-10-18",
+   "reason": "Yahoo Finance: QBUX: not found on Yahoo; Nasdaq: QBUX: not listed (closed, non-US or wrong ticker?); Stooq (price-only): <urlopen error timed out>"
   },
   "QTUF": {
    "since": "2026-10-09",
-   "checks": 27,
-   "last_checked": "2026-10-17",
-   "reason": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+   "checks": 28,
+   "last_checked": "2026-10-18",
+   "reason": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?); Stooq (price-only): <urlopen error timed out>"
   }
  },
  "removed_recent": [],
@@ -174,7 +174,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "AIVL": {
    "price": 132.99,
@@ -308,7 +308,7 @@
     }
    ],
    "fund_family": "WisdomTree",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "AIYY": {
    "price": 7.22,
@@ -351,7 +351,7 @@
    ],
    "top10_weight_pct": 10.1,
    "fund_family": "YieldMax ETFs",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "AMLP": {
    "price": 52.63,
@@ -449,7 +449,7 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "AQWA": {
    "price": 18.37,
@@ -563,7 +563,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "ARKG": {
    "price": 46.7,
@@ -657,7 +657,7 @@
     }
    ],
    "fund_family": "ARK ETF Trust",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "ARKX": {
    "price": 29.88,
@@ -763,7 +763,7 @@
     }
    ],
    "fund_family": "ARK ETF Trust",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "ARTY": {
    "price": 69.58,
@@ -877,7 +877,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "BALI": {
    "price": 34.36,
@@ -996,7 +996,7 @@
     }
    ],
    "fund_family": "BlackRock",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "BATT": {
    "price": 13.46,
@@ -1102,7 +1102,7 @@
     }
    ],
    "fund_family": "Amplify ETFs",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "BBH": {
    "price": 241.36,
@@ -1196,7 +1196,7 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "BOTZ": {
    "price": 33.02,
@@ -1310,7 +1310,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "BUG": {
    "price": 44.34,
@@ -1404,7 +1404,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "CGW": {
    "price": 64.1,
@@ -1522,7 +1522,7 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "CHAT": {
    "price": 79.03,
@@ -1628,7 +1628,7 @@
     }
    ],
    "fund_family": "Roundhill Investments",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "CHPX": {
    "price": 88.03,
@@ -1728,7 +1728,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "CIBR": {
    "price": 98.82,
@@ -1830,7 +1830,7 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "CURE": {
    "price": 147.76,
@@ -1889,7 +1889,7 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "DFEN": {
    "price": 48.02,
@@ -1948,7 +1948,7 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "DIVO": {
    "price": 47.81,
@@ -2078,7 +2078,7 @@
     }
    ],
    "fund_family": "Amplify ETFs",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "DJIA": {
    "price": 22.83,
@@ -2204,7 +2204,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "ELFY": {
    "price": 37.77,
@@ -2312,7 +2312,7 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "EMLP": {
    "price": 43.27,
@@ -2418,7 +2418,7 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "ENFR": {
    "price": 38.7,
@@ -2516,7 +2516,7 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "ERX": {
    "price": 122.97,
@@ -2575,7 +2575,7 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "FAN": {
    "price": 22.08,
@@ -2685,7 +2685,7 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "FBT": {
    "price": 263.6,
@@ -2779,7 +2779,7 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "FCG": {
    "price": 31.35,
@@ -2877,7 +2877,7 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "FEPI": {
    "price": 40.89,
@@ -2979,7 +2979,7 @@
     }
    ],
    "fund_family": "Rex",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "FIW": {
    "price": 107.14,
@@ -3093,7 +3093,7 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "GNOM": {
    "price": 64.31,
@@ -3191,7 +3191,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "GPIQ": {
    "price": 55.55,
@@ -3321,7 +3321,7 @@
     }
    ],
    "fund_family": "Goldman Sachs",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "GPIX": {
    "price": 55.6,
@@ -3455,7 +3455,7 @@
     }
    ],
    "fund_family": "Goldman Sachs",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "GRID": {
    "price": 169.84,
@@ -3565,7 +3565,7 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "HACK": {
    "price": 117.09,
@@ -3663,7 +3663,7 @@
     }
    ],
    "fund_family": "Amplify ETFs",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "HELX": {
    "price": 41.12,
@@ -3765,7 +3765,7 @@
     }
    ],
    "fund_family": "Franklin Templeton, Inc",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "HRTS": {
    "price": 36.9,
@@ -3859,7 +3859,7 @@
     }
    ],
    "fund_family": "Tema ETFs",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "IBB": {
    "price": 201.99,
@@ -3953,7 +3953,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "ICLN": {
    "price": 16.33,
@@ -4059,7 +4059,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "IDNA": {
    "price": 40.54,
@@ -4153,7 +4153,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "IDU": {
    "price": 108.02,
@@ -4255,7 +4255,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "IFRA": {
    "price": 56.95,
@@ -4365,7 +4365,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "IGPT": {
    "price": 89.36,
@@ -4479,7 +4479,7 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "IGV": {
    "price": 104.34,
@@ -4589,7 +4589,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "IHAK": {
    "price": 66.7,
@@ -4687,7 +4687,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "IHE": {
    "price": 101.06,
@@ -4781,7 +4781,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "IHF": {
    "price": 58.65,
@@ -4879,7 +4879,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "IHI": {
    "price": 53.74,
@@ -4973,7 +4973,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "ISPY": {
    "price": 47.63,
@@ -5102,7 +5102,7 @@
     }
    ],
    "fund_family": "ProShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "ITA": {
    "price": 209.07,
@@ -5196,7 +5196,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "IVEP": {
    "price": 24.32,
@@ -5307,7 +5307,7 @@
     }
    ],
    "fund_family": "Wedbush Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "IXC": {
    "price": 62.98,
@@ -5401,7 +5401,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "IYW": {
    "price": 251.24,
@@ -5511,7 +5511,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "JEPI": {
    "price": 57.04,
@@ -5645,7 +5645,7 @@
     }
    ],
    "fund_family": "JPMorgan",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "JEPQ": {
    "price": 58.81,
@@ -5779,7 +5779,7 @@
     }
    ],
    "fund_family": "JPMorgan",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "LABU": {
    "price": 198.86,
@@ -5832,7 +5832,7 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "LIT": {
    "price": 64.05,
@@ -5942,7 +5942,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "LLY": {
    "price": 1257.03,
@@ -6073,7 +6073,7 @@
     }
    ],
    "fund_family": "TrueShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "MLPX": {
    "price": 73.41,
@@ -6167,7 +6167,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "NASA": {
    "price": 20.72,
@@ -6269,7 +6269,7 @@
     }
    ],
    "fund_family": "Tema ETFs",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "NLR": {
    "price": 94.34,
@@ -6375,7 +6375,7 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "NUKZ": {
    "price": 58.12,
@@ -6484,7 +6484,7 @@
     }
    ],
    "fund_family": "Exchange Traded Concepts",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "OIH": {
    "price": 382.18,
@@ -6582,7 +6582,7 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "OZEM": {
    "price": 29.25,
@@ -6675,7 +6675,7 @@
     }
    ],
    "fund_family": "Roundhill Investments",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "PAVE": {
    "price": 52.78,
@@ -6781,7 +6781,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "PBW": {
    "price": 25.17,
@@ -6895,7 +6895,7 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "PHO": {
    "price": 70.06,
@@ -7005,7 +7005,7 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "PICK": {
    "price": 58.19,
@@ -7115,7 +7115,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "PJP": {
    "price": 124.46,
@@ -7209,7 +7209,7 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "PPA": {
    "price": 156.43,
@@ -7311,7 +7311,7 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "PPH": {
    "price": 114.41,
@@ -7405,7 +7405,7 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "QBTX": {
    "price": 11.05,
@@ -7438,7 +7438,7 @@
    "expense_ratio": 1.31,
    "yield_ttm": "19.23%",
    "fund_family": "AXS",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "QCLN": {
    "price": 43.49,
@@ -7556,7 +7556,7 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "QPUX": {
    "price": 6.57,
@@ -7589,7 +7589,7 @@
    "expense_ratio": 1.29,
    "yield_ttm": "0.0%",
    "fund_family": "Defiance ETFs LLC",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "QQQ": {
    "price": 709.8,
@@ -7719,7 +7719,7 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "QQQI": {
    "price": 53.62,
@@ -7848,7 +7848,7 @@
     }
    ],
    "fund_family": "Neos Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "QQQY": {
    "price": 21.32,
@@ -7933,7 +7933,7 @@
     }
    ],
    "fund_family": "Defiance ETFs LLC",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "QTUM": {
    "price": 137.14,
@@ -8043,7 +8043,7 @@
     }
    ],
    "fund_family": "Defiance ETFs LLC",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "QYLD": {
    "price": 18.32,
@@ -8168,7 +8168,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "REMX": {
    "price": 54.23,
@@ -8262,7 +8262,7 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "RGTU": {
    "price": 5.73,
@@ -8295,7 +8295,7 @@
    "expense_ratio": 1.3,
    "yield_ttm": "88.48%",
    "fund_family": "AXS",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "ROBO": {
    "price": 75.3,
@@ -8409,7 +8409,7 @@
     }
    ],
    "fund_family": "Robo Global",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "ROBT": {
    "price": 56.24,
@@ -8523,7 +8523,7 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "ROKT": {
    "price": 100.55,
@@ -8629,7 +8629,7 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "RYLD": {
    "price": 15.19,
@@ -8718,7 +8718,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "SBIO": {
    "price": 50.12,
@@ -8812,7 +8812,7 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "SHLD": {
    "price": 61.48,
@@ -8910,7 +8910,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "SMH": {
    "price": 539.79,
@@ -9004,7 +9004,7 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "SMRF": {
    "price": 19.97,
@@ -9115,7 +9115,7 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "SOXX": {
    "price": 493.39,
@@ -9209,7 +9209,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "SPCX": {
    "price": 146.03,
@@ -9370,7 +9370,7 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "SPYI": {
    "price": 53.35,
@@ -9504,7 +9504,7 @@
     }
    ],
    "fund_family": "Neos Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "SVOL": {
    "price": 16.49,
@@ -9608,7 +9608,7 @@
     }
    ],
    "fund_family": "Simplify Asset Management",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "TAN": {
    "price": 41.85,
@@ -9714,7 +9714,7 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "THNQ": {
    "price": 87.86,
@@ -9828,7 +9828,7 @@
     }
    ],
    "fund_family": "Robo Global",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "THNR": {
    "price": 24.5,
@@ -9921,7 +9921,7 @@
     }
    ],
    "fund_family": "Amplify ETFs",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "TPYP": {
    "price": 42.48,
@@ -10019,7 +10019,7 @@
     }
    ],
    "fund_family": "Tortoise Capital Advisors, LLC",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "UBOT": {
    "price": 18.88,
@@ -10088,7 +10088,7 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "UFO": {
    "price": 39.28,
@@ -10190,7 +10190,7 @@
     }
    ],
    "fund_family": "Procure ETF Trust II",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "UNG": {
    "price": 10.66,
@@ -10225,7 +10225,7 @@
    "expense_ratio": 1.17,
    "yield_ttm": "0.0%",
    "fund_family": "USCF Investments",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "URA": {
    "price": 35.43,
@@ -10330,7 +10330,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "URAA": {
    "price": 15.69,
@@ -10404,7 +10404,7 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "URAN": {
    "price": 32.46,
@@ -10513,7 +10513,7 @@
     }
    ],
    "fund_family": "Themes ETF Trust",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "URNJ": {
    "price": 17.69,
@@ -10611,7 +10611,7 @@
     }
    ],
    "fund_family": "Sprott",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "URNM": {
    "price": 43.22,
@@ -10709,29 +10709,29 @@
     }
    ],
    "fund_family": "Sprott",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "URNU.L": {
    "price": 21.13,
    "price_display": "$21.13",
    "currency": "USD",
-   "price_asof": "2026-10-15",
-   "volume_avg": 44082,
+   "price_asof": "2026-10-16",
+   "volume_avg": 44130,
    "volume_display": "~44K/day",
-   "dollar_volume_avg": 1097340,
+   "dollar_volume_avg": 1096507,
    "dollar_volume_display": "~$1.1M/day",
    "high_52w": 36.71,
-   "low_52w": 21.23,
-   "pct_below_high": "-42.1%",
-   "max_drawdown_1y": "-42.2%",
+   "low_52w": 21.13,
+   "pct_below_high": "-42.4%",
+   "max_drawdown_1y": "-42.4%",
    "history_start": "2022-04-22",
    "performance": {
-    "ytd": "-18.4%",
-    "y1": "-40.1%",
-    "y3_annualized": "+17.2%/yr",
+    "ytd": "-18.9%",
+    "y1": "-39.2%",
+    "y3_annualized": "+16.9%/yr",
     "y2025": "+70.5%",
     "y2024": "+1.2%",
-    "as_of": "2026-10-15",
+    "as_of": "2026-10-16",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Global X Uranium UCITS ETF USD Acc",
@@ -10819,7 +10819,7 @@
     }
    ],
    "fund_family": "Global X",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "UTES": {
    "price": 76.2,
@@ -10913,7 +10913,7 @@
     }
    ],
    "fund_family": "Virtus",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "VDE": {
    "price": 190.14,
@@ -11015,7 +11015,7 @@
     }
    ],
    "fund_family": "Vanguard",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "VOLT": {
    "price": 34.21,
@@ -11120,7 +11120,7 @@
     }
    ],
    "fund_family": "Tema ETFs",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "VPU": {
    "price": 182.41,
@@ -11222,7 +11222,7 @@
     }
    ],
    "fund_family": "Vanguard",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "WAR": {
    "price": 27.93,
@@ -11323,7 +11323,7 @@
     }
    ],
    "fund_family": "U.S. Global Investors",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "WCBR": {
    "price": 43.92,
@@ -11417,7 +11417,7 @@
     }
    ],
    "fund_family": "WisdomTree",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "WQTM": {
    "price": 27.84,
@@ -11520,7 +11520,7 @@
     }
    ],
    "fund_family": "WisdomTree",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "WTAI": {
    "price": 37.74,
@@ -11626,7 +11626,7 @@
     }
    ],
    "fund_family": "WisdomTree",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "XAR": {
    "price": 224.53,
@@ -11720,7 +11720,7 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "XBI": {
    "price": 144.32,
@@ -11818,7 +11818,7 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "XLE": {
    "price": 68.24,
@@ -11912,7 +11912,7 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "XLK": {
    "price": 183.47,
@@ -12006,7 +12006,7 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "XLU": {
    "price": 42.21,
@@ -12100,7 +12100,7 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "XLV": {
    "price": 176.71,
@@ -12194,7 +12194,7 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "XME": {
    "price": 100.92,
@@ -12296,7 +12296,7 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "XNDX": {
    "price": 0.58,
@@ -12328,7 +12328,7 @@
    "aum_display": "~$4M",
    "expense_ratio": 1.49,
    "fund_family": "AXS",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "XOP": {
    "price": 200.38,
@@ -12430,7 +12430,7 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "XPH": {
    "price": 61.84,
@@ -12524,7 +12524,7 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "XT": {
    "price": 81.73,
@@ -12654,7 +12654,7 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "XYLD": {
    "price": 41.8,
@@ -12788,7 +12788,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   },
   "XYLG": {
    "price": 29.45,
@@ -12922,7 +12922,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-17"
+   "profile_asof": "2026-10-18"
   }
  }
 }
