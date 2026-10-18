@@ -45,9 +45,14 @@ const GLOSSARY = {
   "1-yr price": "52-week change in the share price only — excludes dividends/distributions, so income and bond funds look worse than their real (total) return.",
   "Size": "Explorer rating from fund size (AUM): 🟢 ≥ $500M, 🟡 ≥ $50M, 🔴 smaller — small funds have wider spreads and closure risk.",
   "Pre-screen": "Explorer shortcut: expense ratio ≤ 0.50% (cost 🟢), AUM ≥ $50M, and not leveraged/inverse, an ETN or futures-based. Concentration and purity still need a look at the holdings.",
-  "Domicile": "Where a fund is legally based (US, Ireland, Luxembourg, Hong Kong…). It drives the tax drag on dividends and, for non-US investors, US estate-tax exposure — see 'Tax & domicile' in the Explorer. General information only, not tax advice.",
+  "Domicile": "Where a fund is legally based (US, Ireland, Luxembourg, Hong Kong…). It drives the tax drag on dividends and, for non-US investors, US estate-tax exposure. Set where you pay tax in ⚙ Settings to see general notes for your country (also under 'Tax & domicile' in the Explorer). General information only, not tax advice.",
+  "Core": "Your main bucket: plain, low-cost funds tracking a broad market index (the whole world, the developed world or the big US companies). Compared only with other core funds in the same role.",
+  "Thematic": "Small satellite bets on a niche (space, quantum …). Volatile — 30–50% falls are normal — so they're compared only within their theme and sized with a cap per theme (⚙ Settings).",
+  "Income (reference)": "Funds built to pay out cash, mostly by selling options. Shown for reference unless your settings say you need income — e.g. to see what yield you'd give up by choosing growth.",
+  "Accumulating (Acc)": "A share class that reinvests the dividends it receives inside the fund instead of paying them to you. Same fund as the distributing class; it doesn't change the risk, and some countries still tax the reinvested income.",
+  "Distributing (Dist)": "A share class that pays the dividends it receives out to you as cash. US-listed ETFs always distribute.",
   "Daily data": "Price, volume, returns, AUM and top holdings refresh automatically every weekday after the US market close (end-of-day, not intraday). Faded values are an older hand-researched snapshot, shown until fresh data exists. For an intraday price, open a fund and tap “Live quote”.",
-  "Value Score": "Income / Covered-Call → Value ranking: one number out of 100 for how much an income ETF delivered for the risk you took over the last 3 years — earned income, paycheck trend, growth kept and smooth ride, 25 points each, minus red flags. Same formula for every fund, so higher is better. A 80+, B 70–79, C 60–69, D 45–59, F under 45. Describes the past, not a forecast; not advice.",
+  "Value Score": "Income tab → Value ranking: one number out of 100 for how much an income ETF delivered for the risk you took over the last 3 years — earned income, paycheck trend, growth kept and smooth ride, 25 points each, minus red flags. Same formula for every fund, so higher is better. A 80+, B 70–79, C 60–69, D 45–59, F under 45. Describes the past, not a forecast; not advice.",
   "Earned income": "The payout yield, counted only up to the fund's total return. Anything paid beyond that came out of your own capital (the share price fell).",
   "Safety-checked": "Passes the size, age, fee, trading-volume and structure checks from the income brief (or is within 6 months of the age rule).",
 };
@@ -340,20 +345,151 @@ async function loadMarket(bust) {
   } catch (_) { /* not generated yet — the curated snapshot is used */ }
   return MARKET;
 }
-// ---- views: Themes (curated analysis) | Explorer (every listed ETF) --
-// The income theme has two sub-views: the Value ranking of every income ETF
-// (income.js, the default) and the curated "Analyst picks" table.
-let VIEW = "themes", LAST_THEME = null, INCOME_SUB = null, INCOME_SUB_LAST = "rankings";
-const VIEWS = { themes: ["#themeView", "#tabThemes"], explore: ["#explorer", "#tabExplore"] };
+// ---- settings: each visitor's own plan (stored in this browser only) --
+// Friends use the site too, so nothing personal is built in: the split between
+// core and themes, whether income is needed and where tax is paid are settings.
+const SETTINGS_DEFAULT = { core: 90, perTheme: 3, income: "no", tax: "" };
+let SETTINGS = readSettings(), SETTINGS_DIRTY = false;
+let TAX = null;                          // data/tax-domicile.json: general domicile notes per tax residence
+function readSettings() {
+  let s = {};
+  try { s = JSON.parse(localStorage.getItem("etf.settings") || "{}") || {}; } catch (_) { s = {}; }
+  const n = (v, lo, hi, d) => { v = Number(v); return v !== null && isFinite(v) && v >= lo && v <= hi ? v : d; };
+  const core = n(s.core, 0, 100, SETTINGS_DEFAULT.core);
+  return { core, perTheme: Math.min(n(s.perTheme, 0, 100, SETTINGS_DEFAULT.perTheme), 100 - core),
+    income: s.income === "yes" ? "yes" : "no", tax: typeof s.tax === "string" ? s.tax : "", saved: !!s.saved };
+}
+function writeSettings(patch) {
+  const next = { ...SETTINGS, ...patch, saved: true };
+  try { localStorage.setItem("etf.settings", JSON.stringify(next)); } catch (_) { /* private mode: this visit only */ }
+  SETTINGS = { ...next, perTheme: Math.min(next.perTheme, 100 - next.core) };
+  SETTINGS_DIRTY = true;
+}
+const needsIncome = () => SETTINGS.income === "yes";
+const thematicShare = () => 100 - SETTINGS.core;
+const pctTxt = v => `${+Number(v).toFixed(1)}%`;
+const taxHome = () => (TAX && TAX.residencies || []).find(r => r.id === SETTINGS.tax) || null;
+// The general note for one domicile ('IE', 'LU', 'US', 'HK', 'IE/LU') for this visitor's tax residence.
+function domicileView(dom) {
+  const r = taxHome();
+  if (!r || !r.domiciles || r.id === "other") return null;
+  if (dom === "IE/LU") {
+    const ie = r.domiciles.IE, lu = r.domiciles.LU;
+    return ie && lu ? { verdict: ie.verdict === lu.verdict ? ie.verdict : "check", note: `Ireland: ${ie.note} Luxembourg: ${lu.note}` } : null;
+  }
+  return r.domiciles[dom] || null;
+}
+const VERDICT = { "usually better": ["✓", "good"], neutral: ["•", "mid"], "usually worse": ["▾", "warn"], "usually avoid": ["✗", "bad"], check: ["?", "mid"] };
+function verdictChip(dom) {
+  const v = domicileView(dom), r = taxHome();
+  if (!v) return null;
+  const [sym, cls] = VERDICT[v.verdict] || ["•", "mid"];
+  return el("span", { class: "domverdict " + cls, title: `For ${r.label} residents (general information, not tax advice): ${v.note}` },
+    `${sym} ${v.verdict === "check" ? "check the ISIN" : v.verdict}`);
+}
+
+// "Your plan" line at the top of Core, Thematic and Income.
+function planStrip() {
+  const r = taxHome();
+  return el("div", { class: "planstrip" },
+    el("span", {}, "Your plan: ", el("b", {}, `Core ${pctTxt(SETTINGS.core)}`), " · ",
+      el("b", {}, `Thematic ${pctTxt(thematicShare())}`), ` (max ${pctTxt(SETTINGS.perTheme)} per theme) · `,
+      `Income ${needsIncome() ? "wanted" : "not needed"} · Tax residence: ${r ? r.label : "not set"}`, " "),
+    el("button", { class: "refresh", type: "button", onclick: openSettings }, "⚙ Change"));
+}
+function openSettings() {
+  const body = $("#memoBody"); body.innerHTML = "";
+  const s = SETTINGS, wrap = el("div", { class: "memo settings" });
+  const num = (id, val, min, max, step) => el("input", { type: "number", id, value: String(val), min: String(min), max: String(max), step: String(step), inputmode: "decimal" });
+  const split = el("p", { class: "muted small", id: "setSplitNote" });
+  const showSplit = () => {
+    const th = thematicShare(), cap = SETTINGS.perTheme;
+    split.textContent = `Thematic (satellite) share: ${pctTxt(th)}. ` + (cap > 0
+      ? `If one theme at your ${pctTxt(cap)} cap fell 50% — normal for niche funds — your whole portfolio would drop about ${pctTxt(cap / 2)}.`
+      : "No money in themes.");
+  };
+  const residences = (TAX && TAX.residencies) || [];
+  wrap.append(
+    el("h2", { id: "memoTitle" }, "⚙ Your settings"),
+    el("p", { class: "muted small" }, "Saved in this browser only — nothing is sent anywhere. Anyone else using the site on their own phone or computer sets their own."),
+    el("h3", {}, "1 · Your split"),
+    el("p", { class: "small" }, "Decide this first, then pick the best fund inside each bucket. Core = broad, low-cost funds (your main money). Thematic = small bets on niches like space or quantum."),
+    el("div", { class: "setrow" }, el("label", { for: "setCore" }, "Core share of your portfolio"), num("setCore", s.core, 0, 100, 5), el("span", {}, "%")),
+    el("div", { class: "setrow" }, el("label", { for: "setPer" }, "Most in any one theme"), num("setPer", s.perTheme, 0, 100, 0.5), el("span", {}, "%")),
+    split,
+    el("h3", {}, "2 · Do you need regular income from these investments?"),
+    el("div", { class: "setrow radios", role: "radiogroup", "aria-label": "Need income" },
+      el("label", {}, el("input", { type: "radio", name: "setInc", value: "no", ...(s.income !== "yes" ? { checked: "checked" } : {}) }),
+        " No — I'm growing my money. Income funds are shown for reference only, and hidden in the Explorer."),
+      el("label", {}, el("input", { type: "radio", name: "setInc", value: "yes", ...(s.income === "yes" ? { checked: "checked" } : {}) }),
+        " Yes — I want regular cash payouts.")),
+    el("h3", {}, "3 · Where do you pay tax?"),
+    el("p", { class: "small" }, "Only used to show general notes on what a fund's domicile (the country it's legally based in) usually means for someone taxed there. It is not tax advice — your own situation can differ."),
+    el("div", { class: "setrow" }, el("label", { for: "setTax" }, "Tax residence"),
+      el("select", { id: "setTax" }, el("option", { value: "" }, "Not set — show general notes"),
+        ...residences.filter(r => r.id !== "other").map(r => el("option", { value: r.id }, r.label)),
+        el("option", { value: "other" }, "Somewhere else"))),
+    el("p", { class: "muted small", id: "setTaxNote" }),
+    el("div", { class: "setrow" }, el("button", { type: "button", class: "refresh", id: "setReset" }, "Reset to defaults"),
+      el("button", { type: "button", id: "setDone" }, "Done")));
+  body.append(wrap);
+  const taxNote = () => {
+    const r = taxHome();
+    $("#setTaxNote").textContent = r && r.summary ? r.summary : !residences.length ? "The domicile notes haven't loaded — check your connection." : "";
+  };
+  $("#setTax").value = residences.some(r => r.id === s.tax) ? s.tax : "";
+  showSplit(); taxNote();
+  const clampNum = (v, d) => { v = parseFloat(v); return isFinite(v) ? Math.min(100, Math.max(0, v)) : d; };
+  $("#setCore").addEventListener("change", e => { writeSettings({ core: clampNum(e.target.value, SETTINGS_DEFAULT.core) }); $("#setPer").value = SETTINGS.perTheme; e.target.value = SETTINGS.core; showSplit(); });
+  $("#setPer").addEventListener("change", e => { writeSettings({ perTheme: clampNum(e.target.value, SETTINGS_DEFAULT.perTheme) }); e.target.value = SETTINGS.perTheme; showSplit(); });
+  wrap.querySelectorAll("input[name=setInc]").forEach(r => r.addEventListener("change", e => writeSettings({ income: e.target.value })));
+  $("#setTax").addEventListener("change", e => { writeSettings({ tax: e.target.value }); taxNote(); });
+  $("#setReset").addEventListener("click", () => { writeSettings({ ...SETTINGS_DEFAULT }); openSettings(); });
+  $("#setDone").addEventListener("click", closeMemo);
+  $("#nudge").hidden = true;
+  const drawer = $("#memoDrawer");
+  $("#overlay").hidden = false; drawer.hidden = false; drawer.scrollTop = 0;
+  document.body.classList.add("noscroll");
+  $("#closeMemo").focus({ preventScroll: true });
+}
+// After the settings drawer closes: redraw whatever depends on them.
+function settingsChanged() {
+  SETTINGS_DIRTY = false;
+  $("#tabIncome").classList.toggle("ref", !needsIncome());
+  if (VIEW === "core" && typeof renderCore === "function") renderCore();
+  else if (VIEW === "themes" && CURRENT) renderIntro();
+  else if (VIEW === "income") selectTheme("income", INCOME_SUB);
+  else if (VIEW === "explore" && typeof explorerSettingsChanged === "function") explorerSettingsChanged();
+}
+function showNudge() {
+  let seen = false;
+  try { seen = !!localStorage.getItem("etf.nudged"); } catch (_) { seen = true; }
+  if (SETTINGS.saved || seen) return;
+  const box = $("#nudge"); box.hidden = false; box.innerHTML = "";
+  const dismiss = () => { box.hidden = true; try { localStorage.setItem("etf.nudged", "1"); } catch (_) { /* ignore */ } };
+  box.append(el("span", {}, "👋 Make the site yours: set your split between core and thematic funds, whether you need income, and where you pay tax. "),
+    el("button", { type: "button", onclick: () => { dismiss(); openSettings(); } }, "⚙ Open settings"),
+    el("button", { type: "button", class: "msgclose", "aria-label": "Dismiss", onclick: dismiss }, "×"));
+}
+
+// ---- views: Core | Thematic (curated themes) | Income | Explorer -----
+// Funds are only ever ranked inside their own lane. The Income tab is the income
+// theme, with two sub-views: the Value ranking of every income ETF (income.js,
+// the default) and the curated "Analyst memos" table.
+let VIEW = "core", LAST_THEME = null, INCOME_SUB = null, INCOME_SUB_LAST = "rankings";
+const VIEWS = { core: ["#coreView", "#tabCore"], themes: ["#themeView", "#tabThemes"], income: ["#themeView", "#tabIncome"], explore: ["#explorer", "#tabExplore"] };
 function setView(v) {
   VIEW = v;
-  Object.entries(VIEWS).forEach(([k, [sec, tab]]) => {
-    $(sec).hidden = k !== v;
+  Object.values(VIEWS).forEach(([sec]) => { $(sec).hidden = true; });
+  $(VIEWS[v][0]).hidden = false;
+  Object.entries(VIEWS).forEach(([k, [, tab]]) => {
     $(tab).classList.toggle("active", k === v);
     $(tab).setAttribute("aria-selected", k === v);
   });
   $(".theme-picker").classList.toggle("dim", v !== "themes");
   if (v === "explore" && !location.hash.startsWith("#explore")) history.replaceState(null, "", "#explore");
+  if (v === "core" && location.hash !== "#core") history.replaceState(null, "", "#core");
+  try { localStorage.setItem("etf.view", v); } catch (_) { /* private mode */ }
   closeMemo();
   if (typeof renderTray === "function") renderTray();
 }
@@ -365,17 +501,27 @@ const themeAlias = id => THEME_ALIASES[id] || id;
 const themeFromUrl = () => themeAlias(decodeURIComponent(location.hash.replace(/^#/, "")).split("/")[0]);
 const incomeSubFromUrl = () => decodeURIComponent(location.hash).split("/")[1] === "picks" ? "picks" : "rankings";
 function savedTheme() { try { return themeAlias(localStorage.getItem("etf.theme")); } catch (_) { return null; } }
+function savedView() { try { return localStorage.getItem("etf.view"); } catch (_) { return null; } }
+const nicheIds = () => Object.keys(window._THEMES || {}).filter(id => id !== "income");
 
 async function init() {
   const sel = $("#themeSelect");
   const [themes] = await Promise.all([
     Promise.all(THEME_FILES.map(id => fetchJson(`data/${id}.json`).then(t => { t._id = id; return t; }).catch(() => null))),
     loadMarket(),
+    fetchJson("data/tax-domicile.json").then(j => { TAX = j; }).catch(() => { TAX = null; }),
   ]);
   const loaded = themes.filter(Boolean);
   window._THEMES = {};
-  loaded.forEach(t => { window._THEMES[t._id] = t; sel.append(el("option", { value: t._id }, `${t.name} (${(t.etfs || []).length})`)); });
+  loaded.forEach(t => {
+    window._THEMES[t._id] = t;
+    if (t._id !== "income") sel.append(el("option", { value: t._id }, `${t.name} (${(t.etfs || []).length})`));   // income has its own tab
+  });
   sel.addEventListener("change", () => selectTheme(sel.value));
+  $("#tabIncome").classList.toggle("ref", !needsIncome());
+  $("#tabIncome").title = "Income-focused funds — for reference unless your settings say you need income";
+  $("#settingsBtn").addEventListener("click", openSettings);
+  showNudge();
 
   // Footer abbreviations legend, from the same GLOSSARY.
   const gl = $("#glossaryList");
@@ -397,59 +543,76 @@ async function init() {
   $("#segmentSel").addEventListener("change", render);
   $("#addBtn").addEventListener("click", onAddTicker);
   $("#addTicker").addEventListener("keydown", e => { if (e.key === "Enter") onAddTicker(); });
+  $("#tabCore").addEventListener("click", () => { if (VIEW !== "core") showCore(); });
   $("#tabThemes").addEventListener("click", () => { if (VIEW !== "themes") selectTheme(LAST_THEME || $("#themeSelect").value); });
+  $("#tabIncome").addEventListener("click", () => { if (VIEW !== "income") selectTheme("income"); });
   $("#tabExplore").addEventListener("click", () => { if (VIEW !== "explore") showExplorer(); });
   $("#closeMemo").addEventListener("click", closeMemo);
   $("#overlay").addEventListener("click", closeMemo);
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeMemo(); });
 
   if (!loaded.length) {
+    $("#themeView").hidden = false;
     $("#themeIntro").append(el("p", { class: "livemsg err" }, "Couldn't load the theme data. Check your connection and reload the page."));
     return;
   }
-  const want = [themeFromUrl(), savedTheme()].find(id => id && window._THEMES[id]);
-  const first = want || loaded[0]._id;
-  sel.value = first;
-  const ex = exploreRoute();
-  if (ex !== null) { LAST_THEME = first; showExplorer(window._THEMES[ex] ? ex : ""); }
-  else selectTheme(first, first === themeFromUrl() && first === "income" ? incomeSubFromUrl() : undefined);
-  window.addEventListener("hashchange", () => {
-    const exr = exploreRoute();
-    if (exr !== null) { if (VIEW !== "explore") showExplorer(window._THEMES[exr] ? exr : undefined); return; }
-    const h = themeFromUrl();
-    if (!h || !window._THEMES[h]) return;
+  const niche = savedTheme();
+  LAST_THEME = niche && niche !== "income" && window._THEMES[niche] ? niche : nicheIds()[0];
+  sel.value = LAST_THEME;
+  route(savedView());
+  window.addEventListener("hashchange", () => route());
+}
+// Open whatever the address asks for (#core, #explore, #<theme>, #income/…), else `fallback`
+// (the last tab used), else Core.
+function route(fallback) {
+  const exr = exploreRoute();
+  if (exr !== null) { if (VIEW !== "explore" || !$("#explorer").dataset.built) showExplorer(window._THEMES[exr] ? exr : undefined); return; }
+  const h = themeFromUrl();
+  if (h === "core" || (!h && fallback !== "themes" && fallback !== "income" && fallback !== "explore")) { showCore(); return; }
+  if (h && window._THEMES[h]) {
     const sub = h === "income" ? incomeSubFromUrl() : undefined;
-    if (VIEW !== "themes" || h !== CURRENT._id || sub !== (INCOME_SUB || undefined)) { sel.value = h; selectTheme(h, sub); }
-    else if (sub === "rankings") showIncomeRankings();            // e.g. #income/fund=GPIX while already there
-  });
+    if (VIEW === "income" && h === "income" && sub === INCOME_SUB && sub === "rankings") { showIncomeRankings(); return; }  // e.g. #income/fund=GPIX while already there
+    if ((VIEW !== "themes" && VIEW !== "income") || h !== (CURRENT && CURRENT._id) || sub !== (INCOME_SUB || undefined)) selectTheme(h, sub);
+    return;
+  }
+  if (h) return;                                                   // an unknown address: stay where we are
+  if (fallback === "explore") showExplorer();
+  else if (fallback === "income") selectTheme("income");
+  else selectTheme(LAST_THEME);
 }
 
 // `sub` only applies to the income theme: "rankings" (default) or "picks".
+let INCOME_OPEN = false;                  // income lists unfolded although the settings say income isn't needed
 function selectTheme(id, sub) {
   CURRENT = window._THEMES[id];
-  LAST_THEME = id;
-  INCOME_SUB = id === "income" ? (sub || INCOME_SUB_LAST) : null;
+  const income = id === "income";
+  if (!income) LAST_THEME = id;
+  INCOME_SUB = income ? (sub || INCOME_SUB_LAST) : null;
   if (INCOME_SUB) INCOME_SUB_LAST = INCOME_SUB;
+  if (income && (/^#income\/(fund|compare)=/.test(location.hash) || sub === "picks")) INCOME_OPEN = true;   // a deep link means "show me"
+  const folded = income && !needsIncome() && !INCOME_OPEN;
   const ranking = INCOME_SUB === "rankings";
-  $("#themeSelect").value = id;
-  setView("themes");
+  if (!income) $("#themeSelect").value = id;
+  setView(income ? "income" : "themes");
   if (!activeColumns().some(c => c.key === SORT.key)) SORT = { key: "ticker", dir: 1 };
-  $("#controls").hidden = ranking;
-  $("#colGuide").hidden = ranking;
-  $("#tableWrap").hidden = ranking;
-  $("#incomeLab").hidden = !ranking;
+  $("#controls").hidden = ranking || folded;
+  $("#colGuide").hidden = ranking || folded;
+  $("#tableWrap").hidden = ranking || folded;
+  $("#incomeLab").hidden = !ranking || folded;
+  $("#tensions").hidden = folded;
   $("#liveMsg").hidden = true;
   const segs = [...new Set((CURRENT.etfs || []).map(e => e.segment).filter(Boolean))];
   const segSel = $("#segmentSel");
   segSel.innerHTML = "";
   segSel.append(el("option", { value: "" }, "All segments"), ...segs.map(x => el("option", { value: x }, x)));
   segSel.hidden = segs.length < 2;
-  try { localStorage.setItem("etf.theme", id); } catch (_) { /* private mode */ }
+  if (!income) try { localStorage.setItem("etf.theme", id); } catch (_) { /* private mode */ }
   const want = "#" + id + (INCOME_SUB === "picks" ? "/picks" : "");
   const deep = ranking && /^#income\/(fund|compare)=/.test(location.hash);    // keep a deep link for income.js
   if (location.hash !== want && !deep) history.replaceState(null, "", want);
   closeMemo();
   renderIntro(); renderTensions();
+  if (folded) { $("#roster").hidden = true; return; }
   if (ranking) { $("#roster").hidden = true; showIncomeRankings(); return; }
   render(); renderRoster();
   // the picks table reads the ranking's yields and Value Scores once they're loaded
@@ -470,10 +633,13 @@ function freshnessText() {
 }
 function renderIntro() {
   const t = CURRENT, box = $("#themeIntro"); box.innerHTML = "";
-  const curated = INCOME_SUB !== "rankings";          // the ranking writes its own intro
+  const income = t._id === "income", folded = income && !needsIncome() && !INCOME_OPEN;
+  const curated = INCOME_SUB !== "rankings" && !folded;  // the ranking writes its own intro
   box.append(...[            // DOM append() would print a literal "null" — drop absent parts
-    el("h2", {}, t.name + " ETFs"),
-    t._id === "income" ? incomeSubTabs() : null,
+    el("h2", {}, t.name + " ETFs" + (income && !needsIncome() ? " — for reference" : "")),
+    planStrip(),
+    income ? incomeRefNote(folded) : sizingNote(),
+    income && !folded ? incomeSubTabs() : null,
     curated ? el("div", { class: "asof" }, `Analysis as of ${t.as_of || "—"} · ${freshnessText()} `,
       el("button", { class: "refresh", title: "Re-load the latest daily market-data file", onclick: onCheckUpdate }, "↻ check for update")) : null,
     el("div", { class: "tagline" }, t.tagline || ""),
@@ -482,6 +648,22 @@ function renderIntro() {
     curated && t._id === "income" ? el("p", { class: "bench" }, "▸ Want one number to compare every income ETF? ",
       el("button", { class: "refresh", onclick: () => selectTheme("income", "rankings") }, "See the Value ranking →")) : null
   ].filter(Boolean));
+}
+// Income is a reference lane unless the settings say income is needed.
+function incomeRefNote(folded) {
+  if (needsIncome()) return null;
+  const n = (CURRENT.etfs || []).filter(e => !e._adhoc).length;
+  return el("div", { class: "refnote" },
+    el("p", {}, el("b", {}, "Reference only — your settings say you don't need income. "),
+      "These funds are built to pay out cash, mostly by selling options on the stocks they hold. They're here to show what yield you'd be giving up by choosing growth, and for anyone who does need income."),
+    folded ? el("p", {}, `Inside: a Value ranking of every option-income ETF we track and ${n} analyst memos. `,
+      el("button", { type: "button", onclick: () => { INCOME_OPEN = true; selectTheme("income", INCOME_SUB); } }, "Show the income lists")) : null);
+}
+function sizingNote() {
+  const cap = SETTINGS.perTheme;
+  return el("p", { class: "bench" }, "▸ ", cap > 0
+    ? `Thematic funds are small satellite bets, compared only with other funds in the same theme — never with core funds. Your settings cap one theme at ${pctTxt(cap)} of your portfolio, so a 50% fall (normal for niche funds) would cost about ${pctTxt(cap / 2)} overall.`
+    : "Your settings put nothing in thematic funds — these lists are for reference. Funds here are compared only with others in the same theme.");
 }
 function renderTensions() {
   const box = $("#tensions"); box.innerHTML = "";
@@ -691,7 +873,6 @@ function rosterEntry(ticker) {
   return null;
 }
 function goTo(theme, ticker) {
-  $("#themeSelect").value = theme._id;
   selectTheme(theme._id, theme._id === "income" ? "picks" : undefined);    // curated memos live in the picks table
   openMemo(ticker);
 }
@@ -885,6 +1066,8 @@ function openMemo(ticker) {
   if (e.sec_yield) facts.push(["30-day SEC yield", e.sec_yield]);
   facts.push(["Structure", e.structure], ["Index", e.index], ["# Holdings", e.holdings_count]);
   if (e.listing) facts.push(["Listing", e.listing]);
+  if (e.role) facts.push(["Role", e.role]);
+  if (e.payout) facts.push(["Payout", e.payout]);
   if (e.domicile) facts.push(["Domicile", e.domicile]);
   facts.push(["Top-10 weight", [e.top10_weight_display && e.top10_weight_display !== "—" ? e.top10_weight_display : null,
     !e._adhoc && d && d.top10_weight_pct != null ? `latest ~${d.top10_weight_pct}%` : null].filter(Boolean).join(" · ") || null]);
@@ -893,6 +1076,9 @@ function openMemo(ticker) {
   facts.filter(([, v]) => !isPlaceholder(v)).forEach(([k, v]) =>
     kv.append(el("div", { title: GLOSSARY[k] || "" }, el("span", {}, k + ": "), String(v))));
   wrap.append(sectionTitle("Key facts"), kv);
+  const dv = e._dom && domicileView(e._dom);
+  if (dv) wrap.append(el("p", { class: "small domnote" }, el("b", {}, `Domicile for ${taxHome().label} residents: `),
+    verdictChip(e._dom), " ", dv.note, el("span", { class: "muted" }, " General information, not tax advice.")));
 
   wrap.append(sectionTitle(e._adhoc ? "Mechanical ratings (not curated)" : "Scored dimensions"));
   ["cost", "purity", "concentration", "liquidity", "track_record"].forEach(dim => {
@@ -1001,6 +1187,7 @@ function closeMemo() {
   $("#memoDrawer").classList.remove("wide");
   document.body.classList.remove("noscroll");
   if (open && /^#income\/(fund|compare)=/.test(location.hash)) history.replaceState(null, "", "#income");
+  if (open && SETTINGS_DIRTY) settingsChanged();
 }
 
 init();

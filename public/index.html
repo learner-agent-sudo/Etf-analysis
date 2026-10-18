@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ETF Analysis</title>
-  <meta name="description" content="Compare thematic ETFs on expense ratio, holdings, concentration and performance." />
+  <meta name="description" content="Pick ETFs by role: a low-cost core, a small thematic satellite, and income funds for reference — compared on cost, size, payout type and domicile." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,18 +14,23 @@
       <h1>ETF Analysis</h1>
     </div>
     <nav class="tabs" role="tablist" aria-label="View">
-      <button id="tabThemes" class="tab active" role="tab" aria-selected="true">Themes</button>
+      <button id="tabCore" class="tab active" role="tab" aria-selected="true">Core</button>
+      <button id="tabThemes" class="tab" role="tab" aria-selected="false">Thematic</button>
+      <button id="tabIncome" class="tab" role="tab" aria-selected="false">Income</button>
       <button id="tabExplore" class="tab" role="tab" aria-selected="false">Explorer</button>
     </nav>
     <div class="theme-picker">
       <label for="themeSelect">Theme</label>
       <select id="themeSelect" aria-label="Select theme"></select>
     </div>
+    <button id="settingsBtn" class="gear" type="button" aria-label="Settings: your split, income need and tax residence" title="Settings">⚙<span class="gearlabel"> Settings</span></button>
   </header>
 
   <main id="main">
+    <section id="nudge" class="nudge" hidden></section>
     <section id="liveMsg" class="livemsg" hidden role="status" aria-live="polite"></section>
-    <div id="themeView">
+    <section id="coreView" hidden></section>
+    <div id="themeView" hidden>
     <section id="themeIntro" class="intro"></section>
     <section id="incomeLab" hidden></section>
 
@@ -96,5 +101,6 @@
   <script src="app.js"></script>
   <script src="explorer.js"></script>
   <script src="income.js"></script>
+  <script src="core.js"></script>
 </body>
 </html>

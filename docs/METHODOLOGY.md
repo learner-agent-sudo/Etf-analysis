@@ -152,9 +152,44 @@ criteria" filter. Re-run after adding or re-scoring any fund.
 > diversified AND on-theme" is rare. That scarcity is the point: the screen
 > surfaces the few funds actually worth a deep look.
 
+## Lanes — rank within a role, never across
+
+A quantum ETF and a global index fund do different jobs, so the site never puts
+them on one score. Every fund belongs to one lane, and the decision order is:
+**split your money between lanes first** (⚙ Settings: core %, thematic share,
+cap per theme), **then pick the best fund inside each lane**.
+
+| Lane | Job | How funds get there |
+|---|---|---|
+| Core | Stable long-term growth, broad diversification | Name says it tracks a plain broad index — all-world (ACWI, FTSE All-World, Total World …), developed world (MSCI World, FTSE Developed World) or US large-cap (S&P 500, total US market, MSCI USA, Russell 1000/3000) — with a yearly fee ≤ 0.50% and no leverage/ETN/futures flag. Screened (ESG, Islamic), factor, sector, regional, option, buffer and active strategies are excluded: they are tilts, not the core. |
+| Thematic | Small satellite exposure to a niche | The theme files (rosters + keywords) |
+| Income | Cash distributions — reference unless the visitor needs income | The Income ranking's option-income classifier (`build_income.classify`) |
+| Other | Sectors, bonds, factors, regions … | Everything else (Explorer only) |
+
+**Payout policy** (`pol`) comes from the share-class name: *Acc / Accumulating /
+Capitalisation / 1C / ETF-C* = accumulating; *Dist / Dis / Inc / 1D / ETF-D* =
+distributing. US-domiciled ETFs always distribute (US fund tax rules); an
+unmarked Vanguard UCITS class distributes (Vanguard names every accumulating
+class); otherwise an unmarked class with a yield distributes, and the rest is
+*not stated* rather than guessed. Accumulating changes what happens to the
+income, not the risk.
+
+**Domicile** for London UCITS funds is read from the fund family (iShares,
+Vanguard, SPDR, Invesco, HSBC, JPMorgan, L&G … run Irish funds; *Amundi Index
+Solutions* and *Multi Units Luxembourg* are Luxembourg); families that run both
+stay *Ireland or Luxembourg* until the ISIN (IE… / LU…) is checked. Hong Kong
+domiciles come from HKEX's ISINs.
+
+**Tax & domicile notes** (`public/data/tax-domicile.json`) are general
+information per tax residence (Hong Kong, Singapore, UK, EU/EEA, Canada,
+Australia, US, other), researched from official and industry sources and then
+independently fact-checked. They show a verdict per domicile (usually better /
+neutral / usually worse / usually avoid) and draft points for the coming Core
+Score's 20-point tax part. Not tax advice.
+
 ## Income ranking — every option-income ETF on one Value Score
 
-Themes → *Income / Covered-Call* → **Value ranking** (`scripts/build_income.py`,
+Income tab → **Value ranking** (`scripts/build_income.py`,
 rebuilt daily) covers every covered-call, premium-income, call-spread, 0DTE,
 single-stock, short-volatility, put-write and dividend+options ETF on US, Hong
 Kong and London listings (~400 funds), grouped into strategy families.

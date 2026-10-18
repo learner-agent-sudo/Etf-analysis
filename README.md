@@ -40,6 +40,25 @@ catch.
 The main way to use this is a **mobile-friendly, static web app** hosted free on
 **GitHub Pages** — <https://learner-agent-sudo.github.io/Etf-analysis/> — a
 public URL that opens on any device, no install, no download, no usage limits.
+
+Funds are split into **lanes by the job they do**, and are only ever compared
+inside their own lane — decide the split between lanes first, then pick the
+best fund within each:
+
+| Tab | Role | Compared on |
+|---|---|---|
+| **Core** | Main bucket: plain, low-cost broad-index funds (All-world · Developed world · US large-cap) | fee, size, payout (accumulating / distributing), domicile — a Core Score is next |
+| **Thematic** | Small satellite bets (space, quantum …), capped per theme | purity, concentration, cost, liquidity — within the theme only |
+| **Income** | Option-income funds — *reference only* unless you need income | Value Score (below) |
+| **Explorer** | Every listed ETF, filterable by role, payout and domicile | — |
+
+**⚙ Settings** (stored in each visitor's browser, nothing sent anywhere): your
+core/thematic split and per-theme cap, whether you need income (if not, the
+Income tab is folded into a reference note and income funds are hidden in the
+Explorer), and where you pay tax — which shows general, fact-checked notes on
+what each fund domicile usually means there (`public/data/tax-domicile.json`;
+not tax advice). Friends using the site set their own.
+
 Per theme you get a **sortable / filterable comparison table** (expense ratio,
 AUM, price, volume, 1-yr & YTD return, colored score dots), a **full-universe
 roster** of every fund tagged to the theme, and a click-to-open **deep memo**
@@ -49,10 +68,13 @@ Plus an **Explorer** tab: every listed ETF on three markets — US (~5,800),
 Hong Kong (~380, from the HKEX list) and London (~4,000 lines) — in one
 searchable, sortable list: expense ratio, AUM (with a US$ equivalent), price,
 52-week price change, YTD, yield, volume, domicile, mechanical cost/size
-ratings, theme suggestions, a one-click "pre-screen" and a general
-tax-and-domicile explainer. Built daily by `scripts/build_universe.py`.
+ratings, theme suggestions, a one-click "pre-screen" and a tax-and-domicile
+explainer for your country. Each listing also carries its **role** (core role,
+income-focused), **payout policy** (Acc / Dist / not stated) and, for London
+UCITS funds, **Ireland vs Luxembourg** — all read from the fund name. Built
+daily by `scripts/build_universe.py`.
 
-And inside the **Income / Covered-Call** theme, a **Value ranking** of every
+And in the **Income** tab, a **Value ranking** of every
 option-income ETF (~400 across US, Hong Kong and London): one Value Score out
 of 100 — the same formula for every strategy, so any two funds compare —
 built from earned income, paycheck (price) trend, growth kept vs the fund's own
@@ -105,8 +127,9 @@ earths, and obesity/GLP-1. See [`app/README.md`](app/README.md) for how to add o
 .
 ├── README.md                     ← you are here
 ├── public/                       ← the web app (static site, deployed as-is)
-│   ├── index.html · style.css · app.js
-│   └── data/                     ← <theme>.json (curated) + market.json (daily, generated)
+│   ├── index.html · style.css · app.js (themes, settings, routing)
+│   ├── core.js · explorer.js · income.js   ← Core, Explorer and Income tabs
+│   └── data/                     ← <theme>.json (curated), tax-domicile.json, + generated daily files
 ├── .github/workflows/pages.yml   ← daily data refresh + deploy to GitHub Pages
 ├── app/
 │   ├── server.py                 ← run the static site locally (stdlib only)

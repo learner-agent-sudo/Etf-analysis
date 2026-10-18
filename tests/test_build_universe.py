@@ -150,7 +150,9 @@ class HongKong(unittest.TestCase):
                                              default_cur="GBP", aum_in_usd=True)[0]))
         self.assertEqual((hk["cur"], hk["p"], hk["aum"], hk["aumu"], hk["acur"]), ("HKD", 25.6, 160000.0, 20480.0, "HKD"))
         # London: price in pounds (from pence), AUM reported in the fund's USD base currency
-        self.assertEqual((ln["cur"], ln["p"], ln["dom"], ln["aum"], ln["aumu"], ln["acur"]), ("GBP", 95.12, "IE/LU", 40000.0, 40000.0, "USD"))
+        self.assertEqual((ln["cur"], ln["p"], ln["dom"], ln["aum"], ln["aumu"], ln["acur"]), ("GBP", 95.12, "IE", 40000.0, 40000.0, "USD"))
+        # derived from the name: a Vanguard UCITS fund is Irish, its unmarked class pays out, and it's a US core fund
+        self.assertEqual((ln["pol"], ln["lane"], hk["pol"], hk["lane"]), ("D", "us", "", ""))
 
     def test_yahoo_symbol(self):
         self.assertEqual(bu.yahoo_symbol("BRK.B"), "BRK-B")
@@ -171,6 +173,96 @@ class London(unittest.TestCase):
             bu.discover_screener = orig
         self.assertEqual(sorted(got), ["PHAU.L", "VUSA.L"])
         self.assertEqual((got["VUSA.L"]["dom"], got["PHAU.L"]["dom"]), ("IE/LU", ""))
+
+
+class Derived(unittest.TestCase):
+    """Payout policy, site lane and UCITS domicile — all read from the listing's name."""
+
+    def test_payout_policy_from_class_names(self):
+        pol = lambda n, dom="IE", yld=None, f="": bu.payout_policy(n, dom, yld, f)  # noqa: E731
+        for n in ("iShares Core S&P 500 UCITS ETF USD (Acc)", "Vanguard FTSE All-World UCITS ETF USD Accumulation",
+                  "UBS Core MSCI World UCITS ETF USD acc", "Xtrackers MSCI World UCITS ETF 1C",
+                  "Xtrackers S&P 500 UCITS ETF 2C - GBP Hedged", "Amundi MSCI Em Asia UCITS ETF-C USD",
+                  "BNP PARIBAS EASY - S&P 500 II UCITS ETF CAPITALISATION", "BNP Paribas Easy MSCI USA Min TE UCITS ETF Cap",
+                  "Robeco 3D Global Equity UCITS ETF USD Acc"):           # '3D' is the product name, not a D class
+            self.assertEqual(pol(n), "A", n)
+        for n in ("iShares Core S&P 500 UCITS ETF USD Dist", "Invesco MSCI USA UCITS ETF Inc",
+                  "UBS Core S&P 500 UCITS ETF USD dis", "Xtrackers MSCI World UCITS ETF 1D",
+                  "State Street SPDR S&P 500 UCITS ETF USD Distribution UnHedged", "Amundi S&P 500 UCITS ETF-D"):
+            self.assertEqual(pol(n), "D", n)
+        self.assertEqual(pol("Invesco S&P 500 UCITS ETF"), "")             # unmarked: not stated (it accumulates)
+        self.assertEqual(pol("Vanguard S&P 500 UCITS ETF"), "D")           # Vanguard marks every accumulating class
+        self.assertEqual(pol("Vanguard S&P 500 UCITS ETF", dom=""), "")    # …but only for its UCITS funds
+        self.assertEqual(pol("Some Fund UCITS ETF", yld=1.2), "D")         # pays a yield: distributes
+        self.assertEqual(pol("Some Fund UCITS ETF", yld=0), "")
+        self.assertEqual(pol("Vanguard S&P 500 ETF", dom="US"), "D")       # US funds pay out what they earn
+        self.assertEqual(pol("Roundhill S&P 500 Accumulating ETF", dom="US"), "A")   # the name wins
+        self.assertEqual(pol("Accelerate Diversified Credit Income ETF", dom="US"), "D")   # 'Accelerate' isn't 'Acc'
+        self.assertEqual(pol("iPath Bloomberg Commodity ETN", dom="US", f="N"), "")  # notes pay nothing
+        self.assertEqual(pol("Odd Fund UCITS ETF Acc Dist"), "")             # both markers: don't guess
+
+    def test_core_roles(self):
+        lane = lambda n, f="", er=0.1: bu.site_lane(n, f, er)  # noqa: E731
+        cases = {"Vanguard Total World Stock Index Fund ETF Shares": "world", "iShares MSCI ACWI ETF": "world",
+                 "Vanguard FTSE All-World UCITS ETF USD Accumulation": "world",
+                 "State Street SPDR MSCI All Country World Investable Market UCITS ETF": "world",
+                 "Vanguard Funds PLC - Vanguard FTSE Global All-Cap UCITS ETF USD Acc": "world",
+                 "iShares Core MSCI World UCITS ETF USD (Acc)": "dev", "Vanguard FTSE Developed World UCITS ETF USD Accumulation": "dev",
+                 "iShares MSCI World ETF": "dev", "Amundi Prime Global UCITS ETF Dist": "dev",
+                 "Vanguard S&P 500 ETF": "us", "iShares Core S&P Total U.S. Stock Market ETF": "us",
+                 "Schwab U.S. Broad Market ETF": "us", "iShares Russell 1000 ETF": "us", "Xtrackers MSCI USA UCITS ETF 1C": "us",
+                 "Amundi Core S&P 500 Swap UCITS ETF Acc": "us",
+                 # not core: ex-US, regional, sector, factor, screened, options, small caps
+                 "Vanguard FTSE Developed Markets Index Fund ETF Shares": "", "Vanguard FTSE Developed Europe UCITS ETF": "",
+                 "iShares MSCI World Small Cap UCITS ETF": "", "Invesco S&P 500 Equal Weight ETF": "",
+                 "iShares S&P 500 Information Technology Sector UCITS ETF USD": "", "Invesco S&P 500 GARP ETF": "",
+                 "SP Funds S&P 500 Sharia Industry Exclusions ETF": "", "iShares MSCI World ESG Screened UCITS ETF": "",
+                 "Invesco S&P 500 High Beta ETF": "", "Global X S&P 500 Collar 95-110 ETF": "",
+                 "Vanguard S&P 500 Value ETF": "", "iShares MSCI World ex USA ETF": "",
+                 "Goldman Sachs MSCI World Private Equity Return Tracker ETF": "", "Vanguard Total Bond Market ETF": "",
+                 "Xtrackers MSCI USA Banks UCITS ETF 1D": "", "Invesco S&P 500 Downside Hedged ETF": ""}
+        for n, want in cases.items():
+            self.assertEqual(lane(n), want, n)
+        self.assertEqual(lane("Direxion Daily S&P 500 Bull 3X Shares", f="L"), "")      # flagged: never core
+        self.assertEqual(lane("Hang Seng S&P 500 Index ETF", er=0.9), "")              # too expensive for a core fund
+        self.assertEqual(lane("Hang Seng S&P 500 Index ETF", er=None), "us")           # unknown fee doesn't exclude
+
+    def test_income_lane_is_the_income_rankings_universe(self):
+        self.assertEqual(bu.site_lane("JPMorgan Equity Premium Income ETF"), "income")
+        self.assertEqual(bu.site_lane("Global X S&P 500 Covered Call UCITS ETF USD Acc"), "income")
+        self.assertEqual(bu.site_lane("Vanguard High Dividend Yield ETF"), "")          # dividends alone: not option income
+
+    def test_ucits_domicile_from_family(self):
+        dom = bu.ucits_domicile
+        self.assertEqual(dom("iShares Core MSCI World UCITS ETF USD (Acc)", "IE/LU"), "IE")
+        self.assertEqual(dom("State Street SPDR S&P 500 UCITS ETF USD Accumulation UnHedged", "IE/LU"), "IE")
+        self.assertEqual(dom("BNP PARIBAS Easy ICAV - BNP Paribas Easy MSCI World UCITS ETF", "IE/LU"), "IE")
+        self.assertEqual(dom("Amundi Index Solutions - Amundi S&P 500 Swap UCITS ETF USD Acc", "IE/LU"), "LU")
+        self.assertEqual(dom("Xtrackers MSCI World UCITS ETF 1C", "IE/LU"), "IE/LU")     # family runs funds in both
+        self.assertEqual(dom("iShares VII PLC - iShares MSCI USA ETF USD Acc", ""), "IE")  # London name without 'UCITS'
+        self.assertEqual(dom("Xtrackers FTSE All World ETF 1C USD", ""), "IE/LU")
+        self.assertEqual(dom("WisdomTree Physical Gold", ""), "")                     # a commodity ETC, not a UCITS fund
+        self.assertEqual(dom("Leverage Shares Plc - LS 3x Tesla Tracker ETP", "", "L"), "")
+        self.assertEqual(dom("Vanguard S&P 500 ETF", "US"), "US")
+        self.assertEqual(dom("Some HK fund", "HK"), "HK")
+
+    def test_reclassify_upgrades_old_files_and_is_idempotent(self):
+        import tempfile
+        old_cols = bu.COLS[:16]
+        row = ["CSPX.L", "iShares Core S&P 500 UCITS ETF USD (Acc)", "London", 600.0, 10.0, 5.0, None, 0.07, None, 1000,
+               "", "2010-05-19", "USD", "IE/LU", None, "USD"]
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "universe-lse.json")
+            with open(path, "w") as fh:
+                json.dump({"cols": old_cols, "rows": [row]}, fh)
+            bu.reclassify(["lse"], data_dir=d)
+            first = json.load(open(path))
+            bu.reclassify(["lse"], data_dir=d)
+            again = json.load(open(path))
+        got = dict(zip(first["cols"], first["rows"][0]))
+        self.assertEqual(first["cols"], bu.COLS)
+        self.assertEqual((got["dom"], got["pol"], got["lane"], got["er"]), ("IE", "A", "us", 0.07))
+        self.assertEqual(first, again)
 
 
 class AumCurrency(unittest.TestCase):

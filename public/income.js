@@ -1,7 +1,8 @@
 "use strict";
 
 // ====================================================================
-// Income ranking — Themes → Income / Covered-Call → "Value ranking".
+// Income ranking — Income tab → "Value ranking" (a reference lane unless the
+// visitor's settings say they need income).
 // Every option-income ETF (US / Hong Kong / London) gets one Value Score
 // (0-100, the same formula for every strategy) so any two funds can be
 // compared: earned income, paycheck trend, growth kept and smooth ride, 25
@@ -82,7 +83,7 @@ async function showIncomeRankings() {
   box.hidden = false;
   if (!LAB) box.innerHTML = '<p class="muted">Loading the income ranking…</p>';
   await loadLab();
-  if (INCOME_SUB !== "rankings" || VIEW !== "themes") { box.hidden = true; return; }    // switched away meanwhile
+  if (INCOME_SUB !== "rankings" || VIEW !== "income") { box.hidden = true; return; }    // switched away meanwhile
   if (!LAB) {
     box.innerHTML = "";
     box.append(el("p", { class: "livemsg warn" }, "The income ranking hasn't been generated yet — it's built automatically by the daily update."));
@@ -428,7 +429,7 @@ function renderTray() {
   let tray = $("#cmpTray");
   if (!tray) { tray = el("div", { id: "cmpTray", class: "cmptray", role: "region", "aria-label": "Compare funds" }); document.body.append(tray); }
   tray.innerHTML = "";
-  const show = LS.cmp.length > 0 && INCOME_SUB === "rankings" && VIEW === "themes";
+  const show = LS.cmp.length > 0 && INCOME_SUB === "rankings" && VIEW === "income";
   tray.hidden = !show;
   document.body.classList.toggle("has-tray", show);
   if (!show) return;
@@ -647,7 +648,7 @@ function openLabCard(f) {
 function openAnalystMemo(f, home) {
   if (CURRENT && home._id === CURRENT._id) { openMemo(f.t); return; }
   goTo(home, f.t);
-  liveMsg(`${f.t}: analyst memo in the ${home.name} theme.`, "", { label: "← Back to the income ranking", fn: () => selectTheme("income", "rankings") });
+  liveMsg(`${f.t}: ${home._id === "income" ? "analyst memo (Income → Analyst memos)" : `analyst memo in the ${home.name} theme`}.`, "", { label: "← Back to the income ranking", fn: () => selectTheme("income", "rankings") });
 }
 
 function heroBlock(f) {

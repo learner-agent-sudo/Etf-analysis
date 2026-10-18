@@ -23,10 +23,16 @@ markets. Yahoo's quote fields come in mixed units, so they are calibrated
 against SPY (and the YTD/yield already computed for SPY in market.json); the
 calibration and a few anchor funds per market are logged.
 
+Derived from the name (no extra download): payout policy (pol: accumulating /
+distributing / not stated), the site lane (lane: a core role — all-world,
+developed world, US large-cap — or income-focused), and, for London UCITS
+funds, Ireland vs Luxembourg from the fund family.
+
 Usage:
     python3 scripts/build_universe.py                 # all markets
     python3 scripts/build_universe.py us hk           # only these
     python3 scripts/build_universe.py --dry-run       # fetch + summarise only
+    python3 scripts/build_universe.py --reclassify    # recompute the derived fields offline
 """
 import datetime as dt
 import io
@@ -43,6 +49,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import refresh_market as rm  # noqa: E402  (shared HTTP + Yahoo session helpers)
+import build_income as bi  # noqa: E402  (its option-income classifier defines 'income-focused')
 
 DATA = rm.DATA
 NASDAQ_DIR = ("https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt",
@@ -55,7 +62,7 @@ QUOTE_FIELDS = ("longName,shortName,quoteType,currency,fullExchangeName,regularM
                 "ytdReturn,netAssets,netExpenseRatio,trailingAnnualDividendYield,dividendYield,yield,"
                 "averageDailyVolume3Month,fundInceptionDate,firstTradeDateMilliseconds")
 BATCH = 100
-COLS = ["t", "n", "x", "p", "c1y", "ytd", "aum", "er", "yld", "vol", "f", "inc", "cur", "dom", "aumu", "acur"]
+COLS = ["t", "n", "x", "p", "c1y", "ytd", "aum", "er", "yld", "vol", "f", "inc", "cur", "dom", "aumu", "acur", "pol", "lane"]
 FX_FALLBACK = {"USD": 1.0, "GBP": 1.30, "EUR": 1.10, "HKD": 0.128, "CHF": 1.15, "JPY": 0.0068,
                "SEK": 0.095, "NOK": 0.093, "DKK": 0.15, "CAD": 0.73, "AUD": 0.66}
 # flags (f): L = leveraged/inverse, N = exchange-traded note, F = futures-based commodity/VIX
@@ -84,6 +91,93 @@ def flags(name):
     if FUTURES.search(name or ""):
         f += "F"
     return f
+
+
+# ------------------------------------------------------------ derived fields --
+# Payout policy (pol) from the share-class name: A = accumulating (income reinvested
+# inside the fund), D = distributing (paid out), "" = the name doesn't say.
+# Xtrackers write 1C / 1D, Amundi ETF-C / ETF-D, BNP 'Capitalisation'.
+ACC_NAME = re.compile(r"\bacc(umulating|umulation)?\b|\bcapitali[sz]ation\b|\bcapi\b|\bETF\s+cap\b"
+                      r"|\bETF\s+\d?C\b|\bETF\s*-\s*C\b", re.I)
+DIST_NAME = re.compile(r"\bdist(ributing|ribution)?\b|\bdis\b|\binc\b|\bETF\s+\d?D\b|\bETF\s*-\s*D\b", re.I)
+
+
+def payout_policy(name, dom, yld=None, flags=""):
+    """'A' / 'D' / '' (not stated). US-domiciled ETFs pay out what they earn (US fund tax
+    rules); elsewhere a fund without a class marker counts as paying out only if it has a yield."""
+    if "N" in (flags or ""):
+        return ""                                    # a note holds nothing and pays nothing
+    acc, dist = bool(ACC_NAME.search(name or "")), bool(DIST_NAME.search(name or ""))
+    if acc != dist:
+        return "A" if acc else "D"
+    if acc:
+        return ""                                    # both markers: don't guess
+    if dom == "US" or (isinstance(yld, (int, float)) and yld > 0):
+        return "D"
+    if re.match(r"vanguard\b", name or "", re.I) and dom in ("IE", "IE/LU"):
+        return "D"                                   # Vanguard names every accumulating UCITS class as such
+    return ""
+
+
+# Core roles (lane): plain broad-market index funds. Screened (ESG, Islamic …), factor,
+# sector, regional, option and active strategies are left out on purpose — they are tilts,
+# not the core.
+CORE_ROLES = (
+    ("world", re.compile(r"\bACWI\b|all[- ]?world|all[- ]country world|\bAC world\b|total world|global all[- ]?cap"
+                         r"|global stock market", re.I)),
+    ("dev", re.compile(r"\bMSCI world\b|\bFTSE developed world\b|\bdeveloped world\b|\bprime global\b", re.I)),
+    ("us", re.compile(r"\bS&P ?500\b|\bS&P 1500\b|total (U\.?S\.? )?(stock )?market\b|\bMSCI USA\b|\brussell (1000|3000)\b"
+                      r"|\bCRSP US total\b|\bU\.?S\.? (broad|total) market\b|\bU\.?S\.? large[- ]cap\b", re.I)),
+)
+CORE_NOT = re.compile(
+    r"\bex[- ]|excluding|equal[- ]?weight|\bEW\b|growth|value|momentum|quality|\bgarp\b|\bqarp\b|\bqvm\b|low vol|min(imum)? vol"
+    r"|volatility|factor|dividend|yield|income|premium|covered|buy-?write|option|buffer|protect|floor|downside|hedged equity"
+    r"|enhanced|tactical|dynamic|managed|target|defined|\btop ?\d+|leader|aristocrat|\bselect|selection|sector|technology"
+    r"|\btech\b|health ?care|financial|banks|energy|utilit|industrial|material|consumer|communication|real estate|\breit"
+    r"|small|mid[- ]?cap|micro|mega|\besg\b|\bsri\b|sustainab|climate|paris|screened|islamic|sharia|halal|catholic|fossil"
+    r"|carbon|green|responsible|impact|transition|gender|diversity|inclusion|\bjust\b|min te\b|revenue|fundamental"
+    r"|buyback|moat|cash flow|redacted|private equity|advantage|strategic|vector|\bai\b|ai-powered|tax ?optimi[sz]ed"
+    r"|bond|treasur|inverse|short\b|bear\b|bull\b|ultra|daily|lever|\b\d(\.\d+)?x\b|rotation|strategy|alpha|research"
+    r"|\bactive\b|completion|\bcapped\b|weighted|\bpure\b|focus|concentrat|multi[- ]?asset|allocation|balanced|futures|\bvix\b"
+    r"|trend|\brisk\b|defensive|tilt|\bplus\b|smart|scored|europe|asia|pacific|japan|emerging|euro ?zone|\buk\b|north america"
+    r"|frontier|dimensional|avantis|granny|activebeta|high beta|low beta|collar|candriam", re.I)
+CORE_MAX_ER = 0.50          # above this a 'broad' fund is an active or niche product, not a core holding
+
+
+def site_lane(name, flags="", er=None, ticker=""):
+    """'income' (option-income — the Income ranking's universe), a core role ('world' / 'dev'
+    / 'us'), or '' for everything else (themes are matched on the page from the theme files)."""
+    if bi.classify(name, flags, ticker):
+        return "income"
+    if flags or (isinstance(er, (int, float)) and er > CORE_MAX_ER) or CORE_NOT.search(name or ""):
+        return ""
+    return next((role for role, rx in CORE_ROLES if rx.search(name or "")), "")
+
+
+# Ireland vs Luxembourg for London UCITS funds, from the fund family (the ISIN would say
+# for sure: IE… / LU…). Families listed only where every UCITS fund they run is in one place.
+IE_FAMILY = re.compile(r"^(ishares|vanguard|(state street )?spdr|invesco|hsbc|j\.?p\.? ?morgan|jpm\b|legal & general|l&g\b"
+                       r"|global x|vaneck|first trust|franklin|fidelity|wisdomtree|hanetf|han-gins|kraneshares"
+                       r"|goldman sachs|robeco|janus henderson|tabula|rize|sprott)|\bICAV\b|\((IE|Irl|Ireland)\)|\bplc\b",
+                       re.I)
+LU_FAMILY = re.compile(r"amundi index solutions|multi units lux|\bSICAV\b|\((LU|Lux)\)|luxembourg|^lyxor", re.I)
+# London names that drop the word 'UCITS' ('iShares VII PLC - iShares MSCI USA ETF USD Acc').
+UCITS_FAMILY = re.compile(IE_FAMILY.pattern + r"|^(xtrackers|amundi|ubs|bnp paribas|scalable)\b", re.I)
+
+
+def ucits_domicile(name, dom, flags=""):
+    if dom == "" and not flags and re.search(r"\bETF\b", name or "") and UCITS_FAMILY.search(name or ""):
+        dom = "IE/LU"                                 # a London-listed UCITS fund whose name skips 'UCITS'
+    if dom != "IE/LU":
+        return dom
+    ie, lu = IE_FAMILY.search(name or ""), LU_FAMILY.search(name or "")
+    return "IE" if ie and not lu else "LU" if lu and not ie else "IE/LU"
+
+
+def derived(name, dom, yld, flags, er, ticker):
+    """(dom, pol, lane) — every field the page derives from a listing's name."""
+    dom = ucits_domicile(name, dom, flags)
+    return dom, payout_policy(name, dom, yld, flags), site_lane(name, flags, er, ticker)
 
 
 def _bytes(url, timeout=40):
@@ -420,23 +514,61 @@ def build_rows(listing, quotes, mult, screener=None, fx=None, default_cur="USD",
         ytd = q.get("ytdReturn")
         acur = aum_currency(name) if aum_in_usd else cur
         rate = fx.get(acur)
+        er_pct = _r(er * mult["er"], 2) if isinstance(er, (int, float)) and er > 0 else None
+        yld_pct = _r(yld, 2) if isinstance(yld, (int, float)) and 0 < yld < 100 else None
+        fl = "".join(sorted(set(flags(name) + base.get("f", ""))))
+        dom, pol, lane = derived(name, base.get("dom") or "", yld_pct, fl, er_pct, t)
         rows.append([
             t, name, base.get("x") or q.get("fullExchangeName") or "",
             _r(price),
             _r(c1y, 1),
             _r(ytd * mult["ytd"], 1) if isinstance(ytd, (int, float)) else None,
             aum_m,
-            _r(er * mult["er"], 2) if isinstance(er, (int, float)) and er > 0 else None,
-            _r(yld, 2) if isinstance(yld, (int, float)) and 0 < yld < 100 else None,
+            er_pct,
+            yld_pct,
             int(q["averageDailyVolume3Month"]) if isinstance(q.get("averageDailyVolume3Month"), (int, float)) else None,
-            "".join(sorted(set(flags(name) + base.get("f", "")))),
+            fl,
             dt.datetime.fromtimestamp(inc, dt.timezone.utc).date().isoformat() if isinstance(inc, (int, float)) and inc > 0 else None,
             cur,
-            base.get("dom") or "",
+            dom,
             round(aum_m * rate, 1) if aum_m is not None and rate else None,
             acur,
+            pol,
+            lane,
         ])
     return rows
+
+
+def reclassify(keys=None, data_dir=None):
+    """Recompute the name-derived fields of existing universe files (no network). Older files
+    without the new columns get them appended."""
+    data_dir = data_dir or DATA
+    for key in keys or list(MARKETS):
+        path = os.path.join(data_dir, f"universe-{key}.json")
+        if not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8") as fh:
+            doc = json.load(fh)
+        old = doc["cols"]
+        rows = []
+        for row in doc["rows"]:
+            r = dict(zip(old, row))
+            r["dom"], r["pol"], r["lane"] = derived(r["n"], r.get("dom") or "", r.get("yld"), r.get("f") or "",
+                                                    r.get("er"), r["t"])
+            rows.append([r.get(c) for c in COLS])
+        doc["cols"], doc["rows"] = COLS, rows
+        with open(path, "w", encoding="utf-8") as fh:
+            json.dump(doc, fh, separators=(",", ":"), ensure_ascii=False)
+        log(f"reclassified {key}: {summary(rows)}")
+
+
+def summary(rows):
+    i = {c: COLS.index(c) for c in ("pol", "lane", "dom")}
+    count = lambda c, v: sum(1 for r in rows if r[i[c]] == v)  # noqa: E731
+    return (f"{count('pol', 'A')} accumulating, {count('pol', 'D')} distributing, {count('pol', '')} not stated; "
+            f"core world/dev/us {count('lane', 'world')}/{count('lane', 'dev')}/{count('lane', 'us')}, "
+            f"income {count('lane', 'income')}; domicile IE {count('dom', 'IE')}, LU {count('dom', 'LU')}, "
+            f"IE/LU {count('dom', 'IE/LU')}")
 
 
 def counter_key(name):
@@ -504,6 +636,7 @@ def build_market(key, yahoo, mult, fx, dry):
     with_price = sum(1 for r in rows if r[3] is not None)
     log(f"  rows {len(rows)}, with price {with_price}, AUM {sum(1 for r in rows if r[6] is not None)}, "
         f"expense {sum(1 for r in rows if r[7] is not None)}, yield {sum(1 for r in rows if r[8] is not None)}")
+    log(f"  {summary(rows)}")
     if dry:
         return True
     if with_price < len(rows) * 0.5:
@@ -525,6 +658,9 @@ def build_market(key, yahoo, mult, fx, dry):
 def main(argv):
     dry = "--dry-run" in argv
     keys = [a.lower() for a in argv if not a.startswith("-")] or list(MARKETS)
+    if "--reclassify" in argv:
+        reclassify(keys)
+        return 0
     yahoo = rm.Yahoo()
     spy_ytd = spy_yld = None
     try:

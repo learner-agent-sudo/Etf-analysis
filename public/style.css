@@ -421,3 +421,50 @@ thead th button.qmark { font-size: 12px; padding: 0 2px; margin-left: 1px; verti
   background: rgba(63,185,80,.08); border: 1px solid rgba(63,185,80,.35); }
 #exQ { min-width: 280px; }
 @media (max-width: 700px) { #exQ { min-width: 0; flex: 1 1 100%; } }
+
+/* ---- lanes: settings, plan line, core tab, payout / domicile tags ---- */
+.gear { flex: 0 0 auto; background: transparent; color: var(--muted); border: 1px solid var(--border); padding: 6px 10px; font-size: 13px; }
+.gear:hover { color: var(--text); background: var(--panel-2); filter: none; }
+.tab.ref:not(.active) { font-style: italic; }
+.nudge { position: relative; margin: 0 0 12px; padding: 10px 40px 10px 12px; border-radius: 8px; font-size: 14px;
+  background: var(--panel); border: 1px solid var(--accent); }
+.nudge button:not(.msgclose) { margin: 4px 0 0; }
+.planstrip { margin: 8px 0 4px; font-size: 13px; color: var(--muted); }
+.planstrip b { color: var(--text); }
+.planstrip .refresh { margin-left: 2px; padding: 2px 8px; }
+.refnote { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--yellow);
+  border-radius: 8px; padding: 10px 14px; margin: 10px 0; max-width: 90ch; }
+.refnote p { margin: 4px 0; }
+.refnote button { margin-top: 4px; }
+.settings h3 { margin: 18px 0 6px; font-size: 15px; }
+.settings p.small { margin: 4px 0 8px; }
+.setrow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+.setrow label { min-width: 210px; }
+.setrow input[type="number"] { width: 84px; background: var(--panel-2); color: var(--text); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 10px; font-size: 14px; }
+.setrow.radios { flex-direction: column; align-items: flex-start; }
+.setrow.radios label { min-width: 0; cursor: pointer; }
+.tag-pol { font-size: 10px; font-weight: 700; border-radius: 999px; padding: 0 7px; margin-left: 6px; vertical-align: middle;
+  border: 1px solid var(--border); white-space: nowrap; }
+.tag-pol.polA { color: var(--green); border-color: rgba(63,185,80,.5); }
+.tag-pol.polD { color: var(--muted); }
+td .tag-pol { margin-left: 0; font-size: 12px; padding: 1px 8px; }
+.nm .seg.lane-world, .nm .seg.lane-dev, .nm .seg.lane-us { color: var(--green); }
+.nm .seg.lane-income { color: var(--yellow); }
+.domverdict { font-size: 11px; font-weight: 600; white-space: nowrap; border-radius: 999px; padding: 0 7px; border: 1px solid var(--border); cursor: help; }
+.domverdict.good { color: var(--green); border-color: rgba(63,185,80,.5); }
+.domverdict.mid { color: var(--muted); }
+.domverdict.warn { color: var(--yellow); border-color: rgba(210,153,34,.5); }
+.domverdict.bad { color: var(--red); border-color: rgba(248,81,73,.5); }
+.domnote { margin: 8px 0 0; }
+.corerole { margin: 22px 0 6px; }
+.corerole h3 { margin: 0 0 2px; font-size: 18px; }
+.corerole > p.small { color: var(--muted); margin: 0 0 8px; max-width: 90ch; }
+.tk.line { margin-right: 8px; white-space: nowrap; }
+.tk.line small { color: var(--muted); font-weight: 400; font-size: 11px; }
+@media (max-width: 700px) {
+  .gear { order: 2; padding: 6px 8px; }
+  .gearlabel { display: none; }
+  .setrow label { min-width: 0; flex: 1 1 100%; }
+  .nudge { font-size: 13px; }
+}
