@@ -120,7 +120,7 @@ function buildLab(box) {
     periodBanner(),
     undervaluedBox(),
     el("section", { class: "controls labcontrols" },
-      el("div", { class: "segbtns", id: "labScope", role: "group", "aria-label": "Which funds" }),
+      el("span", { class: "withhelp" }, el("div", { class: "segbtns", id: "labScope", role: "group", "aria-label": "Which funds" }), helpBtn("Which funds", SCOPE_HELP)),
       el("select", { id: "labFam", "aria-label": "Strategy type" }, el("option", { value: "" }, "All strategy types"),
         ...Object.keys(FAM_PLAIN).filter(k => famCounts[k]).map(k => el("option", { value: k }, `${famName(k)} (${famCounts[k]})`))),
       el("select", { id: "labMkt", "aria-label": "Where it is listed" }, el("option", { value: "" }, "Listed anywhere"),
@@ -129,6 +129,9 @@ function buildLab(box) {
         ...[0.04, 0.08, 0.12].map(v => el("option", { value: String(v) }, `Pays at least ${Math.round(v * 100)}%`))),
       el("input", { type: "search", id: "labQ", placeholder: "Search ticker or name…", "aria-label": "Search income ETFs" })),
     el("div", { id: "labCount", class: "muted small" }),
+    columnGuide([...VCOLS.map(c => [c.label, c.help]), ["Safety-checked / All rated / Not rated", SCOPE_HELP],
+      ["Grades", "A = 80 or more (excellent value), B = 70–79 (good), C = 60–69 (fair), D = 45–59 (weak), F = under 45 (poor)."]],
+      "What do these columns mean? (Value Score, Income, Worst fall …)"),
     el("section", { id: "labTable", class: "table-wrap" }),
     el("div", { class: "exmore" }, el("button", { id: "labMore", class: "refresh" }, "Show more")),
     howBox(),
@@ -251,7 +254,7 @@ function labSearch(list) {
 }
 
 const VCOLS = [
-  { key: "t", label: "# · Fund", v: f => RANKS.get(f.t) || 9e9, help: "Rank by Value Score among the funds in this view (sorting by another column keeps each fund's rank). Tick the box to compare up to 3 funds side by side." },
+  { key: "t", label: "# · Fund", v: f => RANKS.get(f.t) || 9e9, help: "The number is the fund's rank by Value Score among the funds in this view (sorting by another column keeps it). Tick the box next to a fund to compare up to 3 side by side." },
   { key: "value", label: "Value Score", v: f => f.value_score, fmt: f => valueCell(f), help: "One number out of 100, the same formula for every fund: earned income, paycheck trend, growth kept and smooth ride (25 points each), minus red flags. Higher = better value. A 80+, B 70–79, C 60–69, D 45–59, F under 45." },
   { key: "income", label: "Income", v: f => paidY(f), fmt: f => incomeCell(f), help: "Regular payouts over the last 12 months ÷ price (year-end specials excluded), what that is on $10,000 a year, and how much of it the fund actually earned (the rest came out of your capital)." },
   { key: "nav", label: "Price trend", v: f => f.metrics.price_cagr, fmt: f => signedSpan(f.metrics.price_cagr, perYr), help: "How the share price (≈ the fund's value per share) changed per year, payouts not counted. Falling = each future payout is smaller." },
@@ -259,6 +262,8 @@ const VCOLS = [
   { key: "dd", label: "Worst fall", v: f => f.metrics.max_drawdown, fmt: f => ddCell(f), help: "The biggest drop from a high to a later low over the period (payouts reinvested), and what that meant on $10,000." },
   { key: "er", label: "Fee", v: f => f.er, fmt: f => f.er == null ? el("span", { class: "muted" }, "—") : el("span", {}, f.er.toFixed(2) + "%"), help: "Annual fee. It's already taken out of every return shown, so it isn't scored separately." },
 ];
+const SCOPE_HELP = "Safety-checked = funds that pass the size, age, fee, trading-volume and structure checks from your brief (or are within 6 months of being old enough) — the default list. " +
+  "All rated = every fund with a Value Score, including ones that fail a check (marked ✗). Not rated = funds too new (under about a year) or without a benchmark to score.";
 const UCOLS = [
   { key: "t", label: "Fund", v: f => f.t },
   { key: "income", label: "Pays", v: f => paidY(f), fmt: f => el("span", {}, pctPlain(paidY(f))), help: "Regular payouts over the last 12 months ÷ price." },
@@ -307,11 +312,10 @@ function renderLab() {
     const head = el("tr");
     cols.forEach(c => {
       const active = col.key === c.key;
-      head.append(el("th", { title: c.help || c.label, class: c.help ? "has-help" : "", "aria-sort": active ? (dir > 0 ? "ascending" : "descending") : null,
+      head.append(withHelp(el("th", { class: c.help ? "has-help" : "", "aria-sort": active ? (dir > 0 ? "ascending" : "descending") : null,
         onclick: () => {
           LS.sort = LS.sort.key === c.key ? { key: c.key, dir: -LS.sort.dir } : { key: c.key, dir: ["t", "er", "why"].includes(c.key) ? 1 : -1 };
-          renderLab(); } }, c.label, c.help ? el("span", { class: "qmark" }, "ⓘ") : null,
-        active ? el("span", { class: "arrow" }, dir > 0 ? " ▲" : " ▼") : null));
+          renderLab(); } }, c.label, active ? el("span", { class: "arrow" }, dir > 0 ? " ▲" : " ▼") : null), c.label, c.help));
     });
     const body = el("tbody");
     rows.forEach(f => {

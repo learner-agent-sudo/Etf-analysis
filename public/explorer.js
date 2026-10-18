@@ -99,7 +99,7 @@ function buildExplorer(box) {
     el("div", { class: "intro" },
       el("h2", {}, "ETF Explorer"),
       el("div", { class: "asof" }, `${total.toLocaleString()} listed ETFs · ${metas.map(m => `${m.label} ${m.count.toLocaleString()} (data ${m.as_of})`).join(" · ")} · updates every weekday`),
-      el("p", { class: "universe" }, "▸ Every listed ETF in one searchable list. Cost and Size are mechanical (from the expense ratio and fund size); purity and concentration need a human read of the holdings — open any fund, or ask Claude to add it to a theme for the full analysis."),
+      el("p", { class: "universe" }, "▸ Every listed ETF in one searchable list. Cost and Size are quick traffic lights worked out automatically from each fund's yearly fee and how much money it manages (tap ⓘ on any column for what it means). Whether a fund's holdings match its name, or rest on a few stocks, needs a human read — open any fund, or ask Claude to add it to a theme for the full analysis."),
       taxExplainer()),
     el("section", { class: "controls" },
       el("input", { type: "search", id: "exQ", placeholder: "Search ticker or name (e.g. uranium, covered call, QQQ)…", "aria-label": "Search ETFs" }),
@@ -107,17 +107,20 @@ function buildExplorer(box) {
         ...UNIVERSE_FILES.filter(f => UNIVERSE.meta[f.market]).map(f => el("option", { value: f.market }, f.label))),
       el("select", { id: "exTheme", "aria-label": "Theme" }, el("option", { value: "" }, "Any theme"),
         ...Object.values(window._THEMES || {}).map(t => el("option", { value: t._id }, t.name))),
-      el("select", { id: "exDom", "aria-label": "Domicile" }, el("option", { value: "" }, "Any domicile"),
-        ...DOMICILES.map(([v, l]) => el("option", { value: v }, l))),
+      el("span", { class: "withhelp" }, el("select", { id: "exDom", "aria-label": "Domicile" }, el("option", { value: "" }, "Any domicile"),
+        ...DOMICILES.map(([v, l]) => el("option", { value: v }, l))), helpBtn("Domicile", DOM_HELP)),
       el("select", { id: "exAum", "aria-label": "Minimum fund size" }, el("option", { value: "" }, "Any size"),
         ...[[50, "AUM ≥ US$50M"], [100, "AUM ≥ US$100M"], [1000, "AUM ≥ US$1B"], [10000, "AUM ≥ US$10B"]].map(([v, l]) => el("option", { value: v }, l))),
       el("select", { id: "exEr", "aria-label": "Maximum expense ratio" }, el("option", { value: "" }, "Any expense"),
         ...[[0.1, "Expense ≤ 0.10%"], [0.2, "≤ 0.20%"], [0.5, "≤ 0.50%"], [0.75, "≤ 0.75%"]].map(([v, l]) => el("option", { value: v }, l))),
-      el("label", { class: "toggle", title: "Hide leveraged/inverse funds, exchange-traded notes and futures-based products" },
-        el("input", { type: "checkbox", id: "exPlain", checked: "checked" }), "Plain ETFs only"),
-      el("label", { class: "toggle pass-toggle", title: "Cost 🟢 (expense ≤ 0.50%), AUM ≥ $50M, not leveraged / ETN / futures" },
-        el("input", { type: "checkbox", id: "exPre" }), "✓ Pre-screen")),
+      el("span", { class: "withhelp" }, el("label", { class: "toggle" },
+        el("input", { type: "checkbox", id: "exPlain", checked: "checked" }), "Plain ETFs only"), helpBtn("Plain ETFs only", PLAIN_HELP)),
+      el("span", { class: "withhelp" }, el("label", { class: "toggle pass-toggle" },
+        el("input", { type: "checkbox", id: "exPre" }), "✓ Pre-screen"), helpBtn("Pre-screen", PRESCREEN_HELP))),
+    el("p", { id: "exPreNote", class: "prenote", hidden: "hidden" }),
     el("div", { id: "exCount", class: "muted small" }),
+    columnGuide([...exCols().map(c => [c.label, EX_HELP[c.key]]), ["✓ Pre-screen (filter)", PRESCREEN_HELP], ["Plain ETFs only (filter)", PLAIN_HELP]],
+      "What do these columns and filters mean? (Cost, Size, Pre-screen …)"),
     el("section", { id: "exTable", class: "table-wrap" }),
     el("div", { class: "exmore" }, el("button", { id: "exMore", class: "refresh" }, "Show more")),
     el("p", { class: "muted small" }, "1-yr price = 52-week change in the share price only (excludes distributions — income and bond funds look worse than their real return). YTD = total return as reported by Yahoo Finance. " +
@@ -130,15 +133,16 @@ function buildExplorer(box) {
   $("#exMore").addEventListener("click", () => { EX.shown += EX_PAGE; renderExplorer(); });
 }
 
-function exFiltered() {
+const passesPrescreen = r => costRating(r.er) === "green" && (aumUsd(r) || 0) >= 50 && !r.f;
+function exFiltered(pre = $("#exPre").checked) {
   const words = $("#exQ").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
   const mkt = $("#exMarket").value, th = $("#exTheme").value;
   const aumMin = +$("#exAum").value || 0, erMax = $("#exEr").value === "" ? null : +$("#exEr").value;
-  const plain = $("#exPlain").checked, pre = $("#exPre").checked, dom = $("#exDom").value;
+  const plain = $("#exPlain").checked, dom = $("#exDom").value;
   return UNIVERSE.rows.filter(r =>
     (!mkt || r.mkt === mkt) &&
     (!plain || !r.f) &&
-    (!pre || (costRating(r.er) === "green" && (aumUsd(r) || 0) >= 50 && !r.f)) &&
+    (!pre || passesPrescreen(r)) &&
     (!aumMin || (aumUsd(r) || 0) >= aumMin) &&
     (!dom || domBucket(r.dom) === dom) &&
     (erMax == null || (r.er != null && r.er <= erMax)) &&
@@ -159,6 +163,25 @@ function exCmp(a, b) {
   return (va - vb) * dir || a.t.localeCompare(b.t);
 }
 
+// Definitions shown by each header's ⓘ and in the column guide.
+const EX_HELP = {
+  t: "The fund's trading symbol — what you type into your broker to buy it. London listings end in .L, Hong Kong ones in .HK. Tap a row for the fund's card.",
+  er: "The yearly fee (expense ratio): the share of your money the fund takes every year to run itself, whether it goes up or down. 0.50% = $50 a year on $10,000. Lower is better.",
+  aum: "Assets under management: how much money is invested in the fund in total. Bigger funds are easier to buy and sell and less likely to be closed down. Shown in the fund's own currency.",
+  p: "The price of one share at the last close. It says nothing about value — a $20 fund isn't cheaper than a $500 one; you just get fewer shares of the second.",
+  c1y: "How much the share price changed over the last 12 months. Payouts are NOT included, so funds that pay big dividends look worse here than they really did.",
+  ytd: "Year-to-date: the return since 1 January, payouts included (as reported by Yahoo Finance).",
+  yld: "Payouts over the last 12 months as a % of the price. A high yield isn't automatically good — part of it can be your own money handed back.",
+  vol: "Average number of shares traded per day. More trading usually means a smaller gap between the buying and selling price, so it's cheaper to trade.",
+  _cost: "A traffic light for the yearly fee (expense ratio): 🟢 Good = 0.50% a year or less, 🟡 Caution = up to 0.75%, 🔴 Concern = more than 0.75%. It rates the fee you pay every year — not the share price.",
+  _size: "A traffic light for fund size (AUM): 🟢 Good = at least US$500M invested, 🟡 Caution = US$50M–500M, 🔴 Concern = under US$50M — very small funds are more often closed down, which forces you to sell.",
+};
+const PRESCREEN_HELP = "A quick first filter that keeps only funds that are cheap, established and plain: yearly fee 0.50% or less (Cost 🟢), at least US$50M invested, and no leverage, ETN or futures. " +
+  "It removes the obvious no's — it does NOT judge what the fund holds, its theme or its returns, so it isn't a buy list. Open a fund to look closer.";
+const PLAIN_HELP = "Hides products built for short-term trading or with extra risks: leveraged / inverse funds (2×, 3×, −1× — they reset daily and drift away from the market over time), " +
+  "exchange-traded notes (ETNs — a bank's promise to pay, not a fund that owns anything) and futures-based funds (oil, VIX … — returns can lag the real price badly). On by default.";
+const DOM_HELP = "Domicile = the country where the fund is legally based (not where it's listed). It changes the tax taken off dividends and, for non-US investors, US estate-tax exposure — see “Tax & domicile” above. General information, not tax advice.";
+
 const EX_COLS = [
   { key: "t", label: "Ticker" },
   { key: "er", label: "Expense", fmt: r => r.er == null ? nodata("Expense ratio") : r.er.toFixed(2) + "%" },
@@ -172,9 +195,10 @@ const EX_COLS = [
   { key: "yld", label: "Yield", when: () => UNIVERSE.rows.filter(r => r.yld != null).length > UNIVERSE.rows.length * 0.3,
     fmt: r => r.yld == null ? el("span", { class: "muted" }, "—") : r.yld.toFixed(2) + "%" },
   { key: "vol", label: "Avg Vol", fmt: r => shares(r.vol) || nodata("Volume") },
-  { key: "_cost", label: "Cost", score: r => costRating(r.er), help: "Mechanical: expense ≤ 0.50% 🟢, ≤ 0.75% 🟡, higher 🔴." },
-  { key: "_size", label: "Size", score: r => sizeRating(aumUsd(r)), help: "Mechanical: AUM ≥ US$500M 🟢, ≥ US$50M 🟡, smaller 🔴 (closure risk)." },
+  { key: "_cost", label: "Cost", score: r => costRating(r.er) },
+  { key: "_size", label: "Size", score: r => sizeRating(aumUsd(r)) },
 ];
+const exCols = () => EX_COLS.filter(c => !c.when || c.when());
 function pctSpan(v) {
   if (v == null) return el("span", { class: "muted" }, "—");
   return el("span", { class: v >= 0 ? "pos" : "neg" }, signed(v));
@@ -184,22 +208,33 @@ function renderExplorer() {
   if (!UNIVERSE || !$("#exTable")) return;
   const all = exFiltered().sort(exCmp);
   const rows = all.slice(0, EX.shown);
-  $("#exCount").textContent = `${all.length.toLocaleString()} match${all.length === 1 ? "" : "es"} · showing ${rows.length.toLocaleString()} · click a header to sort, a row for details`;
+  const sortCol = EX_COLS.find(c => c.key === EX.sort.key) || EX_COLS[0];
+  const { key: sk, dir: sd } = EX.sort;
+  const order = sk === "t" ? (sd > 0 ? "A→Z" : "Z→A") : ["_cost", "_size"].includes(sk) ? (sd > 0 ? "best first" : "worst first") : (sd > 0 ? "lowest first" : "highest first");
+  $("#exCount").textContent = `${all.length.toLocaleString()} match${all.length === 1 ? "" : "es"}` +
+    (rows.length < all.length ? ` · showing the first ${rows.length.toLocaleString()}, sorted by ${sortCol.label} (${order}) — “Show more” is at the bottom, or narrow the search` : "") +
+    " · click a header to sort, a row for details, ⓘ for what a column means";
+  const pre = $("#exPre").checked, note = $("#exPreNote");
+  note.hidden = !pre;
+  if (pre) {
+    const before = exFiltered(false).length;
+    note.textContent = `✓ Pre-screen on: ${all.length.toLocaleString()} of ${before.toLocaleString()} funds pass — cheap (yearly fee 0.50% or less), established (at least US$50M invested) and plain (no leverage, ETN or futures). ` +
+      "It's a first filter, not a buy list: it doesn't look at what a fund holds or how it has performed.";
+  }
   $("#exMore").hidden = rows.length >= all.length;
   const wrap = $("#exTable"); wrap.innerHTML = "";
   if (!rows.length) {
     wrap.append(el("div", { class: "empty" }, "No ETFs match. Try a broader search or fewer filters."));
     return;
   }
-  const cols = EX_COLS.filter(c => !c.when || c.when());
+  const cols = exCols();
   const head = el("tr");
   cols.forEach(c => {
-    const active = EX.sort.key === c.key, def = c.help || GLOSSARY[c.label];
-    head.append(el("th", { title: def || c.label, class: def ? "has-help" : "", onclick: () => {
+    const active = EX.sort.key === c.key, def = EX_HELP[c.key] || GLOSSARY[c.label];
+    head.append(withHelp(el("th", { class: def ? "has-help" : "", "aria-sort": active ? (EX.sort.dir > 0 ? "ascending" : "descending") : null, onclick: () => {
       EX.sort = EX.sort.key === c.key ? { key: c.key, dir: -EX.sort.dir } : { key: c.key, dir: c.key === "t" || c.key === "er" ? 1 : -1 };
       renderExplorer();
-    } }, c.label, def ? el("span", { class: "qmark" }, "ⓘ") : null,
-      active ? el("span", { class: "arrow" }, EX.sort.dir > 0 ? " ▲" : " ▼") : null));
+    } }, c.label, active ? el("span", { class: "arrow" }, EX.sort.dir > 0 ? " ▲" : " ▼") : null), c.label, def));
   });
   const body = el("tbody");
   const homes = curatedIndex();

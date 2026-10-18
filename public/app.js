@@ -37,9 +37,10 @@ const GLOSSARY = {
   "Structure": "How the fund is run: Passive = mechanically tracks an index; Active = a manager picks holdings. Also notes weighting (cap- vs equal-weight).",
   "# Hold": "Number of holdings — how many different securities the fund owns. Fewer = more concentrated.",
   "Top-10": "Top-10 weight: the % of the fund held in its ten largest positions. Over ~50% means it's a concentrated bet on a few names.",
-  "Cost": "Our rating of the fund's cost vs peers in this theme (green=cheap, yellow=typical, red=expensive).",
-  "Purity": "Theme purity: how well the actual holdings match the fund's name/theme. Red = the label and the holdings disagree.",
-  "Concen.": "Concentration: how much is riding on a few holdings. Red = top-heavy / single-stock risk.",
+  "Ticker": "The fund's trading symbol — what you type into your broker to buy it. London listings end in .L, Hong Kong ones in .HK. Tap a row for the full card.",
+  "Cost": "How cheap the fund's yearly fee (expense ratio) is compared with similar funds: 🟢 Good = cheap for its kind, 🟡 Caution = typical, 🔴 Concern = expensive. It rates the fee you pay every year — not the share price.",
+  "Purity": "Theme purity: do the fund's actual holdings match its name? 🟢 = mostly genuine plays on the theme, 🟡 = a fair amount of unrelated 'filler', 🔴 = the name and the holdings disagree.",
+  "Concen.": "Concentration: how much of the fund rides on a few companies. 🟢 = well spread, 🟡 = top-heavy, 🔴 = a few names (or one stock) decide everything.",
   "Yield": "Trailing 12-month distribution yield (income paid ÷ price). Beware: a high yield can be partly 'return of capital'. Compare total return, not just yield.",
   "1-yr price": "52-week change in the share price only — excludes dividends/distributions, so income and bond funds look worse than their real (total) return.",
   "Size": "Explorer rating from fund size (AUM): 🟢 ≥ $500M, 🟡 ≥ $50M, 🔴 smaller — small funds have wider spreads and closure risk.",
@@ -97,6 +98,93 @@ function pressable(node, fn) {
   node.addEventListener("click", fn);
   node.addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); fn(ev); } });
   return node;
+}
+
+// ---- definitions: tappable ⓘ pop-overs --------------------------------
+// Native title tooltips never appear on touch screens and are easy to miss with
+// a mouse, so every definition is a small ⓘ button: tap or click it (or hover,
+// where there is a mouse) to read it. Escape, a tap elsewhere or scrolling closes it.
+const CAN_HOVER = window.matchMedia && matchMedia("(hover: hover)").matches;
+let HELP_TIP = null, HELP_FOR = null, HELP_TIMER = null, HELP_PINNED = false;   // pinned = opened by a click/tap
+function hideHelp() {
+  clearTimeout(HELP_TIMER);
+  HELP_PINNED = false;
+  if (HELP_TIP) HELP_TIP.hidden = true;
+  if (HELP_FOR) HELP_FOR.setAttribute("aria-expanded", "false");
+  HELP_FOR = null;
+}
+const hideHelpSoon = () => { if (HELP_PINNED) return; clearTimeout(HELP_TIMER); HELP_TIMER = setTimeout(hideHelp, 250); };
+function showHelp(anchor, term, text, pin) {
+  clearTimeout(HELP_TIMER);
+  if (HELP_PINNED && !pin) return;                            // a hover preview never replaces or unpins a clicked one
+  if (!HELP_TIP) {
+    HELP_TIP = el("div", { id: "helpTip", class: "helptip", role: "tooltip", hidden: "hidden" });
+    document.body.append(HELP_TIP);
+    HELP_TIP.addEventListener("mouseenter", () => clearTimeout(HELP_TIMER));
+    HELP_TIP.addEventListener("mouseleave", hideHelpSoon);
+    document.addEventListener("click", e => { if (HELP_FOR && !HELP_TIP.contains(e.target) && !HELP_FOR.contains(e.target)) hideHelp(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && HELP_FOR) { const b = HELP_FOR; hideHelp(); b.focus(); } });
+    // follow the ⓘ while the page or a table scrolls; close once it has left the screen
+    window.addEventListener("scroll", e => { if (HELP_FOR && !HELP_TIP.contains(e.target)) placeHelp(); }, true);
+    window.addEventListener("resize", hideHelp);
+  }
+  if (HELP_FOR && HELP_FOR !== anchor) HELP_FOR.setAttribute("aria-expanded", "false");
+  HELP_TIP.innerHTML = "";
+  HELP_TIP.append(el("strong", {}, term), el("div", {}, text));
+  HELP_TIP.hidden = false;
+  HELP_FOR = anchor;
+  HELP_PINNED = !!pin;
+  anchor.setAttribute("aria-expanded", "true");
+  placeHelp();
+}
+// below the ⓘ, kept inside the screen; above it if there's no room below
+function placeHelp() {
+  if (!HELP_FOR) return;
+  const r = HELP_FOR.getBoundingClientRect(), W = document.documentElement.clientWidth;
+  if (r.bottom < 0 || r.top > innerHeight || (!r.width && !r.height)) { hideHelp(); return; }
+  const w = Math.min(320, W - 24);
+  HELP_TIP.style.width = w + "px";
+  HELP_TIP.style.left = Math.round(Math.min(Math.max(12, r.left + r.width / 2 - w / 2), W - w - 12)) + "px";
+  const h = HELP_TIP.offsetHeight;
+  HELP_TIP.style.top = Math.round(r.bottom + 8 + h > innerHeight - 8 && r.top - h - 8 > 8 ? r.top - h - 8 : r.bottom + 8) + "px";
+}
+function helpBtn(term, text) {
+  const b = el("button", { type: "button", class: "qmark", "aria-label": `What does “${term}” mean?`, "aria-expanded": "false" }, "ⓘ");
+  b.addEventListener("click", e => {                 // inside a sortable header or a label: don't sort / toggle
+    e.preventDefault(); e.stopPropagation();
+    if (HELP_FOR === b && HELP_PINNED) hideHelp(); else showHelp(b, term, text, true);   // a hover preview becomes pinned
+  });
+  b.addEventListener("keydown", e => {
+    if (e.key === "Escape" && HELP_FOR === b) { hideHelp(); e.stopPropagation(); }   // close the definition, not the drawer
+    else if (e.key === "Enter" || e.key === " ") e.stopPropagation();
+  });
+  if (CAN_HOVER) {
+    b.addEventListener("mouseenter", () => showHelp(b, term, text));
+    b.addEventListener("mouseleave", hideHelpSoon);
+  }
+  return b;
+}
+// A sortable column header with its definition: hover the header (or tap ⓘ) to read it, click to sort.
+function withHelp(th, term, text) {
+  if (!text) return th;
+  const b = helpBtn(term, text);
+  th.append(b);
+  if (CAN_HOVER) {
+    let t = null;
+    th.addEventListener("mouseenter", () => { t = setTimeout(() => showHelp(b, term, text), 300); });
+    th.addEventListener("mouseleave", () => { clearTimeout(t); hideHelpSoon(); });
+  }
+  return th;
+}
+// "What do these columns mean?" — every definition at once; on phones the table headers are hidden.
+function columnGuide(items, summary, open) {
+  const d = el("details", { class: "glossary colguide" });
+  if (open) d.open = true;
+  d.append(el("summary", {}, summary || "What do these columns mean?"));
+  const dl = el("dl");
+  items.filter(([, v]) => v).forEach(([k, v]) => dl.append(el("dt", {}, k), el("dd", {}, v)));
+  d.append(dl);
+  return d;
 }
 
 // ---- market-data helpers -------------------------------------------
@@ -293,6 +381,9 @@ async function init() {
   const gl = $("#glossaryList");
   if (gl) Object.entries(GLOSSARY).forEach(([term, def]) => gl.append(el("dt", {}, term), el("dd", {}, def)));
 
+  $("#themeOnly").parentNode.after(helpBtn("Theme funds only", "Hides benchmark / reference funds (like SPY, a plain S&P 500 fund) that sit in the table only so you can compare against them."));
+  $("#passOnly").parentNode.after(helpBtn("Meets my criteria", "Shows only funds that pass the green-light screen: Cost 🟢 (cheap fee), Concentration 🟢 (not riding on a few stocks) and Purity 🟢 or 🟡 (holdings match the theme). It's a shortlist for a closer look, not a buy list."));
+  $("#ratingVal").after(helpBtn("Rating filter", "Pick one of the rated columns (Cost, Purity, Concentration, Liquidity, Track record), then which ratings to keep: 🟢 Good only, 🟢🟡 Good or Caution, or 🔴 Concern only."));
   $("#filterBox").addEventListener("input", render);
   $("#themeOnly").addEventListener("change", render);
   $("#passOnly").addEventListener("change", render);
@@ -344,6 +435,7 @@ function selectTheme(id, sub) {
   setView("themes");
   if (!activeColumns().some(c => c.key === SORT.key)) SORT = { key: "ticker", dir: 1 };
   $("#controls").hidden = ranking;
+  $("#colGuide").hidden = ranking;
   $("#tableWrap").hidden = ranking;
   $("#incomeLab").hidden = !ranking;
   $("#liveMsg").hidden = true;
@@ -506,8 +598,15 @@ function clearFilters() {
   $("#segmentSel").value = "";
   render();
 }
+function renderColGuide() {
+  const box = $("#colGuide"), was = box.querySelector("details");
+  box.innerHTML = "";
+  box.append(columnGuide(activeColumns().map(c => [c.label === "Concen." ? "Concen. (concentration)" : c.label, GLOSSARY[c.label]]),
+    "What do these columns mean? (Cost, Purity, AUM …)", was && was.open));
+}
 function render() {
   if (!CURRENT) return;
+  renderColGuide();
   const rows = visibleEtfs(), wrap = $("#tableWrap"); wrap.innerHTML = "";
   if (!rows.length) {
     wrap.append(el("div", { class: "empty" }, "No funds match these filters. ",
@@ -519,10 +618,9 @@ function render() {
   cols.forEach(c => {
     const active = SORT.key === c.key;
     const def = GLOSSARY[c.label];
-    thead.append(el("th", { onclick: () => setSort(c.key), title: def || c.label, class: def ? "has-help" : "",
+    thead.append(withHelp(el("th", { onclick: () => setSort(c.key), class: def ? "has-help" : "",
       "aria-sort": active ? (SORT.dir > 0 ? "ascending" : "descending") : null },
-      c.label, def ? el("span", { class: "qmark" }, "ⓘ") : null,
-      active ? el("span", { class: "arrow" }, SORT.dir > 0 ? " ▲" : " ▼") : null));
+      c.label, active ? el("span", { class: "arrow" }, SORT.dir > 0 ? " ▲" : " ▼") : null), c.label, def));
   });
   const tbody = el("tbody");
   rows.forEach(e => {

@@ -90,7 +90,7 @@ body.noscroll { overflow: hidden; }
 .table-wrap thead th:first-child::after { content: ""; position: absolute;
   top: 0; right: 0; bottom: -1px; width: 6px; box-shadow: inset 6px 0 6px -6px rgba(0,0,0,.5); pointer-events: none; }
 thead th .arrow { color: var(--accent); font-size: 11px; }
-thead th .qmark { color: var(--muted); font-size: 10px; margin-left: 3px; vertical-align: super; cursor: help; }
+thead th .qmark { color: var(--muted); font-size: 12px; margin-left: 2px; cursor: help; }
 thead th.has-help:hover .qmark { color: var(--accent); }
 .holdlink { color: var(--accent); text-decoration: none; font-size: 12px; font-weight: 600;
   border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; white-space: nowrap; }
@@ -402,3 +402,22 @@ details.expert select { margin-left: 4px; padding: 4px 8px; font-size: 13px; }
   .cmptray > .muted { display: none; }
   .cmptray button { white-space: nowrap; }
 }
+
+/* ---- definitions: ⓘ buttons, pop-over, column guides ------------------ */
+button.qmark { background: none; border: none; color: var(--muted); padding: 2px 4px; margin-left: 2px; font-size: 14px;
+  font-weight: 400; line-height: 1; cursor: help; vertical-align: middle; border-radius: 6px; text-transform: none; }
+button.qmark:hover, button.qmark[aria-expanded="true"] { color: var(--accent); filter: none; }
+button.qmark:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+thead th button.qmark { font-size: 12px; padding: 0 2px; margin-left: 1px; vertical-align: baseline; }
+@media (hover: none) { button.qmark { min-width: 30px; min-height: 30px; } }
+.withhelp { display: inline-flex; align-items: center; gap: 0; }
+.helptip { position: fixed; z-index: 20; background: var(--panel-2); border: 1px solid var(--accent); border-radius: 10px;
+  padding: 10px 12px; font-size: 13px; line-height: 1.45; color: var(--text); box-shadow: var(--shadow);
+  text-transform: none; letter-spacing: normal; font-weight: 400; white-space: normal; }
+.helptip strong { display: block; margin-bottom: 4px; color: var(--accent); font-size: 13px; }
+.colguide { margin: 6px 0 10px; }
+.colguide summary { font-size: 13px; }
+.prenote { margin: 4px 0 8px; padding: 8px 12px; border-radius: 8px; font-size: 13px;
+  background: rgba(63,185,80,.08); border: 1px solid rgba(63,185,80,.35); }
+#exQ { min-width: 280px; }
+@media (max-width: 700px) { #exQ { min-width: 0; flex: 1 1 100%; } }
