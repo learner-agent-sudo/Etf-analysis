@@ -233,7 +233,7 @@ function erOf(e) {
 function aumOf(e) {
   const d = daily(e.ticker);
   if (d && d.aum_musd != null) return { musd: d.aum_musd, display: d.aum_display || fmtMusd(d.aum_musd), fresh: true, asof: d.profile_asof };
-  if (e.aum_display || e.aum_musd != null) return { musd: e.aum_musd, display: e.aum_display || fmtMusd(e.aum_musd), fresh: !!e._fresh, asof: e._fresh ? CURRENT.as_of : null };
+  if (e.aum_display || e.aum_musd != null) return { musd: e.aum_musd, display: e.aum_display || fmtMusd(e.aum_musd), fresh: !!e._fresh, asof: e._fresh ? CURRENT && CURRENT.as_of : null };
   return null;
 }
 function aumCell(e) {
@@ -403,14 +403,17 @@ function renderPlanBar() {
     return;
   }
   const r = taxHome(), item = (label, val) => el("span", { class: "planitem" }, el("span", { class: "muted" }, label + " "), el("b", {}, val));
+  const themes = thematicShare() > 0 && SETTINGS.perTheme > 0;
   box.className = "planbar";
-  box.append(el("span", { class: "planlabel" }, "Your plan"),
+  box.append(el("span", { class: "planlabel" + (SETTINGS.saved ? "" : " isdefault") }, SETTINGS.saved ? "Your plan" : "Default plan"),
     item("Core", pctTxt(SETTINGS.core)),
-    item("Themes", `${pctTxt(thematicShare())}` + (thematicShare() > 0 ? ` (≤ ${pctTxt(SETTINGS.perTheme)} each)` : "")),
+    item("Themes", themes ? `${pctTxt(thematicShare())} (≤ ${pctTxt(SETTINGS.perTheme)} each)` : "none"),
     item("Income", needsIncome() ? "wanted" : "not needed"),
     item("Tax", r ? r.label : "not set"),
-    el("button", { class: "refresh", type: "button", onclick: openSettings }, "Edit"));
+    el("button", { class: "refresh", type: "button", onclick: openSettings }, SETTINGS.saved ? "Edit" : "Set yours"));
 }
+// "Your plan says …" only once the visitor has set one; until then it is the site's default.
+const planSays = () => SETTINGS.saved ? "your plan says" : "by default the site assumes";
 function openSettings() {
   const body = $("#memoBody"); body.innerHTML = "";
   const s = SETTINGS, wrap = el("div", { class: "memo settings" });
@@ -491,8 +494,8 @@ function setView(v) {
     $(tab).classList.toggle("active", k === v);
     $(tab).setAttribute("aria-selected", k === v);
   });
-  if (v === "explore" && !location.hash.startsWith("#explore")) history.replaceState(null, "", "#explore");
-  if (v === "core" && location.hash !== "#core") history.replaceState(null, "", "#core");
+  if (v === "explore" && !location.hash.startsWith("#explore")) setHash("#explore");
+  if (v === "core") setHash("#core");
   try { localStorage.setItem("etf.view", v); } catch (_) { /* private mode */ }
   closeMemo();
   if (typeof renderTray === "function") renderTray();
@@ -529,7 +532,7 @@ async function init() {
   if (gl) Object.entries(GLOSSARY).forEach(([term, def]) => gl.append(el("dt", {}, term), el("dd", {}, def)));
 
   $("#themeOnly").parentNode.after(helpBtn("Theme funds only", "Hides benchmark / reference funds (like SPY, a plain S&P 500 fund) that sit in the table only so you can compare against them."));
-  $("#passOnly").parentNode.after(helpBtn("Meets my criteria", "Shows only funds that pass the green-light screen: Cost 🟢 (cheap fee), Concentration 🟢 (not riding on a few stocks) and Purity 🟢 or 🟡 (holdings match the theme). It's a shortlist for a closer look, not a buy list."));
+  $("#passOnly").parentNode.after(helpBtn("Passes quick screen", "Shows only funds that pass the site's green-light screen (the same for everyone, not your settings): Cost 🟢 (cheap fee), Concentration 🟢 (not riding on a few stocks) and Purity 🟢 or 🟡 (holdings match the theme). It's a shortlist for a closer look, not a buy list."));
   $("#ratingVal").after(helpBtn("Rating filter", "Pick one of the rated columns (Cost, Purity, Concentration, Liquidity, Track record), then which ratings to keep: 🟢 Good only, 🟢🟡 Good or Caution, or 🔴 Concern only."));
   $("#filterBox").addEventListener("input", render);
   $("#themeOnly").addEventListener("change", render);
@@ -558,7 +561,17 @@ async function init() {
   const niche = savedTheme();
   LAST_THEME = niche && niche !== "income" && window._THEMES[niche] ? niche : nicheIds()[0];
   route(savedView(), true);
-  window.addEventListener("hashchange", () => route());
+  const onNav = () => { if (location.href !== ROUTED) route(); };      // Back / Forward, an edited address
+  window.addEventListener("hashchange", onNav);
+  window.addEventListener("popstate", onNav);
+}
+// A tab or theme the visitor picks gets its own history entry, so the browser's Back button
+// returns to the previous tab; changes made while routing (first load, Back) replace the entry.
+let ROUTING = false, ROUTED = null;
+function setHash(h) {
+  if (location.hash === h) return;
+  (ROUTING ? history.replaceState : history.pushState).call(history, null, "", h);
+  ROUTED = location.href;
 }
 // Core lives in core.js; if that file failed to load, open the themes rather than a blank page.
 function goCore() {
@@ -568,6 +581,10 @@ function goCore() {
 // (the last tab used), else Core. On the first load an unknown or unloadable address
 // falls back too; later (a hash change) it leaves the page where it is.
 function route(fallback, first) {
+  ROUTING = true;
+  try { routeNow(fallback, first); } finally { ROUTING = false; ROUTED = location.href; }
+}
+function routeNow(fallback, first) {
   const exr = exploreRoute();
   if (exr !== null) { if (VIEW !== "explore" || !$("#explorer").dataset.built) showExplorer(window._THEMES[exr] ? exr : undefined); return; }
   const h = themeFromUrl();
@@ -575,20 +592,21 @@ function route(fallback, first) {
     const sub = h === "income" ? incomeSubFromUrl() : undefined;
     const unfolded = needsIncome() || INCOME_OPEN;
     if (VIEW === "income" && h === "income" && sub === INCOME_SUB && sub === "rankings" && unfolded) { showIncomeRankings(); return; }  // e.g. #income/fund=GPIX while already there
-    if ((VIEW !== "themes" && VIEW !== "income") || h !== (CURRENT && CURRENT._id) || sub !== (INCOME_SUB || undefined) || !unfolded) selectTheme(h, sub);
+    if ((VIEW !== "themes" && VIEW !== "income") || h !== (CURRENT && CURRENT._id) || sub !== (INCOME_SUB || undefined) || (h === "income" && !unfolded)) selectTheme(h, sub);
     return;
   }
   if (h && h !== "core" && !first) return;                         // an unknown address: stay where we are
   const v = h === "core" ? "core" : fallback;
   if (v === "explore") showExplorer();
-  else if (v === "income") selectTheme("income");
-  else if (v === "themes") selectTheme(LAST_THEME);
+  else if (v === "income" && window._THEMES.income) selectTheme("income");
+  else if (v === "themes" && LAST_THEME) selectTheme(LAST_THEME);
   else goCore();
 }
 
 // `sub` only applies to the income theme: "rankings" (default) or "picks".
 let INCOME_OPEN = false;                  // income lists unfolded although the settings say income isn't needed
 function selectTheme(id, sub) {
+  if (!window._THEMES[id]) { liveMsg("Couldn't load this list. Check your connection and reload the page.", "err"); return; }
   CURRENT = window._THEMES[id];
   const income = id === "income";
   if (!income) LAST_THEME = id;
@@ -614,7 +632,7 @@ function selectTheme(id, sub) {
   if (!income) try { localStorage.setItem("etf.theme", id); } catch (_) { /* private mode */ }
   const want = "#" + id + (INCOME_SUB === "picks" ? "/picks" : "");
   const deep = ranking && /^#income\/(fund|compare)=/.test(location.hash);    // keep a deep link for income.js
-  if (location.hash !== want && !deep) history.replaceState(null, "", want);
+  if (!deep) setHash(want);
   closeMemo();
   renderIntro(); renderTensions();
   if (folded) { $("#roster").hidden = true; return; }
@@ -637,7 +655,9 @@ function freshnessText() {
   return `Prices, volume, returns & AUM: ${MARKET.as_of} close — updates automatically every weekday`;
 }
 function renderIntro() {
-  const t = CURRENT, box = $("#themeIntro"); box.innerHTML = "";
+  const t = CURRENT, box = $("#themeIntro"), about = box.querySelector(".aboutlist");
+  const aboutOpen = !!(about && about.open && about.dataset.theme === t._id);
+  box.innerHTML = "";
   const income = t._id === "income", folded = income && !needsIncome() && !INCOME_OPEN;
   const curated = INCOME_SUB !== "rankings" && !folded;  // the ranking writes its own intro
   box.append(...[            // DOM append() would print a literal "null" — drop absent parts
@@ -647,7 +667,7 @@ function renderIntro() {
     income ? null : el("h3", { class: "themename" }, t.name),
     income && !folded ? incomeSubTabs() : null,
     el("div", { class: "tagline" }, t.tagline || ""),
-    curated ? aboutList(t) : null,
+    curated ? aboutList(t, aboutOpen) : null,
     curated && t._id === "income" ? el("p", { class: "bench" }, "▸ Want one number to compare every income ETF? ",
       el("button", { class: "refresh", onclick: () => selectTheme("income", "rankings") }, "See the Value ranking →")) : null
   ].filter(Boolean));
@@ -658,11 +678,17 @@ function renderIntro() {
 function themeChips() {
   return el("div", { class: "themechips", role: "tablist", "aria-label": "Theme" },
     ...nicheIds().map(id => el("button", { type: "button", role: "tab", class: "themechip" + (id === CURRENT._id ? " active" : ""),
-      "aria-selected": String(id === CURRENT._id), "data-theme": id, onclick: () => { if (id !== CURRENT._id) selectTheme(id); } }, window._THEMES[id].name)));
+      "aria-selected": String(id === CURRENT._id), "data-theme": id, onclick: () => {
+        if (id === CURRENT._id) return;
+        selectTheme(id);
+        const c = document.querySelector(`.themechip[data-theme="${id}"]`);   // the chips were rebuilt: keep keyboard focus
+        if (c) c.focus({ preventScroll: true });
+      } }, window._THEMES[id].name)));
 }
 // Dates and notes about the list, folded away so the funds come first.
-function aboutList(t) {
-  const d = el("details", { class: "glossary aboutlist" });
+function aboutList(t, open) {
+  const d = el("details", { class: "glossary aboutlist", "data-theme": t._id });
+  if (open) d.open = true;                                  // stays open across '↻ check for update'
   d.append(el("summary", {}, `About this list · analysis as of ${t.as_of || "—"}`),
     el("p", { class: "asof" }, `Analysis (ratings, memos, purity calls) as of ${t.as_of || "—"} · ${freshnessText()} `,
       el("button", { class: "refresh", title: "Re-load the latest daily market-data file", onclick: onCheckUpdate }, "↻ check for update")),
@@ -675,7 +701,7 @@ function incomeRefNote(folded) {
   if (needsIncome()) return null;
   const n = (CURRENT.etfs || []).filter(e => !e._adhoc).length;
   return el("div", { class: "refnote" },
-    el("p", {}, el("b", {}, "Reference only — your plan says you don't need income. "),
+    el("p", {}, el("b", {}, `Reference only — ${planSays()} you don't need income`), SETTINGS.saved ? ". " : el("span", {}, " (change it in ", el("button", { type: "button", class: "linkbtn", onclick: openSettings }, "⚙ Settings"), "). "),
       "These funds pay out cash, mostly by selling options on the stocks they hold — useful to see what yield you give up by choosing growth."),
     folded ? el("p", {}, `Inside: a Value ranking of every option-income ETF and ${n} analyst memos. `,
       el("button", { type: "button", onclick: () => { INCOME_OPEN = true; selectTheme("income", INCOME_SUB); } }, "Show the income lists")) : null);
@@ -683,7 +709,7 @@ function incomeRefNote(folded) {
 function sizingNote() {
   const cap = SETTINGS.perTheme;
   return el("p", { class: "lede small-lede" }, "Volatile, so keep them small; funds are compared only within their theme. ", cap > 0
-    ? el("span", { class: "muted" }, `Your plan: ≤ ${pctTxt(cap)} per theme — a 50% fall, normal here, costs about ${pctTxt(cap / 2)} overall.`)
+    ? el("span", { class: "muted" }, `${SETTINGS.saved ? "Your plan" : "Suggested"}: ≤ ${pctTxt(cap)} per theme — a 50% fall, normal here, costs about ${pctTxt(cap / 2)} overall.`)
     : el("span", { class: "muted" }, "Your plan puts nothing in themes — these lists are for reference."));
 }
 function renderTensions() {
@@ -714,7 +740,7 @@ function renderRoster() {
     `Full universe — ${roster.length} ${CURRENT.name} ETFs (${nDetailed} analysed above · tap any to open)`));
   const note = el("p", { class: "rosternote" },
     "Every listed fund tagged to this theme, including leveraged/inverse and niche variants (clearly tagged). " +
-    "✓ = full analysis card above. The others open a card with the latest daily fund data (price, returns, AUM, top holdings) — ask Claude to add a full analysis.");
+    "✓ = full analysis card above. The others open a card with the latest daily fund data (price, returns, fund size, top holdings) — no analyst review yet.");
   const item = x => {
     const isDet = curated.has(x.ticker);
     const d = daily(x.ticker);
@@ -855,8 +881,8 @@ function setSort(key) {
 function criteriaTag(e) {
   const warn = dataChecks(e).filter(c => c.screen);
   return warn.length
-    ? el("span", { class: "tag-pass recheck", title: "Passed the screen (cost 🟢, concentration 🟢, purity 🟢/🟡) on the analysed numbers, but the latest fund data disagrees: " + warn.map(c => c.text).join(" ") }, "✓ criteria ⚠ re-check")
-    : el("span", { class: "tag-pass", title: "Meets buy criteria: cost 🟢, concentration 🟢, purity 🟢/🟡" }, "✓ criteria");
+    ? el("span", { class: "tag-pass recheck", title: "Passed the screen (cost 🟢, concentration 🟢, purity 🟢/🟡) on the analysed numbers, but the latest fund data disagrees: " + warn.map(c => c.text).join(" ") }, "✓ screen ⚠ re-check")
+    : el("span", { class: "tag-pass", title: "Passes the quick screen: cost 🟢, concentration 🟢, purity 🟢/🟡 — a simpler check than the Value Score, not a buy list" }, "✓ screen");
 }
 
 // ---- messages / updates --------------------------------------------
@@ -882,11 +908,14 @@ async function onCheckUpdate() {
 
 // ---- look-up (box + roster) ------------------------------------------
 // Theme (other than `except`) holding a curated card for this ticker.
-// A benchmark card (SPY in the income table) is not a home: jumping there would be a surprise.
+// A theme's benchmark cards (QQQ in AI / Robotics) are full memos, so they count as a home —
+// except in the income table, where SPY is only a yardstick: jumping there would be a surprise.
+const isHomeCard = (t, e) => !e._adhoc && (e.is_theme_fund || t._id !== "income");
 function curatedHome(ticker, except) {
   return Object.values(window._THEMES || {}).find(t => t !== except &&
-    (t.etfs || []).some(e => e.ticker === ticker && !e._adhoc && e.is_theme_fund)) || null;
+    (t.etfs || []).some(e => e.ticker === ticker && isHomeCard(t, e))) || null;
 }
+const homeLabel = t => t._id === "income" ? "the Income tab" : `the ${t.name} theme`;
 function rosterEntry(ticker) {
   for (const t of [CURRENT, ...Object.values(window._THEMES || {})]) {
     const r = (t.roster || []).find(x => x.ticker === ticker);
@@ -898,18 +927,32 @@ function goTo(theme, ticker) {
   selectTheme(theme._id, theme._id === "income" ? "picks" : undefined);    // curated memos live in the picks table
   openMemo(ticker);
 }
-function onAddTicker() {
-  const inp = $("#addTicker");
+// The "Can't find a fund?" box under a theme's list. Its answer is written next to it (the
+// page-top message bar is out of sight down there). Only this theme's own roster funds join
+// the table; any other fund opens its card from the full ETF list.
+async function onAddTicker() {
+  const inp = $("#addTicker"), say = t => { $("#lookupMsg").textContent = t; };
   const ticker = inp.value.trim().toUpperCase().replace(/[^A-Z0-9.\-]/g, "");
-  if (!ticker) { liveMsg("Type a ticker symbol first (e.g. ARKQ).", "warn"); return; }
+  say("");
+  if (!ticker) { say("Type a ticker symbol first (e.g. ARKQ)."); inp.focus(); return; }
   $("#addBtn").disabled = true;
   try {
-    const home = (CURRENT.etfs || []).some(e => e.ticker === ticker) ? null : curatedHome(ticker, CURRENT);
+    const own = (CURRENT.etfs || []).some(e => e.ticker === ticker) || (CURRENT.roster || []).some(r => r.ticker === ticker);
+    const home = own ? null : curatedHome(ticker, CURRENT);
     if (home) {
       goTo(home, ticker);
-      liveMsg(`${ticker} has a full analysis card in the ${home.name} theme — switched there.`);
-    } else {
+      window.scrollTo(0, 0);
+      liveMsg(`${ticker} has a full analysis card in ${homeLabel(home)} — switched there.`);
+    } else if (own) {
       lookupTicker(ticker, rosterEntry(ticker));
+    } else {
+      say("Looking it up…");
+      await loadUniverse();
+      const row = [ticker, ticker + ".L", ticker + ".HK"].map(t => UNIVERSE.rows.find(r => r.t === t)).find(Boolean);
+      const d = daily(ticker);
+      if (row) { say(`${row.t}: not part of this theme — opened its card from All ETFs.`); openMemo(row.t, universeCard(row)); }
+      else if (d) { say(""); openMemo(ticker, makeDailyEtf(ticker, d, rosterEntry(ticker))); }
+      else say(`${ticker} isn't an ETF listed in the US, London or Hong Kong that the site follows — check the symbol (London tickers end in .L, Hong Kong ones in .HK).`);
     }
   } finally {
     $("#addBtn").disabled = false;
@@ -928,14 +971,14 @@ function lookupTicker(ticker, entry) {
   CURRENT.etfs.push(d ? makeDailyEtf(ticker, d, entry) : makeStubEtf(ticker, entry));
   render();
   const home = curatedHome(ticker, CURRENT);
-  const action = home ? { label: `Full analysis in ${home.name} →`, fn: () => goTo(home, ticker) } : null;
+  const action = home ? { label: `Full analysis in ${homeLabel(home)} →`, fn: () => goTo(home, ticker) } : null;
   if (d) {
-    liveMsg(`${ticker}: added with the latest daily fund data (${d.price_asof} close). No curated analysis yet in this theme${home ? "" : " — ask Claude to add a full card"}.`, "", action);
+    liveMsg(`${ticker}: added with the latest daily fund data (${d.price_asof} close). No analyst card yet in this theme.`, "", action);
   } else {
     const inRoster = (CURRENT.roster || []).some(r => r.ticker === ticker);
     liveMsg(inRoster
       ? `${ticker}: ${failReason(ticker)}`
-      : `${ticker} isn't tracked yet, so there's no market data for it here. Ask Claude to add it to a theme and it gets daily data plus an analysis card. Meanwhile “Live quote” in the card opens an external quote page.`, "warn", action);
+      : `${ticker} has no daily data on this site yet. “Live quote” in the card opens an external quote page.`, "warn", action);
   }
   openMemo(ticker);
 }
@@ -961,7 +1004,7 @@ function makeDailyEtf(ticker, d, entry) {
     derivatives: "—", performance: {}, market: {},
     scores: {
       cost: scoreFromExpense(d.expense_ratio),
-      purity: { rating: "yellow", note: "Not assessed — no curated analysis yet. Ask Claude to add a full card." },
+      purity: { rating: "yellow", note: "Not assessed — no analyst card yet." },
       concentration: stock ? { rating: "red", note: "A single stock — 100% in one company." } : scoreFromTop10(d.top10_weight_pct),
       liquidity: scoreFromLiquidity(d),
       track_record: { rating: "yellow", note: "Not yet reviewed." },
@@ -993,7 +1036,7 @@ function makeStubEtf(ticker, entry) {
       liquidity: na("No data yet."), track_record: na("Not assessed.") },
     overall: "Not tracked yet.",
     memo: {
-      thesis: `${name}${tag ? " — " + tag : ""}. This ticker isn't in the daily data feed yet, so there are no figures to show. Ask Claude to add it to a theme: it then gets daily price, volume, returns, AUM and top holdings, plus a curated analysis card.`,
+      thesis: `${name}${tag ? " — " + tag : ""}. This ticker isn't in the daily data feed yet, so there are no figures to show. Once it is added to a theme it gets daily price, volume, returns, AUM and top holdings, plus a curated analysis card.`,
       red_flags: [...rosterFlags(tag), "❓ No data — check the ticker on the issuer's site or via “Live quote”."],
       bull: [], bear: [],
     },
@@ -1021,13 +1064,14 @@ function scoreFromLiquidity(d) {
 }
 
 // ---- memo drawer ---------------------------------------------------
-function openMemo(ticker) {
-  const e = (CURRENT.etfs || []).find(x => x.ticker === ticker); if (!e) return;
+// `card`: a fund card that isn't in the current list (a Core fund, a look-up from the full list).
+function openMemo(ticker, card) {
+  const e = card || (CURRENT.etfs || []).find(x => x.ticker === ticker); if (!e) return;
   const m = e.memo || {}, d = daily(ticker);
   const body = $("#memoBody"); body.innerHTML = "";
   const wrap = el("div", { class: "memo" });
   const er = erOf(e), a = aumOf(e);
-  const kind = e._stock ? "Single stock (not an ETF)" : e._explorer ? "Fund from the full list (not curated)" : e._adhoc ? "Roster fund (not curated)" : e.is_theme_fund ? "Theme fund" : "Benchmark / reference";
+  const kind = e._stock ? "Single stock (not an ETF)" : e._explorer ? "From the full ETF list · no analyst review" : e._adhoc ? "Roster fund (not curated)" : e.is_theme_fund ? "Theme fund" : "Benchmark / reference";
 
   wrap.append(...[            // filter: DOM append() would print a literal "null"
     el("h2", { id: "memoTitle" }, `${e.ticker} — ${e.name}`),
@@ -1062,18 +1106,18 @@ function openMemo(ticker) {
   const fresh = tiles.filter(([, p]) => p.fresh), snap = tiles.filter(([, p]) => !p.fresh);
   const basisTxt = [
     fresh.length ? `${fresh[0][1].priceOnly ? "Price return only (*excludes distributions)" : "Total return with distributions reinvested"}, as of ${fresh[0][1].asof}.` : null,
-    snap.length ? `Faded tiles are an older snapshot (${snap[0][1].asof || CURRENT.as_of}).` : null,
+    snap.length ? `Faded tiles are an older snapshot (${snap[0][1].asof || (CURRENT && CURRENT.as_of) || "—"}).` : null,
     !tiles.length ? (tooNew(e, "y1") ? "The fund is too new for trailing returns." : "No return figures yet.") : null,
   ].filter(Boolean).join(" ");
   if (basisTxt) wrap.append(el("p", { class: "muted small" }, basisTxt));
   if (e.performance && e.performance.note) wrap.append(el("p", { class: "muted small" },
-    `Analyst note (${isPlaceholder(e.performance.as_of) ? CURRENT.as_of : e.performance.as_of}): ${e.performance.note}`));
+    `${e._adhoc ? "Note" : "Analyst note"} (${isPlaceholder(e.performance.as_of) ? CURRENT && CURRENT.as_of : e.performance.as_of}): ${e.performance.note}`));
 
   // Key facts
   const mk = e.market || {};
   const facts = [];
-  facts.push(["Price", d && d.price_display ? `${d.price_display} (${d.price_asof} close)` : mk.price_display ? `${mk.price_display} (snapshot ${mk.price_asof || ""})`.trim() : null]);
-  facts.push(["Avg daily volume", d && d.volume_display ? `${d.volume_display}${d.dollar_volume_display ? " · " + d.dollar_volume_display : ""}` : mk.volume_display ? `${mk.volume_display} (snapshot)` : null]);
+  facts.push(["Price", d && d.price_display ? `${d.price_display} (${d.price_asof} close)` : mk.price_display ? `${mk.price_display} (${e._fresh ? "close " + (mk.price_asof || "") : "snapshot " + (mk.price_asof || "")})`.replace(" )", ")") : null]);
+  facts.push(["Avg daily volume", d && d.volume_display ? `${d.volume_display}${d.dollar_volume_display ? " · " + d.dollar_volume_display : ""}` : mk.volume_display ? `${mk.volume_display}${e._fresh ? "" : " (snapshot)"}` : null]);
   if (d && d.high_52w != null) facts.push(["52-wk range", `$${d.low_52w} – $${d.high_52w}${d.pct_below_high ? ` (now ${d.pct_below_high === "0.0%" ? "at the high" : d.pct_below_high + " from the high"})` : ""}`]);
   if (d && d.max_drawdown_1y) facts.push(["Max drawdown (1 yr)", d.max_drawdown_1y]);
   facts.push(["Fund size", a ? a.display + (a.fresh ? "" : " (snapshot)") : null]);
@@ -1102,7 +1146,7 @@ function openMemo(ticker) {
   if (dv) wrap.append(el("p", { class: "small domnote" }, el("b", {}, `Domicile for ${taxHome().label} residents: `),
     verdictChip(e._dom), " ", dv.note, el("span", { class: "muted" }, " General information, not tax advice.")));
 
-  wrap.append(sectionTitle(e._adhoc ? "Mechanical ratings (not curated)" : "Scored dimensions"));
+  wrap.append(sectionTitle(e._explorer ? "Quick checks — from the daily data" : e._adhoc ? "Mechanical ratings (not curated)" : "Scored dimensions"));
   ["cost", "purity", "concentration", "liquidity", "track_record"].forEach(dim => {
     const sc = scoreOf(e, dim); if (!sc) return;
     wrap.append(el("p", {}, el("span", { class: "badge " + sc.rating }, RATING_LABEL[sc.rating]),
@@ -1116,7 +1160,7 @@ function openMemo(ticker) {
     wrap.append(sectionTitle("Data check — latest fund data vs this analysis"), ul,
       el("p", { class: "muted small" }, (e.meets_criteria && checks.some(c => c.screen)
         ? "This fund passed your screen on the analysed numbers; the newer data may change that. "
-        : "") + "Ratings are re-scored when the analysis is refreshed — ask Claude to re-check this fund."));
+        : "") + "Ratings are re-scored when the analysis is refreshed."));
   }
 
   if (m.strategy) wrap.append(sectionTitle("Strategy"), el("p", {}, m.strategy));
@@ -1150,7 +1194,7 @@ function openMemo(ticker) {
       el("td", {}, el("span", { class: "tag " + (h.playtype || "partial") }, h.playtype || "")),
       el("td", { class: "nm" }, h.note || ""))));
     wrap.append(ht, el("p", { class: "muted small" },
-      `Hand-classified snapshot (${(e.performance && e.performance.as_of) || CURRENT.as_of || "?"}): pure = direct theme play, partial = some exposure, unrelated = filler. `,
+      `Hand-classified snapshot (${(e.performance && e.performance.as_of) || (CURRENT && CURRENT.as_of) || "?"}): pure = direct theme play, partial = some exposure, unrelated = filler. `,
       d && d.holdings && d.holdings.length ? null : official));
   } else if (!(d && d.holdings && d.holdings.length) && official) {
     wrap.append(el("p", { class: "muted small" }, official));

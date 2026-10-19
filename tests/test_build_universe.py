@@ -2,6 +2,7 @@
 """Offline tests for scripts/build_universe.py (no network)."""
 import json
 import os
+import tempfile
 import sys
 import unittest
 
@@ -245,8 +246,17 @@ class Derived(unittest.TestCase):
         for n in ("Global X Ethereum Covered Call ETF", "Bitwise Crypto Industry Innovators ETF",
                   "WisdomTree Physical AI, Humanoids, and Drones Fund", "FT Vest Bitcoin Strategy Floor15 ETF - January"):
             self.assertEqual(pol(n), "D", n)
-        self.assertEqual(pol("Direxion Daily Bitcoin Bull 2X ETF", f="L"), "D")     # leveraged: a RIC, not a trust
+        self.assertEqual(pol("Direxion Daily Bitcoin Bull 2X ETF", f="L"), "D")     # a leveraged bitcoin fund is a RIC
         self.assertEqual(pol("WisdomTree Physical Gold", dom=""), "")              # London ETC: unchanged
+        # commodity pools whose names don't say so: Teucrium crop funds, ProShares Trust II (even leveraged)
+        for n, f in (("ProShares Ultra Gold", "L"), ("ProShares UltraShort Bloomberg Crude Oil", "L"),
+                     ("ProShares VIX Short-Term Futures ETF", "F"), ("ProShares UltraShort Yen", "L"), ("Teucrium Corn Fund", ""),
+                     ("Bitwise Hyperliquid ETF", ""), ("Bitwise NEAR ETF", ""), ("Stellar ETF", ""), ("CoinShares Altcoins ETF", "")):
+            self.assertEqual(pol(n, f=f), "", n)
+        for n, f in (("ProShares K-1 Free Crude Oil ETF", ""), ("Teucrium Agricultural Strategy No K-1 ETF", ""),
+                     ("ProShares Ultra MSCI Europe", "L"), ("Global X Near-Term Treasury ETF", "")):
+            self.assertEqual(pol(n, f=f), "D", n)
+        self.assertEqual(pol("ProShares Bitcoin ETF", yld=28.6), "D")              # a futures RIC: its payouts show
 
     def test_same_class_lines_share_payout(self):
         listing = {t: {"t": t, "n": n, "x": "London", "dom": "IE/LU", "q": q} for t, n, q in (
@@ -270,6 +280,42 @@ class Derived(unittest.TestCase):
         self.assertEqual(key("iShares Core S&P 500 UCITS ETF USD (Acc)"), key("iShares Core S&P 500 UCITS ETF GBP (Acc)"))
         self.assertNotEqual(key("iShares Core S&P 500 UCITS ETF USD (Acc)"), key("iShares Core S&P 500 UCITS ETF USD (Dist)"))
         self.assertNotEqual(key("Xtrackers S&P 500 UCITS ETF 2C - GBP Hedged"), key("Xtrackers S&P 500 UCITS ETF 2C"))
+        self.assertNotEqual(key("iShares S&P 500 GBP Hedged UCITS ETF (Acc)"), key("iShares S&P 500 EUR Hedged UCITS ETF (Acc)"))
+        self.assertNotEqual(key("UBS MSCI World UCITS ETF hGBP"), key("UBS MSCI World UCITS ETF hEUR"))
+
+    def test_hk_classes_with_one_name_stay_apart(self):
+        # Two classes of one fund can carry the same short name on a given day; HK counters of
+        # one class share the code's last three digits (3077 / 9077), another class does not (9078).
+        row = lambda t, n, pol: [{"t": t, "n": n, "f": "", "dom": "HK", "pol": pol}.get(c) for c in bu.COLS]  # noqa: E731
+        n = "Premia ETF Series - US Treasury Floating Rate ETF"
+        got = bu.fill_class_payout([row("3077.HK", n, ""), row("9077.HK", n, "D"), row("9078.HK", n, "")])
+        self.assertEqual([r[bu.COLS.index("pol")] for r in got], ["D", "D", ""])
+
+    def test_class_marker_survives_a_short_name(self):
+        m = bu.name_marker
+        self.assertEqual(m("Bosera 20+ Year Us Treasury Bond Etf", "Bosera 20+ Year US Treasury Bond ETF Distributing"), "D")
+        self.assertEqual(m("ChinaAMC 20+ Yr US Trs Bd ETF USDAccLstd"), "A")
+        self.assertEqual(m("Some ETF"), "")
+        q = {"currency": "HKD"}
+        listing = {"3156.HK": {"t": "3156.HK", "n": "Bosera 20+ Year Us Treasury Bond Etf", "x": "HKEX", "dom": "HK", "q": q},
+                   "9156.HK": {"t": "9156.HK", "n": "Bosera 20+ Year Us Treasury Bond Etf", "x": "HKEX", "dom": "HK", "q": q},
+                   "2848.HK": {"t": "2848.HK", "n": "Xtrackers - MSCI Korea UCITS ETF 1D", "x": "HKEX", "dom": "HK", "q": q}}
+        rows = {r[0]: dict(zip(bu.COLS, r)) for r in bu.build_rows(listing, {}, {"er": 1, "ytd": 1, "c1y": 1},
+                                                                    prev_marker={"3156.HK": "D", "9156.HK": "A", "2848.HK": "A"})}
+        self.assertEqual((rows["3156.HK"]["pol"], rows["3156.HK"]["pm"]), ("D", "D"))        # carried from earlier builds
+        self.assertEqual((rows["9156.HK"]["pol"], rows["9156.HK"]["pm"]), ("A", "A"))
+        self.assertEqual((rows["2848.HK"]["pol"], rows["2848.HK"]["pm"]), ("D", "D"))        # today's name wins over the old marker
+
+    def test_previous_markers_read_old_and_new_files(self):
+        with tempfile.TemporaryDirectory() as d:
+            old, new = os.path.join(d, "old.json"), os.path.join(d, "new.json")
+            with open(old, "w", encoding="utf-8") as fh:
+                json.dump({"cols": ["t", "n"], "rows": [["A.HK", "X ETF Acc"], ["B.HK", "Y ETF"]]}, fh)
+            with open(new, "w", encoding="utf-8") as fh:
+                json.dump({"cols": ["t", "n", "pm"], "rows": [["A.HK", "X ETF", "A"], ["B.HK", "Y ETF", ""]]}, fh)
+            self.assertEqual(bu.previous_markers(old), {"A.HK": "A"})
+            self.assertEqual(bu.previous_markers(new), {"A.HK": "A"})
+            self.assertEqual(bu.previous_markers(os.path.join(d, "missing.json")), {})
 
     def test_core_roles(self):
         lane = lambda n, f="", er=0.1: bu.site_lane(n, f, er)  # noqa: E731
@@ -395,7 +441,14 @@ class Derived(unittest.TestCase):
 
 
 class CommittedData(unittest.TestCase):
-    """Regression checks on the committed public/data/universe-*.json (rebuilt daily)."""
+    """Regression checks on the committed public/data/universe-*.json (rebuilt daily). CI runs
+    them after the daily build, not before it (SKIP_DATA_TESTS): a bad name from Yahoo that got
+    committed must not stop the next build that would repair it."""
+
+    @classmethod
+    def setUpClass(cls):
+        if os.environ.get("SKIP_DATA_TESTS"):
+            raise unittest.SkipTest("data checks run after the daily build")
 
     @staticmethod
     def rows(key):
@@ -423,7 +476,9 @@ class CommittedData(unittest.TestCase):
         self.check("us", {"QYLD": ("", "income")}, "lane")
 
     def test_trusts_do_not_distribute(self):
-        self.check("us", {"GLD": ("",), "IBIT": ("",), "USO": ("",), "BOXX": ("",), "SPY": ("D",), "QQQ": ("D",)}, "pol")
+        self.check("us", {"GLD": ("",), "IBIT": ("",), "USO": ("",), "BOXX": ("",), "UGL": ("",), "CORN": ("",),
+                          "SPY": ("D",), "QQQ": ("D",)}, "pol")
+        self.check("hk", {"9078.HK": ("A", ""), "9077.HK": ("D",)}, "pol")
 
     def test_vaneck_netherlands(self):
         self.check("lse", {"TDIV.L": ("NL",), "TSWE.L": ("NL",), "TDVX.L": ("IE",)}, "dom")

@@ -33,8 +33,8 @@ const CORE_HELP = {
 
 // One entry per share class: lines that differ only by trading currency are grouped.
 const classKey = n => String(n || "").toLowerCase()
-  .replace(/\b(usd|gbp|eur|chf|jpy)\s*(hedged|hdg|h)\b/g, "hedged-$1")        // hedged classes stay apart
-  .replace(/\bh(gbp|eur|usd|chf)\b/g, "hedged-$1")                           // UBS writes 'hGBP'
+  .replace(/\b(usd|gbp|eur|chf|jpy)\s*(hedged|hdg|h)\b/g, "hedged$1")         // hedged classes stay apart ('hedgedgbp':
+  .replace(/\bh(gbp|eur|usd|chf)\b/g, "hedged$1")                            // no word break for the next line to cut); UBS writes 'hGBP'
   .replace(/\bunhedged\b|\b(usd|gbp|eur|chf|jpy|hkd)\b/g, " ")
   .replace(/\b(acc|accumulating|accumulation|dist|distributing|distribution|dis|inc|capitalisation|capi)\b|[(),]|\s-\s/g, " ")
   .replace(/\s+/g, " ").trim();
@@ -140,6 +140,8 @@ function setCoreRole(id) {
   CS.role = id;
   try { localStorage.setItem("etf.coreRole", id); } catch (_) { /* private mode */ }
   renderCoreLists();
+  const card = document.querySelector(`.rolecard[data-role="${id}"]`);       // the cards were rebuilt: keep keyboard focus
+  if (card) card.focus({ preventScroll: true });
 }
 
 function renderCoreLists() {
@@ -170,7 +172,8 @@ function renderCoreLists() {
     const open = () => coreOpen(x.lines[0]);
     body.append(el("tr", {},
       pressable(el("td", { class: "col-ticker", "aria-label": `Open ${x.lines[0].t}` },
-        el("div", { class: "lines" }, ...x.lines.map(l => el("span", { class: "tk line", title: `${l.t} trades in ${l.cur}${x.lines.length > 1 ? " — same fund as the other line" + (x.lines.length > 2 ? "s" : "") : ""}` },
+        el("div", { class: "lines" }, ...x.lines.map(l => el("span", { class: "tk line", title: `${l.t} trades in ${l.cur}${x.lines.length > 1 ? " — same fund as the other line" + (x.lines.length > 2 ? "s" : "") : ""}`,
+          onclick: ev => { ev.stopPropagation(); coreOpen(l); } },                 // each currency line opens its own card
           l.t, el("small", {}, l.cur)))),
         el("div", { class: "nm" }, x.name, x.mkt !== "US" ? el("span", { class: "seg mkt" }, (UNIVERSE.meta[x.mkt] || {}).label || x.mkt) : null)), open),
       el("td", { "data-label": "Yearly fee", onclick: open }, x.er == null ? el("span", { class: "muted", title: CORE_HELP.fee }, "not published") : x.er.toFixed(2) + "%"),
@@ -186,10 +189,7 @@ function renderCoreLists() {
   box.append(sec);
 }
 
-// A core fund's card: the Explorer card (no jump to a theme where it is only a benchmark).
+// A core fund's card: its card from the full ETF list (no jump to a theme where it is only a benchmark).
 function coreOpen(r) {
-  EXPLORE.etfs = EXPLORE.etfs.filter(e => e.ticker !== r.t);
-  EXPLORE.etfs.push(universeCard(r));
-  CURRENT = EXPLORE;
-  openMemo(r.t);
+  openMemo(r.t, universeCard(r));
 }

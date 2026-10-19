@@ -36,7 +36,7 @@
         <input type="checkbox" id="themeOnly" /> Theme funds only
       </label></span>
       <span class="withhelp"><label class="toggle pass-toggle">
-        <input type="checkbox" id="passOnly" /> ✓ Meets my criteria
+        <input type="checkbox" id="passOnly" /> ✓ Passes quick screen
       </label></span>
       <select id="segmentSel" aria-label="Segment" hidden></select>
       <span class="ratingfilter withhelp">
@@ -66,6 +66,7 @@
         <input type="search" id="addTicker" maxlength="8" placeholder="Any ticker, e.g. ARKQ" aria-label="Look up any ticker" />
         <button id="addBtn">Look up</button>
       </span>
+      <span id="lookupMsg" class="lookupmsg" role="status" aria-live="polite"></span>
     </section>
     <section id="tensions" class="tensions"></section>
     </div>

@@ -171,12 +171,17 @@ Accumulating / Capitalisation / USD Cap / 1C / ETF-C / (C)* = accumulating;
 *Dist / Dis / Inc / 1D / ETF-D / (D)*, or a class name ending in *USD Income*
 (any currency) = distributing. US-domiciled ETFs distribute (US fund tax
 rules), except trusts and pools that pay nothing — bullion, currency and spot
-crypto trusts, commodity L.P.s and box-spread funds — which are *not stated*
-unless a yield is reported. An unmarked Vanguard UCITS class distributes
-(Vanguard names every accumulating class); otherwise an unmarked class with a
-yield distributes, and the rest is *not stated* rather than guessed. The
-trading lines of one share class (other currencies, HK counters) share one
-policy: a line without a yield takes its class's policy from the other lines.
+crypto trusts, commodity L.P.s (including Teucrium's crop funds and ProShares'
+leveraged gold / silver / oil / gas / currency and VIX pools) and box-spread
+funds — which show no label ("pays nothing") unless a yield is reported. An
+unmarked Vanguard UCITS class distributes (Vanguard names every accumulating
+class); otherwise an unmarked class with a yield distributes, and the rest is
+*not stated* rather than guessed. Yahoo serves a listing's long name one day and
+a short one the next, so a class marker seen in any of its names — or in an
+earlier build (column `pm`) — is kept until a name shows the opposite marker.
+The trading lines of one share class (other currencies, HK counters with the
+same last three digits) share one policy: a line without a yield takes its
+class's policy from the other lines.
 Accumulating changes what happens to the income, not the risk.
 
 **Domicile** for London UCITS funds is read from the fund family (iShares,

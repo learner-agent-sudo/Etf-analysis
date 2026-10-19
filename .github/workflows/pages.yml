@@ -50,6 +50,8 @@ jobs:
           fetch-depth: 0              # full history so the data commit can rebase
 
       - name: Unit tests (market-data maths)
+        env:
+          SKIP_DATA_TESTS: "1"        # checks on the committed data run after the build below
         run: python3 -m unittest discover -s tests
 
       - name: Install browser-grade HTTP client for Yahoo (optional)
@@ -70,6 +72,10 @@ jobs:
         env:
           PYTHONUNBUFFERED: "1"
         run: python3 scripts/build_universe.py
+
+      - name: Check the built universe (anchor funds keep their labels)
+        continue-on-error: true     # a Yahoo name glitch shows up here without stopping the deploy
+        run: python3 -m unittest tests.test_build_universe.CommittedData -v
 
       - name: Build Income Lab (score every option-income ETF)
         continue-on-error: true     # the rest of the site still deploys if this fails

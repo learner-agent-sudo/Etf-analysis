@@ -62,7 +62,7 @@ QUOTE_FIELDS = ("longName,shortName,quoteType,currency,fullExchangeName,regularM
                 "ytdReturn,netAssets,netExpenseRatio,trailingAnnualDividendYield,dividendYield,yield,"
                 "averageDailyVolume3Month,fundInceptionDate,firstTradeDateMilliseconds")
 BATCH = 100
-COLS = ["t", "n", "x", "p", "c1y", "ytd", "aum", "er", "yld", "vol", "f", "inc", "cur", "dom", "aumu", "acur", "pol", "lane"]
+COLS = ["t", "n", "x", "p", "c1y", "ytd", "aum", "er", "yld", "vol", "f", "inc", "cur", "dom", "aumu", "acur", "pol", "lane", "pm"]
 FX_FALLBACK = {"USD": 1.0, "GBP": 1.30, "EUR": 1.10, "HKD": 0.128, "CHF": 1.15, "JPY": 0.0068,
                "SEK": 0.095, "NOK": 0.093, "DKK": 0.15, "CAD": 0.73, "AUD": 0.66}
 # flags (f): L = leveraged/inverse, N = exchange-traded note, F = futures-based commodity/VIX
@@ -100,7 +100,8 @@ def flags(name):
 # First Trust 'Class A ACCU', Fidelity / HK classes '... USD Income' (only at the end of the name:
 # 'Quality Income ETF' is a fund, not a class).
 ACC_NAME = re.compile(r"\bacc(u|umulating|umulation)?\b|\bcapitali[sz]ation\b|\bcapi\b|\bETF\s+cap\b"
-                      r"|(\b|ETF)(USD|EUR|GBP|CHF|JPY) ?cap\b|\bETF\s+\d?C\b|\bETF\s*-\s*C\b|\(C\)", re.I)
+                      r"|(\b|ETF)(USD|EUR|GBP|CHF|JPY) ?cap\b|\bETF\s+\d?C\b|\bETF\s*-\s*C\b|\(C\)"
+                      r"|\b(USD|HKD|RMB|CNH)Acc", re.I)                        # HK short names: 'USDAccLstd'
 DIST_NAME = re.compile(r"\bdist(ributing|ribution)?\b|\bdis\b|\binc\b|\bETF\s+\d?D\b|\bETF\s*-\s*D\b|\(D\)"
                        r"|\b(USD|EUR|GBP|CHF|JPY|HKD|RMB|CNH|SGD|AUD|CAD) income( hedged)?\s*$", re.I)
 # US products that are not RICs keep what they earn: grantor trusts holding bullion, currency or
@@ -111,17 +112,33 @@ DIST_NAME = re.compile(r"\bdist(ributing|ribution)?\b|\bdis\b|\binc\b|\bETF\s+\d
 NO_PAYOUT = re.compile(
     r"\b(gold|silver|platinum|palladium|precious metals?)\b|\bphysical\b(?!\s+ai\b)|\bcurrencyshares\b"
     r"|\b(bitcoin|ether(eum)?|solana|xrp|crypto|dogecoin|doge|litecoin|avalanche|cardano|chainlink|polkadot|sui|hbar"
-    r"|bnb)\b|\bcommodity[- ]index(ed)? (trust|fund)\b|\bL\.?P\.?$|\bbox\b", re.I)
+    r"|bnb|hyperliquid|stellar|trx|tron|canton network|altcoins?)\b|\bnear etf\b|\bcommodity[- ]index(ed)? (trust|fund)\b|\bL\.?P\.?$|\bbox\b", re.I)
+# Commodity pools whose names don't say so: Teucrium's single-crop funds and ProShares Trust II
+# (leveraged gold/silver/oil/gas/currency and VIX futures). Checked even for leveraged products,
+# which are otherwise RICs that do pay; ProShares' K-1-free and bitcoin/ether funds are RICs.
+NO_PAYOUT_POOL = re.compile(r"^teucrium\b.*\bfund$|^proshares\b(?!.*\bk-1 free\b).*\b(vix|gold|silver|crude oil|natural gas|euro|yen)\b", re.I)
 NO_PAYOUT_NOT = re.compile(
     r"\bminers?\b|mining|royalt|equit|\bstocks?\b|compan|corporat|industry|innovators|infrastructure|blockchain"
     r"|economy|thematic|income|yield|premium|covered|option|weekly ?pay|boost|dividend|strateg|\bstrat\b|tactical"
     r"|protection|buffer|floor|hedged|\btail\b|treasur|\btips\b|S&P ?500", re.I)
 
 
-def payout_policy(name, dom, yld=None, flags=""):
+def name_marker(*names):
+    """'A' / 'D' from the first of `names` carrying one kind of share-class marker, else ''.
+    Yahoo serves a listing's long name one day and a short one the next ('… ETF Distributing'
+    / '… Etf'); any of them saying the class is enough."""
+    for n in names:
+        acc, dist = bool(ACC_NAME.search(n or "")), bool(DIST_NAME.search(n or ""))
+        if acc != dist:
+            return "A" if acc else "D"
+    return ""
+
+
+def payout_policy(name, dom, yld=None, flags="", marker=""):
     """'A' / 'D' / '' (not stated). US-domiciled ETFs pay out what they earn (US fund tax
     rules) unless they are trusts / pools that pay nothing; elsewhere a fund without a class
-    marker counts as paying out only if it has a yield."""
+    marker counts as paying out only if it has a yield. `marker`: the class marker found in
+    another name of the listing (or carried from earlier builds) when this name has none."""
     if "N" in (flags or ""):
         return ""                                    # a note holds nothing and pays nothing
     acc, dist = bool(ACC_NAME.search(name or "")), bool(DIST_NAME.search(name or ""))
@@ -129,7 +146,11 @@ def payout_policy(name, dom, yld=None, flags=""):
         return "A" if acc else "D"
     if acc:
         return ""                                    # both markers: don't guess
+    if marker:
+        return marker
     paid = isinstance(yld, (int, float)) and yld > 0
+    if dom == "US" and not paid and NO_PAYOUT_POOL.search(name or ""):
+        return ""                                    # commodity pool
     if (dom == "US" and not paid and "L" not in (flags or "") and NO_PAYOUT.search(name or "")
             and not NO_PAYOUT_NOT.search(name or "")):
         return ""                                    # grantor trust / commodity pool / box fund
@@ -203,17 +224,18 @@ def ucits_domicile(name, dom, flags=""):
     return "IE" if ie and not lu else "LU" if lu and not ie else "IE/LU"
 
 
-def derived(name, dom, yld, flags, er, ticker):
+def derived(name, dom, yld, flags, er, ticker, marker=""):
     """(dom, pol, lane) — every field the page derives from a listing's name."""
     dom = ucits_domicile(name, dom, flags)
-    return dom, payout_policy(name, dom, yld, flags), site_lane(name, flags, er, ticker)
+    return dom, payout_policy(name, dom, yld, flags, marker), site_lane(name, flags, er, ticker)
 
 
 def payout_class_key(name):
     """The Core tab's share-class key (classKey in public/core.js) without its acc/dist step:
     the lines of one class in other currencies share a key, an Acc and a Dist class do not."""
-    n = re.sub(r"\b(usd|gbp|eur|chf|jpy)\s*(hedged|hdg|h)\b", r"hedged-\1", str(name or "").lower(), flags=re.A)
-    n = re.sub(r"\bh(gbp|eur|usd|chf)\b", r"hedged-\1", n, flags=re.A)
+    # 'hedgedgbp', not 'hedged-gbp': the currency strip below would cut 'gbp' off at the '-'
+    n = re.sub(r"\b(usd|gbp|eur|chf|jpy)\s*(hedged|hdg|h)\b", r"hedged\1", str(name or "").lower(), flags=re.A)
+    n = re.sub(r"\bh(gbp|eur|usd|chf)\b", r"hedged\1", n, flags=re.A)
     n = re.sub(r"\bunhedged\b|\b(usd|gbp|eur|chf|jpy|hkd)\b", " ", n, flags=re.A)
     return re.sub(r"\s+", " ", n).strip()
 
@@ -224,11 +246,14 @@ def fill_class_payout(rows):
     class's policy when its other lines agree on one; a stated value is never overwritten, nor a
     deliberate blank (a US fund's blank means a trust or pool). Leveraged products and notes
     are left out: a 'yield' on a leveraged ETP line is a data artefact, not a payout."""
-    i = {c: COLS.index(c) for c in ("n", "f", "dom", "pol")}
+    i = {c: COLS.index(c) for c in ("t", "n", "f", "dom", "pol")}
     groups = {}
     for r in rows:
         if r[i["dom"]] != "US" and not set(r[i["f"]] or "") & {"L", "N"}:
-            groups.setdefault(payout_class_key(r[i["n"]]), []).append(r)
+            # HK counters of one class share the last three digits (2801 / 9801 / 82801); two
+            # classes of a fund can carry the same short name on a given day (9077 Dist, 9078 Acc)
+            hk = re.match(r"^\d*?(\d{3})\.HK$", r[i["t"]] or "")
+            groups.setdefault((payout_class_key(r[i["n"]]), hk.group(1) if hk else ""), []).append(r)
     for grp in groups.values():
         pols = {r[i["pol"]] for r in grp} - {""}
         if len(pols) != 1:
@@ -549,8 +574,12 @@ def aum_currency(name):
     return m.group(1) if m else "USD"
 
 
-def build_rows(listing, quotes, mult, screener=None, fx=None, default_cur="USD", aum_in_usd=False):
+def build_rows(listing, quotes, mult, screener=None, fx=None, default_cur="USD", aum_in_usd=False, prev_marker=None):
     """Merge discovery + quotes (+ screener fallback) into compact rows (COLS).
+
+    `prev_marker`: {ticker: 'A' / 'D'} — the share-class marker earlier builds saw in the
+    listing's name (column pm). It is kept while none of today's names shows a marker, so a
+    class doesn't flip to 'not stated' on the days Yahoo serves its short name.
 
     `aum_in_usd`: Yahoo reports a fund's netAssets in its BASE currency. For
     London UCITS that is almost always USD (checked: VUSA.L's figure matches
@@ -581,7 +610,8 @@ def build_rows(listing, quotes, mult, screener=None, fx=None, default_cur="USD",
         er_pct = _r(er * mult["er"], 2) if isinstance(er, (int, float)) and er > 0 else None
         yld_pct = _r(yld, 2) if isinstance(yld, (int, float)) and 0 < yld < 100 else None
         fl = "".join(sorted(set(flags(name) + base.get("f", ""))))
-        dom, pol, lane = derived(name, base.get("dom") or "", yld_pct, fl, er_pct, t)
+        pm = name_marker(name, q.get("longName"), base.get("n"), q.get("shortName"), s.get("n")) or (prev_marker or {}).get(t, "")
+        dom, pol, lane = derived(name, base.get("dom") or "", yld_pct, fl, er_pct, t, pm)
         rows.append([
             t, name, base.get("x") or q.get("fullExchangeName") or "",
             _r(price),
@@ -599,8 +629,29 @@ def build_rows(listing, quotes, mult, screener=None, fx=None, default_cur="USD",
             acur,
             pol,
             lane,
+            pm,
         ])
     return fill_class_payout(rows)
+
+
+def previous_markers(path):
+    """{ticker: 'A' / 'D'} from an existing universe file: its pm column, or (older files) the
+    marker in its stored name."""
+    try:
+        with open(path, encoding="utf-8") as fh:
+            doc = json.load(fh)
+    except (OSError, ValueError):
+        return {}
+    c = doc.get("cols") or []
+    if "t" not in c or "n" not in c:
+        return {}
+    ti, ni, pi = c.index("t"), c.index("n"), c.index("pm") if "pm" in c else None
+    out = {}
+    for r in doc.get("rows") or []:
+        m = (r[pi] if pi is not None and pi < len(r) else "") or name_marker(r[ni])
+        if m:
+            out[r[ti]] = m
+    return out
 
 
 def reclassify(keys=None, data_dir=None):
@@ -621,7 +672,8 @@ def reclassify(keys=None, data_dir=None):
             # ('IE' / 'LU' / 'NL'), which ucits_domicile leaves alone: start again from the
             # discovery value so family-rule changes apply. HK (ISIN) and US domiciles are kept.
             dom = lse_domicile(r["n"]) if key == "lse" else r.get("dom") or ""
-            r["dom"], r["pol"], r["lane"] = derived(r["n"], dom, r.get("yld"), r.get("f") or "", r.get("er"), r["t"])
+            r["pm"] = name_marker(r["n"]) or r.get("pm") or ""
+            r["dom"], r["pol"], r["lane"] = derived(r["n"], dom, r.get("yld"), r.get("f") or "", r.get("er"), r["t"], r["pm"])
             rows.append([r.get(c) for c in COLS])
         doc["cols"], doc["rows"] = COLS, fill_class_payout(rows)
         with open(path, "w", encoding="utf-8") as fh:
@@ -694,7 +746,8 @@ def build_market(key, yahoo, mult, fx, dry):
             log(f"  Nasdaq screener fallback: {len(screener)} rows")
         except Exception as e:  # noqa: BLE001
             log(f"  Nasdaq screener unavailable: {e}")
-    rows = build_rows(listing, quotes, mult, screener, fx, m["cur"], m.get("aum_in_usd", False))
+    rows = build_rows(listing, quotes, mult, screener, fx, m["cur"], m.get("aum_in_usd", False),
+                      previous_markers(os.path.join(DATA, f"universe-{key}.json")))
     if key == "hk":
         fix_hk_counters(rows, fx)
     for a in m["anchors"]:
