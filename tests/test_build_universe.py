@@ -201,6 +201,76 @@ class Derived(unittest.TestCase):
         self.assertEqual(pol("iPath Bloomberg Commodity ETN", dom="US", f="N"), "")  # notes pay nothing
         self.assertEqual(pol("Odd Fund UCITS ETF Acc Dist"), "")             # both markers: don't guess
 
+    def test_more_class_markers(self):
+        pol = lambda n, dom="IE": bu.payout_policy(n, dom, None, "")  # noqa: E731
+        for n in ("Amundi Index Solutions - Amundi EUR Corporate Bond ESG UCITS ETF DR (C)",     # Amundi (C)
+                  "Amundi Core EUR Corporate Bond UCITS ETF - USD Hedged (C)",
+                  "iShares Blockchain Technology UCITS ETF USD Cap", "Global X SuperDividend UCITS ETF USD Cap",
+                  "BNP Paribas Easy MSCI Emerging Min TE UCITS ETF EUR Cap",
+                  "BNP PARIBAS Easy ICAV - BNP Paribas Easy FTSE EPRA Nareit Global Dev Green CTBUCITSETFUCITSETFEURCAP",
+                  "First Trust Indxx Europe Infrastructure UCITS ETF Class A ACCU",
+                  "FIRST TRUST VEST US EQUITY MAX BUFFER UCITS ETF - SEPTEMBER CLASS A ACCU CL",
+                  "Fidelity US Quality Income UCITS ETF GBP Hedged Acc"):                       # 'Income' mid-name
+            self.assertEqual(pol(n), "A", n)
+        for n in ("Amundi MSCI Europe SRI Climate Paris Aligned - UCITS ETF DR (D)",
+                  "Fidelity US Equity Enhanced Yield UCITS ETF USD Income",
+                  "YieldMax Future of Defence Option Income UCITS ETF USD Income",
+                  "Fidelity Global Corp Bond Research Enhanced PAB UCITS ETF USD Income Hedged"):
+            self.assertEqual(pol(n), "D", n)
+        self.assertEqual(pol("Hang Seng CMS Bloomberg US Treasury 1-3 Year Index ETF HKD Income", dom="HK"), "D")
+        # '<currency> Income' only as the class at the end of the name; 'Small Cap' is no 'Cap' class
+        self.assertEqual(pol("Fidelity US Quality Income UCITS ETF"), "")
+        self.assertEqual(pol("Global X SuperDividend UCITS ETF"), "")
+        self.assertEqual(pol("iShares MSCI USA Small Cap UCITS ETF"), "")
+
+    def test_us_trusts_and_pools_pay_nothing(self):
+        pol = lambda n, yld=None, f="", dom="US": bu.payout_policy(n, dom, yld, f)  # noqa: E731
+        for n, f in (("SPDR Gold Shares", ""), ("iShares Gold Trust", ""), ("iShares Gold Trust Micro", ""),
+                     ("SPDR Gold MiniShares", ""), ("abrdn Physical Silver Shares ETF", ""),
+                     ("iShares Bitcoin Trust ETF", ""), ("Fidelity Wise Origin Bitcoin Fund", ""),
+                     ("Grayscale Ethereum Mini Trust ETF", ""), ("Bitwise Solana Staking ETF", ""),
+                     ("United States Oil Fund, LP", "F"), ("United States Commodity Index Fund, LP", ""),
+                     ("iShares S&P GSCI Commodity-Indexed Trust", ""), ("Invesco CurrencyShares Japanese Yen Trust", ""),
+                     ("Alpha Architect 1-3 Month Box ETF", ""), ("Roundhill Box Spread ETF", "")):
+            self.assertEqual(pol(n, f=f), "", n)
+        self.assertEqual(bu.derived("SPDR Gold Shares", "US", None, "", 0.4, "2840.HK")[1], "")   # GLD's HK line (US ISIN)
+        # plain RICs and UITs pay out: 'Trust' alone is no sign, and a reported yield always wins
+        self.assertEqual(pol("State Street SPDR S&P 500 ETF Trust", yld=0.99), "D")
+        self.assertEqual(pol("State Street SPDR S&P 500 ETF Trust"), "D")
+        self.assertEqual(pol("Invesco QQQ Trust"), "D")
+        self.assertEqual(pol("Abacus FCF ETF Trust - Abacus FCF Innovation Leaders ETF"), "D")
+        self.assertEqual(pol("VanEck Gold Miners ETF", yld=0.72), "D")
+        self.assertEqual(pol("VanEck Gold Miners ETF"), "D")                         # miners are equity RICs
+        self.assertEqual(pol("Invesco CurrencyShares Euro Currency Trust", yld=0.78), "D")
+        for n in ("Global X Ethereum Covered Call ETF", "Bitwise Crypto Industry Innovators ETF",
+                  "WisdomTree Physical AI, Humanoids, and Drones Fund", "FT Vest Bitcoin Strategy Floor15 ETF - January"):
+            self.assertEqual(pol(n), "D", n)
+        self.assertEqual(pol("Direxion Daily Bitcoin Bull 2X ETF", f="L"), "D")     # leveraged: a RIC, not a trust
+        self.assertEqual(pol("WisdomTree Physical Gold", dom=""), "")              # London ETC: unchanged
+
+    def test_same_class_lines_share_payout(self):
+        listing = {t: {"t": t, "n": n, "x": "London", "dom": "IE/LU", "q": q} for t, n, q in (
+            ("HMWD.L", "HSBC MSCI World UCITS ETF", {"currency": "USD", "dividendYield": 1.18}),
+            ("HMWO.L", "HSBC MSCI World UCITS ETF", {"currency": "GBp"}),
+            ("HMWA.L", "HSBC MSCI World UCITS ETF USD (Acc)", {"currency": "USD"}))}
+        rows = {r[0]: dict(zip(bu.COLS, r)) for r in bu.build_rows(listing, {}, {"er": 1, "ytd": 1, "c1y": 1})}
+        self.assertEqual((rows["HMWD.L"]["pol"], rows["HMWO.L"]["pol"], rows["HMWA.L"]["pol"]), ("D", "D", "A"))
+        self.assertIsNone(rows["HMWO.L"]["yld"])                                     # only the payout is shared
+        row = lambda t, n, pol, f="", dom="HK": [{"t": t, "n": n, "f": f, "dom": dom, "pol": pol}.get(c) for c in bu.COLS]  # noqa: E731
+        got = bu.fill_class_payout([
+            row("3416.HK", "Global X HSCEI Compnts Cov Cll Actv ETF", "D"),
+            row("9416.HK", "Global X HSCEI Compnts Cov Cll Actv ETF", ""),
+            row("A.L", "Some UCITS ETF USD", "A", dom="IE"), row("B.L", "Some UCITS ETF GBP", "D", dom="IE"),
+            row("C.L", "Some UCITS ETF EUR", "", dom="IE"),                              # class disagrees: no guess
+            row("D.L", "Other UCITS ETF GBP Hedged", "", dom="IE"), row("E.L", "Other UCITS ETF", "D", dom="IE"),
+            row("VISE.L", "Leverage Shares 2x Visa ETP Securities A", "D", "L", ""),
+            row("VIS2.L", "Leverage Shares 2x Visa ETP Securities A", "", "L", "")])
+        self.assertEqual([r[bu.COLS.index("pol")] for r in got], ["D", "D", "A", "D", "", "", "D", "D", ""])
+        key = bu.payout_class_key
+        self.assertEqual(key("iShares Core S&P 500 UCITS ETF USD (Acc)"), key("iShares Core S&P 500 UCITS ETF GBP (Acc)"))
+        self.assertNotEqual(key("iShares Core S&P 500 UCITS ETF USD (Acc)"), key("iShares Core S&P 500 UCITS ETF USD (Dist)"))
+        self.assertNotEqual(key("Xtrackers S&P 500 UCITS ETF 2C - GBP Hedged"), key("Xtrackers S&P 500 UCITS ETF 2C"))
+
     def test_core_roles(self):
         lane = lambda n, f="", er=0.1: bu.site_lane(n, f, er)  # noqa: E731
         cases = {"Vanguard Total World Stock Index Fund ETF Shares": "world", "iShares MSCI ACWI ETF": "world",
@@ -227,6 +297,24 @@ class Derived(unittest.TestCase):
         self.assertEqual(lane("Hang Seng S&P 500 Index ETF", er=0.9), "")              # too expensive for a core fund
         self.assertEqual(lane("Hang Seng S&P 500 Index ETF", er=None), "us")           # unknown fee doesn't exclude
 
+    def test_more_plain_us_funds_are_core(self):
+        lane = lambda n: bu.site_lane(n, "", 0.05)  # noqa: E731
+        for n in ("Vanguard Morningstar Large-Cap ETF", "JPMorgan BetaBuilders U.S. Equity ETF", "Schwab 1000 ETF",
+                  "Goldman Sachs MarketBeta US Equity ETF", "Goldman Sachs MarketBeta U.S. 1000 Equity ETF",
+                  "iShares Dow Jones U.S. ETF",
+                  "JPMorgan ETFs (Ireland) ICAV - BetaBuilders US Equity UCITS ETF - USD (acc)",
+                  "Xtrackers S&P 500 UCITS ETF 2C - GBP Hedged"):                   # a currency-hedged class stays core
+            self.assertEqual(lane(n), "us", n)
+        for n in ("iShares Dow Jones U.S. Select Dividend ETF", "iShares Select Dividend ETF",
+                  "Vanguard Morningstar Large-Cap Growth ETF", "Vanguard Morningstar Growth ETF",
+                  "Schwab U.S. Large-Cap Value ETF", "Vanguard Morningstar Mega Cap ETF",
+                  "JPMorgan BetaBuilders U.S. Mid Cap Equity ETF", "JPMorgan BetaBuilders U.S. Small Cap Equity ETF",
+                  "Goldman Sachs MarketBeta Russell 1000 Growth Equity ETF", "Goldman Sachs MarketBeta International Equity ETF",
+                  "Invesco Dow Jones US Insurance UCITS ETF USD Acc",
+                  # an options (tail-hedge) strategy on the S&P 500 is not the index
+                  "Global X S&P 500 Annual Tail Hedge UCITS ETF", "Global X S&P 500 Quarterly Tail Hedge UCITS ETF A USD Acc"):
+            self.assertEqual(lane(n), "", n)
+
     def test_income_lane_is_the_income_rankings_universe(self):
         self.assertEqual(bu.site_lane("JPMorgan Equity Premium Income ETF"), "income")
         self.assertEqual(bu.site_lane("Global X S&P 500 Covered Call UCITS ETF USD Acc"), "income")
@@ -246,6 +334,17 @@ class Derived(unittest.TestCase):
         self.assertEqual(dom("Vanguard S&P 500 ETF", "US"), "US")
         self.assertEqual(dom("Some HK fund", "HK"), "HK")
 
+    def test_vaneck_dutch_funds(self):
+        dom = lambda n: bu.ucits_domicile(n, "IE/LU")  # noqa: E731
+        for n in ("VanEck Morningstar Developed Markets Dividend Leaders UCITS ETF",      # TDIV, NL0011683594
+                  "VanEck World Equal Weight Screened UCITS ETF",                         # TSWE, NL0010408704
+                  "VanEck Global Real Estate UCITS ETF", "VanEck European Equal Weight Screened UCITS ETF"):
+            self.assertEqual(dom(n), "NL", n)
+        for n in ("VanEck Morningstar Developed Markets ex-US Dividend Leaders UCITS ETF A USD Acc",   # TDVX, IE…
+                  "VanEck Gold Miners UCITS ETF", "VanEck Semiconductor UCITS ETF",
+                  "VanEck Morningstar Global Wide Moat UCITS ETF A USD", "VANECK UCITS ETFS PLC VANECK AG"):
+            self.assertEqual(dom(n), "IE", n)
+
     def test_reclassify_upgrades_old_files_and_is_idempotent(self):
         import tempfile
         old_cols = bu.COLS[:16]
@@ -263,6 +362,71 @@ class Derived(unittest.TestCase):
         self.assertEqual(first["cols"], bu.COLS)
         self.assertEqual((got["dom"], got["pol"], got["lane"], got["er"]), ("IE", "A", "us", 0.07))
         self.assertEqual(first, again)
+
+    def test_reclassify_applies_family_rule_changes(self):
+        """A stored London 'IE' / 'LU' is re-derived from the name, so a family-rule change reaches
+        the committed files offline; HK (ISIN) and US domiciles are kept as stored."""
+        import re
+        import tempfile
+        from unittest import mock
+        row = lambda t, n, dom: [t, n, "x", 1.0, None, None, None, 0.1, None, None, "", None, "USD", dom, None, "USD", "", ""]  # noqa: E731
+        files = {"lse": [row("CSPX.L", "iShares Core S&P 500 UCITS ETF USD (Acc)", "IE"),
+                         row("TDIV.L", "VanEck Morningstar Developed Markets Dividend Leaders UCITS ETF", "IE"),
+                         row("TDVX.L", "VanEck Morningstar Developed Markets ex-US Dividend Leaders UCITS ETF A USD Acc", "IE"),
+                         row("PHAU.L", "WisdomTree Physical Gold", "")],
+                 "hk": [row("9000.HK", "SOME IE ETF", "IE")], "us": [row("VOO", "Vanguard S&P 500 ETF", "US")]}
+
+        def run(ie_family=bu.IE_FAMILY):
+            with tempfile.TemporaryDirectory() as d:
+                for k, rows in files.items():
+                    with open(os.path.join(d, f"universe-{k}.json"), "w") as fh:
+                        json.dump({"cols": bu.COLS, "rows": rows}, fh)
+                with mock.patch.object(bu, "IE_FAMILY", ie_family):
+                    bu.reclassify(list(files), data_dir=d)
+                out = {}
+                for k in files:
+                    with open(os.path.join(d, f"universe-{k}.json")) as fh:
+                        out.update({r[0]: r[bu.COLS.index("dom")] for r in json.load(fh)["rows"]})
+                return out
+        self.assertEqual(run(), {"CSPX.L": "IE", "TDIV.L": "NL", "TDVX.L": "IE", "PHAU.L": "", "9000.HK": "IE", "VOO": "US"})
+        # drop iShares from the Irish families: the stored 'IE' must not survive
+        got = run(re.compile(r"^vanguard\b|^vaneck\b", re.I))
+        self.assertEqual((got["CSPX.L"], got["TDIV.L"], got["9000.HK"], got["VOO"]), ("IE/LU", "NL", "IE", "US"))
+
+
+class CommittedData(unittest.TestCase):
+    """Regression checks on the committed public/data/universe-*.json (rebuilt daily)."""
+
+    @staticmethod
+    def rows(key):
+        path = os.path.join(os.path.dirname(__file__), "..", "public", "data", f"universe-{key}.json")
+        if not os.path.exists(path):
+            raise unittest.SkipTest(f"{path} not built")
+        with open(path, encoding="utf-8") as fh:
+            doc = json.load(fh)
+        return {r[0]: dict(zip(doc["cols"], r)) for r in doc["rows"]}
+
+    def check(self, key, want, field):
+        rows = self.rows(key)
+        self.assertTrue(any(t in rows for t in want), f"none of {list(want)} in universe-{key}.json")
+        for t, ok in want.items():
+            if t in rows:                              # a delisted line is no regression
+                self.assertIn(rows[t][field], ok, f"{t} {field}")
+
+    def test_core_anchors(self):
+        self.check("us", {"VT": ("world",), "VTI": ("us",), "VOO": ("us",), "VV": ("us",)}, "lane")
+        self.check("lse", {"CSPX.L": ("us",), "SPYL.L": ("us",), "VWRA.L": ("world",), "SWDA.L": ("dev",),
+                           "XDWD.L": ("dev",)}, "lane")
+
+    def test_not_core(self):
+        self.check("lse", {"SPQH.L": ("", "income"), "SAHP.L": ("", "income")}, "lane")
+        self.check("us", {"QYLD": ("", "income")}, "lane")
+
+    def test_trusts_do_not_distribute(self):
+        self.check("us", {"GLD": ("",), "IBIT": ("",), "USO": ("",), "BOXX": ("",), "SPY": ("D",), "QQQ": ("D",)}, "pol")
+
+    def test_vaneck_netherlands(self):
+        self.check("lse", {"TDIV.L": ("NL",), "TSWE.L": ("NL",), "TDVX.L": ("IE",)}, "dom")
 
 
 class AumCurrency(unittest.TestCase):

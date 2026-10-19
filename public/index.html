@@ -15,19 +15,15 @@
     </div>
     <nav class="tabs" role="tablist" aria-label="View">
       <button id="tabCore" class="tab active" role="tab" aria-selected="true">Core</button>
-      <button id="tabThemes" class="tab" role="tab" aria-selected="false">Thematic</button>
+      <button id="tabThemes" class="tab" role="tab" aria-selected="false">Themes</button>
       <button id="tabIncome" class="tab" role="tab" aria-selected="false">Income</button>
-      <button id="tabExplore" class="tab" role="tab" aria-selected="false">Explorer</button>
+      <button id="tabExplore" class="tab" role="tab" aria-selected="false">All ETFs</button>
     </nav>
-    <div class="theme-picker">
-      <label for="themeSelect">Theme</label>
-      <select id="themeSelect" aria-label="Select theme"></select>
-    </div>
     <button id="settingsBtn" class="gear" type="button" aria-label="Settings: your split, income need and tax residence" title="Settings">⚙<span class="gearlabel"> Settings</span></button>
   </header>
 
   <main id="main">
-    <section id="nudge" class="nudge" hidden></section>
+    <section id="planBar" class="planbar" hidden></section>
     <section id="liveMsg" class="livemsg" hidden role="status" aria-live="polite"></section>
     <section id="coreView" hidden></section>
     <div id="themeView" hidden>
@@ -35,40 +31,42 @@
     <section id="incomeLab" hidden></section>
 
     <section class="controls" id="controls" hidden>
-      <input type="search" id="filterBox" placeholder="Filter by ticker or name…" />
-      <label class="toggle">
+      <input type="search" id="filterBox" placeholder="Filter by ticker or name…" aria-label="Filter this theme's funds" />
+      <span class="withhelp"><label class="toggle">
         <input type="checkbox" id="themeOnly" /> Theme funds only
-      </label>
-      <label class="toggle pass-toggle">
+      </label></span>
+      <span class="withhelp"><label class="toggle pass-toggle">
         <input type="checkbox" id="passOnly" /> ✓ Meets my criteria
-      </label>
+      </label></span>
       <select id="segmentSel" aria-label="Segment" hidden></select>
-      <span class="ratingfilter">
-        <select id="ratingDim" aria-label="Rating dimension to filter by">
-          <option value="">Rating: any</option>
-          <option value="cost">Cost</option>
-          <option value="purity">Purity</option>
-          <option value="concentration">Concentration</option>
-          <option value="liquidity">Liquidity</option>
-          <option value="track_record">Track record</option>
+      <span class="ratingfilter withhelp">
+        <select id="ratingDim" aria-label="Filter by a rating">
+          <option value="">Filter by a rating…</option>
+          <option value="cost">Cost rating</option>
+          <option value="purity">Purity rating</option>
+          <option value="concentration">Concentration rating</option>
+          <option value="liquidity">Liquidity rating</option>
+          <option value="track_record">Track-record rating</option>
         </select>
-        <select id="ratingVal" aria-label="Minimum rating" disabled>
-          <option value="">—</option>
+        <select id="ratingVal" aria-label="Which ratings to keep" hidden>
           <option value="green">🟢 Good only</option>
-          <option value="greenyellow">🟢🟡 Good + Caution</option>
+          <option value="greenyellow">🟢🟡 Good or Caution</option>
           <option value="red">🔴 Concern only</option>
         </select>
       </span>
-      <span class="addbox">
-        <input type="search" id="addTicker" maxlength="8" placeholder="Look up a ticker (e.g. ARKQ)" aria-label="Look up a ticker" />
-        <button id="addBtn">＋ Look up</button>
-      </span>
-      <span class="hint">Click a header to sort · click a row for the full memo · faded = older snapshot</span>
+      <span class="hint">Tap a row for the full memo · tap a header to sort · faded = older snapshot</span>
     </section>
 
     <section id="colGuide"></section>
     <section id="tableWrap" class="table-wrap"></section>
     <section id="roster" class="roster" hidden></section>
+    <section id="lookup" class="lookup" hidden>
+      <span>Can't find a fund?</span>
+      <span class="addbox">
+        <input type="search" id="addTicker" maxlength="8" placeholder="Any ticker, e.g. ARKQ" aria-label="Look up any ticker" />
+        <button id="addBtn">Look up</button>
+      </span>
+    </section>
     <section id="tensions" class="tensions"></section>
     </div>
     <section id="explorer" hidden></section>

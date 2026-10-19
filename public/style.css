@@ -23,18 +23,12 @@ body { background: var(--bg); color: var(--text);
 .tabs { display: flex; gap: 4px; margin-right: auto; margin-left: 18px; }
 .tab { background: transparent; color: var(--muted); border: 1px solid var(--border); padding: 6px 12px; font-size: 13px; }
 .tab.active { background: var(--accent); color: #06223f; border-color: var(--accent); }
-.theme-picker.dim { visibility: hidden; }
 .exmore { text-align: center; margin: 12px 0; }
 .exmore button[hidden] { display: none; }
 #exCount { margin: 4px 0 8px; }
 .taxbox { margin: 10px 0 0; }
 .taxbox dl { grid-template-columns: minmax(160px, max-content) 1fr; }
 .nm .seg.mkt { color: var(--yellow); }
-.theme-picker { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 0 1 auto; }
-/* A <select> sizes itself to its longest option — cap it so the header never
-   pushes the page wider than a phone screen. */
-#themeSelect { min-width: 0; max-width: 100%; text-overflow: ellipsis; }
-.theme-picker label { color: var(--muted); font-size: 13px; }
 select, input[type="search"] { background: var(--panel-2); color: var(--text);
   border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font-size: 14px; }
 select:focus, input:focus { outline: 2px solid var(--accent); outline-offset: 0; }
@@ -210,13 +204,9 @@ td.col-ticker:focus-visible, .rosteritem:focus-visible { outline: 2px solid var(
 @media (max-width: 700px) {
   .topbar { padding: 10px 14px; }
   .brand h1 { font-size: 16px; }
-  .theme-picker { flex: 1 1 auto; justify-content: flex-end; }
   .topbar { flex-wrap: wrap; }
   .tabs { order: 3; flex: 1 1 100%; margin: 6px 0 0; }
   .tab { flex: 1; padding: 8px; }
-  .theme-picker.dim { display: none; }
-  .theme-picker label { display: none; }
-  #themeSelect { width: 100%; }
   main { padding: 16px 14px; }
   .controls input[type="search"]#filterBox { min-width: 0; flex: 1 1 100%; }
   .addbox { flex: 1 1 100%; }
@@ -425,13 +415,6 @@ thead th button.qmark { font-size: 12px; padding: 0 2px; margin-left: 1px; verti
 /* ---- lanes: settings, plan line, core tab, payout / domicile tags ---- */
 .gear { flex: 0 0 auto; background: transparent; color: var(--muted); border: 1px solid var(--border); padding: 6px 10px; font-size: 13px; }
 .gear:hover { color: var(--text); background: var(--panel-2); filter: none; }
-.tab.ref:not(.active) { font-style: italic; }
-.nudge { position: relative; margin: 0 0 12px; padding: 10px 40px 10px 12px; border-radius: 8px; font-size: 14px;
-  background: var(--panel); border: 1px solid var(--accent); }
-.nudge button:not(.msgclose) { margin: 4px 0 0; }
-.planstrip { margin: 8px 0 4px; font-size: 13px; color: var(--muted); }
-.planstrip b { color: var(--text); }
-.planstrip .refresh { margin-left: 2px; padding: 2px 8px; }
 .refnote { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--yellow);
   border-radius: 8px; padding: 10px 14px; margin: 10px 0; max-width: 90ch; }
 .refnote p { margin: 4px 0; }
@@ -466,5 +449,64 @@ td .tag-pol { margin-left: 0; font-size: 12px; padding: 1px 8px; }
   .gear { order: 2; padding: 6px 8px; }
   .gearlabel { display: none; }
   .setrow label { min-width: 0; flex: 1 1 100%; }
-  .nudge { font-size: 13px; }
+}
+
+/* ---- clarity pass: plan bar, core roles, theme chips, folded filters ---- */
+.planbar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; margin: 0 0 14px; padding: 7px 12px;
+  border: 1px solid var(--border); border-radius: 10px; background: var(--panel); font-size: 13px; }
+.planbar .planlabel { color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+.planbar .planitem { white-space: nowrap; }
+.planbar .refresh { padding: 2px 10px; margin-left: auto; }
+.planbar.nudge { position: relative; padding: 10px 40px 10px 12px; border-color: var(--accent); font-size: 14px; }
+.planbar.nudge button:not(.msgclose) { flex: 0 0 auto; }
+.small-lede { font-size: 15px; margin-top: 6px; }
+.step { display: flex; align-items: center; gap: 8px; margin: 22px 0 10px; font-size: 16px; }
+.stepnum { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%;
+  background: var(--accent); color: #06223f; font-size: 13px; font-weight: 800; flex: 0 0 auto; }
+.rolecards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.rolecard { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; text-align: left; background: var(--panel);
+  color: var(--text); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; font-weight: 400; }
+.rolecard:hover { border-color: var(--accent); filter: none; }
+.rolecard.active { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--panel-2); }
+.rolecard .rc-title { font-size: 16px; font-weight: 700; }
+.rolecard.active .rc-title { color: var(--accent); }
+.rolecard .rc-count { font-size: 12px; color: var(--muted); }
+.rolecard .rc-blurb { font-size: 13px; color: var(--muted); line-height: 1.4; }
+.rolenote { display: none; color: var(--muted); font-size: 13px; margin: 8px 0 0; }
+.corerole { margin: 10px 0 6px; }
+.col-ticker .lines { display: flex; flex-wrap: wrap; gap: 4px 6px; margin-bottom: 2px; }
+.tk.line { margin-right: 0; border: 1px solid var(--border); border-radius: 6px; padding: 0 6px; }
+.tk.line small { margin-left: 4px; }
+.themechips { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 4px; }
+.themechip { background: transparent; color: var(--text); border: 1px solid var(--border); border-radius: 999px;
+  padding: 6px 12px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.themechip:hover { border-color: var(--accent); filter: none; }
+.themechip.active { background: var(--accent); color: #06223f; border-color: var(--accent); }
+.themename { margin: 18px 0 0; font-size: 20px; }
+.aboutlist { margin: 8px 0 0; }
+.aboutlist p { margin: 6px 0 0; max-width: 100ch; }
+.lookup { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0 0; color: var(--muted); font-size: 13px; }
+.lookup .addbox input { width: 190px; }
+.morefilters { margin: -4px 0 6px; }
+.morefilters > summary { color: var(--accent); font-size: 13px; font-weight: 600; cursor: pointer; padding: 4px 0; width: max-content; }
+.morefilters > .controls { margin: 6px 0 4px; }
+.dotted { white-space: nowrap; }
+@media (max-width: 700px) {
+  .planbar { gap: 2px 10px; padding: 6px 10px; font-size: 12px; }
+  .planbar .planlabel, .wide-only { display: none; }
+  #explorer > .controls > select, #explorer > .controls > .withhelp { flex: 1 1 40%; min-width: 0; }
+  #explorer > .controls > .withhelp select { flex: 1; min-width: 0; }
+  .morefilters .controls > select, .morefilters .controls > .withhelp { flex: 1 1 40%; min-width: 0; }
+  .morefilters .controls > .withhelp select { flex: 1; min-width: 0; }
+  .planbar.nudge { font-size: 13px; }
+  .rolecards { gap: 6px; }
+  .rolecard { padding: 9px 8px; align-items: center; text-align: center; }
+  .rolecard .rc-title { font-size: 14px; }
+  .rolecard .rc-blurb { display: none; }
+  .rolenote { display: block; }
+  .themechips { flex-wrap: nowrap; overflow-x: auto; margin: 12px -14px 4px; padding: 0 14px 6px; scrollbar-width: none; }
+  .themechips::-webkit-scrollbar { display: none; }
+  .lookup .addbox { flex: 1 1 100%; }
+  .lookup .addbox input { width: auto; }
+  .morefilters { margin: -6px 0 6px; }
 }

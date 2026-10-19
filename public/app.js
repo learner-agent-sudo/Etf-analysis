@@ -22,12 +22,13 @@ const THEME_FILES = ["quantum", "space", "income", "pharma", "ai-robotics", "ene
 // Plain-English definitions for abbreviations. Shown as tooltips on column
 // headers and listed in the footer, so the page explains its own jargon.
 const GLOSSARY = {
-  "Expense": "Expense ratio (TER): the annual fee the fund charges, as a % of your money — taken daily, win or lose. Lower is better. 0.50% on $10,000 ≈ $50/yr.",
-  "AUM": "Assets Under Management: total money invested in the fund. Bigger = more liquid and less likely to be shut down. Under ~$50M raises closure risk.",
+  "Yearly fee": "The expense ratio (also called TER or OCF): the yearly fee the fund charges, as a % of your money — taken daily, win or lose. Lower is better. 0.50% on $10,000 ≈ $50 a year.",
+  "Fund size": "Assets under management (AUM): the total money invested in the fund. Bigger = easier to trade and less likely to be shut down. Under ~$50M raises closure risk.",
+  "AUM": "Assets under management — the fund's size (see Fund size).",
   "Distribution yield": "Annual income paid out as a % of price. For income/covered-call funds this is the headline number — BUT a high yield can be partly 'return of capital' (your own money handed back), so check the 30-day SEC yield and total return too.",
   "30-day SEC yield": "A standardized yield based on what the fund actually EARNS from dividends/interest — it excludes option premium, so for covered-call funds it can look much lower than the distribution yield (not necessarily a red flag).",
   "Price": "Latest closing share price — what one share costs. Mainly tells you the share size; it is NOT a measure of value (a $40 and a $600 ETF can be equally good).",
-  "Avg Vol": "Average daily trading volume (shares per day, last 3 months). Higher = easier to buy/sell at a fair price with a tight bid/ask spread. Low volume is a hidden cost and a liquidity risk.",
+  "Daily volume": "Average number of shares traded per day (last 3 months). Higher = easier to buy/sell at a fair price with a tight bid/ask spread. Low volume is a hidden cost and a liquidity risk.",
   "$ volume": "Average dollars traded per day (price × shares, last 3 months). Under ~$1M/day usually means wider bid/ask spreads — use limit orders.",
   "1-yr": "Total return over the trailing 12 months (price change + distributions reinvested). Past performance does not predict the future.",
   "YTD": "Year-to-date return: performance since the last close of the previous year.",
@@ -38,16 +39,15 @@ const GLOSSARY = {
   "# Hold": "Number of holdings — how many different securities the fund owns. Fewer = more concentrated.",
   "Top-10": "Top-10 weight: the % of the fund held in its ten largest positions. Over ~50% means it's a concentrated bet on a few names.",
   "Ticker": "The fund's trading symbol — what you type into your broker to buy it. London listings end in .L, Hong Kong ones in .HK. Tap a row for the full card.",
-  "Cost": "How cheap the fund's yearly fee (expense ratio) is compared with similar funds: 🟢 Good = cheap for its kind, 🟡 Caution = typical, 🔴 Concern = expensive. It rates the fee you pay every year — not the share price.",
+  "Cost": "Analyst rating of the yearly fee compared with similar funds: 🟢 Good = cheap for its kind, 🟡 Caution = typical, 🔴 Concern = expensive. It rates the fee you pay every year — not the share price.",
   "Purity": "Theme purity: do the fund's actual holdings match its name? 🟢 = mostly genuine plays on the theme, 🟡 = a fair amount of unrelated 'filler', 🔴 = the name and the holdings disagree.",
   "Concen.": "Concentration: how much of the fund rides on a few companies. 🟢 = well spread, 🟡 = top-heavy, 🔴 = a few names (or one stock) decide everything.",
   "Yield": "Trailing 12-month distribution yield (income paid ÷ price). Beware: a high yield can be partly 'return of capital'. Compare total return, not just yield.",
   "1-yr price": "52-week change in the share price only — excludes dividends/distributions, so income and bond funds look worse than their real (total) return.",
-  "Size": "Explorer rating from fund size (AUM): 🟢 ≥ $500M, 🟡 ≥ $50M, 🔴 smaller — small funds have wider spreads and closure risk.",
-  "Pre-screen": "Explorer shortcut: expense ratio ≤ 0.50% (cost 🟢), AUM ≥ $50M, and not leveraged/inverse, an ETN or futures-based. Concentration and purity still need a look at the holdings.",
-  "Domicile": "Where a fund is legally based (US, Ireland, Luxembourg, Hong Kong…). It drives the tax drag on dividends and, for non-US investors, US estate-tax exposure. Set where you pay tax in ⚙ Settings to see general notes for your country (also under 'Tax & domicile' in the Explorer). General information only, not tax advice.",
+  "Pre-screen": "All ETFs shortcut: yearly fee ≤ 0.50%, fund size ≥ US$50M, and not leveraged/inverse, an ETN or futures-based. Concentration and purity still need a look at the holdings.",
+  "Domicile": "Where a fund is legally based (US, Ireland, Luxembourg, Hong Kong…). It drives the tax drag on dividends and, for non-US investors, US estate-tax exposure. Set where you pay tax in ⚙ Settings to see general notes for your country (also under 'Tax & domicile' in All ETFs). General information only, not tax advice.",
   "Core": "Your main bucket: plain, low-cost funds tracking a broad market index (the whole world, the developed world or the big US companies). Compared only with other core funds in the same role.",
-  "Thematic": "Small satellite bets on a niche (space, quantum …). Volatile — 30–50% falls are normal — so they're compared only within their theme and sized with a cap per theme (⚙ Settings).",
+  "Themes": "Small satellite bets on a niche (space, quantum …). Volatile — 30–50% falls are normal — so they're compared only within their theme and sized with a cap per theme (⚙ Settings).",
   "Income (reference)": "Funds built to pay out cash, mostly by selling options. Shown for reference unless your settings say you need income — e.g. to see what yield you'd give up by choosing growth.",
   "Accumulating (Acc)": "A share class that reinvests the dividends it receives inside the fund instead of paying them to you. Same fund as the distributing class; it doesn't change the risk, and some countries still tax the reinvested income.",
   "Distributing (Dist)": "A share class that pays the dividends it receives out to you as cash. US-listed ETFs always distribute.",
@@ -64,10 +64,10 @@ function activeColumns() {
 
 const COLUMNS = [
   { key: "ticker", label: "Ticker" },
-  { key: "_er", label: "Expense", fmt: e => { const v = erOf(e); return v == null ? nodata("Expense ratio") : v.toFixed(2) + "%"; } },
-  { key: "_aum", label: "AUM", fmt: e => aumCell(e) },
+  { key: "_er", label: "Yearly fee", fmt: e => { const v = erOf(e); return v == null ? nodata("Yearly fee") : v.toFixed(2) + "%"; } },
+  { key: "_aum", label: "Fund size", fmt: e => aumCell(e) },
   { key: "_price", label: "Price", fmt: e => marketCell(e, "price") },
-  { key: "_vol", label: "Avg Vol", fmt: e => marketCell(e, "volume") },
+  { key: "_vol", label: "Daily volume", fmt: e => marketCell(e, "volume") },
   { key: "_yield", label: "Yield", cond: t => (t.etfs || []).some(e => e.distribution_yield), fmt: e => yieldCell(e) },
   { key: "_value", label: "Value Score", cond: t => t._id === "income", fmt: e => valueColCell(e) },
   { key: "_perf1y", label: "1-yr", fmt: e => perfCell(e, "y1") },
@@ -238,7 +238,7 @@ function aumOf(e) {
 }
 function aumCell(e) {
   const a = aumOf(e);
-  if (!a) return nodata("AUM");
+  if (!a) return nodata("Fund size");
   return a.fresh ? el("span", { title: `Net assets per fund data (${a.asof || "latest"})` }, a.display)
                  : el("span", { class: "snap", title: snapTitle("AUM", CURRENT && CURRENT.as_of) }, a.display);
 }
@@ -388,14 +388,28 @@ function verdictChip(dom) {
     `${sym} ${v.verdict === "check" ? "check the ISIN" : v.verdict}`);
 }
 
-// "Your plan" line at the top of Core, Thematic and Income.
-function planStrip() {
-  const r = taxHome();
-  return el("div", { class: "planstrip" },
-    el("span", {}, "Your plan: ", el("b", {}, `Core ${pctTxt(SETTINGS.core)}`), " · ",
-      el("b", {}, `Thematic ${pctTxt(thematicShare())}`), ` (max ${pctTxt(SETTINGS.perTheme)} per theme) · `,
-      `Income ${needsIncome() ? "wanted" : "not needed"} · Tax residence: ${r ? r.label : "not set"}`, " "),
-    el("button", { class: "refresh", type: "button", onclick: openSettings }, "⚙ Change"));
+// One "Your plan" bar under the header, the same on every tab. A first-time
+// visitor sees an invitation to set the plan instead (until saved or dismissed).
+function renderPlanBar() {
+  const box = $("#planBar"); box.innerHTML = ""; box.hidden = false;
+  let seen = true;
+  try { seen = !!localStorage.getItem("etf.nudged"); } catch (_) { /* private mode: don't nag */ }
+  if (!SETTINGS.saved && !seen) {
+    const dismiss = () => { try { localStorage.setItem("etf.nudged", "1"); } catch (_) { /* ignore */ } renderPlanBar(); };
+    box.className = "planbar nudge";
+    box.append(el("span", {}, el("b", {}, "New here? "), "Set your plan — core vs themes, whether you need income, and where you pay tax. It shapes every tab."),
+      el("button", { type: "button", onclick: () => { dismiss(); openSettings(); } }, "Set my plan"),
+      el("button", { type: "button", class: "msgclose", "aria-label": "Dismiss", onclick: dismiss }, "×"));
+    return;
+  }
+  const r = taxHome(), item = (label, val) => el("span", { class: "planitem" }, el("span", { class: "muted" }, label + " "), el("b", {}, val));
+  box.className = "planbar";
+  box.append(el("span", { class: "planlabel" }, "Your plan"),
+    item("Core", pctTxt(SETTINGS.core)),
+    item("Themes", `${pctTxt(thematicShare())}` + (thematicShare() > 0 ? ` (≤ ${pctTxt(SETTINGS.perTheme)} each)` : "")),
+    item("Income", needsIncome() ? "wanted" : "not needed"),
+    item("Tax", r ? r.label : "not set"),
+    el("button", { class: "refresh", type: "button", onclick: openSettings }, "Edit"));
 }
 function openSettings() {
   const body = $("#memoBody"); body.innerHTML = "";
@@ -404,7 +418,7 @@ function openSettings() {
   const split = el("p", { class: "muted small", id: "setSplitNote" });
   const showSplit = () => {
     const th = thematicShare(), cap = SETTINGS.perTheme;
-    split.textContent = `Thematic (satellite) share: ${pctTxt(th)}. ` + (cap > 0
+    split.textContent = `Themes (satellite) share: ${pctTxt(th)}. ` + (cap > 0
       ? `If one theme at your ${pctTxt(cap)} cap fell 50% — normal for niche funds — your whole portfolio would drop about ${pctTxt(cap / 2)}.`
       : "No money in themes.");
   };
@@ -413,14 +427,14 @@ function openSettings() {
     el("h2", { id: "memoTitle" }, "⚙ Your settings"),
     el("p", { class: "muted small" }, "Saved in this browser only — nothing is sent anywhere. Anyone else using the site on their own phone or computer sets their own."),
     el("h3", {}, "1 · Your split"),
-    el("p", { class: "small" }, "Decide this first, then pick the best fund inside each bucket. Core = broad, low-cost funds (your main money). Thematic = small bets on niches like space or quantum."),
+    el("p", { class: "small" }, "Decide this first, then pick the best fund inside each bucket. Core = broad, low-cost funds (your main money). Themes = small bets on niches like space or quantum."),
     el("div", { class: "setrow" }, el("label", { for: "setCore" }, "Core share of your portfolio"), num("setCore", s.core, 0, 100, 5), el("span", {}, "%")),
     el("div", { class: "setrow" }, el("label", { for: "setPer" }, "Most in any one theme"), num("setPer", s.perTheme, 0, 100, 0.5), el("span", {}, "%")),
     split,
     el("h3", {}, "2 · Do you need regular income from these investments?"),
     el("div", { class: "setrow radios", role: "radiogroup", "aria-label": "Need income" },
       el("label", {}, el("input", { type: "radio", name: "setInc", value: "no", ...(s.income !== "yes" ? { checked: "checked" } : {}) }),
-        " No — I'm growing my money. Income funds are shown for reference only, and hidden in the Explorer."),
+        " No — I'm growing my money. Income funds are shown for reference only, and hidden in All ETFs."),
       el("label", {}, el("input", { type: "radio", name: "setInc", value: "yes", ...(s.income === "yes" ? { checked: "checked" } : {}) }),
         " Yes — I want regular cash payouts.")),
     el("h3", {}, "3 · Where do you pay tax?"),
@@ -446,7 +460,8 @@ function openSettings() {
   $("#setTax").addEventListener("change", e => { writeSettings({ tax: e.target.value }); taxNote(); });
   $("#setReset").addEventListener("click", () => { writeSettings({ ...SETTINGS_DEFAULT }); openSettings(); });
   $("#setDone").addEventListener("click", closeMemo);
-  $("#nudge").hidden = true;
+  try { localStorage.setItem("etf.nudged", "1"); } catch (_) { /* private mode */ }
+  renderPlanBar();
   const drawer = $("#memoDrawer");
   $("#overlay").hidden = false; drawer.hidden = false; drawer.scrollTop = 0;
   document.body.classList.add("noscroll");
@@ -455,28 +470,18 @@ function openSettings() {
 // After the settings drawer closes: redraw whatever depends on them.
 function settingsChanged() {
   SETTINGS_DIRTY = false;
-  $("#tabIncome").classList.toggle("ref", !needsIncome());
+  renderPlanBar();
   if (VIEW === "core" && typeof renderCore === "function") renderCore();
   else if (VIEW === "themes" && CURRENT) renderIntro();
   else if (VIEW === "income") selectTheme("income", INCOME_SUB);
   else if (VIEW === "explore" && typeof explorerSettingsChanged === "function") explorerSettingsChanged();
 }
-function showNudge() {
-  let seen = false;
-  try { seen = !!localStorage.getItem("etf.nudged"); } catch (_) { seen = true; }
-  if (SETTINGS.saved || seen) return;
-  const box = $("#nudge"); box.hidden = false; box.innerHTML = "";
-  const dismiss = () => { box.hidden = true; try { localStorage.setItem("etf.nudged", "1"); } catch (_) { /* ignore */ } };
-  box.append(el("span", {}, "👋 Make the site yours: set your split between core and thematic funds, whether you need income, and where you pay tax. "),
-    el("button", { type: "button", onclick: () => { dismiss(); openSettings(); } }, "⚙ Open settings"),
-    el("button", { type: "button", class: "msgclose", "aria-label": "Dismiss", onclick: dismiss }, "×"));
-}
 
-// ---- views: Core | Thematic (curated themes) | Income | Explorer -----
+// ---- views: Core | Themes (curated themes) | Income | All ETFs -------
 // Funds are only ever ranked inside their own lane. The Income tab is the income
 // theme, with two sub-views: the Value ranking of every income ETF (income.js,
 // the default) and the curated "Analyst memos" table.
-let VIEW = "core", LAST_THEME = null, INCOME_SUB = null, INCOME_SUB_LAST = "rankings";
+let VIEW = null, LAST_THEME = null, INCOME_SUB = null, INCOME_SUB_LAST = "rankings";
 const VIEWS = { core: ["#coreView", "#tabCore"], themes: ["#themeView", "#tabThemes"], income: ["#themeView", "#tabIncome"], explore: ["#explorer", "#tabExplore"] };
 function setView(v) {
   VIEW = v;
@@ -486,7 +491,6 @@ function setView(v) {
     $(tab).classList.toggle("active", k === v);
     $(tab).setAttribute("aria-selected", k === v);
   });
-  $(".theme-picker").classList.toggle("dim", v !== "themes");
   if (v === "explore" && !location.hash.startsWith("#explore")) history.replaceState(null, "", "#explore");
   if (v === "core" && location.hash !== "#core") history.replaceState(null, "", "#core");
   try { localStorage.setItem("etf.view", v); } catch (_) { /* private mode */ }
@@ -505,7 +509,6 @@ function savedView() { try { return localStorage.getItem("etf.view"); } catch (_
 const nicheIds = () => Object.keys(window._THEMES || {}).filter(id => id !== "income");
 
 async function init() {
-  const sel = $("#themeSelect");
   const [themes] = await Promise.all([
     Promise.all(THEME_FILES.map(id => fetchJson(`data/${id}.json`).then(t => { t._id = id; return t; }).catch(() => null))),
     loadMarket(),
@@ -513,15 +516,13 @@ async function init() {
   ]);
   const loaded = themes.filter(Boolean);
   window._THEMES = {};
-  loaded.forEach(t => {
-    window._THEMES[t._id] = t;
-    if (t._id !== "income") sel.append(el("option", { value: t._id }, `${t.name} (${(t.etfs || []).length})`));   // income has its own tab
-  });
-  sel.addEventListener("change", () => selectTheme(sel.value));
-  $("#tabIncome").classList.toggle("ref", !needsIncome());
+  loaded.forEach(t => { window._THEMES[t._id] = t; });
+  $("#tabCore").title = "Core: plain, low-cost funds for most of your money";
+  $("#tabThemes").title = "Themes: small bets on one idea (space, quantum …)";
   $("#tabIncome").title = "Income-focused funds — for reference unless your settings say you need income";
+  $("#tabExplore").title = "All ETFs: search every ETF listed in the US, London and Hong Kong";
   $("#settingsBtn").addEventListener("click", openSettings);
-  showNudge();
+  renderPlanBar();
 
   // Footer abbreviations legend, from the same GLOSSARY.
   const gl = $("#glossaryList");
@@ -533,18 +534,16 @@ async function init() {
   $("#filterBox").addEventListener("input", render);
   $("#themeOnly").addEventListener("change", render);
   $("#passOnly").addEventListener("change", render);
-  $("#ratingDim").addEventListener("change", () => {
-    const rv = $("#ratingVal");
-    rv.disabled = !$("#ratingDim").value;
-    if (!$("#ratingDim").value) rv.value = "";
+  $("#ratingDim").addEventListener("change", () => {              // the second box appears once a rating is picked
+    $("#ratingVal").hidden = !$("#ratingDim").value;
     render();
   });
   $("#ratingVal").addEventListener("change", render);
   $("#segmentSel").addEventListener("change", render);
   $("#addBtn").addEventListener("click", onAddTicker);
   $("#addTicker").addEventListener("keydown", e => { if (e.key === "Enter") onAddTicker(); });
-  $("#tabCore").addEventListener("click", () => { if (VIEW !== "core") showCore(); });
-  $("#tabThemes").addEventListener("click", () => { if (VIEW !== "themes") selectTheme(LAST_THEME || $("#themeSelect").value); });
+  $("#tabCore").addEventListener("click", () => { if (VIEW !== "core" || $("#coreView").hidden) goCore(); });
+  $("#tabThemes").addEventListener("click", () => { if (VIEW !== "themes") selectTheme(LAST_THEME); });
   $("#tabIncome").addEventListener("click", () => { if (VIEW !== "income") selectTheme("income"); });
   $("#tabExplore").addEventListener("click", () => { if (VIEW !== "explore") showExplorer(); });
   $("#closeMemo").addEventListener("click", closeMemo);
@@ -558,27 +557,33 @@ async function init() {
   }
   const niche = savedTheme();
   LAST_THEME = niche && niche !== "income" && window._THEMES[niche] ? niche : nicheIds()[0];
-  sel.value = LAST_THEME;
-  route(savedView());
+  route(savedView(), true);
   window.addEventListener("hashchange", () => route());
 }
+// Core lives in core.js; if that file failed to load, open the themes rather than a blank page.
+function goCore() {
+  if (typeof showCore === "function") showCore(); else selectTheme(LAST_THEME);
+}
 // Open whatever the address asks for (#core, #explore, #<theme>, #income/…), else `fallback`
-// (the last tab used), else Core.
-function route(fallback) {
+// (the last tab used), else Core. On the first load an unknown or unloadable address
+// falls back too; later (a hash change) it leaves the page where it is.
+function route(fallback, first) {
   const exr = exploreRoute();
   if (exr !== null) { if (VIEW !== "explore" || !$("#explorer").dataset.built) showExplorer(window._THEMES[exr] ? exr : undefined); return; }
   const h = themeFromUrl();
-  if (h === "core" || (!h && fallback !== "themes" && fallback !== "income" && fallback !== "explore")) { showCore(); return; }
-  if (h && window._THEMES[h]) {
+  if (h && h !== "core" && window._THEMES[h]) {
     const sub = h === "income" ? incomeSubFromUrl() : undefined;
-    if (VIEW === "income" && h === "income" && sub === INCOME_SUB && sub === "rankings") { showIncomeRankings(); return; }  // e.g. #income/fund=GPIX while already there
-    if ((VIEW !== "themes" && VIEW !== "income") || h !== (CURRENT && CURRENT._id) || sub !== (INCOME_SUB || undefined)) selectTheme(h, sub);
+    const unfolded = needsIncome() || INCOME_OPEN;
+    if (VIEW === "income" && h === "income" && sub === INCOME_SUB && sub === "rankings" && unfolded) { showIncomeRankings(); return; }  // e.g. #income/fund=GPIX while already there
+    if ((VIEW !== "themes" && VIEW !== "income") || h !== (CURRENT && CURRENT._id) || sub !== (INCOME_SUB || undefined) || !unfolded) selectTheme(h, sub);
     return;
   }
-  if (h) return;                                                   // an unknown address: stay where we are
-  if (fallback === "explore") showExplorer();
-  else if (fallback === "income") selectTheme("income");
-  else selectTheme(LAST_THEME);
+  if (h && h !== "core" && !first) return;                         // an unknown address: stay where we are
+  const v = h === "core" ? "core" : fallback;
+  if (v === "explore") showExplorer();
+  else if (v === "income") selectTheme("income");
+  else if (v === "themes") selectTheme(LAST_THEME);
+  else goCore();
 }
 
 // `sub` only applies to the income theme: "rankings" (default) or "picks".
@@ -592,12 +597,12 @@ function selectTheme(id, sub) {
   if (income && (/^#income\/(fund|compare)=/.test(location.hash) || sub === "picks")) INCOME_OPEN = true;   // a deep link means "show me"
   const folded = income && !needsIncome() && !INCOME_OPEN;
   const ranking = INCOME_SUB === "rankings";
-  if (!income) $("#themeSelect").value = id;
   setView(income ? "income" : "themes");
   if (!activeColumns().some(c => c.key === SORT.key)) SORT = { key: "ticker", dir: 1 };
   $("#controls").hidden = ranking || folded;
   $("#colGuide").hidden = ranking || folded;
   $("#tableWrap").hidden = ranking || folded;
+  $("#lookup").hidden = ranking || folded;
   $("#incomeLab").hidden = !ranking || folded;
   $("#tensions").hidden = folded;
   $("#liveMsg").hidden = true;
@@ -636,34 +641,50 @@ function renderIntro() {
   const income = t._id === "income", folded = income && !needsIncome() && !INCOME_OPEN;
   const curated = INCOME_SUB !== "rankings" && !folded;  // the ranking writes its own intro
   box.append(...[            // DOM append() would print a literal "null" — drop absent parts
-    el("h2", {}, t.name + " ETFs" + (income && !needsIncome() ? " — for reference" : "")),
-    planStrip(),
+    income ? el("h2", {}, "Income ETFs" + (needsIncome() ? "" : " — for reference")) : el("h2", {}, "Themes — small bets on one idea"),
     income ? incomeRefNote(folded) : sizingNote(),
+    income ? null : themeChips(),
+    income ? null : el("h3", { class: "themename" }, t.name),
     income && !folded ? incomeSubTabs() : null,
-    curated ? el("div", { class: "asof" }, `Analysis as of ${t.as_of || "—"} · ${freshnessText()} `,
-      el("button", { class: "refresh", title: "Re-load the latest daily market-data file", onclick: onCheckUpdate }, "↻ check for update")) : null,
     el("div", { class: "tagline" }, t.tagline || ""),
-    curated && t.universe_note ? el("p", { class: "universe" }, "▸ " + t.universe_note) : null,
-    curated && t.benchmark_note ? el("p", { class: "bench" }, "▸ " + t.benchmark_note) : null,
+    curated ? aboutList(t) : null,
     curated && t._id === "income" ? el("p", { class: "bench" }, "▸ Want one number to compare every income ETF? ",
       el("button", { class: "refresh", onclick: () => selectTheme("income", "rankings") }, "See the Value ranking →")) : null
   ].filter(Boolean));
+  const on = box.querySelector(".themechip.active");      // keep the chosen theme in view on a phone's scrolling chip row
+  if (on) on.parentNode.scrollLeft = on.offsetLeft - on.parentNode.offsetLeft - 12;
+}
+// The theme picker: one chip per theme, in the order of THEME_FILES.
+function themeChips() {
+  return el("div", { class: "themechips", role: "tablist", "aria-label": "Theme" },
+    ...nicheIds().map(id => el("button", { type: "button", role: "tab", class: "themechip" + (id === CURRENT._id ? " active" : ""),
+      "aria-selected": String(id === CURRENT._id), "data-theme": id, onclick: () => { if (id !== CURRENT._id) selectTheme(id); } }, window._THEMES[id].name)));
+}
+// Dates and notes about the list, folded away so the funds come first.
+function aboutList(t) {
+  const d = el("details", { class: "glossary aboutlist" });
+  d.append(el("summary", {}, `About this list · analysis as of ${t.as_of || "—"}`),
+    el("p", { class: "asof" }, `Analysis (ratings, memos, purity calls) as of ${t.as_of || "—"} · ${freshnessText()} `,
+      el("button", { class: "refresh", title: "Re-load the latest daily market-data file", onclick: onCheckUpdate }, "↻ check for update")),
+    t.universe_note ? el("p", { class: "universe" }, t.universe_note) : null,
+    t.benchmark_note ? el("p", { class: "bench" }, t.benchmark_note) : null);
+  return d;
 }
 // Income is a reference lane unless the settings say income is needed.
 function incomeRefNote(folded) {
   if (needsIncome()) return null;
   const n = (CURRENT.etfs || []).filter(e => !e._adhoc).length;
   return el("div", { class: "refnote" },
-    el("p", {}, el("b", {}, "Reference only — your settings say you don't need income. "),
-      "These funds are built to pay out cash, mostly by selling options on the stocks they hold. They're here to show what yield you'd be giving up by choosing growth, and for anyone who does need income."),
-    folded ? el("p", {}, `Inside: a Value ranking of every option-income ETF we track and ${n} analyst memos. `,
+    el("p", {}, el("b", {}, "Reference only — your plan says you don't need income. "),
+      "These funds pay out cash, mostly by selling options on the stocks they hold — useful to see what yield you give up by choosing growth."),
+    folded ? el("p", {}, `Inside: a Value ranking of every option-income ETF and ${n} analyst memos. `,
       el("button", { type: "button", onclick: () => { INCOME_OPEN = true; selectTheme("income", INCOME_SUB); } }, "Show the income lists")) : null);
 }
 function sizingNote() {
   const cap = SETTINGS.perTheme;
-  return el("p", { class: "bench" }, "▸ ", cap > 0
-    ? `Thematic funds are small satellite bets, compared only with other funds in the same theme — never with core funds. Your settings cap one theme at ${pctTxt(cap)} of your portfolio, so a 50% fall (normal for niche funds) would cost about ${pctTxt(cap / 2)} overall.`
-    : "Your settings put nothing in thematic funds — these lists are for reference. Funds here are compared only with others in the same theme.");
+  return el("p", { class: "lede small-lede" }, "Volatile, so keep them small; funds are compared only within their theme. ", cap > 0
+    ? el("span", { class: "muted" }, `Your plan: ≤ ${pctTxt(cap)} per theme — a 50% fall, normal here, costs about ${pctTxt(cap / 2)} overall.`)
+    : el("span", { class: "muted" }, "Your plan puts nothing in themes — these lists are for reference."));
 }
 function renderTensions() {
   const box = $("#tensions"); box.innerHTML = "";
@@ -724,7 +745,7 @@ function renderRoster() {
     grid.append(g);
   }
   det.append(note, grid, el("p", { class: "rosternote" },
-    el("button", { class: "refresh", onclick: () => showExplorer(CURRENT._id) }, "Browse every listed ETF matching this theme in the Explorer →")));
+    el("button", { class: "refresh", onclick: () => showExplorer(CURRENT._id) }, "Browse every listed ETF matching this theme in All ETFs →")));
   const gone = ((MARKET && MARKET.removed_recent) || []).filter(r => r.theme === CURRENT._id);
   if (gone.length) det.append(el("p", { class: "rosternote" }, "Recently removed (not found for " +
     (((MARKET.hold_policy || {}).days) || 30) + "+ days): " +
@@ -776,7 +797,7 @@ function cmp(a, b) {
 }
 function clearFilters() {
   $("#filterBox").value = ""; $("#themeOnly").checked = false; $("#passOnly").checked = false;
-  $("#ratingDim").value = ""; $("#ratingVal").value = ""; $("#ratingVal").disabled = true;
+  $("#ratingDim").value = ""; $("#ratingVal").value = "green"; $("#ratingVal").hidden = true;
   $("#segmentSel").value = "";
   render();
 }
@@ -784,7 +805,7 @@ function renderColGuide() {
   const box = $("#colGuide"), was = box.querySelector("details");
   box.innerHTML = "";
   box.append(columnGuide(activeColumns().map(c => [c.label === "Concen." ? "Concen. (concentration)" : c.label, GLOSSARY[c.label]]),
-    "What do these columns mean? (Cost, Purity, AUM …)", was && was.open));
+    "What do these columns mean? (Yearly fee, Purity, Concentration …)", was && was.open));
 }
 function render() {
   if (!CURRENT) return;
@@ -861,9 +882,10 @@ async function onCheckUpdate() {
 
 // ---- look-up (box + roster) ------------------------------------------
 // Theme (other than `except`) holding a curated card for this ticker.
+// A benchmark card (SPY in the income table) is not a home: jumping there would be a surprise.
 function curatedHome(ticker, except) {
   return Object.values(window._THEMES || {}).find(t => t !== except &&
-    (t.etfs || []).some(e => e.ticker === ticker && !e._adhoc)) || null;
+    (t.etfs || []).some(e => e.ticker === ticker && !e._adhoc && e.is_theme_fund)) || null;
 }
 function rosterEntry(ticker) {
   for (const t of [CURRENT, ...Object.values(window._THEMES || {})]) {
@@ -1005,17 +1027,17 @@ function openMemo(ticker) {
   const body = $("#memoBody"); body.innerHTML = "";
   const wrap = el("div", { class: "memo" });
   const er = erOf(e), a = aumOf(e);
-  const kind = e._stock ? "Single stock (not an ETF)" : e._explorer ? "Explorer fund (not curated)" : e._adhoc ? "Roster fund (not curated)" : e.is_theme_fund ? "Theme fund" : "Benchmark / reference";
+  const kind = e._stock ? "Single stock (not an ETF)" : e._explorer ? "Fund from the full list (not curated)" : e._adhoc ? "Roster fund (not curated)" : e.is_theme_fund ? "Theme fund" : "Benchmark / reference";
 
   wrap.append(...[            // filter: DOM append() would print a literal "null"
     el("h2", { id: "memoTitle" }, `${e.ticker} — ${e.name}`),
-    el("div", { class: "sub" }, `${kind} · Expense ${er == null ? "—" : er.toFixed(2) + "%"} · AUM ${a ? a.display : "—"} · Inception ${e.inception || "—"}`),
+    el("div", { class: "sub" }, `${kind} · Yearly fee ${er == null ? "—" : er.toFixed(2) + "%"} · Fund size ${a ? a.display : "—"} · Since ${e.inception || "—"}`),
     el("div", { class: "liverow" },
       el("a", { class: "holdlink", href: quoteUrl(ticker), target: "_blank", rel: "noopener" }, "↗ Live quote"),
       e.holdings_url ? el("a", { class: "holdlink", href: e.holdings_url, target: "_blank", rel: "noopener" },
         "↗ Official holdings" + (e.issuer ? " (" + e.issuer + ")" : "")) : null),
     el("p", { class: "muted small" }, e._explorer
-      ? `Explorer data: ${e.performance.as_of} · updates automatically every weekday.`
+      ? `Daily data: ${e.performance.as_of} · updates automatically every weekday.`
       : d
       ? `Market data: ${d.price_asof} close${staleNote(d)} · updates automatically every weekday.`
       : MARKET ? "No daily market data for this ticker yet — figures below are the hand-researched snapshot."
@@ -1054,13 +1076,13 @@ function openMemo(ticker) {
   facts.push(["Avg daily volume", d && d.volume_display ? `${d.volume_display}${d.dollar_volume_display ? " · " + d.dollar_volume_display : ""}` : mk.volume_display ? `${mk.volume_display} (snapshot)` : null]);
   if (d && d.high_52w != null) facts.push(["52-wk range", `$${d.low_52w} – $${d.high_52w}${d.pct_below_high ? ` (now ${d.pct_below_high === "0.0%" ? "at the high" : d.pct_below_high + " from the high"})` : ""}`]);
   if (d && d.max_drawdown_1y) facts.push(["Max drawdown (1 yr)", d.max_drawdown_1y]);
-  facts.push(["AUM", a ? a.display + (a.fresh ? "" : " (snapshot)") : null]);
+  facts.push(["Fund size", a ? a.display + (a.fresh ? "" : " (snapshot)") : null]);
   let erTxt = e.expense_ratio != null ? e.expense_ratio.toFixed(2) + "%" : null;
   if (d && d.expense_ratio != null) {
     if (erTxt == null) erTxt = d.expense_ratio.toFixed(2) + "% (fund data)";
     else if (Math.abs(d.expense_ratio - e.expense_ratio) >= 0.01) erTxt += ` (fund data shows ${d.expense_ratio.toFixed(2)}% — check the issuer)`;
   }
-  facts.push(["Expense ratio", erTxt]);
+  facts.push(["Yearly fee", erTxt]);
   if (e.distribution_yield) facts.push(["Distribution yield", e.distribution_yield + " (snapshot)"]);
   if (d && d.yield_ttm) facts.push(["Trailing 12-mo yield", d.yield_ttm]);
   if (e.sec_yield) facts.push(["30-day SEC yield", e.sec_yield]);
@@ -1182,7 +1204,8 @@ function colList(cls, title, items) {
 }
 const sectionTitle = t => el("h3", {}, t);
 function closeMemo() {
-  const open = !$("#memoDrawer").hidden;
+  const open = !$("#memoDrawer").hidden, focus = document.activeElement;
+  if (open && focus && $("#memoDrawer").contains(focus)) focus.blur();   // a typed-in setting saves on blur — before the redraw check
   $("#overlay").hidden = true; $("#memoDrawer").hidden = true;
   $("#memoDrawer").classList.remove("wide");
   document.body.classList.remove("noscroll");
@@ -1190,4 +1213,5 @@ function closeMemo() {
   if (open && SETTINGS_DIRTY) settingsChanged();
 }
 
-init();
+// Start once every script (explorer.js, income.js, core.js) has run.
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();

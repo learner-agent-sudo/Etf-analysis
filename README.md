@@ -47,31 +47,34 @@ best fund within each:
 
 | Tab | Role | Compared on |
 |---|---|---|
-| **Core** | Main bucket: plain, low-cost broad-index funds (All-world · Developed world · US large-cap) | fee, size, payout (accumulating / distributing), domicile — a Core Score is next |
-| **Thematic** | Small satellite bets (space, quantum …), capped per theme | purity, concentration, cost, liquidity — within the theme only |
+| **Core** | Main bucket: plain, low-cost broad-index funds. Pick a role (All-world · Developed world · US large-cap), then compare the funds in it | fee, size, payout (accumulating / distributing), domicile — a Core Score is next |
+| **Themes** | Small satellite bets (space, quantum …), capped per theme; one chip per theme | purity, concentration, cost, liquidity — within the theme only |
 | **Income** | Option-income funds — *reference only* unless you need income | Value Score (below) |
-| **Explorer** | Every listed ETF, filterable by role, payout and domicile | — |
+| **All ETFs** | Every listed ETF, filterable by role, payout and domicile | — |
 
-**⚙ Settings** (stored in each visitor's browser, nothing sent anywhere): your
-core/thematic split and per-theme cap, whether you need income (if not, the
-Income tab is folded into a reference note and income funds are hidden in the
-Explorer), and where you pay tax — which shows general, fact-checked notes on
+**⚙ Settings** (stored in each visitor's browser, nothing sent anywhere; summed
+up in the "Your plan" bar under the tabs): your core/themes split and per-theme
+cap, whether you need income (if not, the Income tab is folded into a reference
+note and income funds are hidden in All ETFs), and where you pay tax — which shows general, fact-checked notes on
 what each fund domicile usually means there (`public/data/tax-domicile.json`;
 not tax advice). Friends using the site set their own.
 
-Per theme you get a **sortable / filterable comparison table** (expense ratio,
-AUM, price, volume, 1-yr & YTD return, colored score dots), a **full-universe
+Per theme you get a **sortable / filterable comparison table** (yearly fee,
+fund size, price, volume, 1-yr & YTD return, colored score dots), a **full-universe
 roster** of every fund tagged to the theme, and a click-to-open **deep memo**
 per ETF (strategy, theme-purity holdings, red flags, bull/bear, decision log).
 
-Plus an **Explorer** tab: every listed ETF on three markets — US (~5,800),
+Plus an **All ETFs** tab (the Explorer): every listed ETF on three markets — US (~5,800),
 Hong Kong (~380, from the HKEX list) and London (~4,000 lines) — in one
-searchable, sortable list: expense ratio, AUM (with a US$ equivalent), price,
-52-week price change, YTD, yield, volume, domicile, mechanical cost/size
-ratings, theme suggestions, a one-click "pre-screen" and a tax-and-domicile
+searchable, sortable list: yearly fee and fund size (each with a traffic-light
+dot; size with a US$ equivalent), price, 52-week price change, YTD, yield,
+volume, domicile, theme suggestions, rarely-used filters folded under "More
+filters", a one-click "pre-screen" and a tax-and-domicile
 explainer for your country. Each listing also carries its **role** (core role,
 income-focused), **payout policy** (Acc / Dist / not stated) and, for London
-UCITS funds, **Ireland vs Luxembourg** — all read from the fund name. Built
+UCITS funds, **Ireland vs Luxembourg** (VanEck's older Amsterdam range: the
+Netherlands) — all read from the fund name; lines of one share class share
+one payout label. Built
 daily by `scripts/build_universe.py`.
 
 And in the **Income** tab, a **Value ranking** of every
@@ -128,7 +131,7 @@ earths, and obesity/GLP-1. See [`app/README.md`](app/README.md) for how to add o
 ├── README.md                     ← you are here
 ├── public/                       ← the web app (static site, deployed as-is)
 │   ├── index.html · style.css · app.js (themes, settings, routing)
-│   ├── core.js · explorer.js · income.js   ← Core, Explorer and Income tabs
+│   ├── core.js · explorer.js · income.js   ← Core, All ETFs and Income tabs
 │   └── data/                     ← <theme>.json (curated), tax-domicile.json, + generated daily files
 ├── .github/workflows/pages.yml   ← daily data refresh + deploy to GitHub Pages
 ├── app/
@@ -142,7 +145,7 @@ earths, and obesity/GLP-1. See [`app/README.md`](app/README.md) for how to add o
 ├── scripts/
 │   ├── screen.py                 ← backend green-light screener
 │   ├── refresh_market.py         ← daily market-data fetcher (writes market.json)
-│   ├── build_universe.py         ← daily Explorer universe (writes universe-*.json)
+│   ├── build_universe.py         ← daily All-ETFs universe (writes universe-*.json)
 │   └── build_income.py           ← daily Income Lab screen (writes income-lab.json)
 ├── tests/                        ← offline tests for the market-data maths
 ├── templates/

@@ -429,7 +429,7 @@ function renderTray() {
   let tray = $("#cmpTray");
   if (!tray) { tray = el("div", { id: "cmpTray", class: "cmptray", role: "region", "aria-label": "Compare funds" }); document.body.append(tray); }
   tray.innerHTML = "";
-  const show = LS.cmp.length > 0 && INCOME_SUB === "rankings" && VIEW === "income";
+  const show = LS.cmp.length > 0 && INCOME_SUB === "rankings" && VIEW === "income" && (needsIncome() || INCOME_OPEN);   // not over the folded tab
   tray.hidden = !show;
   document.body.classList.toggle("has-tray", show);
   if (!show) return;
@@ -639,7 +639,7 @@ function openLabCard(f) {
 
   wrap.append(expertBlock(f));
   wrap.append(el("details", { class: "expert" }, el("summary", {}, "Tax — general information"),
-    el("p", {}, f.market === "US" ? (f.tax_note || "—") : "Not a US fund — the US tax notes don't apply; see the Explorer's Tax & domicile panel for withholding by domicile."),
+    el("p", {}, f.market === "US" ? (f.tax_note || "—") : "Not a US fund — the US tax notes don't apply; see Tax & domicile under the All ETFs list for withholding by domicile."),
     el("p", { class: "muted small" }, "General information, not tax advice — tax depends on where you live and the account you hold it in. For non-US investors, US withholding on distributions usually matters more than §1256 treatment.")));
   body.append(wrap);
   openDrawer(false);

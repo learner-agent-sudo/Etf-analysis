@@ -161,24 +161,31 @@ cap per theme), **then pick the best fund inside each lane**.
 
 | Lane | Job | How funds get there |
 |---|---|---|
-| Core | Stable long-term growth, broad diversification | Name says it tracks a plain broad index — all-world (ACWI, FTSE All-World, Total World …), developed world (MSCI World, FTSE Developed World) or US large-cap (S&P 500, total US market, MSCI USA, Russell 1000/3000) — with a yearly fee ≤ 0.50% and no leverage/ETN/futures flag. Screened (ESG, Islamic), factor, sector, regional, option, buffer and active strategies are excluded: they are tilts, not the core. |
-| Thematic | Small satellite exposure to a niche | The theme files (rosters + keywords) |
+| Core | Stable long-term growth, broad diversification | Name says it tracks a plain broad index — all-world (ACWI, FTSE All-World, Total World …), developed world (MSCI World, FTSE Developed World) or US large-cap (S&P 500, total US market, MSCI USA, Russell 1000/3000, Schwab 1000, Dow Jones U.S., BetaBuilders / MarketBeta US Equity, Vanguard Large-Cap) — with a yearly fee ≤ 0.50% and no leverage/ETN/futures flag. Screened (ESG, Islamic), factor, sector, regional, option, buffer, tail-hedge and active strategies are excluded: they are tilts, not the core. |
+| Themes (thematic) | Small satellite exposure to a niche | The theme files (rosters + keywords) |
 | Income | Cash distributions — reference unless the visitor needs income | The Income ranking's option-income classifier (`build_income.classify`) |
-| Other | Sectors, bonds, factors, regions … | Everything else (Explorer only) |
+| Other | Sectors, bonds, factors, regions … | Everything else (All ETFs only) |
 
-**Payout policy** (`pol`) comes from the share-class name: *Acc / Accumulating /
-Capitalisation / 1C / ETF-C* = accumulating; *Dist / Dis / Inc / 1D / ETF-D* =
-distributing. US-domiciled ETFs always distribute (US fund tax rules); an
-unmarked Vanguard UCITS class distributes (Vanguard names every accumulating
-class); otherwise an unmarked class with a yield distributes, and the rest is
-*not stated* rather than guessed. Accumulating changes what happens to the
-income, not the risk.
+**Payout policy** (`pol`) comes from the share-class name: *Acc / Accu /
+Accumulating / Capitalisation / USD Cap / 1C / ETF-C / (C)* = accumulating;
+*Dist / Dis / Inc / 1D / ETF-D / (D)*, or a class name ending in *USD Income*
+(any currency) = distributing. US-domiciled ETFs distribute (US fund tax
+rules), except trusts and pools that pay nothing — bullion, currency and spot
+crypto trusts, commodity L.P.s and box-spread funds — which are *not stated*
+unless a yield is reported. An unmarked Vanguard UCITS class distributes
+(Vanguard names every accumulating class); otherwise an unmarked class with a
+yield distributes, and the rest is *not stated* rather than guessed. The
+trading lines of one share class (other currencies, HK counters) share one
+policy: a line without a yield takes its class's policy from the other lines.
+Accumulating changes what happens to the income, not the risk.
 
 **Domicile** for London UCITS funds is read from the fund family (iShares,
 Vanguard, SPDR, Invesco, HSBC, JPMorgan, L&G … run Irish funds; *Amundi Index
 Solutions* and *Multi Units Luxembourg* are Luxembourg); families that run both
-stay *Ireland or Luxembourg* until the ISIN (IE… / LU…) is checked. Hong Kong
-domiciles come from HKEX's ISINs.
+stay *Ireland or Luxembourg* until the ISIN (IE… / LU…) is checked. VanEck's
+funds are Irish except its older Dutch range (VanEck ETFs N.V.: Global Real
+Estate, World / European Equal Weight Screened, Developed Markets Dividend
+Leaders …), shown as *Netherlands*. Hong Kong domiciles come from HKEX's ISINs.
 
 **Tax & domicile notes** (`public/data/tax-domicile.json`) are general
 information per tax residence (Hong Kong, Singapore, UK, EU/EEA, Canada,

@@ -26,7 +26,7 @@ calibration and a few anchor funds per market are logged.
 Derived from the name (no extra download): payout policy (pol: accumulating /
 distributing / not stated), the site lane (lane: a core role — all-world,
 developed world, US large-cap — or income-focused), and, for London UCITS
-funds, Ireland vs Luxembourg from the fund family.
+funds, Ireland vs Luxembourg (or the Netherlands) from the fund family.
 
 Usage:
     python3 scripts/build_universe.py                 # all markets
@@ -96,15 +96,32 @@ def flags(name):
 # ------------------------------------------------------------ derived fields --
 # Payout policy (pol) from the share-class name: A = accumulating (income reinvested
 # inside the fund), D = distributing (paid out), "" = the name doesn't say.
-# Xtrackers write 1C / 1D, Amundi ETF-C / ETF-D, BNP 'Capitalisation'.
-ACC_NAME = re.compile(r"\bacc(umulating|umulation)?\b|\bcapitali[sz]ation\b|\bcapi\b|\bETF\s+cap\b"
-                      r"|\bETF\s+\d?C\b|\bETF\s*-\s*C\b", re.I)
-DIST_NAME = re.compile(r"\bdist(ributing|ribution)?\b|\bdis\b|\binc\b|\bETF\s+\d?D\b|\bETF\s*-\s*D\b", re.I)
+# Xtrackers write 1C / 1D, Amundi ETF-C / ETF-D / (C) / (D), BNP 'Capitalisation' / 'USD Cap',
+# First Trust 'Class A ACCU', Fidelity / HK classes '... USD Income' (only at the end of the name:
+# 'Quality Income ETF' is a fund, not a class).
+ACC_NAME = re.compile(r"\bacc(u|umulating|umulation)?\b|\bcapitali[sz]ation\b|\bcapi\b|\bETF\s+cap\b"
+                      r"|(\b|ETF)(USD|EUR|GBP|CHF|JPY) ?cap\b|\bETF\s+\d?C\b|\bETF\s*-\s*C\b|\(C\)", re.I)
+DIST_NAME = re.compile(r"\bdist(ributing|ribution)?\b|\bdis\b|\binc\b|\bETF\s+\d?D\b|\bETF\s*-\s*D\b|\(D\)"
+                       r"|\b(USD|EUR|GBP|CHF|JPY|HKD|RMB|CNH|SGD|AUD|CAD) income( hedged)?\s*$", re.I)
+# US products that are not RICs keep what they earn: grantor trusts holding bullion, currency or
+# crypto, commodity pools (L.P.s) and box-spread funds. Used only when no yield is reported, so a
+# trust that does pay (currency trusts earning interest) stays 'D'. 'Trust' alone is no sign: UITs
+# (SPY, QQQ) and series trusts ('Abacus FCF ETF Trust - …') carry it too. Miners, crypto-equity,
+# option-income and strategy funds that merely name the asset are RICs; leveraged ones too.
+NO_PAYOUT = re.compile(
+    r"\b(gold|silver|platinum|palladium|precious metals?)\b|\bphysical\b(?!\s+ai\b)|\bcurrencyshares\b"
+    r"|\b(bitcoin|ether(eum)?|solana|xrp|crypto|dogecoin|doge|litecoin|avalanche|cardano|chainlink|polkadot|sui|hbar"
+    r"|bnb)\b|\bcommodity[- ]index(ed)? (trust|fund)\b|\bL\.?P\.?$|\bbox\b", re.I)
+NO_PAYOUT_NOT = re.compile(
+    r"\bminers?\b|mining|royalt|equit|\bstocks?\b|compan|corporat|industry|innovators|infrastructure|blockchain"
+    r"|economy|thematic|income|yield|premium|covered|option|weekly ?pay|boost|dividend|strateg|\bstrat\b|tactical"
+    r"|protection|buffer|floor|hedged|\btail\b|treasur|\btips\b|S&P ?500", re.I)
 
 
 def payout_policy(name, dom, yld=None, flags=""):
     """'A' / 'D' / '' (not stated). US-domiciled ETFs pay out what they earn (US fund tax
-    rules); elsewhere a fund without a class marker counts as paying out only if it has a yield."""
+    rules) unless they are trusts / pools that pay nothing; elsewhere a fund without a class
+    marker counts as paying out only if it has a yield."""
     if "N" in (flags or ""):
         return ""                                    # a note holds nothing and pays nothing
     acc, dist = bool(ACC_NAME.search(name or "")), bool(DIST_NAME.search(name or ""))
@@ -112,7 +129,11 @@ def payout_policy(name, dom, yld=None, flags=""):
         return "A" if acc else "D"
     if acc:
         return ""                                    # both markers: don't guess
-    if dom == "US" or (isinstance(yld, (int, float)) and yld > 0):
+    paid = isinstance(yld, (int, float)) and yld > 0
+    if (dom == "US" and not paid and "L" not in (flags or "") and NO_PAYOUT.search(name or "")
+            and not NO_PAYOUT_NOT.search(name or "")):
+        return ""                                    # grantor trust / commodity pool / box fund
+    if dom == "US" or paid:
         return "D"
     if re.match(r"vanguard\b", name or "", re.I) and dom in ("IE", "IE/LU"):
         return "D"                                   # Vanguard names every accumulating UCITS class as such
@@ -127,7 +148,9 @@ CORE_ROLES = (
                          r"|global stock market", re.I)),
     ("dev", re.compile(r"\bMSCI world\b|\bFTSE developed world\b|\bdeveloped world\b|\bprime global\b", re.I)),
     ("us", re.compile(r"\bS&P ?500\b|\bS&P 1500\b|total (U\.?S\.? )?(stock )?market\b|\bMSCI USA\b|\brussell (1000|3000)\b"
-                      r"|\bCRSP US total\b|\bU\.?S\.? (broad|total) market\b|\bU\.?S\.? large[- ]cap\b", re.I)),
+                      r"|\bCRSP US total\b|\bU\.?S\.? (broad|total) market\b|\bU\.?S\.? large[- ]cap\b"
+                      r"|\bvanguard (morningstar )?large[- ]cap\b|\bschwab 1000\b|\bdow jones U\.?S\.? ETF\b"
+                      r"|\b(betabuilders|marketbeta) U\.?S\.? (1000 )?equity\b", re.I)),
 )
 CORE_NOT = re.compile(
     r"\bex[- ]|excluding|equal[- ]?weight|\bEW\b|growth|value|momentum|quality|\bgarp\b|\bqarp\b|\bqvm\b|low vol|min(imum)? vol"
@@ -140,7 +163,7 @@ CORE_NOT = re.compile(
     r"|bond|treasur|inverse|short\b|bear\b|bull\b|ultra|daily|lever|\b\d(\.\d+)?x\b|rotation|strategy|alpha|research"
     r"|\bactive\b|completion|\bcapped\b|weighted|\bpure\b|focus|concentrat|multi[- ]?asset|allocation|balanced|futures|\bvix\b"
     r"|trend|\brisk\b|defensive|tilt|\bplus\b|smart|scored|europe|asia|pacific|japan|emerging|euro ?zone|\buk\b|north america"
-    r"|frontier|dimensional|avantis|granny|activebeta|high beta|low beta|collar|candriam", re.I)
+    r"|frontier|dimensional|avantis|granny|activebeta|high beta|low beta|collar|tail hedge|candriam", re.I)
 CORE_MAX_ER = 0.50          # above this a 'broad' fund is an active or niche product, not a core holding
 
 
@@ -155,7 +178,11 @@ def site_lane(name, flags="", er=None, ticker=""):
 
 
 # Ireland vs Luxembourg for London UCITS funds, from the fund family (the ISIN would say
-# for sure: IE… / LU…). Families listed only where every UCITS fund they run is in one place.
+# for sure: IE… / LU…). Families listed only where every UCITS fund they run is in one place,
+# except VanEck: VanEck UCITS ETFs plc is Irish, but VanEck ETFs N.V. (the older Amsterdam
+# range) is Dutch, so its funds are named in NL_FAMILY, which wins.
+NL_FAMILY = re.compile(r"^vaneck\b(?!.*\bplc\b).*\b(world equal weight|european equal weight|global real estate"
+                       r"|developed markets dividend leaders|aex|amx|multi[- ]asset \w+ allocation|iboxx eur)\b", re.I)
 IE_FAMILY = re.compile(r"^(ishares|vanguard|(state street )?spdr|invesco|hsbc|j\.?p\.? ?morgan|jpm\b|legal & general|l&g\b"
                        r"|global x|vaneck|first trust|franklin|fidelity|wisdomtree|hanetf|han-gins|kraneshares"
                        r"|goldman sachs|robeco|janus henderson|tabula|rize|sprott)|\bICAV\b|\((IE|Irl|Ireland)\)|\bplc\b",
@@ -170,6 +197,8 @@ def ucits_domicile(name, dom, flags=""):
         dom = "IE/LU"                                 # a London-listed UCITS fund whose name skips 'UCITS'
     if dom != "IE/LU":
         return dom
+    if NL_FAMILY.search(name or ""):
+        return "NL"
     ie, lu = IE_FAMILY.search(name or ""), LU_FAMILY.search(name or "")
     return "IE" if ie and not lu else "LU" if lu and not ie else "IE/LU"
 
@@ -178,6 +207,37 @@ def derived(name, dom, yld, flags, er, ticker):
     """(dom, pol, lane) — every field the page derives from a listing's name."""
     dom = ucits_domicile(name, dom, flags)
     return dom, payout_policy(name, dom, yld, flags), site_lane(name, flags, er, ticker)
+
+
+def payout_class_key(name):
+    """The Core tab's share-class key (classKey in public/core.js) without its acc/dist step:
+    the lines of one class in other currencies share a key, an Acc and a Dist class do not."""
+    n = re.sub(r"\b(usd|gbp|eur|chf|jpy)\s*(hedged|hdg|h)\b", r"hedged-\1", str(name or "").lower(), flags=re.A)
+    n = re.sub(r"\bh(gbp|eur|usd|chf)\b", r"hedged-\1", n, flags=re.A)
+    n = re.sub(r"\bunhedged\b|\b(usd|gbp|eur|chf|jpy|hkd)\b", " ", n, flags=re.A)
+    return re.sub(r"\s+", " ", n).strip()
+
+
+def fill_class_payout(rows):
+    """One share class traded on several lines (currencies, HK counters) gets one payout policy:
+    the yield fallback fires only on the line Yahoo reports a yield for. Blank lines take the
+    class's policy when its other lines agree on one; a stated value is never overwritten, nor a
+    deliberate blank (a US fund's blank means a trust or pool). Leveraged products and notes
+    are left out: a 'yield' on a leveraged ETP line is a data artefact, not a payout."""
+    i = {c: COLS.index(c) for c in ("n", "f", "dom", "pol")}
+    groups = {}
+    for r in rows:
+        if r[i["dom"]] != "US" and not set(r[i["f"]] or "") & {"L", "N"}:
+            groups.setdefault(payout_class_key(r[i["n"]]), []).append(r)
+    for grp in groups.values():
+        pols = {r[i["pol"]] for r in grp} - {""}
+        if len(pols) != 1:
+            continue
+        pol = pols.pop()
+        for r in grp:
+            if not r[i["pol"]]:
+                r[i["pol"]] = pol
+    return rows
 
 
 def _bytes(url, timeout=40):
@@ -368,6 +428,13 @@ def discover_screener(yahoo, exchange, label, max_rows=8000):
 IOB_CODE = re.compile(r"^0[A-Z0-9]{3}\.L$")
 
 
+def lse_domicile(name):
+    """Name-based domicile at discovery: UCITS funds on London are Irish or Luxembourg funds
+    (refined from the fund family later); other London ETPs (mostly commodity ETCs/notes from
+    Jersey or Ireland) are left unknown rather than guessed."""
+    return "IE/LU" if "UCITS" in (name or "").upper() else ""
+
+
 def discover_lse(yahoo):
     found = discover_screener(yahoo, "LSE", "London")
     # Drop International Order Book lines (codes like 0LOS.L): secondary quotes of
@@ -378,10 +445,7 @@ def discover_lse(yahoo):
         del found[t]
     log(f"  dropped {len(iob)} international-order-book duplicates")
     for r in found.values():
-        # Name-based domicile: UCITS funds on London are Irish or Luxembourg
-        # funds; other London ETPs (mostly commodity ETCs/notes from Jersey or
-        # Ireland) are left unknown rather than guessed.
-        r["dom"] = "IE/LU" if "UCITS" in (r["n"] or "").upper() else ""
+        r["dom"] = lse_domicile(r["n"])
     return found
 
 
@@ -536,7 +600,7 @@ def build_rows(listing, quotes, mult, screener=None, fx=None, default_cur="USD",
             pol,
             lane,
         ])
-    return rows
+    return fill_class_payout(rows)
 
 
 def reclassify(keys=None, data_dir=None):
@@ -553,10 +617,13 @@ def reclassify(keys=None, data_dir=None):
         rows = []
         for row in doc["rows"]:
             r = dict(zip(old, row))
-            r["dom"], r["pol"], r["lane"] = derived(r["n"], r.get("dom") or "", r.get("yld"), r.get("f") or "",
-                                                    r.get("er"), r["t"])
+            # A London domicile comes from the name alone, and the stored one is already refined
+            # ('IE' / 'LU' / 'NL'), which ucits_domicile leaves alone: start again from the
+            # discovery value so family-rule changes apply. HK (ISIN) and US domiciles are kept.
+            dom = lse_domicile(r["n"]) if key == "lse" else r.get("dom") or ""
+            r["dom"], r["pol"], r["lane"] = derived(r["n"], dom, r.get("yld"), r.get("f") or "", r.get("er"), r["t"])
             rows.append([r.get(c) for c in COLS])
-        doc["cols"], doc["rows"] = COLS, rows
+        doc["cols"], doc["rows"] = COLS, fill_class_payout(rows)
         with open(path, "w", encoding="utf-8") as fh:
             json.dump(doc, fh, separators=(",", ":"), ensure_ascii=False)
         log(f"reclassified {key}: {summary(rows)}")
@@ -568,7 +635,7 @@ def summary(rows):
     return (f"{count('pol', 'A')} accumulating, {count('pol', 'D')} distributing, {count('pol', '')} not stated; "
             f"core world/dev/us {count('lane', 'world')}/{count('lane', 'dev')}/{count('lane', 'us')}, "
             f"income {count('lane', 'income')}; domicile IE {count('dom', 'IE')}, LU {count('dom', 'LU')}, "
-            f"IE/LU {count('dom', 'IE/LU')}")
+            f"NL {count('dom', 'NL')}, IE/LU {count('dom', 'IE/LU')}")
 
 
 def counter_key(name):
