@@ -1,6 +1,6 @@
 {
  "as_of": "2026-10-23",
- "generated_at": "2026-10-23T23:58:45+00:00",
+ "generated_at": "2026-10-27T00:46:04+00:00",
  "source": "Daily closes from Yahoo Finance or Nasdaq (returns reinvest distributions); fund profile (AUM, expense ratio, top-10 holdings) from Yahoo Finance/Morningstar when available. Refreshed automatically by GitHub Actions every weekday after the US close.",
  "count": 129,
  "failed": {
@@ -10,7 +10,7 @@
   "GERM": "Yahoo Finance: GERM: not found on Yahoo; Nasdaq: GERM: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
   "JEPY": "Yahoo Finance: JEPY: not found on Yahoo; Nasdaq: JEPY: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
   "QBUX": "Yahoo Finance: QBUX: not found on Yahoo; Nasdaq: QBUX: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response",
-  "QTUF": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?)"
+  "QTUF": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
  },
  "hold_policy": {
   "days": 30,
@@ -19,63 +19,63 @@
  "missing": {
   "CNCR": {
    "since": "2026-10-09",
-   "checks": 36,
-   "last_checked": "2026-10-23",
+   "checks": 37,
+   "last_checked": "2026-10-27",
    "reason": "Yahoo Finance: CNCR: not found on Yahoo; Nasdaq: CNCR: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "CRIT": {
    "since": "2026-10-09",
-   "checks": 36,
-   "last_checked": "2026-10-23",
+   "checks": 37,
+   "last_checked": "2026-10-27",
    "reason": "Yahoo Finance: CRIT: not found on Yahoo; Nasdaq: CRIT: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "EBLU": {
    "since": "2026-10-09",
-   "checks": 36,
-   "last_checked": "2026-10-23",
+   "checks": 37,
+   "last_checked": "2026-10-27",
    "reason": "Yahoo Finance: EBLU: not found on Yahoo; Nasdaq: EBLU: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "GERM": {
    "since": "2026-10-09",
-   "checks": 36,
-   "last_checked": "2026-10-23",
+   "checks": 37,
+   "last_checked": "2026-10-27",
    "reason": "Yahoo Finance: GERM: not found on Yahoo; Nasdaq: GERM: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "JEPY": {
    "since": "2026-10-09",
-   "checks": 36,
-   "last_checked": "2026-10-23",
+   "checks": 37,
+   "last_checked": "2026-10-27",
    "reason": "Yahoo Finance: JEPY: not found on Yahoo; Nasdaq: JEPY: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "QBUX": {
    "since": "2026-10-09",
-   "checks": 36,
-   "last_checked": "2026-10-23",
+   "checks": 37,
+   "last_checked": "2026-10-27",
    "reason": "Yahoo Finance: QBUX: not found on Yahoo; Nasdaq: QBUX: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   },
   "QTUF": {
    "since": "2026-10-09",
-   "checks": 36,
-   "last_checked": "2026-10-23",
-   "reason": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?)"
+   "checks": 37,
+   "last_checked": "2026-10-27",
+   "reason": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
   }
  },
  "removed_recent": [],
  "tickers": {
   "AIQ": {
-   "price": 62.29,
-   "price_display": "$62.29",
+   "price": 62.94,
+   "price_display": "$62.94",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 1305335,
+   "volume_avg": 1305340,
    "volume_display": "~1.3M/day",
-   "dollar_volume_avg": 82032826,
+   "dollar_volume_avg": 82033130,
    "dollar_volume_display": "~$82.0M/day",
    "high_52w": 70.14,
    "low_52w": 44.78,
    "pct_below_high": "-11.2%",
    "max_drawdown_1y": "-20.2%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+22.5%",
     "y1": "+22.1%",
@@ -174,22 +174,22 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "AIVL": {
-   "price": 134.36,
-   "price_display": "$134.36",
+   "price": 133.64,
+   "price_display": "$133.64",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 3392,
    "volume_display": "~3K/day",
-   "dollar_volume_avg": 444943,
+   "dollar_volume_avg": 444969,
    "dollar_volume_display": "~$445K/day",
    "high_52w": 136.29,
    "low_52w": 110.34,
    "pct_below_high": "-1.4%",
    "max_drawdown_1y": "-7.8%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+18.2%",
     "y1": "+18.8%",
@@ -308,16 +308,16 @@
     }
    ],
    "fund_family": "WisdomTree",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "AIYY": {
-   "price": 7.63,
-   "price_display": "$7.63",
+   "price": 7.8,
+   "price_display": "$7.80",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 86506,
+   "volume_avg": 86508,
    "volume_display": "~87K/day",
-   "dollar_volume_avg": 654707,
+   "dollar_volume_avg": 654726,
    "dollar_volume_display": "~$655K/day",
    "high_52w": 25.8,
    "low_52w": 7.18,
@@ -351,22 +351,22 @@
    ],
    "top10_weight_pct": 10.1,
    "fund_family": "YieldMax ETFs",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "AMLP": {
-   "price": 53.14,
-   "price_display": "$53.14",
+   "price": 53.32,
+   "price_display": "$53.32",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 1231207,
+   "volume_avg": 1231208,
    "volume_display": "~1.2M/day",
-   "dollar_volume_avg": 66727154,
+   "dollar_volume_avg": 66727191,
    "dollar_volume_display": "~$66.7M/day",
    "high_52w": 56.19,
    "low_52w": 46.22,
    "pct_below_high": "-5.4%",
    "max_drawdown_1y": "-8.1%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+19.8%",
     "y1": "+22.6%",
@@ -449,22 +449,22 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "AQWA": {
-   "price": 18.74,
-   "price_display": "$18.74",
+   "price": 18.7,
+   "price_display": "$18.70",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 4883,
+   "volume_avg": 4884,
    "volume_display": "~5K/day",
-   "dollar_volume_avg": 92056,
+   "dollar_volume_avg": 92068,
    "dollar_volume_display": "~$92K/day",
    "high_52w": 20.89,
    "low_52w": 17.83,
    "pct_below_high": "-10.3%",
    "max_drawdown_1y": "-14.1%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+0.5%",
     "y1": "-4.3%",
@@ -563,22 +563,22 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "ARKG": {
-   "price": 48.16,
-   "price_display": "$48.16",
+   "price": 48.72,
+   "price_display": "$48.72",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 4384313,
+   "volume_avg": 4384314,
    "volume_display": "~4.4M/day",
-   "dollar_volume_avg": 213120431,
+   "dollar_volume_avg": 213120494,
    "dollar_volume_display": "~$213.1M/day",
    "high_52w": 56.77,
    "low_52w": 24.82,
    "pct_below_high": "-15.2%",
    "max_drawdown_1y": "-27.5%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+66.2%",
     "y1": "+53.5%",
@@ -657,22 +657,22 @@
     }
    ],
    "fund_family": "ARK ETF Trust",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "ARKX": {
-   "price": 29.84,
-   "price_display": "$29.84",
+   "price": 30.17,
+   "price_display": "$30.17",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 517465,
    "volume_display": "~517K/day",
-   "dollar_volume_avg": 16688726,
+   "dollar_volume_avg": 16688719,
    "dollar_volume_display": "~$16.7M/day",
    "high_52w": 37.74,
    "low_52w": 25.74,
    "pct_below_high": "-20.9%",
    "max_drawdown_1y": "-21.8%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+3.0%",
     "y1": "-1.7%",
@@ -763,22 +763,22 @@
     }
    ],
    "fund_family": "ARK ETF Trust",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "ARTY": {
-   "price": 69.03,
-   "price_display": "$69.03",
+   "price": 70.13,
+   "price_display": "$70.13",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 467282,
+   "volume_avg": 467283,
    "volume_display": "~467K/day",
-   "dollar_volume_avg": 34660938,
+   "dollar_volume_avg": 34660948,
    "dollar_volume_display": "~$34.7M/day",
    "high_52w": 81.24,
    "low_52w": 44.2,
    "pct_below_high": "-15.0%",
    "max_drawdown_1y": "-24.0%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+43.4%",
     "y1": "+43.1%",
@@ -877,16 +877,16 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "BALI": {
-   "price": 34.29,
-   "price_display": "$34.29",
+   "price": 34.53,
+   "price_display": "$34.53",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 322842,
+   "volume_avg": 322844,
    "volume_display": "~323K/day",
-   "dollar_volume_avg": 11179974,
+   "dollar_volume_avg": 11180072,
    "dollar_volume_display": "~$11.2M/day",
    "high_52w": 35.19,
    "low_52w": 30.04,
@@ -996,22 +996,22 @@
     }
    ],
    "fund_family": "BlackRock",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "BATT": {
-   "price": 12.69,
-   "price_display": "$12.69",
+   "price": 12.84,
+   "price_display": "$12.84",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 37665,
    "volume_display": "~38K/day",
-   "dollar_volume_avg": 555291,
+   "dollar_volume_avg": 555286,
    "dollar_volume_display": "~$555K/day",
    "high_52w": 18.03,
    "low_52w": 12.55,
    "pct_below_high": "-29.6%",
    "max_drawdown_1y": "-29.6%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-8.0%",
     "y1": "-1.5%",
@@ -1102,22 +1102,22 @@
     }
    ],
    "fund_family": "Amplify ETFs",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "BBH": {
-   "price": 246.57,
-   "price_display": "$246.57",
+   "price": 247.39,
+   "price_display": "$247.39",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 10668,
+   "volume_avg": 10675,
    "volume_display": "~11K/day",
-   "dollar_volume_avg": 2521618,
+   "dollar_volume_avg": 2523312,
    "dollar_volume_display": "~$2.5M/day",
    "high_52w": 250.46,
    "low_52w": 176.84,
    "pct_below_high": "-1.6%",
    "max_drawdown_1y": "-10.5%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+30.3%",
     "y1": "+39.7%",
@@ -1196,22 +1196,22 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "BOTZ": {
-   "price": 33.02,
-   "price_display": "$33.02",
+   "price": 33.14,
+   "price_display": "$33.14",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 661342,
+   "volume_avg": 661348,
    "volume_display": "~661K/day",
-   "dollar_volume_avg": 23381291,
+   "dollar_volume_avg": 23381489,
    "dollar_volume_display": "~$23.4M/day",
    "high_52w": 41.63,
    "low_52w": 31.99,
    "pct_below_high": "-20.7%",
    "max_drawdown_1y": "-21.5%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-8.8%",
     "y1": "-11.2%",
@@ -1310,22 +1310,22 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "BUG": {
-   "price": 49.93,
-   "price_display": "$49.93",
+   "price": 51.42,
+   "price_display": "$51.42",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 1443329,
+   "volume_avg": 1443370,
    "volume_display": "~1.4M/day",
-   "dollar_volume_avg": 63934773,
+   "dollar_volume_avg": 63936792,
    "dollar_volume_display": "~$63.9M/day",
    "high_52w": 50.08,
    "low_52w": 23.3,
    "pct_below_high": "-0.3%",
    "max_drawdown_1y": "-35.1%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+63.9%",
     "y1": "+41.3%",
@@ -1404,22 +1404,22 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "CGW": {
-   "price": 65.42,
-   "price_display": "$65.42",
+   "price": 63.91,
+   "price_display": "$63.91",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 20732,
    "volume_display": "~21K/day",
-   "dollar_volume_avg": 1334019,
+   "dollar_volume_avg": 1334031,
    "dollar_volume_display": "~$1.3M/day",
    "high_52w": 68.86,
    "low_52w": 61.38,
    "pct_below_high": "-5.0%",
    "max_drawdown_1y": "-10.9%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+3.8%",
     "y1": "+1.1%",
@@ -1522,16 +1522,16 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "CHAT": {
-   "price": 77.09,
-   "price_display": "$77.09",
+   "price": 78.4,
+   "price_display": "$78.40",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 373467,
-   "volume_display": "~373K/day",
-   "dollar_volume_avg": 32127998,
+   "volume_avg": 373616,
+   "volume_display": "~374K/day",
+   "dollar_volume_avg": 32139488,
    "dollar_volume_display": "~$32.1M/day",
    "high_52w": 104.07,
    "low_52w": 56.92,
@@ -1628,16 +1628,16 @@
     }
    ],
    "fund_family": "Roundhill Investments",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "CHPX": {
-   "price": 86.64,
-   "price_display": "$86.64",
+   "price": 88.9,
+   "price_display": "$88.90",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 51976,
+   "volume_avg": 51984,
    "volume_display": "~52K/day",
-   "dollar_volume_avg": 4869062,
+   "dollar_volume_avg": 4869765,
    "dollar_volume_display": "~$4.9M/day",
    "high_52w": 110.74,
    "low_52w": 50.37,
@@ -1728,22 +1728,22 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "CIBR": {
-   "price": 106.12,
-   "price_display": "$106.12",
+   "price": 108.43,
+   "price_display": "$108.43",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 1845034,
+   "volume_avg": 1845052,
    "volume_display": "~1.8M/day",
-   "dollar_volume_avg": 184778224,
+   "dollar_volume_avg": 184780134,
    "dollar_volume_display": "~$184.8M/day",
    "high_52w": 110.0,
    "low_52w": 60.74,
    "pct_below_high": "-3.5%",
    "max_drawdown_1y": "-21.9%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+48.9%",
     "y1": "+37.9%",
@@ -1830,22 +1830,22 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "CURE": {
-   "price": 153.59,
-   "price_display": "$153.59",
+   "price": 153.53,
+   "price_display": "$153.53",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 58302,
    "volume_display": "~58K/day",
-   "dollar_volume_avg": 7827296,
+   "dollar_volume_avg": 7827303,
    "dollar_volume_display": "~$7.8M/day",
    "high_52w": 159.07,
    "low_52w": 83.61,
    "pct_below_high": "-3.4%",
    "max_drawdown_1y": "-31.1%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+39.0%",
     "y1": "+62.9%",
@@ -1889,22 +1889,22 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "DFEN": {
-   "price": 43.33,
-   "price_display": "$43.33",
+   "price": 46.42,
+   "price_display": "$46.42",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 280061,
+   "volume_avg": 280121,
    "volume_display": "~280K/day",
-   "dollar_volume_avg": 15896811,
+   "dollar_volume_avg": 15899416,
    "dollar_volume_display": "~$15.9M/day",
    "high_52w": 97.48,
    "low_52w": 43.33,
    "pct_below_high": "-55.5%",
    "max_drawdown_1y": "-55.5%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-32.1%",
     "y1": "-35.5%",
@@ -1948,22 +1948,22 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "DIVO": {
-   "price": 47.57,
-   "price_display": "$47.57",
+   "price": 47.76,
+   "price_display": "$47.76",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 797000,
+   "volume_avg": 797006,
    "volume_display": "~797K/day",
-   "dollar_volume_avg": 37996331,
+   "dollar_volume_avg": 37996656,
    "dollar_volume_display": "~$38.0M/day",
    "high_52w": 48.81,
    "low_52w": 44.0,
    "pct_below_high": "-2.5%",
    "max_drawdown_1y": "-5.9%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+10.8%",
     "y1": "+13.2%",
@@ -2078,16 +2078,16 @@
     }
    ],
    "fund_family": "Amplify ETFs",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "DJIA": {
-   "price": 22.5,
-   "price_display": "$22.50",
+   "price": 22.56,
+   "price_display": "$22.56",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 71367,
+   "volume_avg": 71375,
    "volume_display": "~71K/day",
-   "dollar_volume_avg": 1613528,
+   "dollar_volume_avg": 1613704,
    "dollar_volume_display": "~$1.6M/day",
    "high_52w": 23.06,
    "low_52w": 20.65,
@@ -2204,16 +2204,16 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "ELFY": {
-   "price": 36.91,
-   "price_display": "$36.91",
+   "price": 37.22,
+   "price_display": "$37.22",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 32601,
+   "volume_avg": 32602,
    "volume_display": "~33K/day",
-   "dollar_volume_avg": 1288979,
+   "dollar_volume_avg": 1288986,
    "dollar_volume_display": "~$1.3M/day",
    "high_52w": 45.61,
    "low_52w": 34.51,
@@ -2312,22 +2312,22 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "EMLP": {
-   "price": 43.83,
-   "price_display": "$43.83",
+   "price": 43.88,
+   "price_display": "$43.88",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 296857,
    "volume_display": "~297K/day",
-   "dollar_volume_avg": 12788601,
+   "dollar_volume_avg": 12788587,
    "dollar_volume_display": "~$12.8M/day",
    "high_52w": 44.84,
    "low_52w": 37.38,
    "pct_below_high": "-2.3%",
    "max_drawdown_1y": "-7.9%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+18.3%",
     "y1": "+18.7%",
@@ -2418,22 +2418,22 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "ENFR": {
-   "price": 39.22,
-   "price_display": "$39.22",
+   "price": 39.28,
+   "price_display": "$39.28",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 101024,
    "volume_display": "~101K/day",
-   "dollar_volume_avg": 3918374,
+   "dollar_volume_avg": 3918353,
    "dollar_volume_display": "~$3.9M/day",
    "high_52w": 40.54,
    "low_52w": 29.86,
    "pct_below_high": "-3.3%",
    "max_drawdown_1y": "-9.1%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+28.6%",
     "y1": "+33.7%",
@@ -2516,22 +2516,22 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "ERX": {
-   "price": 126.61,
-   "price_display": "$126.61",
+   "price": 127.8,
+   "price_display": "$127.80",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 292284,
+   "volume_avg": 292303,
    "volume_display": "~292K/day",
-   "dollar_volume_avg": 31533765,
+   "dollar_volume_avg": 31536164,
    "dollar_volume_display": "~$31.5M/day",
    "high_52w": 126.61,
    "low_52w": 53.16,
    "pct_below_high": "0.0%",
    "max_drawdown_1y": "-30.0%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+129.4%",
     "y1": "+132.0%",
@@ -2575,22 +2575,22 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "FAN": {
-   "price": 21.58,
-   "price_display": "$21.58",
+   "price": 21.64,
+   "price_display": "$21.64",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 82475,
    "volume_display": "~82K/day",
-   "dollar_volume_avg": 1931654,
+   "dollar_volume_avg": 1931653,
    "dollar_volume_display": "~$1.9M/day",
    "high_52w": 27.23,
    "low_52w": 19.21,
    "pct_below_high": "-20.7%",
    "max_drawdown_1y": "-20.2%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+6.1%",
     "y1": "+9.4%",
@@ -2685,22 +2685,22 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "FBT": {
-   "price": 269.25,
-   "price_display": "$269.25",
+   "price": 271.47,
+   "price_display": "$271.47",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 66074,
+   "volume_avg": 66075,
    "volume_display": "~66K/day",
-   "dollar_volume_avg": 17547072,
+   "dollar_volume_avg": 17547127,
    "dollar_volume_display": "~$17.5M/day",
    "high_52w": 273.91,
    "low_52w": 188.5,
    "pct_below_high": "-1.7%",
    "max_drawdown_1y": "-14.3%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+30.4%",
     "y1": "+42.2%",
@@ -2779,22 +2779,22 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "FCG": {
-   "price": 32.12,
-   "price_display": "$32.12",
+   "price": 32.44,
+   "price_display": "$32.44",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 855378,
+   "volume_avg": 855383,
    "volume_display": "~855K/day",
-   "dollar_volume_avg": 25916332,
+   "dollar_volume_avg": 25916473,
    "dollar_volume_display": "~$25.9M/day",
    "high_52w": 32.74,
    "low_52w": 22.07,
    "pct_below_high": "-1.9%",
    "max_drawdown_1y": "-19.7%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+39.5%",
     "y1": "+44.1%",
@@ -2877,16 +2877,16 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "FEPI": {
-   "price": 40.16,
-   "price_display": "$40.16",
+   "price": 40.55,
+   "price_display": "$40.55",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 204751,
+   "volume_avg": 204757,
    "volume_display": "~205K/day",
-   "dollar_volume_avg": 8591578,
+   "dollar_volume_avg": 8591822,
    "dollar_volume_display": "~$8.6M/day",
    "high_52w": 49.54,
    "low_52w": 37.98,
@@ -2979,22 +2979,22 @@
     }
    ],
    "fund_family": "Rex",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "FIW": {
-   "price": 110.09,
-   "price_display": "$110.09",
+   "price": 110.14,
+   "price_display": "$110.14",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 50318,
+   "volume_avg": 50317,
    "volume_display": "~50K/day",
-   "dollar_volume_avg": 5437844,
+   "dollar_volume_avg": 5437775,
    "dollar_volume_display": "~$5.4M/day",
    "high_52w": 115.84,
    "low_52w": 99.66,
    "pct_below_high": "-5.0%",
    "max_drawdown_1y": "-13.8%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+1.9%",
     "y1": "-3.7%",
@@ -3093,22 +3093,22 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "GNOM": {
-   "price": 65.58,
-   "price_display": "$65.58",
+   "price": 66.46,
+   "price_display": "$66.46",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 32620,
+   "volume_avg": 32621,
    "volume_display": "~33K/day",
-   "dollar_volume_avg": 2131280,
+   "dollar_volume_avg": 2131337,
    "dollar_volume_display": "~$2.1M/day",
    "high_52w": 72.3,
    "low_52w": 41.4,
    "pct_below_high": "-9.3%",
    "max_drawdown_1y": "-18.2%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+44.4%",
     "y1": "+53.3%",
@@ -3191,16 +3191,16 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "GPIQ": {
-   "price": 55.21,
-   "price_display": "$55.21",
+   "price": 55.81,
+   "price_display": "$55.81",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 1571527,
+   "volume_avg": 1571637,
    "volume_display": "~1.6M/day",
-   "dollar_volume_avg": 89374774,
+   "dollar_volume_avg": 89380829,
    "dollar_volume_display": "~$89.4M/day",
    "high_52w": 59.52,
    "low_52w": 47.96,
@@ -3321,16 +3321,16 @@
     }
    ],
    "fund_family": "Goldman Sachs",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "GPIX": {
-   "price": 55.43,
-   "price_display": "$55.43",
+   "price": 55.77,
+   "price_display": "$55.77",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 1194326,
+   "volume_avg": 1194337,
    "volume_display": "~1.2M/day",
-   "dollar_volume_avg": 66802266,
+   "dollar_volume_avg": 66802834,
    "dollar_volume_display": "~$66.8M/day",
    "high_52w": 56.67,
    "low_52w": 48.68,
@@ -3455,22 +3455,22 @@
     }
    ],
    "fund_family": "Goldman Sachs",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "GRID": {
-   "price": 162.68,
-   "price_display": "$162.68",
+   "price": 163.04,
+   "price_display": "$163.04",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 607177,
+   "volume_avg": 607178,
    "volume_display": "~607K/day",
-   "dollar_volume_avg": 108464552,
+   "dollar_volume_avg": 108464735,
    "dollar_volume_display": "~$108.5M/day",
    "high_52w": 199.8,
    "low_52w": 146.51,
    "pct_below_high": "-18.6%",
    "max_drawdown_1y": "-18.1%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+7.0%",
     "y1": "+5.9%",
@@ -3565,22 +3565,22 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "HACK": {
-   "price": 127.83,
-   "price_display": "$127.83",
+   "price": 131.41,
+   "price_display": "$131.41",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 331444,
+   "volume_avg": 331451,
    "volume_display": "~331K/day",
-   "dollar_volume_avg": 39339979,
+   "dollar_volume_avg": 39340862,
    "dollar_volume_display": "~$39.3M/day",
    "high_52w": 130.76,
    "low_52w": 70.69,
    "pct_below_high": "-2.2%",
    "max_drawdown_1y": "-20.6%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+59.1%",
     "y1": "+46.3%",
@@ -3663,22 +3663,22 @@
     }
    ],
    "fund_family": "Amplify ETFs",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "HELX": {
-   "price": 43.0,
-   "price_display": "$43.00",
+   "price": 43.33,
+   "price_display": "$43.33",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 6082,
+   "volume_avg": 6083,
    "volume_display": "~6K/day",
-   "dollar_volume_avg": 260248,
+   "dollar_volume_avg": 260268,
    "dollar_volume_display": "~$260K/day",
    "high_52w": 45.19,
    "low_52w": 31.24,
    "pct_below_high": "-4.8%",
    "max_drawdown_1y": "-18.0%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+18.5%",
     "y1": "+27.5%",
@@ -3765,16 +3765,16 @@
     }
    ],
    "fund_family": "Franklin Templeton, Inc",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "HRTS": {
-   "price": 37.46,
-   "price_display": "$37.46",
+   "price": 37.45,
+   "price_display": "$37.45",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 3477,
+   "volume_avg": 3476,
    "volume_display": "~3K/day",
-   "dollar_volume_avg": 129068,
+   "dollar_volume_avg": 129046,
    "dollar_volume_display": "~$129K/day",
    "high_52w": 38.87,
    "low_52w": 32.28,
@@ -3859,22 +3859,22 @@
     }
    ],
    "fund_family": "Tema ETFs",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "IBB": {
-   "price": 207.74,
-   "price_display": "$207.74",
+   "price": 208.69,
+   "price_display": "$208.69",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 1587410,
    "volume_display": "~1.6M/day",
-   "dollar_volume_avg": 325276880,
+   "dollar_volume_avg": 325276840,
    "dollar_volume_display": "~$325.3M/day",
    "high_52w": 216.96,
    "low_52w": 154.58,
    "pct_below_high": "-4.2%",
    "max_drawdown_1y": "-9.6%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+23.2%",
     "y1": "+34.7%",
@@ -3953,22 +3953,22 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "ICLN": {
-   "price": 16.02,
-   "price_display": "$16.02",
+   "price": 15.55,
+   "price_display": "$15.55",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 6693189,
+   "volume_avg": 6693192,
    "volume_display": "~6.7M/day",
-   "dollar_volume_avg": 117230956,
+   "dollar_volume_avg": 117231000,
    "dollar_volume_display": "~$117.2M/day",
    "high_52w": 23.75,
    "low_52w": 16.0,
    "pct_below_high": "-32.5%",
    "max_drawdown_1y": "-32.4%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-2.2%",
     "y1": "-0.9%",
@@ -4059,11 +4059,11 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "IDNA": {
-   "price": 40.91,
-   "price_display": "$40.91",
+   "price": 40.95,
+   "price_display": "$40.95",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 138165,
@@ -4074,7 +4074,7 @@
    "low_52w": 24.53,
    "pct_below_high": "-4.2%",
    "max_drawdown_1y": "-10.7%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+56.9%",
     "y1": "+68.5%",
@@ -4153,22 +4153,22 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "IDU": {
-   "price": 109.19,
-   "price_display": "$109.19",
+   "price": 109.36,
+   "price_display": "$109.36",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 194748,
    "volume_display": "~195K/day",
-   "dollar_volume_avg": 20834989,
+   "dollar_volume_avg": 20834943,
    "dollar_volume_display": "~$20.8M/day",
    "high_52w": 120.7,
    "low_52w": 100.52,
    "pct_below_high": "-9.5%",
    "max_drawdown_1y": "-15.3%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+2.5%",
     "y1": "-1.9%",
@@ -4255,22 +4255,22 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "IFRA": {
-   "price": 56.58,
-   "price_display": "$56.58",
+   "price": 56.87,
+   "price_display": "$56.87",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 416837,
+   "volume_avg": 416838,
    "volume_display": "~417K/day",
-   "dollar_volume_avg": 24523731,
+   "dollar_volume_avg": 24523770,
    "dollar_volume_display": "~$24.5M/day",
    "high_52w": 64.07,
    "low_52w": 50.77,
    "pct_below_high": "-11.7%",
    "max_drawdown_1y": "-13.7%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+8.8%",
     "y1": "+7.5%",
@@ -4365,22 +4365,22 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "IGPT": {
-   "price": 87.92,
-   "price_display": "$87.92",
+   "price": 89.06,
+   "price_display": "$89.06",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 160215,
+   "volume_avg": 160214,
    "volume_display": "~160K/day",
-   "dollar_volume_avg": 15050252,
+   "dollar_volume_avg": 15050197,
    "dollar_volume_display": "~$15.1M/day",
    "high_52w": 108.11,
    "low_52w": 54.18,
    "pct_below_high": "-18.7%",
    "max_drawdown_1y": "-24.7%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+47.8%",
     "y1": "+50.7%",
@@ -4479,22 +4479,22 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "IGV": {
-   "price": 110.59,
-   "price_display": "$110.59",
+   "price": 111.39,
+   "price_display": "$111.39",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 9926713,
+   "volume_avg": 9926771,
    "volume_display": "~9.9M/day",
-   "dollar_volume_avg": 1033162976,
+   "dollar_volume_avg": 1033169413,
    "dollar_volume_display": "~$1.0B/day",
    "high_52w": 117.08,
    "low_52w": 74.67,
    "pct_below_high": "-5.5%",
    "max_drawdown_1y": "-36.2%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+4.7%",
     "y1": "-3.6%",
@@ -4589,22 +4589,22 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "IHAK": {
-   "price": 74.0,
-   "price_display": "$74.00",
+   "price": 76.25,
+   "price_display": "$76.25",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 175256,
    "volume_display": "~175K/day",
-   "dollar_volume_avg": 11675317,
+   "dollar_volume_avg": 11675291,
    "dollar_volume_display": "~$11.7M/day",
    "high_52w": 74.0,
    "low_52w": 41.26,
    "pct_below_high": "0.0%",
    "max_drawdown_1y": "-21.8%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+53.8%",
     "y1": "+40.9%",
@@ -4687,22 +4687,22 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "IHE": {
-   "price": 102.51,
-   "price_display": "$102.51",
+   "price": 102.81,
+   "price_display": "$102.81",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 231361,
+   "volume_avg": 231362,
    "volume_display": "~231K/day",
-   "dollar_volume_avg": 23643404,
+   "dollar_volume_avg": 23643468,
    "dollar_volume_display": "~$23.6M/day",
    "high_52w": 108.16,
    "low_52w": 73.96,
    "pct_below_high": "-5.2%",
    "max_drawdown_1y": "-9.7%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+21.9%",
     "y1": "+39.2%",
@@ -4781,22 +4781,22 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "IHF": {
-   "price": 60.38,
-   "price_display": "$60.38",
+   "price": 59.84,
+   "price_display": "$59.84",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 627887,
    "volume_display": "~628K/day",
-   "dollar_volume_avg": 35873011,
+   "dollar_volume_avg": 35873046,
    "dollar_volume_display": "~$35.9M/day",
    "high_52w": 60.9,
    "low_52w": 40.98,
    "pct_below_high": "-0.9%",
    "max_drawdown_1y": "-19.7%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+26.8%",
     "y1": "+20.0%",
@@ -4879,22 +4879,22 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "IHI": {
-   "price": 54.92,
-   "price_display": "$54.92",
+   "price": 55.04,
+   "price_display": "$55.04",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 2743593,
+   "volume_avg": 2743646,
    "volume_display": "~2.7M/day",
-   "dollar_volume_avg": 146273306,
+   "dollar_volume_avg": 146276221,
    "dollar_volume_display": "~$146.3M/day",
    "high_52w": 64.47,
    "low_52w": 47.55,
    "pct_below_high": "-14.8%",
    "max_drawdown_1y": "-26.1%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-11.3%",
     "y1": "-11.2%",
@@ -4973,16 +4973,16 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "ISPY": {
-   "price": 47.51,
-   "price_display": "$47.51",
+   "price": 47.82,
+   "price_display": "$47.82",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 83017,
    "volume_display": "~83K/day",
-   "dollar_volume_avg": 3998209,
+   "dollar_volume_avg": 3998225,
    "dollar_volume_display": "~$4.0M/day",
    "high_52w": 49.17,
    "low_52w": 42.32,
@@ -5102,22 +5102,22 @@
     }
    ],
    "fund_family": "ProShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "ITA": {
-   "price": 202.23,
-   "price_display": "$202.23",
+   "price": 207.16,
+   "price_display": "$207.16",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 752719,
+   "volume_avg": 752724,
    "volume_display": "~753K/day",
-   "dollar_volume_avg": 166619679,
+   "dollar_volume_avg": 166620665,
    "dollar_volume_display": "~$166.6M/day",
    "high_52w": 253.22,
    "low_52w": 198.23,
    "pct_below_high": "-20.1%",
    "max_drawdown_1y": "-20.0%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-5.6%",
     "y1": "-6.0%",
@@ -5196,16 +5196,16 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "IVEP": {
-   "price": 22.96,
-   "price_display": "$22.96",
+   "price": 23.26,
+   "price_display": "$23.26",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 12214,
    "volume_display": "~12K/day",
-   "dollar_volume_avg": 312626,
+   "dollar_volume_avg": 312636,
    "dollar_volume_display": "~$313K/day",
    "high_52w": 29.25,
    "low_52w": 22.96,
@@ -5307,22 +5307,22 @@
     }
    ],
    "fund_family": "Wedbush Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "IXC": {
-   "price": 63.88,
-   "price_display": "$63.88",
+   "price": 63.73,
+   "price_display": "$63.73",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 596845,
+   "volume_avg": 596846,
    "volume_display": "~597K/day",
-   "dollar_volume_avg": 34622635,
+   "dollar_volume_avg": 34622685,
    "dollar_volume_display": "~$34.6M/day",
    "high_52w": 63.88,
    "low_52w": 40.58,
    "pct_below_high": "0.0%",
    "max_drawdown_1y": "-15.4%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+54.4%",
     "y1": "+57.5%",
@@ -5401,22 +5401,22 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "IYW": {
-   "price": 249.92,
-   "price_display": "$249.92",
+   "price": 252.88,
+   "price_display": "$252.88",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 584699,
+   "volume_avg": 584700,
    "volume_display": "~585K/day",
-   "dollar_volume_avg": 149297253,
+   "dollar_volume_avg": 149297447,
    "dollar_volume_display": "~$149.3M/day",
    "high_52w": 272.59,
    "low_52w": 173.53,
    "pct_below_high": "-8.3%",
    "max_drawdown_1y": "-17.8%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+25.3%",
     "y1": "+25.1%",
@@ -5511,22 +5511,22 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "JEPI": {
-   "price": 56.85,
-   "price_display": "$56.85",
+   "price": 57.08,
+   "price_display": "$57.08",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 4336734,
+   "volume_avg": 4336911,
    "volume_display": "~4.3M/day",
-   "dollar_volume_avg": 247604334,
+   "dollar_volume_avg": 247614382,
    "dollar_volume_display": "~$247.6M/day",
    "high_52w": 59.88,
    "low_52w": 55.29,
    "pct_below_high": "-5.1%",
    "max_drawdown_1y": "-6.7%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+5.4%",
     "y1": "+7.2%",
@@ -5645,16 +5645,16 @@
     }
    ],
    "fund_family": "JPMorgan",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "JEPQ": {
-   "price": 58.43,
-   "price_display": "$58.43",
+   "price": 59.02,
+   "price_display": "$59.02",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 6190460,
+   "volume_avg": 6190617,
    "volume_display": "~6.2M/day",
-   "dollar_volume_avg": 369717220,
+   "dollar_volume_avg": 369726415,
    "dollar_volume_display": "~$369.7M/day",
    "high_52w": 61.46,
    "low_52w": 53.77,
@@ -5779,22 +5779,22 @@
     }
    ],
    "fund_family": "JPMorgan",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "LABU": {
-   "price": 219.6,
-   "price_display": "$219.60",
+   "price": 223.49,
+   "price_display": "$223.49",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 400168,
+   "volume_avg": 400178,
    "volume_display": "~400K/day",
-   "dollar_volume_avg": 105424068,
+   "dollar_volume_avg": 105426218,
    "dollar_volume_display": "~$105.4M/day",
    "high_52w": 341.55,
    "low_52w": 114.4,
    "pct_below_high": "-35.7%",
    "max_drawdown_1y": "-41.8%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+37.8%",
     "y1": "+93.0%",
@@ -5832,22 +5832,22 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "LIT": {
-   "price": 60.68,
-   "price_display": "$60.68",
+   "price": 61.27,
+   "price_display": "$61.27",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 206868,
    "volume_display": "~207K/day",
-   "dollar_volume_avg": 14793377,
+   "dollar_volume_avg": 14793387,
    "dollar_volume_display": "~$14.8M/day",
    "high_52w": 91.62,
    "low_52w": 58.24,
    "pct_below_high": "-33.8%",
    "max_drawdown_1y": "-33.5%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-6.0%",
     "y1": "+4.9%",
@@ -5942,22 +5942,22 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "LLY": {
-   "price": 1273.46,
-   "price_display": "$1,273.46",
+   "price": 1279.14,
+   "price_display": "$1,279.14",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 2511356,
+   "volume_avg": 2511459,
    "volume_display": "~2.5M/day",
-   "dollar_volume_avg": 2981180652,
+   "dollar_volume_avg": 2981311414,
    "dollar_volume_display": "~$3.0B/day",
    "high_52w": 1306.69,
    "low_52w": 813.53,
    "pct_below_high": "-2.5%",
    "max_drawdown_1y": "-23.2%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+19.1%",
     "y1": "+56.1%",
@@ -5974,19 +5974,19 @@
    "source": "Yahoo Finance"
   },
   "LRNZ": {
-   "price": 62.21,
-   "price_display": "$62.21",
+   "price": 63.69,
+   "price_display": "$63.69",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 2896,
+   "volume_avg": 2897,
    "volume_display": "~3K/day",
-   "dollar_volume_avg": 189965,
+   "dollar_volume_avg": 190014,
    "dollar_volume_display": "~$190K/day",
    "high_52w": 71.27,
    "low_52w": 38.18,
    "pct_below_high": "-12.7%",
    "max_drawdown_1y": "-26.9%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+30.5%",
     "y1": "+27.9%",
@@ -6073,22 +6073,22 @@
     }
    ],
    "fund_family": "TrueShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "MLPX": {
-   "price": 74.55,
-   "price_display": "$74.55",
+   "price": 74.54,
+   "price_display": "$74.54",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 351129,
+   "volume_avg": 351130,
    "volume_display": "~351K/day",
-   "dollar_volume_avg": 25908825,
+   "dollar_volume_avg": 25908877,
    "dollar_volume_display": "~$25.9M/day",
    "high_52w": 77.62,
    "low_52w": 57.84,
    "pct_below_high": "-4.0%",
    "max_drawdown_1y": "-9.1%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+27.2%",
     "y1": "+32.3%",
@@ -6167,16 +6167,16 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "NASA": {
-   "price": 20.39,
-   "price_display": "$20.39",
+   "price": 20.53,
+   "price_display": "$20.53",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 1607094,
+   "volume_avg": 1607135,
    "volume_display": "~1.6M/day",
-   "dollar_volume_avg": 37847087,
+   "dollar_volume_avg": 37847924,
    "dollar_volume_display": "~$37.8M/day",
    "high_52w": 41.89,
    "low_52w": 20.07,
@@ -6269,22 +6269,22 @@
     }
    ],
    "fund_family": "Tema ETFs",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "NLR": {
-   "price": 90.38,
-   "price_display": "$90.38",
+   "price": 91.06,
+   "price_display": "$91.06",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 390264,
+   "volume_avg": 390265,
    "volume_display": "~390K/day",
-   "dollar_volume_avg": 42476324,
+   "dollar_volume_avg": 42476434,
    "dollar_volume_display": "~$42.5M/day",
    "high_52w": 164.37,
    "low_52w": 90.38,
    "pct_below_high": "-45.0%",
    "max_drawdown_1y": "-45.0%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-27.2%",
     "y1": "-35.3%",
@@ -6375,16 +6375,16 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "NUKZ": {
-   "price": 56.25,
-   "price_display": "$56.25",
+   "price": 56.68,
+   "price_display": "$56.68",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 102300,
    "volume_display": "~102K/day",
-   "dollar_volume_avg": 6470008,
+   "dollar_volume_avg": 6469980,
    "dollar_volume_display": "~$6.5M/day",
    "high_52w": 76.23,
    "low_52w": 56.25,
@@ -6484,22 +6484,22 @@
     }
    ],
    "fund_family": "Exchange Traded Concepts",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "OIH": {
-   "price": 397.36,
-   "price_display": "$397.36",
+   "price": 402.4,
+   "price_display": "$402.40",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 260012,
+   "volume_avg": 260029,
    "volume_display": "~260K/day",
-   "dollar_volume_avg": 104038239,
+   "dollar_volume_avg": 104044641,
    "dollar_volume_display": "~$104.0M/day",
    "high_52w": 453.92,
    "low_52w": 274.41,
    "pct_below_high": "-12.5%",
    "max_drawdown_1y": "-20.8%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+39.5%",
     "y1": "+44.9%",
@@ -6582,16 +6582,16 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "OZEM": {
-   "price": 29.64,
-   "price_display": "$29.64",
+   "price": 29.52,
+   "price_display": "$29.52",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 15468,
    "volume_display": "~15K/day",
-   "dollar_volume_avg": 492968,
+   "dollar_volume_avg": 492967,
    "dollar_volume_display": "~$493K/day",
    "high_52w": 37.01,
    "low_52w": 27.51,
@@ -6675,22 +6675,22 @@
     }
    ],
    "fund_family": "Roundhill Investments",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "PAVE": {
-   "price": 51.6,
-   "price_display": "$51.60",
+   "price": 52.13,
+   "price_display": "$52.13",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 1553838,
    "volume_display": "~1.6M/day",
-   "dollar_volume_avg": 84955966,
+   "dollar_volume_avg": 84955975,
    "dollar_volume_display": "~$85.0M/day",
    "high_52w": 59.99,
    "low_52w": 45.51,
    "pct_below_high": "-14.0%",
    "max_drawdown_1y": "-13.8%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+8.2%",
     "y1": "+8.6%",
@@ -6781,22 +6781,22 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "PBW": {
-   "price": 24.56,
-   "price_display": "$24.56",
+   "price": 24.47,
+   "price_display": "$24.47",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 512843,
    "volume_display": "~513K/day",
-   "dollar_volume_avg": 16060428,
+   "dollar_volume_avg": 16060413,
    "dollar_volume_display": "~$16.1M/day",
    "high_52w": 46.99,
    "low_52w": 24.54,
    "pct_below_high": "-47.7%",
    "max_drawdown_1y": "-47.0%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-18.3%",
     "y1": "-22.5%",
@@ -6895,22 +6895,22 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "PHO": {
-   "price": 72.01,
-   "price_display": "$72.01",
+   "price": 72.29,
+   "price_display": "$72.29",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 73674,
+   "volume_avg": 73675,
    "volume_display": "~74K/day",
-   "dollar_volume_avg": 5186709,
+   "dollar_volume_avg": 5186745,
    "dollar_volume_display": "~$5.2M/day",
    "high_52w": 74.52,
    "low_52w": 64.15,
    "pct_below_high": "-3.4%",
    "max_drawdown_1y": "-13.8%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+2.7%",
     "y1": "-2.4%",
@@ -7005,22 +7005,22 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "PICK": {
-   "price": 54.89,
-   "price_display": "$54.89",
+   "price": 55.18,
+   "price_display": "$55.18",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 661726,
+   "volume_avg": 661727,
    "volume_display": "~662K/day",
-   "dollar_volume_avg": 40826816,
+   "dollar_volume_avg": 40826847,
    "dollar_volume_display": "~$40.8M/day",
    "high_52w": 68.93,
    "low_52w": 44.57,
    "pct_below_high": "-20.4%",
    "max_drawdown_1y": "-19.7%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+7.8%",
     "y1": "+23.0%",
@@ -7115,22 +7115,22 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "PJP": {
-   "price": 125.03,
-   "price_display": "$125.03",
+   "price": 125.8,
+   "price_display": "$125.80",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 35323,
+   "volume_avg": 35322,
    "volume_display": "~35K/day",
-   "dollar_volume_avg": 4428212,
+   "dollar_volume_avg": 4428147,
    "dollar_volume_display": "~$4.4M/day",
    "high_52w": 131.64,
    "low_52w": 94.95,
    "pct_below_high": "-5.0%",
    "max_drawdown_1y": "-9.4%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+20.6%",
     "y1": "+32.9%",
@@ -7209,22 +7209,22 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "PPA": {
-   "price": 154.03,
-   "price_display": "$154.03",
+   "price": 158.11,
+   "price_display": "$158.11",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 238790,
+   "volume_avg": 238792,
    "volume_display": "~239K/day",
-   "dollar_volume_avg": 38954601,
+   "dollar_volume_avg": 38954899,
    "dollar_volume_display": "~$39.0M/day",
    "high_52w": 185.59,
    "low_52w": 146.12,
    "pct_below_high": "-17.0%",
    "max_drawdown_1y": "-17.3%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-1.3%",
     "y1": "-2.3%",
@@ -7311,22 +7311,22 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "PPH": {
-   "price": 114.93,
-   "price_display": "$114.93",
+   "price": 114.79,
+   "price_display": "$114.79",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 309058,
+   "volume_avg": 309059,
    "volume_display": "~309K/day",
-   "dollar_volume_avg": 34648146,
+   "dollar_volume_avg": 34648226,
    "dollar_volume_display": "~$34.6M/day",
    "high_52w": 117.87,
    "low_52w": 90.97,
    "pct_below_high": "-2.5%",
    "max_drawdown_1y": "-10.8%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+13.3%",
     "y1": "+26.8%",
@@ -7405,16 +7405,16 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "QBTX": {
-   "price": 10.65,
-   "price_display": "$10.65",
+   "price": 10.44,
+   "price_display": "$10.44",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 482150,
+   "volume_avg": 482152,
    "volume_display": "~482K/day",
-   "dollar_volume_avg": 12716618,
+   "dollar_volume_avg": 12716641,
    "dollar_volume_display": "~$12.7M/day",
    "high_52w": 383.36,
    "low_52w": 10.63,
@@ -7438,22 +7438,22 @@
    "expense_ratio": 1.31,
    "yield_ttm": "19.23%",
    "fund_family": "AXS",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "QCLN": {
-   "price": 42.58,
-   "price_display": "$42.58",
+   "price": 43.17,
+   "price_display": "$43.17",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 142982,
+   "volume_avg": 142983,
    "volume_display": "~143K/day",
-   "dollar_volume_avg": 7042624,
+   "dollar_volume_avg": 7042635,
    "dollar_volume_display": "~$7.0M/day",
    "high_52w": 68.47,
    "low_52w": 41.1,
    "pct_below_high": "-37.8%",
    "max_drawdown_1y": "-37.8%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-4.5%",
     "y1": "-5.3%",
@@ -7556,16 +7556,16 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "QPUX": {
-   "price": 6.39,
-   "price_display": "$6.39",
+   "price": 6.35,
+   "price_display": "$6.35",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 260535,
+   "volume_avg": 260544,
    "volume_display": "~261K/day",
-   "dollar_volume_avg": 3355118,
+   "dollar_volume_avg": 3355176,
    "dollar_volume_display": "~$3.4M/day",
    "high_52w": 148.5,
    "low_52w": 6.39,
@@ -7589,22 +7589,22 @@
    "expense_ratio": 1.29,
    "yield_ttm": "0.0%",
    "fund_family": "Defiance ETFs LLC",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "QQQ": {
-   "price": 704.4,
-   "price_display": "$704.40",
+   "price": 712.2,
+   "price_display": "$712.20",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 35793550,
+   "volume_avg": 35796360,
    "volume_display": "~35.8M/day",
-   "dollar_volume_avg": 25748644396,
-   "dollar_volume_display": "~$25.7B/day",
+   "dollar_volume_avg": 25750623637,
+   "dollar_volume_display": "~$25.8B/day",
    "high_52w": 759.66,
    "low_52w": 558.28,
    "pct_below_high": "-7.3%",
    "max_drawdown_1y": "-12.0%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+15.1%",
     "y1": "+15.9%",
@@ -7719,16 +7719,16 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "QQQI": {
-   "price": 52.59,
-   "price_display": "$52.59",
+   "price": 53.17,
+   "price_display": "$53.17",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 4558403,
+   "volume_avg": 4558530,
    "volume_display": "~4.6M/day",
-   "dollar_volume_avg": 248585646,
+   "dollar_volume_avg": 248592323,
    "dollar_volume_display": "~$248.6M/day",
    "high_52w": 57.69,
    "low_52w": 48.12,
@@ -7848,16 +7848,16 @@
     }
    ],
    "fund_family": "Neos Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "QQQY": {
-   "price": 21.03,
-   "price_display": "$21.03",
+   "price": 21.25,
+   "price_display": "$21.25",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 97666,
+   "volume_avg": 97670,
    "volume_display": "~98K/day",
-   "dollar_volume_avg": 2179607,
+   "dollar_volume_avg": 2179686,
    "dollar_volume_display": "~$2.2M/day",
    "high_52w": 25.51,
    "low_52w": 19.99,
@@ -7933,22 +7933,22 @@
     }
    ],
    "fund_family": "Defiance ETFs LLC",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "QTUM": {
-   "price": 136.2,
-   "price_display": "$136.20",
+   "price": 138.5,
+   "price_display": "$138.50",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 327102,
    "volume_display": "~327K/day",
-   "dollar_volume_avg": 48415526,
+   "dollar_volume_avg": 48415524,
    "dollar_volume_display": "~$48.4M/day",
    "high_52w": 168.76,
    "low_52w": 100.36,
    "pct_below_high": "-19.3%",
    "max_drawdown_1y": "-21.5%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+25.0%",
     "y1": "+24.8%",
@@ -8043,22 +8043,22 @@
     }
    ],
    "fund_family": "Defiance ETFs LLC",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "QYLD": {
-   "price": 18.09,
-   "price_display": "$18.09",
+   "price": 18.24,
+   "price_display": "$18.24",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 4095217,
+   "volume_avg": 4095279,
    "volume_display": "~4.1M/day",
-   "dollar_volume_avg": 74829804,
+   "dollar_volume_avg": 74830930,
    "dollar_volume_display": "~$74.8M/day",
    "high_52w": 18.74,
    "low_52w": 16.7,
    "pct_below_high": "-3.5%",
    "max_drawdown_1y": "-5.8%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+13.1%",
     "y1": "+18.0%",
@@ -8168,22 +8168,22 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "REMX": {
-   "price": 51.46,
-   "price_display": "$51.46",
+   "price": 51.7,
+   "price_display": "$51.70",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 726110,
-   "volume_display": "~726K/day",
-   "dollar_volume_avg": 48807351,
+   "volume_avg": 726556,
+   "volume_display": "~727K/day",
+   "dollar_volume_avg": 48830263,
    "dollar_volume_display": "~$48.8M/day",
    "high_52w": 109.53,
    "low_52w": 51.46,
    "pct_below_high": "-53.0%",
    "max_drawdown_1y": "-53.0%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-30.4%",
     "y1": "-25.4%",
@@ -8262,16 +8262,16 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "RGTU": {
-   "price": 5.41,
-   "price_display": "$5.41",
+   "price": 5.3,
+   "price_display": "$5.30",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 74573,
    "volume_display": "~75K/day",
-   "dollar_volume_avg": 787748,
+   "dollar_volume_avg": 787751,
    "dollar_volume_display": "~$788K/day",
    "high_52w": 261.0,
    "low_52w": 5.39,
@@ -8295,22 +8295,22 @@
    "expense_ratio": 1.3,
    "yield_ttm": "88.48%",
    "fund_family": "AXS",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "ROBO": {
-   "price": 74.8,
-   "price_display": "$74.80",
+   "price": 75.52,
+   "price_display": "$75.52",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 152123,
+   "volume_avg": 152135,
    "volume_display": "~152K/day",
-   "dollar_volume_avg": 12244982,
+   "dollar_volume_avg": 12245853,
    "dollar_volume_display": "~$12.2M/day",
    "high_52w": 90.34,
    "low_52w": 63.04,
    "pct_below_high": "-17.2%",
    "max_drawdown_1y": "-17.4%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+7.9%",
     "y1": "+8.9%",
@@ -8409,22 +8409,22 @@
     }
    ],
    "fund_family": "Robo Global",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "ROBT": {
-   "price": 57.37,
-   "price_display": "$57.37",
+   "price": 57.86,
+   "price_display": "$57.86",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 40520,
+   "volume_avg": 40519,
    "volume_display": "~41K/day",
-   "dollar_volume_avg": 2365124,
+   "dollar_volume_avg": 2365091,
    "dollar_volume_display": "~$2.4M/day",
    "high_52w": 61.06,
    "low_52w": 44.32,
    "pct_below_high": "-6.0%",
    "max_drawdown_1y": "-21.7%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+10.6%",
     "y1": "+4.1%",
@@ -8523,22 +8523,22 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "ROKT": {
-   "price": 100.03,
-   "price_display": "$100.03",
+   "price": 102.48,
+   "price_display": "$102.48",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 21028,
+   "volume_avg": 21027,
    "volume_display": "~21K/day",
-   "dollar_volume_avg": 2293274,
+   "dollar_volume_avg": 2293216,
    "dollar_volume_display": "~$2.3M/day",
    "high_52w": 136.68,
    "low_52w": 72.93,
    "pct_below_high": "-26.8%",
    "max_drawdown_1y": "-27.6%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+17.7%",
     "y1": "+24.7%",
@@ -8629,22 +8629,22 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "RYLD": {
-   "price": 15.18,
-   "price_display": "$15.18",
+   "price": 15.25,
+   "price_display": "$15.25",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 489579,
    "volume_display": "~490K/day",
-   "dollar_volume_avg": 7769734,
+   "dollar_volume_avg": 7769743,
    "dollar_volume_display": "~$7.8M/day",
    "high_52w": 16.43,
    "low_52w": 14.64,
    "pct_below_high": "-7.6%",
    "max_drawdown_1y": "-6.3%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+9.6%",
     "y1": "+11.5%",
@@ -8718,22 +8718,22 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "SBIO": {
-   "price": 53.38,
-   "price_display": "$53.38",
+   "price": 53.78,
+   "price_display": "$53.78",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 39114,
    "volume_display": "~39K/day",
-   "dollar_volume_avg": 2428707,
+   "dollar_volume_avg": 2428732,
    "dollar_volume_display": "~$2.4M/day",
    "high_52w": 70.79,
    "low_52w": 42.07,
    "pct_below_high": "-24.6%",
    "max_drawdown_1y": "-29.2%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+4.2%",
     "y1": "+26.9%",
@@ -8812,16 +8812,16 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "SHLD": {
-   "price": 61.89,
-   "price_display": "$61.89",
+   "price": 63.35,
+   "price_display": "$63.35",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 1173551,
+   "volume_avg": 1173554,
    "volume_display": "~1.2M/day",
-   "dollar_volume_avg": 74098230,
+   "dollar_volume_avg": 74098423,
    "dollar_volume_display": "~$74.1M/day",
    "high_52w": 78.02,
    "low_52w": 58.2,
@@ -8910,22 +8910,22 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "SMH": {
-   "price": 527.2,
-   "price_display": "$527.20",
+   "price": 541.62,
+   "price_display": "$541.62",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 7892053,
+   "volume_avg": 7892748,
    "volume_display": "~7.9M/day",
-   "dollar_volume_avg": 4461712701,
+   "dollar_volume_avg": 4462079130,
    "dollar_volume_display": "~$4.5B/day",
    "high_52w": 668.91,
    "low_52w": 325.1,
    "pct_below_high": "-21.2%",
    "max_drawdown_1y": "-24.6%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+46.4%",
     "y1": "+53.4%",
@@ -9004,16 +9004,16 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "SMRF": {
-   "price": 18.92,
-   "price_display": "$18.92",
+   "price": 19.23,
+   "price_display": "$19.23",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 7429,
    "volume_display": "~7K/day",
-   "dollar_volume_avg": 176163,
+   "dollar_volume_avg": 176160,
    "dollar_volume_display": "~$176K/day",
    "high_52w": 29.49,
    "low_52w": 18.92,
@@ -9115,22 +9115,22 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "SOXX": {
-   "price": 478.2,
-   "price_display": "$478.20",
+   "price": 491.83,
+   "price_display": "$491.83",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 8240849,
+   "volume_avg": 8242010,
    "volume_display": "~8.2M/day",
-   "dollar_volume_avg": 4313303433,
+   "dollar_volume_avg": 4313858396,
    "dollar_volume_display": "~$4.3B/day",
    "high_52w": 655.01,
    "low_52w": 268.1,
    "pct_below_high": "-27.0%",
    "max_drawdown_1y": "-29.0%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+59.1%",
     "y1": "+64.8%",
@@ -9209,16 +9209,16 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "SPCX": {
-   "price": 147.49,
-   "price_display": "$147.49",
+   "price": 146.9,
+   "price_display": "$146.90",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 101050253,
+   "volume_avg": 101061757,
    "volume_display": "~101.1M/day",
-   "dollar_volume_avg": 14497260014,
+   "dollar_volume_avg": 14498956802,
    "dollar_volume_display": "~$14.5B/day",
    "high_52w": 211.39,
    "low_52w": 108.27,
@@ -9239,19 +9239,19 @@
    "source": "Yahoo Finance"
   },
   "SPY": {
-   "price": 759.97,
-   "price_display": "$759.97",
+   "price": 765.37,
+   "price_display": "$765.37",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 42732691,
+   "volume_avg": 42736567,
    "volume_display": "~42.7M/day",
-   "dollar_volume_avg": 32688018616,
+   "dollar_volume_avg": 32690964344,
    "dollar_volume_display": "~$32.7B/day",
    "high_52w": 779.09,
    "low_52w": 631.97,
    "pct_below_high": "-2.5%",
    "max_drawdown_1y": "-8.9%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+12.3%",
     "y1": "+14.4%",
@@ -9370,16 +9370,16 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "SPYI": {
-   "price": 52.64,
-   "price_display": "$52.64",
+   "price": 53.0,
+   "price_display": "$53.00",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 2778157,
+   "volume_avg": 2778203,
    "volume_display": "~2.8M/day",
-   "dollar_volume_avg": 148728436,
+   "dollar_volume_avg": 148730881,
    "dollar_volume_display": "~$148.7M/day",
    "high_52w": 54.41,
    "low_52w": 47.97,
@@ -9504,22 +9504,22 @@
     }
    ],
    "fund_family": "Neos Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "SVOL": {
-   "price": 16.62,
-   "price_display": "$16.62",
+   "price": 16.6,
+   "price_display": "$16.60",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 314159,
+   "volume_avg": 314221,
    "volume_display": "~314K/day",
-   "dollar_volume_avg": 5169372,
+   "dollar_volume_avg": 5170404,
    "dollar_volume_display": "~$5.2M/day",
    "high_52w": 18.34,
    "low_52w": 15.11,
    "pct_below_high": "-9.4%",
    "max_drawdown_1y": "-11.4%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+10.7%",
     "y1": "+14.7%",
@@ -9608,22 +9608,22 @@
     }
    ],
    "fund_family": "Simplify Asset Management",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "TAN": {
-   "price": 41.07,
-   "price_display": "$41.07",
+   "price": 40.76,
+   "price_display": "$40.76",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 1021550,
+   "volume_avg": 1021552,
    "volume_display": "~1.0M/day",
-   "dollar_volume_avg": 48176945,
+   "dollar_volume_avg": 48177050,
    "dollar_volume_display": "~$48.2M/day",
    "high_52w": 73.93,
    "low_52w": 41.07,
    "pct_below_high": "-44.4%",
    "max_drawdown_1y": "-44.4%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-16.4%",
     "y1": "-11.7%",
@@ -9714,22 +9714,22 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "THNQ": {
-   "price": 88.43,
-   "price_display": "$88.43",
+   "price": 89.39,
+   "price_display": "$89.39",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 34851,
    "volume_display": "~35K/day",
-   "dollar_volume_avg": 3255279,
+   "dollar_volume_avg": 3255302,
    "dollar_volume_display": "~$3.3M/day",
    "high_52w": 100.74,
    "low_52w": 55.88,
    "pct_below_high": "-12.2%",
    "max_drawdown_1y": "-18.4%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+39.3%",
     "y1": "+34.3%",
@@ -9828,16 +9828,16 @@
     }
    ],
    "fund_family": "Robo Global",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "THNR": {
-   "price": 24.7,
-   "price_display": "$24.70",
+   "price": 24.66,
+   "price_display": "$24.66",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 1293,
+   "volume_avg": 1294,
    "volume_display": "~1K/day",
-   "dollar_volume_avg": 33984,
+   "dollar_volume_avg": 33990,
    "dollar_volume_display": "~$34K/day",
    "high_52w": 27.91,
    "low_52w": 22.94,
@@ -9921,22 +9921,22 @@
     }
    ],
    "fund_family": "Amplify ETFs",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "TPYP": {
-   "price": 43.01,
-   "price_display": "$43.01",
+   "price": 43.19,
+   "price_display": "$43.19",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 41038,
    "volume_display": "~41K/day",
-   "dollar_volume_avg": 1732149,
+   "dollar_volume_avg": 1732168,
    "dollar_volume_display": "~$1.7M/day",
    "high_52w": 44.38,
    "low_52w": 34.05,
    "pct_below_high": "-3.1%",
    "max_drawdown_1y": "-9.1%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+24.9%",
     "y1": "+27.2%",
@@ -10019,22 +10019,22 @@
     }
    ],
    "fund_family": "Tortoise Capital Advisors, LLC",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "UBOT": {
-   "price": 18.9,
-   "price_display": "$18.90",
+   "price": 19.03,
+   "price_display": "$19.03",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 14422,
    "volume_display": "~14K/day",
-   "dollar_volume_avg": 319044,
+   "dollar_volume_avg": 319055,
    "dollar_volume_display": "~$319K/day",
    "high_52w": 32.04,
    "low_52w": 18.46,
    "pct_below_high": "-41.0%",
    "max_drawdown_1y": "-42.1%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-25.5%",
     "y1": "-30.7%",
@@ -10088,22 +10088,22 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "UFO": {
-   "price": 39.86,
-   "price_display": "$39.86",
+   "price": 40.42,
+   "price_display": "$40.42",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 289659,
+   "volume_avg": 289660,
    "volume_display": "~290K/day",
-   "dollar_volume_avg": 12707838,
+   "dollar_volume_avg": 12707896,
    "dollar_volume_display": "~$12.7M/day",
    "high_52w": 67.81,
    "low_52w": 31.44,
    "pct_below_high": "-41.2%",
    "max_drawdown_1y": "-42.0%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+3.3%",
     "y1": "+5.7%",
@@ -10190,22 +10190,22 @@
     }
    ],
    "fund_family": "Procure ETF Trust II",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "UNG": {
-   "price": 9.58,
-   "price_display": "$9.58",
+   "price": 9.56,
+   "price_display": "$9.56",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 19952938,
+   "volume_avg": 19953986,
    "volume_display": "~20.0M/day",
-   "dollar_volume_avg": 210646046,
-   "dollar_volume_display": "~$210.6M/day",
+   "dollar_volume_avg": 210656083,
+   "dollar_volume_display": "~$210.7M/day",
    "high_52w": 16.9,
    "low_52w": 9.58,
    "pct_below_high": "-43.3%",
    "max_drawdown_1y": "-43.3%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-21.9%",
     "y1": "-25.9%",
@@ -10225,22 +10225,22 @@
    "expense_ratio": 1.17,
    "yield_ttm": "0.0%",
    "fund_family": "USCF Investments",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "URA": {
-   "price": 34.11,
-   "price_display": "$34.11",
+   "price": 34.36,
+   "price_display": "$34.36",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 3501125,
+   "volume_avg": 3501146,
    "volume_display": "~3.5M/day",
-   "dollar_volume_avg": 145812548,
+   "dollar_volume_avg": 145813262,
    "dollar_volume_display": "~$145.8M/day",
    "high_52w": 61.81,
    "low_52w": 34.09,
    "pct_below_high": "-44.8%",
    "max_drawdown_1y": "-44.8%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-20.2%",
     "y1": "-28.4%",
@@ -10330,16 +10330,16 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "URAA": {
-   "price": 14.3,
-   "price_display": "$14.30",
+   "price": 14.6,
+   "price_display": "$14.60",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 68749,
+   "volume_avg": 68751,
    "volume_display": "~69K/day",
-   "dollar_volume_avg": 1553615,
+   "dollar_volume_avg": 1553636,
    "dollar_volume_display": "~$1.6M/day",
    "high_52w": 62.06,
    "low_52w": 14.27,
@@ -10404,16 +10404,16 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "URAN": {
-   "price": 31.07,
-   "price_display": "$31.07",
+   "price": 31.27,
+   "price_display": "$31.27",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 4962,
    "volume_display": "~5K/day",
-   "dollar_volume_avg": 184130,
+   "dollar_volume_avg": 184137,
    "dollar_volume_display": "~$184K/day",
    "high_52w": 54.71,
    "low_52w": 31.07,
@@ -10513,16 +10513,16 @@
     }
    ],
    "fund_family": "Themes ETF Trust",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "URNJ": {
-   "price": 16.72,
-   "price_display": "$16.72",
+   "price": 17.09,
+   "price_display": "$17.09",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 407898,
    "volume_display": "~408K/day",
-   "dollar_volume_avg": 8873557,
+   "dollar_volume_avg": 8873562,
    "dollar_volume_display": "~$8.9M/day",
    "high_52w": 40.43,
    "low_52w": 16.69,
@@ -10611,22 +10611,22 @@
     }
    ],
    "fund_family": "Sprott",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "URNM": {
-   "price": 41.79,
-   "price_display": "$41.79",
+   "price": 42.54,
+   "price_display": "$42.54",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 643713,
+   "volume_avg": 643735,
    "volume_display": "~644K/day",
-   "dollar_volume_avg": 33087764,
+   "dollar_volume_avg": 33088698,
    "dollar_volume_display": "~$33.1M/day",
    "high_52w": 83.99,
    "low_52w": 41.54,
    "pct_below_high": "-50.2%",
    "max_drawdown_1y": "-50.5%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-23.9%",
     "y1": "-24.7%",
@@ -10709,29 +10709,29 @@
     }
    ],
    "fund_family": "Sprott",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "URNU.L": {
-   "price": 19.98,
-   "price_display": "$19.98",
+   "price": 20.3,
+   "price_display": "$20.30",
    "currency": "USD",
-   "price_asof": "2026-10-22",
-   "volume_avg": 45443,
-   "volume_display": "~45K/day",
-   "dollar_volume_avg": 1113529,
+   "price_asof": "2026-10-23",
+   "volume_avg": 46665,
+   "volume_display": "~47K/day",
+   "dollar_volume_avg": 1135912,
    "dollar_volume_display": "~$1.1M/day",
    "high_52w": 36.71,
-   "low_52w": 20.1,
-   "pct_below_high": "-45.2%",
-   "max_drawdown_1y": "-45.2%",
+   "low_52w": 19.98,
+   "pct_below_high": "-45.6%",
+   "max_drawdown_1y": "-45.6%",
    "history_start": "2022-04-22",
    "performance": {
-    "ytd": "-22.9%",
-    "y1": "-29.5%",
-    "y3_annualized": "+14.9%/yr",
+    "ytd": "-23.4%",
+    "y1": "-33.0%",
+    "y3_annualized": "+14.5%/yr",
     "y2025": "+70.5%",
     "y2024": "+1.2%",
-    "as_of": "2026-10-22",
+    "as_of": "2026-10-23",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Global X Uranium UCITS ETF USD Acc",
@@ -10819,22 +10819,22 @@
     }
    ],
    "fund_family": "Global X",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "UTES": {
-   "price": 74.73,
-   "price_display": "$74.73",
+   "price": 75.11,
+   "price_display": "$75.11",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 179949,
    "volume_display": "~180K/day",
-   "dollar_volume_avg": 13446260,
+   "dollar_volume_avg": 13446263,
    "dollar_volume_display": "~$13.4M/day",
    "high_52w": 86.07,
    "low_52w": 69.83,
    "pct_below_high": "-13.2%",
    "max_drawdown_1y": "-17.6%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-4.3%",
     "y1": "-9.4%",
@@ -10913,22 +10913,22 @@
     }
    ],
    "fund_family": "Virtus",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "VDE": {
-   "price": 192.98,
-   "price_display": "$192.98",
+   "price": 194.32,
+   "price_display": "$194.32",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 510841,
+   "volume_avg": 510843,
    "volume_display": "~511K/day",
-   "dollar_volume_avg": 90935933,
+   "dollar_volume_avg": 90936273,
    "dollar_volume_display": "~$90.9M/day",
    "high_52w": 192.98,
    "low_52w": 123.11,
    "pct_below_high": "0.0%",
    "max_drawdown_1y": "-15.0%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+56.1%",
     "y1": "+57.7%",
@@ -11015,16 +11015,16 @@
     }
    ],
    "fund_family": "Vanguard",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "VOLT": {
-   "price": 32.8,
-   "price_display": "$32.80",
+   "price": 33.37,
+   "price_display": "$33.37",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 210545,
+   "volume_avg": 210544,
    "volume_display": "~211K/day",
-   "dollar_volume_avg": 7635635,
+   "dollar_volume_avg": 7635616,
    "dollar_volume_display": "~$7.6M/day",
    "high_52w": 42.05,
    "low_52w": 28.32,
@@ -11120,22 +11120,22 @@
     }
    ],
    "fund_family": "Tema ETFs",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "VPU": {
-   "price": 184.01,
-   "price_display": "$184.01",
+   "price": 183.95,
+   "price_display": "$183.95",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 354980,
+   "volume_avg": 354979,
    "volume_display": "~355K/day",
-   "dollar_volume_avg": 64398426,
+   "dollar_volume_avg": 64398385,
    "dollar_volume_display": "~$64.4M/day",
    "high_52w": 205.87,
    "low_52w": 170.29,
    "pct_below_high": "-10.6%",
    "max_drawdown_1y": "-15.6%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+1.5%",
     "y1": "-3.3%",
@@ -11222,16 +11222,16 @@
     }
    ],
    "fund_family": "Vanguard",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "WAR": {
-   "price": 27.84,
-   "price_display": "$27.84",
+   "price": 28.36,
+   "price_display": "$28.36",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 11718,
+   "volume_avg": 11719,
    "volume_display": "~12K/day",
-   "dollar_volume_avg": 366731,
+   "dollar_volume_avg": 366748,
    "dollar_volume_display": "~$367K/day",
    "high_52w": 36.02,
    "low_52w": 22.49,
@@ -11323,22 +11323,22 @@
     }
    ],
    "fund_family": "U.S. Global Investors",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "WCBR": {
-   "price": 49.5,
-   "price_display": "$49.50",
+   "price": 51.36,
+   "price_display": "$51.36",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 93929,
+   "volume_avg": 93946,
    "volume_display": "~94K/day",
-   "dollar_volume_avg": 4129489,
+   "dollar_volume_avg": 4130329,
    "dollar_volume_display": "~$4.1M/day",
    "high_52w": 49.96,
    "low_52w": 22.74,
    "pct_below_high": "-0.9%",
    "max_drawdown_1y": "-29.8%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+77.7%",
     "y1": "+54.5%",
@@ -11417,16 +11417,16 @@
     }
    ],
    "fund_family": "WisdomTree",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "WQTM": {
-   "price": 27.28,
-   "price_display": "$27.28",
+   "price": 27.51,
+   "price_display": "$27.51",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 196512,
+   "volume_avg": 196513,
    "volume_display": "~197K/day",
-   "dollar_volume_avg": 6250924,
+   "dollar_volume_avg": 6250938,
    "dollar_volume_display": "~$6.3M/day",
    "high_52w": 41.31,
    "low_52w": 23.32,
@@ -11520,16 +11520,16 @@
     }
    ],
    "fund_family": "WisdomTree",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "WTAI": {
-   "price": 36.63,
-   "price_display": "$36.63",
+   "price": 37.4,
+   "price_display": "$37.40",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 296352,
    "volume_display": "~296K/day",
-   "dollar_volume_avg": 12221104,
+   "dollar_volume_avg": 12221101,
    "dollar_volume_display": "~$12.2M/day",
    "high_52w": 48.35,
    "low_52w": 26.73,
@@ -11626,22 +11626,22 @@
     }
    ],
    "fund_family": "WisdomTree",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "XAR": {
-   "price": 217.79,
-   "price_display": "$217.79",
+   "price": 223.46,
+   "price_display": "$223.46",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 317508,
    "volume_display": "~318K/day",
-   "dollar_volume_avg": 77532377,
+   "dollar_volume_avg": 77532422,
    "dollar_volume_display": "~$77.5M/day",
    "high_52w": 296.73,
    "low_52w": 217.79,
    "pct_below_high": "-26.6%",
    "max_drawdown_1y": "-26.6%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-9.6%",
     "y1": "-11.4%",
@@ -11720,22 +11720,22 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "XBI": {
-   "price": 149.54,
-   "price_display": "$149.54",
+   "price": 150.47,
+   "price_display": "$150.47",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 8916137,
+   "volume_avg": 8916143,
    "volume_display": "~8.9M/day",
-   "dollar_volume_avg": 1392059670,
+   "dollar_volume_avg": 1392060546,
    "dollar_volume_display": "~$1.4B/day",
    "high_52w": 169.55,
    "low_52w": 107.56,
    "pct_below_high": "-11.8%",
    "max_drawdown_1y": "-14.9%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+22.8%",
     "y1": "+39.6%",
@@ -11818,22 +11818,22 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "XLE": {
-   "price": 69.33,
-   "price_display": "$69.33",
+   "price": 69.64,
+   "price_display": "$69.64",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 30346412,
+   "volume_avg": 30346895,
    "volume_display": "~30.3M/day",
-   "dollar_volume_avg": 1924267541,
+   "dollar_volume_avg": 1924301025,
    "dollar_volume_display": "~$1.9B/day",
    "high_52w": 69.33,
    "low_52w": 43.6,
    "pct_below_high": "0.0%",
    "max_drawdown_1y": "-15.0%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+58.1%",
     "y1": "+60.3%",
@@ -11912,22 +11912,22 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "XLK": {
-   "price": 183.23,
-   "price_display": "$183.23",
+   "price": 186.32,
+   "price_display": "$186.32",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 7741285,
+   "volume_avg": 7741543,
    "volume_display": "~7.7M/day",
-   "dollar_volume_avg": 1450153325,
+   "dollar_volume_avg": 1450200506,
    "dollar_volume_display": "~$1.5B/day",
    "high_52w": 202.0,
    "low_52w": 127.5,
    "pct_below_high": "-9.3%",
    "max_drawdown_1y": "-15.9%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+27.7%",
     "y1": "+27.4%",
@@ -12006,22 +12006,22 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "XLU": {
-   "price": 42.56,
-   "price_display": "$42.56",
+   "price": 42.55,
+   "price_display": "$42.55",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 26104668,
+   "volume_avg": 26105116,
    "volume_display": "~26.1M/day",
-   "dollar_volume_avg": 1094417393,
+   "dollar_volume_avg": 1094436452,
    "dollar_volume_display": "~$1.1B/day",
    "high_52w": 47.73,
    "low_52w": 39.25,
    "pct_below_high": "-10.8%",
    "max_drawdown_1y": "-16.1%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+1.8%",
     "y1": "-3.1%",
@@ -12100,22 +12100,22 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "XLV": {
    "price": 179.28,
    "price_display": "$179.28",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 8535360,
+   "volume_avg": 8535646,
    "volume_display": "~8.5M/day",
-   "dollar_volume_avg": 1448603615,
+   "dollar_volume_avg": 1448654877,
    "dollar_volume_display": "~$1.4B/day",
    "high_52w": 181.3,
    "low_52w": 142.84,
    "pct_below_high": "-1.1%",
    "max_drawdown_1y": "-10.5%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+17.2%",
     "y1": "+24.8%",
@@ -12194,22 +12194,22 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "XME": {
-   "price": 96.37,
-   "price_display": "$96.37",
+   "price": 96.01,
+   "price_display": "$96.01",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 1800671,
    "volume_display": "~1.8M/day",
-   "dollar_volume_avg": 198451635,
+   "dollar_volume_avg": 198451673,
    "dollar_volume_display": "~$198.5M/day",
    "high_52w": 132.83,
    "low_52w": 87.44,
    "pct_below_high": "-27.4%",
    "max_drawdown_1y": "-27.4%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "-6.8%",
     "y1": "-2.2%",
@@ -12296,21 +12296,21 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "XNDX": {
-   "price": 0.42,
-   "price_display": "$0.42",
+   "price": 0.4,
+   "price_display": "$0.40",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 412207,
+   "volume_avg": 412208,
    "volume_display": "~412K/day",
-   "dollar_volume_avg": 798842,
+   "dollar_volume_avg": 798832,
    "dollar_volume_display": "~$799K/day",
    "high_52w": 33.66,
    "low_52w": 0.42,
-   "pct_below_high": "-98.7%",
-   "max_drawdown_1y": "-98.7%",
+   "pct_below_high": "-98.8%",
+   "max_drawdown_1y": "-98.8%",
    "history_start": "2026-05-07",
    "performance": {
     "ytd": null,
@@ -12328,22 +12328,22 @@
    "aum_display": "~$4M",
    "expense_ratio": 1.49,
    "fund_family": "AXS",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "XOP": {
-   "price": 201.69,
-   "price_display": "$201.69",
+   "price": 204.86,
+   "price_display": "$204.86",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 2975414,
+   "volume_avg": 2975429,
    "volume_display": "~3.0M/day",
-   "dollar_volume_avg": 553316267,
+   "dollar_volume_avg": 553319180,
    "dollar_volume_display": "~$553.3M/day",
    "high_52w": 201.69,
    "low_52w": 123.96,
    "pct_below_high": "0.0%",
    "max_drawdown_1y": "-18.5%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+61.8%",
     "y1": "+58.7%",
@@ -12430,22 +12430,22 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "XPH": {
-   "price": 62.7,
-   "price_display": "$62.70",
+   "price": 62.9,
+   "price_display": "$62.90",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 166521,
    "volume_display": "~167K/day",
-   "dollar_volume_avg": 11194796,
+   "dollar_volume_avg": 11194752,
    "dollar_volume_display": "~$11.2M/day",
    "high_52w": 74.06,
    "low_52w": 48.3,
    "pct_below_high": "-15.3%",
    "max_drawdown_1y": "-16.4%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+12.3%",
     "y1": "+29.7%",
@@ -12524,22 +12524,22 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "XT": {
-   "price": 82.61,
-   "price_display": "$82.61",
+   "price": 83.72,
+   "price_display": "$83.72",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 67739,
+   "volume_avg": 67738,
    "volume_display": "~68K/day",
-   "dollar_volume_avg": 5584980,
+   "dollar_volume_avg": 5584938,
    "dollar_volume_display": "~$5.6M/day",
    "high_52w": 85.5,
    "low_52w": 65.77,
    "pct_below_high": "-3.4%",
    "max_drawdown_1y": "-10.5%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+19.0%",
     "y1": "+20.7%",
@@ -12654,22 +12654,22 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "XYLD": {
-   "price": 41.15,
-   "price_display": "$41.15",
+   "price": 41.38,
+   "price_display": "$41.38",
    "currency": "USD",
    "price_asof": "2026-10-23",
-   "volume_avg": 472912,
+   "volume_avg": 472913,
    "volume_display": "~473K/day",
-   "dollar_volume_avg": 19629187,
+   "dollar_volume_avg": 19629223,
    "dollar_volume_display": "~$19.6M/day",
    "high_52w": 42.0,
    "low_52w": 38.36,
    "pct_below_high": "-2.0%",
    "max_drawdown_1y": "-5.3%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+10.4%",
     "y1": "+15.2%",
@@ -12788,22 +12788,22 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   },
   "XYLG": {
-   "price": 29.36,
-   "price_display": "$29.36",
+   "price": 29.53,
+   "price_display": "$29.53",
    "currency": "USD",
    "price_asof": "2026-10-23",
    "volume_avg": 22689,
    "volume_display": "~23K/day",
-   "dollar_volume_avg": 671248,
+   "dollar_volume_avg": 671246,
    "dollar_volume_display": "~$671K/day",
    "high_52w": 30.04,
    "low_52w": 25.66,
    "pct_below_high": "-2.3%",
    "max_drawdown_1y": "-6.9%",
-   "history_start": "2021-10-25",
+   "history_start": "2021-10-27",
    "performance": {
     "ytd": "+11.6%",
     "y1": "+15.1%",
@@ -12922,7 +12922,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-10-23"
+   "profile_asof": "2026-10-27"
   }
  }
 }
