@@ -1,0 +1,519 @@
+{
+ "as_of": "2026-10-18",
+ "note": "General information for individuals investing through an ordinary taxable account — not tax advice. Researched from official and industry sources, then independently fact-checked; rules change, so confirm with your tax authority or an adviser.",
+ "points_note": "tax_points are draft weights for the coming Core Score (0-20) for a broad US/global equity fund; acc_adjust is added for an accumulating share class.",
+ "residencies": [
+  {
+   "id": "hk",
+   "label": "Hong Kong",
+   "summary": "Hong Kong doesn't tax individuals on dividends or capital gains, so the tax that matters is the US tax taken before money reaches you. Irish UCITS funds usually lose the least and avoid US estate tax.",
+   "us_wht": "There's no US–Hong Kong tax treaty, so 30% is taken from dividends paid by US-listed ETFs — even on world funds — and you can't get it back.",
+   "estate": "No US estate-tax treaty: US-listed ETFs above about US$60,000 can face US estate tax of up to 40%. Irish and Luxembourg funds are generally outside it; Hong Kong funds are generally treated as outside it too (an industry view — there's no specific IRS guidance).",
+   "access": "US-listed and London-listed ETFs are both usually available through brokers with overseas markets (US holdings need a W-8BEN form). Not every Hong Kong broker offers London. Leveraged, inverse and many swap-based products count as complex, so expect extra checks.",
+   "accumulating": "No tax difference in Hong Kong — neither payouts nor reinvested income are taxed. Accumulating is simply convenient: the fund reinvests for you.",
+   "home_tax": "No tax on dividends, interest or capital gains for ordinary personal investing. Frequent trading that looks like a business can be taxed as profits. No stamp duty on buying or selling ETF units in Hong Kong.",
+   "domiciles": {
+    "US": {
+     "verdict": "usually worse",
+     "note": "Dividends lose 30% to US tax you can't reclaim, and holdings above about US$60,000 are exposed to US estate tax."
+    },
+    "IE": {
+     "verdict": "usually better",
+     "note": "The fund usually pays only 15% US tax on US dividends, nothing more is taken from payouts, and it's generally outside US estate tax."
+    },
+    "LU": {
+     "verdict": "neutral",
+     "note": "Generally outside US estate tax, but physically-replicating Luxembourg funds often lose 30% of US dividends inside the fund — check the annual report."
+    },
+    "HK": {
+     "verdict": "neutral",
+     "note": "No Hong Kong tax or stamp duty and generally outside US estate tax, but a Hong Kong fund holding US shares usually loses 30% of their dividends."
+    }
+   },
+   "tax_points": {
+    "US": 4,
+    "IE": 20,
+    "LU": 12,
+    "HK": 10,
+    "acc_adjust": 0
+   },
+   "caveats": [
+    "US citizens and green-card holders living in Hong Kong are US persons — see the United States notes instead."
+   ],
+   "sources": [
+    {
+     "url": "https://www.fstb.gov.hk/en/treasury/general/prevailing-tax-policy.htm",
+     "supports": "No capital gains tax; no withholding on dividends"
+    },
+    {
+     "url": "https://www.ird.gov.hk/eng/faq/ETFs.htm",
+     "supports": "No stamp duty on ETF unit transfers"
+    },
+    {
+     "url": "https://www.irs.gov/businesses/international-businesses/united-states-income-tax-treaties-a-to-z",
+     "supports": "US income tax treaty partners"
+    },
+    {
+     "url": "https://www.irs.gov/publications/p515",
+     "supports": "30% US withholding on dividends to non-US persons unless a treaty lowers it"
+    },
+    {
+     "url": "https://www.irs.gov/individuals/international-taxpayers/some-nonresidents-with-u-s-assets-must-file-estate-tax-returns",
+     "supports": "US estate tax: US shares are US-situs; Form 706-NA above US$60,000"
+    },
+    {
+     "url": "https://cdn.irishfunds.ie/x/c8518f7188/2025-etf-1-pager.pdf",
+     "supports": "No Irish withholding on Irish ETF payouts to non-Irish residents"
+    }
+   ]
+  },
+  {
+   "id": "sg",
+   "label": "Singapore",
+   "summary": "Singapore doesn't tax individuals on foreign dividends or capital gains, so the US tax taken before money reaches you is the main cost. Irish UCITS funds usually lose the least and avoid US estate tax.",
+   "us_wht": "There's no US–Singapore income tax treaty, so 30% is taken from dividends paid by US-listed ETFs, and Singapore has no tax to offset it against.",
+   "estate": "No US estate-tax treaty: US-listed ETFs above about US$60,000 can face US estate tax of up to 40%. Irish and Luxembourg funds are generally outside it, and Irish fund units are generally exempt from Irish inheritance tax for people who aren't Irish-domiciled or ordinarily resident.",
+   "access": "US- and London-listed ETFs are available through brokers with overseas markets (US holdings need a W-8BEN form). Brokers usually treat overseas-listed ETFs as Specified Investment Products, so expect a knowledge check (Customer Account Review) first.",
+   "accumulating": "No tax difference in Singapore — neither foreign payouts nor reinvested income are taxed for individuals. Accumulating is simply convenient.",
+   "home_tax": "Foreign dividends received by individuals are exempt (unless through a partnership), and there's no capital gains tax on personal investments. Frequent trading that looks like a business can be taxed.",
+   "domiciles": {
+    "US": {
+     "verdict": "usually worse",
+     "note": "Dividends lose 30% to US tax that can't be offset, and holdings above about US$60,000 are exposed to US estate tax."
+    },
+    "IE": {
+     "verdict": "usually better",
+     "note": "The fund usually pays only 15% US tax on US dividends, nothing more is taken from payouts, and it's generally outside US estate tax."
+    },
+    "LU": {
+     "verdict": "neutral",
+     "note": "Generally outside US estate tax, but physically-replicating Luxembourg funds often lose 30% of US dividends inside the fund — check the annual report."
+    },
+    "HK": {
+     "verdict": "neutral",
+     "note": "No tax on payouts and generally outside US estate tax, but a Hong Kong fund holding US shares usually loses 30% of their dividends."
+    }
+   },
+   "tax_points": {
+    "US": 4,
+    "IE": 20,
+    "LU": 12,
+    "HK": 10,
+    "acc_adjust": 0
+   },
+   "caveats": [
+    "US citizens and green-card holders living in Singapore are US persons — see the United States notes instead."
+   ],
+   "sources": [
+    {
+     "url": "https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/what-is-taxable-what-is-not/income-received-from-overseas",
+     "supports": "Foreign-sourced income of resident individuals is exempt"
+    },
+    {
+     "url": "https://www.iras.gov.sg/taxes/individual-income-tax/basics-of-individual-income-tax/what-is-taxable-what-is-not/gains-from-sale-of-property-shares-and-financial-instruments",
+     "supports": "Gains on personal investments generally not taxed"
+    },
+    {
+     "url": "https://www.irs.gov/businesses/international-businesses/united-states-income-tax-treaties-a-to-z",
+     "supports": "US income tax treaty partners"
+    },
+    {
+     "url": "https://www.irs.gov/publications/p515",
+     "supports": "30% US withholding on dividends to non-US persons unless a treaty lowers it"
+    },
+    {
+     "url": "https://www.irs.gov/individuals/international-taxpayers/some-nonresidents-with-u-s-assets-must-file-estate-tax-returns",
+     "supports": "US estate tax: US shares are US-situs; Form 706-NA above US$60,000"
+    },
+    {
+     "url": "https://cdn.irishfunds.ie/x/c8518f7188/2025-etf-1-pager.pdf",
+     "supports": "No Irish withholding on Irish ETF payouts to non-Irish residents"
+    }
+   ]
+  },
+  {
+   "id": "uk",
+   "label": "United Kingdom",
+   "summary": "UK investors normally use London-listed UCITS funds (mostly Irish). What matters most is the fund's UK 'reporting fund' status, and that reinvested income is still taxed each year.",
+   "us_wht": "15% on US-listed ETF dividends with a W-8BEN (30% without), which can be credited against UK tax on the same dividend — but only up to the UK tax due. US tax paid inside an Irish or Luxembourg fund can't be credited.",
+   "estate": "US-listed ETFs count as US assets for US estate tax above about US$60,000; the US–UK estate tax treaty may reduce this, but it has to be claimed on a US return. Irish and Luxembourg funds are generally outside US estate tax. UK inheritance tax is a separate question.",
+   "access": "Irish and Luxembourg UCITS ETFs on the London Stock Exchange are widely available, including in ISAs and SIPPs. US-listed ETFs generally can't be sold to UK retail investors because no US fund is recognised by the FCA.",
+   "accumulating": "Accumulating doesn't defer UK tax: for a reporting fund, the reinvested income ('excess reportable income') is taxed every year as if it had been paid to you. Inside an ISA or SIPP there's no UK tax either way.",
+   "home_tax": "Fund payouts are taxed as dividends above the £500 dividend allowance (bond-heavy funds pay 'interest' instead). Gains are capital gains only if the share class is on HMRC's reporting-funds list for your whole holding period — otherwise they're taxed as income.",
+   "domiciles": {
+    "US": {
+     "verdict": "usually avoid",
+     "note": "Generally not available to UK retail investors, and US estate tax applies above about US$60,000 unless treaty relief is claimed."
+    },
+    "IE": {
+     "verdict": "usually better",
+     "note": "Widely available, usually with UK reporting status (check HMRC's list), only 15% US tax on US dividends inside the fund, and not a US asset for estate tax."
+    },
+    "LU": {
+     "verdict": "neutral",
+     "note": "Available and often reporting funds, but physically-replicating Luxembourg funds often lose 30% of US dividends inside the fund."
+    },
+    "HK": {
+     "verdict": "usually avoid",
+     "note": "Generally not available to UK retail investors, loses 30% of US dividends, and gains are taxed as income unless the fund has UK reporting status."
+    }
+   },
+   "tax_points": {
+    "US": 0,
+    "IE": 20,
+    "LU": 14,
+    "HK": 0,
+    "acc_adjust": 0
+   },
+   "caveats": [
+    "Check each share class on HMRC's reporting-funds list — the status is per class, not per fund."
+   ],
+   "sources": [
+    {
+     "url": "https://www.gov.uk/tax-on-dividends",
+     "supports": "Dividend allowance and rates"
+    },
+    {
+     "url": "https://www.gov.uk/government/publications/offshore-funds-self-assessment-helpsheet-hs265/hs265-offshore-funds",
+     "supports": "Offshore funds, reporting status and excess reportable income"
+    },
+    {
+     "url": "https://www.gov.uk/hmrc-internal-manuals/investment-funds/ifm12146",
+     "supports": "Non-reporting fund gains taxed as income"
+    },
+    {
+     "url": "https://www.irs.gov/individuals/international-taxpayers/some-nonresidents-with-u-s-assets-must-file-estate-tax-returns",
+     "supports": "US estate tax: US shares are US-situs; Form 706-NA above US$60,000"
+    },
+    {
+     "url": "https://www.irs.gov/businesses/small-businesses-self-employed/estate-gift-tax-treaties-international",
+     "supports": "US estate and gift tax treaty partners"
+    },
+    {
+     "url": "https://cdn.irishfunds.ie/x/c8518f7188/2025-etf-1-pager.pdf",
+     "supports": "No Irish withholding on Irish ETF payouts to non-Irish residents"
+    }
+   ]
+  },
+  {
+   "id": "eu",
+   "label": "EU / EEA country",
+   "summary": "Most EU/EEA retail investors can only buy UCITS funds (usually Irish), because US-listed ETFs lack the required EU key-information document. Home-country rules differ a lot — especially for accumulating funds.",
+   "us_wht": "Usually 15% on US-listed ETF dividends with a W-8BEN where your country has a US tax treaty (30% without one, or where no treaty is in force). US tax paid inside a UCITS fund can't be credited by you.",
+   "estate": "US-listed ETFs count as US assets for US estate tax above about US$60,000; a few countries (e.g. France, Germany, Italy, the Netherlands) have US estate tax treaties that may reduce this. Irish and Luxembourg funds are generally outside US estate tax.",
+   "access": "EU rules (PRIIPs) require a key-information document before a retail purchase; US-listed ETFs don't publish one, so brokers normally block them. UCITS funds must also be registered for sale in your country, so the choice differs by broker.",
+   "accumulating": "Depends on the country. Many only tax when you sell, but some tax reinvested income every year — Germany's 'Vorabpauschale' is one example, and Ireland applies a deemed sale every 8 years.",
+   "home_tax": "Each country sets its own rules for fund payouts and gains (often a flat investment-income rate with different allowances). Some have special fund regimes, and a fund's domicile can change how you're taxed.",
+   "domiciles": {
+    "US": {
+     "verdict": "usually avoid",
+     "note": "Retail investors normally can't buy them (no EU key-information document), and US estate tax applies above about US$60,000."
+    },
+    "IE": {
+     "verdict": "usually better",
+     "note": "Sold across the EU with a key-information document, only 15% US tax on US dividends inside the fund, and not a US asset for estate tax. Irish residents face a special regime."
+    },
+    "LU": {
+     "verdict": "neutral",
+     "note": "Just as easy to buy and outside US estate tax, but physically-replicating Luxembourg funds often lose 30% of US dividends inside the fund."
+    },
+    "HK": {
+     "verdict": "usually avoid",
+     "note": "Not UCITS and usually without an EU key-information document, so normally unavailable; also loses 30% of US dividends inside the fund."
+    }
+   },
+   "tax_points": {
+    "US": 0,
+    "IE": 20,
+    "LU": 14,
+    "HK": 0,
+    "acc_adjust": 0
+   },
+   "caveats": [
+    "A generic EU picture only — your own country's fund tax rules can change the answer."
+   ],
+   "sources": [
+    {
+     "url": "https://www.europarl.europa.eu/doceo/document/E-9-2021-004745_EN.html",
+     "supports": "US ETFs lack a PRIIPs KID, so EU retail access is blocked"
+    },
+    {
+     "url": "https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf",
+     "supports": "Treaty dividend rates by country"
+    },
+    {
+     "url": "https://www.irs.gov/individuals/international-taxpayers/some-nonresidents-with-u-s-assets-must-file-estate-tax-returns",
+     "supports": "US estate tax: US shares are US-situs; Form 706-NA above US$60,000"
+    },
+    {
+     "url": "https://www.irs.gov/businesses/small-businesses-self-employed/estate-gift-tax-treaties-international",
+     "supports": "US estate and gift tax treaty partners"
+    },
+    {
+     "url": "https://cdn.irishfunds.ie/x/c8518f7188/2025-etf-1-pager.pdf",
+     "supports": "No Irish withholding on Irish ETF payouts to non-Irish residents"
+    },
+    {
+     "url": "https://www.etfstream.com/education/regulation/ireland-vs-luxembourg-domiciling-etfs-in-europe",
+     "supports": "Irish funds 15% vs Luxembourg funds often 30% on US dividends"
+    }
+   ]
+  },
+  {
+   "id": "ca",
+   "label": "Canada",
+   "summary": "For Canadians, US-listed ETFs are usually more tax-efficient than UCITS funds: the 15% US tax on their payouts can be credited, while tax lost inside an Irish fund can't. Most Canadians also use Toronto-listed funds, which this site doesn't cover.",
+   "us_wht": "15% on US-listed ETF dividends with a W-8BEN (30% without). In a taxable account it can normally be claimed as a foreign tax credit; in an RRSP/RRIF it's generally waived; in a TFSA or RESP it's lost.",
+   "estate": "US-listed ETFs are US assets for US estate tax, but the Canada–US treaty gives a pro-rated credit, so tax mostly affects very large estates. A US return is still needed above about US$60,000 of US assets.",
+   "access": "US-listed ETFs are widely available at Canadian brokers. London and Hong Kong listings need a broker with international market access. Toronto-listed Canadian funds aren't covered by this site.",
+   "accumulating": "A foreign accumulating fund is normally taxed only when you sell — but the offshore investment fund rule (s.94.1) may impute income each year if reducing Canadian tax is one of the main reasons for holding it. Accumulating offshore funds attract more scrutiny.",
+   "home_tax": "Payouts from foreign ETFs are taxed as foreign income at full rates (no dividend tax credit); in practice brokers report all US-ETF payouts this way. Half of capital gains are taxable. Foreign holdings costing over C$100,000 in total need form T1135.",
+   "domiciles": {
+    "US": {
+     "verdict": "usually better",
+     "note": "The 15% US tax on payouts is normally creditable (and waived in an RRSP), access is easy, and the treaty softens US estate tax for most people."
+    },
+    "IE": {
+     "verdict": "usually worse",
+     "note": "The ~15% US tax lost inside the fund can't be credited in Canada, fewer brokers offer it, and accumulating classes can raise s.94.1 questions."
+    },
+    "LU": {
+     "verdict": "usually worse",
+     "note": "Same drawbacks as Irish funds, and physically-replicating Luxembourg funds often lose 30% of US dividends inside the fund."
+    },
+    "HK": {
+     "verdict": "usually avoid",
+     "note": "Loses 30% of US dividends inside the fund with no Canadian credit, and access is limited."
+    }
+   },
+   "tax_points": {
+    "US": 20,
+    "IE": 8,
+    "LU": 4,
+    "HK": 2,
+    "acc_adjust": -2
+   },
+   "caveats": [
+    "Registered accounts (RRSP, TFSA, RESP …) change the picture — the notes assume a taxable account."
+   ],
+   "sources": [
+    {
+     "url": "https://www.canada.ca/en/revenue-agency/services/tax/international-non-residents/information-been-moved/foreign-reporting/questions-answers-about-form-t1135.html",
+     "supports": "T1135 foreign property reporting"
+    },
+    {
+     "url": "https://laws-lois.justice.gc.ca/eng/acts/I-3.3/section-94.1-20130626.html",
+     "supports": "s.94.1 offshore investment fund property"
+    },
+    {
+     "url": "https://taxsummaries.pwc.com/canada/individual/foreign-tax-relief-and-tax-treaties",
+     "supports": "Foreign tax credit for property income"
+    },
+    {
+     "url": "https://www.irs.gov/individuals/international-taxpayers/some-nonresidents-with-u-s-assets-must-file-estate-tax-returns",
+     "supports": "US estate tax: US shares are US-situs; Form 706-NA above US$60,000"
+    },
+    {
+     "url": "https://cdn.irishfunds.ie/x/c8518f7188/2025-etf-1-pager.pdf",
+     "supports": "No Irish withholding on Irish ETF payouts to non-Irish residents"
+    }
+   ]
+  },
+  {
+   "id": "au",
+   "label": "Australia",
+   "summary": "For Australians, the 15% US tax on US-listed ETF payouts can usually be offset, while tax lost inside an Irish fund can't. Most Australians use ASX-listed funds, which this site doesn't cover — and some of those are US-domiciled.",
+   "us_wht": "15% on US-listed ETF dividends with a W-8BEN (30% without), claimable as a foreign income tax offset up to the Australian tax on that income.",
+   "estate": "US-listed ETFs are US assets for US estate tax; the US–Australia estate tax treaty gives a pro-rated credit, so tax mostly affects very large estates, but a US return is still needed above about US$60,000. Australia has no estate tax.",
+   "access": "US-listed ETFs are available through brokers with international trading (W-8BEN needed). London and Hong Kong listings need a broker that offers them. An ASX listing doesn't mean Australian domicile — check the issuer.",
+   "accumulating": "Generally defers Australian tax: with the old foreign investment fund rules repealed, reinvested income inside a foreign fund is normally taxed only as a capital gain when you sell.",
+   "home_tax": "Foreign fund payouts are taxed at your marginal rate (no franking credits); treat every cash payout from a US ETF as foreign income. Gains on sale are capital gains — check the ATO for the current discount rules.",
+   "domiciles": {
+    "US": {
+     "verdict": "usually better",
+     "note": "The 15% US tax on payouts is normally offset in full, though holdings above about US$60,000 bring US estate-tax paperwork."
+    },
+    "IE": {
+     "verdict": "neutral",
+     "note": "Outside US estate tax and an accumulating class defers tax until sale, but the ~15% US tax lost inside the fund can't be offset."
+    },
+    "LU": {
+     "verdict": "usually worse",
+     "note": "Like Irish funds, but physically-replicating Luxembourg funds often lose 30% of US dividends inside the fund, none of it creditable."
+    },
+    "HK": {
+     "verdict": "usually avoid",
+     "note": "Loses 30% of US dividends inside the fund with no Australian offset, and access is limited."
+    }
+   },
+   "tax_points": {
+    "US": 18,
+    "IE": 12,
+    "LU": 6,
+    "HK": 2,
+    "acc_adjust": 2
+   },
+   "caveats": [
+    "Capital gains rules may be changing — check the ATO before relying on any discount."
+   ],
+   "sources": [
+    {
+     "url": "https://www.ato.gov.au/Forms/Foreign-income-return-form-guide/?page=10",
+     "supports": "Foreign investment fund rules repealed from 2010-11"
+    },
+    {
+     "url": "https://www.ato.gov.au/forms-and-instructions/foreign-income-tax-offset-rules-guide-2024/calculate-your-fito-or-offset-limit",
+     "supports": "Foreign income tax offset limit"
+    },
+    {
+     "url": "https://www.irs.gov/instructions/i706na",
+     "supports": "Treaties with a pro-rated US estate tax credit"
+    },
+    {
+     "url": "https://www.irs.gov/individuals/international-taxpayers/some-nonresidents-with-u-s-assets-must-file-estate-tax-returns",
+     "supports": "US estate tax: US shares are US-situs; Form 706-NA above US$60,000"
+    },
+    {
+     "url": "https://cdn.irishfunds.ie/x/c8518f7188/2025-etf-1-pager.pdf",
+     "supports": "No Irish withholding on Irish ETF payouts to non-Irish residents"
+    }
+   ]
+  },
+  {
+   "id": "us",
+   "label": "United States (citizens & residents)",
+   "summary": "US taxpayers should normally stick to US-domiciled ETFs. Non-US funds (Irish, Luxembourg, Hong Kong) are 'PFICs' for US tax — punitive rates and a form for each fund.",
+   "us_wht": "Not applicable — nothing is withheld with a W-9 on file. US tax lost inside a non-US fund (e.g. 15% inside an Irish S&P 500 fund) can't be credited.",
+   "estate": "US citizens and US-domiciled people pay US estate tax on worldwide assets, so the fund's domicile makes no difference.",
+   "access": "US-listed ETFs are available at any US broker. Non-US funds aren't SEC-registered, so US brokers generally don't let US residents buy them; US citizens living abroad may be able to, but the PFIC rules still apply.",
+   "accumulating": "No useful deferral: US ETFs must pay out their income, and an accumulating non-US fund is a PFIC whose gains are taxed as ordinary income — mostly at top rates, plus an interest charge.",
+   "home_tax": "US ETF payouts are taxed each year, with qualified dividends and long-term gains at 0/15/20% (plus 3.8% for higher earners and any state tax). Broad US equity ETFs rarely pay out capital gains.",
+   "domiciles": {
+    "US": {
+     "verdict": "usually better",
+     "note": "Normal qualified-dividend and capital-gain rates, no PFIC rules, and simple 1099 reporting."
+    },
+    "IE": {
+     "verdict": "usually avoid",
+     "note": "A PFIC: punitive default taxation plus Form 8621 each year, and US brokers generally don't sell them."
+    },
+    "LU": {
+     "verdict": "usually avoid",
+     "note": "A PFIC, like Irish funds — and physically-replicating Luxembourg funds often lose 30% of US dividends too."
+    },
+    "HK": {
+     "verdict": "usually avoid",
+     "note": "A PFIC, and it loses 30% of US dividends to tax a US taxpayer can't credit."
+    }
+   },
+   "tax_points": {
+    "US": 20,
+    "IE": 0,
+    "LU": 0,
+    "HK": 0,
+    "acc_adjust": 0
+   },
+   "caveats": [
+    "US persons with accounts abroad may also have FBAR / Form 8938 reporting duties."
+   ],
+   "sources": [
+    {
+     "url": "https://www.irs.gov/instructions/i8621",
+     "supports": "PFIC reporting (Form 8621) and elections"
+    },
+    {
+     "url": "https://www.irs.gov/taxtopics/tc409",
+     "supports": "Capital gains rates"
+    },
+    {
+     "url": "https://www.irs.gov/publications/p550",
+     "supports": "Qualified dividends"
+    },
+    {
+     "url": "https://www.law.cornell.edu/uscode/text/26/853",
+     "supports": "Foreign tax pass-through for funds over 50% foreign"
+    }
+   ]
+  },
+  {
+   "id": "other",
+   "label": "Somewhere else",
+   "summary": "Ask three questions for your country: how much US tax is taken from US dividends (is there a US tax treaty?), whether you'd face US estate tax on US-listed funds, and whether your country taxes reinvested income in accumulating funds every year.",
+   "us_wht": "",
+   "estate": "",
+   "access": "",
+   "accumulating": "",
+   "home_tax": "",
+   "domiciles": {
+    "US": {
+     "verdict": "neutral",
+     "note": "Depends on your country's tax treaty with the US and its own fund tax rules."
+    },
+    "IE": {
+     "verdict": "neutral",
+     "note": "Depends on your country's tax treaty with the US and its own fund tax rules."
+    },
+    "LU": {
+     "verdict": "neutral",
+     "note": "Depends on your country's tax treaty with the US and its own fund tax rules."
+    },
+    "HK": {
+     "verdict": "neutral",
+     "note": "Depends on your country's tax treaty with the US and its own fund tax rules."
+    }
+   },
+   "tax_points": {
+    "US": 10,
+    "IE": 10,
+    "LU": 10,
+    "HK": 10,
+    "acc_adjust": 0
+   },
+   "caveats": [],
+   "sources": [
+    {
+     "url": "https://www.irs.gov/businesses/international-businesses/united-states-income-tax-treaties-a-to-z",
+     "supports": "US income tax treaty partners"
+    },
+    {
+     "url": "https://www.irs.gov/publications/p515",
+     "supports": "30% US withholding on dividends to non-US persons unless a treaty lowers it"
+    },
+    {
+     "url": "https://www.irs.gov/individuals/international-taxpayers/some-nonresidents-with-u-s-assets-must-file-estate-tax-returns",
+     "supports": "US estate tax: US shares are US-situs; Form 706-NA above US$60,000"
+    }
+   ]
+  }
+ ],
+ "fund_level": [
+  {
+   "domicile": "US",
+   "inside_fund": "Receives US dividends with no US tax taken.",
+   "on_distributions": "Non-US investors lose 30% of ordinary dividends to US tax, or a treaty rate (often 15%) with a W-8BEN form.",
+   "us_situs": "Counts as a US asset for US estate tax: above about US$60,000, non-US investors' estates can owe up to 40%.",
+   "note": "The normal choice for US taxpayers."
+  },
+  {
+   "domicile": "IE",
+   "inside_fund": "A physically-replicating fund usually pays 15% US tax on US dividends (US–Ireland treaty); swap-based funds on big US indexes can lose little or none, at the cost of swap fees and counterparty risk.",
+   "on_distributions": "Ireland takes nothing from payouts to non-Irish residents.",
+   "us_situs": "Generally not a US asset for US estate tax.",
+   "note": "Most London-listed ETFs are Irish — about two-thirds of European ETF assets."
+  },
+  {
+   "domicile": "LU",
+   "inside_fund": "Physically-replicating funds often lose 30% of US dividends (sources disagree — check the annual report); swap-based funds can avoid it like Irish ones.",
+   "on_distributions": "Luxembourg takes nothing from fund payouts.",
+   "us_situs": "Generally not a US asset for US estate tax.",
+   "note": ""
+  },
+  {
+   "domicile": "HK",
+   "inside_fund": "Usually loses 30% of US dividends (no US–Hong Kong tax treaty).",
+   "on_distributions": "Hong Kong takes nothing from payouts, and there's no stamp duty on ETF trades.",
+   "us_situs": "Generally treated as outside US estate tax (industry view; no specific IRS guidance).",
+   "note": ""
+  }
+ ]
+}

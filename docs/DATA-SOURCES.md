@@ -28,7 +28,9 @@ The sandbox network is restricted. What works:
 | Channel | Status | Use for |
 |---|---|---|
 | `curl` / direct HTTP to sec.gov, issuer sites, Yahoo | ❌ **Blocked (HTTP 403)** | — |
-| Python `yfinance` / `pandas` | ❌ Not installed | — |
+| `pip install` / `npm install` from registries | ❌ **Blocked** (no outbound to PyPI/npm) | — |
+| Python `yfinance` / `pandas` | ❌ Not installed (and can't install) | — |
+| Loopback HTTP server (`http.server`, Node `http`) | ✅ Works | The web app runs here (stdlib only, see `app/`) |
 | **WebSearch tool** | ✅ Works well | Pulling current expense ratios, AUM, holdings, sector mixes from indexed aggregators |
 | **WebFetch tool** | ⚠️ Partial | Works on permissive sites; **403s on most issuer sites** (bot protection) |
 | **User-pasted documents** | ✅ Best for precision | Drop a fact-sheet PDF / holdings CSV into the chat or repo and it gets parsed directly |

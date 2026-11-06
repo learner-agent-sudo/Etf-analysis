@@ -11,6 +11,11 @@ scratch/
 *.tmp
 .DS_Store
 
+# Node (app uses zero deps; these only appear from stray installs)
+node_modules/
+package-lock.json
+package.json
+
 # Python (if/when automation is added)
 __pycache__/
 *.pyc

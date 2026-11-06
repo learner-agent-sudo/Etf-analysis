@@ -132,6 +132,158 @@ the manager is adding or subtracting value net of fees.
 
 ---
 
+## The green-light screen (backend gate)
+
+A fund only earns buy-interest if it clears a hard screen on the dimensions that
+are non-negotiable. Default rule (see `scripts/screen.py`):
+
+- **Cost — must be 🟢 green** (the one thing fully in your control)
+- **Concentration — must be 🟢 green** (the "concern" — no hidden single-stock bet)
+- **Theme purity — 🟢 green or 🟡 yellow** (you'll accept some dilution, but not a
+  fund whose label and holdings flatly disagree)
+
+Benchmarks/reference funds are excluded (they exist for comparison, not to buy).
+Run `python3 scripts/screen.py` for the report, `--stamp` to tag every fund with
+`meets_criteria` so the website shows a **✓ criteria** badge and a "Meets my
+criteria" filter. Re-run after adding or re-scoring any fund.
+
+> Finding: across six themes only a handful of funds pass — niche themes are
+> structurally small (→ concentrated) and low-scale (→ pricey), so "cheap AND
+> diversified AND on-theme" is rare. That scarcity is the point: the screen
+> surfaces the few funds actually worth a deep look.
+
+## Lanes — rank within a role, never across
+
+A quantum ETF and a global index fund do different jobs, so the site never puts
+them on one score. Every fund belongs to one lane, and the decision order is:
+**split your money between lanes first** (⚙ Settings: core %, thematic share,
+cap per theme), **then pick the best fund inside each lane**.
+
+| Lane | Job | How funds get there |
+|---|---|---|
+| Core | Stable long-term growth, broad diversification | Name says it tracks a plain broad index — all-world (ACWI, FTSE All-World, Total World …), developed world (MSCI World, FTSE Developed World) or US large-cap (S&P 500, total US market, MSCI USA, Russell 1000/3000, Schwab 1000, Dow Jones U.S., BetaBuilders / MarketBeta US Equity, Vanguard Large-Cap) — with a yearly fee ≤ 0.50% and no leverage/ETN/futures flag. Screened (ESG, Islamic), factor, sector, regional, option, buffer, tail-hedge and active strategies are excluded: they are tilts, not the core. |
+| Themes (thematic) | Small satellite exposure to a niche | The theme files (rosters + keywords) |
+| Income | Cash distributions — reference unless the visitor needs income | The Income ranking's option-income classifier (`build_income.classify`) |
+| Other | Sectors, bonds, factors, regions … | Everything else (All ETFs only) |
+
+**Payout policy** (`pol`) comes from the share-class name: *Acc / Accu /
+Accumulating / Capitalisation / USD Cap / 1C / ETF-C / (C)* = accumulating;
+*Dist / Dis / Inc / 1D / ETF-D / (D)*, or a class name ending in *USD Income*
+(any currency) = distributing. US-domiciled ETFs distribute (US fund tax
+rules), except trusts and pools that pay nothing — bullion, currency and spot
+crypto trusts, commodity L.P.s (including Teucrium's crop funds and ProShares'
+leveraged gold / silver / oil / gas / currency and VIX pools) and box-spread
+funds — which show no label ("pays nothing") unless a yield is reported. An
+unmarked Vanguard UCITS class distributes (Vanguard names every accumulating
+class); otherwise an unmarked class with a yield distributes, and the rest is
+*not stated* rather than guessed. Yahoo serves a listing's long name one day and
+a short one the next, so a class marker seen in any of its names — or in an
+earlier build (column `pm`) — is kept until a name shows the opposite marker.
+The trading lines of one share class (other currencies, HK counters with the
+same last three digits) share one policy: a line without a yield takes its
+class's policy from the other lines.
+Accumulating changes what happens to the income, not the risk.
+
+**Domicile** for London UCITS funds is read from the fund family (iShares,
+Vanguard, SPDR, Invesco, HSBC, JPMorgan, L&G … run Irish funds; *Amundi Index
+Solutions* and *Multi Units Luxembourg* are Luxembourg); families that run both
+stay *Ireland or Luxembourg* until the ISIN (IE… / LU…) is checked. VanEck's
+funds are Irish except its older Dutch range (VanEck ETFs N.V.: Global Real
+Estate, World / European Equal Weight Screened, Developed Markets Dividend
+Leaders …), shown as *Netherlands*. Hong Kong domiciles come from HKEX's ISINs.
+
+**Tax & domicile notes** (`public/data/tax-domicile.json`) are general
+information per tax residence (Hong Kong, Singapore, UK, EU/EEA, Canada,
+Australia, US, other), researched from official and industry sources and then
+independently fact-checked. They show a verdict per domicile (usually better /
+neutral / usually worse / usually avoid) and draft points for the coming Core
+Score's 20-point tax part. Not tax advice.
+
+## Income ranking — every option-income ETF on one Value Score
+
+Income tab → **Value ranking** (`scripts/build_income.py`,
+rebuilt daily) covers every covered-call, premium-income, call-spread, 0DTE,
+single-stock, short-volatility, put-write and dividend+options ETF on US, Hong
+Kong and London listings (~400 funds), grouped into strategy families.
+
+### The headline: Value Score (0–100, compare any two funds)
+
+One number, computed the same way for every fund, so a higher score is better
+value across strategies: *how much an income investor got for what it cost
+them over the last 3 years*. Four pillars, 25 points each:
+
+| Pillar | Measures | Curve (pillar 0–100) |
+|---|---|---|
+| Earned income | regular yield, counted only up to the fund's total return (the rest came out of your capital) | 4% → 55, 8% → 80, 12% → 91 |
+| Paycheck trend | price (≈ NAV) change per year — a falling price shrinks every payout | 0%/yr → 73, −3% → 50, −10% → 9 |
+| Growth kept | total return vs the fund's own benchmark (the brief's gap) | 0 pp → 83, −4 pp → 50, −8 pp → 17 |
+| Smooth ride | half worst fall, half Sharpe vs T-bills | −10% → 92, −25% → 50; Sharpe 1.0 → 88 |
+
+Funds with under 3 years of prices are pulled toward the typical seasoned
+fund of their strategy (or risk bucket). Red flags then cap or deduct:
+leveraged or a fall of more than half → at most 44 (F); single stock /
+crypto, ETN/ETP notes, or paying out of capital (earned < half of paid, or
+price falling > 10%/yr) → at most 59 (D); no better than T-bills −10; under
+2 years −10 × (2 − years); under $100M or thinly traded −5. Grades: A 80+,
+B 70–79, C 60–69, D 45–59, F under 45. The score is pre-tax (tax is
+personal) and fee-neutral (fees are already inside every return). It
+describes the past window, not the future — and an ETF trades at about the
+value of what it holds, so the page never calls a fund "undervalued" or
+"cheap"; it ranks value for money.
+
+The default view is **safety-checked** funds: those passing every gate
+below, plus funds whose only failed gate is age and that are within six
+months of it (shown with the date they turn old enough). Today's VIX
+against its 3-year range is shown as market-wide context for how rich
+option premiums are; it isn't part of any score.
+
+### The brief's three-layer screen (expert detail in each fund card)
+
+The gates and the strategy-family score from the user's brief are kept: the
+gates define "safety-checked", and the family-weighted score (with its US /
+non-US tax view) appears in each fund card's expert details.
+
+1. **Tiered gates** (the "Recommended screen"): systematic strategies need AUM
+   ≥ $100M, ≥ 2 years, expense ≤ 0.60%; actively managed ones AUM ≥ $500M,
+   ≥ 3 years, expense ≤ 0.85%. All need ≥ 100K shares or ≥ $2M a day of
+   trading, and leveraged funds, ETNs and ETPs never pass.
+2. **Quality components (0–100):** total return vs the fund's *own*
+   underlying (−4 pp/yr scores 50); distribution coverage — the share of the
+   payout funded by total return rather than by a falling NAV (< 70% flagged);
+   NAV trend; underlying quality (broad index > sector > single stock >
+   leveraged, extreme-yield penalty within the family, payout track record);
+   US tax efficiency; fees; ELN counterparty/transparency; volatility-spike
+   sensitivity; payout stability. Return and NAV components use smooth
+   curves (−4 pp/yr vs benchmark = 50, level ≈ 83) so funds don't tie at a
+   cap. Funds need ~1 year of history to be scored; with less than three
+   years, history-based components are pulled toward the median of seasoned
+   funds in the same family. Yields exclude one-off year-end capital-gain
+   specials; coverage uses log returns (a fund with negative total return
+   covered none of its payout).
+3. **Family weights:** systematic covered calls NAV 40 / gap 30 / tax 30;
+   active funds that use ELNs counterparty 30 / gap 30 / fees 20 /
+   transparency 20 (other active funds use the default weights); call
+   spreads tax 40 / gap 30 / NAV 30; short volatility VIX sensitivity 40 /
+   gap 30 / stability 30; all other families gap 30 / coverage 25 / NAV 20 /
+   quality 15 / tax 10. A non-US tax view drops the US-tax component.
+
+Benchmarks are always total-return series (ETFs rather than price-only
+indices, e.g. 2800.HK for the Hang Seng); inverse funds, lines trading in a
+different currency from their benchmark, and funds whose benchmark can't be
+loaded are listed but not scored. Benchmark prices are matched to the
+fund's window dates within 10 days (markets keep different holidays). If the
+benchmark's history starts late but still shares at least a year and 60% of
+the window, both are compared over that shared stretch and the card says
+so; otherwise the card shows the benchmark's date range and the fund isn't
+scored. Leveraged "daily target" funds and
+bond/closed-end funds without an option overlay are excluded.
+
+Scores rank funds *within* a family. Holding-experience metrics (max
+drawdown, volatility, Sharpe vs T-bills, up/down capture) are shown for every
+fund. Coverage is measured from prices and payouts because the tax
+"return of capital" label isn't in free data and misleads for funds whose ROC
+is a tax effect while their NAV holds up.
+
 ## Putting it together
 
 There is **no universal weighting** — it depends on your goal. A reasonable
