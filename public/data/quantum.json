@@ -524,11 +524,6 @@
       "tag": "AI-semi + quantum"
     },
     {
-      "ticker": "QTUF",
-      "name": "Defiance Quantum & AI ETF (verify)",
-      "tag": "broad \u00b7 verify"
-    },
-    {
       "ticker": "QPUX",
       "name": "Defiance 2X Daily Long Pure Quantum ETF",
       "tag": "\u26a0\ufe0f 2x leveraged basket"
@@ -537,11 +532,6 @@
       "ticker": "RGTU",
       "name": "Tradr 2X Long RGTI Daily ETF",
       "tag": "\u26a0\ufe0f 2x single-stock (Rigetti)"
-    },
-    {
-      "ticker": "QBUX",
-      "name": "Tradr 2X Long QUBT Daily ETF",
-      "tag": "\u26a0\ufe0f 2x single-stock (QUBT)"
     },
     {
       "ticker": "QBTX",

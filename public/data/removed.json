@@ -1,0 +1,65 @@
+[
+ {
+  "ticker": "JEPY",
+  "name": "Defiance S&P 500 Enhanced Options Income",
+  "theme": "income",
+  "removed_on": "2026-11-10",
+  "missing_since": "2026-10-09",
+  "checks": 47,
+  "reason": "Yahoo Finance: JEPY: not found on Yahoo; Nasdaq: JEPY: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+ },
+ {
+  "ticker": "GERM",
+  "name": "ETFMG Treatments Testing & Advancements",
+  "theme": "pharma",
+  "removed_on": "2026-11-10",
+  "missing_since": "2026-10-09",
+  "checks": 47,
+  "reason": "Yahoo Finance: GERM: not found on Yahoo; Nasdaq: GERM: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+ },
+ {
+  "ticker": "CNCR",
+  "name": "Range Cancer Therapeutics",
+  "theme": "pharma",
+  "removed_on": "2026-11-10",
+  "missing_since": "2026-10-09",
+  "checks": 47,
+  "reason": "Yahoo Finance: CNCR: not found on Yahoo; Nasdaq: CNCR: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+ },
+ {
+  "ticker": "QTUF",
+  "name": "Defiance Quantum & AI ETF (verify)",
+  "theme": "quantum",
+  "removed_on": "2026-11-10",
+  "missing_since": "2026-10-09",
+  "checks": 47,
+  "reason": "Yahoo Finance: QTUF: not found on Yahoo; Nasdaq: QTUF: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+ },
+ {
+  "ticker": "QBUX",
+  "name": "Tradr 2X Long QUBT Daily ETF",
+  "theme": "quantum",
+  "removed_on": "2026-11-10",
+  "missing_since": "2026-10-09",
+  "checks": 47,
+  "reason": "Yahoo Finance: QBUX: not found on Yahoo; Nasdaq: QBUX: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+ },
+ {
+  "ticker": "CRIT",
+  "name": "Optica Rare Earths & Critical Materials",
+  "theme": "rare-earths",
+  "removed_on": "2026-11-10",
+  "missing_since": "2026-10-09",
+  "checks": 47,
+  "reason": "Yahoo Finance: CRIT: not found on Yahoo; Nasdaq: CRIT: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+ },
+ {
+  "ticker": "EBLU",
+  "name": "Ecofin Global Water ESG",
+  "theme": "water",
+  "removed_on": "2026-11-10",
+  "missing_since": "2026-10-09",
+  "checks": 47,
+  "reason": "Yahoo Finance: EBLU: not found on Yahoo; Nasdaq: EBLU: not listed (closed, non-US or wrong ticker?); Stooq (price-only): stooq: unexpected response"
+ }
+]

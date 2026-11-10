@@ -1544,11 +1544,6 @@
       "tag": "buffered income"
     },
     {
-      "ticker": "JEPY",
-      "name": "Defiance S&P 500 Enhanced Options Income",
-      "tag": "daily calls \u00b7 high-yield"
-    },
-    {
       "ticker": "QQQY",
       "name": "Defiance Nasdaq 100 Enhanced Options Income",
       "tag": "\u26a0\ufe0f 0-DTE \u00b7 very high yield"
