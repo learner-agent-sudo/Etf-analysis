@@ -1,0 +1,1871 @@
+{
+  "id": "energy",
+  "name": "Energy & AI Power",
+  "as_of": "2026-10-09",
+  "tagline": "AI data centres need electricity on a scale not seen in decades. This theme follows the money along the power chain \u2014 fuel (uranium, natural gas, oil), generation (utilities, nuclear), the grid that carries it, and the clean-energy build-out. Same story, very different risks: commodity-price bets, regulated utilities, fee-earning pipelines and policy-driven clean energy.",
+  "universe_note": "Six segments: Nuclear & uranium (URA, URNM, URNJ, NLR, NUKZ), Power & grid (GRID, ELFY), Utilities (VPU), Gas & midstream pipelines (AMLP, ENFR), Oil & gas (XOP; XLE as yardstick) and Clean energy (ICLN). Filter by segment above the table. The full-universe list below also carries newer AI-power funds, London-listed UCITS versions and clearly-tagged leveraged products.",
+  "live_refresh": true,
+  "key_tensions": [
+    "Commodity price vs toll road: producers and miners (XOP, URNM, URA) swing with oil, gas and uranium prices; pipelines (AMLP, ENFR) earn fees on volumes \u2014 steadier and income-heavy, but capped upside.",
+    "AI-power story vs regulated returns: utilities sell the electricity, but regulators cap their profits \u2014 great demand doesn't automatically mean great returns for VPU-type funds.",
+    "Uranium spot-price dependence: nuclear funds live and die on a volatile commodity with a brutal boom-bust history; Cameco alone is ~20%+ of URA/URNM.",
+    "Clean energy has been a value trap: rate- and subsidy-sensitive (ICLN fell for years after 2021) \u2014 the AI-power tailwind hasn't removed the policy risk.",
+    "Grid is the picks-and-shovels play: transformers, cables, switchgear (GRID, ELFY) benefit whichever fuel wins \u2014 but many holdings are industrials you may already own.",
+    "Single-country / geopolitical risk: uranium supply (Kazakhstan, Canada), LNG export policy and oil (OPEC) all add headline risk outside the companies' control.",
+    "MLP tax drag: AMLP holds partnerships but is taxed as a corporation (no K-1 for you, but a tax drag inside the fund that shows up as weaker total return)."
+  ],
+  "benchmark_note": "XLE (broad US oil & gas, ~0.08%) is the yardstick, NOT an AI-power fund: it shows what cheap, diversified, dividend-paying energy delivered, so you can judge whether each segment's extra risk or fee was rewarded.",
+  "etfs": [
+    {
+      "ticker": "URA",
+      "name": "Global X Uranium ETF",
+      "is_theme_fund": true,
+      "issuer": "Global X",
+      "holdings_url": "https://www.globalxetfs.com/funds/ura",
+      "expense_ratio": 0.69,
+      "aum_display": "~$7.3B",
+      "aum_musd": 7300,
+      "inception": "2010-11",
+      "structure": "Passive \u2014 index",
+      "index": "Solactive Global Uranium & Nuclear Components",
+      "holdings_count": 50,
+      "top10_weight_display": "~60%",
+      "top10_weight_pct": 60,
+      "largest_position_display": "~23.4% (Cameco)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-06",
+        "note": "Largest, most liquid uranium fund: miners + nuclear-component makers + some physical-uranium trust. Heavily Cameco-led (~23%)."
+      },
+      "market": {
+        "price": 45.31,
+        "price_display": "$45.31",
+        "price_asof": "2026-06-05",
+        "volume_avg": 4380000,
+        "volume_display": "~4.4M/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.69% \u2014 typical for a niche commodity-equity fund."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Genuinely uranium/nuclear-focused \u2014 miners, fuel, components, plus a physical-uranium trust holding."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Top-10 ~60% and Cameco alone ~23% \u2014 extreme single-name dominance."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$7.3B AUM \u2014 the largest, most liquid uranium ETF."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Since 2010; classic uranium boom-bust volatility."
+        }
+      },
+      "overall": "The largest, most liquid uranium fund \u2014 broad miners + components, but heavily Cameco-dominated.",
+      "memo": {
+        "thesis": "URA is the flagship uranium ETF: the broadest, most liquid way to play the nuclear-fuel cycle, spanning uranium miners, nuclear-component makers, advanced-reactor names (Oklo), and a slug of physical uranium. The trade-off is heavy concentration in Cameco (~23%) and full exposure to uranium's boom-bust volatility.",
+        "strategy": "Passively tracks the Solactive Global Uranium & Nuclear Components Index \u2014 uranium miners plus companies making nuclear components/technology. Includes the Sprott Physical Uranium Trust for some direct spot exposure. Global, miner-led, cap-tilted toward Cameco.",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "Genuinely uranium/nuclear \u2014 miners, fuel, components and physical uranium. The broadest pure-theme exposure, though 'nuclear components' adds some adjacency."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Cameco (CCJ)",
+            "weight": "~23.4%",
+            "playtype": "pure",
+            "note": "dominant uranium miner (Canada) \u2014 dominates the fund"
+          },
+          {
+            "name": "Oklo (OKLO)",
+            "weight": "~7.4%",
+            "playtype": "pure",
+            "note": "advanced reactor developer"
+          },
+          {
+            "name": "NexGen Energy (NXE)",
+            "weight": "~6.3%",
+            "playtype": "pure",
+            "note": "uranium developer (Canada)"
+          },
+          {
+            "name": "Uranium Energy (UEC)",
+            "weight": "~5.8%",
+            "playtype": "pure",
+            "note": "uranium miner"
+          },
+          {
+            "name": "Sprott Physical Uranium Trust",
+            "weight": "~4.5%",
+            "playtype": "pure",
+            "note": "physical uranium \u2014 direct spot proxy"
+          }
+        ],
+        "concentration": "Top-10 ~60% and Cameco alone ~23% \u2014 extreme single-name dominance. Cameco's news moves the whole fund.",
+        "sector_geo": "Global uranium miners + nuclear components; heavy Canada (Cameco, NexGen) plus Kazakhstan exposure via supply chain. Concentrated country risk.",
+        "cost_context": "0.69% \u2014 typical for a niche commodity-equity fund; cheaper than URNM/URNJ, pricier than NLR.",
+        "track_record_note": "Since 2010. Classic uranium boom-bust: huge rallies and deep drawdowns track the uranium spot price.",
+        "red_flags": [
+          "\ud83d\udea9 Cameco ~23% \u2014 single-stock dominance.",
+          "\ud83d\udea9 Uranium spot-price dependence \u2014 high volatility.",
+          "\u26a0\ufe0f Country concentration (Canada/Kazakhstan).",
+          "\u26a0\ufe0f 'Nuclear components' adds some non-pure-miner names."
+        ],
+        "bull": [
+          "Largest, most liquid uranium vehicle",
+          "Broad exposure: miners + components + physical",
+          "Direct play on the nuclear revival / AI power demand",
+          "Some physical-uranium exposure"
+        ],
+        "bear": [
+          "Cameco-dominated (~23%)",
+          "Boom-bust commodity volatility",
+          "Country/geopolitical concentration",
+          "0.69% fee"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "WATCH (example)",
+            "text": "The default uranium pick for liquidity. Know you're ~23% in Cameco and fully exposed to the uranium price."
+          }
+        ]
+      },
+      "meets_criteria": false,
+      "segment": "Nuclear & uranium"
+    },
+    {
+      "ticker": "URNM",
+      "name": "Sprott Uranium Miners ETF",
+      "is_theme_fund": true,
+      "issuer": "Sprott",
+      "holdings_url": "https://sprottetfs.com/urnm-sprott-uranium-miners-etf/",
+      "expense_ratio": 0.75,
+      "aum_display": "~$2.2B",
+      "aum_musd": 2210,
+      "inception": "2019-12",
+      "structure": "Passive \u2014 index",
+      "index": "North Shore Sprott Uranium Miners",
+      "holdings_count": 40,
+      "top10_weight_display": "~70%",
+      "top10_weight_pct": 70,
+      "largest_position_display": "~21.1% (Cameco)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": "+12.0%",
+        "y1": "+61.0%",
+        "y2025": "+40.6%",
+        "y2024": "-14.1%",
+        "y3_annualized": null,
+        "as_of": "2026-06-03",
+        "note": "Total return. Purer uranium-miner exposure + some physical uranium. The -14.1% in 2024 then +40.6% in 2025 shows the boom-bust amplitude."
+      },
+      "market": {
+        "price": 62.22,
+        "price_display": "$62.22",
+        "price_asof": "2026-06-03",
+        "volume_avg": 748000,
+        "volume_display": "~748K/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "yellow",
+          "note": "0.75% \u2014 standard for this niche; a touch above URA."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "The purest uranium-miner play \u2014 dedicated miners index plus a physical-uranium holding."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Top-10 ~70%, Cameco ~21% \u2014 very concentrated in a few miners."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$2.2B AUM, ~748K shares/day \u2014 solid but below URA."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Since 2019; +40.6% (2025) vs -14.1% (2024) \u2014 high amplitude."
+        }
+      },
+      "overall": "The purest uranium-miner bet \u2014 dedicated miners + physical uranium, very concentrated.",
+      "memo": {
+        "thesis": "URNM is the purest uranium-MINER ETF: a dedicated miners index plus a physical-uranium holding, with less of the 'nuclear components' dilution in URA. It's the cleanest equity proxy for the uranium price \u2014 which cuts both ways, as its -14% (2024) / +41% (2025) swing shows.",
+        "strategy": "Passively tracks the North Shore Sprott Uranium Miners Index \u2014 companies that mine, explore, develop and produce uranium, plus physical uranium holdings. Concentrated in the major miners, Cameco-led.",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "The purest uranium play here \u2014 dedicated miners + physical uranium, minimal off-theme names. If you want a clean uranium-price proxy, this is it."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Cameco (CCJ)",
+            "weight": "~21.1%",
+            "playtype": "pure",
+            "note": "dominant uranium miner (Canada)"
+          },
+          {
+            "name": "Kazatomprom",
+            "weight": "~high",
+            "playtype": "pure",
+            "note": "world's largest uranium producer (Kazakhstan)"
+          },
+          {
+            "name": "NexGen Energy (NXE)",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "uranium developer"
+          },
+          {
+            "name": "Sprott Physical Uranium Trust",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "physical uranium \u2014 direct spot exposure"
+          },
+          {
+            "name": "Uranium Energy / Paladin",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "uranium miners"
+          }
+        ],
+        "concentration": "Top-10 ~70%, Cameco ~21% \u2014 very concentrated in a handful of miners. Single-name and single-commodity risk are dominant.",
+        "sector_geo": "Pure uranium miners; heavy Canada (Cameco/NexGen) + Kazakhstan (Kazatomprom). Strong single-country supply risk.",
+        "cost_context": "0.75% \u2014 standard for the niche; slightly above URA for a purer, more concentrated portfolio.",
+        "track_record_note": "Since 2019. The boom-bust is stark: -14.1% (2024) then +40.6% (2025), +61% trailing 1-yr, +12% YTD. High amplitude tied directly to the uranium price.",
+        "red_flags": [
+          "\ud83d\udea9 Top-10 ~70%, Cameco ~21% \u2014 extreme concentration.",
+          "\ud83d\udea9 Pure uranium-price dependence \u2014 biggest swings.",
+          "\ud83d\udea9 Kazakhstan + Canada country concentration.",
+          "\u26a0\ufe0f 0.75% fee."
+        ],
+        "bull": [
+          "Purest uranium-miner exposure",
+          "Includes physical uranium (direct spot proxy)",
+          "Strong recent run (+61% 1-yr)",
+          "Cleanest uranium-price play"
+        ],
+        "bear": [
+          "Extreme concentration (Cameco ~21%, top-10 ~70%)",
+          "Brutal drawdowns when uranium falls (-14% in 2024)",
+          "Country/geopolitical risk",
+          "0.75% fee"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "WATCH (example)",
+            "text": "The pick if you want pure uranium-price exposure. Accept the concentration (Cameco ~21%) and the boom-bust amplitude. Size small; this is a high-volatility commodity bet."
+          }
+        ]
+      },
+      "meets_criteria": false,
+      "segment": "Nuclear & uranium"
+    },
+    {
+      "ticker": "URNJ",
+      "name": "Sprott Junior Uranium Miners ETF",
+      "is_theme_fund": true,
+      "issuer": "Sprott",
+      "holdings_url": "https://sprottetfs.com/urnj-sprott-junior-uranium-miners-etf/",
+      "expense_ratio": 0.8,
+      "aum_display": "~$398M",
+      "aum_musd": 398,
+      "inception": "2023-02",
+      "structure": "Passive \u2014 index",
+      "index": "Nasdaq Sprott Junior Uranium Miners",
+      "holdings_count": 37,
+      "top10_weight_display": "~79%",
+      "top10_weight_pct": 79,
+      "largest_position_display": "high (junior miner)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-04",
+        "note": "Mid/small/micro-cap junior miners = MAXIMUM leverage to the uranium price and maximum drawdown risk. Top-10 ~79%."
+      },
+      "market": {
+        "price": 31.36,
+        "price_display": "$31.36",
+        "price_asof": "2026-04-24",
+        "volume_avg": 329000,
+        "volume_display": "~329K/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "red",
+          "note": "0.80% \u2014 the most expensive uranium fund here."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Pure junior uranium miners \u2014 the most aggressive expression of the theme."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Top-10 ~79% across ~37 small/micro-cap names \u2014 extreme."
+        },
+        "liquidity": {
+          "rating": "red",
+          "note": "~$398M AUM \u2014 smallest here; thinner trading, wider spreads."
+        },
+        "track_record": {
+          "rating": "red",
+          "note": "Since 2023 \u2014 short history; junior miners are the most volatile, highest-drawdown segment."
+        }
+      },
+      "overall": "The high-risk, high-leverage junior-miner bet \u2014 maximum upside to the uranium price, maximum drawdown risk.",
+      "memo": {
+        "thesis": "URNJ targets JUNIOR uranium miners \u2014 mid, small and micro-cap explorers/developers \u2014 giving maximum leverage to the uranium price. When uranium rallies, juniors can massively outperform the majors; when it falls, they fall hardest. The most aggressive way to play the theme, with the smallest AUM and thinnest liquidity.",
+        "strategy": "Passively tracks the Nasdaq Sprott Junior Uranium Miners Index \u2014 smaller, often pre-production uranium companies. Higher beta to the uranium price than URA/URNM, with concentrated, illiquid small-cap holdings.",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "Pure junior uranium miners \u2014 the most concentrated, highest-octane expression of the uranium theme. No utility/component dilution."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Junior uranium miners (~37 names)",
+            "weight": "top-10 ~79%",
+            "playtype": "pure",
+            "note": "mid/small/micro-cap; leaders rotate"
+          },
+          {
+            "name": "Paladin Energy / Denison-type names",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "developers/explorers"
+          },
+          {
+            "name": "Pre-production explorers",
+            "weight": "\u2014",
+            "playtype": "pure",
+            "note": "highest leverage to uranium price"
+          }
+        ],
+        "concentration": "Extreme \u2014 top-10 ~79% across only ~37 small/micro-cap names. Both single-name and single-commodity risk are at their highest here.",
+        "sector_geo": "Pure junior uranium miners; global but heavy Canada/Australia/Africa exploration exposure.",
+        "cost_context": "0.80% \u2014 the most expensive uranium fund here, for the highest-risk segment.",
+        "track_record_note": "Since 2023 \u2014 short history. Junior miners are the most volatile, highest-drawdown uranium segment; expect amplified versions of URNM's swings.",
+        "red_flags": [
+          "\ud83d\udea9 Extreme concentration (top-10 ~79%).",
+          "\ud83d\udea9 Smallest AUM (~$398M) + thin liquidity \u2192 wide spreads.",
+          "\ud83d\udea9 Junior miners = highest drawdown risk in the theme.",
+          "\ud83d\udea9 0.80% fee \u2014 highest here; short track record."
+        ],
+        "bull": [
+          "Maximum leverage to a rising uranium price",
+          "Pure junior-miner exposure unavailable elsewhere",
+          "Can massively outperform majors in a bull market",
+          "Direct nuclear-revival play"
+        ],
+        "bear": [
+          "Extreme concentration + illiquidity",
+          "Highest drawdown risk",
+          "Smallest, newest fund (closure risk)",
+          "Most expensive (0.80%)"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "CAUTION (example)",
+            "text": "The most aggressive uranium bet \u2014 only for high risk tolerance and small position sizing. Verify spreads (thin AUM). If uranium falls, this drops hardest."
+          }
+        ]
+      },
+      "meets_criteria": false,
+      "segment": "Nuclear & uranium"
+    },
+    {
+      "ticker": "NLR",
+      "name": "VanEck Uranium and Nuclear ETF",
+      "is_theme_fund": true,
+      "issuer": "VanEck",
+      "holdings_url": "https://www.vaneck.com/us/en/investments/uranium-nuclear-energy-etf-nlr/",
+      "expense_ratio": 0.56,
+      "aum_display": "~$4.8B",
+      "aum_musd": 4750,
+      "inception": "2007-08",
+      "structure": "Passive \u2014 index",
+      "index": "MVIS Global Uranium & Nuclear Energy",
+      "holdings_count": 27,
+      "top10_weight_display": "~60%",
+      "top10_weight_pct": 60,
+      "largest_position_display": "Constellation Energy (utility)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-06",
+        "note": "Tilts to nuclear UTILITIES (Constellation, PSEG, PG&E) not just miners \u2014 steadier, less uranium-price-sensitive, cheaper (0.56%)."
+      },
+      "market": {
+        "price": 133.3,
+        "price_display": "$133.30",
+        "price_asof": "2026-05-28",
+        "volume_avg": 300000,
+        "volume_display": "~300K/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.56% \u2014 cheapest theme fund here."
+        },
+        "purity": {
+          "rating": "yellow",
+          "note": "Tilts to nuclear UTILITIES (Constellation, PSEG, PG&E) + miners \u2014 less a pure uranium-price bet, more 'nuclear power'."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "Top-10 ~60% across ~27 names; Cameco only ~4th (utilities lead)."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$4.75B AUM \u2014 large and liquid."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2007 \u2014 longest history; utility tilt means lower volatility than pure miners."
+        }
+      },
+      "overall": "The steadier 'nuclear power' bet \u2014 utilities + miners, cheaper and less uranium-price-sensitive.",
+      "memo": {
+        "thesis": "NLR is the diversified, steadier way to play nuclear: it tilts toward nuclear UTILITIES (Constellation Energy, PSEG, PG&E) alongside uranium miners, so it's less a pure uranium-price bet and more a 'nuclear power generation' theme. Cheaper (0.56%) and lower-volatility than the pure-miner funds, but with less commodity upside.",
+        "strategy": "Passively tracks the MVIS Global Uranium & Nuclear Energy Index \u2014 nuclear utilities + uranium miners + nuclear-infrastructure names. The utility weighting (cash-generative, regulated) dampens the uranium-price swings that dominate URA/URNM/URNJ.",
+        "purity_verdict": {
+          "rating": "yellow",
+          "text": "Less of a pure uranium bet \u2014 utilities (Constellation, PSEG, PG&E) lead, with Cameco only ~4th. It's 'nuclear power' exposure, which is steadier but dilutes the commodity upside."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Constellation Energy (CEG)",
+            "weight": "~top",
+            "playtype": "partial",
+            "note": "largest US nuclear utility \u2014 not a miner"
+          },
+          {
+            "name": "Public Service Enterprise (PEG)",
+            "weight": "\u2014",
+            "playtype": "partial",
+            "note": "nuclear utility"
+          },
+          {
+            "name": "PG&E (PCG)",
+            "weight": "\u2014",
+            "playtype": "partial",
+            "note": "utility with nuclear"
+          },
+          {
+            "name": "Cameco (CCJ)",
+            "weight": "~4th",
+            "playtype": "pure",
+            "note": "uranium miner \u2014 smaller weight than in URA/URNM"
+          }
+        ],
+        "concentration": "Top-10 ~60% across ~27 names, but led by diversified utilities rather than a single miner \u2014 lower single-commodity risk than the pure-miner funds.",
+        "sector_geo": "Nuclear utilities (heavily US) + global uranium miners. Less Kazakhstan/Canada commodity concentration; more US-utility regulatory exposure.",
+        "cost_context": "0.56% \u2014 the cheapest theme fund here, reflecting the steadier utility tilt.",
+        "track_record_note": "Since 2007 \u2014 the longest history in the theme. The utility weighting means lower volatility and smaller drawdowns than the pure-miner funds.",
+        "red_flags": [
+          "\u26a0\ufe0f Not a pure uranium bet \u2014 utility tilt dilutes commodity upside.",
+          "\u26a0\ufe0f US-utility regulatory/rate risk.",
+          "\u26a0\ufe0f Top-10 ~60% concentration.",
+          "\u26a0\ufe0f Less explosive than miners in a uranium bull run."
+        ],
+        "bull": [
+          "Steadier, lower-volatility nuclear exposure",
+          "Cheapest theme fund (0.56%)",
+          "Longest track record (2007)",
+          "Utilities add cash flow + dividends"
+        ],
+        "bear": [
+          "Less uranium-price upside than miners",
+          "Utility regulatory risk",
+          "Still ~60% top-10",
+          "Won't capture a uranium spike like URNM/URNJ"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "WATCH (example)",
+            "text": "The conservative nuclear pick \u2014 utilities make it steadier and cheaper, but you give up the uranium-price upside. Choose NLR for 'nuclear power' exposure, URNM for a 'uranium price' bet."
+          }
+        ]
+      },
+      "meets_criteria": false,
+      "segment": "Nuclear & uranium"
+    },
+    {
+      "ticker": "NUKZ",
+      "name": "Range Nuclear Renaissance Index ETF",
+      "is_theme_fund": true,
+      "issuer": "Range / Exchange Traded Concepts",
+      "holdings_url": "https://www.rangeetfs.com/nukz",
+      "expense_ratio": 0.85,
+      "aum_display": "~$835M",
+      "aum_musd": 835,
+      "inception": "2024",
+      "structure": "Passive \u2014 index",
+      "index": "Range Nuclear Renaissance",
+      "holdings_count": 54,
+      "top10_weight_display": "~36%",
+      "top10_weight_pct": 36,
+      "largest_position_display": "~9.2% (Cameco)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-06",
+        "note": "The most DIVERSIFIED nuclear fund: spans advanced reactors, utilities, construction/services AND fuel \u2014 so less uranium-spot-price-dependent and far less Cameco-concentrated (~9% vs ~21-23% in URA/URNM)."
+      },
+      "market": {
+        "price": 74.05,
+        "price_display": "$74.05",
+        "price_asof": "2026-06-02",
+        "volume_avg": 118000,
+        "volume_display": "~118K/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "red",
+          "note": "0.85% \u2014 high, the priciest nuclear fund here."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Genuinely nuclear-focused \u2014 but broad: reactors + utilities + construction + fuel, not just uranium miners."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Top-10 ~36%, Cameco only ~9% across 54 names \u2014 the LEAST concentrated nuclear fund."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$835M AUM, ~118K shares/day \u2014 adequate but thinner than URA/NLR."
+        },
+        "track_record": {
+          "rating": "red",
+          "note": "Launched 2024 \u2014 short track record."
+        }
+      },
+      "overall": "The most diversified, balanced nuclear fund \u2014 reactors + utilities + fuel, much less Cameco/uranium-spot dependent than the miner funds.",
+      "memo": {
+        "thesis": "NUKZ is the broadest nuclear bet here: a 54-stock index spanning advanced-reactor developers, nuclear utilities, construction/services, AND fuel/miners. That diversification means it's far less dependent on the uranium spot price or any single miner \u2014 Cameco is only ~9% (vs ~21-23% in URA/URNM). The trade-offs: a high 0.85% fee and a short (2024) track record.",
+        "strategy": "Passively tracks the Range Nuclear Renaissance Index \u2014 companies across the nuclear value chain: advanced reactors (incl. SMRs), utilities operating nuclear plants, engineering/construction/services, and nuclear fuel/miners. Broader than the uranium-miner funds.",
+        "purity_verdict": {
+          "rating": "green",
+          "note": "Genuinely nuclear, but BROAD \u2014 it's a 'nuclear renaissance / power' bet (reactors + utilities + fuel), not a pure uranium-price play. That breadth is a feature for diversification."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Cameco (CCJ)",
+            "weight": "~9.2%",
+            "playtype": "pure",
+            "note": "uranium miner \u2014 but far smaller weight than in URA/URNM"
+          },
+          {
+            "name": "Samsung C&T",
+            "weight": "~4.2%",
+            "playtype": "partial",
+            "note": "construction/engineering (nuclear builds)"
+          },
+          {
+            "name": "GE Vernova (GEV)",
+            "weight": "~3.3%",
+            "playtype": "partial",
+            "note": "power equipment incl. nuclear/SMR"
+          },
+          {
+            "name": "Talen Energy (TLN)",
+            "weight": "~3.2%",
+            "playtype": "partial",
+            "note": "nuclear utility/IPP"
+          },
+          {
+            "name": "CEZ",
+            "weight": "~3.1%",
+            "playtype": "partial",
+            "note": "European nuclear utility"
+          }
+        ],
+        "concentration": "The LEAST concentrated nuclear fund \u2014 top-10 ~36% across 54 names, Cameco only ~9%. Single-name and single-commodity risk are much lower than the uranium-miner funds.",
+        "sector_geo": "Global nuclear value chain \u2014 utilities, reactors, construction, fuel; mix of US, Korea, Europe. Less single-country (Kazakhstan/Canada) concentration than the miner funds.",
+        "cost_context": "0.85% \u2014 the priciest nuclear fund here, for the broadest exposure. Weigh the diversification against the fee + URA's lower 0.69%.",
+        "track_record_note": "Launched 2024 \u2014 short history (Q2/2025 was a standout quarter, ~+48%). Less volatile than pure miners thanks to the utility/services sleeve.",
+        "red_flags": [
+          "\ud83d\udea9 0.85% fee \u2014 highest nuclear fund here.",
+          "\ud83d\udea9 Short track record (2024 launch).",
+          "\u26a0\ufe0f Utility/construction sleeve dilutes uranium-price upside.",
+          "\u26a0\ufe0f ~118K shares/day \u2014 check spreads."
+        ],
+        "bull": [
+          "Most diversified nuclear exposure \u2014 reactors + utilities + fuel",
+          "Far less Cameco/single-commodity concentration (~9%)",
+          "Lower volatility than pure uranium miners",
+          "Captures the broad 'nuclear renaissance' incl. SMRs"
+        ],
+        "bear": [
+          "Highest fee (0.85%)",
+          "Short, unproven track record",
+          "Less uranium-price upside than miner funds",
+          "Thinner liquidity than URA/NLR"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-09",
+            "action": "WATCH (example)",
+            "text": "The diversified 'nuclear power' pick \u2014 least concentrated, less uranium-price-dependent. Choose NUKZ for breadth, URNM for a pure uranium-price bet. Weigh the 0.85% fee."
+          }
+        ]
+      },
+      "meets_criteria": false,
+      "segment": "Nuclear & uranium"
+    },
+    {
+      "ticker": "GRID",
+      "name": "First Trust NASDAQ Clean Edge Smart Grid Infrastructure Index Fund",
+      "segment": "Power & grid",
+      "is_theme_fund": true,
+      "issuer": "First Trust",
+      "holdings_url": "https://www.ftportfolios.com/Retail/Etf/EtfHoldings.aspx?Ticker=GRID",
+      "expense_ratio": 0.56,
+      "aum_display": "~$11.9B (Oct 2026)",
+      "aum_musd": 11867,
+      "inception": "2009-11-17",
+      "structure": "Passive \u2014 modified market-cap weighted (capped)",
+      "index": "NASDAQ Clean Edge Smart Grid Infrastructure Index",
+      "holdings_count": 100,
+      "top10_weight_display": "~58% (Oct 2026)",
+      "top10_weight_pct": 58,
+      "largest_position_display": "8.57% (Eaton)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-10-09",
+        "note": null
+      },
+      "market": {},
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.56% \u2014 mid-range for a thematic fund; within this theme's \u22640.60% green band."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Grid equipment, electrification and grid operators \u2014 the picks-and-shovels of AI power demand."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Top-10 ~58% (Oct 2026): Eaton, Quanta, Johnson Controls, ABB and Schneider are ~8% each \u2014 over the 50% red-flag line."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$11.9B AUM, ~580K shares/day \u2014 very liquid."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2009; +29.7% in 2025, +15.2% in 2024, ~+26%/yr over 3 years."
+        }
+      },
+      "overall": "The flagship grid fund \u2014 real AI-power exposure via the equipment makers, but top-heavy: five industrial giants are ~40% of it.",
+      "memo": {
+        "thesis": "GRID owns the companies that build and run the electricity grid: switchgear and power management (Eaton, ABB, Schneider), grid construction (Quanta), building energy systems (Johnson Controls), cables (Prysmian) and grid operators (National Grid, E.ON). Whichever fuel wins the AI-power race, the electricity has to travel through this kit.",
+        "strategy": "Passively tracks the NASDAQ Clean Edge Smart Grid Infrastructure Index \u2014 companies in grid infrastructure, electric meters/devices, networks, energy storage and software \u2014 with market-cap weights capped per stock. Global (US + Europe heavy).",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "Genuine power-infrastructure exposure: ~68% industrials (grid equipment), ~18% utilities, ~12% technology. Many holdings are diversified industrials, but their growth engine is electrification."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Eaton (ETN)",
+            "weight": "~8.6%",
+            "playtype": "pure",
+            "note": "power management / switchgear"
+          },
+          {
+            "name": "Quanta Services (PWR)",
+            "weight": "~8.5%",
+            "playtype": "pure",
+            "note": "builds grids and substations"
+          },
+          {
+            "name": "Johnson Controls (JCI)",
+            "weight": "~8.4%",
+            "playtype": "partial",
+            "note": "building energy systems"
+          },
+          {
+            "name": "ABB",
+            "weight": "~7.8%",
+            "playtype": "pure",
+            "note": "electrification / grid automation"
+          },
+          {
+            "name": "Schneider Electric",
+            "weight": "~7.8%",
+            "playtype": "pure",
+            "note": "electrical distribution, data-centre power"
+          },
+          {
+            "name": "Prysmian",
+            "weight": "~4.0%",
+            "playtype": "pure",
+            "note": "power cables"
+          },
+          {
+            "name": "National Grid",
+            "weight": "~3.8%",
+            "playtype": "pure",
+            "note": "grid operator (UK/US)"
+          }
+        ],
+        "concentration": "Top-10 ~58% \u2014 five names at ~8% each dominate; ~100 holdings in total. Concentrated in large industrials you may already own through broad funds.",
+        "sector_geo": "Global: US + Europe (ABB, Schneider, Prysmian, National Grid, E.ON). Sectors ~68% industrials, ~18% utilities, ~12% technology.",
+        "cost_context": "0.56% is fair for a specialist fund, but the top holdings are cheaply available in broad industrials/utilities funds.",
+        "track_record_note": "Strong run with the electrification trade: +15% (2024), +30% (2025), ~+26%/yr over 3 years. 1-yr max drawdown ~-16%.",
+        "red_flags": [
+          "\ud83d\udea9 Top-10 ~58%: a bet on ~5 industrial giants.",
+          "\u26a0\ufe0f Rich valuations after a 3-year rally \u2014 AI-capex slowdown would hit it.",
+          "\u26a0\ufe0f Overlaps with broad industrials funds."
+        ],
+        "bull": [
+          "Picks-and-shovels on AI power whichever fuel wins",
+          "Huge, liquid, 15-year record",
+          "Global leaders, not speculative small caps"
+        ],
+        "bear": [
+          "Top-heavy (five names ~40%)",
+          "Priced for continued AI capex",
+          "Overlap with broad indices"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-10-09",
+            "action": "ADDED",
+            "text": "Added with the Energy & AI Power theme. The cleanest 'grid' play, but fails the concentration screen (top-10 ~58%)."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "ELFY",
+      "name": "ALPS Electrification Infrastructure ETF",
+      "segment": "Power & grid",
+      "is_theme_fund": true,
+      "issuer": "ALPS",
+      "holdings_url": "https://www.alpsfunds.com/products/etf/ELFY",
+      "expense_ratio": 0.5,
+      "aum_display": "~$185M (Oct 2026)",
+      "aum_musd": 185,
+      "inception": "2025-04-10",
+      "structure": "Passive \u2014 rules-based index, roughly equal-weighted",
+      "index": "Electrification-infrastructure index (equal-weighted ~1% positions)",
+      "holdings_count": 100,
+      "top10_weight_display": "~11% (Oct 2026)",
+      "top10_weight_pct": 11,
+      "largest_position_display": "1.49% (Vicor)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-10-09",
+        "note": null
+      },
+      "market": {},
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.50% \u2014 reasonable for a thematic fund."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Built around electrification: utilities, power equipment, grid tech and fuel suppliers."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Roughly equal-weighted ~100 names at ~1% each; top-10 only ~11% \u2014 the least concentrated fund in the theme."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$185M AUM and only ~30K shares/day (~$1.2M) \u2014 small and thin; use limit orders."
+        },
+        "track_record": {
+          "rating": "red",
+          "note": "Launched April 2025 \u2014 no full-cycle history."
+        }
+      },
+      "overall": "The diversified way to own the whole AI-power chain \u2014 equal-weighted and cheap, but small, thinly traded and brand new.",
+      "memo": {
+        "thesis": "ELFY spreads its money roughly equally across ~100 companies that generate, move, store and use electricity \u2014 utilities, grid equipment makers (Eaton, Amphenol, AMETEK), power electronics (Vicor), backup and on-site power (Generac, Bloom Energy) and some energy suppliers. No single company can sink it.",
+        "strategy": "Passive, rules-based electrification index with roughly equal weights (~1% each), so small and mid-caps count as much as the giants. Rebalancing back to equal weight trims winners and adds to laggards.",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "Electrification is the stated mandate and the holdings match: ~36% utilities, ~29% industrials, ~16% technology, ~14% energy."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Vicor (VICR)",
+            "weight": "~1.5%",
+            "playtype": "pure",
+            "note": "power modules for AI servers"
+          },
+          {
+            "name": "Forgent Power Solutions",
+            "weight": "~1.2%",
+            "playtype": "pure",
+            "note": "electrical equipment"
+          },
+          {
+            "name": "Generac (GNRC)",
+            "weight": "~1.0%",
+            "playtype": "pure",
+            "note": "backup / on-site power"
+          },
+          {
+            "name": "Bloom Energy (BE)",
+            "weight": "~1.0%",
+            "playtype": "pure",
+            "note": "fuel-cell power for data centres"
+          },
+          {
+            "name": "Eaton (ETN)",
+            "weight": "~1.0%",
+            "playtype": "pure",
+            "note": "power management"
+          },
+          {
+            "name": "Keysight (KEYS)",
+            "weight": "~1.0%",
+            "playtype": "partial",
+            "note": "test & measurement \u2014 loosely related"
+          }
+        ],
+        "concentration": "Top-10 only ~11% across ~100 names (~1% each) \u2014 very low single-stock risk. The trade-off: equal weight tilts toward smaller, more volatile companies.",
+        "sector_geo": "Mostly US-listed. Sectors ~36% utilities, ~29% industrials, ~16% technology, ~14% energy.",
+        "cost_context": "0.50% \u2014 fair; cheaper than most thematic peers (VOLT and IVEP are 0.75%).",
+        "track_record_note": "Only since April 2025: +10% over the last year, ~+14% YTD (Oct 2026); 1-yr max drawdown ~-16%.",
+        "red_flags": [
+          "\u26a0\ufe0f Small (~$185M) and thinly traded (~30K shares/day) \u2014 wide spreads possible; closure risk if assets don't grow.",
+          "\u26a0\ufe0f Brand new (2025) \u2014 no record through a downturn.",
+          "\u26a0\ufe0f Equal weight = more small/mid-cap volatility."
+        ],
+        "bull": [
+          "Whole AI-power chain in one fund",
+          "Equal weight: no single-stock blow-up",
+          "Cheap for a theme fund"
+        ],
+        "bear": [
+          "Tiny and thin \u2014 trading costs",
+          "No track record",
+          "Some holdings are only loosely 'electrification'"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-10-09",
+            "action": "ADDED",
+            "text": "Added with the Energy & AI Power theme. Passes the green-light screen (cost \ud83d\udfe2, concentration \ud83d\udfe2, purity \ud83d\udfe2) \u2014 but check liquidity and fund size before buying."
+          }
+        ]
+      },
+      "meets_criteria": true
+    },
+    {
+      "ticker": "VPU",
+      "name": "Vanguard Utilities ETF",
+      "segment": "Utilities",
+      "is_theme_fund": true,
+      "issuer": "Vanguard",
+      "holdings_url": "https://investor.vanguard.com/investment-products/etfs/profile/vpu",
+      "expense_ratio": 0.09,
+      "aum_display": "~$9.5B (Oct 2026)",
+      "aum_musd": 9470,
+      "inception": "2004-01-30",
+      "structure": "Passive \u2014 market-cap weighted (25/50 capped)",
+      "index": "MSCI US IMI Utilities 25/50 Index",
+      "holdings_count": 68,
+      "top10_weight_display": "~53% (Oct 2026)",
+      "top10_weight_pct": 53,
+      "largest_position_display": "11.73% (NextEra Energy)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-10-09",
+        "note": null
+      },
+      "market": {},
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.09% \u2014 one of the cheapest sector funds anywhere."
+        },
+        "purity": {
+          "rating": "yellow",
+          "note": "All utilities, but only some (Constellation, Vistra, NextEra) have real data-centre/AI-power upside; the rest are regulated water, gas and slow-growth electric utilities."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "Top-10 ~53%; NextEra alone ~12% (Oct 2026) \u2014 over the 10% single-name line, softened because the 25/50 cap limits it."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$9.5B AUM \u2014 very liquid."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2004; +23% (2024), +16.5% (2025)."
+        }
+      },
+      "overall": "The cheap, defensive way to own the electricity sellers \u2014 steady income, but AI-power upside is diluted by regulated slow-growers.",
+      "memo": {
+        "thesis": "VPU owns essentially every US utility. Utilities sell the electricity AI data centres consume, and some \u2014 nuclear owners Constellation and Vistra, renewables giant NextEra \u2014 are direct beneficiaries. But most utilities earn regulator-capped returns, so demand growth only partly flows to shareholders.",
+        "strategy": "Passively tracks the MSCI US Investable Market Utilities 25/50 Index (all market caps; 25/50 caps limit the largest names). Pays a quarterly dividend (~3% yield).",
+        "purity_verdict": {
+          "rating": "yellow",
+          "text": "100% utilities \u2014 on-theme for 'power', but AI-power exposure is concentrated in a few merchant/nuclear generators; much of the fund is regulated slow growth."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "NextEra Energy (NEE)",
+            "weight": "~11.7%",
+            "playtype": "pure",
+            "note": "largest renewables developer + Florida utility"
+          },
+          {
+            "name": "Southern Co (SO)",
+            "weight": "~6.8%",
+            "playtype": "partial",
+            "note": "regulated utility, data-centre load in the Southeast"
+          },
+          {
+            "name": "Duke Energy (DUK)",
+            "weight": "~6.4%",
+            "playtype": "partial",
+            "note": "regulated utility"
+          },
+          {
+            "name": "Constellation Energy (CEG)",
+            "weight": "~5.9%",
+            "playtype": "pure",
+            "note": "largest US nuclear fleet \u2014 AI power contracts"
+          },
+          {
+            "name": "American Electric Power (AEP)",
+            "weight": "~4.6%",
+            "playtype": "partial",
+            "note": "transmission + regulated utility"
+          },
+          {
+            "name": "Vistra (VST)",
+            "weight": "~3.2%",
+            "playtype": "pure",
+            "note": "merchant power + nuclear"
+          }
+        ],
+        "concentration": "Top-10 ~53%, NextEra ~12%. Utilities move together on interest rates, so diversification inside the sector is limited.",
+        "sector_geo": "US only. ~99% utilities (electric, multi-utilities, gas, water, independent power producers).",
+        "cost_context": "0.09% \u2014 about as cheap as it gets; the same exposure in XLU costs 0.08%.",
+        "track_record_note": "Defensive with rate sensitivity: +23% (2024), +16.5% (2025), ~-6% over the last year (Oct 2026); ~+16%/yr over 3 years.",
+        "red_flags": [
+          "\u26a0\ufe0f Interest-rate sensitive \u2014 utilities fall when bond yields rise.",
+          "\u26a0\ufe0f Regulated returns cap the AI-demand upside.",
+          "\u26a0\ufe0f NextEra ~12% of the fund."
+        ],
+        "bull": [
+          "Very cheap, very liquid",
+          "~3% dividend yield, defensive",
+          "Owns the nuclear/merchant winners (CEG, VST) too"
+        ],
+        "bear": [
+          "AI upside diluted by regulated utilities",
+          "Rate-sensitive",
+          "Single name (NEE) >10%"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-10-09",
+            "action": "ADDED",
+            "text": "Added with the Energy & AI Power theme as the low-cost utilities option. Fails the concentration screen (top-10 ~53%, NEE ~12%)."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "AMLP",
+      "name": "Alerian MLP ETF",
+      "segment": "Gas & midstream",
+      "is_theme_fund": true,
+      "issuer": "ALPS (Alerian)",
+      "holdings_url": "https://www.alpsfunds.com/products/etf/AMLP",
+      "expense_ratio": 0.85,
+      "aum_display": "~$12.6B (Oct 2026)",
+      "aum_musd": 12619,
+      "inception": "2010-08-25",
+      "structure": "Passive \u2014 capped market-cap weighted; taxed as a C-corporation",
+      "index": "Alerian MLP Infrastructure Index",
+      "holdings_count": 14,
+      "top10_weight_display": "~99% (Oct 2026)",
+      "top10_weight_pct": 99,
+      "largest_position_display": "13.47% (Sunoco LP)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-10-09",
+        "note": null
+      },
+      "market": {},
+      "scores": {
+        "cost": {
+          "rating": "red",
+          "note": "0.85% management fee, and the fund pays corporate tax on its MLP income (fund data shows ~1.0% all-in) \u2014 expensive."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Pure midstream: pipeline and storage MLPs (Energy Transfer, Enterprise Products, MPLX, Plains)."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Only ~14 MLPs; six of them are ~13% each \u2014 top-10 ~99%."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$12.6B AUM, ~1.2M shares/day \u2014 the largest MLP fund."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2010; poor first decade, strong since 2021 (+22.8% in 2024)."
+        }
+      },
+      "overall": "The big income play on gas pipelines \u2014 ~7.8% yield and steady, but costly and concentrated in ~14 partnerships.",
+      "memo": {
+        "thesis": "AMLP owns master limited partnerships that run pipelines, storage and processing \u2014 the toll roads that move natural gas and oil. AI power demand is lifting gas-fired generation, which means more volume through these pipes. Most of the return comes as a high, tax-deferred distribution (~7.8%).",
+        "strategy": "Passively tracks the Alerian MLP Infrastructure Index (capped market-cap). Because it holds more than 25% MLPs it is taxed as a C-corporation: you get no K-1 form, but the fund pays corporate income tax, which drags on returns versus the index.",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "Pure midstream infrastructure: ~98% energy pipelines and storage. The AI link is indirect \u2014 more gas burned for power means more pipeline volume."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Sunoco (SUN)",
+            "weight": "~13.5%",
+            "playtype": "pure",
+            "note": "fuel distribution / midstream"
+          },
+          {
+            "name": "MPLX (MPLX)",
+            "weight": "~13.3%",
+            "playtype": "pure",
+            "note": "pipelines (Marathon)"
+          },
+          {
+            "name": "Plains All American (PAA)",
+            "weight": "~13.0%",
+            "playtype": "pure",
+            "note": "crude pipelines"
+          },
+          {
+            "name": "Western Midstream (WES)",
+            "weight": "~13.0%",
+            "playtype": "pure",
+            "note": "gas gathering/processing"
+          },
+          {
+            "name": "Energy Transfer (ET)",
+            "weight": "~12.8%",
+            "playtype": "pure",
+            "note": "gas + crude pipelines"
+          },
+          {
+            "name": "Enterprise Products (EPD)",
+            "weight": "~12.8%",
+            "playtype": "pure",
+            "note": "NGL/gas pipelines"
+          }
+        ],
+        "concentration": "Extreme: ~14 holdings, six at ~13% each (top-10 ~99%). One partnership's problems move the fund.",
+        "sector_geo": "US/North America midstream; ~98% energy.",
+        "cost_context": "0.85% fee plus a corporate-tax drag (fund data ~1.0%) \u2014 the price of avoiding K-1 paperwork. ENFR/MLPX get similar exposure for 0.35\u20130.45%.",
+        "track_record_note": "Since 2010: a lost decade to 2020, then strong: +22.8% (2024), +5.8% (2025), ~+17%/yr over 3 years; 1-yr max drawdown only ~-8%.",
+        "red_flags": [
+          "\ud83d\udea9 ~14 holdings; top-10 ~99%.",
+          "\ud83d\udea9 Corporate-tax drag + 0.85% fee.",
+          "\u26a0\ufe0f Distribution yield partly return of capital \u2014 check total return."
+        ],
+        "bull": [
+          "~7.8% yield, toll-road cash flows",
+          "Gas-for-AI-power volume growth",
+          "Low volatility for energy"
+        ],
+        "bear": [
+          "Expensive (fee + tax drag)",
+          "Very concentrated",
+          "Long history of underperformance pre-2021"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-10-09",
+            "action": "ADDED",
+            "text": "Added with the Energy & AI Power theme as the income option. Fails cost and concentration \u2014 compare with ENFR (0.35%, ~30 holdings)."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "ENFR",
+      "name": "Alerian Energy Infrastructure ETF",
+      "segment": "Gas & midstream",
+      "is_theme_fund": true,
+      "issuer": "ALPS (Alerian)",
+      "holdings_url": "https://www.alpsfunds.com/products/etf/ENFR",
+      "expense_ratio": 0.35,
+      "aum_display": "~$518M (Oct 2026)",
+      "aum_musd": 518,
+      "inception": "2013-11-01",
+      "structure": "Passive \u2014 capped market-cap weighted; RIC-compliant (MLPs capped at 25%)",
+      "index": "Alerian Midstream Energy Select Index",
+      "holdings_count": 30,
+      "top10_weight_display": "~60% (Oct 2026)",
+      "top10_weight_pct": 60,
+      "largest_position_display": "8.53% (Energy Transfer LP)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-10-09",
+        "note": null
+      },
+      "market": {},
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.35% and no corporate-tax drag (MLPs kept under 25%) \u2014 far cheaper than AMLP."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Pure North American midstream: pipeline corporations (Williams, Kinder Morgan, Enbridge, Cheniere) plus capped MLPs."
+        },
+        "concentration": {
+          "rating": "red",
+          "note": "Top-10 ~60% across ~30 names; largest Energy Transfer ~8.5%."
+        },
+        "liquidity": {
+          "rating": "yellow",
+          "note": "~$518M AUM but only ~98K shares/day (~$3.7M) \u2014 use limit orders."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2013; +42% (2024), +5.9% (2025), ~+26%/yr over 3 years."
+        }
+      },
+      "overall": "The cheaper, broader way to own gas pipelines \u2014 0.35%, no tax drag, ~4.2% yield; still top-heavy.",
+      "memo": {
+        "thesis": "ENFR owns the North American pipeline network \u2014 mostly corporations (Williams, Kinder Morgan, Enbridge, TC Energy, Cheniere's LNG) with MLPs capped at 25%. It's the same 'gas toll road' story as AMLP, structured as a normal fund so there is no corporate-tax drag.",
+        "strategy": "Passively tracks the Alerian Midstream Energy Select Index (capped market-cap). Keeping MLPs under 25% lets it qualify as a regulated investment company \u2014 no fund-level corporate tax.",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "~99% midstream energy infrastructure \u2014 pipelines, storage, gas processing and LNG export."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Energy Transfer (ET)",
+            "weight": "~8.5%",
+            "playtype": "pure",
+            "note": "gas + crude pipelines"
+          },
+          {
+            "name": "Enbridge (ENB)",
+            "weight": "~7.4%",
+            "playtype": "pure",
+            "note": "largest North American pipeline network"
+          },
+          {
+            "name": "Enterprise Products (EPD)",
+            "weight": "~7.2%",
+            "playtype": "pure",
+            "note": "NGL/gas pipelines"
+          },
+          {
+            "name": "Williams (WMB)",
+            "weight": "~6.1%",
+            "playtype": "pure",
+            "note": "gas pipelines feeding power plants"
+          },
+          {
+            "name": "Kinder Morgan (KMI)",
+            "weight": "~5.3%",
+            "playtype": "pure",
+            "note": "gas pipelines"
+          },
+          {
+            "name": "Cheniere (LNG)",
+            "weight": "~5.2%",
+            "playtype": "pure",
+            "note": "LNG export"
+          }
+        ],
+        "concentration": "Top-10 ~60% across ~30 holdings; no single name above ~9%.",
+        "sector_geo": "US + Canada midstream; ~99% energy.",
+        "cost_context": "0.35% with no tax drag \u2014 one of the cheapest ways into midstream (MLPX 0.45%, TPYP 0.40%, AMLP 0.85%+tax).",
+        "track_record_note": "+42% (2024), +5.9% (2025), ~+26%/yr over 3 years; 1-yr max drawdown ~-9%.",
+        "red_flags": [
+          "\ud83d\udea9 Top-10 ~60%.",
+          "\u26a0\ufe0f Moderate trading volume (~98K shares/day).",
+          "\u26a0\ufe0f Exposed to gas volumes and energy-sector sentiment."
+        ],
+        "bull": [
+          "Cheap, no corporate-tax drag",
+          "~4.2% yield, fee-based cash flows",
+          "Benefits from gas-fired power for AI"
+        ],
+        "bear": [
+          "Top-heavy",
+          "Thinner trading than AMLP",
+          "Energy-cycle sensitivity"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-10-09",
+            "action": "ADDED",
+            "text": "Added with the Energy & AI Power theme. Cost \ud83d\udfe2 and purity \ud83d\udfe2, but fails concentration (top-10 ~60%)."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "XOP",
+      "name": "SPDR S&P Oil & Gas Exploration & Production ETF",
+      "segment": "Oil & gas",
+      "is_theme_fund": true,
+      "issuer": "State Street (SPDR)",
+      "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-oil-gas-exploration-production-etf-xop",
+      "expense_ratio": 0.35,
+      "aum_display": "~$3.6B (Oct 2026)",
+      "aum_musd": 3619,
+      "inception": "2006-06-22",
+      "structure": "Passive \u2014 modified equal-weight",
+      "index": "S&P Oil & Gas Exploration & Production Select Industry Index",
+      "holdings_count": 50,
+      "top10_weight_display": "~28% (Oct 2026)",
+      "top10_weight_pct": 28,
+      "largest_position_display": "2.88% (PBF Energy)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-10-09",
+        "note": null
+      },
+      "market": {},
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.35% \u2014 cheap for an industry fund."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "100% oil & gas companies \u2014 producers AND refiners (the index includes refining & marketing)."
+        },
+        "concentration": {
+          "rating": "green",
+          "note": "Modified equal-weight: ~2.7\u20132.9% per stock, top-10 ~28%."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$3.6B AUM, ~3M shares/day."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 2006: extremely cyclical (-2% in 2024, -2% in 2025, ~+49% over the last year)."
+        }
+      },
+      "overall": "A cheap, well-diversified oil & gas bet \u2014 but a direct commodity-price bet, with refiners as large as producers.",
+      "memo": {
+        "thesis": "XOP owns ~50 US oil & gas companies in roughly equal amounts \u2014 explorers and producers, plus refiners (PBF, Valero, Marathon, Phillips 66) that the index also counts. Because big and small companies weigh the same, it reacts more violently to oil and gas prices than XLE.",
+        "strategy": "Passively tracks the S&P Oil & Gas Exploration & Production Select Industry Index with modified equal weights, rebalanced quarterly.",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "Pure oil & gas. Note the label: refiners are among the largest holdings, so it is not only 'exploration & production'."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "PBF Energy (PBF)",
+            "weight": "~2.9%",
+            "playtype": "partial",
+            "note": "refiner, not a producer"
+          },
+          {
+            "name": "Valero (VLO)",
+            "weight": "~2.9%",
+            "playtype": "partial",
+            "note": "refiner"
+          },
+          {
+            "name": "ExxonMobil (XOM)",
+            "weight": "~2.8%",
+            "playtype": "pure",
+            "note": "integrated major"
+          },
+          {
+            "name": "Marathon Petroleum (MPC)",
+            "weight": "~2.8%",
+            "playtype": "partial",
+            "note": "refiner"
+          },
+          {
+            "name": "Murphy Oil (MUR)",
+            "weight": "~2.8%",
+            "playtype": "pure",
+            "note": "E&P"
+          },
+          {
+            "name": "Chevron (CVX)",
+            "weight": "~2.7%",
+            "playtype": "pure",
+            "note": "integrated major"
+          }
+        ],
+        "concentration": "Top-10 ~28%, ~2.7\u20132.9% each across ~50 names \u2014 low single-stock risk, high commodity risk.",
+        "sector_geo": "US only; ~96% energy.",
+        "cost_context": "0.35% \u2014 fair; XLE/VDE are cheaper (0.08\u20130.09%) but cap-weighted toward Exxon/Chevron.",
+        "track_record_note": "Boom-bust with oil prices: -1% (2024), -2% (2025), ~+49% over the last year and +54% YTD (Oct 2026); 1-yr max drawdown ~-19%.",
+        "red_flags": [
+          "\u26a0\ufe0f Pure commodity-price exposure \u2014 oil/gas price falls hit it hard.",
+          "\u26a0\ufe0f Equal weight = more small-cap volatility than XLE.",
+          "\u26a0\ufe0f Label says E&P but refiners are big holdings."
+        ],
+        "bull": [
+          "Diversified across ~50 names",
+          "Cheap",
+          "Highest torque to rising oil & gas prices"
+        ],
+        "bear": [
+          "Commodity-price bet",
+          "Very cyclical",
+          "Weak link to the AI-power story"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-10-09",
+            "action": "ADDED",
+            "text": "Added with the Energy & AI Power theme. Passes the green-light screen (cost \ud83d\udfe2, concentration \ud83d\udfe2, purity \ud83d\udfe2) \u2014 but understand it's an oil-price bet, not an AI one."
+          }
+        ]
+      },
+      "meets_criteria": true
+    },
+    {
+      "ticker": "ICLN",
+      "name": "iShares Global Clean Energy ETF",
+      "segment": "Clean energy",
+      "is_theme_fund": true,
+      "issuer": "BlackRock (iShares)",
+      "holdings_url": "https://www.ishares.com/us/products/239738/ishares-global-clean-energy-etf",
+      "expense_ratio": 0.38,
+      "aum_display": "~$2.2B (Oct 2026)",
+      "aum_musd": 2225,
+      "inception": "2008-06-25",
+      "structure": "Passive \u2014 market-cap weighted with caps",
+      "index": "S&P Global Clean Energy Transition Index",
+      "holdings_count": 100,
+      "top10_weight_display": "~51% (Oct 2026)",
+      "top10_weight_pct": 51,
+      "largest_position_display": "9.71% (Bloom Energy)",
+      "derivatives": "No",
+      "performance": {
+        "ytd": null,
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-10-09",
+        "note": null
+      },
+      "market": {},
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.38% \u2014 cheap for a global thematic fund."
+        },
+        "purity": {
+          "rating": "green",
+          "note": "Clean power generation and equipment: solar, wind, fuel cells, hydro and green utilities."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "Top-10 ~51% (Oct 2026); Bloom Energy ~10% \u2014 just over the 50% line after a strong run in a few names."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$2.2B AUM, ~6.6M shares/day."
+        },
+        "track_record": {
+          "rating": "yellow",
+          "note": "Since 2008; boom-bust \u2014 -25.7% (2024) then +47% (2025)."
+        }
+      },
+      "overall": "The big, cheap global clean-energy fund \u2014 genuinely on-theme, but historically a boom-bust ride driven by rates and subsidies.",
+      "memo": {
+        "thesis": "ICLN owns ~100 clean-power companies worldwide: solar (First Solar, Enphase, Nextpower), wind (Vestas), fuel cells (Bloom Energy, Plug), hydro (China Yangtze Power) and green utilities (EDP, Chubu Electric). AI data centres are now buying clean power too \u2014 but the sector remains very sensitive to interest rates and subsidy policy.",
+        "strategy": "Passively tracks the S&P Global Clean Energy Transition Index \u2014 global clean-energy producers and equipment makers, market-cap weighted with caps.",
+        "purity_verdict": {
+          "rating": "green",
+          "text": "On-theme for clean energy: ~41% utilities (renewable generators), ~30% technology (solar), ~27% industrials (wind, fuel cells)."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Bloom Energy (BE)",
+            "weight": "~9.7%",
+            "playtype": "pure",
+            "note": "fuel-cell power for data centres"
+          },
+          {
+            "name": "China Yangtze Power",
+            "weight": "~8.1%",
+            "playtype": "pure",
+            "note": "hydro power"
+          },
+          {
+            "name": "First Solar (FSLR)",
+            "weight": "~7.0%",
+            "playtype": "pure",
+            "note": "US solar modules"
+          },
+          {
+            "name": "Nextpower (NXT)",
+            "weight": "~6.3%",
+            "playtype": "pure",
+            "note": "solar trackers"
+          },
+          {
+            "name": "Enphase (ENPH)",
+            "weight": "~4.2%",
+            "playtype": "pure",
+            "note": "solar inverters"
+          },
+          {
+            "name": "Vestas",
+            "weight": "~4.2%",
+            "playtype": "pure",
+            "note": "wind turbines"
+          }
+        ],
+        "concentration": "Top-10 ~51%; Bloom Energy ~10% after a big rally. ~100 holdings in total.",
+        "sector_geo": "Global: US, China, Europe, Latin America, Japan. ~41% utilities, ~30% tech, ~27% industrials.",
+        "cost_context": "0.38% \u2014 cheapest broad clean-energy option (QCLN 0.59%, PBW 0.63%, TAN 0.70%).",
+        "track_record_note": "Volatile: lost most of its 2020\u201321 gains by 2024 (-25.7%), then +47% in 2025; ~+9%/yr over 3 years; 1-yr max drawdown ~-29%.",
+        "red_flags": [
+          "\u26a0\ufe0f Rate and subsidy-policy sensitive.",
+          "\u26a0\ufe0f Bloom Energy ~10% after a rally.",
+          "\u26a0\ufe0f Deep drawdowns (-29% within the last year)."
+        ],
+        "bull": [
+          "Cheap, global, liquid",
+          "AI data centres buying clean power",
+          "Diversified across technologies"
+        ],
+        "bear": [
+          "Policy and rate risk",
+          "Boom-bust history",
+          "A few recent winners dominate"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-10-09",
+            "action": "ADDED",
+            "text": "Added with the Energy & AI Power theme. Cost \ud83d\udfe2 and purity \ud83d\udfe2, but concentration is borderline (top-10 ~51%) \u2014 fails the screen for now."
+          }
+        ]
+      },
+      "meets_criteria": false
+    },
+    {
+      "ticker": "XLE",
+      "name": "Energy Select Sector SPDR Fund",
+      "is_theme_fund": false,
+      "issuer": "State Street SPDR",
+      "holdings_url": "https://www.ssga.com/us/en/intermediary/etfs/state-street-energy-select-sector-spdr-etf-xle",
+      "expense_ratio": 0.08,
+      "aum_display": "~$38.7B",
+      "aum_musd": 38670,
+      "inception": "1998-12",
+      "structure": "Passive \u2014 cap-weighted",
+      "index": "Energy Select Sector",
+      "holdings_count": 23,
+      "top10_weight_display": "~75%",
+      "top10_weight_pct": 75,
+      "largest_position_display": "Exxon Mobil",
+      "derivatives": "No",
+      "distribution_yield": "~2.7%",
+      "performance": {
+        "ytd": "+29.8%",
+        "y1": null,
+        "y2025": null,
+        "y2024": null,
+        "y3_annualized": null,
+        "as_of": "2026-06",
+        "note": "Benchmark, total return. Broad oil & gas energy \u2014 cheap (0.08%), dividend-paying (~2.7%), far more diversified than a single-commodity uranium bet."
+      },
+      "market": {
+        "price": 57.67,
+        "price_display": "$57.67",
+        "price_asof": "2026-06",
+        "volume_avg": 49000000,
+        "volume_display": "~49M/day"
+      },
+      "scores": {
+        "cost": {
+          "rating": "green",
+          "note": "0.08% \u2014 a fraction of any uranium fund."
+        },
+        "purity": {
+          "rating": "red",
+          "note": "Broad oil & gas energy \u2014 NOT nuclear/uranium. The comparison baseline."
+        },
+        "concentration": {
+          "rating": "yellow",
+          "note": "Top-10 ~75% (Exxon/Chevron-led), but a diversified, cash-rich sector."
+        },
+        "liquidity": {
+          "rating": "green",
+          "note": "~$38.7B AUM, ~49M shares/day \u2014 extremely liquid."
+        },
+        "track_record": {
+          "rating": "green",
+          "note": "Since 1998; broad energy, dividend-paying, lower volatility than uranium."
+        }
+      },
+      "overall": "Benchmark \u2014 broad oil & gas energy; cheap, diversified, dividend-paying. The contrast to a narrow uranium bet.",
+      "memo": {
+        "thesis": "REFERENCE FUND, NOT NUCLEAR. XLE is the broad energy benchmark \u2014 oil & gas majors (Exxon, Chevron) \u2014 cheap (0.08%), dividend-paying (~2.7%), and far more diversified than a single-commodity uranium bet. Use it to judge whether the narrow, volatile uranium theme actually rewarded the concentration and country risk you took on.",
+        "strategy": "Passive, cap-weighted energy slice of the S&P 500 \u2014 oil, gas and consumable fuels, energy equipment/services. Dominated by integrated majors; cash-generative and dividend-paying.",
+        "purity_verdict": {
+          "rating": "red",
+          "text": "Zero nuclear/uranium mandate \u2014 it's oil & gas. The yardstick for what a diversified, cheap energy bet looks like next to a narrow uranium play."
+        },
+        "holdings_illustrative": [
+          {
+            "name": "Exxon Mobil (XOM)",
+            "weight": "~large",
+            "playtype": "unrelated",
+            "note": "oil & gas major \u2014 not nuclear"
+          },
+          {
+            "name": "Chevron (CVX)",
+            "weight": "~large",
+            "playtype": "unrelated",
+            "note": "oil & gas major"
+          },
+          {
+            "name": "ConocoPhillips / others",
+            "weight": "\u2014",
+            "playtype": "unrelated",
+            "note": "oil & gas"
+          }
+        ],
+        "concentration": "Top-10 ~75% (Exxon/Chevron-led), but across a diversified, cash-rich sector \u2014 lower single-commodity risk than uranium.",
+        "sector_geo": "US oil & gas majors; predominantly domestic, globally operating.",
+        "cost_context": "0.08% \u2014 a fraction of the 0.56-0.80% uranium funds, with a ~2.7% dividend on top.",
+        "track_record_note": "Since 1998; broad energy, dividend-paying, far lower volatility than uranium. Strong YTD (+29.8%). The 'diversified energy instead of a commodity bet' baseline.",
+        "red_flags": [
+          "\u26a0\ufe0f Not nuclear/uranium \u2014 different bet entirely.",
+          "\u26a0\ufe0f Oil-price (not uranium-price) sensitivity.",
+          "\u26a0\ufe0f Top-10 ~75% in majors."
+        ],
+        "bull": [
+          "Cheap (0.08%) + ~2.7% dividend",
+          "Diversified, cash-generative majors",
+          "Extremely liquid",
+          "Lower volatility than uranium"
+        ],
+        "bear": [
+          "No nuclear/uranium upside",
+          "Oil-price cyclicality",
+          "Concentrated in 2 majors"
+        ],
+        "decision_log": [
+          {
+            "date": "2026-06-08",
+            "action": "BENCHMARK",
+            "text": "The yardstick. Before taking on uranium's concentration + country risk, ask whether broad, cheap, dividend-paying energy serves your goal better. Different bet \u2014 use for contrast."
+          }
+        ]
+      },
+      "meets_criteria": false,
+      "segment": "Oil & gas"
+    }
+  ],
+  "roster": [
+    {
+      "ticker": "URA",
+      "name": "Global X Uranium",
+      "segment": "Nuclear & uranium",
+      "tag": "miners + components"
+    },
+    {
+      "ticker": "URNM",
+      "name": "Sprott Uranium Miners",
+      "segment": "Nuclear & uranium",
+      "tag": "pure miners + physical"
+    },
+    {
+      "ticker": "URNJ",
+      "name": "Sprott Junior Uranium Miners",
+      "segment": "Nuclear & uranium",
+      "tag": "\u26a0\ufe0f junior miners"
+    },
+    {
+      "ticker": "NLR",
+      "name": "VanEck Uranium & Nuclear",
+      "segment": "Nuclear & uranium",
+      "tag": "utilities-tilt"
+    },
+    {
+      "ticker": "NUKZ",
+      "name": "Range Nuclear Renaissance",
+      "segment": "Nuclear & uranium",
+      "tag": "reactors + utilities + fuel"
+    },
+    {
+      "ticker": "URAN",
+      "name": "Themes Uranium & Nuclear",
+      "segment": "Nuclear & uranium",
+      "tag": "newer"
+    },
+    {
+      "ticker": "SMRF",
+      "name": "ALPS Nautilus SMR, Nuclear & Technology",
+      "segment": "Nuclear & uranium",
+      "tag": "small modular reactors"
+    },
+    {
+      "ticker": "URNU.L",
+      "name": "Global X Uranium UCITS (London)",
+      "segment": "Nuclear & uranium",
+      "tag": "London-listed UCITS version of URA"
+    },
+    {
+      "ticker": "URAA",
+      "name": "Direxion Daily Uranium Bull 2X",
+      "segment": "Nuclear & uranium",
+      "tag": "\u26a0\ufe0f 2x leveraged"
+    },
+    {
+      "ticker": "GRID",
+      "name": "First Trust NASDAQ Clean Edge Smart Grid Infrastructure",
+      "segment": "Power & grid",
+      "tag": "grid equipment + utilities"
+    },
+    {
+      "ticker": "ELFY",
+      "name": "ALPS Electrification Infrastructure",
+      "segment": "Power & grid",
+      "tag": "electrification \u00b7 newer"
+    },
+    {
+      "ticker": "IVEP",
+      "name": "Dan IVES Wedbush AI Power & Infrastructure",
+      "segment": "Power & grid",
+      "tag": "AI power \u00b7 new 2026"
+    },
+    {
+      "ticker": "VOLT",
+      "name": "Tema Electrification",
+      "segment": "Power & grid",
+      "tag": "active"
+    },
+    {
+      "ticker": "XLU",
+      "name": "Utilities Select Sector SPDR",
+      "segment": "Utilities",
+      "tag": "S&P 500 utilities"
+    },
+    {
+      "ticker": "VPU",
+      "name": "Vanguard Utilities",
+      "segment": "Utilities",
+      "tag": "broad, cheapest"
+    },
+    {
+      "ticker": "IDU",
+      "name": "iShares U.S. Utilities",
+      "segment": "Utilities",
+      "tag": "broad"
+    },
+    {
+      "ticker": "UTES",
+      "name": "Virtus Reaves Utilities",
+      "segment": "Utilities",
+      "tag": "active \u00b7 power-producer tilt"
+    },
+    {
+      "ticker": "AMLP",
+      "name": "Alerian MLP",
+      "segment": "Gas & midstream",
+      "tag": "MLPs \u00b7 high income"
+    },
+    {
+      "ticker": "ENFR",
+      "name": "Alerian Energy Infrastructure",
+      "segment": "Gas & midstream",
+      "tag": "pipelines \u00b7 C-corps + MLPs"
+    },
+    {
+      "ticker": "MLPX",
+      "name": "Global X MLP & Energy Infrastructure",
+      "segment": "Gas & midstream",
+      "tag": "pipelines"
+    },
+    {
+      "ticker": "TPYP",
+      "name": "Tortoise North American Pipeline",
+      "segment": "Gas & midstream",
+      "tag": "pipelines"
+    },
+    {
+      "ticker": "EMLP",
+      "name": "First Trust North American Energy Infrastructure",
+      "segment": "Gas & midstream",
+      "tag": "active"
+    },
+    {
+      "ticker": "FCG",
+      "name": "First Trust Natural Gas",
+      "segment": "Gas & midstream",
+      "tag": "gas producers"
+    },
+    {
+      "ticker": "UNG",
+      "name": "United States Natural Gas Fund",
+      "segment": "Gas & midstream",
+      "tag": "\u26a0\ufe0f futures, not stocks \u00b7 contango"
+    },
+    {
+      "ticker": "XLE",
+      "name": "Energy Select Sector SPDR",
+      "segment": "Oil & gas",
+      "tag": "benchmark (S&P 500 energy)"
+    },
+    {
+      "ticker": "VDE",
+      "name": "Vanguard Energy",
+      "segment": "Oil & gas",
+      "tag": "broad US energy"
+    },
+    {
+      "ticker": "XOP",
+      "name": "SPDR S&P Oil & Gas Exploration & Production",
+      "segment": "Oil & gas",
+      "tag": "E&P \u00b7 equal-weight"
+    },
+    {
+      "ticker": "OIH",
+      "name": "VanEck Oil Services",
+      "segment": "Oil & gas",
+      "tag": "oil services"
+    },
+    {
+      "ticker": "IXC",
+      "name": "iShares Global Energy",
+      "segment": "Oil & gas",
+      "tag": "global majors"
+    },
+    {
+      "ticker": "ERX",
+      "name": "Direxion Daily Energy Bull 2X",
+      "segment": "Oil & gas",
+      "tag": "\u26a0\ufe0f 2x leveraged"
+    },
+    {
+      "ticker": "ICLN",
+      "name": "iShares Global Clean Energy",
+      "segment": "Clean energy",
+      "tag": "global"
+    },
+    {
+      "ticker": "TAN",
+      "name": "Invesco Solar",
+      "segment": "Clean energy",
+      "tag": "solar"
+    },
+    {
+      "ticker": "QCLN",
+      "name": "First Trust NASDAQ Clean Edge Green Energy",
+      "segment": "Clean energy",
+      "tag": "US clean tech"
+    },
+    {
+      "ticker": "PBW",
+      "name": "Invesco WilderHill Clean Energy",
+      "segment": "Clean energy",
+      "tag": "small-cap"
+    },
+    {
+      "ticker": "FAN",
+      "name": "First Trust Global Wind Energy",
+      "segment": "Clean energy",
+      "tag": "wind"
+    }
+  ],
+  "keywords": [
+    "energy",
+    "uranium",
+    "nuclear",
+    "oil",
+    "gas",
+    "mlp",
+    "midstream",
+    "pipeline",
+    "utilities",
+    "utility",
+    "power",
+    "grid",
+    "electrif",
+    "solar",
+    "wind",
+    "clean",
+    "renewable",
+    "hydrogen",
+    "infrastructure"
+  ]
+}
