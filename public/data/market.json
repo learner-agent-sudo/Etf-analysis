@@ -1,6 +1,6 @@
 {
- "as_of": "2026-11-18",
- "generated_at": "2026-11-19T02:46:22+00:00",
+ "as_of": "2026-11-19",
+ "generated_at": "2026-11-20T02:33:49+00:00",
  "source": "Daily closes from Yahoo Finance or Nasdaq (returns reinvest distributions); fund profile (AUM, expense ratio, top-10 holdings) from Yahoo Finance/Morningstar when available. Refreshed automatically by GitHub Actions every weekday after the US close.",
  "count": 129,
  "failed": {},
@@ -76,8 +76,8 @@
  ],
  "tickers": {
   "AIQ": {
-   "price": 55.83,
-   "price_display": "$55.83",
+   "price": 54.42,
+   "price_display": "$54.42",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 1313695,
@@ -88,7 +88,7 @@
    "low_52w": 44.78,
    "pct_below_high": "-20.4%",
    "max_drawdown_1y": "-20.4%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+9.8%",
     "y1": "+14.5%",
@@ -187,29 +187,29 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "AIVL": {
-   "price": 133.23,
-   "price_display": "$133.23",
+   "price": 131.1,
+   "price_display": "$131.10",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 2938,
+   "price_asof": "2026-11-19",
+   "volume_avg": 2959,
    "volume_display": "~3K/day",
-   "dollar_volume_avg": 384603,
-   "dollar_volume_display": "~$385K/day",
+   "dollar_volume_avg": 387278,
+   "dollar_volume_display": "~$387K/day",
    "high_52w": 137.51,
    "low_52w": 110.34,
-   "pct_below_high": "-3.1%",
+   "pct_below_high": "-4.7%",
    "max_drawdown_1y": "-7.8%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+17.2%",
-    "y1": "+21.2%",
-    "y3_annualized": "+16.2%/yr",
+    "ytd": "+15.3%",
+    "y1": "+19.7%",
+    "y3_annualized": "+15.6%/yr",
     "y2025": "+9.7%",
     "y2024": "+13.5%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "WisdomTree U.S. Al Enhanced Value Fund",
@@ -321,11 +321,11 @@
     }
    ],
    "fund_family": "WisdomTree",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "AIYY": {
-   "price": 6.07,
-   "price_display": "$6.07",
+   "price": 6.0,
+   "price_display": "$6.00",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 93179,
@@ -364,29 +364,29 @@
    ],
    "top10_weight_pct": 9.6,
    "fund_family": "YieldMax ETFs",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "AMLP": {
-   "price": 49.57,
-   "price_display": "$49.57",
+   "price": 49.23,
+   "price_display": "$49.23",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 1183559,
+   "price_asof": "2026-11-19",
+   "volume_avg": 1197837,
    "volume_display": "~1.2M/day",
-   "dollar_volume_avg": 62798908,
-   "dollar_volume_display": "~$62.8M/day",
+   "dollar_volume_avg": 63393094,
+   "dollar_volume_display": "~$63.4M/day",
    "high_52w": 56.19,
    "low_52w": 46.7,
-   "pct_below_high": "-11.8%",
+   "pct_below_high": "-12.4%",
    "max_drawdown_1y": "-11.0%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+14.0%",
-    "y1": "+14.6%",
-    "y3_annualized": "+13.8%/yr",
+    "ytd": "+13.2%",
+    "y1": "+13.7%",
+    "y3_annualized": "+13.6%/yr",
     "y2025": "+5.8%",
     "y2024": "+22.8%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Alerian MLP ETF",
@@ -462,11 +462,11 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "AQWA": {
-   "price": 18.9,
-   "price_display": "$18.90",
+   "price": 18.68,
+   "price_display": "$18.68",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 4575,
@@ -477,7 +477,7 @@
    "low_52w": 17.83,
    "pct_below_high": "-9.6%",
    "max_drawdown_1y": "-14.1%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+1.3%",
     "y1": "+2.7%",
@@ -576,11 +576,11 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "ARKG": {
-   "price": 41.26,
-   "price_display": "$41.26",
+   "price": 40.27,
+   "price_display": "$40.27",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 5060032,
@@ -591,7 +591,7 @@
    "low_52w": 24.82,
    "pct_below_high": "-27.3%",
    "max_drawdown_1y": "-28.7%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+42.4%",
     "y1": "+53.7%",
@@ -670,11 +670,11 @@
     }
    ],
    "fund_family": "ARK ETF Trust",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "ARKX": {
-   "price": 27.47,
-   "price_display": "$27.47",
+   "price": 26.6,
+   "price_display": "$26.60",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 522427,
@@ -685,7 +685,7 @@
    "low_52w": 25.74,
    "pct_below_high": "-27.2%",
    "max_drawdown_1y": "-28.3%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "-5.2%",
     "y1": "+2.4%",
@@ -776,11 +776,11 @@
     }
    ],
    "fund_family": "ARK ETF Trust",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "ARTY": {
-   "price": 61.92,
-   "price_display": "$61.92",
+   "price": 59.44,
+   "price_display": "$59.44",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 506687,
@@ -791,7 +791,7 @@
    "low_52w": 44.2,
    "pct_below_high": "-23.8%",
    "max_drawdown_1y": "-27.7%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+28.6%",
     "y1": "+36.5%",
@@ -890,11 +890,11 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "BALI": {
-   "price": 32.69,
-   "price_display": "$32.69",
+   "price": 32.11,
+   "price_display": "$32.11",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 475578,
@@ -1014,11 +1014,11 @@
     }
    ],
    "fund_family": "BlackRock",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "BATT": {
-   "price": 11.39,
-   "price_display": "$11.39",
+   "price": 11.0,
+   "price_display": "$11.00",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 40583,
@@ -1029,7 +1029,7 @@
    "low_52w": 11.39,
    "pct_below_high": "-36.8%",
    "max_drawdown_1y": "-36.8%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "-17.5%",
     "y1": "-10.6%",
@@ -1120,29 +1120,29 @@
     }
    ],
    "fund_family": "Amplify ETFs",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "BBH": {
-   "price": 244.91,
-   "price_display": "$244.91",
+   "price": 242.66,
+   "price_display": "$242.66",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 13368,
-   "volume_display": "~13K/day",
-   "dollar_volume_avg": 3283236,
-   "dollar_volume_display": "~$3.3M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 13698,
+   "volume_display": "~14K/day",
+   "dollar_volume_avg": 3363604,
+   "dollar_volume_display": "~$3.4M/day",
    "high_52w": 261.63,
    "low_52w": 179.9,
-   "pct_below_high": "-6.4%",
+   "pct_below_high": "-7.3%",
    "max_drawdown_1y": "-10.5%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+29.4%",
-    "y1": "+29.2%",
-    "y3_annualized": "+18.5%/yr",
+    "ytd": "+28.2%",
+    "y1": "+28.4%",
+    "y3_annualized": "+18.1%/yr",
     "y2025": "+21.2%",
     "y2024": "-4.3%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "VanEck Biotech ETF",
@@ -1214,11 +1214,11 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "BOTZ": {
-   "price": 29.71,
-   "price_display": "$29.71",
+   "price": 29.0,
+   "price_display": "$29.00",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 706298,
@@ -1229,7 +1229,7 @@
    "low_52w": 29.71,
    "pct_below_high": "-28.6%",
    "max_drawdown_1y": "-28.6%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "-18.0%",
     "y1": "-11.4%",
@@ -1328,22 +1328,22 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "BUG": {
-   "price": 46.56,
-   "price_display": "$46.56",
+   "price": 47.43,
+   "price_display": "$47.43",
    "currency": "USD",
    "price_asof": "2026-11-18",
-   "volume_avg": 2020732,
+   "volume_avg": 2021538,
    "volume_display": "~2.0M/day",
-   "dollar_volume_avg": 92877551,
+   "dollar_volume_avg": 92915095,
    "dollar_volume_display": "~$92.9M/day",
    "high_52w": 52.35,
    "low_52w": 23.3,
    "pct_below_high": "-11.1%",
    "max_drawdown_1y": "-28.3%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+52.9%",
     "y1": "+46.6%",
@@ -1422,29 +1422,29 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "CGW": {
-   "price": 64.13,
-   "price_display": "$64.13",
+   "price": 63.31,
+   "price_display": "$63.31",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 21905,
+   "price_asof": "2026-11-19",
+   "volume_avg": 22032,
    "volume_display": "~22K/day",
-   "dollar_volume_avg": 1404932,
+   "dollar_volume_avg": 1412530,
    "dollar_volume_display": "~$1.4M/day",
    "high_52w": 68.86,
    "low_52w": 61.38,
-   "pct_below_high": "-6.9%",
+   "pct_below_high": "-8.1%",
    "max_drawdown_1y": "-10.9%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+1.8%",
-    "y1": "+4.7%",
-    "y3_annualized": "+10.7%/yr",
+    "ytd": "+0.5%",
+    "y1": "+3.8%",
+    "y3_annualized": "+10.2%/yr",
     "y2025": "+18.1%",
     "y2024": "+4.5%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Invesco S&P Global Water Index ETF",
@@ -1540,11 +1540,11 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "CHAT": {
-   "price": 68.46,
-   "price_display": "$68.46",
+   "price": 66.99,
+   "price_display": "$66.99",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 334725,
@@ -1646,11 +1646,11 @@
     }
    ],
    "fund_family": "Roundhill Investments",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "CHPX": {
-   "price": 75.99,
-   "price_display": "$75.99",
+   "price": 73.68,
+   "price_display": "$73.68",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 31240,
@@ -1746,11 +1746,11 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "CIBR": {
-   "price": 96.06,
-   "price_display": "$96.06",
+   "price": 96.36,
+   "price_display": "$96.36",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 2074781,
@@ -1761,7 +1761,7 @@
    "low_52w": 60.74,
    "pct_below_high": "-12.7%",
    "max_drawdown_1y": "-19.8%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+34.8%",
     "y1": "+31.9%",
@@ -1848,29 +1848,29 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "CURE": {
-   "price": 155.41,
-   "price_display": "$155.41",
+   "price": 146.27,
+   "price_display": "$146.27",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 58822,
+   "price_asof": "2026-11-19",
+   "volume_avg": 59003,
    "volume_display": "~59K/day",
-   "dollar_volume_avg": 8733584,
-   "dollar_volume_display": "~$8.7M/day",
+   "dollar_volume_avg": 8761750,
+   "dollar_volume_display": "~$8.8M/day",
    "high_52w": 180.62,
    "low_52w": 83.61,
-   "pct_below_high": "-14.0%",
+   "pct_below_high": "-19.0%",
    "max_drawdown_1y": "-31.1%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+40.6%",
-    "y1": "+46.1%",
-    "y3_annualized": "+23.7%/yr",
+    "ytd": "+32.4%",
+    "y1": "+38.2%",
+    "y3_annualized": "+21.2%/yr",
     "y2025": "+22.5%",
     "y2024": "-8.5%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Direxion Daily Healthcare Bull 3X Shares",
@@ -1907,11 +1907,11 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "DFEN": {
-   "price": 45.88,
-   "price_display": "$45.88",
+   "price": 43.6,
+   "price_display": "$43.60",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 323589,
@@ -1922,7 +1922,7 @@
    "low_52w": 43.33,
    "pct_below_high": "-52.9%",
    "max_drawdown_1y": "-55.5%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "-28.1%",
     "y1": "-16.7%",
@@ -1971,11 +1971,11 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "DIVO": {
-   "price": 45.47,
-   "price_display": "$45.47",
+   "price": 44.66,
+   "price_display": "$44.66",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 858695,
@@ -1986,7 +1986,7 @@
    "low_52w": 44.0,
    "pct_below_high": "-6.8%",
    "max_drawdown_1y": "-5.9%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+6.4%",
     "y1": "+9.5%",
@@ -2101,11 +2101,11 @@
     }
    ],
    "fund_family": "Amplify ETFs",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "DJIA": {
-   "price": 21.95,
-   "price_display": "$21.95",
+   "price": 21.41,
+   "price_display": "$21.41",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 100005,
@@ -2227,11 +2227,11 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "ELFY": {
-   "price": 36.12,
-   "price_display": "$36.12",
+   "price": 35.53,
+   "price_display": "$35.53",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 30967,
@@ -2335,11 +2335,11 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "EMLP": {
-   "price": 43.43,
-   "price_display": "$43.43",
+   "price": 42.97,
+   "price_display": "$42.97",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 293719,
@@ -2350,7 +2350,7 @@
    "low_52w": 37.44,
    "pct_below_high": "-3.1%",
    "max_drawdown_1y": "-7.9%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+17.2%",
     "y1": "+16.3%",
@@ -2441,11 +2441,11 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "ENFR": {
-   "price": 37.0,
-   "price_display": "$37.00",
+   "price": 36.63,
+   "price_display": "$36.63",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 94957,
@@ -2456,7 +2456,7 @@
    "low_52w": 30.7,
    "pct_below_high": "-8.7%",
    "max_drawdown_1y": "-9.8%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+22.6%",
     "y1": "+24.5%",
@@ -2539,29 +2539,29 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "ERX": {
-   "price": 97.69,
-   "price_display": "$97.69",
+   "price": 96.69,
+   "price_display": "$96.69",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 367013,
-   "volume_display": "~367K/day",
-   "dollar_volume_avg": 40536609,
-   "dollar_volume_display": "~$40.5M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 364852,
+   "volume_display": "~365K/day",
+   "dollar_volume_avg": 40278283,
+   "dollar_volume_display": "~$40.3M/day",
    "high_52w": 128.79,
    "low_52w": 53.16,
-   "pct_below_high": "-24.1%",
+   "pct_below_high": "-24.9%",
    "max_drawdown_1y": "-30.0%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+77.0%",
-    "y1": "+71.9%",
-    "y3_annualized": "+22.0%/yr",
+    "ytd": "+75.2%",
+    "y1": "+74.5%",
+    "y3_annualized": "+21.6%/yr",
     "y2025": "+2.8%",
     "y2024": "+1.1%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Direxion Daily Energy Bull 2X Shares",
@@ -2598,29 +2598,29 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "FAN": {
-   "price": 21.51,
-   "price_display": "$21.51",
+   "price": 21.16,
+   "price_display": "$21.16",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 46249,
+   "price_asof": "2026-11-19",
+   "volume_avg": 45652,
    "volume_display": "~46K/day",
-   "dollar_volume_avg": 1062608,
-   "dollar_volume_display": "~$1.1M/day",
+   "dollar_volume_avg": 1047421,
+   "dollar_volume_display": "~$1.0M/day",
    "high_52w": 27.23,
    "low_52w": 19.21,
-   "pct_below_high": "-21.0%",
-   "max_drawdown_1y": "-20.5%",
-   "history_start": "2021-11-19",
+   "pct_below_high": "-22.3%",
+   "max_drawdown_1y": "-21.8%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+5.8%",
-    "y1": "+10.9%",
-    "y3_annualized": "+14.4%/yr",
+    "ytd": "+4.0%",
+    "y1": "+9.1%",
+    "y3_annualized": "+13.7%/yr",
     "y2025": "+40.4%",
     "y2024": "-9.0%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "First Trust Global Wind Energy ETF",
@@ -2703,29 +2703,29 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "FBT": {
-   "price": 266.87,
-   "price_display": "$266.87",
+   "price": 262.79,
+   "price_display": "$262.79",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 71214,
-   "volume_display": "~71K/day",
-   "dollar_volume_avg": 19244663,
-   "dollar_volume_display": "~$19.2M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 71667,
+   "volume_display": "~72K/day",
+   "dollar_volume_avg": 19358622,
+   "dollar_volume_display": "~$19.4M/day",
    "high_52w": 280.3,
    "low_52w": 190.23,
-   "pct_below_high": "-4.8%",
+   "pct_below_high": "-6.2%",
    "max_drawdown_1y": "-14.3%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+29.2%",
-    "y1": "+32.8%",
-    "y3_annualized": "+24.4%/yr",
+    "ytd": "+27.2%",
+    "y1": "+30.6%",
+    "y3_annualized": "+23.8%/yr",
     "y2025": "+24.3%",
     "y2024": "+5.9%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "First Trust NYSE Arca Biotechnology Index Fund",
@@ -2797,29 +2797,29 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "FCG": {
-   "price": 28.04,
-   "price_display": "$28.04",
+   "price": 27.77,
+   "price_display": "$27.77",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 894076,
-   "volume_display": "~894K/day",
-   "dollar_volume_avg": 27120168,
-   "dollar_volume_display": "~$27.1M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 892595,
+   "volume_display": "~893K/day",
+   "dollar_volume_avg": 27034548,
+   "dollar_volume_display": "~$27.0M/day",
    "high_52w": 32.74,
    "low_52w": 22.65,
-   "pct_below_high": "-14.4%",
+   "pct_below_high": "-15.2%",
    "max_drawdown_1y": "-19.7%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+21.8%",
-    "y1": "+19.2%",
-    "y3_annualized": "+6.6%/yr",
+    "ytd": "+20.6%",
+    "y1": "+18.9%",
+    "y3_annualized": "+6.3%/yr",
     "y2025": "-2.3%",
     "y2024": "+4.2%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "First Trust Natural Gas ETF",
@@ -2895,11 +2895,11 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "FEPI": {
-   "price": 35.91,
-   "price_display": "$35.91",
+   "price": 35.22,
+   "price_display": "$35.22",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 220732,
@@ -2997,29 +2997,29 @@
     }
    ],
    "fund_family": "Rex",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "FIW": {
-   "price": 116.69,
-   "price_display": "$116.69",
+   "price": 115.24,
+   "price_display": "$115.24",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 52632,
+   "price_asof": "2026-11-19",
+   "volume_avg": 53205,
    "volume_display": "~53K/day",
-   "dollar_volume_avg": 5749558,
-   "dollar_volume_display": "~$5.7M/day",
+   "dollar_volume_avg": 5817076,
+   "dollar_volume_display": "~$5.8M/day",
    "high_52w": 118.63,
    "low_52w": 99.66,
-   "pct_below_high": "-1.6%",
+   "pct_below_high": "-2.9%",
    "max_drawdown_1y": "-13.8%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+8.0%",
-    "y1": "+8.9%",
-    "y3_annualized": "+11.4%/yr",
+    "ytd": "+6.6%",
+    "y1": "+8.0%",
+    "y3_annualized": "+10.9%/yr",
     "y2025": "+7.2%",
     "y2024": "+8.4%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "First Trust Water ETF",
@@ -3111,11 +3111,11 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "GNOM": {
-   "price": 59.23,
-   "price_display": "$59.23",
+   "price": 58.59,
+   "price_display": "$58.59",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 37944,
@@ -3126,7 +3126,7 @@
    "low_52w": 41.4,
    "pct_below_high": "-18.3%",
    "max_drawdown_1y": "-18.7%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+30.4%",
     "y1": "+39.5%",
@@ -3209,16 +3209,16 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "GPIQ": {
-   "price": 51.61,
-   "price_display": "$51.61",
+   "price": 50.55,
+   "price_display": "$50.55",
    "currency": "USD",
    "price_asof": "2026-11-18",
-   "volume_avg": 1782235,
+   "volume_avg": 1782425,
    "volume_display": "~1.8M/day",
-   "dollar_volume_avg": 99186300,
+   "dollar_volume_avg": 99196131,
    "dollar_volume_display": "~$99.2M/day",
    "high_52w": 59.52,
    "low_52w": 47.96,
@@ -3339,11 +3339,11 @@
     }
    ],
    "fund_family": "Goldman Sachs",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "GPIX": {
-   "price": 53.08,
-   "price_display": "$53.08",
+   "price": 52.06,
+   "price_display": "$52.06",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 1245233,
@@ -3473,29 +3473,29 @@
     }
    ],
    "fund_family": "Goldman Sachs",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "GRID": {
-   "price": 155.18,
-   "price_display": "$155.18",
+   "price": 152.42,
+   "price_display": "$152.42",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 583221,
-   "volume_display": "~583K/day",
-   "dollar_volume_avg": 99361871,
-   "dollar_volume_display": "~$99.4M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 584027,
+   "volume_display": "~584K/day",
+   "dollar_volume_avg": 99259636,
+   "dollar_volume_display": "~$99.3M/day",
    "high_52w": 199.8,
    "low_52w": 146.51,
-   "pct_below_high": "-22.3%",
+   "pct_below_high": "-23.7%",
    "max_drawdown_1y": "-23.5%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+2.1%",
-    "y1": "+5.2%",
-    "y3_annualized": "+18.9%/yr",
+    "ytd": "+0.3%",
+    "y1": "+2.9%",
+    "y3_annualized": "+18.2%/yr",
     "y2025": "+29.7%",
     "y2024": "+15.2%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "First Trust NASDAQ Clean Edge Smart Grid Infrastructure Index Fund",
@@ -3583,11 +3583,11 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "HACK": {
-   "price": 119.6,
-   "price_display": "$119.60",
+   "price": 121.24,
+   "price_display": "$121.24",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 394919,
@@ -3598,7 +3598,7 @@
    "low_52w": 70.69,
    "pct_below_high": "-10.4%",
    "max_drawdown_1y": "-17.6%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+48.8%",
     "y1": "+45.2%",
@@ -3681,11 +3681,11 @@
     }
    ],
    "fund_family": "Amplify ETFs",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "HELX": {
-   "price": 41.3,
-   "price_display": "$41.30",
+   "price": 40.83,
+   "price_display": "$40.83",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 6021,
@@ -3696,7 +3696,7 @@
    "low_52w": 31.24,
    "pct_below_high": "-10.2%",
    "max_drawdown_1y": "-18.0%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+13.8%",
     "y1": "+17.8%",
@@ -3787,11 +3787,11 @@
     }
    ],
    "fund_family": "Franklin Templeton, Inc",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "HRTS": {
-   "price": 37.75,
-   "price_display": "$37.75",
+   "price": 37.17,
+   "price_display": "$37.17",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 2213,
@@ -3881,29 +3881,29 @@
     }
    ],
    "fund_family": "Tema ETFs",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "IBB": {
-   "price": 205.39,
-   "price_display": "$205.39",
+   "price": 203.72,
+   "price_display": "$203.72",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 1748868,
+   "price_asof": "2026-11-19",
+   "volume_avg": 1736365,
    "volume_display": "~1.7M/day",
-   "dollar_volume_avg": 366855634,
-   "dollar_volume_display": "~$366.9M/day",
+   "dollar_volume_avg": 363889709,
+   "dollar_volume_display": "~$363.9M/day",
    "high_52w": 221.13,
    "low_52w": 160.41,
-   "pct_below_high": "-7.1%",
+   "pct_below_high": "-7.9%",
    "max_drawdown_1y": "-9.6%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+21.8%",
-    "y1": "+23.6%",
-    "y3_annualized": "+20.5%/yr",
+    "ytd": "+20.8%",
+    "y1": "+23.5%",
+    "y3_annualized": "+20.2%/yr",
     "y2025": "+28.0%",
     "y2024": "-2.4%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "iShares Biotechnology ETF",
@@ -3975,29 +3975,29 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "ICLN": {
-   "price": 14.72,
-   "price_display": "$14.72",
+   "price": 14.49,
+   "price_display": "$14.49",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 6508190,
-   "volume_display": "~6.5M/day",
-   "dollar_volume_avg": 109938992,
-   "dollar_volume_display": "~$109.9M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 6440373,
+   "volume_display": "~6.4M/day",
+   "dollar_volume_avg": 108525688,
+   "dollar_volume_display": "~$108.5M/day",
    "high_52w": 23.75,
-   "low_52w": 14.72,
-   "pct_below_high": "-38.0%",
-   "max_drawdown_1y": "-37.9%",
-   "history_start": "2021-11-19",
+   "low_52w": 14.49,
+   "pct_below_high": "-39.0%",
+   "max_drawdown_1y": "-38.8%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-10.2%",
-    "y1": "-10.4%",
-    "y3_annualized": "+3.3%/yr",
+    "ytd": "-11.6%",
+    "y1": "-11.6%",
+    "y3_annualized": "+2.7%/yr",
     "y2025": "+47.0%",
     "y2024": "-25.7%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "iShares Global Clean Energy ETF",
@@ -4081,11 +4081,11 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "IDNA": {
-   "price": 38.42,
-   "price_display": "$38.42",
+   "price": 37.81,
+   "price_display": "$37.81",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 172225,
@@ -4096,7 +4096,7 @@
    "low_52w": 25.82,
    "pct_below_high": "-13.0%",
    "max_drawdown_1y": "-13.0%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+47.3%",
     "y1": "+47.6%",
@@ -4175,29 +4175,29 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "IDU": {
-   "price": 111.43,
-   "price_display": "$111.43",
+   "price": 110.06,
+   "price_display": "$110.06",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 184646,
+   "price_asof": "2026-11-19",
+   "volume_avg": 184814,
    "volume_display": "~185K/day",
-   "dollar_volume_avg": 19679991,
+   "dollar_volume_avg": 19699643,
    "dollar_volume_display": "~$19.7M/day",
    "high_52w": 120.7,
    "low_52w": 100.52,
-   "pct_below_high": "-7.7%",
+   "pct_below_high": "-8.8%",
    "max_drawdown_1y": "-15.3%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+4.6%",
-    "y1": "+1.5%",
-    "y3_annualized": "+15.4%/yr",
+    "ytd": "+3.3%",
+    "y1": "+0.8%",
+    "y3_annualized": "+14.9%/yr",
     "y2025": "+15.2%",
     "y2024": "+23.2%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "iShares U.S. Utilities ETF",
@@ -4277,11 +4277,11 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "IFRA": {
-   "price": 57.0,
-   "price_display": "$57.00",
+   "price": 55.96,
+   "price_display": "$55.96",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 346138,
@@ -4292,7 +4292,7 @@
    "low_52w": 50.77,
    "pct_below_high": "-11.0%",
    "max_drawdown_1y": "-13.7%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+9.7%",
     "y1": "+12.8%",
@@ -4387,29 +4387,29 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "IGPT": {
-   "price": 75.12,
-   "price_display": "$75.12",
+   "price": 72.68,
+   "price_display": "$72.68",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 153283,
-   "volume_display": "~153K/day",
-   "dollar_volume_avg": 13984754,
+   "price_asof": "2026-11-19",
+   "volume_avg": 153987,
+   "volume_display": "~154K/day",
+   "dollar_volume_avg": 14019466,
    "dollar_volume_display": "~$14.0M/day",
    "high_52w": 108.11,
    "low_52w": 54.18,
-   "pct_below_high": "-30.5%",
-   "max_drawdown_1y": "-32.5%",
-   "history_start": "2021-11-19",
+   "pct_below_high": "-32.8%",
+   "max_drawdown_1y": "-32.8%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+26.3%",
-    "y1": "+33.6%",
-    "y3_annualized": "+28.1%/yr",
+    "ytd": "+22.2%",
+    "y1": "+29.3%",
+    "y3_annualized": "+26.7%/yr",
     "y2025": "+31.6%",
     "y2024": "+17.1%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Invesco AI and Next Gen Software ETF",
@@ -4501,29 +4501,29 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "IGV": {
-   "price": 96.94,
-   "price_display": "$96.94",
+   "price": 96.1,
+   "price_display": "$96.10",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 8889765,
+   "price_asof": "2026-11-19",
+   "volume_avg": 8910071,
    "volume_display": "~8.9M/day",
-   "dollar_volume_avg": 936899710,
-   "dollar_volume_display": "~$936.9M/day",
+   "dollar_volume_avg": 937750533,
+   "dollar_volume_display": "~$937.8M/day",
    "high_52w": 112.67,
    "low_52w": 74.67,
-   "pct_below_high": "-14.0%",
+   "pct_below_high": "-14.7%",
    "max_drawdown_1y": "-32.2%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-8.3%",
-    "y1": "-7.1%",
-    "y3_annualized": "+9.0%/yr",
+    "ytd": "-9.1%",
+    "y1": "-7.5%",
+    "y3_annualized": "+8.7%/yr",
     "y2025": "+5.6%",
     "y2024": "+23.4%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "iShares Expanded Tech-Software Sector ETF",
@@ -4611,11 +4611,11 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "IHAK": {
-   "price": 70.15,
-   "price_display": "$70.15",
+   "price": 70.76,
+   "price_display": "$70.76",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 228556,
@@ -4626,7 +4626,7 @@
    "low_52w": 41.26,
    "pct_below_high": "-9.2%",
    "max_drawdown_1y": "-18.2%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+45.8%",
     "y1": "+43.7%",
@@ -4709,29 +4709,29 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "IHE": {
-   "price": 107.05,
-   "price_display": "$107.05",
+   "price": 104.64,
+   "price_display": "$104.64",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 243883,
+   "price_asof": "2026-11-19",
+   "volume_avg": 244054,
    "volume_display": "~244K/day",
-   "dollar_volume_avg": 25254483,
+   "dollar_volume_avg": 25262196,
    "dollar_volume_display": "~$25.3M/day",
    "high_52w": 111.08,
    "low_52w": 81.45,
-   "pct_below_high": "-3.6%",
+   "pct_below_high": "-5.8%",
    "max_drawdown_1y": "-9.7%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+27.3%",
-    "y1": "+32.9%",
-    "y3_annualized": "+24.8%/yr",
+    "ytd": "+24.5%",
+    "y1": "+29.5%",
+    "y3_annualized": "+23.8%/yr",
     "y2025": "+31.7%",
     "y2024": "+8.1%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "iShares U.S. Pharmaceuticals ETF",
@@ -4803,29 +4803,29 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "IHF": {
-   "price": 55.83,
-   "price_display": "$55.83",
+   "price": 54.08,
+   "price_display": "$54.08",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 861567,
-   "volume_display": "~862K/day",
-   "dollar_volume_avg": 50110987,
-   "dollar_volume_display": "~$50.1M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 880956,
+   "volume_display": "~881K/day",
+   "dollar_volume_avg": 51146130,
+   "dollar_volume_display": "~$51.1M/day",
    "high_52w": 61.11,
    "low_52w": 40.98,
-   "pct_below_high": "-8.6%",
+   "pct_below_high": "-11.5%",
    "max_drawdown_1y": "-18.4%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+17.2%",
-    "y1": "+19.3%",
-    "y3_annualized": "+4.5%/yr",
+    "ytd": "+13.5%",
+    "y1": "+16.5%",
+    "y3_annualized": "+3.4%/yr",
     "y2025": "+0.9%",
     "y2024": "-7.9%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "iShares U.S. Healthcare Providers ETF",
@@ -4901,29 +4901,29 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "IHI": {
-   "price": 56.89,
-   "price_display": "$56.89",
+   "price": 56.03,
+   "price_display": "$56.03",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 2854486,
+   "price_asof": "2026-11-19",
+   "volume_avg": 2879351,
    "volume_display": "~2.9M/day",
-   "dollar_volume_avg": 154840191,
-   "dollar_volume_display": "~$154.8M/day",
+   "dollar_volume_avg": 156229985,
+   "dollar_volume_display": "~$156.2M/day",
    "high_52w": 64.47,
    "low_52w": 47.55,
-   "pct_below_high": "-11.8%",
+   "pct_below_high": "-13.1%",
    "max_drawdown_1y": "-26.1%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-8.1%",
-    "y1": "-7.5%",
-    "y3_annualized": "+5.8%/yr",
+    "ytd": "-9.5%",
+    "y1": "-9.1%",
+    "y3_annualized": "+5.3%/yr",
     "y2025": "+6.9%",
     "y2024": "+8.6%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "iShares U.S. Medical Devices ETF",
@@ -4995,11 +4995,11 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "ISPY": {
-   "price": 45.57,
-   "price_display": "$45.57",
+   "price": 44.76,
+   "price_display": "$44.76",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 80795,
@@ -5124,29 +5124,29 @@
     }
    ],
    "fund_family": "ProShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "ITA": {
-   "price": 69.39,
-   "price_display": "$69.39",
+   "price": 68.2,
+   "price_display": "$68.20",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 2517630,
+   "price_asof": "2026-11-19",
+   "volume_avg": 2532446,
    "volume_display": "~2.5M/day",
-   "dollar_volume_avg": 179076278,
-   "dollar_volume_display": "~$179.1M/day",
+   "dollar_volume_avg": 179803961,
+   "dollar_volume_display": "~$179.8M/day",
    "high_52w": 84.41,
    "low_52w": 66.08,
-   "pct_below_high": "-17.8%",
+   "pct_below_high": "-19.2%",
    "max_drawdown_1y": "-20.0%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-2.8%",
-    "y1": "+2.9%",
-    "y3_annualized": "+22.5%/yr",
+    "ytd": "-4.5%",
+    "y1": "+1.0%",
+    "y3_annualized": "+21.8%/yr",
     "y2025": "+48.6%",
     "y2024": "+15.8%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "iShares U.S. Aerospace & Defense ETF",
@@ -5218,11 +5218,11 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "IVEP": {
-   "price": 22.5,
-   "price_display": "$22.50",
+   "price": 22.06,
+   "price_display": "$22.06",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 12360,
@@ -5329,29 +5329,29 @@
     }
    ],
    "fund_family": "Wedbush Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "IXC": {
-   "price": 56.1,
-   "price_display": "$56.10",
+   "price": 55.64,
+   "price_display": "$55.64",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 848797,
-   "volume_display": "~849K/day",
-   "dollar_volume_avg": 50240424,
-   "dollar_volume_display": "~$50.2M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 883205,
+   "volume_display": "~883K/day",
+   "dollar_volume_avg": 52144590,
+   "dollar_volume_display": "~$52.1M/day",
    "high_52w": 64.19,
    "low_52w": 40.58,
-   "pct_below_high": "-12.6%",
+   "pct_below_high": "-13.3%",
    "max_drawdown_1y": "-15.4%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+35.6%",
-    "y1": "+34.3%",
-    "y3_annualized": "+16.4%/yr",
+    "ytd": "+34.5%",
+    "y1": "+34.6%",
+    "y3_annualized": "+16.1%/yr",
     "y2025": "+14.0%",
     "y2024": "+2.0%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "iShares Global Energy ETF",
@@ -5423,29 +5423,29 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "IYW": {
-   "price": 222.85,
-   "price_display": "$222.85",
+   "price": 218.52,
+   "price_display": "$218.52",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 735197,
-   "volume_display": "~735K/day",
-   "dollar_volume_avg": 182887682,
-   "dollar_volume_display": "~$182.9M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 740978,
+   "volume_display": "~741K/day",
+   "dollar_volume_avg": 184047143,
+   "dollar_volume_display": "~$184.0M/day",
    "high_52w": 272.59,
    "low_52w": 173.53,
-   "pct_below_high": "-18.2%",
-   "max_drawdown_1y": "-18.3%",
-   "history_start": "2021-11-19",
+   "pct_below_high": "-19.8%",
+   "max_drawdown_1y": "-19.8%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+11.7%",
-    "y1": "+15.4%",
-    "y3_annualized": "+24.7%/yr",
+    "ytd": "+9.5%",
+    "y1": "+12.4%",
+    "y3_annualized": "+23.8%/yr",
     "y2025": "+25.4%",
     "y2024": "+30.2%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "iShares U.S. Technology ETF",
@@ -5533,11 +5533,11 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "JEPI": {
-   "price": 56.58,
-   "price_display": "$56.58",
+   "price": 55.54,
+   "price_display": "$55.54",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 4589967,
@@ -5548,7 +5548,7 @@
    "low_52w": 55.29,
    "pct_below_high": "-5.5%",
    "max_drawdown_1y": "-6.7%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+5.6%",
     "y1": "+8.9%",
@@ -5667,17 +5667,17 @@
     }
    ],
    "fund_family": "JPMorgan",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "JEPQ": {
-   "price": 54.68,
-   "price_display": "$54.68",
+   "price": 53.63,
+   "price_display": "$53.63",
    "currency": "USD",
    "price_asof": "2026-11-18",
-   "volume_avg": 6588916,
+   "volume_avg": 6590103,
    "volume_display": "~6.6M/day",
-   "dollar_volume_avg": 386901354,
-   "dollar_volume_display": "~$386.9M/day",
+   "dollar_volume_avg": 386966276,
+   "dollar_volume_display": "~$387.0M/day",
    "high_52w": 61.46,
    "low_52w": 53.71,
    "pct_below_high": "-11.0%",
@@ -5801,11 +5801,11 @@
     }
    ],
    "fund_family": "JPMorgan",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "LABU": {
-   "price": 191.71,
-   "price_display": "$191.71",
+   "price": 187.58,
+   "price_display": "$187.58",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 376737,
@@ -5816,7 +5816,7 @@
    "low_52w": 132.83,
    "pct_below_high": "-43.9%",
    "max_drawdown_1y": "-43.9%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+20.3%",
     "y1": "+40.0%",
@@ -5854,29 +5854,29 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "LIT": {
-   "price": 55.57,
-   "price_display": "$55.57",
+   "price": 54.33,
+   "price_display": "$54.33",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 220657,
+   "price_asof": "2026-11-19",
+   "volume_avg": 221122,
    "volume_display": "~221K/day",
-   "dollar_volume_avg": 14988305,
-   "dollar_volume_display": "~$15.0M/day",
+   "dollar_volume_avg": 14932374,
+   "dollar_volume_display": "~$14.9M/day",
    "high_52w": 91.62,
-   "low_52w": 55.57,
-   "pct_below_high": "-39.3%",
-   "max_drawdown_1y": "-39.1%",
-   "history_start": "2021-11-19",
+   "low_52w": 54.33,
+   "pct_below_high": "-40.7%",
+   "max_drawdown_1y": "-40.4%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-14.0%",
-    "y1": "-10.5%",
-    "y3_annualized": "+4.9%/yr",
+    "ytd": "-15.9%",
+    "y1": "-13.4%",
+    "y3_annualized": "+4.1%/yr",
     "y2025": "+60.0%",
     "y2024": "-19.2%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Global X Lithium & Battery Tech ETF",
@@ -5960,29 +5960,29 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "LLY": {
-   "price": 1382.75,
-   "price_display": "$1,382.75",
+   "price": 1351.12,
+   "price_display": "$1,351.12",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 2569419,
+   "price_asof": "2026-11-19",
+   "volume_avg": 2580546,
    "volume_display": "~2.6M/day",
-   "dollar_volume_avg": 3229506253,
+   "dollar_volume_avg": 3248334453,
    "dollar_volume_display": "~$3.2B/day",
    "high_52w": 1443.5,
    "low_52w": 851.21,
-   "pct_below_high": "-4.2%",
+   "pct_below_high": "-6.4%",
    "max_drawdown_1y": "-23.2%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+29.4%",
-    "y1": "+35.1%",
-    "y3_annualized": "+33.6%/yr",
+    "ytd": "+26.5%",
+    "y1": "+29.5%",
+    "y3_annualized": "+32.6%/yr",
     "y2025": "+40.2%",
     "y2024": "+33.3%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Eli Lilly and Company",
@@ -5992,8 +5992,8 @@
    "source": "Yahoo Finance"
   },
   "LRNZ": {
-   "price": 54.97,
-   "price_display": "$54.97",
+   "price": 54.31,
+   "price_display": "$54.31",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 3351,
@@ -6004,7 +6004,7 @@
    "low_52w": 38.18,
    "pct_below_high": "-22.9%",
    "max_drawdown_1y": "-25.2%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+15.4%",
     "y1": "+15.6%",
@@ -6091,11 +6091,11 @@
     }
    ],
    "fund_family": "TrueShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "MLPX": {
-   "price": 70.67,
-   "price_display": "$70.67",
+   "price": 69.89,
+   "price_display": "$69.89",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 360643,
@@ -6106,7 +6106,7 @@
    "low_52w": 59.09,
    "pct_below_high": "-9.0%",
    "max_drawdown_1y": "-10.0%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+21.9%",
     "y1": "+23.6%",
@@ -6185,11 +6185,11 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "NASA": {
-   "price": 19.59,
-   "price_display": "$19.59",
+   "price": 18.81,
+   "price_display": "$18.81",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 1815222,
@@ -6287,29 +6287,29 @@
     }
    ],
    "fund_family": "Tema ETFs",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "NLR": {
-   "price": 82.99,
-   "price_display": "$82.99",
+   "price": 80.79,
+   "price_display": "$80.79",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 446554,
-   "volume_display": "~447K/day",
-   "dollar_volume_avg": 45132327,
-   "dollar_volume_display": "~$45.1M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 453263,
+   "volume_display": "~453K/day",
+   "dollar_volume_avg": 45458816,
+   "dollar_volume_display": "~$45.5M/day",
    "high_52w": 164.37,
-   "low_52w": 82.99,
-   "pct_below_high": "-49.5%",
-   "max_drawdown_1y": "-49.5%",
-   "history_start": "2021-11-19",
+   "low_52w": 80.79,
+   "pct_below_high": "-50.8%",
+   "max_drawdown_1y": "-50.8%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-33.2%",
-    "y1": "-32.7%",
-    "y3_annualized": "+6.5%/yr",
+    "ytd": "-35.0%",
+    "y1": "-36.1%",
+    "y3_annualized": "+5.5%/yr",
     "y2025": "+56.5%",
     "y2024": "+14.3%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "VanEck Uranium and Nuclear ETF",
@@ -6388,11 +6388,11 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "NUKZ": {
-   "price": 53.12,
-   "price_display": "$53.12",
+   "price": 52.48,
+   "price_display": "$52.48",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 111213,
@@ -6497,29 +6497,29 @@
     }
    ],
    "fund_family": "Exchange Traded Concepts",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "OIH": {
-   "price": 351.03,
-   "price_display": "$351.03",
+   "price": 345.69,
+   "price_display": "$345.69",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 280981,
-   "volume_display": "~281K/day",
-   "dollar_volume_avg": 110384407,
-   "dollar_volume_display": "~$110.4M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 280446,
+   "volume_display": "~280K/day",
+   "dollar_volume_avg": 109919825,
+   "dollar_volume_display": "~$109.9M/day",
    "high_52w": 453.92,
    "low_52w": 274.41,
-   "pct_below_high": "-22.7%",
-   "max_drawdown_1y": "-23.4%",
-   "history_start": "2021-11-19",
+   "pct_below_high": "-23.8%",
+   "max_drawdown_1y": "-23.8%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+23.3%",
-    "y1": "+26.1%",
-    "y3_annualized": "+5.4%/yr",
+    "ytd": "+21.4%",
+    "y1": "+24.5%",
+    "y3_annualized": "+4.8%/yr",
     "y2025": "+6.8%",
     "y2024": "-10.5%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "VanEck Oil Services ETF",
@@ -6595,11 +6595,11 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "OZEM": {
-   "price": 29.72,
-   "price_display": "$29.72",
+   "price": 29.33,
+   "price_display": "$29.33",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 12252,
@@ -6688,11 +6688,11 @@
     }
    ],
    "fund_family": "Roundhill Investments",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "PAVE": {
-   "price": 52.06,
-   "price_display": "$52.06",
+   "price": 50.96,
+   "price_display": "$50.96",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 1712079,
@@ -6703,7 +6703,7 @@
    "low_52w": 45.51,
    "pct_below_high": "-13.2%",
    "max_drawdown_1y": "-15.3%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+9.1%",
     "y1": "+13.7%",
@@ -6794,29 +6794,29 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "PBW": {
-   "price": 22.98,
-   "price_display": "$22.98",
+   "price": 22.51,
+   "price_display": "$22.51",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 384797,
-   "volume_display": "~385K/day",
-   "dollar_volume_avg": 10899386,
-   "dollar_volume_display": "~$10.9M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 375905,
+   "volume_display": "~376K/day",
+   "dollar_volume_avg": 10578490,
+   "dollar_volume_display": "~$10.6M/day",
    "high_52w": 46.99,
-   "low_52w": 22.98,
-   "pct_below_high": "-51.1%",
-   "max_drawdown_1y": "-50.4%",
-   "history_start": "2021-11-19",
+   "low_52w": 22.51,
+   "pct_below_high": "-52.1%",
+   "max_drawdown_1y": "-51.4%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-23.6%",
-    "y1": "-21.6%",
-    "y3_annualized": "-3.1%/yr",
+    "ytd": "-25.1%",
+    "y1": "-23.1%",
+    "y3_annualized": "-3.8%/yr",
     "y2025": "+54.0%",
     "y2024": "-30.8%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Invesco WilderHill Clean Energy ETF",
@@ -6908,29 +6908,29 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "PHO": {
-   "price": 76.24,
-   "price_display": "$76.24",
+   "price": 75.15,
+   "price_display": "$75.15",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 70897,
-   "volume_display": "~71K/day",
-   "dollar_volume_avg": 5064418,
+   "price_asof": "2026-11-19",
+   "volume_avg": 71567,
+   "volume_display": "~72K/day",
+   "dollar_volume_avg": 5116467,
    "dollar_volume_display": "~$5.1M/day",
    "high_52w": 77.49,
    "low_52w": 64.15,
-   "pct_below_high": "-1.6%",
+   "pct_below_high": "-3.0%",
    "max_drawdown_1y": "-13.8%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+8.7%",
-    "y1": "+9.2%",
-    "y3_annualized": "+11.8%/yr",
+    "ytd": "+7.2%",
+    "y1": "+8.3%",
+    "y3_annualized": "+11.3%/yr",
     "y2025": "+7.6%",
     "y2024": "+8.6%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Invesco Water Resources ETF",
@@ -7018,11 +7018,11 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "PICK": {
-   "price": 49.2,
-   "price_display": "$49.20",
+   "price": 48.12,
+   "price_display": "$48.12",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 748940,
@@ -7033,7 +7033,7 @@
    "low_52w": 44.57,
    "pct_below_high": "-28.6%",
    "max_drawdown_1y": "-28.0%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "-3.4%",
     "y1": "+11.5%",
@@ -7128,29 +7128,29 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "PJP": {
-   "price": 128.23,
-   "price_display": "$128.23",
+   "price": 125.64,
+   "price_display": "$125.64",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 36238,
-   "volume_display": "~36K/day",
-   "dollar_volume_avg": 4594330,
+   "price_asof": "2026-11-19",
+   "volume_avg": 36602,
+   "volume_display": "~37K/day",
+   "dollar_volume_avg": 4638439,
    "dollar_volume_display": "~$4.6M/day",
    "high_52w": 131.64,
    "low_52w": 99.78,
-   "pct_below_high": "-2.6%",
+   "pct_below_high": "-4.6%",
    "max_drawdown_1y": "-9.4%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+23.6%",
-    "y1": "+24.4%",
-    "y3_annualized": "+23.7%/yr",
+    "ytd": "+21.1%",
+    "y1": "+22.7%",
+    "y3_annualized": "+22.8%/yr",
     "y2025": "+28.0%",
     "y2024": "+9.6%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Invesco Pharmaceuticals ETF",
@@ -7222,29 +7222,29 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "PPA": {
-   "price": 153.61,
-   "price_display": "$153.61",
+   "price": 151.29,
+   "price_display": "$151.29",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 270084,
-   "volume_display": "~270K/day",
-   "dollar_volume_avg": 42837258,
-   "dollar_volume_display": "~$42.8M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 266790,
+   "volume_display": "~267K/day",
+   "dollar_volume_avg": 42179211,
+   "dollar_volume_display": "~$42.2M/day",
    "high_52w": 185.59,
    "low_52w": 146.12,
-   "pct_below_high": "-17.2%",
+   "pct_below_high": "-18.5%",
    "max_drawdown_1y": "-18.4%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-1.5%",
-    "y1": "+3.5%",
-    "y3_annualized": "+22.0%/yr",
+    "ytd": "-3.0%",
+    "y1": "+2.0%",
+    "y3_annualized": "+21.4%/yr",
     "y2025": "+37.1%",
     "y2024": "+25.3%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Invesco Aerospace & Defense ETF",
@@ -7324,29 +7324,29 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "PPH": {
-   "price": 117.87,
-   "price_display": "$117.87",
+   "price": 114.95,
+   "price_display": "$114.95",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 325154,
-   "volume_display": "~325K/day",
-   "dollar_volume_avg": 37172236,
-   "dollar_volume_display": "~$37.2M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 331586,
+   "volume_display": "~332K/day",
+   "dollar_volume_avg": 37907746,
+   "dollar_volume_display": "~$37.9M/day",
    "high_52w": 122.65,
    "low_52w": 97.57,
-   "pct_below_high": "-3.9%",
+   "pct_below_high": "-6.3%",
    "max_drawdown_1y": "-10.8%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+16.2%",
-    "y1": "+21.2%",
-    "y3_annualized": "+17.4%/yr",
+    "ytd": "+13.3%",
+    "y1": "+18.4%",
+    "y3_annualized": "+16.4%/yr",
     "y2025": "+22.0%",
     "y2024": "+8.0%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "VanEck Pharmaceutical ETF",
@@ -7418,11 +7418,11 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "QBTX": {
-   "price": 4.14,
-   "price_display": "$4.14",
+   "price": 3.74,
+   "price_display": "$3.74",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 496385,
@@ -7451,29 +7451,29 @@
    "expense_ratio": 1.31,
    "yield_ttm": "49.66%",
    "fund_family": "AXS",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "QCLN": {
-   "price": 41.11,
-   "price_display": "$41.11",
+   "price": 40.23,
+   "price_display": "$40.23",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 119986,
-   "volume_display": "~120K/day",
-   "dollar_volume_avg": 5638039,
-   "dollar_volume_display": "~$5.6M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 117875,
+   "volume_display": "~118K/day",
+   "dollar_volume_avg": 5513975,
+   "dollar_volume_display": "~$5.5M/day",
    "high_52w": 68.47,
-   "low_52w": 41.1,
-   "pct_below_high": "-40.0%",
-   "max_drawdown_1y": "-40.0%",
-   "history_start": "2021-11-19",
+   "low_52w": 40.23,
+   "pct_below_high": "-41.2%",
+   "max_drawdown_1y": "-41.2%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-7.8%",
-    "y1": "-3.5%",
-    "y3_annualized": "+5.0%/yr",
+    "ytd": "-9.8%",
+    "y1": "-6.0%",
+    "y3_annualized": "+4.2%/yr",
     "y2025": "+31.8%",
     "y2024": "-18.9%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "First Trust NASDAQ Clean Edge Green Energy Index Fund",
@@ -7569,11 +7569,11 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "QPUX": {
-   "price": 3.19,
-   "price_display": "$3.19",
+   "price": 2.86,
+   "price_display": "$2.86",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 289246,
@@ -7602,29 +7602,29 @@
    "expense_ratio": 1.29,
    "yield_ttm": "0.0%",
    "fund_family": "Defiance ETFs LLC",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "QQQ": {
-   "price": 659.51,
-   "price_display": "$659.51",
+   "price": 645.04,
+   "price_display": "$645.04",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 39333330,
-   "volume_display": "~39.3M/day",
-   "dollar_volume_avg": 27839824531,
-   "dollar_volume_display": "~$27.8B/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 39939875,
+   "volume_display": "~39.9M/day",
+   "dollar_volume_avg": 28194973650,
+   "dollar_volume_display": "~$28.2B/day",
    "high_52w": 759.66,
    "low_52w": 558.28,
-   "pct_below_high": "-13.2%",
-   "max_drawdown_1y": "-14.8%",
-   "history_start": "2021-11-19",
+   "pct_below_high": "-15.1%",
+   "max_drawdown_1y": "-15.1%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+7.7%",
-    "y1": "+11.1%",
-    "y3_annualized": "+20.2%/yr",
+    "ytd": "+5.4%",
+    "y1": "+8.0%",
+    "y3_annualized": "+19.3%/yr",
     "y2025": "+20.8%",
     "y2024": "+25.6%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Invesco QQQ Trust",
@@ -7732,17 +7732,17 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "QQQI": {
-   "price": 49.19,
-   "price_display": "$49.19",
+   "price": 48.14,
+   "price_display": "$48.14",
    "currency": "USD",
    "price_asof": "2026-11-18",
-   "volume_avg": 4660867,
+   "volume_avg": 4662467,
    "volume_display": "~4.7M/day",
-   "dollar_volume_avg": 248826609,
-   "dollar_volume_display": "~$248.8M/day",
+   "dollar_volume_avg": 248905313,
+   "dollar_volume_display": "~$248.9M/day",
    "high_52w": 57.69,
    "low_52w": 48.12,
    "pct_below_high": "-14.7%",
@@ -7861,11 +7861,11 @@
     }
    ],
    "fund_family": "Neos Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "QQQY": {
-   "price": 19.33,
-   "price_display": "$19.33",
+   "price": 18.8,
+   "price_display": "$18.80",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 101992,
@@ -7946,11 +7946,11 @@
     }
    ],
    "fund_family": "Defiance ETFs LLC",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "QTUM": {
-   "price": 122.95,
-   "price_display": "$122.95",
+   "price": 119.71,
+   "price_display": "$119.71",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 325644,
@@ -7961,7 +7961,7 @@
    "low_52w": 100.36,
    "pct_below_high": "-27.1%",
    "max_drawdown_1y": "-29.0%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+12.9%",
     "y1": "+19.5%",
@@ -8056,22 +8056,22 @@
     }
    ],
    "fund_family": "Defiance ETFs LLC",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "QYLD": {
-   "price": 17.2,
-   "price_display": "$17.20",
+   "price": 16.83,
+   "price_display": "$16.83",
    "currency": "USD",
    "price_asof": "2026-11-18",
-   "volume_avg": 5322884,
+   "volume_avg": 5323221,
    "volume_display": "~5.3M/day",
-   "dollar_volume_avg": 96222055,
+   "dollar_volume_avg": 96227843,
    "dollar_volume_display": "~$96.2M/day",
    "high_52w": 18.74,
    "low_52w": 16.7,
    "pct_below_high": "-8.2%",
    "max_drawdown_1y": "-9.0%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+7.6%",
     "y1": "+12.0%",
@@ -8186,29 +8186,29 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "REMX": {
-   "price": 45.29,
-   "price_display": "$45.29",
+   "price": 44.32,
+   "price_display": "$44.32",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 777452,
-   "volume_display": "~777K/day",
-   "dollar_volume_avg": 46639802,
-   "dollar_volume_display": "~$46.6M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 771035,
+   "volume_display": "~771K/day",
+   "dollar_volume_avg": 45542355,
+   "dollar_volume_display": "~$45.5M/day",
    "high_52w": 109.53,
-   "low_52w": 45.29,
-   "pct_below_high": "-58.7%",
-   "max_drawdown_1y": "-58.7%",
-   "history_start": "2021-11-19",
+   "low_52w": 44.32,
+   "pct_below_high": "-59.5%",
+   "max_drawdown_1y": "-59.5%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-38.7%",
-    "y1": "-35.7%",
-    "y3_annualized": "-7.0%/yr",
+    "ytd": "-40.0%",
+    "y1": "-38.8%",
+    "y3_annualized": "-7.7%/yr",
     "y2025": "+92.9%",
     "y2024": "-35.0%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "VanEck Rare Earth and Strategic Metals ETF",
@@ -8280,11 +8280,11 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "RGTU": {
-   "price": 2.51,
-   "price_display": "$2.51",
+   "price": 2.34,
+   "price_display": "$2.34",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 72163,
@@ -8312,11 +8312,11 @@
    "aum_display": "~$5M",
    "expense_ratio": 1.3,
    "fund_family": "AXS",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "ROBO": {
-   "price": 68.52,
-   "price_display": "$68.52",
+   "price": 67.09,
+   "price_display": "$67.09",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 139294,
@@ -8327,7 +8327,7 @@
    "low_52w": 63.04,
    "pct_below_high": "-24.2%",
    "max_drawdown_1y": "-24.2%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "-1.1%",
     "y1": "+7.1%",
@@ -8426,11 +8426,11 @@
     }
    ],
    "fund_family": "Robo Global",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "ROBT": {
-   "price": 50.88,
-   "price_display": "$50.88",
+   "price": 49.88,
+   "price_display": "$49.88",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 40694,
@@ -8441,7 +8441,7 @@
    "low_52w": 44.32,
    "pct_below_high": "-16.7%",
    "max_drawdown_1y": "-20.5%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "-1.9%",
     "y1": "+1.7%",
@@ -8540,11 +8540,11 @@
     }
    ],
    "fund_family": "First Trust",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "ROKT": {
-   "price": 96.71,
-   "price_display": "$96.71",
+   "price": 94.67,
+   "price_display": "$94.67",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 15108,
@@ -8555,7 +8555,7 @@
    "low_52w": 72.93,
    "pct_below_high": "-29.2%",
    "max_drawdown_1y": "-31.7%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+13.8%",
     "y1": "+28.4%",
@@ -8646,11 +8646,11 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "RYLD": {
-   "price": 15.26,
-   "price_display": "$15.26",
+   "price": 14.95,
+   "price_display": "$14.95",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 529443,
@@ -8661,7 +8661,7 @@
    "low_52w": 14.64,
    "pct_below_high": "-7.1%",
    "max_drawdown_1y": "-6.3%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+10.2%",
     "y1": "+14.3%",
@@ -8735,11 +8735,11 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "SBIO": {
-   "price": 52.9,
-   "price_display": "$52.90",
+   "price": 52.53,
+   "price_display": "$52.53",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 35117,
@@ -8750,7 +8750,7 @@
    "low_52w": 46.08,
    "pct_below_high": "-25.3%",
    "max_drawdown_1y": "-29.2%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+3.3%",
     "y1": "+13.0%",
@@ -8829,11 +8829,11 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "SHLD": {
-   "price": 57.68,
-   "price_display": "$57.68",
+   "price": 57.16,
+   "price_display": "$57.16",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 1541667,
@@ -8927,29 +8927,29 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "SMH": {
-   "price": 459.54,
-   "price_display": "$459.54",
+   "price": 447.48,
+   "price_display": "$447.48",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 8691627,
+   "price_asof": "2026-11-19",
+   "volume_avg": 8706011,
    "volume_display": "~8.7M/day",
-   "dollar_volume_avg": 4694977462,
+   "dollar_volume_avg": 4684179545,
    "dollar_volume_display": "~$4.7B/day",
    "high_52w": 668.91,
    "low_52w": 325.1,
-   "pct_below_high": "-31.3%",
+   "pct_below_high": "-33.1%",
    "max_drawdown_1y": "-33.1%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+27.6%",
-    "y1": "+38.3%",
-    "y3_annualized": "+42.0%/yr",
+    "ytd": "+24.3%",
+    "y1": "+32.2%",
+    "y3_annualized": "+40.8%/yr",
     "y2025": "+49.2%",
     "y2024": "+39.1%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "VanEck Semiconductor ETF",
@@ -9021,11 +9021,11 @@
     }
    ],
    "fund_family": "VanEck",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "SMRF": {
-   "price": 17.27,
-   "price_display": "$17.27",
+   "price": 16.84,
+   "price_display": "$16.84",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 7968,
@@ -9131,29 +9131,29 @@
     }
    ],
    "fund_family": "ALPS",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "SOXX": {
-   "price": 141.85,
-   "price_display": "$141.85",
+   "price": 137.95,
+   "price_display": "$137.95",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 28350113,
-   "volume_display": "~28.4M/day",
-   "dollar_volume_avg": 4670970097,
+   "price_asof": "2026-11-19",
+   "volume_avg": 28714476,
+   "volume_display": "~28.7M/day",
+   "dollar_volume_avg": 4710731071,
    "dollar_volume_display": "~$4.7B/day",
    "high_52w": 218.34,
    "low_52w": 89.37,
-   "pct_below_high": "-35.0%",
+   "pct_below_high": "-36.8%",
    "max_drawdown_1y": "-39.5%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+41.6%",
-    "y1": "+54.1%",
-    "y3_annualized": "+36.1%/yr",
+    "ytd": "+37.7%",
+    "y1": "+47.4%",
+    "y3_annualized": "+34.8%/yr",
     "y2025": "+40.7%",
     "y2024": "+12.9%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "iShares Semiconductor ETF",
@@ -9225,16 +9225,16 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "SPCX": {
-   "price": 143.5,
-   "price_display": "$143.50",
+   "price": 138.43,
+   "price_display": "$138.43",
    "currency": "USD",
    "price_asof": "2026-11-18",
-   "volume_avg": 94631827,
+   "volume_avg": 94646800,
    "volume_display": "~94.6M/day",
-   "dollar_volume_avg": 13961979656,
+   "dollar_volume_avg": 13964128284,
    "dollar_volume_display": "~$14.0B/day",
    "high_52w": 211.39,
    "low_52w": 108.27,
@@ -9255,26 +9255,26 @@
    "source": "Yahoo Finance"
   },
   "SPY": {
-   "price": 730.2,
-   "price_display": "$730.20",
+   "price": 715.87,
+   "price_display": "$715.87",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 44239141,
-   "volume_display": "~44.2M/day",
-   "dollar_volume_avg": 33661997511,
-   "dollar_volume_display": "~$33.7B/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 44834340,
+   "volume_display": "~44.8M/day",
+   "dollar_volume_avg": 34057121096,
+   "dollar_volume_display": "~$34.1B/day",
    "high_52w": 779.09,
    "low_52w": 631.97,
-   "pct_below_high": "-6.3%",
+   "pct_below_high": "-8.1%",
    "max_drawdown_1y": "-8.9%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+7.9%",
-    "y1": "+11.8%",
-    "y3_annualized": "+18.9%/yr",
+    "ytd": "+5.8%",
+    "y1": "+9.2%",
+    "y3_annualized": "+18.1%/yr",
     "y2025": "+17.7%",
     "y2024": "+24.9%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "State Street SPDR S&P 500 ETF Trust",
@@ -9386,16 +9386,16 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "SPYI": {
-   "price": 50.53,
-   "price_display": "$50.53",
+   "price": 49.55,
+   "price_display": "$49.55",
    "currency": "USD",
    "price_asof": "2026-11-18",
-   "volume_avg": 2913024,
+   "volume_avg": 2913440,
    "volume_display": "~2.9M/day",
-   "dollar_volume_avg": 154527524,
+   "dollar_volume_avg": 154548538,
    "dollar_volume_display": "~$154.5M/day",
    "high_52w": 54.41,
    "low_52w": 47.97,
@@ -9520,11 +9520,11 @@
     }
    ],
    "fund_family": "Neos Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "SVOL": {
-   "price": 14.27,
-   "price_display": "$14.27",
+   "price": 13.7,
+   "price_display": "$13.70",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 383935,
@@ -9535,7 +9535,7 @@
    "low_52w": 14.23,
    "pct_below_high": "-20.6%",
    "max_drawdown_1y": "-14.4%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "-3.3%",
     "y1": "+3.3%",
@@ -9619,29 +9619,29 @@
     }
    ],
    "fund_family": "Simplify Asset Management",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "TAN": {
-   "price": 37.82,
-   "price_display": "$37.82",
+   "price": 36.63,
+   "price_display": "$36.63",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 1348208,
+   "price_asof": "2026-11-19",
+   "volume_avg": 1290221,
    "volume_display": "~1.3M/day",
-   "dollar_volume_avg": 59542763,
-   "dollar_volume_display": "~$59.5M/day",
+   "dollar_volume_avg": 56425564,
+   "dollar_volume_display": "~$56.4M/day",
    "high_52w": 73.93,
-   "low_52w": 37.82,
-   "pct_below_high": "-48.8%",
-   "max_drawdown_1y": "-48.8%",
-   "history_start": "2021-11-19",
+   "low_52w": 36.63,
+   "pct_below_high": "-50.5%",
+   "max_drawdown_1y": "-50.5%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-23.0%",
-    "y1": "-21.6%",
-    "y3_annualized": "-5.9%/yr",
+    "ytd": "-25.4%",
+    "y1": "-23.1%",
+    "y3_annualized": "-6.9%/yr",
     "y2025": "+48.3%",
     "y2024": "-37.6%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Invesco Solar ETF",
@@ -9725,11 +9725,11 @@
     }
    ],
    "fund_family": "Invesco",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "THNQ": {
-   "price": 77.75,
-   "price_display": "$77.75",
+   "price": 76.08,
+   "price_display": "$76.08",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 39138,
@@ -9740,7 +9740,7 @@
    "low_52w": 55.88,
    "pct_below_high": "-22.8%",
    "max_drawdown_1y": "-25.5%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+22.5%",
     "y1": "+25.2%",
@@ -9839,11 +9839,11 @@
     }
    ],
    "fund_family": "Robo Global",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "THNR": {
-   "price": 25.02,
-   "price_display": "$25.02",
+   "price": 24.7,
+   "price_display": "$24.70",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 962,
@@ -9932,11 +9932,11 @@
     }
    ],
    "fund_family": "Amplify ETFs",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "TPYP": {
-   "price": 41.78,
-   "price_display": "$41.78",
+   "price": 41.23,
+   "price_display": "$41.23",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 35722,
@@ -9947,7 +9947,7 @@
    "low_52w": 34.62,
    "pct_below_high": "-5.9%",
    "max_drawdown_1y": "-9.1%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+21.3%",
     "y1": "+21.8%",
@@ -10030,11 +10030,11 @@
     }
    ],
    "fund_family": "Tortoise Capital Advisors, LLC",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "UBOT": {
-   "price": 15.07,
-   "price_display": "$15.07",
+   "price": 14.34,
+   "price_display": "$14.34",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 15684,
@@ -10045,7 +10045,7 @@
    "low_52w": 15.04,
    "pct_below_high": "-53.0%",
    "max_drawdown_1y": "-52.8%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "-40.6%",
     "y1": "-31.7%",
@@ -10099,11 +10099,11 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "UFO": {
-   "price": 39.09,
-   "price_display": "$39.09",
+   "price": 37.97,
+   "price_display": "$37.97",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 240476,
@@ -10114,7 +10114,7 @@
    "low_52w": 31.44,
    "pct_below_high": "-42.3%",
    "max_drawdown_1y": "-45.0%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+1.3%",
     "y1": "+20.1%",
@@ -10201,29 +10201,29 @@
     }
    ],
    "fund_family": "Procure ETF Trust II",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "UNG": {
-   "price": 10.61,
-   "price_display": "$10.61",
+   "price": 10.26,
+   "price_display": "$10.26",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 23278465,
-   "volume_display": "~23.3M/day",
-   "dollar_volume_avg": 242405032,
-   "dollar_volume_display": "~$242.4M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 23494506,
+   "volume_display": "~23.5M/day",
+   "dollar_volume_avg": 244652827,
+   "dollar_volume_display": "~$244.7M/day",
    "high_52w": 16.9,
    "low_52w": 9.0,
-   "pct_below_high": "-37.2%",
+   "pct_below_high": "-39.3%",
    "max_drawdown_1y": "-46.7%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-13.5%",
-    "y1": "-25.4%",
-    "y3_annualized": "-24.5%/yr",
+    "ytd": "-16.3%",
+    "y1": "-30.2%",
+    "y3_annualized": "-25.3%/yr",
     "y2025": "-27.1%",
     "y2024": "-17.1%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "United States Natural Gas Fund, LP",
@@ -10236,29 +10236,29 @@
    "expense_ratio": 1.17,
    "yield_ttm": "0.0%",
    "fund_family": "USCF Investments",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "URA": {
-   "price": 29.42,
-   "price_display": "$29.42",
+   "price": 28.67,
+   "price_display": "$28.67",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 4005432,
+   "price_asof": "2026-11-19",
+   "volume_avg": 4031905,
    "volume_display": "~4.0M/day",
-   "dollar_volume_avg": 153483571,
-   "dollar_volume_display": "~$153.5M/day",
+   "dollar_volume_avg": 153096500,
+   "dollar_volume_display": "~$153.1M/day",
    "high_52w": 61.81,
-   "low_52w": 29.42,
-   "pct_below_high": "-52.4%",
-   "max_drawdown_1y": "-52.4%",
-   "history_start": "2021-11-19",
+   "low_52w": 28.67,
+   "pct_below_high": "-53.6%",
+   "max_drawdown_1y": "-53.6%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-31.1%",
-    "y1": "-29.5%",
-    "y3_annualized": "+5.5%/yr",
+    "ytd": "-32.9%",
+    "y1": "-33.5%",
+    "y3_annualized": "+4.6%/yr",
     "y2025": "+67.2%",
     "y2024": "-0.6%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Global X Uranium ETF",
@@ -10336,11 +10336,11 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "URAA": {
-   "price": 10.96,
-   "price_display": "$10.96",
+   "price": 10.37,
+   "price_display": "$10.37",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 74660,
@@ -10410,11 +10410,11 @@
     }
    ],
    "fund_family": "Direxion Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "URAN": {
-   "price": 28.44,
-   "price_display": "$28.44",
+   "price": 28.13,
+   "price_display": "$28.13",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 6008,
@@ -10514,11 +10514,11 @@
     }
    ],
    "fund_family": "Themes ETF Trust",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "URNJ": {
-   "price": 14.57,
-   "price_display": "$14.57",
+   "price": 13.93,
+   "price_display": "$13.93",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 509544,
@@ -10607,11 +10607,11 @@
     }
    ],
    "fund_family": "Sprott",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "URNM": {
-   "price": 37.12,
-   "price_display": "$37.12",
+   "price": 35.96,
+   "price_display": "$35.96",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 773702,
@@ -10622,7 +10622,7 @@
    "low_52w": 37.12,
    "pct_below_high": "-55.8%",
    "max_drawdown_1y": "-55.8%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "-32.4%",
     "y1": "-27.7%",
@@ -10700,29 +10700,29 @@
     }
    ],
    "fund_family": "Sprott",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "URNU.L": {
-   "price": 17.41,
-   "price_display": "$17.41",
+   "price": 17.18,
+   "price_display": "$17.18",
    "currency": "USD",
-   "price_asof": "2026-11-17",
-   "volume_avg": 52192,
-   "volume_display": "~52K/day",
-   "dollar_volume_avg": 1189656,
+   "price_asof": "2026-11-18",
+   "volume_avg": 52505,
+   "volume_display": "~53K/day",
+   "dollar_volume_avg": 1193228,
    "dollar_volume_display": "~$1.2M/day",
    "high_52w": 36.71,
-   "low_52w": 17.67,
-   "pct_below_high": "-51.9%",
-   "max_drawdown_1y": "-51.9%",
+   "low_52w": 17.41,
+   "pct_below_high": "-52.6%",
+   "max_drawdown_1y": "-52.6%",
    "history_start": "2022-04-22",
    "performance": {
-    "ytd": "-32.2%",
-    "y1": "-32.3%",
-    "y3_annualized": "+5.9%/yr",
+    "ytd": "-33.2%",
+    "y1": "-31.8%",
+    "y3_annualized": "+5.4%/yr",
     "y2025": "+70.5%",
     "y2024": "+1.2%",
-    "as_of": "2026-11-17",
+    "as_of": "2026-11-18",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Global X Uranium UCITS ETF USD Acc",
@@ -10805,11 +10805,11 @@
     }
    ],
    "fund_family": "Global X",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "UTES": {
-   "price": 76.2,
-   "price_display": "$76.20",
+   "price": 75.11,
+   "price_display": "$75.11",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 181811,
@@ -10820,7 +10820,7 @@
    "low_52w": 69.83,
    "pct_below_high": "-11.1%",
    "max_drawdown_1y": "-17.6%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "-2.5%",
     "y1": "-5.2%",
@@ -10899,29 +10899,29 @@
     }
    ],
    "fund_family": "Virtus",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "VDE": {
-   "price": 170.2,
-   "price_display": "$170.20",
+   "price": 168.89,
+   "price_display": "$168.89",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 524190,
-   "volume_display": "~524K/day",
-   "dollar_volume_avg": 94632451,
-   "dollar_volume_display": "~$94.6M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 524938,
+   "volume_display": "~525K/day",
+   "dollar_volume_avg": 94673519,
+   "dollar_volume_display": "~$94.7M/day",
    "high_52w": 195.46,
    "low_52w": 123.11,
-   "pct_below_high": "-12.9%",
+   "pct_below_high": "-13.6%",
    "max_drawdown_1y": "-15.0%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+37.7%",
-    "y1": "+36.4%",
-    "y3_annualized": "+16.2%/yr",
+    "ytd": "+36.6%",
+    "y1": "+37.0%",
+    "y3_annualized": "+15.9%/yr",
     "y2025": "+7.1%",
     "y2024": "+6.8%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Vanguard Energy Index Fund ETF Shares",
@@ -11001,11 +11001,11 @@
     }
    ],
    "fund_family": "Vanguard",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "VOLT": {
-   "price": 32.63,
-   "price_display": "$32.63",
+   "price": 32.33,
+   "price_display": "$32.33",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 221992,
@@ -11106,29 +11106,29 @@
     }
    ],
    "fund_family": "Tema ETFs",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "VPU": {
-   "price": 188.09,
-   "price_display": "$188.09",
+   "price": 185.64,
+   "price_display": "$185.64",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 349876,
-   "volume_display": "~350K/day",
-   "dollar_volume_avg": 63250604,
-   "dollar_volume_display": "~$63.3M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 351267,
+   "volume_display": "~351K/day",
+   "dollar_volume_avg": 63511839,
+   "dollar_volume_display": "~$63.5M/day",
    "high_52w": 205.87,
    "low_52w": 170.29,
-   "pct_below_high": "-8.6%",
+   "pct_below_high": "-9.8%",
    "max_drawdown_1y": "-15.6%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+3.7%",
-    "y1": "+0.2%",
-    "y3_annualized": "+15.3%/yr",
+    "ytd": "+2.4%",
+    "y1": "-0.5%",
+    "y3_annualized": "+14.8%/yr",
     "y2025": "+16.5%",
     "y2024": "+23.0%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "Vanguard Utilities Index Fund ETF Shares",
@@ -11208,11 +11208,11 @@
     }
    ],
    "fund_family": "Vanguard",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "WAR": {
-   "price": 23.2,
-   "price_display": "$23.20",
+   "price": 22.75,
+   "price_display": "$22.75",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 9957,
@@ -11309,11 +11309,11 @@
     }
    ],
    "fund_family": "U.S. Global Investors",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "WCBR": {
-   "price": 44.45,
-   "price_display": "$44.45",
+   "price": 44.97,
+   "price_display": "$44.97",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 134767,
@@ -11324,7 +11324,7 @@
    "low_52w": 22.74,
    "pct_below_high": "-14.5%",
    "max_drawdown_1y": "-23.3%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+59.6%",
     "y1": "+50.7%",
@@ -11403,11 +11403,11 @@
     }
    ],
    "fund_family": "WisdomTree",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "WQTM": {
-   "price": 23.39,
-   "price_display": "$23.39",
+   "price": 22.69,
+   "price_display": "$22.69",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 195983,
@@ -11507,11 +11507,11 @@
     }
    ],
    "fund_family": "WisdomTree",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "WTAI": {
-   "price": 31.74,
-   "price_display": "$31.74",
+   "price": 30.93,
+   "price_display": "$30.93",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 312575,
@@ -11613,29 +11613,29 @@
     }
    ],
    "fund_family": "WisdomTree",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "XAR": {
-   "price": 218.95,
-   "price_display": "$218.95",
+   "price": 215.19,
+   "price_display": "$215.19",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 347627,
-   "volume_display": "~348K/day",
-   "dollar_volume_avg": 80920802,
-   "dollar_volume_display": "~$80.9M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 348767,
+   "volume_display": "~349K/day",
+   "dollar_volume_avg": 81030853,
+   "dollar_volume_display": "~$81.0M/day",
    "high_52w": 296.73,
    "low_52w": 214.23,
-   "pct_below_high": "-26.2%",
+   "pct_below_high": "-27.5%",
    "max_drawdown_1y": "-27.8%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-9.1%",
-    "y1": "-1.9%",
-    "y3_annualized": "+21.3%/yr",
+    "ytd": "-10.7%",
+    "y1": "-3.9%",
+    "y3_annualized": "+20.6%/yr",
     "y2025": "+46.2%",
     "y2024": "+23.3%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "State Street SPDR S&P Aerospace & Defense ETF",
@@ -11707,29 +11707,29 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "XBI": {
-   "price": 145.04,
-   "price_display": "$145.04",
+   "price": 144.12,
+   "price_display": "$144.12",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 9005975,
-   "volume_display": "~9.0M/day",
-   "dollar_volume_avg": 1397495760,
+   "price_asof": "2026-11-19",
+   "volume_avg": 9057071,
+   "volume_display": "~9.1M/day",
+   "dollar_volume_avg": 1401426074,
    "dollar_volume_display": "~$1.4B/day",
    "high_52w": 169.55,
    "low_52w": 113.83,
-   "pct_below_high": "-14.5%",
-   "max_drawdown_1y": "-14.9%",
-   "history_start": "2021-11-19",
+   "pct_below_high": "-15.0%",
+   "max_drawdown_1y": "-15.0%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+19.1%",
-    "y1": "+26.5%",
-    "y3_annualized": "+26.2%/yr",
+    "ytd": "+18.3%",
+    "y1": "+26.4%",
+    "y3_annualized": "+25.9%/yr",
     "y2025": "+35.9%",
     "y2024": "+1.0%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "State Street SPDR S&P Biotech ETF",
@@ -11805,29 +11805,29 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "XLE": {
-   "price": 61.29,
-   "price_display": "$61.29",
+   "price": 60.89,
+   "price_display": "$60.89",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 33319165,
-   "volume_display": "~33.3M/day",
-   "dollar_volume_avg": 2150440840,
+   "price_asof": "2026-11-19",
+   "volume_avg": 33369163,
+   "volume_display": "~33.4M/day",
+   "dollar_volume_avg": 2152272367,
    "dollar_volume_display": "~$2.2B/day",
    "high_52w": 70.02,
    "low_52w": 43.81,
-   "pct_below_high": "-12.5%",
+   "pct_below_high": "-13.0%",
    "max_drawdown_1y": "-15.0%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+39.8%",
-    "y1": "+38.5%",
-    "y3_annualized": "+16.7%/yr",
+    "ytd": "+38.9%",
+    "y1": "+39.4%",
+    "y3_annualized": "+16.5%/yr",
     "y2025": "+7.9%",
     "y2024": "+5.6%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "State Street Energy Select Sector SPDR ETF",
@@ -11899,29 +11899,29 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "XLK": {
-   "price": 163.81,
-   "price_display": "$163.81",
+   "price": 160.69,
+   "price_display": "$160.69",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 9353789,
-   "volume_display": "~9.4M/day",
-   "dollar_volume_avg": 1705404350,
+   "price_asof": "2026-11-19",
+   "volume_avg": 9596529,
+   "volume_display": "~9.6M/day",
+   "dollar_volume_avg": 1742335441,
    "dollar_volume_display": "~$1.7B/day",
    "high_52w": 202.0,
    "low_52w": 127.5,
-   "pct_below_high": "-18.9%",
-   "max_drawdown_1y": "-19.6%",
-   "history_start": "2021-11-19",
+   "pct_below_high": "-20.5%",
+   "max_drawdown_1y": "-20.5%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+14.2%",
-    "y1": "+18.0%",
-    "y3_annualized": "+22.2%/yr",
+    "ytd": "+12.0%",
+    "y1": "+15.0%",
+    "y3_annualized": "+21.5%/yr",
     "y2025": "+24.6%",
     "y2024": "+21.6%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "State Street Technology Select Sector SPDR ETF",
@@ -11993,29 +11993,29 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "XLU": {
-   "price": 43.55,
-   "price_display": "$43.55",
+   "price": 43.01,
+   "price_display": "$43.01",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 26998617,
-   "volume_display": "~27.0M/day",
-   "dollar_volume_avg": 1129566940,
+   "price_asof": "2026-11-19",
+   "volume_avg": 27186576,
+   "volume_display": "~27.2M/day",
+   "dollar_volume_avg": 1137735240,
    "dollar_volume_display": "~$1.1B/day",
    "high_52w": 47.73,
    "low_52w": 39.25,
-   "pct_below_high": "-8.8%",
+   "pct_below_high": "-9.9%",
    "max_drawdown_1y": "-16.1%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+4.1%",
-    "y1": "+0.4%",
-    "y3_annualized": "+15.2%/yr",
+    "ytd": "+2.9%",
+    "y1": "0.0%",
+    "y3_annualized": "+14.7%/yr",
     "y2025": "+16.0%",
     "y2024": "+23.3%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "State Street Utilities Select Sector SPDR ETF",
@@ -12087,29 +12087,29 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "XLV": {
-   "price": 181.17,
-   "price_display": "$181.17",
+   "price": 177.46,
+   "price_display": "$177.46",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 9227513,
-   "volume_display": "~9.2M/day",
-   "dollar_volume_avg": 1628446933,
-   "dollar_volume_display": "~$1.6B/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 9363360,
+   "volume_display": "~9.4M/day",
+   "dollar_volume_avg": 1653013849,
+   "dollar_volume_display": "~$1.7B/day",
    "high_52w": 189.66,
    "low_52w": 142.84,
-   "pct_below_high": "-4.5%",
+   "pct_below_high": "-6.4%",
    "max_drawdown_1y": "-10.5%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+18.5%",
-    "y1": "+20.7%",
-    "y3_annualized": "+14.1%/yr",
+    "ytd": "+16.1%",
+    "y1": "+18.4%",
+    "y3_annualized": "+13.3%/yr",
     "y2025": "+14.5%",
     "y2024": "+2.5%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "State Street Health Care Select Sector SPDR ETF",
@@ -12181,29 +12181,29 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "XME": {
-   "price": 87.37,
-   "price_display": "$87.37",
+   "price": 85.38,
+   "price_display": "$85.38",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 1647875,
+   "price_asof": "2026-11-19",
+   "volume_avg": 1602884,
    "volume_display": "~1.6M/day",
-   "dollar_volume_avg": 173961318,
-   "dollar_volume_display": "~$174.0M/day",
+   "dollar_volume_avg": 167771832,
+   "dollar_volume_display": "~$167.8M/day",
    "high_52w": 132.83,
-   "low_52w": 87.37,
-   "pct_below_high": "-34.2%",
-   "max_drawdown_1y": "-34.1%",
-   "history_start": "2021-11-19",
+   "low_52w": 85.38,
+   "pct_below_high": "-35.7%",
+   "max_drawdown_1y": "-35.6%",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "-15.5%",
-    "y1": "-3.3%",
-    "y3_annualized": "+19.1%/yr",
+    "ytd": "-17.4%",
+    "y1": "-6.2%",
+    "y3_annualized": "+18.1%/yr",
     "y2025": "+83.5%",
     "y2024": "-4.5%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "State Street SPDR S&P Metals & Mining ETF",
@@ -12283,11 +12283,11 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "XNDX": {
-   "price": 0.19,
-   "price_display": "$0.19",
+   "price": 0.18,
+   "price_display": "$0.18",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 582232,
@@ -12315,29 +12315,29 @@
    "aum_display": "~$3M",
    "expense_ratio": 1.49,
    "fund_family": "AXS",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "XOP": {
-   "price": 171.57,
-   "price_display": "$171.57",
+   "price": 169.94,
+   "price_display": "$169.94",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 3021130,
+   "price_asof": "2026-11-19",
+   "volume_avg": 3001200,
    "volume_display": "~3.0M/day",
-   "dollar_volume_avg": 569518541,
-   "dollar_volume_display": "~$569.5M/day",
+   "dollar_volume_avg": 565200890,
+   "dollar_volume_display": "~$565.2M/day",
    "high_52w": 204.86,
    "low_52w": 123.96,
-   "pct_below_high": "-16.3%",
+   "pct_below_high": "-17.0%",
    "max_drawdown_1y": "-18.5%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+37.6%",
-    "y1": "+31.1%",
-    "y3_annualized": "+9.6%/yr",
+    "ytd": "+36.3%",
+    "y1": "+31.5%",
+    "y3_annualized": "+9.3%/yr",
     "y2025": "-2.2%",
     "y2024": "-1.0%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "State Street SPDR S&P Oil & Gas Exploration & Production ETF",
@@ -12417,29 +12417,29 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "XPH": {
-   "price": 64.23,
-   "price_display": "$64.23",
+   "price": 63.42,
+   "price_display": "$63.42",
    "currency": "USD",
-   "price_asof": "2026-11-18",
-   "volume_avg": 201329,
-   "volume_display": "~201K/day",
-   "dollar_volume_avg": 13284832,
-   "dollar_volume_display": "~$13.3M/day",
+   "price_asof": "2026-11-19",
+   "volume_avg": 204781,
+   "volume_display": "~205K/day",
+   "dollar_volume_avg": 13491335,
+   "dollar_volume_display": "~$13.5M/day",
    "high_52w": 74.06,
    "low_52w": 51.16,
-   "pct_below_high": "-13.3%",
+   "pct_below_high": "-14.4%",
    "max_drawdown_1y": "-16.4%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
-    "ytd": "+15.0%",
-    "y1": "+23.8%",
-    "y3_annualized": "+21.9%/yr",
+    "ytd": "+13.5%",
+    "y1": "+22.1%",
+    "y3_annualized": "+21.4%/yr",
     "y2025": "+31.6%",
     "y2024": "+4.9%",
-    "as_of": "2026-11-18",
+    "as_of": "2026-11-19",
     "basis": "total return (distributions reinvested)"
    },
    "name": "State Street SPDR S&P Pharmaceuticals ETF",
@@ -12511,11 +12511,11 @@
     }
    ],
    "fund_family": "State Street Investment Management",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "XT": {
-   "price": 79.8,
-   "price_display": "$79.80",
+   "price": 78.54,
+   "price_display": "$78.54",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 65332,
@@ -12526,7 +12526,7 @@
    "low_52w": 65.77,
    "pct_below_high": "-6.7%",
    "max_drawdown_1y": "-10.5%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+14.9%",
     "y1": "+19.3%",
@@ -12637,11 +12637,11 @@
     }
    ],
    "fund_family": "iShares",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "XYLD": {
-   "price": 39.93,
-   "price_display": "$39.93",
+   "price": 39.16,
+   "price_display": "$39.16",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 501373,
@@ -12652,7 +12652,7 @@
    "low_52w": 38.36,
    "pct_below_high": "-4.9%",
    "max_drawdown_1y": "-5.3%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+7.1%",
     "y1": "+11.3%",
@@ -12771,11 +12771,11 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   },
   "XYLG": {
-   "price": 28.34,
-   "price_display": "$28.34",
+   "price": 27.78,
+   "price_display": "$27.78",
    "currency": "USD",
    "price_asof": "2026-11-18",
    "volume_avg": 26771,
@@ -12786,7 +12786,7 @@
    "low_52w": 25.66,
    "pct_below_high": "-5.7%",
    "max_drawdown_1y": "-6.9%",
-   "history_start": "2021-11-19",
+   "history_start": "2021-11-22",
    "performance": {
     "ytd": "+7.7%",
     "y1": "+11.6%",
@@ -12905,7 +12905,7 @@
     }
    ],
    "fund_family": "Global X Funds",
-   "profile_asof": "2026-11-19"
+   "profile_asof": "2026-11-20"
   }
  }
 }
